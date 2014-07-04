@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-danger">
+            <div class="panel-heading">Sécurité</div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#" class="thumbnail">
+                            <img src="~/Content/images/HSE/Home/Head Protection icon2.jpg" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                Nouvelle Fiche <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("FAS (Fiche Accident Sécurité)", "Create", "FicheSecurite")</li>                     @*@Html.ActionLink("FAS (Fiche Accident Sécurité)", "Details", "FicheSecurite") </li>*@
+                                <li><a href="#">FPA (Fiche Presque Accident)</a></li>
+                            </ul>
+                        </div>
+                        <br />
+                            <button type="button" class="btn btn-danger">
+                                Evaluation des risques
+                            </button>
+                        <br />
+
+                        @Html.ActionLink("Liste des FAS", "Index", "FicheSecurite", null, new { @class = "btn btn-danger" })
+
+
+                    </div>
+                </div>
+
+                        <!-- Single button -->
+
+                    </div>
+                </div>
+            </div>
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">Environnement</div>
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="#" class="thumbnail">
+                            <img src="~/Content/images/HSE/Home/Environment_icon2.jpg" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                Bouton 1 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">FAS (Fiche Accident Sécurité)</a></li>
+                                <li><a href="#">FPA (Fiche Presque Accident)</a></li>
+                            </ul>
+                        </div>
+                        <br />
+                        <button type="button" class="btn btn-success">
+                            Bouton 2
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Single button -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Statistiques</div>
+            <div class="panel-body">
+                Statistiques
+            </div>
+        </div>
+    </div>
+    </div>
+

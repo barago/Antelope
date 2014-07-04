@@ -1,0 +1,123 @@
+﻿using Antelope.Models.Socle;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace Antelope.Models.HSE
+{
+    public class FicheSecurite
+    {
+
+        public Int32 FicheSecuriteID { get; set; }
+
+        [DisplayName("Code")]
+        public String Code { get; set; }
+
+        [DisplayName("Type")]
+        public String Type { get; set; }
+
+        [DisplayName("Âge")]
+        public String Age { get; set; }
+
+        [DisplayName("Poste")]
+        public String PosteDeTravail {get; set;}
+        [DisplayName("Service")]
+        public String Service { get; set; }
+        [DisplayName("Responsable")]
+        public String Responsable { get; set; }
+
+        //[DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:dd.MM.yy}")]
+        [Required]
+        [DisplayName("Date créa.")]
+        public DateTime DateCreation { get; set; }
+
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd.MM.yy}", ApplyFormatInEditMode = true)]
+        [Required]
+        [DisplayName("Date évnmt.")]
+        public DateTime DateEvenement { get; set; }
+      
+        //[DisplayName("Heure évnmt.")]
+        //[DataType(DataType.DateTime)]
+        //[DisplayFormat(DataFormatString = "{0:hh:mm}")]
+        //public DateTime HeureEvenement { get; set; }
+
+        [DisplayName("Pers. concern.")]
+        public String PersonnesConcernees { get; set; }
+
+        [Required(ErrorMessage = "{0} est un champ obligatoire")]
+        [DisplayName("Description")] 
+        [DataType(DataType.MultilineText)]
+        public String Description { get; set; }
+
+        [DisplayName("Action immédiate 1")] 
+        [DataType(DataType.MultilineText)]
+        public String ActionImmediate1 { get; set; }
+
+        [DisplayName("Action immédiate 2")] 
+        [DataType(DataType.MultilineText)]
+        public String ActionImmediate2 { get; set; }
+
+        [DisplayName("Témoins")]
+        public String Temoins { get; set; }
+
+        [DisplayName("Fréquence d'exposition")]
+        [DefaultValue(0)]
+        public short CotationFrequence { get; set; }
+        [DisplayName("Gravité")]
+        [DefaultValue(0)]
+        public short CotationGravite { get; set; }
+
+        [DisplayName("Risque")]
+        public String Risque { get; set; }
+
+        [DisplayName("Type")]
+        public Int32 FicheSecuriteTypeId { get; set;}
+
+        public virtual FicheSecuriteType FicheSecuriteType {get; set;}
+
+        [DisplayName("Danger")]
+        public Int32 DangerId { get; set; }
+
+        public virtual Danger Danger { get; set; }
+
+        [DisplayName("Zone du corps")]
+        public Int32 CorpsHumainZoneId { get; set; }
+
+        public virtual CorpsHumainZone CorpsHumainZone { get; set; }
+
+        [DisplayName("Plage Horaire")]
+        public Int32? PlageHoraireId { get; set; }
+
+        public virtual PlageHoraire PlageHoraire { get; set; }
+
+         [DisplayName("Site")]
+        public Int32 SiteId { get; set; }
+
+        public virtual Site Site { get; set; }
+
+        [DisplayName("Zone")]
+        public Int32? ZoneId { get; set; }
+
+        public virtual Zone Zone { get; set; }
+
+        [DisplayName("Lieu")]
+        public Int32? LieuId { get; set; }
+
+        public virtual Lieu Lieu { get; set; }
+
+        public virtual List<ActionSecurite> ActionSecurites{ get; set; }
+
+
+        //Etats de la fiche (Workflow)
+        //public Boolean State10TeamLeaderValidated { get; set; }
+        //public Boolean State20ASEValidated { get; set; }
+        //public Boolean State30TeamLeaderCompleted { get; set; }
+        //public Boolean State40ASECompleted { get; set; }
+
+    }
+}

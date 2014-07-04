@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestMap</title>
+
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
+</head>
+<body>
+    <div> 
+
+        <img id="map" alt="TestMap.jpg" usemap="#TestMap" src="~/Content/images/HSE/FicheSecurite/TestMap.jpg" />
+        <map id="TestMap" name="TestMap">
+            <area alt="" href="#" shape="rect" coords="37,17,224,108" />
+            <area alt="" href="#" shape="rect" coords="233,15,452,110" />
+            <area alt="" href="#" shape="rect" coords="38,119,225,211" />
+            <area alt="" href="#" shape="rect" coords="233,117,454,212" />
+        </map>
+    </div>
+
+    <script language="javascript">
+        $(document).ready(function () {
+
+
+            $('#map').mapster();
+
+
+        });
+
+
+
+    </script>
+</body>
+</html>

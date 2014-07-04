@@ -1,0 +1,194 @@
+﻿@using PagedList.Mvc;
+
+@*@model IEnumerable<Antelope.Models.HSE.FicheSecurite>*@
+@model PagedList.IPagedList<Antelope.Models.HSE.FicheSecurite>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            Filtres
+
+                            </div>
+                        <div class="col-md-6">
+                            </div>
+
+                        <div class="col-md-2">
+
+                            <button type="submit" class="btn btn-primary btn-xs pull-right">
+                                <span class="glyphicon glyphicon-search"></span> Chercher
+                            </button>
+
+</div>
+
+                        </div>
+
+                    </div>
+                <div class="panel-body" style="padding:0px;">
+
+                    <div class="row input-sm">
+
+
+
+                        <div class="col-md-4">
+                            Code: @Html.TextBox("SearchString") <br />
+                            ChampFiltre <br />
+                            ChampFiltre <br />
+                            ChampFiltre <br />
+                        </div>
+
+                        <div class="col-md-5">
+                            ChampFiltre <br />
+                            ChampFiltre <br />
+                            ChampFiltre <br />
+                            ChampFiltre <br />
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> FAS
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> FPA
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> AS
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> OA/NC
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Veille Régl.
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Référentiel
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">Résultats</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Site.Nom)
+                            </th>
+                            <th>
+                                @Html.ActionLink("Code", "Index", new { sortOrder = ViewBag.TriParametreCode })
+                            </th>
+                            <th>
+                                @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TriParametreType })
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Service)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DateCreation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Zone)
+                            </th>
+                            <th>
+                                Fréq.expo
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().CotationGravite)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Site.Nom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Code)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Service)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateCreation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Zone.Nom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CotationFrequence)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CotationGravite)
+                                </td>
+                                <td>
+                                    <a class="glyphicon glyphicon-edit" href="@Url.Action("Edit", new { id = item.FicheSecuriteID })"></a> |
+                                    <a class="glyphicon glyphicon-remove" href="@Url.Action("Delete", new { id = item.FicheSecuriteID })"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @*@Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+                @Html.PagedListPager(Model, page => Url.Action("Index",
+                                 new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.SearchString }))
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

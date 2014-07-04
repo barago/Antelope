@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+
+
+@using (Html.BeginForm("Index2", "Phantom", FormMethod.Post, 
+                                      new { enctype = "multipart/form-data" }))
+{
+
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div>
+        <fieldset>
+            Param1 : <input id="Param1" name="Param1" type="text" />
+            Param2 : <input id="Param2" name="Param2" type="text" />
+            Param3 : <input id="Param3" name="Param3" type="text" />
+
+            <button type="submit" value="Print" class="btn btn-xs" style="color: red">
+                <span class="glyphicon"></span> ToPdf
+            </button>
+            </fieldset>
+</div>
+
+
+}
+
+    </div>
+</body>
+</html>
