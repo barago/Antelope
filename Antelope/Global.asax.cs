@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Http;
 using System.Web.Security;
 using System.Diagnostics;
 using Antelope.Services.HSE.Enums;
@@ -24,8 +25,11 @@ namespace Antelope
         protected void Application_Start()
         {
 
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
             //Datas Initializer when the base is in a Create/Drop state
             //Database.SetInitializer<AntelopeContext>(new AntelopeContextInitializer());
+            Database.SetInitializer(new TestContextInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
