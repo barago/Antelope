@@ -15,6 +15,7 @@ using Antelope.Models;
 using Antelope.Models.Socle;
 using System.Web.Security;
 using System.Collections;
+using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 
 
 namespace Antelope.Controllers.HSE
@@ -143,6 +144,7 @@ namespace Antelope.Controllers.HSE
                             where a.ZoneId == ficheSecurite.LieuId
                             select a;
 
+            ViewBag.ZoneId = new SelectList(queryZone, "ZoneId", "Nom", ficheSecurite.ZoneId);
             ViewBag.LieuId = new SelectList(queryLieu, "LieuId", "Nom", ficheSecurite.LieuId);
             ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
             ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
@@ -170,6 +172,8 @@ namespace Antelope.Controllers.HSE
                 return RedirectToAction("Index");
             }
             ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Nom", ficheSecurite.SiteId);
+            ViewBag.ZoneId = new SelectList(db.Zones, "ZoneId", "Nom", ficheSecurite.ZoneId);
+            ViewBag.LieuId = new SelectList(db.Lieux, "LieuId", "Nom", ficheSecurite.LieuId);
             ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
             ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
             ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
@@ -179,7 +183,16 @@ namespace Antelope.Controllers.HSE
 
             ViewBag.CriticiteBrute = ficheSecurite.CotationFrequence * ficheSecurite.CotationGravite;
 
-            return View("~/Views/HSE/FicheSecurite/Edit.cshtml", ficheSecurite);
+            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
+        }
+
+        // GET: /FicheSecurite/CreateBackBone
+        public ActionResult CreateBackBone()
+        {
+
+            FicheSecuriteViewModel FicheSecuriteViewModel = new FicheSecuriteViewModel();
+            
+            return View("~/Views/HSE/FicheSecurite/Create_BackBone.cshtml");
         }
 
         // GET: /FicheSecurite/Delete/5

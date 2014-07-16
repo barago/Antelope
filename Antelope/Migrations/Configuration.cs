@@ -188,7 +188,7 @@ namespace Antelope.Migrations
             }
 
             List<string> AllCorpsHumainZoneNom = new List<string>() { "Crâne", "Yeux", "Oreille gauche", "Oreille droite", "Nez", "Bouche", "Menton", "Cou", "Epaule gauche", "Epaule droite" };
-            List<string> AllCorpsHumainZoneCode = new List<string>() { "Crane", "Yeux", "OreilleG", "OreilleD", "Nez", "Bouche", "Menton", "Cou", "EpauleG", "EpauleD" };
+            List<string> AllCorpsHumainZoneCode = new List<string>() { "CRANE", "YEUX", "OREILLEG", "OREILLED", "NEZ", "BOUCHE", "MENTON", "COU", "EPAULEG", "EPAULED" };
 
             List<CorpsHumainZone> AllCorpsHumainZone = new List<CorpsHumainZone>();
 

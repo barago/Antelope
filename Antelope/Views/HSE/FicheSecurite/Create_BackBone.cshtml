@@ -572,6 +572,7 @@
 <link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/Scripts/backbone.min.js"></script>
 @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
 
 <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
@@ -639,6 +640,10 @@
     }
 
     $(document).ready(function () {
+
+        var FicheSecuriteViewModel = Backbone.Model.extend({});
+
+
 
         @*var crane = "@(Model.CorpsHumainZone.Code == "Crane" ? true : false )";
         var yeux = "@(Model.CorpsHumainZone.Code == "Yeux" ? true : false )";

@@ -9,7 +9,7 @@
 
 /*
   
-update-database -ConnectionString "Data Source=RFS-PW7M11\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=RFS-PW7M11\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
 
 */
 
@@ -17,7 +17,7 @@ update-database -ConnectionString "Data Source=RFS-PW7M11\SQLEXPRESS;Initial Cat
 
 /*
 
-update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
 
 */
 
@@ -25,7 +25,7 @@ update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antel
 
 /*
 
-update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope_Acceptance;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope_Acceptance;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
 
 */
 
@@ -33,7 +33,7 @@ update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antel
 
 /*
 
-update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope_Test;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antelope_Test;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
 
 */
 
@@ -41,7 +41,7 @@ update-database -ConnectionString "Data Source=DLF-S12VM10;Initial Catalog=Antel
 
 /*
 
-update-database -ConnectionString "Data Source=ALDEBARAN\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=ALDEBARAN\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
  
 */
 
@@ -49,6 +49,6 @@ update-database -ConnectionString "Data Source=ALDEBARAN\SQLEXPRESS;Initial Cata
 
 /*
   
-update-database -ConnectionString "Data Source=RFS-WW7I20\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oh;" -ConnectionProviderName "System.Data.SqlClient"
+update-database -ConnectionString "Data Source=RFS-WW7I20\SQLEXPRESS;Initial Catalog=Antelope;User ID=sa;Password=8rj589oH;" -ConnectionProviderName "System.Data.SqlClient"
 
 */

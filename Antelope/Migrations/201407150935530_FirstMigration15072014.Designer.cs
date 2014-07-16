@@ -7,13 +7,13 @@ namespace Antelope.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class FirstMigration040720142 : IMigrationMetadata
+    public sealed partial class FirstMigration15072014 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration040720142));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration15072014));
         
         string IMigrationMetadata.Id
         {
-            get { return "201407041507409_FirstMigration040720142"; }
+            get { return "201407150935530_FirstMigration15072014"; }
         }
         
         string IMigrationMetadata.Source

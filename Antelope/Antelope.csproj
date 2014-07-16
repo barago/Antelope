@@ -146,7 +146,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
-    <Compile Include="Controllers\HSE\FicheSecuriteController_BU.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
     <Compile Include="Controllers\IndicateurSI\DegreSatisfactionController.cs" />
@@ -163,9 +162,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407041507409_FirstMigration040720142.cs" />
-    <Compile Include="Migrations\201407041507409_FirstMigration040720142.Designer.cs">
-      <DependentUpon>201407041507409_FirstMigration040720142.cs</DependentUpon>
+    <Compile Include="Migrations\201407150935530_FirstMigration15072014.cs" />
+    <Compile Include="Migrations\201407150935530_FirstMigration15072014.Designer.cs">
+      <DependentUpon>201407150935530_FirstMigration15072014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -188,7 +187,7 @@
     <Compile Include="Services\Commons\GroupService.cs" />
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
-    <Compile Include="ViewModels\HSE\FicheSecurite\FicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -274,6 +273,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\backbone-min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\antelope - FTP.pubxml" />
@@ -402,6 +402,7 @@
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierSelection.cshtml" />
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierPrint.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\TestMap.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\Create_BackBone.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -424,8 +425,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407041507409_FirstMigration040720142.resx">
-      <DependentUpon>201407041507409_FirstMigration040720142.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407150935530_FirstMigration15072014.resx">
+      <DependentUpon>201407150935530_FirstMigration15072014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
