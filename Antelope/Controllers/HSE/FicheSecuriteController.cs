@@ -68,8 +68,9 @@ namespace Antelope.Controllers.HSE
             ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
             ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
 
-
-            return View("~/Views/HSE/FicheSecurite/Create.cshtml");
+            FicheSecurite ficheSecurite = new FicheSecurite();
+            
+            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
         }
 
         // POST: /FicheSecurite/Create

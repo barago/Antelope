@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antelope.Models.Test;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace Antelope.Models
     {
         protected override void Seed(TestContext context)
         {
-            // Use the context to seed the db.
-        }
 
+            Category category1 = new Category() { Name = "Catégorie1" };
+            Review review1 = new Review() { Content = "blablablbalbalba", Topic = "Sujet", Email = "jucok@gmx.fr", IsAnonymous = false, Category = category1 };
+
+        }
 
     }
 }

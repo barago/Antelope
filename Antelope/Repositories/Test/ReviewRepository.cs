@@ -10,10 +10,9 @@ namespace Antelope.Repositories.Test
 {
     public class ReviewRepository : IReviewRepository
     {
-        private TestContext _db { get; set; }
+        public TestContext _db { get; set; }
 
-        public ReviewRepository()
-            : this(new TestContext())
+        public ReviewRepository() : this(new TestContext())
         {
 
         }
