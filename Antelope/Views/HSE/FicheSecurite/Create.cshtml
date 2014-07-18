@@ -391,8 +391,8 @@
 
                                     <div class="row">
 
-                                        <input id="CorpsHumainSelected" type="text" class="pull-right" value=@Model.CorpsHumainZone.Nom disabled />
-                                        <input id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value=@Model.CorpsHumainZone.Code disabled />
+                                        <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right" value=@Model.CorpsHumainZone.Nom disabled />
+                                        <input name="CorpsHumainSelectedHidden" id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value=@Model.CorpsHumainZone.Code />
                                     </div>
 
 
@@ -455,22 +455,123 @@
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
 
+
+                                <div class="row">
+
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.EnqueteRealisee, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.EnqueteRealisee)
+                                                @Html.ValidationMessageFor(model => model.EnqueteRealisee)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.EnqueteDate, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.EnqueteDate)
+                                                @Html.ValidationMessageFor(model => model.EnqueteDate)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.EnqueteProtagoniste, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.EnqueteProtagoniste)
+                                                @Html.ValidationMessageFor(model => model.EnqueteProtagoniste)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.CHSCTMembre, new { @class = "control-label col-md-4" })
+                                            <div class="col-md-8">
+                                                @Html.EditorFor(model => model.CHSCTMembre)
+                                                @Html.ValidationMessageFor(model => model.CHSCTMembre)
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+
                                 <div class="panel panel-default">
                                     <!-- Default panel contents -->
-                                    <div class="panel-heading">Panel heading</div>
+                                    <div class="panel-heading">Causes et Actions</div>
 
                                     <table class="table table-bordered table-hover table-condensed">
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    A
+                                                   Causes
                                                 </th>
                                                 <th>
-                                                    B
+                                                    Actions
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    1ère cause
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    1ère action
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    2ème action
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2ème cause
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                                <td>
+                                                    1ère action
+                                                </td>
+                                            </tr>
+
+
+
+
                                             @if (Model != null && Model.ActionSecurites != null)
                                             {
                                                 foreach (var action in Model.ActionSecurites)
@@ -686,7 +787,11 @@
 
         );
 
-        $("area." + "@(Model.CorpsHumainZone.Code)").mapster('set', true);
+        var corpsHumainCode = "@Model.CorpsHumainZone.Code";
+
+        if (corpsHumainCode != "") {
+            $("area." + "@(Model.CorpsHumainZone.Code)").mapster('set', true);
+        }
 
         $("area").on('click', function () {
             $("#CorpsHumainSelected").val($(this).data('name'));

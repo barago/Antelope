@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407170806478_FirstMigration17072014.cs" />
-    <Compile Include="Migrations\201407170806478_FirstMigration17072014.Designer.cs">
-      <DependentUpon>201407170806478_FirstMigration17072014.cs</DependentUpon>
+    <Compile Include="Migrations\201407181517024_180720145.cs" />
+    <Compile Include="Migrations\201407181517024_180720145.Designer.cs">
+      <DependentUpon>201407181517024_180720145.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -204,6 +204,7 @@
     <Compile Include="Models\Test\Comment.cs" />
     <Compile Include="Models\Test\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
     <Compile Include="Repositories\Test\IReviewRepository.cs" />
     <Compile Include="Repositories\Test\ReviewRepository.cs" />
     <Compile Include="Services\Commons\GroupService.cs" />
@@ -426,6 +427,7 @@
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierPrint.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\TestMap.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Create_BackBone.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -448,8 +450,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407170806478_FirstMigration17072014.resx">
-      <DependentUpon>201407170806478_FirstMigration17072014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201407181517024_180720145.resx">
+      <DependentUpon>201407181517024_180720145.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

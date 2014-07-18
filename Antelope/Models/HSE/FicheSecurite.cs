@@ -112,6 +112,17 @@ namespace Antelope.Models.HSE
 
         public virtual List<ActionSecurite> ActionSecurites{ get; set; }
 
+        [DisplayName("Enquête réaliseé")]
+        public Boolean EnqueteRealisee { get; set; }
+
+        [DisplayName("Date enquête")]
+        public Nullable<DateTime> EnqueteDate { get; set; }
+
+        [DisplayName("Protagoniste enquête ")]
+        public String EnqueteProtagoniste { get; set; }
+
+        [DisplayName("Membre CHSCT")]
+        public String CHSCTMembre { get; set; }
 
         //Etats de la fiche (Workflow)
         //public Boolean State10TeamLeaderValidated { get; set; }

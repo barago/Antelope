@@ -1,0 +1,117 @@
+﻿@model Antelope.Models.HSE.FicheSecurite
+
+@{
+    ViewBag.Title = "Création Fiche Sécurité";
+    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+
+    <div>
+
+        @Html.LabelFor(model => model.SiteId, "Site")
+        @Html.DropDownList("SiteId", String.Empty)
+        @Html.ValidationMessageFor(model => model.SiteId)
+
+
+
+        @Html.LabelFor(model => model.FicheSecuriteTypeId, "Type")
+        @Html.DropDownList("FicheSecuriteTypeId", String.Empty)
+        @Html.ValidationMessageFor(model => model.FicheSecuriteTypeId)
+
+
+        @Html.LabelFor(model => model.Code)
+        @Html.EditorFor(model => model.Code)
+        @Html.ValidationMessageFor(model => model.Code)
+
+
+        @ViewBag.DateEvenement
+        @Html.ValidationMessageFor(model => model.DateEvenement)
+
+        @ViewBag.HeureEvenement
+        @Html.ValidationMessageFor(model => model.DateEvenement)
+
+        @Html.LabelFor(model => model.PersonnesConcernees, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.PersonnesConcernees)
+            @Html.ValidationMessageFor(model => model.PersonnesConcernees)
+
+        @Html.LabelFor(model => model.Age, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+
+
+        @Html.LabelFor(model => model.PlageHoraire, "Plage Horaire", new { @class = "control-label col-md-4" })
+            @Html.DropDownList("PlageHoraireId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PlageHoraire)
+
+        @Html.LabelFor(model => model.PosteDeTravail, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.PosteDeTravail)
+            @Html.ValidationMessageFor(model => model.PosteDeTravail)
+
+        @Html.LabelFor(model => model.Service, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.Service)
+            @Html.ValidationMessageFor(model => model.Service)
+
+        @Html.LabelFor(model => model.Responsable, new { @class = "control-label col-md-4" })
+          @Html.EditorFor(model => model.Responsable)
+            @Html.ValidationMessageFor(model => model.Responsable)
+
+        @Html.LabelFor(model => model.ZoneId, "Zone", new { @class = "control-label col-md-4" })
+            @Html.DropDownList("ZoneId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ZoneId)
+
+        @Html.LabelFor(model => model.LieuId, "Lieu", new { @class = "control-label col-md-4" })
+            @Html.DropDownList("LieuId", String.Empty)
+            @Html.ValidationMessageFor(model => model.LieuId)
+
+        @Html.LabelFor(model => model.DangerId, "Danger", new { @class = "control-label col-md-4" })
+            @Html.DropDownList("DangerId", String.Empty)
+            @Html.ValidationMessageFor(model => model.DangerId)
+
+        @Html.LabelFor(model => model.Risque, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.Risque)
+            @Html.ValidationMessageFor(model => model.Risque)
+
+        @Html.LabelFor(model => model.Temoins, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.Temoins)
+            @Html.ValidationMessageFor(model => model.Temoins)
+
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control input-small", rows = "8" })    @*, style="width: 206px;"*@
+        @Html.ValidationMessageFor(model => model.Description)
+
+        @Html.LabelFor(model => model.CotationFrequence, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.CotationFrequence)
+            @Html.ValidationMessageFor(model => model.CotationFrequence)
+
+        @Html.LabelFor(model => model.CotationGravite, new { @class = "control-label col-md-4" })
+            @Html.EditorFor(model => model.CotationGravite)
+            @Html.ValidationMessageFor(model => model.CotationGravite)
+
+
+        @ViewBag.CriticiteBrute
+
+        @Model.CorpsHumainZone?.Nom
+
+        @Model.CorpsHumainZone?.Code
+
+
+
+
+            @Html.TextAreaFor(model => model.ActionImmediate1, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;"*@
+            @Html.ValidationMessageFor(model => model.ActionImmediate1)
+
+            @Html.TextAreaFor(model => model.ActionImmediate2, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;" *@
+            @Html.ValidationMessageFor(model => model.ActionImmediate2)
+
+
+
+
+
+        </div>
+}

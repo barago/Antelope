@@ -68,21 +68,74 @@ namespace Antelope.Controllers.HSE
             ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
             ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
 
-            FicheSecurite ficheSecurite = new FicheSecurite();
+            FicheSecurite ficheSecurite = new FicheSecurite() { CorpsHumainZone = new CorpsHumainZone() };
             
             return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
         }
+
+        // GET: /FicheSecurite/Create
+        public ActionResult CreateBis()
+        {
+            List<Zone> Zones = new List<Zone>();
+            List<Lieu> Lieux = new List<Lieu>();
+            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
+            ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
+            ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
+            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
+            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
+            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+
+            FicheSecurite ficheSecurite = new FicheSecurite();
+
+            return View("~/Views/HSE/FicheSecurite/CreateBis.cshtml", ficheSecurite);
+        }
+
+        // GET: /FicheSecurite/Create
+        public ActionResult CreateBb()
+        {
+            List<Zone> Zones = new List<Zone>();
+            List<Lieu> Lieux = new List<Lieu>();
+            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
+            ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
+            ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
+            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
+            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
+            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+
+            FicheSecurite ficheSecurite = new FicheSecurite();
+
+            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
+        }
+
 
         // POST: /FicheSecurite/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(DateTime DateEvenement, Boolean HeureEvenementValide, [Bind(Include = "FicheSecuriteID,Code,Type,Nom,Prenom,PosteDeTravail,DateCreation,Service,Responsable,ZoneId,LieuId,PersonnesConcernees,Description,CotationFrequence,CotationGravite,CotationVolume,SiteId,FicheSecuriteTypeId,Risque,Age,PlageHoraireId,Temoins,ActionImmediate1,ActionImmediate2,CorpsHumainZone")] FicheSecurite ficheSecurite)
+        public ActionResult Create(DateTime DateEvenement, Boolean HeureEvenementValide, String HeureEvenement, String CorpsHumainSelectedHidden, [Bind(Include = "FicheSecuriteID,Code,Type,Nom,Prenom,PosteDeTravail,DateCreation,Service,Responsable,ZoneId,LieuId,PersonnesConcernees,Description,CotationFrequence,CotationGravite,CotationVolume,SiteId,FicheSecuriteTypeId,Risque,Age,PlageHoraireId,Temoins,ActionImmediate1,ActionImmediate2,CorpsHumainZone, DangerId")] FicheSecurite ficheSecurite)
         {
             
             TimeSpan ts = new TimeSpan(10, 30, 0);
             //ficheSecurite.DateEvenement = HeureEvenementValide ? ficheSecurite.DateEvenement : 
+
+            if (HeureEvenementValide) { 
+                ficheSecurite.DateEvenement =  DateEvenement + TimeSpan.Parse(HeureEvenement+":00");
+            }
+
+            ficheSecurite.DateCreation = DateTime.Now;
+
+            //CorpsHumainZone corpsHumainZone = (CorpsHumainZone)db.CorpsHumainZones.SingleOrDefault(c => c.Code == CorpsHumainSelectedHidden);
+
+            var query = from a in db.CorpsHumainZones
+                        where a.Code == CorpsHumainSelectedHidden
+                        select a;
+
+            CorpsHumainZone corpsHumainZone = query.FirstOrDefault();
+
+
+            ficheSecurite.CorpsHumainZone = corpsHumainZone;
+
             var errors = ViewData.ModelState.Where(n => n.Value.Errors.Count > 0).ToList();
             if (ModelState.IsValid)
             {

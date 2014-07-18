@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration17072014 : DbMigration
+    public partial class _180720145 : DbMigration
     {
         public override void Up()
         {
@@ -49,6 +49,10 @@ namespace Antelope.Migrations
                         SiteId = c.Int(nullable: false),
                         ZoneId = c.Int(),
                         LieuId = c.Int(),
+                        EnqueteRealisee = c.Boolean(nullable: false),
+                        EnqueteDate = c.DateTime(),
+                        EnqueteProtagoniste = c.String(),
+                        CHSCTMembre = c.String(),
                     })
                 .PrimaryKey(t => t.FicheSecuriteID)
                 .ForeignKey("dbo.CorpsHumainZones", t => t.CorpsHumainZoneId, cascadeDelete: true)
