@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,8 @@ namespace Antelope.Models.HSE
 
         [DisplayName("Nom")]
         public String Nom { get; set; }
-      
+
+        [JsonIgnore]
         public virtual List<FicheSecurite> FicheSecurites { get; set; }
 
     }

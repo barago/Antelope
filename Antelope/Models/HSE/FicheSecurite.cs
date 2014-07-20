@@ -1,4 +1,5 @@
 ﻿using Antelope.Models.Socle;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,39 +79,46 @@ namespace Antelope.Models.HSE
         [DisplayName("Type")]
         public Int32 FicheSecuriteTypeId { get; set;}
 
+        [JsonIgnore] 
         public virtual FicheSecuriteType FicheSecuriteType {get; set;}
 
         [DisplayName("Danger")]
         public Int32 DangerId { get; set; }
 
+        [JsonIgnore]
         public virtual Danger Danger { get; set; }
 
         [DisplayName("Zone du corps")]
         public Int32 CorpsHumainZoneId { get; set; }
 
+        [JsonIgnore]
         public virtual CorpsHumainZone CorpsHumainZone { get; set; }
 
         [DisplayName("Plage Horaire")]
         public Int32? PlageHoraireId { get; set; }
 
+        [JsonIgnore]
         public virtual PlageHoraire PlageHoraire { get; set; }
 
          [DisplayName("Site")]
         public Int32 SiteId { get; set; }
 
+        [JsonIgnore]
         public virtual Site Site { get; set; }
 
         [DisplayName("Zone")]
         public Int32? ZoneId { get; set; }
 
+        [JsonIgnore]
         public virtual Zone Zone { get; set; }
 
         [DisplayName("Lieu")]
         public Int32? LieuId { get; set; }
 
+        [JsonIgnore]
         public virtual Lieu Lieu { get; set; }
 
-        public virtual List<ActionSecurite> ActionSecurites{ get; set; }
+        //public virtual List<ActionSecurite> ActionSecurites{ get; set; }
 
         [DisplayName("Enquête réaliseé")]
         public Boolean EnqueteRealisee { get; set; }

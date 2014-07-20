@@ -93,18 +93,9 @@ namespace Antelope.Controllers.HSE
         // GET: /FicheSecurite/Create
         public ActionResult CreateBb()
         {
-            List<Zone> Zones = new List<Zone>();
-            List<Lieu> Lieux = new List<Lieu>();
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
-            ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
-            ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
-            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
-            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
-            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+            ViewBag.ApplicationState = "CREATE";
 
-            FicheSecurite ficheSecurite = new FicheSecurite();
-
-            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
+            return View("~/Views/HSE/FicheSecurite/CreateBb.cshtml");
         }
 
 

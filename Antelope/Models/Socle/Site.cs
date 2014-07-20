@@ -1,4 +1,5 @@
 ﻿using Antelope.Models.HSE;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Antelope.Models.Socle
         public String Arouperr { get; set; }
 
         // Virtual = Lazy Loading
+        [JsonIgnore]
         public virtual List<FicheSecurite> FicheSecurites { get; set; }
 
     }

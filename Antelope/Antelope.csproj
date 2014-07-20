@@ -146,7 +146,6 @@
     <Folder Include="Scripts\Application\HSE\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
-    <Folder Include="Views\FicheSecurite\" />
     <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\Phantom\" />
@@ -159,6 +158,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
+    <Compile Include="Controllers\HSE\FIcheSecuriteAPIController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
@@ -298,6 +298,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Application\Test\Reviews\Home.js" />
     <Content Include="Scripts\backbone-min.js" />
+    <Content Include="Scripts\backbone.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\antelope - FTP.pubxml" />
@@ -377,6 +378,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\underscore-min.js" />
+    <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -426,7 +429,7 @@
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierSelection.cshtml" />
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierPrint.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\TestMap.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\Create_BackBone.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\CreateBb.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>

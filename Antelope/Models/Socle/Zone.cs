@@ -1,4 +1,5 @@
 ﻿using Antelope.Models.HSE;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Antelope.Models.Socle
 
         public String Nom { get; set; }
 
+        [JsonIgnore]
         public virtual List<FicheSecurite> FicheSecurites { get; set; }
 
         public Int32 SiteId { get; set; }

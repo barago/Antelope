@@ -12,10 +12,10 @@ namespace Antelope.Repositories.HSE
 
         public AntelopeContext _db { get; set; }
 
-        //public FicheSecuriteRepository() : this(new TestContext())
-        //{
+        public FicheSecuriteRepository() : this(new AntelopeContext())
+        {
 
-        //}
+        }
 
         public FicheSecuriteRepository(AntelopeContext db)
         {
@@ -24,7 +24,8 @@ namespace Antelope.Repositories.HSE
 
         public FicheSecurite Get(int id)
         {
-            return _db.FicheSecurites.SingleOrDefault(r => r.FicheSecuriteID == id);
+            FicheSecurite ficheSecurite = _db.FicheSecurites.SingleOrDefault(r => r.FicheSecuriteID == id);
+            return ficheSecurite;
         }
 
         //public IQueryable<Review> GetAll()
