@@ -1,0 +1,122 @@
+﻿@model Antelope.Models.HSE.FicheSecurite
+
+@{
+    ViewBag.Title = "Création Fiche Sécurité";
+    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+}
+
+<div id="InfosGenerales">
+
+    <script type="text/template" id="InfosGenerales2">
+
+
+        <input type="text" id="code" name="code" value="<%= Code %>" />
+        <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
+        <input type="text" id="description" name="description" value="<%= Description %>" />
+
+
+    </script>
+
+</div>
+
+
+
+
+
+
+
+    <link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
+<script type="text/javascript" src="/Scripts/underscore.js"></script>
+    <script type="text/javascript" src="/Scripts/backbone.js"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
+    <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            console.log('html : ' + $('#InfosGenerales2').html());
+
+            var htmlInfoGenerales = $('#InfosGenerales2').html()
+
+            var FicheSecuriteId = "@ViewBag.Id";
+
+            var FicheSecuriteModel = Backbone.Model.extend({
+                urlRoot: '/api/FicheSecuriteAPI/1',
+                default: {
+                    FicheSecuriteID: "",
+                    Code: "aaa",
+                    Type: "",
+                    Age: "",
+                    PosteDeTravail: "",
+                    Service: "",
+                    Responsable: "",
+                    DateCreation: "",
+                    DateEvenement: "",
+                    PersonnesConcernees: "",
+                    Description: "",
+                    ActionImmediate1: "",
+                    ActionImmediate2: "",
+                    Temoins: "",
+                    CotationFrequence: "",
+                    CotationGravite: "",
+                    Risque: "",
+                    FicheSecuriteTypeId: "",
+                    DangerId: "",
+                    CorpsHumainZoneId: "",
+                    PlageHoraireId: "",
+                    SiteId: "",
+                    ZoneId: "",
+                    LieuId: "",
+                    EnqueteRealisee: "",
+                    EnqueteDate: "",
+                    EnqueteProtagoniste: "",
+                    CHSCTMembre: ""
+                }
+            });
+
+            var ficheSecuriteModel = new FicheSecuriteModel({
+                Code: 'aaaaa',
+                Responsable: 'bbbb',
+                Description:'ccccc'
+            });
+
+
+            var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
+                tagName: "div",
+                className: "InfoGeneralesContainer",
+                //template: _.template('<input type="text" id="code" name="code" value="<%= Code %>" />'),
+                template: _.template(htmlInfoGenerales),
+                //$('#InfoGenerales2').html()
+                //'<input type="text" id="code" name="code" value="<%= Code %>" />'
+                render: function () {
+                    this.model.fetch();
+                    this.$el.html(this.template(this.model.toJSON()));
+                    return this;
+                },
+                initialize: function () {
+                    $("#InfosGenerales").html(this.render().el);
+                    this.model.on('change', this.render, this)
+                },
+
+            });
+
+            var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
+                model: ficheSecuriteModel
+            });
+
+            //$("#InfosGenerales").html(ficheSecuriteInfoGeneralesView.render().el);
+
+        })
+
+
+
+    </script>
+
+
