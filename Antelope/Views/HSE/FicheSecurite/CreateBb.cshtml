@@ -42,7 +42,7 @@
                                 <div class="col-md-3">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            Site&nbsp;: 
+                                            <label for="Site">Site&nbsp;:</label>
                                         </div>
                                         <div class="col-md-10">
                                             <select>
@@ -98,10 +98,13 @@
                     <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
                     <div class="col-md-4">
                         <div class="row">
+
                             <div class="form-group">
-                                Pers.&nbsp;Concern.
+                                <div class="col-md-4">
+                                     pers.&nbsp;concern.
+                                </div>
                                 <div class="col-md-8">
-                                    <input type="text" />
+                                        <input type="text" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,113 +122,95 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 Poste&nbsp;de&nbsp;travail&nbsp;:
                                 <div class="col-md-8">
                                     <input type="text" />
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 Service&nbsp;:
                                 <div class="col-md-8">
                                     <input type="text" />
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 Responsable&nbsp;:
                                 <div class="col-md-8">
                                     <input type="text" />
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 Zone&nbsp;:
-                                <div class="col-md-8">
-                                    @Html.DropDownList("ZoneId", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.ZoneId)
-                                </div>
+                                <select>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.LieuId, "Lieu", new { @class = "control-label col-md-4" })
+                                Lieu&nbsp;:
                                 <div class="col-md-8">
-                                    @Html.DropDownList("LieuId", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.LieuId)
+                                    <select>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DangerId, "Danger", new { @class = "control-label col-md-4" })
+                                Danger&nbsp;:
                                 <div class="col-md-8">
-                                    @Html.DropDownList("DangerId", String.Empty)
-                                    @Html.ValidationMessageFor(model => model.DangerId)
+                                    <select>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Risque, new { @class = "control-label col-md-4" })
+                                Risque&nbsp;:
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.Risque)
-                                    @Html.ValidationMessageFor(model => model.Risque)
+                                    <select>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Temoins, new { @class = "control-label col-md-4" })
+                                Témoins&nbsp;:
                                 <div class="col-md-8">
-                                    @Html.EditorFor(model => model.Temoins)
-                                    @Html.ValidationMessageFor(model => model.Temoins)
+                                    <input type="text" />
                                 </div>
                             </div>
-
 
                         </div>
-
-
-
-
-
-
-
-
-
-
                     </div>
 
+                    <!-- ---------------CHAMPS DESCRIPTION/COTATION/ACTIONS----------------- -->
                     <div class="col-md-8">
                         <div class="row">
 
+                            <!-- ---------------CHAMP DESCRIPTION----------------- -->
                             <div class="col-md-6">
-
                                 <div class="form-group">
 
                                     <h4>Description</h4>
 
-                                    @*<div class="col-sm-12">
-                                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-                            </div>*@
                                     <div class="col-sm-12">
-                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control input-small", rows = "8" })    @*, style="width: 206px;"*@
-                                        @Html.ValidationMessageFor(model => model.Description)
+                                        <textarea class="form-control input-small" rows="8"></textarea>
                                     </div>
 
                                 </div>
-
                             </div>
 
-
+                            <!-- ---------------CHAMPS COTATION----------------- -->
+                            
                             <div class="col-md-6">
 
                                 <h4>Cotation</h4>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.CotationFrequence, new { @class = "control-label col-md-4" })
+                                    Fréquence&nbsp;:
                                     <div class="col-md-8">
-                                        @Html.EditorFor(model => model.CotationFrequence)
-                                        @Html.ValidationMessageFor(model => model.CotationFrequence)
+                                        <input type="text" />
                                     </div>
                                 </div>
 
@@ -248,7 +233,7 @@
 
                             </div>
 
-                        </div>
+                        
 
                         <div class="row">
 
