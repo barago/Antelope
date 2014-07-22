@@ -5,19 +5,307 @@
     Layout = "~/Views/HSE/Shared/_Layout.cshtml";
 }
 
-<div id="InfosGenerales">
 
-    <script type="text/template" id="InfosGenerales2">
+<div class="panel-group" id="accordion">
+
+    <!-- ---------------------------------INFOS GENERALES PANEL -------------------------------- -->
+    <div class="panel panel-danger">
+
+        <!-- -------------------------INFOS GENERALES PANEL HEADER------------------------ -->
+        <div class="panel-heading" style="background-color: #C42031; color: white">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
+                            @*data-parent="#accordion"*@
+                            FICHE SECURITE
+                        </a>
+                    </h4>
+                </div>
+                <div class="col-md-8">
+                    <span class="glyphicon glyphicon-ok pull-right"></span>
+                    <span class="pull-right">Statut : </span>
+                    <button type="submit" class="btn pull-right btn-xs">
+                        <span class="glyphicon glyphicon-envelope"></span> Diffusion
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <!-- ------------------------INFOS GENERALES PANEL BODY---------------------------- -->
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <!-- ------------------------BARRE GRISE---------------------------- -->
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            Site&nbsp;: 
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            Type&nbsp;:
+                                        </div>
+                                        <div class="col-md-10">
+                                            <select>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            Code&nbsp;: 
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:
+                                        </div>
+
+                                        <input name="DateEvenement" id="DateEvenement" class="col-md-3" type="text" value="">
+
+                                        <input name="HeureEvenement" id="HeureEvenement" class="col-md-2" type="text" onchange="validateHhMm(this);" value="" />
+
+                                        <input name="HeureEvenementValide" id="HeureEvenementValide" type="hidden" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!-- ------------------------CHAMPS HORS CORPS HUMAIN---------------------------- -->
+                <div class="col-md-9">
+
+                    <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="form-group">
+                                Pers.&nbsp;Concern.
+                                <div class="col-md-8">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Âge&nbsp;:
+                                <div class="col-md-8">
+                                    <input type="text" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Plage&nbsp;horaire&nbsp; 
+                                <div class="col-md-8">
+                                    <select>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Poste&nbsp;de&nbsp;travail&nbsp;:
+                                <div class="col-md-8">
+                                    <input type="text" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Service&nbsp;:
+                                <div class="col-md-8">
+                                    <input type="text" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Responsable&nbsp;:
+                                <div class="col-md-8">
+                                    <input type="text" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Zone&nbsp;:
+                                <div class="col-md-8">
+                                    @Html.DropDownList("ZoneId", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.ZoneId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.LieuId, "Lieu", new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.DropDownList("LieuId", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.LieuId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DangerId, "Danger", new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.DropDownList("DangerId", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.DangerId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Risque, new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Risque)
+                                    @Html.ValidationMessageFor(model => model.Risque)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Temoins, new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Temoins)
+                                    @Html.ValidationMessageFor(model => model.Temoins)
+                                </div>
+                            </div>
 
 
-        <input type="text" id="code" name="code" value="<%= Code %>" />
-        <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
-        <input type="text" id="description" name="description" value="<%= Description %>" />
+                        </div>
 
 
-    </script>
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+
+                                    <h4>Description</h4>
+
+                                    @*<div class="col-sm-12">
+                                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                            </div>*@
+                                    <div class="col-sm-12">
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control input-small", rows = "8" })    @*, style="width: 206px;"*@
+                                        @Html.ValidationMessageFor(model => model.Description)
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <h4>Cotation</h4>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CotationFrequence, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.CotationFrequence)
+                                        @Html.ValidationMessageFor(model => model.CotationFrequence)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CotationGravite, new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.CotationGravite)
+                                        @Html.ValidationMessageFor(model => model.CotationGravite)
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+
+                                    <label class="control-label col-md-4" for="CriticiteBrute">Criticité Brute</label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="CriticiteBrute" value="@ViewBag.CriticiteBrute" disabled />
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+
+
+                            <div class="panel panel-default">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading">
+                                    ACTIONS IMMEDIATES
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            @Html.TextAreaFor(model => model.ActionImmediate1, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;"*@
+                                            @Html.ValidationMessageFor(model => model.ActionImmediate1)
+
+                                            @Html.TextAreaFor(model => model.ActionImmediate2, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;" *@
+                                            @Html.ValidationMessageFor(model => model.ActionImmediate2)
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
 
 </div>
+
+
+
+
+    <div id="InfosGenerales">
+
+        <script type="text/template" id="InfosGenerales2">
+
+
+            <input type="text" id="code" name="code" value="<%= Code %>" />
+            <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
+            <input type="text" id="description" name="description" value="<%= Description %>" />
+
+
+        </script>
+
+    </div>
 
 
 
@@ -28,7 +316,7 @@
     <link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
-<script type="text/javascript" src="/Scripts/underscore.js"></script>
+    <script type="text/javascript" src="/Scripts/underscore.js"></script>
     <script type="text/javascript" src="/Scripts/backbone.js"></script>
     @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
     <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
@@ -48,10 +336,10 @@
             var FicheSecuriteId = "@ViewBag.Id";
 
             var FicheSecuriteModel = Backbone.Model.extend({
-                urlRoot: '/api/FicheSecuriteAPI/1',
-                default: {
-                    FicheSecuriteID: "",
-                    Code: "aaa",
+                urlRoot: '/api/FicheSecuriteAPI',
+                defaults: {
+                    FicheSecuriteId: "",
+                    Code: "",
                     Type: "",
                     Age: "",
                     PosteDeTravail: "",
@@ -81,12 +369,11 @@
                 }
             });
 
-            var ficheSecuriteModel = new FicheSecuriteModel({
-                Code: 'aaaaa',
-                Responsable: 'bbbb',
-                Description:'ccccc'
-            });
+            var ficheSecuriteModel = new FicheSecuriteModel({ id: FicheSecuriteId });
 
+            console.log(ficheSecuriteModel);
+
+            ficheSecuriteModel.fetch();
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
                 tagName: "div",
@@ -96,7 +383,7 @@
                 //$('#InfoGenerales2').html()
                 //'<input type="text" id="code" name="code" value="<%= Code %>" />'
                 render: function () {
-                    this.model.fetch();
+                    //this.model.fetch();
                     this.$el.html(this.template(this.model.toJSON()));
                     return this;
                 },

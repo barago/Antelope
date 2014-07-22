@@ -91,9 +91,9 @@ namespace Antelope.Controllers.HSE
         }
 
         // GET: /FicheSecurite/Create
-        public ActionResult CreateBb()
+        public ActionResult EditBb(int ?id)
         {
-            ViewBag.ApplicationState = "CREATE";
+            ViewBag.Id = id;
 
             return View("~/Views/HSE/FicheSecurite/CreateBb.cshtml");
         }
