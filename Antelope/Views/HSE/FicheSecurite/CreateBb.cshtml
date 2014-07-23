@@ -5,292 +5,452 @@
     Layout = "~/Views/HSE/Shared/_Layout.cshtml";
 }
 
+<script type="text/template" id="InfosGenerales">
+    <div class="panel-group" id="accordion">
 
-<div class="panel-group" id="accordion">
+        <!-- ---------------------------------INFOS GENERALES PANEL -------------------------------- -->
+        <div id="toto" class="panel panel-danger">
 
-    <!-- ---------------------------------INFOS GENERALES PANEL -------------------------------- -->
-    <div class="panel panel-danger">
+            <!-- -------------------------INFOS GENERALES PANEL HEADER------------------------ -->
+            <div class="panel-heading" style="background-color: #C42031; color: white">
+                <div class="row">
 
-        <!-- -------------------------INFOS GENERALES PANEL HEADER------------------------ -->
-        <div class="panel-heading" style="background-color: #C42031; color: white">
-            <div class="row">
-
-                <div class="col-md-4">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
-                            @*data-parent="#accordion"*@
-                            FICHE SECURITE
-                        </a>
-                    </h4>
-                </div>
-                <div class="col-md-8">
-                    <span class="glyphicon glyphicon-ok pull-right"></span>
-                    <span class="pull-right">Statut : </span>
-                    <button type="submit" class="btn pull-right btn-xs">
-                        <span class="glyphicon glyphicon-envelope"></span> Diffusion
-                    </button>
-                </div>
-
-            </div>
-        </div>
-        <!-- ------------------------INFOS GENERALES PANEL BODY---------------------------- -->
-        <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <!-- ------------------------BARRE GRISE---------------------------- -->
-                        <div class="well well-sm">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <label for="Site">Site&nbsp;:</label>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <select>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            Type&nbsp;:
-                                        </div>
-                                        <div class="col-md-10">
-                                            <select>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            Code&nbsp;: 
-                                        </div>
-                                        <div class="col-md-10">
-                                            <input type="text" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:
-                                        </div>
-
-                                        <input name="DateEvenement" id="DateEvenement" class="col-md-3" type="text" value="">
-
-                                        <input name="HeureEvenement" id="HeureEvenement" class="col-md-2" type="text" onchange="validateHhMm(this);" value="" />
-
-                                        <input name="HeureEvenementValide" id="HeureEvenementValide" type="hidden" />
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                <!-- ------------------------CHAMPS HORS CORPS HUMAIN---------------------------- -->
-                <div class="col-md-9">
-
-                    <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
                     <div class="col-md-4">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
+                                @*data-parent="#accordion"*@
+                                FICHE SECURITE
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-md-8">
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                        <span class="pull-right">Statut : </span>
+                        <button type="submit" class="btn pull-right btn-xs">
+                            <span class="glyphicon glyphicon-envelope"></span> Diffusion
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ------------------------INFOS GENERALES PANEL BODY---------------------------- -->
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <!-- ------------------------BARRE GRISE---------------------------- -->
+                    <div class="well well-sm">
                         <div class="row">
-
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                     pers.&nbsp;concern.
-                                </div>
-                                <div class="col-md-8">
-                                        <input type="text" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                Âge&nbsp;:
-                                <div class="col-md-8">
-                                    <input type="text" />
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="Site" class="label-xs">Site&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select id="Site" class="form-control input-xs">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                Plage&nbsp;horaire&nbsp; 
-                                <div class="col-md-8">
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="Type" class="label-xs">Type&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select id="Type" class="form-control input-xs">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                Poste&nbsp;de&nbsp;travail&nbsp;:
-                                <div class="col-md-8">
-                                    <input type="text" />
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="Code" class="label-xs">Code&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" id="Code" class="form-control input-xs" value="<%= Code %>" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                Service&nbsp;:
-                                <div class="col-md-8">
-                                    <input type="text" />
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="label-xs">Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="DateEvenement" id="DateEvenement" class="form-control input-xs" type="text" value="">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" type="text" onchange="validateHhMm(this);" value="" />
+                                    </div>
+                                    <input name="HeureEvenementValide" id="HeureEvenementValide" type="hidden" />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                Responsable&nbsp;:
-                                <div class="col-md-8">
-                                    <input type="text" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                Zone&nbsp;:
-                                <select>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                Lieu&nbsp;:
-                                <div class="col-md-8">
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                Danger&nbsp;:
-                                <div class="col-md-8">
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                Risque&nbsp;:
-                                <div class="col-md-8">
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                Témoins&nbsp;:
-                                <div class="col-md-8">
-                                    <input type="text" />
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
-                    <!-- ---------------CHAMPS DESCRIPTION/COTATION/ACTIONS----------------- -->
-                    <div class="col-md-8">
-                        <div class="row">
+                    <!-- ------------------------CHAMPS HORS CORPS HUMAIN---------------------------- -->
+                    <div class="col-md-9">
 
-                            <!-- ---------------CHAMP DESCRIPTION----------------- -->
-                            <div class="col-md-6">
+                        <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
+                        <div class="col-md-4">
+                            @*<div class="row">*@
+                            <form class="form-horizontal" role="form">
+
                                 <div class="form-group">
-
-                                    <h4>Description</h4>
-
-                                    <div class="col-sm-12">
-                                        <textarea class="form-control input-small" rows="8"></textarea>
+                                    <label for="PersonnesConcernees" class="col-sm-6 label-xs">pers.&nbsp;concern.&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="PersonnesConcernees">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Age" class="col-sm-6 label-xs">Âge&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="Age">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PlageHoraire" class="col-sm-6 label-xs">Plage&nbsp;horaire&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="PlageHoraire">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PosteTravail" class="col-sm-6 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="PosteTravail">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Service" class="col-sm-6 label-xs">Service&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="Service">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Responsable" class="col-sm-6 label-xs">Responsable&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="Responsable">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Zone" class="col-sm-6 label-xs">Zone&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="Zone">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Lieu" class="col-sm-6 label-xs">Lieu&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="Lieu">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Danger" class="col-sm-6 label-xs">Danger&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="Danger">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Risque" class="col-sm-6 label-xs">Risque&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control input-xs" id="Risque">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Temoins" class="col-sm-6 label-xs">Témoins&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="Temoins">
+                                    </div>
+                                </div>
 
+                            </form>
+                            @*</div>*@
+                        </div>
+
+                        <!-- -----------COLONNE CHAMPS DESCRIPTION/COTATION/ACTIONS------------- -->
+                        <div class="col-md-8">
+
+                            <!-- ---------------CHAMPS DESCRIPTION/COTATION----------------- -->
+                            <div class="row">
+
+                                <!-- ---------------CHAMP DESCRIPTION----------------- -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <h4>Description</h4>
+
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control input-small" rows="8"></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- ---------------CHAMPS COTATION----------------- -->
+
+                                <div class="col-md-6">
+
+                                    <h4>Cotation</h4>
+
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <label for="Frequence" class="col-sm-6 label-xs">Fréquence&nbsp;:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control input-xs" id="Frequence">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Gravite" class="col-sm-6 label-xs">Gravité&nbsp;:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control input-xs" id="Gravite">
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="form-group">
+                                            <label for="CriticiteBrute" class="col-sm-6 label-xs">Criticité&nbsp;Brute&nbsp;:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control input-xs" id="CriticiteBrute" value="" disabled />
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
-                            <!-- ---------------CHAMPS COTATION----------------- -->
-                            
-                            <div class="col-md-6">
+                            <!-- ---------------CHAMPS ACTIONS----------------- -->
+                            <div class="row">
 
-                                <h4>Cotation</h4>
-
-                                <div class="form-group">
-                                    Fréquence&nbsp;:
-                                    <div class="col-md-8">
-                                        <input type="text" />
+                                <div class="panel panel-default">
+                                    <div class="panel-heading input-sm">
+                                        ACTIONS IMMEDIATES
                                     </div>
-                                </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
 
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.CotationGravite, new { @class = "control-label col-md-4" })
-                                    <div class="col-md-8">
-                                        @Html.EditorFor(model => model.CotationGravite)
-                                        @Html.ValidationMessageFor(model => model.CotationGravite)
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="form-group">
+                                                <textarea class="form-control input-small" rows="3" style="max-width: 100%; "></textarea>
+                                                <textarea class="form-control input-small" rows="3" style="max-width: 100%; "></textarea>
 
-                                    <label class="control-label col-md-4" for="CriticiteBrute">Criticité Brute</label>
-                                    <div class="col-md-8">
-                                        <input type="text" id="CriticiteBrute" value="@ViewBag.CriticiteBrute" disabled />
-                                    </div>
-                                </div>
-
-
-                            </div>
-
-                        
-
-                        <div class="row">
-
-
-
-
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">
-                                    ACTIONS IMMEDIATES
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-
-                                            @Html.TextAreaFor(model => model.ActionImmediate1, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;"*@
-                                            @Html.ValidationMessageFor(model => model.ActionImmediate1)
-
-                                            @Html.TextAreaFor(model => model.ActionImmediate2, new { @class = "form-control input-small", rows = "4", style = "max-width: 100%; " })    @*, style="width: 206px;" *@
-                                            @Html.ValidationMessageFor(model => model.ActionImmediate2)
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ---------------------------CORPS HUMAIN------------------------------- -->
+                    <div class="col-md-3">
+
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-6">
+                                <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right form-control input-xs" value="" disabled />
+                                <input name="CorpsHumainSelectedHidden" id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value="" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @*ATTENTION !!! NE PAS OUBLIER LE DIESE "#" DANS LE HREF SINON LE MOUSEOVER / HOVER NE FONCTIONNE PAS !!!*@
+                            <img id="map" alt="TestMap.jpg" usemap="#TestMap" src="~/Content/images/HSE/FicheSecurite/HumanBody4.jpg" />
+                            <map id="TestMap" name="TestMap">
+                                <area data-name="Crâne" data-code="CRANE" class="CRANE" alt="Crâne" href="#" shape="poly" coords="144,33,144,22,142,16,136,10,129,7,119,7,111,11,106,16,104,20,104,33" />
+                                <area data-name="Yeux" data-code="YEUX" class="YEUX" alt="Yeux" href="#" shape="rect" coords="105,35,143,43" />
+                                <area data-name="Nez" data-code="NEZ" class="NEZ" alt="Nez" href="#" shape="rect" coords="119,43,129,52" />
+                                <area data-name="Bouche" data-code="BOUCHE" class="BOUCHE" alt="Bouche" href="#" shape="rect" coords="109,53,140,60" />
+                                <area data-name="Oreille Gauche" data-code="OREILLEG" class="OREILLEG" alt="Oreille Gauche" href="#" shape="poly" coords="104,38,101,36,99,37,99,41,106,53,104,38" />
+                                <area data-name="Oreille Droite" data-code="OREILLED" class="OREILLED" alt="Oreille Droite" href="#" shape="poly" coords="143,38,146,35,148,35,149,39,143,52,143,38" />
+                                <area data-name="Menton" data-code="MENTON" class="MENTON" alt="Menton" href="#" shape="poly" coords="109,60,140,60,133,67,117,67,109,60,109,60" />
+                                <area data-name="Cou" data-code="COU" class="COU" alt="Cou" href="#" shape="poly" coords="109,60,109,75,105,79,118,87,133,87,143,79,140,75,139,69,139,64,140,60,133,67,117,67,109,60" />
+                                <area data-name="Epaule Gauche" data-code="EPAULEG" class="EPAULEG" alt="Epaule Gauche" href="#" shape="poly" coords="105,79,91,88,83,91,77,92,71,96,66,102,64,109,64,113,63,117,85,134,105,79" />
+                                <area data-name="Epaule Droite" data-code="EPAULED" class="EPAULED" alt="Epaule Droite" href="#" shape="poly" coords="143,79,155,87,160,90,168,93,175,97,181,103,184,110,186,115,186,124,163,133,143,79" />
+                            </map>
                         </div>
 
                     </div>
 
                 </div>
-
-
-
-
             </div>
         </div>
 
+        <!-- ----------------------INFOS CORRECTIVES ET PREVENTIVES PANEL --------------------- -->
+        <div class="panel panel-danger">
+
+            <!-- ----------------INFOS CORRECTIVES & PREVENTIVES PANEL HEADER---------------- -->
+            <div class="panel-heading" style="background-color: #C42031; color: white">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseTwo" data-target="#collapseTwo">
+                                @*data-parent="#accordion"*@
+                                VALIDATION
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
+                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                        </button>
+                        <button type="submit" class="btn pull-right btn-xs" style="color: green">
+                            <span class="glyphicon glyphicon-ok"></span> Valider fiche
+                        </button>
+                        <button type="submit" class="btn pull-right btn-xs">
+                            @*btn-primary*@
+                            <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- -------------------INFOS CORRECTIVES & PREVENTIVES PANEL BODY--------------------- -->
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
+                    <form class="form-horizontal" role="form">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
+                                    <div class="col-sm-6">
+                                        <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="DateEnquete">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="Protagonistes">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control input-xs" id="CHSCTMembre">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            Causes et Actions
+                        </div>
+
+                        <table class="table table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Causes
+                                    </th>
+                                    <th>
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        1ère cause
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        1ère action
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        2ème action
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2ème cause
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        1ère action
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
     </div>
-
-</div>
-
+</script>
 
 
 
-    <div id="InfosGenerales">
+    @*<div id="InfosGenerales">
 
-        <script type="text/template" id="InfosGenerales2">
-
-
-            <input type="text" id="code" name="code" value="<%= Code %>" />
-            <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
-            <input type="text" id="description" name="description" value="<%= Description %>" />
+            <script type="text/template" id="InfosGenerales2">
 
 
-        </script>
+                <input type="text" id="code" name="code" value="<%= Code %>" />
+                <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
+                <input type="text" id="description" name="description" value="<%= Description %>" />
 
-    </div>
+
+            </script>
+
+        </div>*@
 
 
 
@@ -314,9 +474,9 @@
 
         $(document).ready(function () {
 
-            console.log('html : ' + $('#InfosGenerales2').html());
+            //console.log('html : ' + $('#InfosGenerales2').html());
 
-            var htmlInfoGenerales = $('#InfosGenerales2').html()
+            var htmlInfoGenerales = $('#InfosGenerales').html()
 
             var FicheSecuriteId = "@ViewBag.Id";
 
@@ -373,7 +533,7 @@
                     return this;
                 },
                 initialize: function () {
-                    $("#InfosGenerales").html(this.render().el);
+                    $("#toto").html(this.render().el);
                     this.model.on('change', this.render, this)
                 },
 

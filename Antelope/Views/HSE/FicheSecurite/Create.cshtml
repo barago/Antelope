@@ -470,44 +470,60 @@
 
                                     </div>
 
-                                    <div class="col-md-3">
 
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.EnqueteDate, new { @class = "control-label col-md-4" })
-                                            <div class="col-md-8">
-                                                @Html.EditorFor(model => model.EnqueteDate)
-                                                @Html.ValidationMessageFor(model => model.EnqueteDate)
+
+
+                                    @*<div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
+                                                <div class="col-sm-6">
+                                                    <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
+                                                </div>
                                             </div>
+                                        </div>*@
+
+
+
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.EnqueteDate, new { @class = "control-label col-md-4" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.EnqueteDate)
+                                                    @Html.ValidationMessageFor(model => model.EnqueteDate)
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.EnqueteProtagoniste, new { @class = "control-label col-md-4" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.EnqueteProtagoniste)
+                                                    @Html.ValidationMessageFor(model => model.EnqueteProtagoniste)
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CHSCTMembre, new { @class = "control-label col-md-4" })
+                                                <div class="col-md-8">
+                                                    @Html.EditorFor(model => model.CHSCTMembre)
+                                                    @Html.ValidationMessageFor(model => model.CHSCTMembre)
+                                                </div>
+                                            </div>
+
+
                                         </div>
 
                                     </div>
-
-                                    <div class="col-md-3">
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.EnqueteProtagoniste, new { @class = "control-label col-md-4" })
-                                            <div class="col-md-8">
-                                                @Html.EditorFor(model => model.EnqueteProtagoniste)
-                                                @Html.ValidationMessageFor(model => model.EnqueteProtagoniste)
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-3">
-
-                                        <div class="form-group">
-                                            @Html.LabelFor(model => model.CHSCTMembre, new { @class = "control-label col-md-4" })
-                                            <div class="col-md-8">
-                                                @Html.EditorFor(model => model.CHSCTMembre)
-                                                @Html.ValidationMessageFor(model => model.CHSCTMembre)
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
 
 
 

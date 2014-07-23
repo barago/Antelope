@@ -222,6 +222,7 @@
     <Content Include="Content\images\FOND_INTRANET.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody2.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody3.jpg" />
+    <Content Include="Content\images\HSE\FicheSecurite\HumanBody4.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody_Red.jpg" />
     <Content Include="Content\images\HSE\Home\Environment_icon2.jpg" />
     <Content Include="Content\images\HSE\Home\Head Protection icon2.jpg" />
