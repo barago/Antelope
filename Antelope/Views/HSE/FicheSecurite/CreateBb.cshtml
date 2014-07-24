@@ -72,7 +72,7 @@
                                         <label for="Code" class="label-xs">Code&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" id="Code" class="form-control input-xs" value="<%= FicheSecurite.Code %>" />
+                                        <input type="text" id="Code" class="form-control input-xs" value="<%= Code %>" />
                                     </div>
                                 </div>
                             </div>
@@ -482,46 +482,47 @@
 
             var FicheSecuriteId = "@ViewBag.Id";
 
-            var FicheSecuriteViewModel = Backbone.Model.extend({
-                urlRoot: '/api/FicheSecuriteAPI'//,
-                //defaults: {
-                //    FicheSecuriteId: "",
-                //    Code: "",
-                //    Type: "",
-                //    Age: "",
-                //    PosteDeTravail: "",
-                //    Service: "",
-                //    Responsable: "",
-                //    DateCreation: "",
-                //    DateEvenement: "",
-                //    PersonnesConcernees: "",
-                //    Description: "",
-                //    ActionImmediate1: "",
-                //    ActionImmediate2: "",
-                //    Temoins: "",
-                //    CotationFrequence: "",
-                //    CotationGravite: "",
-                //    Risque: "",
-                //    FicheSecuriteTypeId: "",
-                //    DangerId: "",
-                //    CorpsHumainZoneId: "",
-                //    PlageHoraireId: "",
-                //    SiteId: "",
-                //    ZoneId: "",
-                //    LieuId: "",
-                //    EnqueteRealisee: "",
-                //    EnqueteDate: "",
-                //    EnqueteProtagoniste: "",
-                //    CHSCTMembre: ""
-                //}
+            var FicheSecuriteModel = Backbone.Model.extend({
+                urlRoot: '/api/FicheSecuriteAPI',
+                defaults: {
+                    FicheSecuriteId: "",
+                    Code: "",
+                    Type: "",
+                    Age: "",
+                    PosteDeTravail: "",
+                    Service: "",
+                    Responsable: "",
+                    DateCreation: "",
+                    DateEvenement: "",
+                    PersonnesConcernees: "",
+                    Description: "",
+                    ActionImmediate1: "",
+                    ActionImmediate2: "",
+                    Temoins: "",
+                    CotationFrequence: "",
+                    CotationGravite: "",
+                    Risque: "",
+                    FicheSecuriteTypeId: "",
+                    DangerId: "",
+                    CorpsHumainZoneId: "",
+                    PlageHoraireId: "",
+                    SiteId: "",
+                    ZoneId: "",
+                    LieuId: "",
+                    EnqueteRealisee: "",
+                    EnqueteDate: "",
+                    EnqueteProtagoniste: "",
+                    CHSCTMembre: ""
+                }
             });
 
-            var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
+            var ficheSecuriteModel = new FicheSecuriteModel({ id: FicheSecuriteId });
 
-            ficheSecuriteViewModel.fetch();
+            ficheSecuriteModel.fetch();
 
-            console.log(ficheSecuriteViewModel.toJSON());
-            console.log(ficheSecuriteViewModel);
+            console.log(ficheSecuriteModel);
+            console.log(ficheSecuriteModel.toJSON());
+            console.log(ficheSecuriteModel.get('code'));
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
                 tagName: "div",
@@ -543,7 +544,7 @@
             });
 
             var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
-                model: ficheSecuriteViewModel
+                model: ficheSecuriteModel
             });
 
             //$("#InfosGenerales").html(ficheSecuriteInfoGeneralesView.render().el);
