@@ -36,5 +36,18 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 
         }
 
+        public FicheSecuriteViewModel(FicheSecurite ficheSecurite)
+        {
+
+            this.FicheSecurite = ficheSecurite;
+            this.AllZone = new List<Zone>();
+            this.AllLieu = new List<Lieu>();
+            this.AllSite = db.Sites.ToList(); // new List<Site>();
+            this.AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
+            this.AllDanger = db.Dangers.ToList();
+            this.AllPlageHoraire = db.PlageHoraires.ToList();
+
+        }
+
     }
 }

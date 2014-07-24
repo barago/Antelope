@@ -1,4 +1,5 @@
 ﻿using Antelope.Repositories.HSE;
+using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,8 @@ namespace Antelope.Controllers.HSE
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
+
+            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite);
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecurite);
         }
 
