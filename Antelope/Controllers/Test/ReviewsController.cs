@@ -79,17 +79,17 @@ namespace Antelope.Controllers.Test
         } */
 
         // GET api/reviews/comments/{id}
-        [HttpGet]
-        public HttpResponseMessage GetReviewComments(int id)
-        {
+        //[HttpGet]
+        //public HttpResponseMessage GetReviewComments(int id)
+        //{
 
-            var reviewComments = _reviewRepository.GetReviewComments(id);
-            if (reviewComments == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-            return Request.CreateResponse(HttpStatusCode.OK, reviewComments);
-        }
+        //    var reviewComments = _reviewRepository.GetReviewComments(id);
+        //    if (reviewComments == null)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.NotFound);
+        //    }
+        //    return Request.CreateResponse(HttpStatusCode.OK, reviewComments);
+        //}
 
 
 

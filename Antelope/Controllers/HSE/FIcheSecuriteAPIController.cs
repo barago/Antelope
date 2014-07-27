@@ -37,7 +37,7 @@ namespace Antelope.Controllers.HSE
             }
 
             var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite);
-            return Request.CreateResponse(HttpStatusCode.OK, ficheSecurite);
+            return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
         }
 
 

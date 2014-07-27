@@ -47,8 +47,12 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select id="Site" class="form-control input-xs">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+                                            <% _.each( AllSite, function( site ){ %>
+
+                                            <option value="<%= site.SiteId %>"><%= site.Nom %></option>
+
+                                            <% }); %>
+
                                         </select>
                                     </div>
                                 </div>
@@ -72,7 +76,7 @@
                                         <label for="Code" class="label-xs">Code&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" id="Code" class="form-control input-xs" value="<%= Code %>" />
+                                        <input type="text" id="Code" class="form-control input-xs" value="<%= FicheSecurite.Code %>" />
                                     </div>
                                 </div>
                             </div>
@@ -445,18 +449,30 @@
             <script type="text/template" id="TestTemplate">
 
 
-                <input type="text" id="code" name="code" value="<%= Code %>" />
-                <input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
-                <input type="text" id="description" name="description" value="<%= Description %>" />
+                <input type="text" id="code" name="code" value="<%= FicheSecurite.Code %>" />
+                @*<input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
+                <input type="text" id="description" name="description" value="<%= Description %>" />*@
 
 
             </script>
 
         </div>
 
+<div id="HardCoded">
 
 
 
+
+
+
+
+
+
+
+
+
+
+</div>
 
 
 
@@ -468,6 +484,8 @@
     @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
     <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
 
+    <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
+
 
 
 
@@ -476,53 +494,51 @@
 
         $(document).ready(function () {
 
-            //console.log('html : ' + $('#InfosGenerales2').html());
+            @*//console.log('html : ' + $('#InfosGenerales2').html());
 
             var htmlInfoGenerales = $('#TestTemplate').html()
 
             var FicheSecuriteId = "@ViewBag.Id";
 
             var FicheSecuriteModel = Backbone.Model.extend({
-                urlRoot: '/api/FicheSecuriteAPI',
-                defaults: {
-                    FicheSecuriteId: "",
-                    Code: "",
-                    Type: "",
-                    Age: "",
-                    PosteDeTravail: "",
-                    Service: "",
-                    Responsable: "",
-                    DateCreation: "",
-                    DateEvenement: "",
-                    PersonnesConcernees: "",
-                    Description: "",
-                    ActionImmediate1: "",
-                    ActionImmediate2: "",
-                    Temoins: "",
-                    CotationFrequence: "",
-                    CotationGravite: "",
-                    Risque: "",
-                    FicheSecuriteTypeId: "",
-                    DangerId: "",
-                    CorpsHumainZoneId: "",
-                    PlageHoraireId: "",
-                    SiteId: "",
-                    ZoneId: "",
-                    LieuId: "",
-                    EnqueteRealisee: "",
-                    EnqueteDate: "",
-                    EnqueteProtagoniste: "",
-                    CHSCTMembre: ""
-                }
+                urlRoot: '/api/FicheSecuriteAPI'
+                //,
+                //defaults: {
+                //    FicheSecuriteId: "",
+                //    Code: "",
+                //    Type: "",
+                //    Age: "",
+                //    PosteDeTravail: "",
+                //    Service: "",
+                //    Responsable: "",
+                //    DateCreation: "",
+                //    DateEvenement: "",
+                //    PersonnesConcernees: "",
+                //    Description: "",
+                //    ActionImmediate1: "",
+                //    ActionImmediate2: "",
+                //    Temoins: "",
+                //    CotationFrequence: "",
+                //    CotationGravite: "",
+                //    Risque: "",
+                //    FicheSecuriteTypeId: "",
+                //    DangerId: "",
+                //    CorpsHumainZoneId: "",
+                //    PlageHoraireId: "",
+                //    SiteId: "",
+                //    ZoneId: "",
+                //    LieuId: "",
+                //    EnqueteRealisee: "",
+                //    EnqueteDate: "",
+                //    EnqueteProtagoniste: "",
+                //    CHSCTMembre: ""
+                //}
             });
 
             var ficheSecuriteModel = new FicheSecuriteModel({ id: FicheSecuriteId });
 
-            ficheSecuriteModel.fetch();
+            
 
-            console.log(ficheSecuriteModel);
-            console.log(ficheSecuriteModel.toJSON());
-            console.log(ficheSecuriteModel.get('code'));
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
                 tagName: "div",
@@ -533,10 +549,12 @@
                 //'<input type="text" id="code" name="code" value="<%= Code %>" />'
                 render: function () {
                     //this.model.fetch();
+                    console.log(ficheSecuriteModel.toJSON());
                     this.$el.html(this.template(this.model.toJSON()));
                     return this;
                 },
                 initialize: function () {
+                    this.model.fetch({ success: function () { console.log("sucess"); }, error: function () { console.log("sucess"); } });
                     $("#TestDiv").html(this.render().el);
                     this.model.on('change', this.render, this)
                 },
@@ -547,7 +565,58 @@
                 model: ficheSecuriteModel
             });
 
-            //$("#InfosGenerales").html(ficheSecuriteInfoGeneralesView.render().el);
+            //$("#InfosGenerales").html(ficheSecuriteInfoGeneralesView.render().el);*@
+
+
+
+
+            var FicheSecuriteId = "@ViewBag.Id";
+
+
+            var ficheSecuriteModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
+            //ficheSecuriteModel.fetch();
+            console.log(ficheSecuriteModel.toJSON());
+
+            //var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
+            //    tagName: "div",
+            //    className: "InfoGeneralesContainer",
+            //    render: function () {
+            //        console.log(ficheSecuriteModel.toJSON());
+            //        var html = '<h3>' + this.model.get('code') + '</h3>';
+            //        this.$el.html(html);
+                   
+            //    }//,
+            //    //initialize: function () {
+            //    //    this.model.fetch({ success: function () { console.log("sucess"); }, error: function () { console.log("sucess"); } });
+            //    //    $("#TestDiv").html(this.render().el);
+            //    //    this.model.on('change', this.render, this)
+            //    //},
+
+            //});
+
+            console.log($('#TestTemplate').html());
+
+            var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
+                template: _.template($('#TestTemplate2').html()),
+                render: function () {
+                    console.log("render");
+                    $('#TestDiv2').html(this.template(this.model.toJSON()));
+                },
+                initialize: function () {
+                    console.log('inti');
+                    this.model.fetch();
+                    this.model.on('change', this.render, this);
+                    console.log(ficheSecuriteModel.toJSON());
+                    
+                }
+            });
+
+
+            var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
+                model: ficheSecuriteModel
+            });
+
+            //ficheSecuriteInfoGeneralesView.render();
 
         })
 
