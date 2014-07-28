@@ -47,13 +47,21 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select id="Site" class="form-control input-xs">
-                                            <% _.each( AllSite, function( site ){ %>
+                                            @*<% _.each( siteCollection, function( site ){ %>
 
-                                            <option value="<%= site.SiteId %>"><%= site.Nom %></option>
+                                            <option value="<%= site.get('SiteId') %>"><%= site.get('Nom') %></option>
 
-                                            <% }); %>
+                                            <% }); %>*@
 
                                         </select>
+
+                                        @*<% _.each(siteCollection, function( site ){ %>
+
+                                        <%= site.Nom %>
+
+                                        <% }); %>*@
+
+                                        <%= get(siteCollection).at(0).get('Nom') %>
                                     </div>
                                 </div>
                             </div>
@@ -570,12 +578,10 @@
 
 
 
-            var FicheSecuriteId = "@ViewBag.Id";
+            
 
 
-            var ficheSecuriteModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
-            //ficheSecuriteModel.fetch();
-            console.log(ficheSecuriteModel.toJSON());
+
 
             //var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             //    tagName: "div",
@@ -594,20 +600,45 @@
 
             //});
 
-            console.log($('#TestTemplate').html());
+            var FicheSecuriteId = "@ViewBag.Id";
+
+            var SiteModel = Backbone.Model.extend({
+            });
+
+            var SiteCollection = Backbone.Collection.extend({
+                model:SiteModel
+            });
+            //var siteCollection = new SiteCollection();
+
+            var ficheSecuriteModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
+            //ficheSecuriteModel.set({ 'siteCollection': siteCollection });
+
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
                 template: _.template($('#TestTemplate2').html()),
                 render: function () {
-                    console.log("render");
+                    console.log(this.model.get('siteCollection').at(0).get('Nom'));
+                    //console.log(this.model.toJSON());
                     $('#TestDiv2').html(this.template(this.model.toJSON()));
                 },
                 initialize: function () {
-                    console.log('inti');
-                    this.model.fetch();
-                    this.model.on('change', this.render, this);
-                    console.log(ficheSecuriteModel.toJSON());
-                    
+                    _.bindAll(this, "dispatch");
+                    //this.model.on('change', this.render, this);
+                    //this.model.on('change', dispatch(this.model), this);
+
+                    this.model.fetch({
+                        async: false, success: this.dispatch
+                    });
+                    this.render();
+                },
+
+                dispatch: function () {
+                    this.model.set({ 'siteCollection': new SiteCollection() });
+
+                    for (var i = 0; i < this.model.get('AllSite').length; i++) {
+                        this.model.get('siteCollection').add(new SiteModel(this.model.get('AllSite')[i]));
+                    }
+
                 }
             });
 
@@ -616,7 +647,29 @@
                 model: ficheSecuriteModel
             });
 
-            //ficheSecuriteInfoGeneralesView.render();
+
+
+
+
+            
+
+            var SiteModel = Backbone.Model.extend({
+                 
+            });
+
+            function dispatch(viewModel) {
+                //console.log(viewModel.toJSON());
+                //console.log(viewModel);
+                console.log('1');
+                for (site in viewModel.get('AllSite')) {
+                    console.log('2');
+                    viewModel.get('siteCollection').add(new SiteModel(site));
+                }
+               
+
+
+
+            };
 
         })
 
