@@ -1,4 +1,6 @@
-﻿using Antelope.Repositories.HSE;
+﻿using Antelope.Models;
+using Antelope.Models.Socle;
+using Antelope.Repositories.HSE;
 using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace Antelope.Controllers.HSE
     {
         
         public FicheSecuriteRepository _ficheSecuriteRepository {get; set;}
+        private AntelopeContext db = new AntelopeContext();
 
         public FIcheSecuriteAPIController() {
 
@@ -36,7 +39,17 @@ namespace Antelope.Controllers.HSE
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite);
+            var queryZone = from a in db.Zones
+                            where a.SiteId == ficheSecurite.SiteId
+                            select a;
+            List<Zone> AllZone = queryZone.ToList();
+
+            var queryLieu = from a in db.Lieux
+                            where a.ZoneId == ficheSecurite.LieuId
+                            select a;
+            List<Lieu> AllLieu = queryLieu.ToList();
+
+            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu);
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
         }
 

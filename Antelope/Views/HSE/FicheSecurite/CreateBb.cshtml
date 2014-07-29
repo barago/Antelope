@@ -47,21 +47,16 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select id="Site" class="form-control input-xs">
-                                            @*<% _.each( siteCollection, function( site ){ %>
 
-                                            <option value="<%= site.get('SiteId') %>"><%= site.get('Nom') %></option>
-
-                                            <% }); %>*@
-
+                                            <% siteCollection.each( function(site){ %>
+                                            <option value="<%= site.get('SiteID') %>" 
+                                                <% if (FicheSecurite.SiteId === site.get('SiteID')){ %> selected <% } %> 
+                                                >
+                                                <%= site.get('Nom') %>
+                                                </option>
+                                            <% }); %>
+                                            
                                         </select>
-
-                                        @*<% _.each(siteCollection, function( site ){ %>
-
-                                        <%= site.Nom %>
-
-                                        <% }); %>*@
-
-                                        <%= get(siteCollection).at(0).get('Nom') %>
                                     </div>
                                 </div>
                             </div>
@@ -159,8 +154,11 @@
                                     <label for="Zone" class="col-sm-6 label-xs">Zone&nbsp;:</label>
                                     <div class="col-sm-6">
                                         <select class="form-control input-xs" id="Zone">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+
+                                            <% zoneCollection.each( function(zone){ %>
+                                            <option value="<%= zone.get('ZoneId') %>"><%= zone.get('Nom') %></option>
+                                            <% }); %>
+
                                         </select>
                                     </div>
                                 </div>
@@ -168,8 +166,11 @@
                                     <label for="Lieu" class="col-sm-6 label-xs">Lieu&nbsp;:</label>
                                     <div class="col-sm-6">
                                         <select class="form-control input-xs" id="Lieu">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
+
+                                            <% lieuCollection.each( function(lieu){ %>
+                                            <option value="<%= lieu.get('LieuId') %>"><%= lieu.get('Nom') %></option>
+                                            <% }); %>
+
                                         </select>
                                     </div>
                                 </div>
@@ -604,21 +605,28 @@
 
             var SiteModel = Backbone.Model.extend({
             });
+            var ZoneModel = Backbone.Model.extend({
+            });
+            var LieuModel = Backbone.Model.extend({
+            });
+
 
             var SiteCollection = Backbone.Collection.extend({
                 model:SiteModel
             });
-            //var siteCollection = new SiteCollection();
+            var ZoneCollection = Backbone.Collection.extend({
+                model: ZoneModel
+            });
+            var LieuCollection = Backbone.Collection.extend({
+                model:LieuModel
+            });
+
 
             var ficheSecuriteModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
-            //ficheSecuriteModel.set({ 'siteCollection': siteCollection });
-
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
                 template: _.template($('#TestTemplate2').html()),
                 render: function () {
-                    console.log(this.model.get('siteCollection').at(0).get('Nom'));
-                    //console.log(this.model.toJSON());
                     $('#TestDiv2').html(this.template(this.model.toJSON()));
                 },
                 initialize: function () {
@@ -629,14 +637,24 @@
                     this.model.fetch({
                         async: false, success: this.dispatch
                     });
+                    console.log(this.model.toJSON());
                     this.render();
                 },
 
                 dispatch: function () {
                     this.model.set({ 'siteCollection': new SiteCollection() });
+                    this.model.set({ 'zoneCollection': new ZoneCollection() });
+                    this.model.set({ 'lieuCollection': new LieuCollection() });
+
 
                     for (var i = 0; i < this.model.get('AllSite').length; i++) {
                         this.model.get('siteCollection').add(new SiteModel(this.model.get('AllSite')[i]));
+                    }
+                    for (var i = 0; i < this.model.get('AllZone').length; i++) {
+                        this.model.get('zoneCollection').add(new ZoneModel(this.model.get('AllZone')[i]));
+                    }
+                    for (var i = 0; i < this.model.get('AllLieu').length; i++) {
+                        this.model.get('lieuCollection').add(new LieuModel(this.model.get('AllLieu')[i]));
                     }
 
                 }
@@ -647,29 +665,11 @@
                 model: ficheSecuriteModel
             });
 
-
-
-
-
-            
-
             var SiteModel = Backbone.Model.extend({
                  
             });
 
-            function dispatch(viewModel) {
-                //console.log(viewModel.toJSON());
-                //console.log(viewModel);
-                console.log('1');
-                for (site in viewModel.get('AllSite')) {
-                    console.log('2');
-                    viewModel.get('siteCollection').add(new SiteModel(site));
-                }
-               
 
-
-
-            };
 
         })
 

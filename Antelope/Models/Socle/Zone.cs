@@ -18,6 +18,8 @@ namespace Antelope.Models.Socle
         public virtual List<FicheSecurite> FicheSecurites { get; set; }
 
         public Int32 SiteId { get; set; }
+
+        [JsonIgnore] 
         public virtual Site Site { get; set; }
     }
 }
