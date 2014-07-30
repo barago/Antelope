@@ -22,6 +22,9 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public List<FicheSecuriteType> AllFicheSecuriteType;
         public List<Danger> AllDanger;
         public List<PlageHoraire> AllPlageHoraire;
+        public List<CorpsHumainZone> AllCorpsHumainZone;
+        public String FicheSecuriteDate;
+        public String FicheSecuriteHeure;
 
         public FicheSecuriteViewModel()
         {
@@ -48,6 +51,9 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
             this.AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
             this.AllDanger = db.Dangers.ToList();
             this.AllPlageHoraire = db.PlageHoraires.ToList();
+            this.AllCorpsHumainZone = db.CorpsHumainZones.ToList();
+            this.FicheSecuriteDate = this.FicheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");
+            this.FicheSecuriteHeure = this.FicheSecurite.DateEvenement.Date.ToString("HH:mm");
 
         }
 
