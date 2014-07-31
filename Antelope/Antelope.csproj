@@ -212,6 +212,9 @@
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cupertino\jquery-ui-1.10.4.custom.css" />
@@ -301,8 +304,12 @@
     <Content Include="Scripts\Application\Test\Reviews\Home.js" />
     <Content Include="Scripts\backbone-min.js" />
     <Content Include="Scripts\backbone.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\antelope - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\antelope - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\antelope.pubxml" />
@@ -378,6 +385,8 @@
     <Content Include="Scripts\jquery.imagemapster.min.js" />
     <Content Include="Scripts\jquery.maphilight.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-langs.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\underscore-min.js" />

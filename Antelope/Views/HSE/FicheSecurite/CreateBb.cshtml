@@ -5,494 +5,565 @@
     Layout = "~/Views/HSE/Shared/_Layout.cshtml";
 }
 
-<div id="TestDiv2">
-    <script type="text/template" id="TestTemplate2">
-    <div class="panel-group" id="accordion">
 
-        <!-- ---------------------------------INFOS GENERALES PANEL -------------------------------- -->
-        <div id="toto" class="panel panedesl-danger">
+<link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/moment.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+@*<script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>*@
+<script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.min.js"></script>
 
-            <!-- -------------------------INFOS GENERALES PANEL HEADER------------------------ -->
-            <div class="panel-heading" style="background-color: #C42031; color: white">
-                <div class="row">
+@*<script type="text/javascript" src="/Scripts/bootstrap-datepicker.js"></script>*@
+<script type="text/javascript" src="/Scripts/underscore.js"></script>
+<script type="text/javascript" src="/Scripts/backbone.js"></script>
+@*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
+<script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
 
-                    <div class="col-md-4">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
-                                @*data-parent="#accordion"*@
-                                FICHE SECURITE
-                            </a>
-                        </h4>
-                    </div>
-                    <div class="col-md-8">
-                        <span class="glyphicon glyphicon-ok pull-right"></span>
-                        <span class="pull-right">Statut : </span>
-                        <button type="submit" class="btn pull-right btn-xs">
-                            <span class="glyphicon glyphicon-envelope"></span> Diffusion
-                        </button>
-                    </div>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
 
-                </div>
-            </div>
-            <!-- ------------------------INFOS GENERALES PANEL BODY---------------------------- -->
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <!-- ------------------------BARRE GRISE---------------------------- -->
-                    <div class="well well-sm">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label for="Site" class="label-xs">Site&nbsp;:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <select id="Site" class="form-control input-xs">
 
-                                            <% siteCollection.each( function(site){ %>
-                                            <option value="<%= site.get('SiteID') %>" 
-                                                <% if (FicheSecurite.SiteId === site.get('SiteID')){ %> selected <% } %> 
-                                                >
-                                                <%= site.get('Nom') %>
-                                                </option>
-                                            <% }); %>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label for="Type" class="label-xs">Type&nbsp;:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <select id="Type" class="form-control input-xs">
+     
 
-                                            <% ficheSecuriteTypeCollection.each( function(type){ %>
-                                            <option value="<%= type.get('TypeID') %>"
-                                                <% if (FicheSecurite.TypeId === type.get('TypeID')){ %> selected <% } %>
-                                                >
-                                                <%= type.get('Nom') %>
-                                            </option>
-                                            <% }); %>
 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label for="Code" class="label-xs">Code&nbsp;:</label>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" id="Code" class="form-control input-xs" value="<%= FicheSecurite.Code %>" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="label-xs">Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input name="DateEvenement" id="DateEvenement" class="form-control input-xs" type="text" value="<%= FicheSecuriteDate %>">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" type="text" onchange="validateHhMm(this);" value="<%= FicheSecuriteHeure %>" />
-                                    </div>
-                                    <input name="HeureEvenementValide" id="HeureEvenementValide" type="hidden" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="panel-group" id="accordion">
 
-                    <!-- ------------------------CHAMPS HORS CORPS HUMAIN---------------------------- -->
-                    <div class="col-md-9">
+            <!-- ---------------------------------INFOS GENERALES PANEL -------------------------------- -->
+            <div id="toto" class="panel panedesl-danger">
 
-                        <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
+                <!-- -------------------------INFOS GENERALES PANEL HEADER------------------------ -->
+                <div class="panel-heading" style="background-color: #C42031; color: white">
+                    <div class="row">
+
                         <div class="col-md-4">
-                            @*<div class="row">*@
-                            <form class="form-horizontal" role="form">
-
-                                <div class="form-group">
-                                    <label for="PersonnesConcernees" class="col-sm-6 label-xs">pers.&nbsp;concern.&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcernees" value="<%= FicheSecurite.PersonnesConcernees %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Age" class="col-sm-6 label-xs">Âge&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Age" value="<%= FicheSecurite.Age %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="PlageHoraire" class="col-sm-6 label-xs">Plage&nbsp;horaire&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="PlageHoraire">
-
-                                            <% plageHoraireCollection.each( function(plageHoraire){ %>
-                                            <option value="<%= plageHoraire.get('PlageHoraireID') %>"
-                                                <% if (FicheSecurite.PlageHoraireId === plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
-                                                >
-                                                <%= plageHoraire.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="PosteTravail" class="col-sm-6 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="PosteTravail">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Service" class="col-sm-6 label-xs">Service&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Service" value="<%= FicheSecurite.Service %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Responsable" class="col-sm-6 label-xs">Responsable&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Responsable" value="<%= FicheSecurite.Responsable %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Zone" class="col-sm-6 label-xs">Zone&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="Zone">
-
-                                            <% zoneCollection.each( function(zone){ %>
-                                            <option value="<%= zone.get('ZoneID') %>"
-                                                <% if (FicheSecurite.ZoneId === zone.get('ZoneID')){ %> selected <% } %>
-                                                >
-                                                <%= zone.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Lieu" class="col-sm-6 label-xs">Lieu&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="Lieu">
-
-                                            <% lieuCollection.each( function(lieu){ %>
-                                            <option value="<%= lieu.get('LieuID') %>"
-                                                <% if (FicheSecurite.LieuId === lieu.get('LieuID')){ %> selected <% } %>
-                                                >
-                                                <%= lieu.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Danger" class="col-sm-6 label-xs">Danger&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="Lieu">
-                                            <% dangerCollection.each( function(danger){ %>
-                                            <option value="<%= danger.get('DangerID') %>"
-                                                <% if (FicheSecurite.DangerId === danger.get('DangerID')){ %> selected <% } %>
-                                                >
-                                                <%= danger.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-                                        </select>
-                                </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Risque" class="col-sm-6 label-xs">Risque&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <select class="form-control input-xs" id="Risque">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Temoins" class="col-sm-6 label-xs">Témoins&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Temoins" value="<%= FicheSecurite.Temoins %>">
-                                    </div>
-                                </div>
-
-                            </form>
-                            @*</div>*@
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
+                                    @*data-parent="#accordion"*@
+                                    FICHE SECURITE
+                                </a>
+                            </h4>
                         </div>
-
-                        <!-- -----------COLONNE CHAMPS DESCRIPTION/COTATION/ACTIONS------------- -->
                         <div class="col-md-8">
+                            <span class="glyphicon glyphicon-ok pull-right"></span>
+                            <span class="pull-right">Statut : </span>
+                            <button type="submit" class="btn pull-right btn-xs">
+                                <span class="glyphicon glyphicon-envelope"></span> Diffusion
+                            </button>
+                        </div>
 
-                            <!-- ---------------CHAMPS DESCRIPTION/COTATION----------------- -->
-                            <div class="row">
+                    </div>
+                </div>
+                <!-- ------------------------INFOS GENERALES PANEL BODY---------------------------- -->
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <!-- ------------------------BARRE GRISE---------------------------- -->
+                        <div id="TestDiv2">
+                            <script type="text/template" id="TestTemplate2">
+                                <div class="well well-sm">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="Site" class="label-xs">Site&nbsp;:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="Site" class="form-control input-xs">
 
-                                <!-- ---------------CHAMP DESCRIPTION----------------- -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
+                                                        <% siteCollection.each( function(site){ %>
+                                                        <option value="<%= site.get('SiteID') %>"
+                                                            <% if (FicheSecurite.SiteId === site.get('SiteID')){ %> selected <% } %>
+                                                            >
+                                                            <%= site.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
 
-                                        <h4>Description</h4>
-
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control input-small" rows="8"><%= FicheSecurite.Description %></textarea>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="Type" class="label-xs">Type&nbsp;:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <select id="Type" class="form-control input-xs">
 
+                                                        <% ficheSecuriteTypeCollection.each( function(type){ %>
+                                                        <option value="<%= type.get('TypeID') %>"
+                                                            <% if (FicheSecurite.TypeId === type.get('TypeID')){ %> selected <% } %>
+                                                            >
+                                                            <%= type.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <label for="Code" class="label-xs">Code&nbsp;:</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="Code" class="form-control input-xs" value="<%= FicheSecurite.Code %>" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <label class="label-xs">Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
+                                                </div>
+                                                @*<div class="col-sm-3">
+                                                    <input name="DateEvenement" id="DateEvenement" class="form-control input-xs" type="text" value="<%= FicheSecuriteDate %>">
+                                                </div>*@
+
+                                                <div class='col-sm-3'>
+                                                    @*<div class="form-group">*@
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' name="DateEvenement" id="DateEvenement" class="form-control input-xs" value="<%= FicheSecuriteDate %>" />
+                                                        <span class="input-group-addon input-xs">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                    @*</div>*@
+                                                </div>
+
+                                                <div class='col-sm-3'>
+                                                    @*<div class="form-group">*@
+                                                    <div class='input-group date' id='datetimepicker2'>
+                                                        <input type='text' name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" value="<%= FicheSecuriteHeure %>" />
+                                                        <span class="input-group-addon input-xs">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                                    </div>
+                                                    @*</div>*@
+                                                </div>
+
+                                                @*<div class="well">
+                                                    <div id="datetimepicker3" class="input-append">
+                                                        <input data-format="hh:mm:ss" type="text"></input>
+                                                        <span class="add-on">
+                                                            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                                            </i>
+                                                        </span>
+                                                    </div>
+                                                </div>*@
+                                      
+
+                                                @*<div class="col-sm-3">
+                                                    <input name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" type="text" onchange="validateHhMm(this);" value="<%= FicheSecuriteHeure %>" />
+                                                </div>*@
+                                                <input name="HeureEvenementValide" id="HeureEvenementValide" type="hidden" />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <script type="text/javascript">
+                                    $('#datetimepicker1').datetimepicker({
+                                        pickTime: false
+                                    });
+                                    $('#datetimepicker2').datetimepicker({
+                                        pickDate: false
+                                    });
+                                </script>
+                            </script>
+                        </div>
+                        
+                        <!-- ------------------------CHAMPS HORS CORPS HUMAIN---------------------------- -->
+                        <div id="TestDiv3">
+                            <script type="text/template" id="TestTemplate3">
+                                <div class="col-md-9">
+                                    <!-- ------------------------CHAMPS DE GAUCHE---------------------------- -->
+                                    <div class="col-md-4">
+                                        @*<div class="row">*@
+                                        <form class="form-horizontal" role="form">
 
-                                <!-- ---------------CHAMPS COTATION----------------- -->
-
-                                <div class="col-md-6">
-
-                                    <h4>Cotation</h4>
-
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <label for="Frequence" class="col-sm-6 label-xs">Fréquence&nbsp;:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control input-xs" id="Frequence" value="<%= FicheSecurite.CotationFrequence %>">
+                                            <div class="form-group">
+                                                <label for="PersonnesConcernees" class="col-sm-6 label-xs">pers.&nbsp;concern.&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control input-xs" id="PersonnesConcernees" value="<%= FicheSecurite.PersonnesConcernees %>">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Gravite" class="col-sm-6 label-xs">Gravité&nbsp;:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control input-xs" id="Gravite" value="<%= FicheSecurite.CotationGravite %>">
+                                            <div class="form-group">
+                                                <label for="Age" class="col-sm-6 label-xs">Âge&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control input-xs" id="Age" value="<%= FicheSecurite.Age %>">
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <label for="PlageHoraire" class="col-sm-6 label-xs">Plage&nbsp;horaire&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="PlageHoraire">
 
-                                        <hr>
+                                                        <% plageHoraireCollection.each( function(plageHoraire){ %>
+                                                        <option value="<%= plageHoraire.get('PlageHoraireID') %>"
+                                                            <% if (FicheSecurite.PlageHoraireId === plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
+                                                            >
+                                                            <%= plageHoraire.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
 
-                                        <div class="form-group">
-                                            <label for="CriticiteBrute" class="col-sm-6 label-xs">Criticité&nbsp;Brute&nbsp;:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control input-xs" id="CriticiteBrute" value="<%= FicheSecurite.CotationFrequence * FicheSecurite.CotationGravite %>" disabled />
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                                            <div class="form-group">
+                                                <label for="PosteTravail" class="col-sm-6 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="PosteTravail">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Service" class="col-sm-6 label-xs">Service&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control input-xs" id="Service" value="<%= FicheSecurite.Service %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Responsable" class="col-sm-6 label-xs">Responsable&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control input-xs" id="Responsable" value="<%= FicheSecurite.Responsable %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Zone" class="col-sm-6 label-xs">Zone&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="Zone">
 
-                            <!-- ---------------CHAMPS ACTIONS----------------- -->
-                            <div class="row">
+                                                        <% zoneCollection.each( function(zone){ %>
+                                                        <option value="<%= zone.get('ZoneID') %>"
+                                                            <% if (FicheSecurite.ZoneId === zone.get('ZoneID')){ %> selected <% } %>
+                                                            >
+                                                            <%= zone.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading input-sm">
-                                        ACTIONS IMMEDIATES
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Lieu" class="col-sm-6 label-xs">Lieu&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="Lieu">
+
+                                                        <% lieuCollection.each( function(lieu){ %>
+                                                        <option value="<%= lieu.get('LieuID') %>"
+                                                            <% if (FicheSecurite.LieuId === lieu.get('LieuID')){ %> selected <% } %>
+                                                            >
+                                                            <%= lieu.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Danger" class="col-sm-6 label-xs">Danger&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="Lieu">
+                                                        <% dangerCollection.each( function(danger){ %>
+                                                        <option value="<%= danger.get('DangerID') %>"
+                                                            <% if (FicheSecurite.DangerId === danger.get('DangerID')){ %> selected <% } %>
+                                                            >
+                                                            <%= danger.get('Nom') %>
+                                                        </option>
+                                                        <% }); %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Risque" class="col-sm-6 label-xs">Risque&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control input-xs" id="Risque">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Temoins" class="col-sm-6 label-xs">Témoins&nbsp;:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control input-xs" id="Temoins" value="<%= FicheSecurite.Temoins %>">
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        @*</div>*@
                                     </div>
-                                    <div class="panel-body">
+
+                                    <!-- -----------COLONNE CHAMPS DESCRIPTION/COTATION/ACTIONS------------- -->
+                                    <div class="col-md-8">
+
+                                        <!-- ---------------CHAMPS DESCRIPTION/COTATION----------------- -->
                                         <div class="row">
-                                            <div class="col-md-12">
 
-                                                <textarea class="form-control input-small" rows="3" style="max-width: 100%; "><%= FicheSecurite.ActionImmediate1 %></textarea>
-                                                <textarea class="form-control input-small" rows="3" style="max-width: 100%; "><%= FicheSecurite.ActionImmediate2 %></textarea>
+                                            <!-- ---------------CHAMP DESCRIPTION----------------- -->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
 
+                                                    <h4>Description</h4>
+
+                                                    <div class="col-sm-12">
+                                                        <textarea class="form-control input-small" rows="8"><%= FicheSecurite.Description %></textarea>
+                                                    </div>
+
+                                                </div>
                                             </div>
+
+                                            <!-- ---------------CHAMPS COTATION----------------- -->
+
+                                            <div class="col-md-6">
+
+                                                <h4>Cotation</h4>
+
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group">
+                                                        <label for="Frequence" class="col-sm-6 label-xs">Fréquence&nbsp;:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control input-xs" id="Frequence" value="<%= FicheSecurite.CotationFrequence %>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="Gravite" class="col-sm-6 label-xs">Gravité&nbsp;:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control input-xs" id="Gravite" value="<%= FicheSecurite.CotationGravite %>">
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+
+                                                    <div class="form-group">
+                                                        <label for="CriticiteBrute" class="col-sm-6 label-xs">Criticité&nbsp;Brute&nbsp;:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control input-xs" id="CriticiteBrute" value="<%= FicheSecurite.CotationFrequence * FicheSecurite.CotationGravite %>" disabled />
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- ---------------CHAMPS ACTIONS----------------- -->
+                                        <div class="row">
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading input-sm">
+                                                    ACTIONS IMMEDIATES
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <textarea class="form-control input-small" rows="3" style="max-width: 100%; "><%= FicheSecurite.ActionImmediate1 %></textarea>
+                                                            <textarea class="form-control input-small" rows="3" style="max-width: 100%; "><%= FicheSecurite.ActionImmediate2 %></textarea>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </script>
+                        </div>
+                        <!-- ---------------------------CORPS HUMAIN------------------------------- -->
+                        <div class="col-md-3">
+
+                            <div class="row">
+                                <div class="col-sm-6"></div>
+                                <div class="col-sm-6">
+                                    <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right form-control input-xs" value="<%= corpsHumainZoneCollection.where({Id:FicheSecurite.CorpsHumainZoneId})[0].get('Nom') %>" disabled />
+                                    <input name="CorpsHumainSelectedHidden" id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value="" />
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                @*ATTENTION !!! NE PAS OUBLIER LE DIESE "#" DANS LE HREF SINON LE MOUSEOVER / HOVER NE FONCTIONNE PAS !!!*@
+                                <img id="map" alt="TestMap.jpg" usemap="#TestMap" src="/Content/images/HSE/FicheSecurite/HumanBody6.jpg" />
+                                <map id="TestMap" name="TestMap">
+                                    <area data-name="Yeux" data-code="YEUX" class="YEUX" alt="Yeux" href="#" shape="rect" coords="99,32,127,41" />
+                                    <area data-name="Tête" data-code="TETE" class="TETE" alt="Tête" href="#" shape="poly" coords="113,41,99,41,99,32,127,32,127,41,113,41,113,73,106,72,100,67,100,52,92,39,92,37,92,35,92,34,93,33,95,35,95,18,96,15,100,11,104,8,111,6,115,6,119,7,123,9,127,12,129,15,130,18,131,21,131,24,131,30,130,33,130,34,133,32,134,32,134,35,131,41,129,47,128,50,127,53,126,58,126,63,127,67,120,72,113,73,113,41" />
+                                    <area data-name="Bras gauche" data-code="BRASG" class="BRASG" alt="Bras gauche" href="#" shape="poly" coords="63,88,76,135,72,155,71,161,68,171,65,178,56,196,50,208,48,213,36,205,38,202,40,197,42,185,44,176,47,166,50,157,53,152,55,139,57,121,58,110,58,99,60,93,64,86,63,88" />
+                                    <area data-name="Bras droit" data-code="BRASD" class="BRASD" alt="Bras droit" href="#" shape="poly" coords="149,130,157,87,162,91,166,96,168,101,169,105,169,111,169,115,168,127,170,133,174,142,175,147,175,152,176,157,178,161,182,167,185,174,187,179,188,182,189,187,193,196,197,205,199,211,184,216,182,210,176,201,173,197,169,191,164,178,163,174,158,162,154,150,151,138,149,130" />
+                                    <area data-name="Main gauche" data-code="MAING" class="MAING" alt="Main gauche" href="#" shape="poly" coords="36,205,33,209,28,214,24,217,20,220,11,226,13,228,15,228,22,223,23,223,22,228,19,237,16,246,16,247,17,248,19,247,21,241,24,236,22,243,21,254,22,256,23,256,24,255,26,245,29,238,30,237,31,237,30,244,29,250,29,254,30,256,31,256,32,254,33,249,34,243,36,239,37,238,38,238,38,244,39,249,40,251,42,251,42,248,42,242,41,233,42,228,45,218,48,213,36,205" />
+                                    <area data-name="Main droite" data-code="MAIND" class="MAIND" alt="Main droite" href="#" shape="poly" coords="184,216,186,227,189,237,190,252,191,255,192,255,193,253,193,242,194,241,195,241,196,242,198,256,199,257,200,257,202,256,201,241,202,240,203,241,208,253,209,255,210,255,211,254,211,251,207,239,208,238,209,238,213,246,214,248,216,249,217,249,217,247,207,226,208,225,216,229,218,229,219,227,212,222,207,218,203,217,199,211,184,216" />
+                                    <area data-name="Tronc" data-code="TRONC" class="TRONC" alt="Tronc" href="#" shape="poly" coords="100,67,95,72,88,76,81,79,70,83,65,86,63,88,76,135,80,152,81,163,81,167,80,172,77,177,75,183,75,190,75,194,75,197,73,202,71,208,110,237,113,237,156,204,155,198,151,189,147,176,145,167,144,161,144,154,149,140,149,130,157,87,146,81,139,77,133,73,128,68,127,67,120,72,113,73,106,72,100,67" />
+                                    <area data-name="Jambe gauche" data-code="JAMBEG" class="JAMBEG" alt="Jambe gauche" href="#" shape="poly" coords="71,208,69,217,68,228,68,254,69,271,71,284,73,299,73,307,73,316,73,320,72,325,71,329,69,335,68,343,68,361,70,373,72,389,72,402,72,411,85,414,86,402,87,394,89,382,92,368,95,352,95,336,95,327,97,321,99,315,100,306,101,290,110,237,71,208" />
+                                    <area data-name="Jambe droite" data-code="JAMBED" class="JAMBED" alt="Jambe droite" href="#" shape="poly" coords="156,204,156,248,155,261,153,277,152,286,151,295,151,302,151,312,152,321,154,332,156,345,157,355,155,367,153,383,150,400,149,412,136,413,136,409,133,400,132,382,127,363,126,347,127,343,128,339,128,333,125,321,122,309,121,306,120,282,118,268,116,252,114,239,113,237,156,204" />
+                                    <area data-name="Pied gauche" data-code="PIEDG" class="PIEDG" alt="Pied gauche" href="#" shape="poly" coords="85,414,85,421,85,426,83,432,82,437,80,440,78,441,75,440,71,440,64,440,61,437,60,434,62,430,68,422,71,417,72,411,85,414" />
+                                    <area data-name="Pied droit" data-code="PIEDD" class="PIEDD" alt="Pied droit" href="#" shape="poly" coords="136,413,135,417,135,421,136,425,137,432,138,437,141,442,154,442,160,438,161,436,160,434,152,423,149,418,149,412,136,413" />
+                                    <area data-name="Tout le corps" data-code="TOUTCORPS" class="TOUTCORPS" alt="Tout le corps" href="#" shape="poly" coords="175,319,175,307,177,303,181,299,186,296,212,296,219,300,222,305,223,307,223,320,222,323,219,328,214,332,185,332,180,329,177,326,176,324,175,319" />
+                                    <area data-name="Multiples lésions" data-code="MULTILESIONS" class="MULTILESIONS" alt="Multiples lésions" href="#" shape="poly" coords="175,384,175,372,177,368,181,364,186,361,212,361,219,365,222,370,223,372,223,385,222,388,219,393,214,397,185,397,180,394,177,391,176,389,175,384" />
+                                    <area data-name="Dos" data-code="DOS" class="DOS" alt="Dos" href="#" shape="poly" coords="175,56,175,44,177,40,181,36,186,33,212,33,219,37,222,42,223,44,223,57,222,60,219,65,214,69,185,69,180,66,177,63,176,61,175,56" />
+                                </map>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ----------------------INFOS CORRECTIVES ET PREVENTIVES PANEL --------------------- -->
+            <div class="panel panel-danger">
+
+                <!-- ----------------INFOS CORRECTIVES & PREVENTIVES PANEL HEADER---------------- -->
+                <div class="panel-heading" style="background-color: #C42031; color: white">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapseTwo" data-target="#collapseTwo">
+                                    @*data-parent="#accordion"*@
+                                    VALIDATION
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="col-md-8">
+                            <button type="submit" class="btn pull-right btn-xs" style="color: red">
+                                <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                            </button>
+                            <button type="submit" class="btn pull-right btn-xs" style="color: green">
+                                <span class="glyphicon glyphicon-ok"></span> Valider fiche
+                            </button>
+                            <button type="submit" class="btn pull-right btn-xs">
+                                @*btn-primary*@
+                                <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- -------------------INFOS CORRECTIVES & PREVENTIVES PANEL BODY--------------------- -->
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
+                        <form class="form-horizontal" role="form">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="DateEnquete">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="Protagonistes">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="CHSCTMembre">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
+                        <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
+                        <div class="panel panel-default">
+
+                            <div class="panel-heading">
+                                Causes et Actions
                             </div>
 
+                            <table class="table table-bordered table-hover table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Causes
+                                        </th>
+                                        <th>
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            1ère cause
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            1ère action
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            2ème action
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2ème cause
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            1ère action
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
                         </div>
+
+
+
 
                     </div>
-
-                    <!-- ---------------------------CORPS HUMAIN------------------------------- -->
-                    <div class="col-md-3">
-
-                        <div class="row">
-                            <div class="col-sm-6"></div>
-                            <div class="col-sm-6">                                                                                                                                 
-                                <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right form-control input-xs" value="<%= corpsHumainZoneCollection.where({Id:FicheSecurite.CorpsHumainZoneId})[0].get('Nom') %>" disabled />
-                                <input name="CorpsHumainSelectedHidden" id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value="" />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            @*ATTENTION !!! NE PAS OUBLIER LE DIESE "#" DANS LE HREF SINON LE MOUSEOVER / HOVER NE FONCTIONNE PAS !!!*@
-                            <img id="map" alt="TestMap.jpg" usemap="#TestMap" src="/Content/images/HSE/FicheSecurite/HumanBody6.jpg" />
-                            <map id="TestMap" name="TestMap">
-                                <area data-name="Crâne" data-code="CRANE" class="CRANE" alt="Crâne" href="#" shape="poly" coords="144,33,144,22,142,16,136,10,129,7,119,7,111,11,106,16,104,20,104,33" />
-                                <area data-name="Yeux" data-code="YEUX" class="YEUX" alt="Yeux" href="#" shape="rect" coords="105,35,143,43" />
-                                <area data-name="Nez" data-code="NEZ" class="NEZ" alt="Nez" href="#" shape="rect" coords="119,43,129,52" />
-                                <area data-name="Bouche" data-code="BOUCHE" class="BOUCHE" alt="Bouche" href="#" shape="rect" coords="109,53,140,60" />
-                                <area data-name="Oreille Gauche" data-code="OREILLEG" class="OREILLEG" alt="Oreille Gauche" href="#" shape="poly" coords="104,38,101,36,99,37,99,41,106,53,104,38" />
-                                <area data-name="Oreille Droite" data-code="OREILLED" class="OREILLED" alt="Oreille Droite" href="#" shape="poly" coords="143,38,146,35,148,35,149,39,143,52,143,38" />
-                                <area data-name="Menton" data-code="MENTON" class="MENTON" alt="Menton" href="#" shape="poly" coords="109,60,140,60,133,67,117,67,109,60,109,60" />
-                                <area data-name="Cou" data-code="COU" class="COU" alt="Cou" href="#" shape="poly" coords="109,60,109,75,105,79,118,87,133,87,143,79,140,75,139,69,139,64,140,60,133,67,117,67,109,60" />
-                                <area data-name="Epaule Gauche" data-code="EPAULEG" class="EPAULEG" alt="Epaule Gauche" href="#" shape="poly" coords="105,79,91,88,83,91,77,92,71,96,66,102,64,109,64,113,63,117,85,134,105,79" />
-                                <area data-name="Epaule Droite" data-code="EPAULED" class="EPAULED" alt="Epaule Droite" href="#" shape="poly" coords="143,79,155,87,160,90,168,93,175,97,181,103,184,110,186,115,186,124,163,133,143,79" />
-                            </map>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- ----------------------INFOS CORRECTIVES ET PREVENTIVES PANEL --------------------- -->
-        <div class="panel panel-danger">
-
-            <!-- ----------------INFOS CORRECTIVES & PREVENTIVES PANEL HEADER---------------- -->
-            <div class="panel-heading" style="background-color: #C42031; color: white">
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" href="#collapseTwo" data-target="#collapseTwo">
-                                @*data-parent="#accordion"*@
-                                VALIDATION
-                            </a>
-                        </h4>
-                    </div>
-                    <div class="col-md-8">
-                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
-                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
-                        </button>
-                        <button type="submit" class="btn pull-right btn-xs" style="color: green">
-                            <span class="glyphicon glyphicon-ok"></span> Valider fiche
-                        </button>
-                        <button type="submit" class="btn pull-right btn-xs">
-                            @*btn-primary*@
-                            <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- -------------------INFOS CORRECTIVES & PREVENTIVES PANEL BODY--------------------- -->
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-
-                    <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
-                    <form class="form-horizontal" role="form">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="DateEnquete">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Protagonistes">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="CHSCTMembre">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
-                    <div class="panel panel-default">
-
-                        <div class="panel-heading">
-                            Causes et Actions
-                        </div>
-
-                        <table class="table table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Causes
-                                    </th>
-                                    <th>
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>
-                                        1ère cause
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        1ère action
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        2ème action
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2ème cause
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        1ère action
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
 
 
 
+<div id="TestDiv">
 
-                </div>
-            </div>
-        </div>
-    </div>
+    <script type="text/template" id="TestTemplate">
+
+
+        <input type="text" id="code" name="code" value="<%= FicheSecurite.Code %>" />
+        @*<input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
+            <input type="text" id="description" name="description" value="<%= Description %>" />*@
+
+
     </script>
-    </div>
 
-
-
-    <div id="TestDiv">
-
-            <script type="text/template" id="TestTemplate">
-
-
-                <input type="text" id="code" name="code" value="<%= FicheSecurite.Code %>" />
-                @*<input type="text" id="responsable" name="responsable" value="<%= Responsable %>" />
-                <input type="text" id="description" name="description" value="<%= Description %>" />*@
-
-
-            </script>
-
-        </div>
+</div>
 
 <div id="HardCoded">
 
@@ -510,27 +581,28 @@
 
 </div>
 
+<script type="text/javascript">
 
 
-    <link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>
-    <script type="text/javascript" src="/Scripts/underscore.js"></script>
-    <script type="text/javascript" src="/Scripts/backbone.js"></script>
-    @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
-    <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
-
-    <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
+    $(document).ready(function () {
 
 
 
 
-    <script type="text/javascript">
+        $('#map').mapster(
+            {
+                fillColor: 'C42031',
+                fillOpacity: 0.3,
+                singleSelect: true,
+                mapKey: 'data-code'
+            }
+        );
 
 
-        $(document).ready(function () {
 
-            @*//console.log('html : ' + $('#InfosGenerales2').html());
+
+
+        @*//console.log('html : ' + $('#InfosGenerales2').html());
 
             var htmlInfoGenerales = $('#TestTemplate').html()
 
@@ -573,7 +645,7 @@
 
             var ficheSecuriteModel = new FicheSecuriteModel({ id: FicheSecuriteId });
 
-            
+
 
 
             var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
@@ -606,123 +678,163 @@
 
 
 
-            
 
 
 
 
-            //var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
-            //    tagName: "div",
-            //    className: "InfoGeneralesContainer",
-            //    render: function () {
-            //        console.log(ficheSecuriteModel.toJSON());
-            //        var html = '<h3>' + this.model.get('code') + '</h3>';
-            //        this.$el.html(html);
-                   
-            //    }//,
-            //    //initialize: function () {
-            //    //    this.model.fetch({ success: function () { console.log("sucess"); }, error: function () { console.log("sucess"); } });
-            //    //    $("#TestDiv").html(this.render().el);
-            //    //    this.model.on('change', this.render, this)
-            //    //},
 
-            //});
+        //var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
+        //    tagName: "div",
+        //    className: "InfoGeneralesContainer",
+        //    render: function () {
+        //        console.log(ficheSecuriteModel.toJSON());
+        //        var html = '<h3>' + this.model.get('code') + '</h3>';
+        //        this.$el.html(html);
 
-            var FicheSecuriteId = "@ViewBag.Id";
+        //    }//,
+        //    //initialize: function () {
+        //    //    this.model.fetch({ success: function () { console.log("sucess"); }, error: function () { console.log("sucess"); } });
+        //    //    $("#TestDiv").html(this.render().el);
+        //    //    this.model.on('change', this.render, this)
+        //    //},
 
-            var SiteModel = Backbone.Model.extend({
-            });
-            var ZoneModel = Backbone.Model.extend({
-            });
-            var LieuModel = Backbone.Model.extend({
-            });
-            var FicheSecuriteTypeModel = Backbone.Model.extend({
-            });
-            var PlageHoraireModel = Backbone.Model.extend({
-            });
-            var DangerModel = Backbone.Model.extend({
-            });
-            var RisqueModel = Backbone.Model.extend({
-            });
-            var CorpsHumainZoneModel = Backbone.Model.extend({
-            });
+        //});
 
+        var FicheSecuriteId = "@ViewBag.Id";
 
-            var SiteCollection = Backbone.Collection.extend({
-                model:SiteModel
-            });
-            var ZoneCollection = Backbone.Collection.extend({
-                model: ZoneModel
-            });
-            var LieuCollection = Backbone.Collection.extend({
-                model:LieuModel
-            });
-            var FicheSecuriteTypeCollection = Backbone.Collection.extend({
-                model: FicheSecuriteTypeModel
-            });
-            var PlageHoraireCollection = Backbone.Collection.extend({
-                model: PlageHoraireModel
-            });
-            var DangerCollection = Backbone.Collection.extend({
-                model: DangerModel
-            });
-            var RisqueCollection = Backbone.Collection.extend({
-                model: RisqueModel
-            });
-            var CorpsHumainZoneCollection = Backbone.Collection.extend({
-                model: CorpsHumainZoneModel
-            });
+        var SiteModel = Backbone.Model.extend({
+        });
+        var ZoneModel = Backbone.Model.extend({
+        });
+        var LieuModel = Backbone.Model.extend({
+        });
+        var FicheSecuriteTypeModel = Backbone.Model.extend({
+        });
+        var PlageHoraireModel = Backbone.Model.extend({
+        });
+        var DangerModel = Backbone.Model.extend({
+        });
+        var RisqueModel = Backbone.Model.extend({
+        });
+        var CorpsHumainZoneModel = Backbone.Model.extend({
+        });
 
 
-            var ficheSecuriteModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
-
-            var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
-                template: _.template($('#TestTemplate2').html()),
-                render: function () {
-                    $('#TestDiv2').html(this.template(this.model.toJSON()));
-                },
-                initialize: function () {
-                    _.bindAll(this, "arraysToModelCollections");
-                    //this.model.on('change', this.render, this);
-                    //this.model.on('change', dispatch(this.model), this);
-
-                    this.model.fetch({
-                        async: false, success: this.arraysToModelCollections
-                    });
-                    console.log(this.model.toJSON());
-                    this.render();
-                },
-
-                arraysToModelCollections: function () {
-
-                    this.model.set({ 'siteCollection': new SiteCollection(this.model.get('AllSite')) });
-                    this.model.set({ 'zoneCollection': new ZoneCollection(this.model.get('AllZone')) });
-                    this.model.set({ 'lieuCollection': new LieuCollection(this.model.get('AllLieu')) });
-                    this.model.set({ 'ficheSecuriteTypeCollection': new FicheSecuriteTypeCollection(this.model.get('AllFicheSecuriteType')) });
-                    this.model.set({ 'plageHoraireCollection': new PlageHoraireCollection(this.model.get('AllPlageHoraire')) });
-                    this.model.set({ 'dangerCollection': new DangerCollection(this.model.get('AllDanger')) });
-                    this.model.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(this.model.get('AllCorpsHumainZone')) });
-                    //this.model.set({ 'risqueCollection': new RisqueCollection(this.model.get('AllRisque')) });
-
-                },
-
-            });
-
-
-            var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
-                model: ficheSecuriteModel
-            });
-
-            var SiteModel = Backbone.Model.extend({
-                 
-            });
+        var SiteCollection = Backbone.Collection.extend({
+            model: SiteModel
+        });
+        var ZoneCollection = Backbone.Collection.extend({
+            model: ZoneModel
+        });
+        var LieuCollection = Backbone.Collection.extend({
+            model: LieuModel
+        });
+        var FicheSecuriteTypeCollection = Backbone.Collection.extend({
+            model: FicheSecuriteTypeModel
+        });
+        var PlageHoraireCollection = Backbone.Collection.extend({
+            model: PlageHoraireModel
+        });
+        var DangerCollection = Backbone.Collection.extend({
+            model: DangerModel
+        });
+        var RisqueCollection = Backbone.Collection.extend({
+            model: RisqueModel
+        });
+        var CorpsHumainZoneCollection = Backbone.Collection.extend({
+            model: CorpsHumainZoneModel
+        });
 
 
 
-        })
+
+        var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
+
+        ficheSecuriteViewModel.fetch({
+            async: false//, success: this.arraysToModelCollections
+        });
+
+        ficheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(ficheSecuriteViewModel.get('AllSite')) });
+        ficheSecuriteViewModel.set({ 'zoneCollection': new ZoneCollection(ficheSecuriteViewModel.get('AllZone')) });
+        ficheSecuriteViewModel.set({ 'lieuCollection': new LieuCollection(ficheSecuriteViewModel.get('AllLieu')) });
+        ficheSecuriteViewModel.set({ 'ficheSecuriteTypeCollection': new FicheSecuriteTypeCollection(ficheSecuriteViewModel.get('AllFicheSecuriteType')) });
+        ficheSecuriteViewModel.set({ 'plageHoraireCollection': new PlageHoraireCollection(ficheSecuriteViewModel.get('AllPlageHoraire')) });
+        ficheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(ficheSecuriteViewModel.get('AllDanger')) });
+        ficheSecuriteViewModel.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(ficheSecuriteViewModel.get('AllCorpsHumainZone')) });
+        ficheSecuriteViewModel.set({ 'risqueCollection': new RisqueCollection(ficheSecuriteViewModel.get('AllRisque')) });
+
+
+        var FicheSecuriteBarreGriseView = Backbone.View.extend({
+            template: _.template($('#TestTemplate2').html()),
+            render: function () {
+                $('#TestDiv2').html(this.template(this.model.toJSON()));
+            },
+            initialize: function () {
+                //this.model.on('change', this.render, this);
+                //this.model.on('change', dispatch(this.model), this);
+
+
+                this.render();
+            }
+
+        });
+
+        var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
+            template: _.template($('#TestTemplate3').html()),
+            render: function () {
+                $('#TestDiv3').html(this.template(this.model.toJSON()));
+            },
+            initialize: function () {
+                //this.model.on('change', this.render, this);
+                //this.model.on('change', dispatch(this.model), this);
+
+                console.log(this.model.toJSON());
+
+                this.render();
+            }
+
+        });
+
+
+        var ficheSecuriteBarreGriseView = new FicheSecuriteBarreGriseView({
+            model: ficheSecuriteViewModel
+        });
+
+        var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
+            model: ficheSecuriteViewModel
+        });
 
 
 
-    </script>
+
+
+    })
+
+
+
+
+
+    //,
+
+    //arraysToModelCollections: function () {
+
+    //    this.model.set({ 'siteCollection': siteCollection });
+    //    this.model.set({ 'zoneCollection': new ZoneCollection(this.model.get('AllZone')) });
+    //    this.model.set({ 'lieuCollection': new LieuCollection(this.model.get('AllLieu')) });
+    //    this.model.set({ 'ficheSecuriteTypeCollection': new FicheSecuriteTypeCollection(this.model.get('AllFicheSecuriteType')) });
+    //    this.model.set({ 'plageHoraireCollection': new PlageHoraireCollection(this.model.get('AllPlageHoraire')) });
+    //    this.model.set({ 'dangerCollection': new DangerCollection(this.model.get('AllDanger')) });
+    //    this.model.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(this.model.get('AllCorpsHumainZone')) });
+    //    //this.model.set({ 'risqueCollection': new RisqueCollection(this.model.get('AllRisque')) });
+
+    //},
+
+
+
+
+</script>
+
+
+
 
 
