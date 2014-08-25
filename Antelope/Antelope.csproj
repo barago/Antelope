@@ -161,6 +161,7 @@
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
+    <Compile Include="Controllers\HSE\ZoneController.cs" />
     <Compile Include="Controllers\IndicateurSI\DegreSatisfactionController.cs" />
     <Compile Include="Controllers\IndicateurSI\DelaiMoyenTicketController.cs" />
     <Compile Include="Controllers\IndicateurSI\IndicateurSIHomeController.cs" />

@@ -65,16 +65,15 @@
                                         <label for="Site" class="label-xs">Site&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <select id="Site" class="form-control input-xs">
-
+                                        <select id="Site" class="form-control input-xs">  
                                             <% siteCollection.each( function(site){ %>
                                             <option value="<%= site.get('SiteID') %>"
-                                                <% if (ficheSecuriteModel.get('SiteId') === site.get('SiteID')){ %> selected <% } %>
-                                                >
+                                                <% if (ficheSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
+                                            >
                                                 <%= site.get('Nom') %>
                                             </option>
                                             <% }); %>
-
+                                            @*%> selected <%*@
                                         </select>
                                     </div>
                                 </div>
@@ -609,7 +608,7 @@
         });
         var ZoneCollection = Backbone.Collection.extend({
             model: ZoneModel,
-            url: '/api/zones'
+            url: '/api/action/zone/getZonesBySiteId'
         });
         var LieuCollection = Backbone.Collection.extend({
             model: LieuModel
@@ -656,22 +655,58 @@
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             template: _.template($('#TestTemplate2').html()),
             render: function () {
+                //console.log(this.model.toJSON());
                 this.$el.html(this.template(this.model.toJSON()));
+
+                // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
+                $('#datetimepicker1').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+                $('#datetimepicker2').datetimepicker({
+                    pickDate: false,
+                    language: 'fr'
+                });
+
+                $('#map').mapster(
+                    {
+                        fillColor: 'C42031',
+                        fillOpacity: 0.3,
+                        singleSelect: true,
+                        mapKey: 'data-code'
+                    }
+                );
+
+
             },
             initialize: function () {
-                //this.model.on('change', this.render, this);
-                this.model.get('ficheSecuriteModel').on('change', function () { console.log('Hello le model à changé') })
+                
+                //this.model.get('ficheSecuriteModel').on('change', this.render, this)
+                //this.model.get('zoneCollection').on('add remove update change', function () { console.log('Collection changed') }, this)
+
+                //add remove update change
+
                 //console.log(this.model.toJSON());
 
                 this.render();
             },
             events: {
-                "change #Site": "changeSite"
+                "change #Site": "changeSite",
+                "change #Age": "changeAge"
 
             },
             changeSite: function () {
-                var test = this.model.get('ficheSecuriteModel').set({ 'SiteId': $('#Site').val() });
-                this.model.get('zoneCollection').fetch({ 'SiteId': this.model.get('ficheSecuriteModel').get('SiteId') });
+                //console.log(this.model.get('ficheSecuriteModel').get( 'SiteId'));
+                this.model.get('ficheSecuriteModel').set({ 'SiteId': $('#Site').val() });
+                //console.log(this.model.get('ficheSecuriteModel').get('SiteId'));
+
+                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
+                this.model.get('zoneCollection').fetch({ 'SiteId': this.model.get('ficheSecuriteModel').get('SiteId'), async:false});
+                
+                this.render();
+            },
+            changeAge: function () {
+                this.model.get('ficheSecuriteModel').set({ 'Age': $('#Age').val() });
             }
 
         });
@@ -680,29 +715,6 @@
             el: $("#TestDiv2"),
             model: ficheSecuriteViewModel
         });
-
-        //-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
-        // JAVASCRIPT HORS BACKBONE
-        // /!\ ATTENTION DE BIEN LANCER LES PLUGINS JAVASCRIPT ( DATETIMEPICKER , IMAGEMAPSTER ETC... ) APRES
-        // LE CHARGEMENT DES VUES PAR BACKBONE ! LE HTML DES VUES N'EST PAS GENERE AVANT ! /!\
-
-        $('#datetimepicker1').datetimepicker({
-            pickTime: false,
-            language: 'fr'
-        });
-        $('#datetimepicker2').datetimepicker({
-            pickDate: false,
-            language: 'fr'
-        });
-
-        $('#map').mapster(
-    {
-        fillColor: 'C42031',
-        fillOpacity: 0.3,
-        singleSelect: true,
-        mapKey: 'data-code'
-    }
-);
 
     })
 
