@@ -155,13 +155,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
-    <Compile Include="Controllers\HSE\FIcheSecuriteAPIController.cs" />
+    <Compile Include="Controllers\API\HSE\FIcheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
-    <Compile Include="Controllers\HSE\ZoneController.cs" />
     <Compile Include="Controllers\IndicateurSI\DegreSatisfactionController.cs" />
     <Compile Include="Controllers\IndicateurSI\DelaiMoyenTicketController.cs" />
     <Compile Include="Controllers\IndicateurSI\IndicateurSIHomeController.cs" />
@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407181517024_180720145.cs" />
-    <Compile Include="Migrations\201407181517024_180720145.Designer.cs">
-      <DependentUpon>201407181517024_180720145.cs</DependentUpon>
+    <Compile Include="Migrations\201408261534096_FirstMigration26082014.cs" />
+    <Compile Include="Migrations\201408261534096_FirstMigration26082014.Designer.cs">
+      <DependentUpon>201408261534096_FirstMigration26082014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -465,8 +465,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407181517024_180720145.resx">
-      <DependentUpon>201407181517024_180720145.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408261534096_FirstMigration26082014.resx">
+      <DependentUpon>201408261534096_FirstMigration26082014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

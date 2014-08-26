@@ -9,15 +9,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Antelope.Controllers.HSE
+namespace Antelope.Controllers.API.HSE
 {
-    public class FIcheSecuriteAPIController : ApiController
+    public class FIcheSecuriteController : ApiController
     {
         
         public FicheSecuriteRepository _ficheSecuriteRepository {get; set;}
         private AntelopeContext db = new AntelopeContext();
 
-        public FIcheSecuriteAPIController() {
+        public FIcheSecuriteController() {
 
             _ficheSecuriteRepository = new FicheSecuriteRepository();
         }

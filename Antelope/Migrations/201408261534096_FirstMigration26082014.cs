@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _180720145 : DbMigration
+    public partial class FirstMigration26082014 : DbMigration
     {
         public override void Up()
         {
@@ -205,6 +205,7 @@ namespace Antelope.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.ActionSecurites", "FicheSecuriteId", "dbo.FicheSecurites");
             DropForeignKey("dbo.FicheSecurites", "PlageHoraireId", "dbo.PlageHoraires");
             DropForeignKey("dbo.Lieux", "ZoneId", "dbo.Zones");
             DropForeignKey("dbo.Zones", "SiteId", "dbo.Sites");
@@ -214,7 +215,7 @@ namespace Antelope.Migrations
             DropForeignKey("dbo.FicheSecurites", "FicheSecuriteTypeId", "dbo.FicheSecuriteTypes");
             DropForeignKey("dbo.FicheSecurites", "DangerId", "dbo.Dangers");
             DropForeignKey("dbo.FicheSecurites", "CorpsHumainZoneId", "dbo.CorpsHumainZones");
-            DropForeignKey("dbo.ActionSecurites", "FicheSecuriteId", "dbo.FicheSecurites");
+            DropIndex("dbo.ActionSecurites", new[] { "FicheSecuriteId" });
             DropIndex("dbo.FicheSecurites", new[] { "PlageHoraireId" });
             DropIndex("dbo.Lieux", new[] { "ZoneId" });
             DropIndex("dbo.Zones", new[] { "SiteId" });
@@ -224,7 +225,6 @@ namespace Antelope.Migrations
             DropIndex("dbo.FicheSecurites", new[] { "FicheSecuriteTypeId" });
             DropIndex("dbo.FicheSecurites", new[] { "DangerId" });
             DropIndex("dbo.FicheSecurites", new[] { "CorpsHumainZoneId" });
-            DropIndex("dbo.ActionSecurites", new[] { "FicheSecuriteId" });
             DropTable("dbo.Sauvegardes");
             DropTable("dbo.Projets");
             DropTable("dbo.Interventions");

@@ -187,8 +187,8 @@ namespace Antelope.Migrations
                 AllDanger.Add(Danger);
             }
 
-            List<string> AllCorpsHumainZoneNom = new List<string>() { "Crâne", "Yeux", "Oreille gauche", "Oreille droite", "Nez", "Bouche", "Menton", "Cou", "Epaule gauche", "Epaule droite" };
-            List<string> AllCorpsHumainZoneCode = new List<string>() { "CRANE", "YEUX", "OREILLEG", "OREILLED", "NEZ", "BOUCHE", "MENTON", "COU", "EPAULEG", "EPAULED" };
+            List<string> AllCorpsHumainZoneNom = new List<string>() { "Yeux", "Tête", "Bras", "Main", "Tronc", "Jambe", "Pied", "Tout le corps", "Multiples lésions", "Dos" };
+            List<string> AllCorpsHumainZoneCode = new List<string>() { "YEUX", "TETE", "BRAS", "MAIN", "TRONC", "JAMBE", "PIED", "TOUTCORPS", "MULTILESIONS", "DOS" };
 
             List<CorpsHumainZone> AllCorpsHumainZone = new List<CorpsHumainZone>();
 

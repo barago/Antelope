@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using Antelope.Models;
 using Antelope.Models.Socle;
 
-namespace Antelope.Controllers.HSE
+namespace Antelope.Controllers.API.HSE
 {
     public class ZoneController : ApiController
     {
@@ -22,6 +22,18 @@ namespace Antelope.Controllers.HSE
         {
             return db.Zones;
         }
+
+        public HttpResponseMessage GetZonesBySiteId(int id)
+        {
+
+            var queryZone = from a in db.Zones
+                            where a.SiteId == id
+                            select a;
+            List<Zone> AllZone = queryZone.ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, AllZone);
+        }
+
 
         // GET: api/Zones/5
         [ResponseType(typeof(Zone))]
@@ -34,11 +46,6 @@ namespace Antelope.Controllers.HSE
             }
 
             return Ok(zone);
-        }
-
-        public IQueryable<Zone> GetZonesBySiteId()
-        {
-            return db.Zones;
         }
 
         // PUT: api/Zones/5
