@@ -18,6 +18,8 @@ namespace Antelope.Migrations
 
         protected override void Seed(Antelope.Models.AntelopeContext context)
         {
+
+
             Site siteRFS = new Site()
             {
                 Nom = "Refresco",
@@ -201,7 +203,10 @@ namespace Antelope.Migrations
                 };
 
                 AllCorpsHumainZone.Add(CorpsHumainZone);
+                context.CorpsHumainZones.Add(CorpsHumainZone);
             }
+
+
 
             PlageHoraire plagehoraire1 = new PlageHoraire() { Nom = "Nuit" };
             PlageHoraire plagehoraire2 = new PlageHoraire() { Nom = "Journée" };

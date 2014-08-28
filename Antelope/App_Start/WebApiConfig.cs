@@ -19,8 +19,8 @@ namespace Antelope
 
             config.Routes.MapHttpRoute(
                 name: "ActionApi",
-                routeTemplate: "api/action/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/action/{controller}/{action}/{id}/{param1}/{param2}",
+                defaults: new { id = RouteParameter.Optional, param1 = RouteParameter.Optional, param2 = RouteParameter.Optional }
             );
         }
     }

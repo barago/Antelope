@@ -68,6 +68,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -155,10 +157,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\HSE\LieuController.cs" />
+    <Compile Include="Controllers\API\HSE\UtilisateurActiveDirectoryController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
-    <Compile Include="Controllers\API\HSE\FIcheSecuriteController.cs" />
+    <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
