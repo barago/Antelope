@@ -16,7 +16,7 @@ using System.DirectoryServices;
 
 namespace Antelope.Controllers.API.HSE
 {
-    public class UtilisateurActiveDirectoryController : ApiController
+    public class ActiveDirectoryUtilisateurController : ApiController
     {
         private AntelopeContext db = new AntelopeContext();
 
@@ -26,28 +26,48 @@ namespace Antelope.Controllers.API.HSE
             return db.Lieux;
         }
 
-        public HttpResponseMessage GetUtilisateurActiveDirectoryByNomPrenom(int id, string param1, string param2)  // [FromUri] ActiveDirectoryUtilisateurViewModel activeDirectoryUtilisateurViewModel
+        public HttpResponseMessage GetActiveDirectoryUtilisateurByNomPrenom(int id, string param1, string param2)  // [FromUri] ActiveDirectoryUtilisateurViewModel activeDirectoryUtilisateurViewModel
         {
 
             var a = 0;
 
-            using (var context = new PrincipalContext(ContextType.Domain, "refresco.local"))
+            List<ActiveDirectoryUtilisateurViewModel> allActiveDirectoryViewModel = new List<ActiveDirectoryUtilisateurViewModel>();
+
+
+            var context = new PrincipalContext(ContextType.Domain, "refresco.local");
+            // define a "query-by-example" principal - here, we search for a UserPrincipal 
+            // and with the first name (GivenName) and a last name (Surname) 
+            UserPrincipal qbeUser = new UserPrincipal(context);
+
+            if(param2 != "undefined"){
+                qbeUser.GivenName = "*" + param2 + "*";
+            }
+            if (param1 != "undefined")
             {
-                using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
-                {
-                    foreach (var result in searcher.FindAll())
-                    {
-                        DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
-                        System.Diagnostics.Debug.WriteLine("First Name: " + de.Properties["givenName"].Value);
-                        Console.WriteLine("Last Name : " + de.Properties["sn"].Value);
-                        Console.WriteLine("SAM account name   : " + de.Properties["samAccountName"].Value);
-                        Console.WriteLine("User principal name: " + de.Properties["userPrincipalName"].Value);
-                        Console.WriteLine();
-                    }
-                }
+                qbeUser.Surname = "*" + param1 + "*";
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, a);
+            // create your principal searcher passing in the QBE principal    
+            PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+
+            // find all matches
+            foreach (var result in srch.FindAll())
+            {
+                DirectoryEntry de = result.GetUnderlyingObject() as DirectoryEntry;
+                System.Diagnostics.Debug.WriteLine("First Name: " + de.Properties["givenName"].Value + " " + "Last Name : " + de.Properties["sn"].Value);
+
+                allActiveDirectoryViewModel.Add(
+                    new ActiveDirectoryUtilisateurViewModel
+                    {
+                        Nom = (string)de.Properties["sn"].Value,
+                        Prenom = (string)de.Properties["givenName"].Value
+                    }
+                );
+
+            }
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, allActiveDirectoryViewModel);
         }
 
         // GET: api/UtilisateurActiveDirectory/5

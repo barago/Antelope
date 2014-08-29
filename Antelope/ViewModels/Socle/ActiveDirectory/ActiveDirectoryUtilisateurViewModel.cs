@@ -7,7 +7,8 @@ namespace Antelope.ViewModels.Socle.ActiveDirectory
 {
     public class ActiveDirectoryUtilisateurViewModel
     {
-        public string vartest;
+        public string Nom;
+        public string Prenom;
 
     }
 }
