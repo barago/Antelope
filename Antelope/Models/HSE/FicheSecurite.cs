@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Antelope.Models.HSE
 {
@@ -131,6 +132,12 @@ namespace Antelope.Models.HSE
 
         [DisplayName("Membre CHSCT")]
         public String CHSCTMembre { get; set; }
+
+        [DisplayName("Personne Concernée")]
+        public Int32? PersonneConcerneeId { get; set; }
+
+        [ForeignKey("PersonneConcerneeId")]
+        public virtual Personne PersonneConcernee { get; set; }
 
         //Etats de la fiche (Workflow)
         //public Boolean State10TeamLeaderValidated { get; set; }

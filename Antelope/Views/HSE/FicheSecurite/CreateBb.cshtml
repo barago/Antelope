@@ -24,7 +24,7 @@
 
 @*MODALE DE RECHERCHE DE PERSONNES DANS l'AD /// DANS UNE VIEW BACKBONE *@
 
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="ActiveDirectoryUtilisateurModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -104,7 +104,9 @@
                             <%= utilisateurActiveDirectory.get('Prenom') %>
                         </td>
                         <td>
-                            <span class="glyphicon glyphicon-arrow-right"></span>
+                            <button type="button" id="<%= utilisateurActiveDirectory.get('Guid') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            </button>
                         </td>
 
                     </tr>
@@ -263,20 +265,30 @@
                                 <div class="form-group">
                                     <div class="col-sm-5">
                                         @*style="padding-right:0px;"*@
-                                        <label for="PersonnesConcernees" class="label-xs">pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="input-group input-group-xs">
-                                            <input type="text" class="form-control input-xs" id="PersonnesConcernees" value="<%= ficheSecuriteModel.get('PersonnesConcernees') %>">
+                                            <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">
+                                                <button class=" btn btn-default" type="button" data-toggle="modal" data-target="#ActiveDirectoryUtilisateurModal">
                                                     <span class="glyphicon glyphicon-user">
                                                 </button>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="Age" class="col-sm-5 label-xs">Âge&nbsp;:</label>
                                     <div class="col-sm-7">
@@ -758,6 +770,8 @@
             urlRoot: '/api/FicheSecurite'
         });
 
+        var PersonneConcerneeModel = Backbone.Model.extend({
+        });
 
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
         console.log(ficheSecuriteViewModel);
@@ -778,7 +792,9 @@
         ficheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(ficheSecuriteViewModel.get('AllDanger')) });
         ficheSecuriteViewModel.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(ficheSecuriteViewModel.get('AllCorpsHumainZone')) });
         ficheSecuriteViewModel.set({ 'risqueCollection': new RisqueCollection(ficheSecuriteViewModel.get('AllRisque')) });
-
+        // /!\ ATTENTION : Nous appelons le MODEL : "PersonneConcernee" (et non "PersonneConcerneeModel", ceci pour garder la symétrie avec le Backoffice MVC C# qui va automatiquement 
+        // récupérer la PersonneConcernee dans la FicheSecurite ainsi que ses changements -- A voir si du coup on fait pareil pour tous les Models ... ??? (Quid du mélange Model/Collection/Route etc ...)
+        ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })
 
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             template: _.template($('#TestTemplate2').html()),
@@ -828,7 +844,8 @@
                 "keyup #Age": "changeAge",
                 "change #Type": "changeType",
                 "keyup #Code": "changeCode",
-                "keyup #PersonnesConcernees": "changePersonnesConcernees",
+                "keyup #PersonnesConcerneeNom": "changePersonneConcerneeNom",
+                "keyup #PersonnesConcerneePrenom": "changePersonneConcerneePrenom",
                 "change #PlageHoraire": "changePlageHoraire",
                 "keyup #Service": "changeService",
                 "change #Danger": "changeDanger",
@@ -839,7 +856,8 @@
                 "keyup #Frequence": "changeFrequence",
                 "keyup #ActionImmediate1": "changeActionImmediate1",
                 "keyup #ActionImmediate2": "changeActionImmediate2",
-                "click #Diffusion": "Diffusion"
+                "click #Diffusion": "Diffusion",
+                "click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche"
 
             },
             changeSite: function () {
@@ -889,6 +907,14 @@
             changePersonnesConcernees: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PersonnesConcernees': $('#PersonnesConcernees').val() });
             },
+            changePersonneConcerneeNom: function(){
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').Nom = $('#PersonnesConcerneeNom').val()
+            },
+            changePersonneConcerneePrenom: function () {
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Prenom': $('#PersonnesConcerneePrenom').val() });
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').Nom = $('#PersonnesConcerneeNom').val()
+            },
             changePlageHoraire: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
             },
@@ -930,6 +956,9 @@
                 console.log('Diffusion');
 
                 this.model.get('ficheSecuriteModel').save();
+            },
+            changeSourceActiveDirectoryUtilisateurRecherche: function () {
+                this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
             }
 
         });
@@ -939,9 +968,9 @@
             urlRoot: '/api/UtilisateurActiveDirectory'
         });
 
-        var UtilisateurActiveDirectoryViewModel = Backbone.Model.extend({
+        //var UtilisateurActiveDirectoryViewModel = Backbone.Model.extend({
 
-        });
+        //});
 
         var UtilisateurActiveDirectoryCollection = Backbone.Collection.extend({
             model: UtilisateurActiveDirectoryModel
@@ -949,10 +978,10 @@
 
         var utilisateurActiveDirectoryModel = new UtilisateurActiveDirectoryModel();
 
-        var utilisateurActiveDirectoryViewModel = new UtilisateurActiveDirectoryViewModel();
+        //var utilisateurActiveDirectoryViewModel = new UtilisateurActiveDirectoryViewModel();
 
-        utilisateurActiveDirectoryViewModel.set({ 'utilisateurActiveDirectoryModel': utilisateurActiveDirectoryModel });
-        utilisateurActiveDirectoryViewModel.set({ 'utilisateurActiveDirectoryCollection': new UtilisateurActiveDirectoryCollection() });
+        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryModel': utilisateurActiveDirectoryModel });
+        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryCollection': new UtilisateurActiveDirectoryCollection() });
 
         var RechercheActiveDirectoryView = Backbone.View.extend({
             template: _.template($('#RechercheActiveDirectory').html()),
@@ -965,7 +994,8 @@
             events: {
                 "click #RechercheADUtilisateur": "rechercheADUtilisateur",
                 "keyup #NomRecherche": "nomChange",
-                "keyup #PrenomRecherche": "prenomChange"
+                "keyup #PrenomRecherche": "prenomChange",
+                "click .BoutonChoixUtilisateurActiveDirectory": "choixUtilisateurActiveDirectory",
             },
             nomChange: function () {
                 var nomToSet = $('#NomRecherche').val() == "" ? "undefined" : $('#NomRecherche').val()
@@ -995,6 +1025,14 @@
                 this.render();
 
             },
+            choixUtilisateurActiveDirectory: function (ev) {
+                console.log($(ev.currentTarget).attr('id'));
+
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                    'Nom': this.model.get('ficheSecuriteCollection').find(function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }).get('Nom')
+                })
+                
+            }
 
 
         });
@@ -1005,7 +1043,7 @@
 
         var rechercheActiveDirectoryView = new RechercheActiveDirectoryView({
             el: $("#RechercheActiveDirectoryDiv"),
-            model: utilisateurActiveDirectoryViewModel
+            model: ficheSecuriteViewModel
         });
 
         var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({

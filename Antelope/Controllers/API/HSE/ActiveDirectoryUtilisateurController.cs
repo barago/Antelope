@@ -20,11 +20,7 @@ namespace Antelope.Controllers.API.HSE
     {
         private AntelopeContext db = new AntelopeContext();
 
-        // GET: api/UtilisateurActiveDirectory
-        public IQueryable<Lieu> GetLieux()
-        {
-            return db.Lieux;
-        }
+
 
         public HttpResponseMessage GetActiveDirectoryUtilisateurByNomPrenom(int id, string param1, string param2)  // [FromUri] ActiveDirectoryUtilisateurViewModel activeDirectoryUtilisateurViewModel
         {
@@ -60,7 +56,8 @@ namespace Antelope.Controllers.API.HSE
                     new ActiveDirectoryUtilisateurViewModel
                     {
                         Nom = (string)de.Properties["sn"].Value,
-                        Prenom = (string)de.Properties["givenName"].Value
+                        Prenom = (string)de.Properties["givenName"].Value,
+                        Guid = (Guid)result.Guid
                     }
                 );
 
@@ -70,97 +67,5 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, allActiveDirectoryViewModel);
         }
 
-        // GET: api/UtilisateurActiveDirectory/5
-        [ResponseType(typeof(Lieu))]
-        public IHttpActionResult GetLieu(int id)
-        {
-            Lieu lieu = db.Lieux.Find(id);
-            if (lieu == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(lieu);
-        }
-
-        // PUT: api/UtilisateurActiveDirectory/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutLieu(int id, Lieu lieu)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != lieu.LieuID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(lieu).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LieuExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/UtilisateurActiveDirectory
-        [ResponseType(typeof(Lieu))]
-        public IHttpActionResult PostLieu(Lieu lieu)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Lieux.Add(lieu);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = lieu.LieuID }, lieu);
-        }
-
-        // DELETE: api/UtilisateurActiveDirectory/5
-        [ResponseType(typeof(Lieu))]
-        public IHttpActionResult DeleteLieu(int id)
-        {
-            Lieu lieu = db.Lieux.Find(id);
-            if (lieu == null)
-            {
-                return NotFound();
-            }
-
-            db.Lieux.Remove(lieu);
-            db.SaveChanges();
-
-            return Ok(lieu);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool LieuExists(int id)
-        {
-            return db.Lieux.Count(e => e.LieuID == id) > 0;
-        }
     }
 }

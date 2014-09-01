@@ -144,6 +144,35 @@ namespace Antelope.Migrations
             context.Lieux.Add(LieuRemplisseuseL2DLF);
             context.Lieux.Add(LieuEtiqueteuseL2DLF);
 
+            Personne PersonneConcernee1 = new Personne()
+            {
+                Nom = "Dupont",
+                Prenom = "Jean"
+            };
+
+            Personne PersonneConcernee2 = new Personne()
+            {
+                Nom = "Bodoin",
+                Prenom = "Sandra"
+            };
+
+            Personne PersonneConcernee3 = new Personne()
+            {
+                Nom = "Bricard",
+                Prenom = "Isabelle"
+            };
+
+            Personne PersonneConcernee4 = new Personne()
+            {
+                Nom = "Giovaneti",
+                Prenom = "Carl"
+            };
+
+            context.Personnes.Add(PersonneConcernee1);
+            context.Personnes.Add(PersonneConcernee2);
+            context.Personnes.Add(PersonneConcernee3);
+            context.Personnes.Add(PersonneConcernee4);
+
             FicheSecuriteType FicheSecuriteType1 = new FicheSecuriteType()
             {
                 Nom = "ATAA"
@@ -235,7 +264,8 @@ namespace Antelope.Migrations
                 Danger = AllDanger[1],
                 PlageHoraire = plagehoraire1,
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1]
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1
             };
 
             FicheSecurite FicheSecurite2 = new FicheSecurite()
@@ -257,7 +287,8 @@ namespace Antelope.Migrations
                 FicheSecuriteType = FicheSecuriteType2,
                 Danger = AllDanger[2],
                 PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2]
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2
             };
 
             FicheSecurite FicheSecurite3 = new FicheSecurite()
@@ -280,7 +311,8 @@ namespace Antelope.Migrations
                 Danger = AllDanger[3],
                 PlageHoraire = plagehoraire3,
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[3]
+                CorpsHumainZone = AllCorpsHumainZone[3],
+                PersonneConcernee = PersonneConcernee3
             };
 
             FicheSecurite FicheSecurite4 = new FicheSecurite()
@@ -302,7 +334,8 @@ namespace Antelope.Migrations
                 FicheSecuriteType = FicheSecuriteType4,
                 Danger = AllDanger[3],
                 PlageHoraire = plagehoraire4,
-                CorpsHumainZone = AllCorpsHumainZone[4]
+                CorpsHumainZone = AllCorpsHumainZone[4],
+                PersonneConcernee = PersonneConcernee4
             };
 
             ActionSecurite action = new ActionSecurite()

@@ -9,6 +9,7 @@ namespace Antelope.ViewModels.Socle.ActiveDirectory
     {
         public string Nom;
         public string Prenom;
+        public Guid Guid;
 
     }
 }

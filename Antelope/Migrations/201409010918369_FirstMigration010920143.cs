@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirstMigration26082014 : DbMigration
+    public partial class FirstMigration010920143 : DbMigration
     {
         public override void Up()
         {
@@ -53,6 +53,7 @@ namespace Antelope.Migrations
                         EnqueteDate = c.DateTime(),
                         EnqueteProtagoniste = c.String(),
                         CHSCTMembre = c.String(),
+                        PersonneConcerneeId = c.Int(),
                     })
                 .PrimaryKey(t => t.FicheSecuriteID)
                 .ForeignKey("dbo.CorpsHumainZones", t => t.CorpsHumainZoneId, cascadeDelete: true)
@@ -61,6 +62,7 @@ namespace Antelope.Migrations
                 .ForeignKey("dbo.Lieux", t => t.LieuId)
                 .ForeignKey("dbo.Zones", t => t.ZoneId)
                 .ForeignKey("dbo.Sites", t => t.SiteId, cascadeDelete: true)
+                .ForeignKey("dbo.Personnes", t => t.PersonneConcerneeId)
                 .ForeignKey("dbo.PlageHoraires", t => t.PlageHoraireId)
                 .Index(t => t.CorpsHumainZoneId)
                 .Index(t => t.DangerId)
@@ -68,6 +70,7 @@ namespace Antelope.Migrations
                 .Index(t => t.LieuId)
                 .Index(t => t.ZoneId)
                 .Index(t => t.SiteId)
+                .Index(t => t.PersonneConcerneeId)
                 .Index(t => t.PlageHoraireId);
             
             CreateTable(
@@ -132,6 +135,17 @@ namespace Antelope.Migrations
                         Arouperr = c.String(),
                     })
                 .PrimaryKey(t => t.SiteID);
+            
+            CreateTable(
+                "dbo.Personnes",
+                c => new
+                    {
+                        PersonneId = c.Int(nullable: false, identity: true),
+                        Nom = c.String(),
+                        Prenom = c.String(),
+                        GUID = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.PersonneId);
             
             CreateTable(
                 "dbo.PlageHoraires",
@@ -207,6 +221,7 @@ namespace Antelope.Migrations
         {
             DropForeignKey("dbo.ActionSecurites", "FicheSecuriteId", "dbo.FicheSecurites");
             DropForeignKey("dbo.FicheSecurites", "PlageHoraireId", "dbo.PlageHoraires");
+            DropForeignKey("dbo.FicheSecurites", "PersonneConcerneeId", "dbo.Personnes");
             DropForeignKey("dbo.Lieux", "ZoneId", "dbo.Zones");
             DropForeignKey("dbo.Zones", "SiteId", "dbo.Sites");
             DropForeignKey("dbo.FicheSecurites", "SiteId", "dbo.Sites");
@@ -217,6 +232,7 @@ namespace Antelope.Migrations
             DropForeignKey("dbo.FicheSecurites", "CorpsHumainZoneId", "dbo.CorpsHumainZones");
             DropIndex("dbo.ActionSecurites", new[] { "FicheSecuriteId" });
             DropIndex("dbo.FicheSecurites", new[] { "PlageHoraireId" });
+            DropIndex("dbo.FicheSecurites", new[] { "PersonneConcerneeId" });
             DropIndex("dbo.Lieux", new[] { "ZoneId" });
             DropIndex("dbo.Zones", new[] { "SiteId" });
             DropIndex("dbo.FicheSecurites", new[] { "SiteId" });
@@ -230,6 +246,7 @@ namespace Antelope.Migrations
             DropTable("dbo.Interventions");
             DropTable("dbo.ADRoles");
             DropTable("dbo.PlageHoraires");
+            DropTable("dbo.Personnes");
             DropTable("dbo.Sites");
             DropTable("dbo.Zones");
             DropTable("dbo.Lieux");

@@ -25,6 +25,7 @@ namespace Antelope.Models
         public DbSet<Danger> Dangers { get; set; }
         public DbSet<PlageHoraire> PlageHoraires { get; set; }
         public DbSet<CorpsHumainZone> CorpsHumainZones { get; set; }
+        public DbSet<Personne> Personnes { get; set; }
 
     }
 }

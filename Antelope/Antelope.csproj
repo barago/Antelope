@@ -181,9 +181,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201408261534096_FirstMigration26082014.cs" />
-    <Compile Include="Migrations\201408261534096_FirstMigration26082014.Designer.cs">
-      <DependentUpon>201408261534096_FirstMigration26082014.cs</DependentUpon>
+    <Compile Include="Migrations\201409010918369_FirstMigration010920143.cs" />
+    <Compile Include="Migrations\201409010918369_FirstMigration010920143.Designer.cs">
+      <DependentUpon>201409010918369_FirstMigration010920143.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -199,6 +199,7 @@
     <Compile Include="Models\SI\Indicateur\Sauvegarde.cs" />
     <Compile Include="Models\Socle\ADRole.cs" />
     <Compile Include="Models\Socle\Lieu.cs" />
+    <Compile Include="Models\Socle\Personne.cs" />
     <Compile Include="Models\Socle\PlageHoraire.cs" />
     <Compile Include="Models\Socle\Zone.cs" />
     <Compile Include="Models\Socle\Site.cs" />
@@ -470,8 +471,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408261534096_FirstMigration26082014.resx">
-      <DependentUpon>201408261534096_FirstMigration26082014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409010918369_FirstMigration010920143.resx">
+      <DependentUpon>201409010918369_FirstMigration010920143.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
