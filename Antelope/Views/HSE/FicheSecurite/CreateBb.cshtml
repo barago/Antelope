@@ -9,7 +9,7 @@
 @*<link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />*@
 <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
-<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+@*<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>*@
 @*<script type="text/javascript" src="/Scripts/jquery-ui-1.10.4.custom.min.js"></script>*@
 <script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.min.js"></script>
 
@@ -24,7 +24,7 @@
 
 @*MODALE DE RECHERCHE DE PERSONNES DANS l'AD /// DANS UNE VIEW BACKBONE *@
 
-<div class="modal fade" id="ActiveDirectoryUtilisateurModal">
+@*<div class="modal fade" id="ActiveDirectoryUtilisateurModal">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -33,105 +33,108 @@
 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div><!-- /.modal -->*@
 
 
 
 
 <script type="text/template" id="RechercheActiveDirectory">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Recherche d'un utilisateur dans l'annuaire</h4>
-    </div>
-    <div class="modal-body">
-        <p>Vauillez saisir un nom et/ou un prénom&hellip;</p>
-
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-6">
-                    @*style="padding-right:0px;"*@
-                    <label for="NomRecherche" class="label-xs">Nom&nbsp;recherché&nbsp;:&nbsp;</label>
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control input-xs" id="NomRecherche" value="<%= utilisateurActiveDirectoryModel.get('Nom') == 'undefined' ? " " : utilisateurActiveDirectoryModel.get('Nom') %>">
-                </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Recherche d'un utilisateur dans l'annuaire</h4>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    @*style="padding-right:0px;"*@
-                    <label for="PrenomRecherche" class="label-xs">Prénom&nbsp;recherché&nbsp;:&nbsp;</label>
+            <div class="modal-body">
+                <p>Vauillez saisir un nom et/ou un prénom&hellip;</p>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @*style="padding-right:0px;"*@
+                            <label for="NomRecherche" class="label-xs">Nom&nbsp;recherché&nbsp;:&nbsp;</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-xs" id="NomRecherche" value="<%= utilisateurActiveDirectoryModel.get('Nom') == 'undefined' ? " " : utilisateurActiveDirectoryModel.get('Nom') %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @*style="padding-right:0px;"*@
+                            <label for="PrenomRecherche" class="label-xs">Prénom&nbsp;recherché&nbsp;:&nbsp;</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-xs" id="PrenomRecherche" value="<%= utilisateurActiveDirectoryModel.get('Prenom') == 'undefined' ? " " : utilisateurActiveDirectoryModel.get('Prenom') %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button id="RechercheADUtilisateur" type="submit" class="btn pull-right btn-xs">
+                            <span class="glyphicon glyphicon-user"></span> Recherche
+                        </button>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control input-xs" id="PrenomRecherche" value="<%= utilisateurActiveDirectoryModel.get('Prenom') == 'undefined' ? " " : utilisateurActiveDirectoryModel.get('Prenom') %>">
-                </div>
-            </div>
-            <div class="row">
-                <button id="RechercheADUtilisateur" type="submit" class="btn pull-right btn-xs">
-                    <span class="glyphicon glyphicon-user"></span> Recherche
-                </button>
-            </div>
-        </div>
-        <div class="row">
+                <div class="row">
 
-            <table class="table">
-                <thead>
-                    <td>
-                        Nom
-                    </td>
-                    <td>
-                        Prénom
-                    </td>
-                    <td>
-                        Choisir
-                    </td>
-
-                </thead>
-                <tbody>
-                    
-
-
-
-
-                    <% utilisateurActiveDirectoryCollection.each( function(utilisateurActiveDirectory){ %>
-                    <tr>
-
-                        <% console.log(utilisateurActiveDirectory.get('Nom'))  %>
+                    <table class="table">
+                        <thead>
                         <td>
-                            <%= utilisateurActiveDirectory.get('Nom') %>
+                            Nom
                         </td>
                         <td>
-                            <%= utilisateurActiveDirectory.get('Prenom') %>
+                            Prénom
                         </td>
                         <td>
-                            <button type="button" id="<%= utilisateurActiveDirectory.get('Guid') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
-                                <span class="glyphicon glyphicon-arrow-right"></span>
-                            </button>
+                            Choisir
                         </td>
 
-                    </tr>
-                    <% }); %>
-
-
-                </tbody>
-            </table>
-
-
-        </div>
+                        </thead>
+                        <tbody>
 
 
 
 
 
-    </div>
+                            <% utilisateurActiveDirectoryCollection.each( function(utilisateurActiveDirectory){ %>
+                            <tr>
+
+                                <% console.log(utilisateurActiveDirectory.get('Nom'))  %>
+                                <td>
+                                    <%= utilisateurActiveDirectory.get('Nom') %>
+                                </td>
+                                <td>
+                                    <%= utilisateurActiveDirectory.get('Prenom') %>
+                                </td>
+                                <td>
+                                    <button type="button" id="<%= utilisateurActiveDirectory.get('Guid') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </button>
+                                </td>
+
+                            </tr>
+                            <% }); %>
+
+
+                        </tbody>
+                    </table>
+
+
+                </div>
 
 
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-        @*<button type="button" class="btn btn-primary">Save changes</button>*@
-    </div>
 
+
+            </div>
+
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </script>
 
 
@@ -272,7 +275,7 @@
                                             <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                             <span class="input-group-btn">
-                                                <button class=" btn btn-default" type="button" data-toggle="modal" data-target="#ActiveDirectoryUtilisateurModal">
+                                                <button id="ActiveDirectoryUtilisateurRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
                                                     <span class="glyphicon glyphicon-user">
                                                 </button>
                                             </span>
@@ -796,6 +799,107 @@
         // récupérer la PersonneConcernee dans la FicheSecurite ainsi que ses changements -- A voir si du coup on fait pareil pour tous les Models ... ??? (Quid du mélange Model/Collection/Route etc ...)
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })
 
+
+        var UtilisateurActiveDirectoryModel = Backbone.Model.extend({
+            urlRoot: '/api/UtilisateurActiveDirectory'
+        });
+
+        var UtilisateurActiveDirectoryCollection = Backbone.Collection.extend({
+            model: UtilisateurActiveDirectoryModel
+        });
+
+        var utilisateurActiveDirectoryModel = new UtilisateurActiveDirectoryModel();
+
+        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryModel': utilisateurActiveDirectoryModel });
+        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryCollection': new UtilisateurActiveDirectoryCollection() });
+
+        Backbone.applicationEvents = _.extend({}, Backbone.Events);
+
+        var RechercheActiveDirectoryView = Backbone.View.extend({
+
+            id: 'ActiveDirectoryUtilisateurModal',
+            className: 'modal fade',
+            template: _.template($('#RechercheActiveDirectory').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+                return this;
+            },
+            initialize: function () {
+                this.render();
+            },
+            events: {
+                "click #RechercheADUtilisateur": "rechercheADUtilisateur",
+                "keyup #NomRecherche": "nomChange",
+                "keyup #PrenomRecherche": "prenomChange",
+                "click .BoutonChoixUtilisateurActiveDirectory": "choixUtilisateurActiveDirectory",
+                'hidden.bs.modal': 'teardown'
+            },
+            show: function () {
+                this.$el.modal('show');
+            },
+            teardown: function () {
+                this.$el.data('modal', null);
+                this.remove();
+                Backbone.applicationEvents.trigger('rechercheActiveDirectoryViewHidden');
+            },
+            nomChange: function () {
+                var nomToSet = $('#NomRecherche').val() == "" ? "undefined" : $('#NomRecherche').val()
+                this.model.get('utilisateurActiveDirectoryModel').set({ 'Nom': nomToSet });
+
+            },
+            prenomChange: function () {
+                var prenomToSet = $('#PrenomRecherche').val() == "" ? "undefined" : $('#PrenomRecherche').val()
+                this.model.get('utilisateurActiveDirectoryModel').set({ 'Prenom': prenomToSet });
+
+            },
+            rechercheADUtilisateur: function () {
+                this.model.get('utilisateurActiveDirectoryCollection').url = '/api/action/ActiveDirectoryUtilisateur/GetActiveDirectoryUtilisateurByNomPrenom/0/' + this.model.get('utilisateurActiveDirectoryModel').get('Nom') + '/' + this.model.get('utilisateurActiveDirectoryModel').get('Prenom')
+
+                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
+                this.model.get('utilisateurActiveDirectoryCollection').fetch({ async: false });
+
+                this.render();
+
+            },
+            choixUtilisateurActiveDirectory: function (ev) {
+
+                var utilisateurActiveDirectorySelectionne = this.model.get('utilisateurActiveDirectoryCollection').find(
+                    function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }
+                )
+
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Nom': utilisateurActiveDirectorySelectionne.get('Nom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Prenom': utilisateurActiveDirectorySelectionne.get('Prenom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
+                //});
+
+                Backbone.applicationEvents.trigger('activeDirectoryUtilisateurSelection', { 'utilisateur': utilisateurActiveDirectorySelectionne }); //, utilisateurActiveDirectorySelectionne);
+
+                this.$el.modal('hide');
+
+            }
+
+        });
+
+
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             template: _.template($('#TestTemplate2').html()),
             render: function () {
@@ -828,12 +932,9 @@
             },
             initialize: function () {
 
-                //this.model.get('ficheSecuriteModel').on('change', this.render, this)
-                //this.model.get('zoneCollection').on('add remove update change', function () { console.log('Collection changed') }, this)
-
-                //add remove update change
-
-                //console.log(this.model.toJSON());
+                _.bindAll(this, 'activeDirectoryUtilisateurSelection');
+                Backbone.applicationEvents.on('rechercheActiveDirectoryViewHidden', function () { this.render(); }, this);
+                Backbone.applicationEvents.on('activeDirectoryUtilisateurSelection', this.activeDirectoryUtilisateurSelection(event), this);
 
                 this.render();
             },
@@ -857,7 +958,8 @@
                 "keyup #ActionImmediate1": "changeActionImmediate1",
                 "keyup #ActionImmediate2": "changeActionImmediate2",
                 "click #Diffusion": "Diffusion",
-                "click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche"
+                "click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche",
+                "click #ActiveDirectoryUtilisateurRecherche": "showActiveDirectoryUtilisateurRecherche",
 
             },
             changeSite: function () {
@@ -909,11 +1011,9 @@
             },
             changePersonneConcerneeNom: function(){
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').Nom = $('#PersonnesConcerneeNom').val()
             },
             changePersonneConcerneePrenom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Prenom': $('#PersonnesConcerneePrenom').val() });
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').Nom = $('#PersonnesConcerneeNom').val()
             },
             changePlageHoraire: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
@@ -952,106 +1052,55 @@
                 this.model.get('ficheSecuriteModel').set({ 'CorpsHumainZoneId': this.model.get('corpsHumainZoneCollection').findWhere({ Code: data.key }).get('Id') });
             },
             Diffusion: function () {
-
-                console.log('Diffusion');
-
                 this.model.get('ficheSecuriteModel').save();
             },
             changeSourceActiveDirectoryUtilisateurRecherche: function () {
                 this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
+            },
+            showActiveDirectoryUtilisateurRecherche: function () {
+                rechercheActiveDirectoryView = new RechercheActiveDirectoryView({
+                    model:this.model
+                });
+                rechercheActiveDirectoryView.show()
+
+            },
+            activeDirectoryUtilisateurSelection: function (event) {
+                console.log('HELLO PASSAGE FSV ADUS');
+                console.log(event.utilisateur);
+                //console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Nom': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('NomSelectionne')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Prenom': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('PrenomSelectionne')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                //    'Guid': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('GuidSelectionne')
+                //});
+
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
+                //});
+
+                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
+                //});
+
             }
 
-        });
-
-
-        var UtilisateurActiveDirectoryModel = Backbone.Model.extend({
-            urlRoot: '/api/UtilisateurActiveDirectory'
-        });
-
-        //var UtilisateurActiveDirectoryViewModel = Backbone.Model.extend({
-
-        //});
-
-        var UtilisateurActiveDirectoryCollection = Backbone.Collection.extend({
-            model: UtilisateurActiveDirectoryModel
-        });
-
-        var utilisateurActiveDirectoryModel = new UtilisateurActiveDirectoryModel();
-
-        //var utilisateurActiveDirectoryViewModel = new UtilisateurActiveDirectoryViewModel();
-
-        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryModel': utilisateurActiveDirectoryModel });
-        ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryCollection': new UtilisateurActiveDirectoryCollection() });
-
-        var RechercheActiveDirectoryView = Backbone.View.extend({
-            template: _.template($('#RechercheActiveDirectory').html()),
-            render: function () {
-                this.$el.html(this.template(this.model.toJSON()));
-            },
-            initialize: function () {
-                this.render();
-            },
-            events: {
-                "click #RechercheADUtilisateur": "rechercheADUtilisateur",
-                "keyup #NomRecherche": "nomChange",
-                "keyup #PrenomRecherche": "prenomChange",
-                "click .BoutonChoixUtilisateurActiveDirectory": "choixUtilisateurActiveDirectory",
-            },
-            nomChange: function () {
-                var nomToSet = $('#NomRecherche').val() == "" ? "undefined" : $('#NomRecherche').val()
-                this.model.get('utilisateurActiveDirectoryModel').set({ 'Nom': nomToSet });
-
-            },
-            prenomChange: function(){
-                var prenomToSet = $('#PrenomRecherche').val() == "" ? "undefined" : $('#PrenomRecherche').val()
-                this.model.get('utilisateurActiveDirectoryModel').set({ 'Prenom': prenomToSet });
-
-            },
-            rechercheADUtilisateur: function () {
-                this.model.get('utilisateurActiveDirectoryCollection').url = '/api/action/ActiveDirectoryUtilisateur/GetActiveDirectoryUtilisateurByNomPrenom/0/' + this.model.get('utilisateurActiveDirectoryModel').get('Nom') + '/' + this.model.get('utilisateurActiveDirectoryModel').get('Prenom')
-                
-
-                //PAS BESOIN DE CE TRAITEMENT, DEJA MIS A JOUR PAR UN AUTRE EVENT
-                // Lorsqu'on change la zone, la liste des lieux doit correspondre à la zone en question, on charge la liste des lieux (REST/Ajax)
-                //this.model.get('utilisateurActiveDirectoryModel').set({ 'ZoneId': $('#Zone').val() });
-
-
-                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
-                this.model.get('utilisateurActiveDirectoryCollection').fetch({ async: false });
-
-                console.log(this.model.get('utilisateurActiveDirectoryCollection'));
-
-
-                this.render();
-
-            },
-            choixUtilisateurActiveDirectory: function (ev) {
-                console.log($(ev.currentTarget).attr('id'));
-
-                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                    'Nom': this.model.get('ficheSecuriteCollection').find(function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }).get('Nom')
-                })
-                
-            }
-
-
-        });
-
-
-
-
-
-        var rechercheActiveDirectoryView = new RechercheActiveDirectoryView({
-            el: $("#RechercheActiveDirectoryDiv"),
-            model: ficheSecuriteViewModel
         });
 
         var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
             el: $("#TestDiv2"),
             model: ficheSecuriteViewModel
         });
-
-
 
     })
 
