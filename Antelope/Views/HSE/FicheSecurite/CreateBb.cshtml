@@ -275,7 +275,7 @@
                                             <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                             <span class="input-group-btn">
-                                                <button id="ActiveDirectoryUtilisateurRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
+                                                <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
                                                     <span class="glyphicon glyphicon-user">
                                                 </button>
                                             </span>
@@ -815,6 +815,9 @@
 
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
 
+
+        //TODO : Cette View est à découpler de FicheSecurite View et Model afin d'être réutilisable
+        //Clairement pas le temps maintenant malheureusement.
         var RechercheActiveDirectoryView = Backbone.View.extend({
 
             id: 'ActiveDirectoryUtilisateurModal',
@@ -866,32 +869,38 @@
                 var utilisateurActiveDirectorySelectionne = this.model.get('utilisateurActiveDirectoryCollection').find(
                     function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }
                 )
+                console.log('sourceActiveDirectoryUtilisateurRecherche');
+                console.log(this.model.get('sourceActiveDirectoryUtilisateurRecherche'));
 
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Nom': utilisateurActiveDirectorySelectionne.get('Nom')
-                //});
+                if(this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'PERSONNECONCERNEE'){
+                    
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                    'Nom': utilisateurActiveDirectorySelectionne.get('Nom')
+                });
 
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Prenom': utilisateurActiveDirectorySelectionne.get('Prenom')
-                //});
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                    'Prenom': utilisateurActiveDirectorySelectionne.get('Prenom')
+                });
 
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
-                //});
+                this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+                    'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
+                });
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                }
+
+                //this.model.get('utilisateurActiveDirectoryModel').set({
                 //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
                 //});
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //this.model.get('utilisateurActiveDirectoryModel').set({
                 //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
                 //});
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+                //this.model.get('utilisateurActiveDirectoryModel').set({
                 //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
                 //});
 
-                Backbone.applicationEvents.trigger('activeDirectoryUtilisateurSelection', { 'utilisateur': utilisateurActiveDirectorySelectionne }); //, utilisateurActiveDirectorySelectionne);
+                //Backbone.applicationEvents.trigger('activeDirectoryUtilisateurSelection'); //, utilisateurActiveDirectorySelectionne);
 
                 this.$el.modal('hide');
 
@@ -932,9 +941,12 @@
             },
             initialize: function () {
 
-                _.bindAll(this, 'activeDirectoryUtilisateurSelection');
-                Backbone.applicationEvents.on('rechercheActiveDirectoryViewHidden', function () { this.render(); }, this);
-                Backbone.applicationEvents.on('activeDirectoryUtilisateurSelection', this.activeDirectoryUtilisateurSelection(event), this);
+                //_.bindAll(this, 'activeDirectoryUtilisateurSelection');
+                Backbone.applicationEvents.on('rechercheActiveDirectoryViewHidden', function () {
+                    console.log('INIT');
+                    this.render();
+                }, this);
+                //Backbone.applicationEvents.on('activeDirectoryUtilisateurSelection', this.activeDirectoryUtilisateurSelection(), this);
 
                 this.render();
             },
@@ -958,8 +970,8 @@
                 "keyup #ActionImmediate1": "changeActionImmediate1",
                 "keyup #ActionImmediate2": "changeActionImmediate2",
                 "click #Diffusion": "Diffusion",
-                "click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche",
-                "click #ActiveDirectoryUtilisateurRecherche": "showActiveDirectoryUtilisateurRecherche",
+                //"click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche",
+                "click #ActiveDirectoryPersonneConcerneeRecherche": "showActiveDirectoryUtilisateurRecherche",
 
             },
             changeSite: function () {
@@ -1054,46 +1066,54 @@
             Diffusion: function () {
                 this.model.get('ficheSecuriteModel').save();
             },
-            changeSourceActiveDirectoryUtilisateurRecherche: function () {
-                this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
-            },
-            showActiveDirectoryUtilisateurRecherche: function () {
+            //changeSourceActiveDirectoryUtilisateurRecherche: function () {
+            //    this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
+            //},
+            showActiveDirectoryUtilisateurRecherche: function (ev) {
+
+                                          
+                if (ev.currentTarget.id == "ActiveDirectoryPersonneConcerneeRecherche") {
+                    this.model.set({ 'sourceActiveDirectoryUtilisateurRecherche': 'PERSONNECONCERNEE' })
+                }
+
                 rechercheActiveDirectoryView = new RechercheActiveDirectoryView({
                     model:this.model
                 });
                 rechercheActiveDirectoryView.show()
 
             },
-            activeDirectoryUtilisateurSelection: function (event) {
-                console.log('HELLO PASSAGE FSV ADUS');
-                console.log(event.utilisateur);
-                //console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Nom': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('NomSelectionne')
-                //});
+            //activeDirectoryUtilisateurSelection: function () {
+            //    console.log('HELLO PASSAGE FSV ADUS');
+            //    //console.log(event.utilisateur);
+            //    //console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
+            //    console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
+            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+            //        'Nom': this.model.get('utilisateurActiveDirectoryModel').get('NomSelectionne')
+            //    });
 
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Prenom': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('PrenomSelectionne')
-                //});
+            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+            //        'Prenom': this.model.get('utilisateurActiveDirectoryModel').get('PrenomSelectionne')
+            //    });
 
-                //this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-                //    'Guid': this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').get('GuidSelectionne')
-                //});
+            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
+            //        'Guid': this.model.get('utilisateurActiveDirectoryModel').get('GuidSelectionne')
+            //    });
 
+            //    this.render();
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-                //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
-                //});
+            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+            //    //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
+            //    //});
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-                //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
-                //});
+            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+            //    //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
+            //    //});
 
-                //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-                //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
-                //});
+            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
+            //    //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
+            //    //});
 
-            }
+            //}
 
         });
 

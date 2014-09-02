@@ -31,8 +31,8 @@ namespace Antelope.Controllers.API.HSE
 
 
             var context = new PrincipalContext(ContextType.Domain, "refresco.local");
-            // define a "query-by-example" principal - here, we search for a UserPrincipal 
-            // and with the first name (GivenName) and a last name (Surname) 
+            //define a "query-by-example" principal - here, we search for a UserPrincipal 
+            //and with the first name (GivenName) and a last name (Surname) 
             UserPrincipal qbeUser = new UserPrincipal(context);
 
             if(param2 != "undefined"){
@@ -62,6 +62,16 @@ namespace Antelope.Controllers.API.HSE
                 );
 
             }
+
+            //POUR TEST LOCAL SANS Active Directory, NE PAS EFFACER MERCI
+            //allActiveDirectoryViewModel.Add(
+            //    new ActiveDirectoryUtilisateurViewModel
+            //    {
+            //        Nom = "Boyer",
+            //        Prenom = "Julien",
+            //        Guid = new Guid()
+            //    }
+            //);
 
 
             return Request.CreateResponse(HttpStatusCode.OK, allActiveDirectoryViewModel);
