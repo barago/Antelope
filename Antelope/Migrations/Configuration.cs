@@ -173,6 +173,35 @@ namespace Antelope.Migrations
             context.Personnes.Add(PersonneConcernee3);
             context.Personnes.Add(PersonneConcernee4);
 
+            Personne Responsable1 = new Personne()
+            {
+                Nom = "Valjean",
+                Prenom = "Jean"
+            };
+
+            Personne Responsable2 = new Personne()
+            {
+                Nom = "Danton",
+                Prenom = "Sylvie"
+            };
+
+            Personne Responsable3 = new Personne()
+            {
+                Nom = "Clement",
+                Prenom = "Robert"
+            };
+
+            Personne Responsable4 = new Personne()
+            {
+                Nom = "Leloup",
+                Prenom = "Sandrine"
+            };
+
+            context.Personnes.Add(Responsable1);
+            context.Personnes.Add(Responsable2);
+            context.Personnes.Add(Responsable3);
+            context.Personnes.Add(Responsable4);
+
             FicheSecuriteType FicheSecuriteType1 = new FicheSecuriteType()
             {
                 Nom = "ATAA"
@@ -243,14 +272,13 @@ namespace Antelope.Migrations
             PlageHoraire plagehoraire4 = new PlageHoraire() { Nom = "Après-Midi" };
 
 
-
             FicheSecurite FicheSecurite1 = new FicheSecurite()
             {
                 Code = "ABCD",
                 Type = "FAS",
                 PosteDeTravail = "Carriste",
                 Service = "Logistique",
-                Responsable = "Marc Berthelot",
+                Responsable = Responsable1,
                 Site = siteRFS,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -266,6 +294,7 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[1],
                 PersonneConcernee = PersonneConcernee1
+                
             };
 
             FicheSecurite FicheSecurite2 = new FicheSecurite()
@@ -274,7 +303,7 @@ namespace Antelope.Migrations
                 Type = "FAS",
                 PosteDeTravail = "Bureau",
                 Service = "Informatique",
-                Responsable = "Laurent Clemente",
+                Responsable = Responsable2,
                 Site = siteRFS,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -297,7 +326,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = "Carriste",
                 Service = "Logistique",
-                Responsable = "Marc Berthelot",
+                Responsable = Responsable3,
                 Site = siteRFS,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -321,7 +350,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = "Bureau",
                 Service = "Informatique",
-                Responsable = "Laurent Clemente",
+                Responsable = Responsable4,
                 Site = siteRFS,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -337,6 +366,7 @@ namespace Antelope.Migrations
                 CorpsHumainZone = AllCorpsHumainZone[4],
                 PersonneConcernee = PersonneConcernee4
             };
+
 
             ActionSecurite action = new ActionSecurite()
             {
@@ -354,17 +384,46 @@ namespace Antelope.Migrations
                 FaitPar = "Nicolas Bouhet"
             };
 
-            for (int i = 0; i < 10; i++)
-            {
+            //for (int i = 0; i < 10; i++)
+            //{
                 context.FicheSecurites.Add(FicheSecurite1);
                 context.ActionSecurites.Add(action);
                 context.ActionSecurites.Add(action2);
                 context.FicheSecurites.Add(FicheSecurite2);
                 context.FicheSecurites.Add(FicheSecurite3);
                 context.FicheSecurites.Add(FicheSecurite4);
-                System.Diagnostics.Debug.WriteLine("Passage boucle"); 
+                //System.Diagnostics.Debug.WriteLine("Passage boucle"); 
                 
-            }
+            //}
+
+                Cause Cause1 = new Cause()
+                {
+                    Description = "Manque de formation",
+                    FicheSecurite = FicheSecurite1
+                };
+
+                Cause Cause2 = new Cause()
+                {
+                    Description = "Règles non respectées",
+                    FicheSecurite = FicheSecurite1
+                };
+
+                Cause Cause3 = new Cause()
+                {
+                    Description = "Port d'une protection non respecté",
+                    FicheSecurite = FicheSecurite2
+                };
+
+                Cause Cause4 = new Cause()
+                {
+                    Description = "Remplacement de l'opérateur habituel à la volée",
+                    FicheSecurite = FicheSecurite2
+                };
+
+            context.Causes.Add(Cause1);
+            context.Causes.Add(Cause2);
+            context.Causes.Add(Cause3);
+            context.Causes.Add(Cause4);
 
             ADRole ADRoleHSEAdministrateur = new ADRole()
             {

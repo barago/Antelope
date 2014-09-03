@@ -28,8 +28,6 @@ namespace Antelope.Models.HSE
         public String PosteDeTravail {get; set;}
         [DisplayName("Service")]
         public String Service { get; set; }
-        [DisplayName("Responsable")]
-        public String Responsable { get; set; }
 
         //[DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd.MM.yy}")]
@@ -138,6 +136,15 @@ namespace Antelope.Models.HSE
 
         [ForeignKey("PersonneConcerneeId")]
         public virtual Personne PersonneConcernee { get; set; }
+
+        [DisplayName("Responsable")]
+        public Int32? ResponsableId { get; set; }
+
+        [ForeignKey("ResponsableId")]
+        public virtual Personne Responsable { get; set; }
+
+        // Virtual = Lazy Loading
+        public virtual List<Cause> Causes { get; set; }
 
         //Etats de la fiche (Workflow)
         //public Boolean State10TeamLeaderValidated { get; set; }
