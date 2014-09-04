@@ -1,4 +1,5 @@
 ﻿using Antelope.Models.Socle;
+using Antelope.Models.QSE;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -144,7 +145,7 @@ namespace Antelope.Models.HSE
         public virtual Personne Responsable { get; set; }
 
         // Virtual = Lazy Loading
-        public virtual List<Cause> Causes { get; set; }
+        public virtual List<CauseQSE> Causes { get; set; }
 
         //Etats de la fiche (Workflow)
         //public Boolean State10TeamLeaderValidated { get; set; }

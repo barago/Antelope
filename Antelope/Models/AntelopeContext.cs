@@ -1,4 +1,5 @@
 ﻿using Antelope.Models.HSE;
+using Antelope.Models.QSE;
 using Antelope.Models.Socle;
 using Antelope.Models.SI.Indicateur;
 using System;
@@ -26,7 +27,8 @@ namespace Antelope.Models
         public DbSet<PlageHoraire> PlageHoraires { get; set; }
         public DbSet<CorpsHumainZone> CorpsHumainZones { get; set; }
         public DbSet<Personne> Personnes { get; set; }
-        public DbSet<Cause> Causes { get; set; }
+        public DbSet<CauseQSE> Causes { get; set; }
+        public DbSet<ActionQSE> Actions { get; set; }
 
     }
 }

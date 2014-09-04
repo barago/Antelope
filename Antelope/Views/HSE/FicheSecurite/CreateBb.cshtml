@@ -632,14 +632,44 @@
 
 
                             </div>*@
+
+
+
+
                             <table class="table table-bordered table-hover table-condensed">
                                 <thead>
                                     <tr>
                                         <th colspan="2">Causes et Actions</th>
-                                        <th><button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Ajouter Cause</button></th>
+                                        <th><button id="BtnAjoutCause" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#demo1"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button></th>
                                     </tr>
+                                    <tr>
+                                        <td colspan="3" class="hiddenRow" style="padding: 0 !important;">
+                                            <div class="accordian-body collapse" id="demo1">
 
-                                </thead>
+
+
+
+                                                    <form role="form">
+                                                        <div class="form-group" style="padding:10px;">
+                                                            <label for="CauseDescription"> Description de la Cause</label>
+                                                            <div class="row">
+                                                                <div class="col-md-10">
+                                                                    <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <button id="BtnEnregistrerCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                                </div>
+                                                            </div>
+
+                                                            </div>
+                                                    </form>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                </thead>
+
                 <tbody>
 
                     <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
@@ -648,11 +678,13 @@
                             <%= cause.get('Description') %>
                         </td>
                         <td colspan="1">
-                            <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Ajouter Action</button>
+                            <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
                         </td>
                     </tr>
 
                     <% }); %>
+
+
 
 
                     <tr>
@@ -679,8 +711,8 @@
                     </tr>
                     <tr>
                         <td width="3%"></td>
-                        <td width="90%"></td>
-                        <td width="7%"></td>
+                        <td width="87%"></td>
+                        <td width="10%"></td>
                     </tr>
                 </tbody>
             </table>
@@ -692,6 +724,7 @@
 
                         </div>
                     </div>
+
         </script>
         <div id="DivInfosCorrectives">
         </div>
@@ -1205,7 +1238,24 @@
                 this.render();
             },
             events: {
-            }
+                //"click #BtnAjoutCause" : "clickBoutonAjoutCause"
+                "shown.bs.collapse #demo1": "showAjoutCause",
+                "hidden.bs.collapse #demo1": "hideAjoutCause",
+                "keyup #CauseDescription": "changeCauseDescription"
+            },
+            showAjoutCause: function (ev) {
+                console.log('dwcswxcq');
+                $(ev.currentTarget).closest('td').css('background-color', '#FFF1F3');
+                $('#BtnAjoutCause').closest('th').css('background-color', '#FFF1F3');
+
+            },
+            hideAjoutCause: function (ev) {
+                $(ev.currentTarget).closest('td').css('background-color', 'white');
+                $('#BtnAjoutCause').closest('th').css('background-color', 'white');
+            },
+            changeCauseDescription: function () {
+
+            },
 
 
         });

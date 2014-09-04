@@ -6,13 +6,15 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Antelope.Models.HSE;
 
-namespace Antelope.Models.HSE
+
+namespace Antelope.Models.QSE
 {
-    public class Cause
+    public class CauseQSE
     {
 
-        public Int32 CauseID { get; set; }
+        public Int32 CauseQSEId { get; set; }
 
         public string Description { get; set; }
 
@@ -21,6 +23,9 @@ namespace Antelope.Models.HSE
 
         [JsonIgnore]
         public virtual FicheSecurite FicheSecurite { get; set; }
+
+        // Virtual = Lazy Loading
+        public virtual List<ActionQSE> Actions { get; set; }
 
 
     }

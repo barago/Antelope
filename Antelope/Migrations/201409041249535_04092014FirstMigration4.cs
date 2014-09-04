@@ -3,21 +3,52 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _03092014FirstMigration9 : DbMigration
+    public partial class _04092014FirstMigration4 : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.ActionSecurites",
+                "dbo.ActionQSEs",
                 c => new
                     {
-                        ActionSecuriteId = c.Int(nullable: false, identity: true),
-                        FicheSecuriteId = c.Int(nullable: false),
-                        Code = c.String(),
+                        ActionQSEId = c.Int(nullable: false, identity: true),
                         Description = c.String(),
-                        FaitPar = c.String(),
+                        DateButoireInitiale = c.DateTime(nullable: false),
+                        DateButoireNouvelle = c.DateTime(nullable: false),
+                        Avancement = c.String(),
+                        CotationHumain = c.Short(nullable: false),
+                        CotationOrganisationnel = c.Short(nullable: false),
+                        CotationTechnique = c.Short(nullable: false),
+                        CotationEfficacite = c.Short(nullable: false),
+                        PreuveVerification = c.String(),
+                        CommentaireEfficaciteVerification = c.String(),
+                        Realise = c.Boolean(nullable: false),
+                        RealiseDate = c.DateTime(nullable: false),
+                        Verifie = c.Boolean(nullable: false),
+                        VerifieDate = c.DateTime(nullable: false),
+                        Cloture = c.Boolean(nullable: false),
+                        ClotureDate = c.DateTime(nullable: false),
+                        CauseQSEId = c.Int(nullable: false),
+                        Responsable_PersonneId = c.Int(),
+                        Verificateur_PersonneId = c.Int(),
                     })
-                .PrimaryKey(t => t.ActionSecuriteId)
+                .PrimaryKey(t => t.ActionQSEId)
+                .ForeignKey("dbo.CauseQSEs", t => t.CauseQSEId, cascadeDelete: true)
+                .ForeignKey("dbo.Personnes", t => t.Responsable_PersonneId)
+                .ForeignKey("dbo.Personnes", t => t.Verificateur_PersonneId)
+                .Index(t => t.CauseQSEId)
+                .Index(t => t.Responsable_PersonneId)
+                .Index(t => t.Verificateur_PersonneId);
+            
+            CreateTable(
+                "dbo.CauseQSEs",
+                c => new
+                    {
+                        CauseQSEId = c.Int(nullable: false, identity: true),
+                        Description = c.String(),
+                        FicheSecuriteId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.CauseQSEId)
                 .ForeignKey("dbo.FicheSecurites", t => t.FicheSecuriteId, cascadeDelete: true)
                 .Index(t => t.FicheSecuriteId);
             
@@ -77,18 +108,6 @@ namespace Antelope.Migrations
                 .Index(t => t.PersonneConcerneeId)
                 .Index(t => t.PlageHoraireId)
                 .Index(t => t.ResponsableId);
-            
-            CreateTable(
-                "dbo.Causes",
-                c => new
-                    {
-                        CauseID = c.Int(nullable: false, identity: true),
-                        Description = c.String(),
-                        FicheSecuriteId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.CauseID)
-                .ForeignKey("dbo.FicheSecurites", t => t.FicheSecuriteId, cascadeDelete: true)
-                .Index(t => t.FicheSecuriteId);
             
             CreateTable(
                 "dbo.CorpsHumainZones",
@@ -174,6 +193,20 @@ namespace Antelope.Migrations
                 .PrimaryKey(t => t.PlageHoraireID);
             
             CreateTable(
+                "dbo.ActionSecurites",
+                c => new
+                    {
+                        ActionSecuriteId = c.Int(nullable: false, identity: true),
+                        FicheSecuriteId = c.Int(nullable: false),
+                        Code = c.String(),
+                        Description = c.String(),
+                        FaitPar = c.String(),
+                    })
+                .PrimaryKey(t => t.ActionSecuriteId)
+                .ForeignKey("dbo.FicheSecurites", t => t.FicheSecuriteId, cascadeDelete: true)
+                .Index(t => t.FicheSecuriteId);
+            
+            CreateTable(
                 "dbo.ADRoles",
                 c => new
                     {
@@ -237,6 +270,8 @@ namespace Antelope.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.ActionSecurites", "FicheSecuriteId", "dbo.FicheSecurites");
+            DropForeignKey("dbo.ActionQSEs", "Verificateur_PersonneId", "dbo.Personnes");
+            DropForeignKey("dbo.ActionQSEs", "Responsable_PersonneId", "dbo.Personnes");
             DropForeignKey("dbo.FicheSecurites", "ResponsableId", "dbo.Personnes");
             DropForeignKey("dbo.FicheSecurites", "PlageHoraireId", "dbo.PlageHoraires");
             DropForeignKey("dbo.FicheSecurites", "PersonneConcerneeId", "dbo.Personnes");
@@ -249,8 +284,11 @@ namespace Antelope.Migrations
             DropForeignKey("dbo.FicheSecurites", "FicheSecuriteTypeId", "dbo.FicheSecuriteTypes");
             DropForeignKey("dbo.FicheSecurites", "DangerId", "dbo.Dangers");
             DropForeignKey("dbo.FicheSecurites", "CorpsHumainZoneId", "dbo.CorpsHumainZones");
-            DropForeignKey("dbo.Causes", "FicheSecuriteId", "dbo.FicheSecurites");
+            DropForeignKey("dbo.CauseQSEs", "FicheSecuriteId", "dbo.FicheSecurites");
+            DropForeignKey("dbo.ActionQSEs", "CauseQSEId", "dbo.CauseQSEs");
             DropIndex("dbo.ActionSecurites", new[] { "FicheSecuriteId" });
+            DropIndex("dbo.ActionQSEs", new[] { "Verificateur_PersonneId" });
+            DropIndex("dbo.ActionQSEs", new[] { "Responsable_PersonneId" });
             DropIndex("dbo.FicheSecurites", new[] { "ResponsableId" });
             DropIndex("dbo.FicheSecurites", new[] { "PlageHoraireId" });
             DropIndex("dbo.FicheSecurites", new[] { "PersonneConcerneeId" });
@@ -263,11 +301,13 @@ namespace Antelope.Migrations
             DropIndex("dbo.FicheSecurites", new[] { "FicheSecuriteTypeId" });
             DropIndex("dbo.FicheSecurites", new[] { "DangerId" });
             DropIndex("dbo.FicheSecurites", new[] { "CorpsHumainZoneId" });
-            DropIndex("dbo.Causes", new[] { "FicheSecuriteId" });
+            DropIndex("dbo.CauseQSEs", new[] { "FicheSecuriteId" });
+            DropIndex("dbo.ActionQSEs", new[] { "CauseQSEId" });
             DropTable("dbo.Sauvegardes");
             DropTable("dbo.Projets");
             DropTable("dbo.Interventions");
             DropTable("dbo.ADRoles");
+            DropTable("dbo.ActionSecurites");
             DropTable("dbo.PlageHoraires");
             DropTable("dbo.Personnes");
             DropTable("dbo.Sites");
@@ -276,9 +316,9 @@ namespace Antelope.Migrations
             DropTable("dbo.FicheSecuriteTypes");
             DropTable("dbo.Dangers");
             DropTable("dbo.CorpsHumainZones");
-            DropTable("dbo.Causes");
             DropTable("dbo.FicheSecurites");
-            DropTable("dbo.ActionSecurites");
+            DropTable("dbo.CauseQSEs");
+            DropTable("dbo.ActionQSEs");
         }
     }
 }

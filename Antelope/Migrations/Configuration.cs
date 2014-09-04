@@ -2,6 +2,7 @@ namespace Antelope.Migrations
 {
     using Antelope.Models.HSE;
     using Antelope.Models.Socle;
+    using Antelope.Models.QSE;
     using Antelope.Models.SI.Indicateur;
     using System;
     using System.Data.Entity;
@@ -396,25 +397,25 @@ namespace Antelope.Migrations
                 
             //}
 
-                Cause Cause1 = new Cause()
+                CauseQSE Cause1 = new CauseQSE()
                 {
                     Description = "Manque de formation",
                     FicheSecurite = FicheSecurite1
                 };
 
-                Cause Cause2 = new Cause()
+                CauseQSE Cause2 = new CauseQSE()
                 {
                     Description = "Règles non respectées",
                     FicheSecurite = FicheSecurite1
                 };
 
-                Cause Cause3 = new Cause()
+                CauseQSE Cause3 = new CauseQSE()
                 {
                     Description = "Port d'une protection non respecté",
                     FicheSecurite = FicheSecurite2
                 };
 
-                Cause Cause4 = new Cause()
+                CauseQSE Cause4 = new CauseQSE()
                 {
                     Description = "Remplacement de l'opérateur habituel à la volée",
                     FicheSecurite = FicheSecurite2
@@ -424,6 +425,35 @@ namespace Antelope.Migrations
             context.Causes.Add(Cause2);
             context.Causes.Add(Cause3);
             context.Causes.Add(Cause4);
+
+            ActionQSE Action1 = new ActionQSE()
+            {
+                Description = "Prévoir une nouvelle formation cariste",
+                DateButoireInitiale = DateTime.Now,
+                Responsable = PersonneConcernee4,
+                Cloture = false,
+                CauseQSE = Cause1,
+                DateButoireNouvelle = DateTime.Now,
+                RealiseDate = DateTime.Now,
+                VerifieDate = DateTime.Now,
+                ClotureDate = DateTime.Now
+            };
+
+            ActionQSE Action2 = new ActionQSE()
+            {
+                Description = "S'avertir les uns les autres",
+                DateButoireInitiale = DateTime.Now,
+                Responsable = PersonneConcernee3,
+                Cloture = true,
+                ClotureDate = DateTime.Now,
+                CauseQSE = Cause1,
+                DateButoireNouvelle = DateTime.Now,
+                RealiseDate = DateTime.Now,
+                VerifieDate = DateTime.Now
+            };
+
+            context.Actions.Add(Action1);
+            context.Actions.Add(Action2);
 
             ADRole ADRoleHSEAdministrateur = new ADRole()
             {

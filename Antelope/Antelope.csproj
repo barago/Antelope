@@ -181,14 +181,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409031436407_03092014FirstMigration9.cs" />
-    <Compile Include="Migrations\201409031436407_03092014FirstMigration9.Designer.cs">
-      <DependentUpon>201409031436407_03092014FirstMigration9.cs</DependentUpon>
+    <Compile Include="Migrations\201409041249535_04092014FirstMigration4.cs" />
+    <Compile Include="Migrations\201409041249535_04092014FirstMigration4.Designer.cs">
+      <DependentUpon>201409041249535_04092014FirstMigration4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\QSE\ActionQSE.cs" />
     <Compile Include="Models\HSE\ActionSecurite.cs" />
-    <Compile Include="Models\HSE\Cause.cs" />
+    <Compile Include="Models\QSE\CauseQSE.cs" />
     <Compile Include="Models\HSE\CorpsHumainZone.cs" />
     <Compile Include="Models\HSE\Danger.cs" />
     <Compile Include="Models\HSE\FicheSecurite.cs" />
@@ -472,8 +473,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409031436407_03092014FirstMigration9.resx">
-      <DependentUpon>201409031436407_03092014FirstMigration9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409041249535_04092014FirstMigration4.resx">
+      <DependentUpon>201409041249535_04092014FirstMigration4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
