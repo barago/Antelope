@@ -25,15 +25,15 @@
 @*MODALE DE RECHERCHE DE PERSONNES DANS l'AD /// DANS UNE VIEW BACKBONE *@
 
 @*<div class="modal fade" id="ActiveDirectoryUtilisateurModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-            <div id="RechercheActiveDirectoryDiv">
-            </div>
+                <div id="RechercheActiveDirectoryDiv">
+                </div>
 
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->*@
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->*@
 
 
 
@@ -183,7 +183,7 @@
                                             <% siteCollection.each( function(site){ %>
                                             <option value="<%= site.get('SiteID') %>"
                                                 <% if (ficheSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
-                                            >
+                                                >
                                                 <%= site.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -614,6 +614,9 @@
                     </form>
 
                     <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
+
+
+
                     <div class="panel panel-default">
                         @*<div class="panel-heading">
                             Causes & Actions
@@ -636,94 +639,129 @@
 
 
 
-                            <table class="table table-bordered table-hover table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Causes et Actions</th>
-                                        <th><button id="BtnAjoutCause" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#demo1"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button></th>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3" class="hiddenRow" style="padding: 0 !important;">
-                                            <div class="accordian-body collapse" id="demo1">
+                        <table class="table table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Causes et Actions</th>
+                                    <th><button id="BtnAjoutCause" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#demo1"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button></th>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="hiddenRow" style="padding: 0 !important;">
+                                        <div class="accordian-body collapse" id="demo1">
 
 
 
 
-                                                    <form role="form">
-                                                        <div class="form-group" style="padding:10px;">
-                                                            <label for="CauseDescription"> Description de la Cause</label>
-                                                            <div class="row">
-                                                                <div class="col-md-10">
-                                                                    <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <button id="BtnEnregistrerCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
-                                                                </div>
-                                                            </div>
+                                            <form role="form">
+                                                <div class="form-group" style="padding:10px;">
+                                                    <label for="CauseDescription"> Description de la Cause</label>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="BtnEnregistrerCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                        </div>
 
-                                                            </div>
-                                                    </form>
+                                                    </div>
 
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
-                    <tr>
-                        <td colspan="2">
-                            <%= cause.get('Description') %>
-                        </td>
-                        <td colspan="1">
-                            <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
-                        </td>
-                    </tr>
-
-                    <% }); %>
+                                                </div>
+                                            </form>
 
 
+                                        </div>
+                                    </td>
+                                </tr>
+                            </thead>
 
+                            <tbody>
 
-                    <tr>
-                        <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                        <td colspan="2">
-                            1ère action
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                        <td colspan ="2">
-                            2ème action
-                        </td>
-                        
-                    </tr>
+                                <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
+                                <tr>
+                                    <td colspan="2">
+                                        <%= cause.get('Description') %>
+                                    </td>
+                                    <td colspan="1">
+                                        <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+                                        <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
+                                    </td>
+                                </tr>
 
-                    <tr>
-                        <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                        <td colspan ="2">
-                            1ère action
-                        </tdcolspan>
-                     
-                    </tr>
-                    <tr>
-                        <td width="3%"></td>
-                        <td width="87%"></td>
-                        <td width="10%"></td>
-                    </tr>
-                </tbody>
-            </table>
-
-                        </div>
+                                <% }); %>
 
 
 
 
-                        </div>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
+                                    <td colspan="2">
+                                        1ère action
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
+                                    <td colspan="2">
+                                        2ème action
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
+                                    <td colspan="2">
+                                        1ère action
+                                        </tdcolspan>
+
+                                </tr>
+                                <tr>
+                                    <td width="3%"></td>
+                                    <td width="87%"></td>
+                                    <td width="10%"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
 
         </script>
         <div id="DivInfosCorrectives">
@@ -859,7 +897,7 @@
         });
 
         var CauseCollection = Backbone.Collection.extend({
-            model:CauseModel
+            model: CauseModel
         });
 
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
@@ -881,7 +919,7 @@
         ficheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(ficheSecuriteViewModel.get('AllDanger')) });
         ficheSecuriteViewModel.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(ficheSecuriteViewModel.get('AllCorpsHumainZone')) });
         ficheSecuriteViewModel.set({ 'risqueCollection': new RisqueCollection(ficheSecuriteViewModel.get('AllRisque')) });
-        // /!\ ATTENTION : Nous appelons le MODEL : "PersonneConcernee" (et non "PersonneConcerneeModel", ceci pour garder la symétrie avec le Backoffice MVC C# qui va automatiquement 
+        // /!\ ATTENTION : Nous appelons le MODEL : "PersonneConcernee" (et non "PersonneConcerneeModel", ceci pour garder la symétrie avec le Backoffice MVC C# qui va automatiquement
         // récupérer la PersonneConcernee dans la FicheSecurite ainsi que ses changements -- A voir si du coup on fait pareil pour tous les Models ... ??? (Quid du mélange Model/Collection/Route etc ...)
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Responsable')) })
@@ -961,11 +999,11 @@
 
                 var personneFicheSecuriteARemplir = '';
 
-                switch(this.model.get('sourceActiveDirectoryUtilisateurRecherche')){
-                    case 'PERSONNECONCERNEE' : 
+                switch (this.model.get('sourceActiveDirectoryUtilisateurRecherche')) {
+                    case 'PERSONNECONCERNEE':
                         personneFicheSecuriteARemplir = 'PersonneConcernee';
                         break;
-                    case 'RESPONSABLE' : 
+                    case 'RESPONSABLE':
                         personneFicheSecuriteARemplir = 'Responsable';
                         break;
                 }
@@ -982,7 +1020,7 @@
                     'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
                 });
 
-                
+
 
                 //this.model.get('utilisateurActiveDirectoryModel').set({
                 //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
@@ -1117,13 +1155,13 @@
                 console.log('tutu');
                 this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
             },
-            changePersonneConcerneeNom: function(){
+            changePersonneConcerneeNom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
             },
             changePersonneConcerneePrenom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Prenom': $('#PersonnesConcerneePrenom').val() });
             },
-            changeResponsableNom: function(){
+            changeResponsableNom: function () {
                 this.model.get('ficheSecuriteModel').get('Responsable').set({ 'Nom': $('#ResponsableNom').val() });
             },
             changeResponsablePrenom: function () {
@@ -1173,22 +1211,22 @@
             //},
             showActiveDirectoryUtilisateurRecherche: function (ev) {
 
-                                          
+
                 if (ev.currentTarget.id == "ActiveDirectoryPersonneConcerneeRecherche") {
                     this.model.set({ 'sourceActiveDirectoryUtilisateurRecherche': 'PERSONNECONCERNEE' })
                 }
 
-                switch (ev.currentTarget.id){
-                    case "ActiveDirectoryPersonneConcerneeRecherche" :
+                switch (ev.currentTarget.id) {
+                    case "ActiveDirectoryPersonneConcerneeRecherche":
                         this.model.set({ 'sourceActiveDirectoryUtilisateurRecherche': 'PERSONNECONCERNEE' });
                         break;
-                    case "ActiveDirectoryResponsableRecherche" :
+                    case "ActiveDirectoryResponsableRecherche":
                         this.model.set({ 'sourceActiveDirectoryUtilisateurRecherche': 'RESPONSABLE' });
                         break;
                 }
 
                 rechercheActiveDirectoryView = new RechercheActiveDirectoryView({
-                    model:this.model
+                    model: this.model
                 });
                 rechercheActiveDirectoryView.show()
 

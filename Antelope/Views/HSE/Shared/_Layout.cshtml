@@ -1,65 +1,81 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "_HSELayout";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="navbar navbar-fixed-top navbar-default navbar-lower" style="margin-top:43px;">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#secondNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Sézar-SE", "Index", "HSEHome", null, new { @class = "navbar-brand" })
-        </div>
-        <div id="secondNavbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sécurité <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("Create","FicheSecurite")">Nouvelle Fiche</a></li>
-                        <li><a href="#">Nouvelle Evaluation des risques</a></li>
-                        <li class="divider"></li>
-                        <li><a href="@Url.Action("Index","FicheSecurite")">Recherche globale</a></li>
+@*<div class="navbar-xs">
+    <div class="navbar-primary">*@
+        <div class="navbar navbar-fixed-top navbar-default navbar-lower" style="margin-top:28px;z-index:500;">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#secondNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Sézar-SE", "Index", "HSEHome", null, new { @class = "navbar-brand" })
+                </div>
+                <div id="secondNavbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" style="width:80%;">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sécurité <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("Create","FicheSecurite")">Nouvelle Fiche</a></li>
+                                <li><a href="#">Nouvelle Evaluation des risques</a></li>
+                                <li class="divider"></li>
+                                <li><a href="@Url.Action("Index","FicheSecurite")">Recherche globale</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Environnement <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li style="width: 70%;">
+                            
+                        </li>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Environnement <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="row" style="margin-top:46px;position:fixed;z-index:999;width:70%">
-    <div class="col-md-12">
-        <div class="alert alert-danger" role="alert" style="margin:0px;padding-top:2px;padding-bottom:2px;width:100%;"> ALERTE ! Nouvelle Alerte</div>
-
-    </div>
-</div>
-
-@*<div class="col-md-12">
-    <div style="margin:43px;position:fixed;">
-        <div class="alert alert-danger" role="alert"> ALERTE ! Nouvelle Alerte</div>
-    </div>
+    @*</div>
 </div>*@
 
-@Scripts.Render("~/Scripts/jquery-ui-1.10.4.custom.min.js")
+<div class="navbar-xs">
+    <div class="navbar-primary">
+        <div class="navbar navbar-fixed-top navbar-default navbar-lower" style="margin-top:79px;z-index:499;">
+            <div class="container">
+                    <div class="alert alert-danger hidden" role="alert" style="margin: 0px; padding-top: 2px; padding-bottom: 2px; width: 100%;"><span class="glyphicon glyphicon-bullhorn"></span> ALERTE ! Nouvelle Alerte</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                @*<div class="row" style="margin-top:46px;position:fixed;z-index:999;width:70%">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger" role="alert" style="margin:0px;padding-top:2px;padding-bottom:2px;width:100%;"> ALERTE ! Nouvelle Alerte</div>
+
+                        </div>
+                    </div>*@
+
+                @*<div class="col-md-12">
+                        <div style="margin:43px;position:fixed;">
+                            <div class="alert alert-danger" role="alert"> ALERTE ! Nouvelle Alerte</div>
+                        </div>
+                    </div>*@
+
+                @Scripts.Render("~/Scripts/jquery-ui-1.10.4.custom.min.js")
 
 
-<div style="margin-top:73px;z-index:998;">
+                <div style="margin-top:68px;z-index:998;">
 
-    @RenderBody()
+                    @RenderBody()
 
-</div>
+                </div>
