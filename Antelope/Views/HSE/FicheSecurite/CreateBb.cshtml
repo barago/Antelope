@@ -541,7 +541,6 @@
 
     <!-- ----------------------INFOS CORRECTIVES ET PREVENTIVES PANEL --------------------- -->
     <div class="panel panel-danger">
-        <script type="text/template" id="TemplateInfosCorrectives">
 
             <!-- ----------------INFOS CORRECTIVES & PREVENTIVES PANEL HEADER---------------- -->
             <div class="panel-heading" style="background-color: #C42031; color: white">
@@ -574,198 +573,193 @@
             <!-- -------------------INFOS CORRECTIVES & PREVENTIVES PANEL BODY--------------------- -->
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
+                    <script type="text/template" id="TemplateInfosCorrectives">
 
-                    <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
-                    <form class="form-horizontal" role="form">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
-                                    <div class="col-sm-6">
-                                        <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
+                        <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
+                        <form class="form-horizontal" role="form">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="DateEnquete">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="Protagonistes">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control input-xs" id="CHSCTMembre">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="DateEnquete">
+                        </form>
+
+                        <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
+
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <table class="table table-bordered table-condensed">
+                                            <tbody>
+                                                <tr style="background-color:#FFF1F3;">
+                                                    <td>
+                                                        CAUSES
+                                                    </td>
+                                                    <td>
+                                                        <button id="BtnAddCause" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#FormAjoutCause"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-md-9"></div>
+                                    <div class="col-md-1" style="padding-left:0px;">
+                                        <table class="table table-bordered table-condensed">
+                                            <tbody>
+                                                <tr style="background-color:#FFF5E3;">
+                                                    <td>
+                                                        ACTIONS
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="Protagonistes">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+                                        <div class="accordian-body collapse" id="FormAjoutCause">
+
+                                            <form role="form">
+                                                <div class="form-group" style="padding:10px;">
+                                                    <label for="AddCauseDescription"> Description de la Cause</label>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <textarea id="AddCauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="BtnSaveAddCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control input-xs" id="CHSCTMembre">
+
+
+                                <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
+
+                                <% console.log(cause.get('CauseQSEId'))   %>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <table class="table table-bordered table-hover table-condensed">
+                                            <tr style="background-color:#FFF1F3;">
+                                                <td style="width:130px;">
+                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
+                                                    <button id="<%= 'BtnEditCause'+cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </td>
+                                                <td>
+                                                    <%= cause.get('Description') %>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
+
+                                    <div class="col-md-1"></div>
                                 </div>
-                            </div>
-                        </div>
-                    </form>
 
-                    <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
+                                <div class="row">
 
+                                    <div class="col-md-12">
 
-
-                    <div class="panel panel-default">
-                        @*<div class="panel-heading">
-                            Causes & Actions
-                            </div>*@
-                        @*<div class="panel-body">
-
-
-                            <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
-                            <div class="row" style="border: solid 1px black;">
-                                <div class="col-md-12">
-                                    <%= cause.get('Description') %>
-                                </div>
-                            </div>
-
-                            <% }); %>
-
-
-                            </div>*@
-
-
-
-
-                        <table class="table table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Causes et Actions</th>
-                                    <th><button id="BtnAjoutCause" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#demo1"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button></th>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" class="hiddenRow" style="padding: 0 !important;">
-                                        <div class="accordian-body collapse" id="demo1">
-
-
-
+                                        <div class="accordian-body collapse" id="<%= 'FormEditCause'+cause.get('CauseQSEId') %>">
 
                                             <form role="form">
                                                 <div class="form-group" style="padding:10px;">
                                                     <label for="CauseDescription"> Description de la Cause</label>
                                                     <div class="row">
                                                         <div class="col-md-10">
-                                                            <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+                                                            <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "><%= cause.get('Description') %></textarea>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <button id="BtnEnregistrerCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                         </div>
-
                                                     </div>
-
                                                 </div>
                                             </form>
 
-
                                         </div>
-                                    </td>
-                                </tr>
-                            </thead>
 
-                            <tbody>
 
-                                <% ficheSecuriteModel.get('causeCollection').each( function(cause){ %>
-                                <tr>
-                                    <td colspan="2">
-                                        <%= cause.get('Description') %>
-                                    </td>
-                                    <td colspan="1">
-                                        <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-                                        <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
+
+                                <% cause.get('actionCollection').each( function(action){ %>
+
+                                <div class="row">
+
+
+                                    <div class="col-md-1"></div>
+
+                                    <div class="col-md-11">
+                                        <table class="table table-bordered table-hover table-condensed">
+                                            <tr style="background-color:#FFF5E3;">
+                                                <td>
+                                                    <%= action.get('Description') %>
+                                                </td>
+                                                <td style="width:65px;">
+                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
 
                                 <% }); %>
 
+                                <% }); %>
 
-
-
-                                <tr>
-                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                                    <td colspan="2">
-                                        1ère action
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                                    <td colspan="2">
-                                        2ème action
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td><span class="glyphicon glyphicon-hand-right"></span></td>
-                                    <td colspan="2">
-                                        1ère action
-                                        </tdcolspan>
-
-                                </tr>
-                                <tr>
-                                    <td width="3%"></td>
-                                    <td width="87%"></td>
-                                    <td width="10%"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            </div>
+                        </div>
+                    </script>
+                    <div id="DivInfosCorrectives">
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
 
-        </script>
-        <div id="DivInfosCorrectives">
-        </div>
+
+
     </div>
 </div>
 
@@ -894,11 +888,21 @@
         });
 
         var CauseModel = Backbone.Model.extend({
+           urlRoot: '/api/CauseQSE'
+        });
+
+        var ActionModel = Backbone.Model.extend({
         });
 
         var CauseCollection = Backbone.Collection.extend({
             model: CauseModel
         });
+
+        var ActionCollection = Backbone.Collection.extend({
+            model: ActionModel
+        });
+
+        
 
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
         console.log(ficheSecuriteViewModel);
@@ -923,7 +927,16 @@
         // récupérer la PersonneConcernee dans la FicheSecurite ainsi que ses changements -- A voir si du coup on fait pareil pour tous les Models ... ??? (Quid du mélange Model/Collection/Route etc ...)
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Responsable')) })
-        ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'causeCollection': new CauseCollection(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Causes')) })
+
+        var causeCollection = new CauseCollection(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Causes'));
+
+        causeCollection.each(function (model, index) {
+            model.set({ 'actionCollection': new ActionCollection(model.get('Actions')) });
+        });
+
+        ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'causeCollection': causeCollection })
+
+        ficheSecuriteViewModel.set({ 'causeModel': new CauseModel() });
 
         var UtilisateurActiveDirectoryModel = Backbone.Model.extend({
             urlRoot: '/api/UtilisateurActiveDirectory'
@@ -1271,29 +1284,34 @@
             template: _.template($('#TemplateInfosCorrectives').html()),
             render: function () {
                 this.$el.html(this.template(this.model.toJSON()));
+
             },
             initialize: function () {
                 this.render();
             },
             events: {
                 //"click #BtnAjoutCause" : "clickBoutonAjoutCause"
-                "shown.bs.collapse #demo1": "showAjoutCause",
-                "hidden.bs.collapse #demo1": "hideAjoutCause",
-                "keyup #CauseDescription": "changeCauseDescription"
-            },
-            showAjoutCause: function (ev) {
-                console.log('dwcswxcq');
-                $(ev.currentTarget).closest('td').css('background-color', '#FFF1F3');
-                $('#BtnAjoutCause').closest('th').css('background-color', '#FFF1F3');
+                "keyup #AddCauseDescription": "changeCauseDescription",
+                "click #BtnSaveAddCause": "addCause"
 
-            },
-            hideAjoutCause: function (ev) {
-                $(ev.currentTarget).closest('td').css('background-color', 'white');
-                $('#BtnAjoutCause').closest('th').css('background-color', 'white');
+                
             },
             changeCauseDescription: function () {
-
+                this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
             },
+            addCause: function () {
+
+                this.model.get('ficheSecuriteModel').get('causeCollection').create(
+                    new CauseModel({
+                        'FicheSecuriteID': this.model.get('ficheSecuriteModel').get('FicheSecuriteID'),
+                        'Description': this.model.get('causeModel').get('Description'),
+                        'actionCollection': new ActionCollection()
+                    }, { async: false , wait : true})
+                );
+
+                this.model.get('causeModel').clear();
+                this.render();
+            }
 
 
         });

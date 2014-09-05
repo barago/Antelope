@@ -160,6 +160,7 @@
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
+    <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
