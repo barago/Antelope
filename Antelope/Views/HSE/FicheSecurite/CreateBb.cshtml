@@ -683,7 +683,6 @@
                                             <tr style="background-color:#ECF6FD;">
                                                 <td style="width:130px;">
                                                     <button id="BtnAddAction" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#FormAddAction"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
-                                                    @*<button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>*@
                                                     <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeId="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-pencil"></span></button>
                                                     <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnDeleteCause"><span class="glyphicon glyphicon-remove"></span></button>
                                                 </td>
@@ -704,48 +703,76 @@
 
 
 
-                                    @*<form class="form-horizontal" role="form">
+                                    <form class="form" role="form">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control input-xs" id="DateEnquete">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control input-xs" id="Protagonistes">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control input-xs" id="CHSCTMembre">
-                                                    </div>
+                                                    <label for="AddActionDescription"> Description de l'Action</label>
+
+
+                                                    <textarea id="AddActionDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>*@
+
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="datetimepickerDateButoirInitiale">Date butoir initiale</label>
+                                                    <div class='input-group date' id='datetimepickerDateButoirInitiale'>
+                                                        <input type='text' name="DateButoirInitiale" id="DateButoirInitiale" class="form-control input-xs" />
+                                                        <span class="input-group-addon input-xs">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="datetimepickerDateButoirNouvelle">Nouvelle date butoir</label>
+                                                    <div class='input-group date' id='datetimepickerDateButoirNouvelle'>
+                                                        <input type='text' name="DateButoirNouvelle" id="DateButoirNouvelle" class="form-control input-xs" />
+                                                        <span class="input-group-addon input-xs">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+
+
+                                                    <label for="ActionResponsableNom">Nom responsable</label>
+
+
+                                                    <div class="input-group input-group-xs">
+                                                        <input type="text" class="form-control input-xs" id="ActionResponsableNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
+                                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                                        <span class="input-group-btn">
+                                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
+                                                                <span class="glyphicon glyphicon-user">
+                                                            </button>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="ActionResponsablePrenom">Prénom&nbsp;responsable&nbsp;:</label>
+                                                    <input type="text" class="form-control input-xs" id="ActionResponsablePrenom">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
 
 
 
 
 
-                                    <div class="row">
+          @*<div class="row">
 
                                         <div class="col-md-12">
 
@@ -817,7 +844,7 @@
 
 
 
-                                    </div>
+                                    </div>*@
 
                                 </div>
 
