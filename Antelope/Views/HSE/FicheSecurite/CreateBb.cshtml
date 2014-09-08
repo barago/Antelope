@@ -20,22 +20,21 @@
 <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
 
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
-
-
-@*MODALE DE RECHERCHE DE PERSONNES DANS l'AD /// DANS UNE VIEW BACKBONE *@
-
-@*<div class="modal fade" id="ActiveDirectoryUtilisateurModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div id="RechercheActiveDirectoryDiv">
-                </div>
-
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->*@
-
-
+<script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/LieuModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/UtilisateurActiveDirectoryModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteTypeModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/PersonneConcerneeModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/PlageHoraireModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/ResponsableModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/RisqueModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/CorpsHumainZoneModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/DangerModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script> 
+<script type="text/javascript" src="/Scripts/Application/QSE/CauseModel.js"></script>  
+ 
 
 
 <script type="text/template" id="RechercheActiveDirectory">
@@ -623,7 +622,7 @@
                                     <div class="col-md-2">
                                         <table class="table table-bordered table-condensed">
                                             <tbody>
-                                                <tr style="background-color:#FFF1F3;">
+                                                <tr style="background-color:#ECF6FD;">
                                                     <td>
                                                         CAUSES
                                                     </td>
@@ -681,11 +680,12 @@
                                 <div class="row">
                                     <div class="col-md-11">
                                         <table class="table table-bordered table-hover table-condensed">
-                                            <tr style="background-color:#FFF1F3;">
+                                            <tr style="background-color:#ECF6FD;">
                                                 <td style="width:130px;">
-                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
-                                                    <button id="<%= 'BtnEditCause'+cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-pencil"></span></button>
-                                                    <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    <button id="BtnAddAction" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="#FormAddAction"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
+                                                    @*<button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>*@
+                                                    <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeId="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                    <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnDeleteCause"><span class="glyphicon glyphicon-remove"></span></button>
                                                 </td>
                                                 <td>
                                                     <%= cause.get('Description') %>
@@ -695,6 +695,130 @@
                                     </div>
 
                                     <div class="col-md-1"></div>
+                                </div>
+
+
+
+                                <div class="accordian-body collapse" id="FormAddAction">
+
+
+
+
+                                    @*<form class="form-horizontal" role="form">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="EnqueteRealisee" class="col-sm-6 label-xs">Enquête&nbsp;réalisée&nbsp;?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="checkbox" class="form-control input-xs" id="EnqueteRealisee">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="DateEnquete" class="col-sm-6 label-xs">Date&nbsp;de&nbsp;l'enquête&nbsp;:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control input-xs" id="DateEnquete">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control input-xs" id="Protagonistes">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control input-xs" id="CHSCTMembre">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>*@
+
+
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <form role="form">
+                                                <div class="form-group" style="padding:10px;">
+                                                    <label for="AddActionDescription"> Description de l'Action</label>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <textarea id="AddActionDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="BtnSaveAddAction" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                        <div class="col-md-12">
+
+                                
+
+
+
+                                            <form role="form">
+                                                <div class="row">
+                                                    <div class="form-group" style="padding:10px;">
+                                                        <label for="datetimepickerDateButoirInitiale">Date butoir initiale</label>
+
+                                                        <div class="col-md-3">
+                                                            <div class='input-group date' id='datetimepickerDateButoirInitiale'>
+                                                                <input type='text' name="DateButoirInitiale" id="DateButoirInitiale" class="form-control input-xs" />
+                                                                <span class="input-group-addon input-xs">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <label for="datetimepickerDateButoirNouvelle">Nouvelle date butoir</label>
+
+                                                        <div class="col-md-3">
+                                                            <div class='input-group date' id='datetimepickerDateButoirNouvelle'>
+                                                                <input type='text' name="DateButoirNouvelle" id="DateButoirNouvelle" class="form-control input-xs" />
+                                                                <span class="input-group-addon input-xs">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                            <form role="form">
+                                                <div class="form-group" style="padding:10px;">
+                                                    
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+
                                 </div>
 
                                 <div class="row">
@@ -708,10 +832,10 @@
                                                     <label for="CauseDescription"> Description de la Cause</label>
                                                     <div class="row">
                                                         <div class="col-md-10">
-                                                            <textarea id="CauseDescription" class="form-control" rows="2" style="max-width: 100%; "><%= cause.get('Description') %></textarea>
+                                                            <textarea id="CauseDescription" data-causeid="<%=cause.get('CauseQSEId') %>" class="form-control EditCauseDescription" rows="2" style="max-width: 100%; "><%= cause.get('Description') %></textarea>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <button id="BtnEnregistrerCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                            <button id="<%= 'BtnEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnEditCause"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -788,124 +912,9 @@
 
     $(document).ready(function () {
 
-        @*var FicheSecuriteModel = Backbone.Model.extend({
-                urlRoot: '/api/FicheSecuriteAPI'
-                //,
-                //defaults: {
-                //    FicheSecuriteId: "",
-                //    Code: "",
-                //    Type: "",
-                //    Age: "",
-                //    PosteDeTravail: "",
-                //    Service: "",
-                //    Responsable: "",
-                //    DateCreation: "",
-                //    DateEvenement: "",
-                //    PersonnesConcernees: "",
-                //    Description: "",
-                //    ActionImmediate1: "",
-                //    ActionImmediate2: "",
-                //    Temoins: "",
-                //    CotationFrequence: "",
-                //    CotationGravite: "",
-                //    Risque: "",
-                //    FicheSecuriteTypeId: "",
-                //    DangerId: "",
-                //    CorpsHumainZoneId: "",
-                //    PlageHoraireId: "",
-                //    SiteId: "",
-                //    ZoneId: "",
-                //    LieuId: "",
-                //    EnqueteRealisee: "",
-                //    EnqueteDate: "",
-                //    EnqueteProtagoniste: "",
-                //    CHSCTMembre: ""
-                //}
-            });
-*@
-
-
         var FicheSecuriteId = "@ViewBag.Id";
 
-        var SiteModel = Backbone.Model.extend({
-        });
-        var ZoneModel = Backbone.Model.extend({
-        });
-        var LieuModel = Backbone.Model.extend({
-        });
-        var FicheSecuriteTypeModel = Backbone.Model.extend({
-        });
-        var PlageHoraireModel = Backbone.Model.extend({
-        });
-        var DangerModel = Backbone.Model.extend({
-        });
-        var RisqueModel = Backbone.Model.extend({
-        });
-        var CorpsHumainZoneModel = Backbone.Model.extend({
-        });
-
-
-
-
-        var SiteCollection = Backbone.Collection.extend({
-            model: SiteModel,
-            url: '/api/sites'
-        });
-        var ZoneCollection = Backbone.Collection.extend({
-            model: ZoneModel,
-            url: '/api/action/zone/getZonesBySiteId'
-            //url: '/api/Zone'
-        });
-        var LieuCollection = Backbone.Collection.extend({
-            model: LieuModel,
-            url: '/api/action/lieu/getLieuxByZoneId'
-        });
-        var FicheSecuriteTypeCollection = Backbone.Collection.extend({
-            model: FicheSecuriteTypeModel
-        });
-        var PlageHoraireCollection = Backbone.Collection.extend({
-            model: PlageHoraireModel
-        });
-        var DangerCollection = Backbone.Collection.extend({
-            model: DangerModel
-        });
-        var RisqueCollection = Backbone.Collection.extend({
-            model: RisqueModel
-        });
-        var CorpsHumainZoneCollection = Backbone.Collection.extend({
-            model: CorpsHumainZoneModel
-        });
-
-
-        var FicheSecuriteModel = Backbone.Model.extend({
-            urlRoot: '/api/FicheSecurite'
-        });
-
-        var PersonneConcerneeModel = Backbone.Model.extend({
-        });
-
-        var ResponsableModel = Backbone.Model.extend({
-        });
-
-        var CauseModel = Backbone.Model.extend({
-           urlRoot: '/api/CauseQSE'
-        });
-
-        var ActionModel = Backbone.Model.extend({
-        });
-
-        var CauseCollection = Backbone.Collection.extend({
-            model: CauseModel
-        });
-
-        var ActionCollection = Backbone.Collection.extend({
-            model: ActionModel
-        });
-
-        
-
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
-        console.log(ficheSecuriteViewModel);
 
         ficheSecuriteViewModel.fetch({
             async: false//, success: this.arraysToModelCollections
@@ -938,14 +947,6 @@
 
         ficheSecuriteViewModel.set({ 'causeModel': new CauseModel() });
 
-        var UtilisateurActiveDirectoryModel = Backbone.Model.extend({
-            urlRoot: '/api/UtilisateurActiveDirectory'
-        });
-
-        var UtilisateurActiveDirectoryCollection = Backbone.Collection.extend({
-            model: UtilisateurActiveDirectoryModel
-        });
-
         var utilisateurActiveDirectoryModel = new UtilisateurActiveDirectoryModel();
 
         ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryModel': utilisateurActiveDirectoryModel });
@@ -953,7 +954,7 @@
 
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
 
-
+//--------------------------POPUP RECHERCHE ACTIVE DIRECTORY---------------------------------------------------
         //TODO : Cette View est à découpler de FicheSecurite View et Model afin d'être réutilisable
         //Clairement pas le temps maintenant malheureusement.
         var RechercheActiveDirectoryView = Backbone.View.extend({
@@ -1033,28 +1034,13 @@
                     'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
                 });
 
-
-
-                //this.model.get('utilisateurActiveDirectoryModel').set({
-                //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
-                //});
-
-                //this.model.get('utilisateurActiveDirectoryModel').set({
-                //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
-                //});
-
-                //this.model.get('utilisateurActiveDirectoryModel').set({
-                //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
-                //});
-
-                //Backbone.applicationEvents.trigger('activeDirectoryUtilisateurSelection'); //, utilisateurActiveDirectorySelectionne);
-
                 this.$el.modal('hide');
 
             }
 
         });
 
+//------------------------------------------------INFOS GENERALES---------------------------------------------------
 
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             template: _.template($('#TestTemplate2').html()),
@@ -1165,7 +1151,6 @@
                 this.model.get('ficheSecuriteModel').set({ 'Code': $('#Code').val() });
             },
             changeDateHeureEvenement: function () {
-                console.log('tutu');
                 this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
             },
             changePersonneConcerneeNom: function () {
@@ -1243,47 +1228,37 @@
                 });
                 rechercheActiveDirectoryView.show()
 
-            },
-            //activeDirectoryUtilisateurSelection: function () {
-            //    console.log('HELLO PASSAGE FSV ADUS');
-            //    //console.log(event.utilisateur);
-            //    //console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
-            //    console.log(this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel'));
-            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-            //        'Nom': this.model.get('utilisateurActiveDirectoryModel').get('NomSelectionne')
-            //    });
-
-            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-            //        'Prenom': this.model.get('utilisateurActiveDirectoryModel').get('PrenomSelectionne')
-            //    });
-
-            //    this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({
-            //        'Guid': this.model.get('utilisateurActiveDirectoryModel').get('GuidSelectionne')
-            //    });
-
-            //    this.render();
-
-            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-            //    //    'NomSelectionne': utilisateurActiveDirectorySelectionne.get('Nom')
-            //    //});
-
-            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-            //    //    'PrenomSelectionne': utilisateurActiveDirectorySelectionne.get('Prenom')
-            //    //});
-
-            //    //this.model.get('ficheSecuriteModel').get('utilisateurActiveDirectoryModel').set({
-            //    //    'GuidSelectionne': utilisateurActiveDirectorySelectionne.get('Guid')
-            //    //});
-
-            //}
+            }
 
         });
 
 
+//--------------------------------------------------CAUSES & ACTIONS----------------------------------------------------
         var FicheSecuriteActionView = Backbone.View.extend({
             template: _.template($('#TemplateInfosCorrectives').html()),
             render: function () {
+
+
+
+                //On écoute les changements sur le DatePicker pour les passer à la fonction Backbone
+                //$('#datetimepickerDateButoirInitiale').on("dp.change", $.proxy(this.changeDateHeureEvenement, this));
+
+
                 this.$el.html(this.template(this.model.toJSON()));
+
+                // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
+                $('#datetimepickerDateButoirInitiale').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+
+                // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
+                $('#datetimepickerDateButoirNouvelle').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+
+
 
             },
             initialize: function () {
@@ -1291,12 +1266,14 @@
             },
             events: {
                 //"click #BtnAjoutCause" : "clickBoutonAjoutCause"
-                "keyup #AddCauseDescription": "changeCauseDescription",
-                "click #BtnSaveAddCause": "addCause"
-
+                "keyup #AddCauseDescription": "changeAddCauseDescription",
+                "click #BtnSaveAddCause": "addCause",
+                "keyup .EditCauseDescription": "changeEditCauseDescription",
+                "click .BtnEditCause": "editCause",
+                "click .BtnDeleteCause" : "deleteCause"
                 
             },
-            changeCauseDescription: function () {
+            changeAddCauseDescription: function () {
                 this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
             },
             addCause: function () {
@@ -1306,15 +1283,45 @@
                         'FicheSecuriteID': this.model.get('ficheSecuriteModel').get('FicheSecuriteID'),
                         'Description': this.model.get('causeModel').get('Description'),
                         'actionCollection': new ActionCollection()
-                    }, { async: false , wait : true})
+                    }), { async: false, wait: true, success: function () { console.log('PASSAGE SUCCESSSSS') }, error: function () { 'PASSAGE ERROR'} }
                 );
 
                 this.model.get('causeModel').clear();
                 this.render();
+            },
+            changeEditCauseDescription: function (ev) {
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({ Description: $(ev.currentTarget).val() });
+                
+            },
+            editCause: function (ev) {
+
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+
+                //Ajout de l'id de l'enregistrement à la volée
+                //Il faudrait soit initialiser les Models dans les Collections avec le bon id, soit côté Serveur MVC appeler "id" la clef primaire, simplifiant toute la chaîne d'enregistrement...
+                //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).id = parseInt(causeToEditId)  //.   get('CauseId');
+                // OU ENCORE : Utiliser IdAttribute de Backbone Model !
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({id : parseInt(causeToEditId)});  //.   get('CauseId');
+
+                console.log(this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }));
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).save(null,{ async: false, wait: true });
+                this.render();
+            },
+            deleteCause: function (ev) {
+                var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).set({ id: parseInt(causeToDeleteId) });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).destroy({ async: false, wait: true, success: function () { console.log('PASSAGE SUCCESSSSS') }, error: function () { 'PASSAGE ERROR' } });
+                this.render();
             }
+            
 
 
         });
+
+
+
+//----------------------------------------------INSTANCIATION DES VIEWS------------------------------------------------
 
         var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
             el: $("#TestDiv2"),

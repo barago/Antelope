@@ -38,16 +38,16 @@ namespace Antelope.Controllers.API.QSE
 
         // PUT: api/CauseQSE/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCauseQSE(int id, CauseQSE causeQSE)
+        public HttpResponseMessage PutCauseQSE(int id, CauseQSE causeQSE)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter); // param : ModelState à voir
             }
 
             if (id != causeQSE.CauseQSEId)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
             }
 
             db.Entry(causeQSE).State = EntityState.Modified;
@@ -60,7 +60,7 @@ namespace Antelope.Controllers.API.QSE
             {
                 if (!CauseQSEExists(id))
                 {
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, Configuration.Formatters.JsonFormatter);
                 }
                 else
                 {
@@ -68,30 +68,16 @@ namespace Antelope.Controllers.API.QSE
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.OK, Configuration.Formatters.JsonFormatter);
         }
 
-        // POST: api/CauseQSE
-        //[ResponseType(typeof(CauseQSE))]
-        //public IHttpActionResult PostCauseQSE(CauseQSE causeQSE)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.Causes.Add(causeQSE);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = causeQSE.CauseQSEId }, causeQSE);
-        //}
 
         public HttpResponseMessage Post(CauseQSE causeQSE/* [FromBody]string value */)
         {
             db.Causes.Add(causeQSE);
             db.SaveChanges();
 
-            return Request.CreateResponse(HttpStatusCode.OK, Configuration.Formatters.JsonFormatter);
+            return Request.CreateResponse<CauseQSE>(HttpStatusCode.OK, causeQSE, Configuration.Formatters.JsonFormatter);
         }
 
 
@@ -124,5 +110,22 @@ namespace Antelope.Controllers.API.QSE
         {
             return db.Causes.Count(e => e.CauseQSEId == id) > 0;
         }
+
+
+
+        // POST: api/CauseQSE
+        //[ResponseType(typeof(CauseQSE))]
+        //public IHttpActionResult PostCauseQSE(CauseQSE causeQSE)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    db.Causes.Add(causeQSE);
+        //    db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = causeQSE.CauseQSEId }, causeQSE);
+        //}
     }
 }
