@@ -701,11 +701,14 @@
 
                                         <div class="accordian-body collapse AjoutActionCollapse" id="<%= 'FormAddActionForCause'+cause.get('CauseQSEId') %>">
                                             <form class="form" role="form">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label for="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>"> Description de l'Action</label>
-                                                            <textarea id="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>" class="form-control AddActionDescription" data-causeId="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "></textarea>
+                                                <div class="form-group">
+                                                    <label for="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>"> Description de l'Action</label>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <textarea id="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>" class="form-control AddActionDescription" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "></textarea>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="<%= 'BtnSaveAddActionForCause'+cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnSaveAddAction" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -740,7 +743,7 @@
                                                                 @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                                                 <span class="input-group-btn">
                                                                     <button id="ActiveDirectoryAddActionResponsableRecherche" data-causeid="<%=cause.get('CauseQSEId') %>" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                                        <span class="glyphicon glyphicon-user">
+                                                                        <span class="glyphicon glyphicon-user"></span>
                                                                     </button>
                                                                 </span>
                                                             </div>
@@ -749,7 +752,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>">Prénom&nbsp;responsable&nbsp;:</label>
-                                                            <input type="text" class="form-control input-xs" id="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>">
+                                                            <input type="text" class="form-control input-xs AddActionResponsablePrenom" id="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1249,7 +1252,9 @@
                 "keyup .AddActionDescription": "changeAddActionDescription",
                 "keyup .AddActionDateButoirInitiale": "changeAddActionDateButoirInitiale",
                 "keyup .AddActionDateButoirNouvelle": "changeAddActionDateButoirNouvelle",
-                "keyup .AddActionResponsableNom": "changeAddActionResponsableNom"
+                "keyup .AddActionResponsableNom": "changeAddActionResponsableNom",
+                "keyup .AddActionResponsablePrenom": "changeAddActionResponsablePrenom",
+                "click .BtnSaveAddAction": "addAction"
                 
             },
             hideShow: function (ev) {
@@ -1272,6 +1277,26 @@
                 );
 
                 this.model.get('causeModel').clear();
+                this.render();
+            },
+            addAction: function (ev) {
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                var modelToAdd = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').create(
+                        new ActionModel({
+                            'CauseQSEId': parseInt(causeToEditId),
+                            'Description': modelToAdd.get('Description'),
+                            'DateButoirInitiale': modelToAdd.get('DateButoirInitiale'),
+                            'DateButoirNouvelle': modelToAdd.get('DateButoirNouvelle'),
+                            'Responsable': new Responsable({
+                                'Nom': modelToAdd.get('Responsable').get('Nom'),
+                                'Prenom': modelToAdd.get('Responsable').get('Prenom'),
+                                'Guid': modelToAdd.get('Responsable').get('Guid')
+                            })
+                        }), { async: false, wait: true }
+                    );
+
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
                 this.render();
             },
             changeEditCauseDescription: function (ev) {
@@ -1325,11 +1350,15 @@
             },
             changeAddActionDateButoirNouvelle: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirInitiale': $(ev.currentTarget).val() });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirNouvelle': $(ev.currentTarget).val() });
             },
             changeAddActionResponsableNom: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Nom': $(ev.currentTarget).val() });
+            },
+            changeAddActionResponsablePrenom: function (ev) {
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
             }
             
 
