@@ -24,7 +24,11 @@ namespace Antelope.Models.QSE
         public DateTime DateButoireNouvelle { get; set; }
 
         //SE
-        public Personne Responsable { get; set; }
+        [DisplayName("Responsable")]
+        public Int32? ResponsableId { get; set; }
+
+        [ForeignKey("ResponsableId")]
+        public virtual Personne Responsable { get; set; }
 
         public string Avancement { get; set; }
 
@@ -44,7 +48,11 @@ namespace Antelope.Models.QSE
         [DefaultValue(0)]
         public short CotationEfficacite { get; set; }
 
-        public Personne Verificateur { get; set; }
+        [DisplayName("Verificateur")]
+        public Int32? VerificateurId { get; set; }
+
+        [ForeignKey("VerificateurId")]
+        public virtual Personne Verificateur { get; set; }
 
         public string PreuveVerification { get; set; }
 
