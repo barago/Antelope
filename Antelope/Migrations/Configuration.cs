@@ -252,18 +252,58 @@ namespace Antelope.Migrations
             context.FicheSecuriteTypes.Add(FicheSecuriteType4);
             context.FicheSecuriteTypes.Add(FicheSecuriteType5);
 
-            List<string> AllDangerNom = new List<string>() { "Air comprimé", "Appareil à pression", "Biologique", "Circulation d'engin" };
+            List<string> AllDangerNom = new List<string>() { "Agents biologiques et infectieux", "Ambiance de travail (thermique, éclairage, aération)", 
+                "Bruit", "Chute d'objets", "Circulation de piétons", "Circulation d'engins", "Co activité", "Comportement", "Déplacements extérieurs", 
+                "Electricité", "Engins de levage ou mobiles", "Equipement sous pression", "Evènement extérieur (pluie, neige, vent, animaux, malveillance)", 
+                "Geste et posture", "Machine ou outil dangereux", "Manutention ou port de charge", "Non Classé", "Produit chimique", "Produit gazeux", 
+                "Projection (poussière, copeaux…)", "Psychosocial", "Rayonnement dangereux (laser, magnétique, radiation…)", "Stockage", 
+                "Travail en hauteur", "Travail isolé", "Travail par point chaud", "Travail sur écran", "Vibration" };
 
             List<Danger> AllDanger = new List<Danger>();
-            
-            foreach (string DangerNom in AllDangerNom)
+
+            for (var i = 0; i < AllDangerNom.Count; i++ )
             {
                 Danger Danger = new Danger()
                 {
-                    Nom = DangerNom
+                    Nom = AllDangerNom[i]
                 };
 
                 AllDanger.Add(Danger);
+                context.Dangers.Add(Danger);
+            }
+
+            RisqueType RisqueType1 = new RisqueType() { Nom = "Santé sécurité" };
+            RisqueType RisqueType2 = new RisqueType() { Nom = "Sûreté" };
+            RisqueType RisqueType3 = new RisqueType() { Nom = "Autre" };
+
+            context.RisqueTypes.Add(RisqueType1);
+            context.RisqueTypes.Add(RisqueType2);
+            context.RisqueTypes.Add(RisqueType3);
+
+            List<string> AllRisqueNom = new List<string>() { "Asphyxie", "Brûlure/Irritation", "Choc", "Chute de hauteur", "Chute de plain-pied", 
+                "Collision d'engins", "Collision engin/piéton", "Coupure", "Electrisation / Electrocution", "Entorse / luxation", 
+                "Entrainement / Ecrasement / Coincement", "Fatigue visuelle", "Fatigue, stress, agressivité", "Fracture", 
+                "Infection / Intoxication / Allergie / Irradiation", "Lésions oculaires", "Malaise", "Noyade", "Perte d'audition", "Plaie", "TMS / Lombalgie",
+                "Explosion", "Foudre", "Incendie", "Inondation", "Intempérie violent", "Intrusion", "Non classé"};
+
+            List<RisqueType> AllRisqueType = new List<RisqueType>() { RisqueType1, RisqueType1, RisqueType1, RisqueType1, RisqueType1, 
+                RisqueType1, RisqueType1, RisqueType1, RisqueType1, RisqueType1, 
+                RisqueType1, RisqueType1, RisqueType1, RisqueType1, 
+                RisqueType1, RisqueType1, RisqueType1, RisqueType1, RisqueType1, RisqueType1, RisqueType1,
+                RisqueType2, RisqueType2, RisqueType2, RisqueType2, RisqueType2, RisqueType2, RisqueType3};
+
+            List<Risque> AllRisque = new List<Risque>();
+
+            for (var i = 0; i < AllRisqueNom.Count; i++)
+            {
+                Risque Risque = new Risque()
+                {
+                    Nom = AllRisqueNom[i],
+                    RisqueType = AllRisqueType[i]
+                };
+
+                AllRisque.Add(Risque);
+                context.Risques.Add(Risque);
             }
 
             List<string> AllCorpsHumainZoneNom = new List<string>() { "Yeux", "Tête", "Bras", "Main", "Tronc", "Jambe", "Pied", "Tout le corps", "Multiples lésions", "Dos" };

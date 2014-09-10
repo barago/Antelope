@@ -73,14 +73,20 @@ namespace Antelope.Models.HSE
         [DefaultValue(0)]
         public short CotationGravite { get; set; }
 
-        [DisplayName("Risque")]
-        public String Risque { get; set; }
+        //[DisplayName("Risque")]
+        //public String Risque { get; set; }
 
         [DisplayName("Type")]
         public Int32 FicheSecuriteTypeId { get; set;}
 
         [JsonIgnore] 
         public virtual FicheSecuriteType FicheSecuriteType {get; set;}
+
+        [DisplayName("Risque")]
+        public Int32 RisqueId { get; set; }
+
+        [JsonIgnore]
+        public virtual Risque Risque { get; set; }
 
         [DisplayName("Danger")]
         public Int32 DangerId { get; set; }

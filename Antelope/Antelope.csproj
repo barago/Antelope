@@ -183,12 +183,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409100944033_10092014.cs" />
-    <Compile Include="Migrations\201409100944033_10092014.Designer.cs">
-      <DependentUpon>201409100944033_10092014.cs</DependentUpon>
+    <Compile Include="Migrations\201409102002141_100920147.cs" />
+    <Compile Include="Migrations\201409102002141_100920147.Designer.cs">
+      <DependentUpon>201409102002141_100920147.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\HSE\Risque.cs" />
+    <Compile Include="Models\HSE\RisqueType.cs" />
     <Compile Include="Models\QSE\ActionQSE.cs" />
     <Compile Include="Models\HSE\ActionSecurite.cs" />
     <Compile Include="Models\QSE\CauseQSE.cs" />
@@ -491,8 +493,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409100944033_10092014.resx">
-      <DependentUpon>201409100944033_10092014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409102002141_100920147.resx">
+      <DependentUpon>201409102002141_100920147.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
