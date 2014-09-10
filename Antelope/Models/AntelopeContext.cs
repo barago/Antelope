@@ -29,6 +29,7 @@ namespace Antelope.Models
         public DbSet<Personne> Personnes { get; set; }
         public DbSet<CauseQSE> Causes { get; set; }
         public DbSet<ActionQSE> Actions { get; set; }
+        public DbSet<PosteDeTravail> PosteDeTravails { get; set; }
 
     }
 }

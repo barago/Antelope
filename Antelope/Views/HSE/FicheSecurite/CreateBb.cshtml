@@ -716,8 +716,8 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>">Date butoir initiale</label>
-                                                            <div class='input-group date' >
-                                                                <input type='text' name="DateButoirInitiale" id="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>" class="form-control input-xs AddActionDateButoirInitiale" data-causeId="<%=cause.get('CauseQSEId') %>" />
+                                                            <div class='input-group date AddActionDateButoirInitiale' id="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" >
+                                                                <input type='text' name="DateButoirInitiale" class="form-control input-xs AddActionDateButoirInitiale" id="<%= 'AddActionDateButoirInitialeInputForCause'+cause.get('CauseQSEId') %>" />
                                                                 <span class="input-group-addon input-xs">
                                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                                 </span>
@@ -727,8 +727,8 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="<%= 'AddActionDateButoirNouvelleForCause'+cause.get('CauseQSEId') %>">Nouvelle date butoir</label>
-                                                            <div class='input-group date'>
-                                                                <input type='text' name="DateButoirNouvelle" id="<%= 'AddActionDateButoirNouvelleForCause'+cause.get('CauseQSEId') %>" class="form-control input-xs AddActionDateButoirNouvelle" data-causeId="<%=cause.get('CauseQSEId') %>" />
+                                                            <div class='input-group date AddActionDateButoirNouvelle' id="<%= 'AddActionDateButoirNouvelleForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
+                                                                <input type='text' name="DateButoirNouvelle" class="form-control input-xs AddActionDateButoirNouvelle" id="<%= 'AddActionDateButoirNouvelleInputForCause'+cause.get('CauseQSEId') %>" />
                                                                 <span class="input-group-addon input-xs">
                                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                                 </span>
@@ -797,13 +797,75 @@
                                                             <%= action.get('Description') %>
                                                         </td>
                                                         <td style="width:65px;">
-                                                            <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
-                                                            <button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                            <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>"  type="button" class="btn btn-xs BtnDeleteAction"><span class="glyphicon glyphicon-remove"></span></button>
+                                                            @*<button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>*@
+                                                            <button id="<%= 'BtnOpenFormEditAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditAction" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
                                                         </td>
                                                     </tr>
                                                 </table>
                                             </div>
 
+                                        </div>
+
+                                        <!-- ---------------------------ACCORDION EDIT ACTION (DEPUIS BTN EDIT ACTION)----------------------------- -->
+                                        <div class="accordian-body collapse EditActionCollapse" id="<%= 'FormEditAction'+action.get('ActionQSEId') %>">
+                                            <form class="form" role="form">
+                                                <div class="form-group">
+                                                    <label for="<%= 'EditActionDescriptionForAction'+action.get('ActionQSEId') %>"> Description de l'Action</label>
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                            <textarea id="<%= 'EditActionDescriptionForAction'+action.get('ActionQSEId') %>" class="form-control EditActionDescription" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "><%= action.get('Description') %></textarea>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button id="<%= 'BtnSaveEditActionForAction'+action.get('ActionQSEId') %>" type="button" class="btn btn-xs BtnSaveEditAction" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="<%= 'EditActionDateButoirInitialeForAction'+action.get('ActionQSEId') %>">Date butoir initiale</label>
+                                                            <div class='input-group date EditActionDateButoirInitiale' id="<%= 'EditActionDateButoirInitialeForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
+                                                                <input type='text' name="DateButoirInitiale" class="form-control input-xs EditActionDateButoirInitiale" id="<%= 'EditActionDateButoirInitialeInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireInitiale') %>" />
+                                                                <span class="input-group-addon input-xs">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="<%= 'EditActionDateButoirNouvelleForAction'+action.get('ActionQSEId') %>">Nouvelle date butoir</label>
+                                                            <div class='input-group date EditActionDateButoirNouvelle' id="<%= 'EditActionDateButoirNouvelleForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
+                                                                <input type='text' name="DateButoirNouvelle" class="form-control input-xs EditActionDateButoirNouvelle" id="<%= 'EditActionDateButoirNouvelleInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireNouvelle') %>" />
+                                                                <span class="input-group-addon input-xs">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="<%= 'EditActionResponsableNomForAction'+action.get('ActionQSEId') %>">Nom responsable</label>
+                                                            <div class="input-group input-group-xs">
+                                                                <input type="text" class="form-control input-xs EditActionResponsableNom" id="<%= 'EditActionResponsableNomForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" value=" <%= action.get('Responsable').get('Nom') %>" />
+                                                                @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                                                <span class="input-group-btn">
+                                                                    <button id="ActiveDirectoryEditActionResponsableRecherche" data-actionid="<%=action.get('ActionQSEId') %>" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
+                                                                        <span class="glyphicon glyphicon-user"></span>
+                                                                    </button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label for="<%= 'EditActionResponsablePrenomForAction'+action.get('ActionQSEId') %>">Prénom&nbsp;responsable&nbsp;:</label>
+                                                            <input type="text" class="form-control input-xs EditActionResponsablePrenom" id="<%= 'EditActionResponsablePrenomForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" value=" <%= action.get('Responsable').get('Prenom') %>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
 
                                         <% }); %>
@@ -851,6 +913,15 @@
 
         var FicheSecuriteId = "@ViewBag.Id";
 
+        function dateFormatJS(date) {
+            console.log(date);
+            var dateFormated = '';
+            if(date != null){
+                dateFormated = date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+            }
+            return dateFormated;
+        };
+
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
 
         ficheSecuriteViewModel.fetch({
@@ -881,6 +952,8 @@
             cause.set({ 'actionModel': new ActionModel() });
             cause.get('actionCollection').each(function (action, index) {
                 action.set({ 'Responsable': new ResponsableModel(action.get('Responsable')) });
+                action.set({ 'DateButoireInitiale': dateFormatJS(action.get('DateButoireInitiale')) });
+                action.set({ 'DateButoireNouvelle': dateFormatJS(action.get('DateButoireNouvelle')) });
             });
             cause.get('actionModel').set({ 'Responsable': new ResponsableModel() });
         });
@@ -895,6 +968,7 @@
         ficheSecuriteViewModel.set({ 'utilisateurActiveDirectoryCollection': new UtilisateurActiveDirectoryCollection() });
 
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
+
 
 //--------------------------POPUP RECHERCHE ACTIVE DIRECTORY---------------------------------------------------
         //TODO : Cette View est à découpler de FicheSecurite View et Model afin d'être réutilisable
@@ -1005,6 +1079,7 @@
 
         });
 
+
 //------------------------------------------------INFOS GENERALES---------------------------------------------------
 
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
@@ -1112,7 +1187,7 @@
                 this.model.get('ficheSecuriteModel').set({ 'Code': $('#Code').val() });
             },
             changeDateHeureEvenement: function () {
-                this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
+                this.model.get('ficheSecuriteModel').set({ 'DateEvenement': this.dateFormatMVC($('#DateEvenement').val()) + 'T' + $('#HeureEvenement').val() + ':00.0' });
             },
             changePersonneConcerneeNom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
@@ -1184,6 +1259,11 @@
                 });
                 rechercheActiveDirectoryView.show()
 
+            },
+            dateFormatMVC: function (date) {
+                // De date FR à DateTime
+                var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
+                return dateFormated;
             }
 
         });
@@ -1203,21 +1283,37 @@
                 this.$el.html(this.template(this.model.toJSON()));
 
                 // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
-                $('#AddActionDateButoirInitiale').datetimepicker({
+                $('.AddActionDateButoirInitiale').datetimepicker({
                     pickTime: false,
                     language: 'fr'
                 });
 
                 // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
-                $('#AddActionDateButoirNouvelle').datetimepicker({
+                $('.AddActionDateButoirNouvelle').datetimepicker({
                     pickTime: false,
                     language: 'fr'
                 });
+
+                // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
+                $('.EditActionDateButoirInitiale').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+
+                // Ces instances Javascript se trouvent dans la View Backbone, nous les initialisons donc dans le render de la View.
+                $('.EditActionDateButoirNouvelle').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+
+                $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeDateButoirInitiale, this));
+                $('.AddActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeDateButoirNouvelle, this));
 
                 // TODO : BUG Boostrap, si on n'initialise pas toggle:false, les collapse vont show lorsqu'on fait un hide ...
                 $('.AjoutCauseCollapse').collapse({ 'toggle': false });
                 $('.AjoutActionCollapse').collapse({ 'toggle': false });
                 $('.EditCauseCollapse').collapse({ 'toggle': false });
+                $('.EditActionCollapse').collapse({ 'toggle': false });
                 
 
             },
@@ -1243,6 +1339,7 @@
                 "click #BtnAddCause": "hideShow",
                 "click .BtnEditCause": "hideShow",
                 "click #BtnAddAction": "hideShow",
+                "click .BtnEditAction": "hideShow",
                 "keyup #AddCauseDescription": "changeAddCauseDescription",
                 "click #BtnSaveAddCause": "addCause",
                 "keyup .EditCauseDescription": "changeEditCauseDescription",
@@ -1254,14 +1351,23 @@
                 "keyup .AddActionDateButoirNouvelle": "changeAddActionDateButoirNouvelle",
                 "keyup .AddActionResponsableNom": "changeAddActionResponsableNom",
                 "keyup .AddActionResponsablePrenom": "changeAddActionResponsablePrenom",
-                "click .BtnSaveAddAction": "addAction"
+                "click .BtnSaveAddAction": "addAction",
+                "click .BtnSaveEditAction": "editAction",
+                "keyup .EditActionDescription": "changeEditActionDescription",
+                "keyup .EditActionDateButoirInitiale": "changeEditActionDateButoirInitiale",
+                "keyup .EditActionDateButoirNouvelle": "changeEditActionDateButoirNouvelle",
+                "keyup .EditActionResponsableNom": "changeEditActionResponsableNom",
+                "keyup .EditActionResponsablePrenom": "changeEditActionResponsablePrenom",
+                "click .BtnDeleteAction": "deleteAction",
+
+
                 
             },
             hideShow: function (ev) {
-                console.log('PASSAGE');
                 $('.AjoutCauseCollapse').collapse('hide');
                 $('.AjoutActionCollapse').collapse('hide');
                 $('.EditCauseCollapse').collapse('hide');
+                $('.EditActionCollapse').collapse('hide');
             },
             changeAddCauseDescription: function () {
                 this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
@@ -1286,9 +1392,9 @@
                         new ActionModel({
                             'CauseQSEId': parseInt(causeToEditId),
                             'Description': modelToAdd.get('Description'),
-                            'DateButoirInitiale': modelToAdd.get('DateButoirInitiale'),
-                            'DateButoirNouvelle': modelToAdd.get('DateButoirNouvelle'),
-                            'Responsable': new Responsable({
+                            'DateButoireInitiale': modelToAdd.get('DateButoireInitiale'),
+                            'DateButoireNouvelle': modelToAdd.get('DateButoireNouvelle'),
+                            'Responsable': new ResponsableModel({
                                 'Nom': modelToAdd.get('Responsable').get('Nom'),
                                 'Prenom': modelToAdd.get('Responsable').get('Prenom'),
                                 'Guid': modelToAdd.get('Responsable').get('Guid')
@@ -1317,10 +1423,25 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).save(null,{ async: false, wait: true });
                 this.render();
             },
+            editAction: function(ev){
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                //VOIR COMMENTAIRE AU DESSUS
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ id: parseInt(actionToEditId) });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).save(null, { async: false, wait: true });
+                this.render();
+            },
             deleteCause: function (ev) {
                 var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).set({ id: parseInt(causeToDeleteId) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).destroy({ async: false, wait: true, });
+                this.render();
+            },
+            deleteAction: function (ev) {
+                var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
+                var actionToDeleteId = $(ev.currentTarget).attr('data-actionId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).set({ id: parseInt(actionToDeleteId) });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).destroy(null, { async: false, wait: true });
                 this.render();
             },
             showActiveDirectoryUtilisateurRecherche: function (ev) {
@@ -1359,6 +1480,50 @@
             changeAddActionResponsablePrenom: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
+            },
+            changeDateButoirInitiale: function (ev) {
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) + 'T' + '00:00:00.0' });
+                //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
+            },
+            changeDateButoirNouvelle: function (ev) {
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelle': this.dateFormatMVC($('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val()) + 'T' + '00:00:00.0' });
+                //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
+            },
+            changeEditActionDescription : function(ev){
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Description': $(ev.currentTarget).val() });
+            },
+            changeEditActionDateButoirInitiale : function(ev){
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitiale': $(ev.currentTarget).val() });
+            },
+            changeEditActionDateButoirNouvelle: function (ev) {
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelle': $(ev.currentTarget).val() });
+            },
+            changeEditActionResponsableNom: function (ev) {
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'Nom': $(ev.currentTarget).val() });
+            },
+            changeEditActionResponsablePrenom: function (ev) {
+                var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
+            },
+            dateFormatMVC: function (date) {
+                // De date FR à DateTime
+                var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
+                return dateFormated;
+            },
+            dateFormatJS: function (date) {
+                var dateFormated = date.substring(0, 4) + '/' + date.substring(5, 7) + '/' + date.substring(8, 10);
+                return dateFormated;
             }
             
 

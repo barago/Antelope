@@ -21,7 +21,7 @@ namespace Antelope.Models.QSE
         //SE
         public DateTime DateButoireInitiale { get; set; }
         //SE
-        public DateTime DateButoireNouvelle { get; set; }
+        public DateTime? DateButoireNouvelle { get; set; }
 
         //SE
         [DisplayName("Responsable")]
@@ -59,13 +59,13 @@ namespace Antelope.Models.QSE
         public string CommentaireEfficaciteVerification { get; set; }
 
         public Boolean Realise { get; set; }
-        public DateTime RealiseDate { get; set; }
+        public DateTime? RealiseDate { get; set; }
         public Boolean Verifie { get; set; }
-        public DateTime VerifieDate { get; set; }
+        public DateTime? VerifieDate { get; set; }
         //SE
         public Boolean Cloture { get; set; }
         //SE
-        public DateTime ClotureDate { get; set; }
+        public DateTime? ClotureDate { get; set; }
 
         [DisplayName("Cause")]
         public Int32 CauseQSEId { get; set; }

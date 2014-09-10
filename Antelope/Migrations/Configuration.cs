@@ -37,27 +37,45 @@ namespace Antelope.Migrations
 
             Site siteSTA = new Site()
             {
-                Nom = "Saint Alban",
+                Nom = "Saint-Alban",
                 Trigramme = "STA",
                 Arouperr = "Site STA"
             };
 
             Site siteNSG = new Site()
             {
-                Nom = "Nuit Saint Georges",
+                Nom = "Nuits-Saint-Georges",
                 Trigramme = "NSG",
                 Arouperr = "Site NSG"
             };
 
             Site siteLQN = new Site()
             {
-                Nom = "Le Quesnois",
+                Nom = "Le Quesnoys",
                 Trigramme = "LQN",
                 Arouperr = "Site LQN"
             };
 
             context.Sites.Add(siteRFS);
             context.Sites.Add(siteDLF);
+            context.Sites.Add(siteSTA);
+            context.Sites.Add(siteNSG);
+            context.Sites.Add(siteLQN);
+
+            List<string> AllPosteDeTravailNom = new List<string>() { "Administratif", "Agriculteur", "Cariste", "Chauffeurs", "Encadrement intermédiaire", "Etiqueteur", "Fardeleur", "Laborentin Process / MP", "Laborentin R&D / Microbio", "Magasinier MP", "Magasinier soufflage", "Opérateur SB / R3 / R4", "Palettiseur", "Personne extérieure", "Personnel maintenance", "Pilote process", "Préparateur", "Régleur", "Souffleur", "Technicien terrain" };
+
+            List<PosteDeTravail> AllPosteDeTravail = new List<PosteDeTravail>();
+
+            foreach (string PosteDeTravailNom in AllPosteDeTravailNom)
+            {
+                PosteDeTravail PosteDeTravail = new PosteDeTravail()
+                {
+                    Nom = PosteDeTravailNom
+                };
+
+                AllPosteDeTravail.Add(PosteDeTravail);
+                context.PosteDeTravails.Add(PosteDeTravail);
+            };
 
             Zone ZoneRDCRFS = new Zone()
             {
