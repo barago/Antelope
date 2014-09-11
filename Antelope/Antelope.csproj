@@ -205,12 +205,13 @@
     <Compile Include="Models\SI\Indicateur\Sauvegarde.cs" />
     <Compile Include="Models\Socle\ADRole.cs" />
     <Compile Include="Models\Socle\Lieu.cs" />
+    <Compile Include="Models\Socle\LieuType.cs" />
     <Compile Include="Models\Socle\Personne.cs" />
     <Compile Include="Models\Socle\PlageHoraire.cs" />
     <Compile Include="Models\Socle\PosteDeTravail.cs" />
-    <Compile Include="Models\Socle\SiteZone.cs" />
     <Compile Include="Models\Socle\Zone.cs" />
     <Compile Include="Models\Socle\Site.cs" />
+    <Compile Include="Models\Socle\ZoneType.cs" />
     <Compile Include="Models\TestContext.cs" />
     <Compile Include="Models\TestContextInitializer.cs" />
     <Compile Include="Models\Test\Category.cs" />

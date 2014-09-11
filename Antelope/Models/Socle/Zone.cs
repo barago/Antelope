@@ -12,14 +12,24 @@ namespace Antelope.Models.Socle
 
         public Int32 ZoneID { get; set; }
 
-        public String Nom { get; set; }
-
-        [JsonIgnore]
-        public virtual List<FicheSecurite> FicheSecurites { get; set; }
-
         public Int32 SiteId { get; set; }
 
-        [JsonIgnore] 
+        [JsonIgnore]
         public virtual Site Site { get; set; }
+
+        public Int32 ZoneTypeId { get; set; }
+
+        [JsonIgnore]
+        public virtual ZoneType ZoneType { get; set; }
+
+        //public String Nom { get; set; }
+
+        //[JsonIgnore]
+        //public virtual List<FicheSecurite> FicheSecurites { get; set; }
+
+        //public Int32 SiteId { get; set; }
+
+        //[JsonIgnore] 
+        //public virtual Site Site { get; set; }
     }
 }

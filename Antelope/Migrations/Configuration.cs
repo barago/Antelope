@@ -77,34 +77,136 @@ namespace Antelope.Migrations
                 context.PosteDeTravails.Add(PosteDeTravail);
             };
 
-            Zone ZoneRDCRFS = new Zone()
-            {
-                Nom = "Rez-de-chaussée",
-                Site = siteRFS
-            };
+            //ZoneType ZoneRDCRFS = new ZoneType()
+            //{
+            //    Nom = "Rez-de-chaussée",
+            //    Site = siteRFS
+            //};
 
-            Zone ZoneEtage1RFS = new Zone()
-            {
-                Nom = "1er étage",
-                Site = siteRFS
-            };
+            //ZoneType ZoneEtage1RFS = new ZoneType()
+            //{
+            //    Nom = "1er étage",
+            //    Site = siteRFS
+            //};
 
-            Zone ZoneLigne1DLF = new Zone()
-            {
-                Nom = "Ligne 1",
-                Site = siteDLF
-            };
+            //ZoneType ZoneLigne1DLF = new ZoneType()
+            //{
+            //    Nom = "Ligne 1",
+            //    Site = siteDLF
+            //};
 
-            Zone ZoneLigne2DLF = new Zone()
-            {
-                Nom = "Ligne 2",
-                Site = siteDLF
-            };
+            //ZoneType ZoneLigne2DLF = new ZoneType()
+            //{
+            //    Nom = "Ligne 2",
+            //    Site = siteDLF
+            //};
 
-            context.Zones.Add(ZoneRDCRFS);
-            context.Zones.Add(ZoneEtage1RFS);
-            context.Zones.Add(ZoneLigne1DLF);
-            context.Zones.Add(ZoneLigne2DLF);
+            //context.Zones.Add(ZoneRDCRFS);
+            //context.Zones.Add(ZoneEtage1RFS);
+            //context.Zones.Add(ZoneLigne1DLF);
+            //context.Zones.Add(ZoneLigne2DLF);
+
+            List<string> AllZoneTypeNom = new List<string>() { "Soufflage", "Process", "Conditionnement", "Dépôts", "Maintenance", "Qualité", "Extérieur", "Autre" };
+
+            List<ZoneType> AllZoneType = new List<ZoneType>();
+
+            for (var i = 0; i < AllZoneTypeNom.Count; i++)
+            {
+                ZoneType ZoneType = new ZoneType()
+                {
+                    Nom = AllZoneTypeNom[i]
+                };
+
+                AllZoneType.Add(ZoneType);
+                context.ZoneTypes.Add(ZoneType);
+            }
+
+            //------------------AJOUT DES ZONES POUR CHAQUE SITE----------------------------
+
+
+            // -------------------------DLF---------------------------------------------
+            List<Zone> AllZoneDLF = new List<Zone>();
+
+            for (var i = 0; i < AllZoneType.Count; i++)
+            {
+                Zone Zone = new Zone()
+                {
+                    Site = siteDLF,
+                    ZoneType = AllZoneType[i]
+                };
+
+                AllZoneDLF.Add(Zone);
+                context.Zones.Add(Zone);
+            }
+
+            // -------------------------STA---------------------------------------------
+            List<Zone> AllZoneSTA = new List<Zone>();
+
+            for (var i = 0; i < AllZoneType.Count; i++)
+            {
+                Zone Zone = new Zone()
+                {
+                    Site = siteSTA,
+                    ZoneType = AllZoneType[i]
+                };
+
+                AllZoneSTA.Add(Zone);
+                context.Zones.Add(Zone);
+            }
+
+            // -------------------------NSG---------------------------------------------
+            List<Zone> AllZoneNSG = new List<Zone>();
+
+            for (var i = 0; i < AllZoneType.Count; i++)
+            {
+                Zone Zone = new Zone()
+                {
+                    Site = siteSTA,
+                    ZoneType = AllZoneType[i]
+                };
+
+                AllZoneNSG.Add(Zone);
+                context.Zones.Add(Zone);
+            }
+
+            // -------------------------LQN---------------------------------------------
+            List<Zone> AllZoneLQN = new List<Zone>();
+
+            for (var i = 0; i < AllZoneType.Count; i++)
+            {
+                Zone Zone = new Zone()
+                {
+                    Site = siteSTA,
+                    ZoneType = AllZoneType[i]
+                };
+
+                AllZoneLQN.Add(Zone);
+                context.Zones.Add(Zone);
+            }
+
+            //--------------------------------------------------------------
+
+            //------------------------LIEUX-----------------------------
+
+            List<string> AllLieuTypeNomDLF = new List<string>() { "DépôtB/P", "Soufflage", "Conditionnement", "Dépôts", "Maintenance", "Qualité", "Extérieur", "Autre" };
+
+            List<ZoneType> AllZoneType = new List<ZoneType>();
+
+            for (var i = 0; i < AllZoneTypeNom.Count; i++)
+            {
+                ZoneType ZoneType = new ZoneType()
+                {
+                    Nom = AllZoneTypeNom[i]
+                };
+
+                AllZoneType.Add(ZoneType);
+                context.ZoneTypes.Add(ZoneType);
+            }
+
+
+
+
+
 
             Lieu LieuRefectoireRFS = new Lieu()
             {
