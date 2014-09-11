@@ -104,105 +104,532 @@ namespace Antelope.Migrations
             //context.Zones.Add(ZoneRDCRFS);
             //context.Zones.Add(ZoneEtage1RFS);
             //context.Zones.Add(ZoneLigne1DLF);
-            //context.Zones.Add(ZoneLigne2DLF);
+            //context.Zones.Add(ZoneLigne2DLF
 
-            List<string> AllZoneTypeNom = new List<string>() { "Soufflage", "Process", "Conditionnement", "Dépôts", "Maintenance", "Qualité", "Extérieur", "Autre" };
 
-            List<ZoneType> AllZoneType = new List<ZoneType>();
+            ZoneType ZoneType1 = new ZoneType() { Nom = "Tout le site" };
+            ZoneType ZoneType2 = new ZoneType() { Nom = "Soufflage" };
+            ZoneType ZoneType3 = new ZoneType() { Nom = "Process" };
+            ZoneType ZoneType4 = new ZoneType() { Nom = "Conditionnement" };
+            ZoneType ZoneType5 = new ZoneType() { Nom = "Dépôts" };
+            ZoneType ZoneType6 = new ZoneType() { Nom = "Maintenance" };
+            ZoneType ZoneType7 = new ZoneType() { Nom = "Qualité" };
+            ZoneType ZoneType8 = new ZoneType() { Nom = "Extérieur" };
+            ZoneType ZoneType9 = new ZoneType() { Nom = "Autre" };
 
-            for (var i = 0; i < AllZoneTypeNom.Count; i++)
-            {
-                ZoneType ZoneType = new ZoneType()
-                {
-                    Nom = AllZoneTypeNom[i]
-                };
+            context.ZoneTypes.Add(ZoneType1);
+            context.ZoneTypes.Add(ZoneType2);
+            context.ZoneTypes.Add(ZoneType3);
+            context.ZoneTypes.Add(ZoneType4);
+            context.ZoneTypes.Add(ZoneType5);
+            context.ZoneTypes.Add(ZoneType6);
+            context.ZoneTypes.Add(ZoneType7);
+            context.ZoneTypes.Add(ZoneType8);
+            context.ZoneTypes.Add(ZoneType9);
 
-                AllZoneType.Add(ZoneType);
-                context.ZoneTypes.Add(ZoneType);
-            }
 
             //------------------AJOUT DES ZONES POUR CHAQUE SITE----------------------------
 
+            // -------------------------RFS---------------------------------------------
+
+
 
             // -------------------------DLF---------------------------------------------
-            List<Zone> AllZoneDLF = new List<Zone>();
 
-            for (var i = 0; i < AllZoneType.Count; i++)
-            {
-                Zone Zone = new Zone()
-                {
-                    Site = siteDLF,
-                    ZoneType = AllZoneType[i]
-                };
 
-                AllZoneDLF.Add(Zone);
-                context.Zones.Add(Zone);
-            }
+            Zone ZoneDLF1 = new Zone() { Site = siteDLF, ZoneType = ZoneType1 };
+            Zone ZoneDLF2 = new Zone() { Site = siteDLF, ZoneType = ZoneType2 };
+            Zone ZoneDLF3 = new Zone() { Site = siteDLF, ZoneType = ZoneType3 };
+            Zone ZoneDLF4 = new Zone() { Site = siteDLF, ZoneType = ZoneType4 };
+            Zone ZoneDLF5 = new Zone() { Site = siteDLF, ZoneType = ZoneType5 };
+            Zone ZoneDLF6 = new Zone() { Site = siteDLF, ZoneType = ZoneType6 };
+            Zone ZoneDLF7 = new Zone() { Site = siteDLF, ZoneType = ZoneType7 };
+            Zone ZoneDLF8 = new Zone() { Site = siteDLF, ZoneType = ZoneType8 };
+            Zone ZoneDLF9 = new Zone() { Site = siteDLF, ZoneType = ZoneType9 };
+
+            context.Zones.Add(ZoneDLF1);
+            context.Zones.Add(ZoneDLF2);
+            context.Zones.Add(ZoneDLF3);
+            context.Zones.Add(ZoneDLF4);
+            context.Zones.Add(ZoneDLF5);
+            context.Zones.Add(ZoneDLF6);
+            context.Zones.Add(ZoneDLF7);
+            context.Zones.Add(ZoneDLF8);
+            context.Zones.Add(ZoneDLF9);
 
             // -------------------------STA---------------------------------------------
-            List<Zone> AllZoneSTA = new List<Zone>();
 
-            for (var i = 0; i < AllZoneType.Count; i++)
-            {
-                Zone Zone = new Zone()
-                {
-                    Site = siteSTA,
-                    ZoneType = AllZoneType[i]
-                };
+            Zone ZoneSTA1 = new Zone() { Site = siteSTA, ZoneType = ZoneType1 };
+            Zone ZoneSTA2 = new Zone() { Site = siteSTA, ZoneType = ZoneType2 };
+            Zone ZoneSTA3 = new Zone() { Site = siteSTA, ZoneType = ZoneType3 };
+            Zone ZoneSTA4 = new Zone() { Site = siteSTA, ZoneType = ZoneType4 };
+            Zone ZoneSTA5 = new Zone() { Site = siteSTA, ZoneType = ZoneType5 };
+            Zone ZoneSTA6 = new Zone() { Site = siteSTA, ZoneType = ZoneType6 };
+            Zone ZoneSTA7 = new Zone() { Site = siteSTA, ZoneType = ZoneType7 };
+            Zone ZoneSTA8 = new Zone() { Site = siteSTA, ZoneType = ZoneType8 };
+            Zone ZoneSTA9 = new Zone() { Site = siteSTA, ZoneType = ZoneType9 };
 
-                AllZoneSTA.Add(Zone);
-                context.Zones.Add(Zone);
-            }
+            context.Zones.Add(ZoneSTA1);
+            context.Zones.Add(ZoneSTA2);
+            context.Zones.Add(ZoneSTA3);
+            context.Zones.Add(ZoneSTA4);
+            context.Zones.Add(ZoneSTA5);
+            context.Zones.Add(ZoneSTA6);
+            context.Zones.Add(ZoneSTA7);
+            context.Zones.Add(ZoneSTA8);
+            context.Zones.Add(ZoneSTA9);
 
             // -------------------------NSG---------------------------------------------
-            List<Zone> AllZoneNSG = new List<Zone>();
+            Zone ZoneNSG1 = new Zone() { Site = siteNSG, ZoneType = ZoneType1 };
+            Zone ZoneNSG2 = new Zone() { Site = siteNSG, ZoneType = ZoneType2 };
+            Zone ZoneNSG3 = new Zone() { Site = siteNSG, ZoneType = ZoneType3 };
+            Zone ZoneNSG4 = new Zone() { Site = siteNSG, ZoneType = ZoneType4 };
+            Zone ZoneNSG5 = new Zone() { Site = siteNSG, ZoneType = ZoneType5 };
+            Zone ZoneNSG6 = new Zone() { Site = siteNSG, ZoneType = ZoneType6 };
+            Zone ZoneNSG7 = new Zone() { Site = siteNSG, ZoneType = ZoneType7 };
+            Zone ZoneNSG8 = new Zone() { Site = siteNSG, ZoneType = ZoneType8 };
+            Zone ZoneNSG9 = new Zone() { Site = siteNSG, ZoneType = ZoneType9 };
 
-            for (var i = 0; i < AllZoneType.Count; i++)
-            {
-                Zone Zone = new Zone()
-                {
-                    Site = siteSTA,
-                    ZoneType = AllZoneType[i]
-                };
-
-                AllZoneNSG.Add(Zone);
-                context.Zones.Add(Zone);
-            }
+            context.Zones.Add(ZoneNSG1);
+            context.Zones.Add(ZoneNSG2);
+            context.Zones.Add(ZoneNSG3);
+            context.Zones.Add(ZoneNSG4);
+            context.Zones.Add(ZoneNSG5);
+            context.Zones.Add(ZoneNSG6);
+            context.Zones.Add(ZoneNSG7);
+            context.Zones.Add(ZoneNSG8);
+            context.Zones.Add(ZoneNSG9);
 
             // -------------------------LQN---------------------------------------------
-            List<Zone> AllZoneLQN = new List<Zone>();
+            Zone ZoneLQN1 = new Zone() { Site = siteLQN, ZoneType = ZoneType1 };
+            Zone ZoneLQN2 = new Zone() { Site = siteLQN, ZoneType = ZoneType2 };
+            Zone ZoneLQN3 = new Zone() { Site = siteLQN, ZoneType = ZoneType3 };
+            Zone ZoneLQN4 = new Zone() { Site = siteLQN, ZoneType = ZoneType4 };
+            Zone ZoneLQN5 = new Zone() { Site = siteLQN, ZoneType = ZoneType5 };
+            Zone ZoneLQN6 = new Zone() { Site = siteLQN, ZoneType = ZoneType6 };
+            Zone ZoneLQN7 = new Zone() { Site = siteLQN, ZoneType = ZoneType7 };
+            Zone ZoneLQN8 = new Zone() { Site = siteLQN, ZoneType = ZoneType8 };
+            Zone ZoneLQN9 = new Zone() { Site = siteLQN, ZoneType = ZoneType9 };
 
-            for (var i = 0; i < AllZoneType.Count; i++)
-            {
-                Zone Zone = new Zone()
-                {
-                    Site = siteSTA,
-                    ZoneType = AllZoneType[i]
-                };
-
-                AllZoneLQN.Add(Zone);
-                context.Zones.Add(Zone);
-            }
+            context.Zones.Add(ZoneLQN1);
+            context.Zones.Add(ZoneLQN2);
+            context.Zones.Add(ZoneLQN3);
+            context.Zones.Add(ZoneLQN4);
+            context.Zones.Add(ZoneLQN5);
+            context.Zones.Add(ZoneLQN6);
+            context.Zones.Add(ZoneLQN7);
+            context.Zones.Add(ZoneLQN8);
+            context.Zones.Add(ZoneLQN9);
 
             //--------------------------------------------------------------
 
             //------------------------LIEUX-----------------------------
 
-            List<string> AllLieuTypeNomDLF = new List<string>() { "DépôtB/P", "Soufflage", "Conditionnement", "Dépôts", "Maintenance", "Qualité", "Extérieur", "Autre" };
 
-            List<ZoneType> AllZoneType = new List<ZoneType>();
+            LieuType LieuType1 = new LieuType() { Nom = "Toute la zone" };
+            LieuType LieuType2 = new LieuType() { Nom = "DépôtB/P" };
+            LieuType LieuType3 = new LieuType() { Nom = "DépôtMP" };
+            LieuType LieuType4 = new LieuType() { Nom = "Préparation / Pré-pesée" };
+            LieuType LieuType5 = new LieuType() { Nom = "Zone NEP / Dépotage" };
+            LieuType LieuType6 = new LieuType() { Nom = "SB 1/2" };
+            LieuType LieuType7 = new LieuType() { Nom = "R 3" };
+            LieuType LieuType8 = new LieuType() { Nom = "R 4" };
+            LieuType LieuType9 = new LieuType() { Nom = "Etiqueteuse" };
+            LieuType LieuType10 = new LieuType() { Nom = "Fardeleuse" };
+            LieuType LieuType11 = new LieuType() { Nom = "BdL" };
+            LieuType LieuType12 = new LieuType() { Nom = "AGV" };
+            LieuType LieuType13 = new LieuType() { Nom = "Dépôt PF" };
+            LieuType LieuType14 = new LieuType() { Nom = "Energies" };
+            LieuType LieuType15 = new LieuType() { Nom = "Travaux" };
+            LieuType LieuType16 = new LieuType() { Nom = "Labo microbiologie" };
+            LieuType LieuType17 = new LieuType() { Nom = "Zone déchets" };
+            LieuType LieuType18 = new LieuType() { Nom = "Forage" };
+            LieuType LieuType19 = new LieuType() { Nom = "Epandage" };
+            LieuType LieuType20 = new LieuType() { Nom = "Bât. Adm" };
+            //LieuType LieuType21 = new LieuType() { Nom = "Global usine" };
+            LieuType LieuType22 = new LieuType() { Nom = "Autre" };
 
-            for (var i = 0; i < AllZoneTypeNom.Count; i++)
-            {
-                ZoneType ZoneType = new ZoneType()
-                {
-                    Nom = AllZoneTypeNom[i]
-                };
+            context.LieuTypes.Add(LieuType1);
+            context.LieuTypes.Add(LieuType2);
+            context.LieuTypes.Add(LieuType3);
+            context.LieuTypes.Add(LieuType4);
+            context.LieuTypes.Add(LieuType5);
+            context.LieuTypes.Add(LieuType6);
+            context.LieuTypes.Add(LieuType7);
+            context.LieuTypes.Add(LieuType8);
+            context.LieuTypes.Add(LieuType9);
+            context.LieuTypes.Add(LieuType10);
+            context.LieuTypes.Add(LieuType11);
+            context.LieuTypes.Add(LieuType12);
+            context.LieuTypes.Add(LieuType13);
+            context.LieuTypes.Add(LieuType14);
+            context.LieuTypes.Add(LieuType15);
+            context.LieuTypes.Add(LieuType16);
+            context.LieuTypes.Add(LieuType17);
+            context.LieuTypes.Add(LieuType18);
+            context.LieuTypes.Add(LieuType19);
+            context.LieuTypes.Add(LieuType20);
+            context.LieuTypes.Add(LieuType22);
 
-                AllZoneType.Add(ZoneType);
-                context.ZoneTypes.Add(ZoneType);
-            }
 
+            //------------------AJOUT DES LIEUX POUR CHAQUE ZONE----------------------------
+
+            // -------------------------RFS---------------------------------------------
+
+
+
+            // -------------------------DLF---------------------------------------------
+
+            Lieu LieuDLFZone2_1 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType1 };
+            Lieu LieuDLFZone2_2 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone3_0 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType1 };
+            Lieu LieuDLFZone3_1 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType4 };
+            Lieu LieuDLFZone3_2 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType5 };
+            Lieu LieuDLFZone3_3 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType6 };
+            Lieu LieuDLFZone3_4 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType7 };
+            Lieu LieuDLFZone3_5 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType8 };
+            Lieu LieuDLFZone3_6 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone4_0 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType1 };
+            Lieu LieuDLFZone4_1 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType9 };
+            Lieu LieuDLFZone4_2 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType10 };
+            Lieu LieuDLFZone4_3 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType11 };
+            Lieu LieuDLFZone4_4 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType12 };
+            Lieu LieuDLFZone4_5 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone5_0 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType1 };
+            Lieu LieuDLFZone5_1 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType2 };
+            Lieu LieuDLFZone5_2 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType3 };
+            Lieu LieuDLFZone5_3 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType13 };
+            Lieu LieuDLFZone5_4 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone6_0 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType1 };
+            Lieu LieuDLFZone6_1 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType14 };
+            Lieu LieuDLFZone6_2 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType15 };
+            Lieu LieuDLFZone6_3 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType18 };
+            Lieu LieuDLFZone6_4 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone7_0 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType1 };
+            Lieu LieuDLFZone7_1 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType16 };
+            Lieu LieuDLFZone7_2 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone8_0 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType1 };
+            Lieu LieuDLFZone8_1 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType17 };
+            Lieu LieuDLFZone8_2 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType19 };
+            Lieu LieuDLFZone8_3 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType22 };
+
+            Lieu LieuDLFZone9_0 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType1 };
+            Lieu LieuDLFZone9_1 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType20 };
+            Lieu LieuDLFZone9_2 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType22 };
+
+            context.Lieux.Add(LieuDLFZone2_1);
+            context.Lieux.Add(LieuDLFZone2_2);
+
+            context.Lieux.Add(LieuDLFZone3_0);
+            context.Lieux.Add(LieuDLFZone3_1);
+            context.Lieux.Add(LieuDLFZone3_2);
+            context.Lieux.Add(LieuDLFZone3_3);
+            context.Lieux.Add(LieuDLFZone3_4);
+            context.Lieux.Add(LieuDLFZone3_5);
+            context.Lieux.Add(LieuDLFZone3_6);
+
+            context.Lieux.Add(LieuDLFZone4_0);
+            context.Lieux.Add(LieuDLFZone4_1);
+            context.Lieux.Add(LieuDLFZone4_2);
+            context.Lieux.Add(LieuDLFZone4_3);
+            context.Lieux.Add(LieuDLFZone4_4);
+            context.Lieux.Add(LieuDLFZone4_5);
+
+            context.Lieux.Add(LieuDLFZone5_0);
+            context.Lieux.Add(LieuDLFZone5_1);
+            context.Lieux.Add(LieuDLFZone5_2);
+            context.Lieux.Add(LieuDLFZone5_3);
+            context.Lieux.Add(LieuDLFZone5_4);
+
+            context.Lieux.Add(LieuDLFZone6_0);
+            context.Lieux.Add(LieuDLFZone6_1);
+            context.Lieux.Add(LieuDLFZone6_2);
+            context.Lieux.Add(LieuDLFZone6_3);
+            context.Lieux.Add(LieuDLFZone6_4);
+
+            context.Lieux.Add(LieuDLFZone7_0);
+            context.Lieux.Add(LieuDLFZone7_1);
+            context.Lieux.Add(LieuDLFZone7_2);
+
+            context.Lieux.Add(LieuDLFZone8_0);
+            context.Lieux.Add(LieuDLFZone8_1);
+            context.Lieux.Add(LieuDLFZone8_2);
+            context.Lieux.Add(LieuDLFZone8_3);
+
+            context.Lieux.Add(LieuDLFZone9_0);
+            context.Lieux.Add(LieuDLFZone9_1);
+            context.Lieux.Add(LieuDLFZone9_2);
+
+
+            // -------------------------STA---------------------------------------------
+
+            Lieu LieuSTAZone2_1 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType1 };
+            Lieu LieuSTAZone2_2 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone3_0 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType1 };
+            Lieu LieuSTAZone3_1 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType4 };
+            Lieu LieuSTAZone3_2 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType5 };
+            Lieu LieuSTAZone3_3 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType6 };
+            Lieu LieuSTAZone3_4 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType7 };
+            Lieu LieuSTAZone3_5 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType8 };
+            Lieu LieuSTAZone3_6 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone4_0 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType1 };
+            Lieu LieuSTAZone4_1 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType9 };
+            Lieu LieuSTAZone4_2 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType10 };
+            Lieu LieuSTAZone4_3 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType11 };
+            Lieu LieuSTAZone4_4 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType12 };
+            Lieu LieuSTAZone4_5 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone5_0 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType1 };
+            Lieu LieuSTAZone5_1 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType2 };
+            Lieu LieuSTAZone5_2 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType3 };
+            Lieu LieuSTAZone5_3 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType13 };
+            Lieu LieuSTAZone5_4 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone6_0 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType1 };
+            Lieu LieuSTAZone6_1 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType14 };
+            Lieu LieuSTAZone6_2 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType15 };
+            Lieu LieuSTAZone6_3 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType18 };
+            Lieu LieuSTAZone6_4 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone7_0 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType1 };
+            Lieu LieuSTAZone7_1 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType16 };
+            Lieu LieuSTAZone7_2 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone8_0 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType1 };
+            Lieu LieuSTAZone8_1 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType17 };
+            Lieu LieuSTAZone8_2 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType19 };
+            Lieu LieuSTAZone8_3 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType22 };
+
+            Lieu LieuSTAZone9_0 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType1 };
+            Lieu LieuSTAZone9_1 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType20 };
+            Lieu LieuSTAZone9_2 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType22 };
+
+            context.Lieux.Add(LieuSTAZone2_1);
+            context.Lieux.Add(LieuSTAZone2_2);
+
+            context.Lieux.Add(LieuSTAZone3_0);
+            context.Lieux.Add(LieuSTAZone3_1);
+            context.Lieux.Add(LieuSTAZone3_2);
+            context.Lieux.Add(LieuSTAZone3_3);
+            context.Lieux.Add(LieuSTAZone3_4);
+            context.Lieux.Add(LieuSTAZone3_5);
+            context.Lieux.Add(LieuSTAZone3_6);
+
+            context.Lieux.Add(LieuSTAZone4_0);
+            context.Lieux.Add(LieuSTAZone4_1);
+            context.Lieux.Add(LieuSTAZone4_2);
+            context.Lieux.Add(LieuSTAZone4_3);
+            context.Lieux.Add(LieuSTAZone4_4);
+            context.Lieux.Add(LieuSTAZone4_5);
+
+            context.Lieux.Add(LieuSTAZone5_0);
+            context.Lieux.Add(LieuSTAZone5_1);
+            context.Lieux.Add(LieuSTAZone5_2);
+            context.Lieux.Add(LieuSTAZone5_3);
+            context.Lieux.Add(LieuSTAZone5_4);
+
+            context.Lieux.Add(LieuSTAZone6_0);
+            context.Lieux.Add(LieuSTAZone6_1);
+            context.Lieux.Add(LieuSTAZone6_2);
+            context.Lieux.Add(LieuSTAZone6_3);
+            context.Lieux.Add(LieuSTAZone6_4);
+
+            context.Lieux.Add(LieuSTAZone7_0);
+            context.Lieux.Add(LieuSTAZone7_1);
+            context.Lieux.Add(LieuSTAZone7_2);
+
+            context.Lieux.Add(LieuSTAZone8_0);
+            context.Lieux.Add(LieuSTAZone8_1);
+            context.Lieux.Add(LieuSTAZone8_2);
+            context.Lieux.Add(LieuSTAZone8_3);
+
+            context.Lieux.Add(LieuSTAZone9_0);
+            context.Lieux.Add(LieuSTAZone9_1);
+            context.Lieux.Add(LieuSTAZone9_2);
+
+            // -------------------------NSG---------------------------------------------
+
+            Lieu LieuNSGZone2_1 = new Lieu() { Zone = ZoneNSG2, LieuType = LieuType1 };
+            Lieu LieuNSGZone2_2 = new Lieu() { Zone = ZoneNSG2, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone3_0 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType1 };
+            Lieu LieuNSGZone3_1 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType4 };
+            Lieu LieuNSGZone3_2 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType5 };
+            Lieu LieuNSGZone3_3 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType6 };
+            Lieu LieuNSGZone3_4 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType7 };
+            Lieu LieuNSGZone3_5 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType8 };
+            Lieu LieuNSGZone3_6 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone4_0 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType1 };
+            Lieu LieuNSGZone4_1 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType9 };
+            Lieu LieuNSGZone4_2 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType10 };
+            Lieu LieuNSGZone4_3 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType11 };
+            Lieu LieuNSGZone4_4 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType12 };
+            Lieu LieuNSGZone4_5 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone5_0 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType1 };
+            Lieu LieuNSGZone5_1 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType2 };
+            Lieu LieuNSGZone5_2 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType3 };
+            Lieu LieuNSGZone5_3 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType13 };
+            Lieu LieuNSGZone5_4 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone6_0 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType1 };
+            Lieu LieuNSGZone6_1 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType14 };
+            Lieu LieuNSGZone6_2 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType15 };
+            Lieu LieuNSGZone6_3 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType18 };
+            Lieu LieuNSGZone6_4 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone7_0 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType1 };
+            Lieu LieuNSGZone7_1 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType16 };
+            Lieu LieuNSGZone7_2 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone8_0 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType1 };
+            Lieu LieuNSGZone8_1 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType17 };
+            Lieu LieuNSGZone8_2 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType19 };
+            Lieu LieuNSGZone8_3 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType22 };
+
+            Lieu LieuNSGZone9_0 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType1 };
+            Lieu LieuNSGZone9_1 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType20 };
+            Lieu LieuNSGZone9_2 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType22 };
+
+            context.Lieux.Add(LieuNSGZone2_1);
+            context.Lieux.Add(LieuNSGZone2_2);
+
+            context.Lieux.Add(LieuNSGZone3_0);
+            context.Lieux.Add(LieuNSGZone3_1);
+            context.Lieux.Add(LieuNSGZone3_2);
+            context.Lieux.Add(LieuNSGZone3_3);
+            context.Lieux.Add(LieuNSGZone3_4);
+            context.Lieux.Add(LieuNSGZone3_5);
+            context.Lieux.Add(LieuNSGZone3_6);
+
+            context.Lieux.Add(LieuNSGZone4_0);
+            context.Lieux.Add(LieuNSGZone4_1);
+            context.Lieux.Add(LieuNSGZone4_2);
+            context.Lieux.Add(LieuNSGZone4_3);
+            context.Lieux.Add(LieuNSGZone4_4);
+            context.Lieux.Add(LieuNSGZone4_5);
+
+            context.Lieux.Add(LieuNSGZone5_0);
+            context.Lieux.Add(LieuNSGZone5_1);
+            context.Lieux.Add(LieuNSGZone5_2);
+            context.Lieux.Add(LieuNSGZone5_3);
+            context.Lieux.Add(LieuNSGZone5_4);
+
+            context.Lieux.Add(LieuNSGZone6_0);
+            context.Lieux.Add(LieuNSGZone6_1);
+            context.Lieux.Add(LieuNSGZone6_2);
+            context.Lieux.Add(LieuNSGZone6_3);
+            context.Lieux.Add(LieuNSGZone6_4);
+
+            context.Lieux.Add(LieuNSGZone7_0);
+            context.Lieux.Add(LieuNSGZone7_1);
+            context.Lieux.Add(LieuNSGZone7_2);
+
+            context.Lieux.Add(LieuNSGZone8_0);
+            context.Lieux.Add(LieuNSGZone8_1);
+            context.Lieux.Add(LieuNSGZone8_2);
+            context.Lieux.Add(LieuNSGZone8_3);
+
+            context.Lieux.Add(LieuNSGZone9_0);
+            context.Lieux.Add(LieuNSGZone9_1);
+            context.Lieux.Add(LieuNSGZone9_2);
+
+            // -------------------------LQN---------------------------------------------
+
+            Lieu LieuLQNZone2_1 = new Lieu() { Zone = ZoneLQN2, LieuType = LieuType1 };
+            Lieu LieuLQNZone2_2 = new Lieu() { Zone = ZoneLQN2, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone3_0 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType1 };
+            Lieu LieuLQNZone3_1 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType4 };
+            Lieu LieuLQNZone3_2 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType5 };
+            Lieu LieuLQNZone3_3 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType6 };
+            Lieu LieuLQNZone3_4 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType7 };
+            Lieu LieuLQNZone3_5 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType8 };
+            Lieu LieuLQNZone3_6 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone4_0 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType1 };
+            Lieu LieuLQNZone4_1 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType9 };
+            Lieu LieuLQNZone4_2 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType10 };
+            Lieu LieuLQNZone4_3 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType11 };
+            Lieu LieuLQNZone4_4 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType12 };
+            Lieu LieuLQNZone4_5 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone5_0 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType1 };
+            Lieu LieuLQNZone5_1 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType2 };
+            Lieu LieuLQNZone5_2 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType3 };
+            Lieu LieuLQNZone5_3 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType13 };
+            Lieu LieuLQNZone5_4 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone6_0 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType1 };
+            Lieu LieuLQNZone6_1 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType14 };
+            Lieu LieuLQNZone6_2 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType15 };
+            Lieu LieuLQNZone6_3 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType18 };
+            Lieu LieuLQNZone6_4 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone7_0 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType1 };
+            Lieu LieuLQNZone7_1 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType16 };
+            Lieu LieuLQNZone7_2 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone8_0 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType1 };
+            Lieu LieuLQNZone8_1 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType17 };
+            Lieu LieuLQNZone8_2 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType19 };
+            Lieu LieuLQNZone8_3 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType22 };
+
+            Lieu LieuLQNZone9_0 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType1 };
+            Lieu LieuLQNZone9_1 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType20 };
+            Lieu LieuLQNZone9_2 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType22 };
+
+            context.Lieux.Add(LieuLQNZone2_1);
+            context.Lieux.Add(LieuLQNZone2_2);
+
+            context.Lieux.Add(LieuLQNZone3_0);
+            context.Lieux.Add(LieuLQNZone3_1);
+            context.Lieux.Add(LieuLQNZone3_2);
+            context.Lieux.Add(LieuLQNZone3_3);
+            context.Lieux.Add(LieuLQNZone3_4);
+            context.Lieux.Add(LieuLQNZone3_5);
+            context.Lieux.Add(LieuLQNZone3_6);
+
+            context.Lieux.Add(LieuLQNZone4_0);
+            context.Lieux.Add(LieuLQNZone4_1);
+            context.Lieux.Add(LieuLQNZone4_2);
+            context.Lieux.Add(LieuLQNZone4_3);
+            context.Lieux.Add(LieuLQNZone4_4);
+            context.Lieux.Add(LieuLQNZone4_5);
+
+            context.Lieux.Add(LieuLQNZone5_0);
+            context.Lieux.Add(LieuLQNZone5_1);
+            context.Lieux.Add(LieuLQNZone5_2);
+            context.Lieux.Add(LieuLQNZone5_3);
+            context.Lieux.Add(LieuLQNZone5_4);
+
+            context.Lieux.Add(LieuLQNZone6_0);
+            context.Lieux.Add(LieuLQNZone6_1);
+            context.Lieux.Add(LieuLQNZone6_2);
+            context.Lieux.Add(LieuLQNZone6_3);
+            context.Lieux.Add(LieuLQNZone6_4);
+
+            context.Lieux.Add(LieuLQNZone7_0);
+            context.Lieux.Add(LieuLQNZone7_1);
+            context.Lieux.Add(LieuLQNZone7_2);
+
+            context.Lieux.Add(LieuLQNZone8_0);
+            context.Lieux.Add(LieuLQNZone8_1);
+            context.Lieux.Add(LieuLQNZone8_2);
+            context.Lieux.Add(LieuLQNZone8_3);
+
+            context.Lieux.Add(LieuLQNZone9_0);
+            context.Lieux.Add(LieuLQNZone9_1);
+            context.Lieux.Add(LieuLQNZone9_2);
 
 
 

@@ -35,5 +35,6 @@ namespace Antelope.Models
         public DbSet<ZoneType> ZoneTypes { get; set; }
         public DbSet<LieuType> LieuTypes { get; set; }
 
+
     }
 }
