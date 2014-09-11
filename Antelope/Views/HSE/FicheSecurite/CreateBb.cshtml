@@ -33,7 +33,9 @@
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/CorpsHumainZoneModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/DangerModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script> 
-<script type="text/javascript" src="/Scripts/Application/QSE/CauseModel.js"></script>  
+<script type="text/javascript" src="/Scripts/Application/QSE/CauseModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/RisqueModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/RisqueTypeModel.js"></script>  
  
 
 
@@ -404,11 +406,38 @@
                                     <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Risque">
+                                            <% risqueTypeCollection.each( function(risqueType){ %>
+                                            <optgroup label="<%= risqueType.get('Nom') %>">
+                                                @*La fonction Where renvoie un array et non pas une collection, on utilise donc _.each et non pas each de Backbone*@
+                                                <% _.each(risqueCollection.where({'RisqueTypeId': risqueType.get('RisqueTypeId')}), function(risque){ %>
+                                                <option value="<%= risque.get('RisqueId') %>"
+                                                    <% if (ficheSecuriteModel.get('RisqueId') == risque.get('RisqueId')){ %> selected <% } %>
+                                                >
+                                                    <%= risque.get('Nom') %>
+                                                <% }); %>
+                                            </optgroup>
+                                            <% }); %>
+
+
+                                                @*<% risqueTypeCollection.each( function(danger){ %>
+                                                <option value="<%= risque.get('RisqueId') %>"
+                                                <% if (ficheSecuriteModel.get('RisqueId') == risque.get('RisqueId')){ %> selected <% } %>
+                                                >
+                                                <%= risque.get('Nom') %>
+                                            </option>
+                                                <% }); %>*@
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                    <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control input-xs" id="Risque">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="form-group">
                                     <label for="Temoins" class="col-sm-5 label-xs">Témoins&nbsp;:</label>
                                     <div class="col-sm-7">
@@ -914,12 +943,19 @@
         var FicheSecuriteId = "@ViewBag.Id";
 
         function dateFormatJS(date) {
-            console.log(date);
             var dateFormated = '';
             if(date != null){
                 dateFormated = date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
             }
             return dateFormated;
+        };
+
+        function heureFormatJS(date) {
+            var heureFormated = '';
+            if (date != null) {
+                heureFormated = date.substring(11, 16);
+            }
+            return heureFormated;
         };
 
         var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
@@ -931,6 +967,10 @@
         var ficheSecuriteModel = new FicheSecuriteModel(ficheSecuriteViewModel.get('FicheSecurite'));
         ficheSecuriteModel.set({ id: FicheSecuriteId });
 
+        ficheSecuriteModel.set({'DateEvenementJavascript': dateFormatJS(ficheSecuriteModel.get('DateEvenement'))});
+        ficheSecuriteModel.set({'HeureEvenementJavascript': heureFormatJS(ficheSecuriteModel.get('DateEvenement')) });
+        console.log(ficheSecuriteModel);
+
         ficheSecuriteViewModel.set({ 'ficheSecuriteModel': ficheSecuriteModel });
         ficheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(ficheSecuriteViewModel.get('AllSite')) });
         ficheSecuriteViewModel.set({ 'zoneCollection': new ZoneCollection(ficheSecuriteViewModel.get('AllZone')) });
@@ -940,6 +980,7 @@
         ficheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(ficheSecuriteViewModel.get('AllDanger')) });
         ficheSecuriteViewModel.set({ 'corpsHumainZoneCollection': new CorpsHumainZoneCollection(ficheSecuriteViewModel.get('AllCorpsHumainZone')) });
         ficheSecuriteViewModel.set({ 'risqueCollection': new RisqueCollection(ficheSecuriteViewModel.get('AllRisque')) });
+        ficheSecuriteViewModel.set({ 'risqueTypeCollection': new RisqueTypeCollection(ficheSecuriteViewModel.get('AllRisqueType')) });
         // /!\ ATTENTION : Nous appelons le MODEL : "PersonneConcernee" (et non "PersonneConcerneeModel", ceci pour garder la symétrie avec le Backoffice MVC C# qui va automatiquement
         // récupérer la PersonneConcernee dans la FicheSecurite ainsi que ses changements -- A voir si du coup on fait pareil pour tous les Models ... ??? (Quid du mélange Model/Collection/Route etc ...)
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })

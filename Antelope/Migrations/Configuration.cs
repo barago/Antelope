@@ -352,7 +352,8 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire1,
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1]
                 
             };
 
@@ -376,7 +377,8 @@ namespace Antelope.Migrations
                 Danger = AllDanger[2],
                 PlageHoraire = plagehoraire2,
                 CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2]
             };
 
             FicheSecurite FicheSecurite3 = new FicheSecurite()
@@ -400,7 +402,8 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire3,
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[3],
-                PersonneConcernee = PersonneConcernee3
+                PersonneConcernee = PersonneConcernee3,
+                Risque = AllRisque[3]
             };
 
             FicheSecurite FicheSecurite4 = new FicheSecurite()
@@ -423,7 +426,8 @@ namespace Antelope.Migrations
                 Danger = AllDanger[3],
                 PlageHoraire = plagehoraire4,
                 CorpsHumainZone = AllCorpsHumainZone[4],
-                PersonneConcernee = PersonneConcernee4
+                PersonneConcernee = PersonneConcernee4,
+                Risque = AllRisque[4]
             };
 
 

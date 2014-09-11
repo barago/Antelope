@@ -183,9 +183,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409102002141_100920147.cs" />
-    <Compile Include="Migrations\201409102002141_100920147.Designer.cs">
-      <DependentUpon>201409102002141_100920147.cs</DependentUpon>
+    <Compile Include="Migrations\201409110712450_11092014.cs" />
+    <Compile Include="Migrations\201409110712450_11092014.Designer.cs">
+      <DependentUpon>201409110712450_11092014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -208,6 +208,7 @@
     <Compile Include="Models\Socle\Personne.cs" />
     <Compile Include="Models\Socle\PlageHoraire.cs" />
     <Compile Include="Models\Socle\PosteDeTravail.cs" />
+    <Compile Include="Models\Socle\SiteZone.cs" />
     <Compile Include="Models\Socle\Zone.cs" />
     <Compile Include="Models\Socle\Site.cs" />
     <Compile Include="Models\TestContext.cs" />
@@ -324,6 +325,7 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\PlageHoraireModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\ResponsableModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueModel.js" />
+    <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
     <Content Include="Scripts\Application\Socle\LieuModel.js" />
@@ -493,8 +495,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409102002141_100920147.resx">
-      <DependentUpon>201409102002141_100920147.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409110712450_11092014.resx">
+      <DependentUpon>201409110712450_11092014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

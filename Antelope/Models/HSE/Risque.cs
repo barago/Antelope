@@ -17,9 +17,9 @@ namespace Antelope.Models.HSE
         public string Nom { get; set; }
 
         [DisplayName("Type de risque")]
-        public Int32? RisqueId { get; set; }
+        public Int32? RisqueTypeId { get; set; }
 
-        [ForeignKey("RisqueId")]
+        [ForeignKey("RisqueTypeId")]
         public virtual RisqueType RisqueType { get; set; }
 
         [JsonIgnore]
