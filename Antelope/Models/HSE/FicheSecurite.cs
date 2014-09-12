@@ -25,8 +25,15 @@ namespace Antelope.Models.HSE
         [DisplayName("Âge")]
         public String Age { get; set; }
 
-        [DisplayName("Poste")]
-        public String PosteDeTravail {get; set;}
+        //[DisplayName("Poste")]
+        //public String PosteDeTravail {get; set;}
+
+        [DisplayName("Poste de travail")]
+        public Int32? PosteDeTravailId { get; set; }
+
+        [JsonIgnore]
+        public virtual PosteDeTravail PosteDeTravail { get; set; }
+
         [DisplayName("Service")]
         public String Service { get; set; }
 

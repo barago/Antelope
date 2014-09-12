@@ -30,6 +30,7 @@ namespace Antelope.Models
         public DbSet<CauseQSE> Causes { get; set; }
         public DbSet<ActionQSE> Actions { get; set; }
         public DbSet<PosteDeTravail> PosteDeTravails { get; set; }
+        public DbSet<PosteDeTravailType> PosteDeTravailTypes { get; set; }
         public DbSet<RisqueType> RisqueTypes { get; set; }
         public DbSet<Risque> Risques { get; set; }
         public DbSet<ZoneType> ZoneTypes { get; set; }

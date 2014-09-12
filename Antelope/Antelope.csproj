@@ -159,6 +159,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
+    <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\API\QSE\ActionQSEController.cs" />
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
@@ -183,9 +184,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409110712450_11092014.cs" />
-    <Compile Include="Migrations\201409110712450_11092014.Designer.cs">
-      <DependentUpon>201409110712450_11092014.cs</DependentUpon>
+    <Compile Include="Migrations\201409121350012_120920142.cs" />
+    <Compile Include="Migrations\201409121350012_120920142.Designer.cs">
+      <DependentUpon>201409121350012_120920142.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Models\Socle\Personne.cs" />
     <Compile Include="Models\Socle\PlageHoraire.cs" />
     <Compile Include="Models\Socle\PosteDeTravail.cs" />
+    <Compile Include="Models\Socle\PosteDeTravailType.cs" />
     <Compile Include="Models\Socle\Zone.cs" />
     <Compile Include="Models\Socle\Site.cs" />
     <Compile Include="Models\Socle\ZoneType.cs" />
@@ -330,9 +332,13 @@
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
     <Content Include="Scripts\Application\Socle\LieuModel.js" />
+    <Content Include="Scripts\Application\Socle\LieuTypeModel.js" />
+    <Content Include="Scripts\Application\Socle\PosteDeTravailModel.js" />
+    <Content Include="Scripts\Application\Socle\PosteDeTravailTypeModel.js" />
     <Content Include="Scripts\Application\Socle\SiteModel.js" />
     <Content Include="Scripts\Application\Socle\UtilisateurActiveDirectoryModel.js" />
     <Content Include="Scripts\Application\Socle\ZoneModel.js" />
+    <Content Include="Scripts\Application\Socle\ZoneTypeModel.js" />
     <Content Include="Scripts\Application\Test\Reviews\Home.js" />
     <Content Include="Scripts\backbone-min.js" />
     <Content Include="Scripts\backbone.js" />
@@ -445,7 +451,7 @@
     <Content Include="Views\Home\Index_backup.cshtml" />
     <Content Include="Views\HSE\HSEHome\Index.cshtml" />
     <Content Include="Views\HSE\Shared\_Layout.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\Create.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\CreateBackup.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Delete.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Details.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Edit.cshtml" />
@@ -472,7 +478,7 @@
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierSelection.cshtml" />
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierPrint.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\TestMap.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\CreateBb.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\Create.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -496,8 +502,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409110712450_11092014.resx">
-      <DependentUpon>201409110712450_11092014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409121350012_120920142.resx">
+      <DependentUpon>201409121350012_120920142.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

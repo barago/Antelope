@@ -91,11 +91,11 @@ namespace Antelope.Controllers.HSE
         }
 
         // GET: /FicheSecurite/Create
-        public ActionResult EditBb(int ?id)
+        public ActionResult Edit(int ?id)
         {
             ViewBag.Id = id;
 
-            return View("~/Views/HSE/FicheSecurite/CreateBb.cshtml");
+            return View("~/Views/HSE/FicheSecurite/Create.cshtml");
         }
 
 
@@ -161,47 +161,47 @@ namespace Antelope.Controllers.HSE
         }
 
         // GET: /FicheSecurite/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FicheSecurite ficheSecurite = db.FicheSecurites.Find(id);
-            if (ficheSecurite == null)
-            {
-                return HttpNotFound();
-            }
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    FicheSecurite ficheSecurite = db.FicheSecurites.Find(id);
+        //    if (ficheSecurite == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            //User.IsInRole("xxx");
+        //    //User.IsInRole("xxx");
 
-            ArrayList groups = GroupService.GetAllGroupForUser();
-            String[] roles = Roles.GetRolesForUser();
+        //    ArrayList groups = GroupService.GetAllGroupForUser();
+        //    String[] roles = Roles.GetRolesForUser();
 
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Nom", ficheSecurite.SiteId);
-            var queryZone = from a in db.Zones
-                            where a.SiteId == ficheSecurite.SiteId
-                            select a;
+        //    ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Nom", ficheSecurite.SiteId);
+        //    var queryZone = from a in db.Zones
+        //                    where a.SiteId == ficheSecurite.SiteId
+        //                    select a;
 
-            ViewBag.ZoneId = new SelectList(queryZone, "ZoneId", "Nom", ficheSecurite.ZoneId);
+        //    ViewBag.ZoneId = new SelectList(queryZone, "ZoneId", "Nom", ficheSecurite.ZoneId);
 
-            var queryLieu = from a in db.Lieux
-                            where a.ZoneId == ficheSecurite.LieuId
-                            select a;
+        //    var queryLieu = from a in db.Lieux
+        //                    where a.ZoneId == ficheSecurite.LieuId
+        //                    select a;
 
-            ViewBag.ZoneId = new SelectList(queryZone, "ZoneId", "Nom", ficheSecurite.ZoneId);
-            ViewBag.LieuId = new SelectList(queryLieu, "LieuId", "Nom", ficheSecurite.LieuId);
-            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
-            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
-            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+        //    ViewBag.ZoneId = new SelectList(queryZone, "ZoneId", "Nom", ficheSecurite.ZoneId);
+        //    ViewBag.LieuId = new SelectList(queryLieu, "LieuId", "Nom", ficheSecurite.LieuId);
+        //    ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
+        //    ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
+        //    ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
 
-            ViewBag.DateEvenement = ficheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");
-            ViewBag.HeureEvenement = ficheSecurite.DateEvenement.Date.ToString("HH:mm");
+        //    ViewBag.DateEvenement = ficheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");
+        //    ViewBag.HeureEvenement = ficheSecurite.DateEvenement.Date.ToString("HH:mm");
 
-            ViewBag.CriticiteBrute = ficheSecurite.CotationFrequence * ficheSecurite.CotationGravite;
+        //    ViewBag.CriticiteBrute = ficheSecurite.CotationFrequence * ficheSecurite.CotationGravite;
 
-            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
-        }
+        //    return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
+        //}
 
         // POST: /FicheSecurite/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 

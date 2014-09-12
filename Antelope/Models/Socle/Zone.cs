@@ -19,8 +19,10 @@ namespace Antelope.Models.Socle
 
         public Int32 ZoneTypeId { get; set; }
 
-        [JsonIgnore]
         public virtual ZoneType ZoneType { get; set; }
+
+        [JsonIgnore]
+        public virtual List<PosteDeTravail> PosteDeTravails { get; set; }
 
         //public String Nom { get; set; }
 

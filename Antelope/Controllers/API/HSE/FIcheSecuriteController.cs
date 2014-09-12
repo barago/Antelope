@@ -48,11 +48,16 @@ namespace Antelope.Controllers.API.HSE
             List<Zone> AllZone = queryZone.ToList();
 
             var queryLieu = from a in db.Lieux
-                            where a.ZoneId == ficheSecurite.LieuId
+                            where a.ZoneId == ficheSecurite.ZoneId
                             select a;
             List<Lieu> AllLieu = queryLieu.ToList();
 
-            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu);
+            var queryPosteDeTravail = from a in db.PosteDeTravails
+                            where a.ZoneId == ficheSecurite.ZoneId
+                            select a;
+            List<PosteDeTravail> AllPosteDeTravail = queryPosteDeTravail.ToList();
+
+            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu, AllPosteDeTravail);
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
         }
 

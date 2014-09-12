@@ -23,6 +23,17 @@ namespace Antelope.Controllers.API.HSE
             return db.Lieux;
         }
 
+        public HttpResponseMessage GetLieuxByZoneId(int id)
+        {
+
+            var queryLieu = from a in db.Lieux
+                            where a.ZoneId == id
+                            select a;
+            List<Lieu> AllLieu = queryLieu.ToList();
+
+            return Request.CreateResponse(HttpStatusCode.OK, AllLieu);
+        }
+
         // GET: api/Lieu/5
         [ResponseType(typeof(Lieu))]
         public IHttpActionResult GetLieu(int id)
