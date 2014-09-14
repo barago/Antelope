@@ -28,10 +28,10 @@ namespace Antelope.Repositories.HSE
             return ficheSecurite;
         }
 
-        //public IQueryable<Review> GetAll()
-        //{
-        //    return _db.Reviews;
-        //}
+        public IQueryable<FicheSecurite> GetAll()
+        {
+            return _db.FicheSecurites;
+        }
 
         //public Review Add(Review review)
         //{

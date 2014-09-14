@@ -26,11 +26,11 @@ namespace Antelope.Controllers.API.HSE
         }
         
         // GET api/fichesecuriteapi
-        //public IEnumerable<string> Get()
-        //{
-        //    var ficheSecurites = _ficheSecuriteRepository.GetAll();
-        //    return ficheSecurites;
-        //}
+        public HttpResponseMessage Get()
+        {
+            var ficheSecurites = _ficheSecuriteRepository.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, ficheSecurites);
+        }
 
         // GET api/fichesecuriteapi/5
         public HttpResponseMessage Get(int id)

@@ -54,6 +54,16 @@ namespace Antelope.Controllers.HSE
             return View("~/Views/HSE/FicheSecurite/Index.cshtml", ficheSecurites.ToPagedList(page, pageSize));
         }
 
+        //[Authorize(Roles = "RFC-U-Informatique_ResponsableApplications")]
+        //[Authorize]
+        // GET: /FicheSecurite/
+        public ActionResult Index2(string sortOrder, string searchString, int page = 1)
+        {
+
+
+            return View("~/Views/HSE/FicheSecurite/Index2.cshtml");
+        }
+
 
 
         // GET: /FicheSecurite/Create
