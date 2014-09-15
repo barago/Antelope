@@ -160,6 +160,7 @@
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
+    <Compile Include="Controllers\API\HSE\RechercheFicheSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\API\QSE\ActionQSEController.cs" />
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +265,7 @@
     <Content Include="Content\images\IndicateurSI\Feu_Vert.jpg" />
     <Content Include="Content\images\IndicateurSI\histogramme.png" />
     <Content Include="Content\images\IndicateurSI\ICONE_APPLI_SE.png" />
+    <Content Include="Content\images\IndicateurSI\ICONE_APPLI_SE2.png" />
     <Content Include="Content\images\IndicateurSI\ICONE_APPLI_SI.png" />
     <Content Include="Content\images\IndicateurSI\img_loupe.png" />
     <Content Include="Content\images\IndicateurSI\intro_indic.jpg" />
@@ -340,6 +343,7 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\FicheSecuriteViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\PersonneConcerneeModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\PlageHoraireModel.js" />
+    <Content Include="Scripts\Application\HSE\FicheSecurite\RechercheFicheSecuriteViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\ResponsableModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />

@@ -28,9 +28,9 @@ namespace Antelope.Repositories.HSE
             return ficheSecurite;
         }
 
-        public IQueryable<FicheSecurite> GetAll()
+        public List<FicheSecurite> GetAll()
         {
-            return _db.FicheSecurites;
+            return _db.FicheSecurites.ToList();
         }
 
         //public Review Add(Review review)
