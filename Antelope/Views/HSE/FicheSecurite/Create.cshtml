@@ -1523,6 +1523,7 @@
                 actionModelAdded.set({'Responsable':new ResponsableModel(actionModelAdded.get('Responsable'))});
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({'Responsable':new ResponsableModel()});
                 this.render();
             },
             changeEditCauseDescription: function (ev) {
