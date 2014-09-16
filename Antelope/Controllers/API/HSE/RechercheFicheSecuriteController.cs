@@ -34,8 +34,9 @@ namespace Antelope.Controllers.API.HSE
             List<Zone> AllZone = new List<Zone>();  // db.Zones.ToList();
             List<Lieu> AllLieu = db.Lieux.ToList();
             List<PosteDeTravail> AllPosteDeTravail = db.PosteDeTravails.ToList();
+            List<Service> AllService = db.Services.ToList();
 
-            var RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(AllFicheSecurite, AllZone, AllLieu, AllPosteDeTravail);
+            var RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(AllFicheSecurite,AllService, AllZone, AllLieu, AllPosteDeTravail);
             return Request.CreateResponse(HttpStatusCode.OK, RechercheFicheSecuriteViewModel);
         }
 
@@ -46,16 +47,21 @@ namespace Antelope.Controllers.API.HSE
         }
 
         // POST: api/RechercheFicheSecurite
-        public HttpResponseMessage Post([FromBody]string value)
+        public HttpResponseMessage Post(RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel)
         {
 
+            _ficheSecuriteRepository = new FicheSecuriteRepository();
+
+            List<FicheSecurite> AllFicheSecurite = _ficheSecuriteRepository.GetAll();
+            List<FicheSecurite> AllFicheSecurite2 = new List<FicheSecurite>();
+            AllFicheSecurite2.Add(AllFicheSecurite[1]);
             //List<Site> AllSite = db.Sites.ToList();
             //List<Zone> AllZone = db.Zones.ToList();
             //List<Lieu> AllLieu = db.Lieux.ToList();
             //List<PosteDeTravail> AllPosteDeTravail = db.PosteDeTravails.ToList();
 
             //var RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(AllZone, AllLieu, AllPosteDeTravail);
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, AllFicheSecurite2);
 
         }
 

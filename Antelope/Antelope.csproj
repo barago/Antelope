@@ -231,6 +231,7 @@
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
   </ItemGroup>
@@ -349,6 +350,7 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\FicheSecuriteViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\PersonneConcerneeModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\PlageHoraireModel.js" />
+    <Content Include="Scripts\Application\HSE\FicheSecurite\RechercheFicheSecuriteParamModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RechercheFicheSecuriteViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\ResponsableModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueModel.js" />

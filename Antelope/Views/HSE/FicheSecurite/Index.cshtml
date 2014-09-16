@@ -16,9 +16,11 @@
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
 
 <script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteViewModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteParamModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/LieuModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ServiceModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/PosteDeTravailModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/ZoneTypeModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/LieuTypeModel.js"></script>
@@ -64,7 +66,7 @@
 
                         <div class="col-md-2">
 
-                            <button type="submit" class="btn btn-primary btn-xs pull-right">
+                            <button id="RechercheBouton" type="submit" class="btn btn-primary btn-xs pull-right">
                                 <span class="glyphicon glyphicon-search"></span> Chercher
                             </button>
 
@@ -204,12 +206,27 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label class="label-xs">Date&nbsp;Evnmt&nbsp;:</label>
+                                    <label class="label-xs">Date&nbsp;Evnmt&nbsp;Début&nbsp;:</label>
                                 </div>
                                 <div class='col-sm-8'>
                                     @*<div class="form-group">*@
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input type='text' name="DateEvenement" id="DateEvenement" class="form-control input-xs" value="" />
+                                        <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="" />
+                                        <span class="input-group-addon input-xs">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    @*</div>*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="label-xs">Date&nbsp;Evnmt&nbsp;Fin&nbsp;:</label>
+                                </div>
+                                <div class='col-sm-8'>
+                                    @*<div class="form-group">*@
+                                    <div class='input-group date' id='datetimepicker2'>
+                                        <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="" />
                                         <span class="input-group-addon input-xs">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -232,6 +249,25 @@
                                                     <span class="glyphicon glyphicon-user">
                                                 </button>
                                             </span>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        @*style="padding-right:0px;"*@
+                                        <label for="ResponsableNom" class="label-xs">Nom&nbsp;responsable&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="input-group input-group-xs">
+                                            <input type="text" class="form-control input-xs" id="ResponsableNom" value="">
+                                            @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                            @*<span class="input-group-btn">
+                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
+                                <span class="glyphicon glyphicon-user">
+                            </button>
+                        </span>*@
                                         </div>
                                     </div>
                                 </div>
@@ -458,6 +494,8 @@
             async: false   //, success: this.arraysToModelCollections
         });
 
+        rechercheFicheSecuriteViewModel.set({ 'RechercheFicheSecuriteParamModel': new RechercheFicheSecuriteParamModel(rechercheFicheSecuriteViewModel.get('RechercheFicheSecuriteParamModel')) });
+
         rechercheFicheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(rechercheFicheSecuriteViewModel.get('AllSite')) });
         rechercheFicheSecuriteViewModel.set({ 'zoneCollection': new ZoneCollection(rechercheFicheSecuriteViewModel.get('AllZone')) });
         rechercheFicheSecuriteViewModel.get('zoneCollection').each(function (zone, index) {
@@ -466,6 +504,10 @@
         rechercheFicheSecuriteViewModel.set({ 'lieuCollection': new LieuCollection(rechercheFicheSecuriteViewModel.get('AllLieu')) });
         rechercheFicheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
             lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+        });
+        rechercheFicheSecuriteViewModel.set({ 'serviceCollection': new ServiceCollection(rechercheFicheSecuriteViewModel.get('AllService')) });
+        rechercheFicheSecuriteViewModel.get('serviceCollection').each(function (service, index) {
+            service.set({ 'Nom': service.get('ServiceType').Nom });
         });
         rechercheFicheSecuriteViewModel.set({ 'posteDeTravailCollection': new PosteDeTravailCollection(rechercheFicheSecuriteViewModel.get('AllPosteDeTravail')) });
         rechercheFicheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
@@ -538,8 +580,33 @@
                 this.render();
             },
             events: {
-
+                "click #RechercheBouton": "recherche"
             },
+            recherche: function () {
+                //this.model.get('ficheSecuriteCollection').fetch({ data: { api_key: 'secretkey' }, type: 'POST' });
+                this.model.get('ficheSecuriteCollection').fetch({ 
+                    type: "post",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(this.model.get('RechercheFicheSecuriteParamModel')),
+                    async: false,   //, success: this.arraysToModelCollections
+                    wait:true
+                });
+
+                this.model.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
+                    ficheSecurite.set({ 'personneConcerneeModel': new PersonneConcerneeModel(ficheSecurite.PersonneConcernee) });
+
+                    //Création d'un ActionLink Razor MVC afin d'accéder à l'édition/suppression de la fiche (triche)
+                    var idValue = ficheSecurite.get('FicheSecuriteID');
+                    var urlEdit = '@Url.Action("Edit", new { id=-1 })';
+                    urlEdit = urlEdit.replace('-1', idValue);
+                    ficheSecurite.set({ 'urlEdit': urlEdit });
+
+                });
+
+                this.render();
+
+            }
 
 
 

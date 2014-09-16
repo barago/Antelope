@@ -20,6 +20,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public List<Zone> AllZone;
         public List<Lieu> AllLieu;
         public List<Site> AllSite;
+        public List<Service> AllService;
         public List<PosteDeTravail> AllPosteDeTravail;
         public List<FicheSecuriteType> AllFicheSecuriteType;
         public List<Danger> AllDanger;
@@ -29,6 +30,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public List<Risque> AllRisque;
         public String FicheSecuriteDate;
         public String FicheSecuriteHeure;
+        public RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel;
 
         public RechercheFicheSecuriteViewModel()
         {
@@ -45,7 +47,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         }
 
         public RechercheFicheSecuriteViewModel(
-           List<FicheSecurite>AllFicheSecurite, List<Zone> AllZone, List<Lieu> AllLieu, List<PosteDeTravail> AllPosteDeTravail
+           List<FicheSecurite>AllFicheSecurite, List<Service> AllService, List<Zone> AllZone, List<Lieu> AllLieu, List<PosteDeTravail> AllPosteDeTravail
             )
         {
 
@@ -61,6 +63,8 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
             this.AllCorpsHumainZone = db.CorpsHumainZones.ToList();
             this.AllRisqueType = db.RisqueTypes.ToList();
             this.AllRisque = db.Risques.ToList();
+            this.AllService = AllService;
+            this.RechercheFicheSecuriteParamModel = new RechercheFicheSecuriteParamModel() {SiteId = 2 };
 
 
             //this.FicheSecuriteDate = this.FicheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");

@@ -3,5 +3,5 @@
 });
 
 var FicheSecuriteCollection = Backbone.Collection.extend({
-   
+   url: '/api/RechercheFicheSecurite'
 });
