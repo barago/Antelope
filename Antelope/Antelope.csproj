@@ -161,6 +161,7 @@
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
     <Compile Include="Controllers\API\HSE\RechercheFicheSecuriteController.cs" />
+    <Compile Include="Controllers\API\HSE\ServiceController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\API\QSE\ActionQSEController.cs" />
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
@@ -259,6 +260,8 @@
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody_Red.jpg" />
     <Content Include="Content\images\HSE\Home\Environment_icon2.jpg" />
     <Content Include="Content\images\HSE\Home\Head Protection icon2.jpg" />
+    <Content Include="Content\images\HSE\Home\PICTO_environnement.png" />
+    <Content Include="Content\images\HSE\Home\PICTO_securite.png" />
     <Content Include="Content\images\IndicateurSI\calendrier.png" />
     <Content Include="Content\images\IndicateurSI\camembert.png" />
     <Content Include="Content\images\IndicateurSI\empty_star.png" />
