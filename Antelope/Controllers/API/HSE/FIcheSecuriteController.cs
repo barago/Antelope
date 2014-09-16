@@ -36,7 +36,7 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get(int id)
         {
 
-            var ficheSecurite = _ficheSecuriteRepository.Get(id);
+            var ficheSecurite = (id == -1) ? new FicheSecurite() : _ficheSecuriteRepository.Get(id);
             if (ficheSecurite == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -52,12 +52,17 @@ namespace Antelope.Controllers.API.HSE
                             select a;
             List<Lieu> AllLieu = queryLieu.ToList();
 
+            var queryService = from a in db.Services
+                            where a.SiteId == ficheSecurite.SiteId
+                            select a;
+            List<Service> AllService = queryService.ToList();
+
             var queryPosteDeTravail = from a in db.PosteDeTravails
                             where a.ZoneId == ficheSecurite.ZoneId
                             select a;
             List<PosteDeTravail> AllPosteDeTravail = queryPosteDeTravail.ToList();
 
-            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu, AllPosteDeTravail);
+            var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu, AllService, AllPosteDeTravail);
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
         }
 

@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _120920142 : DbMigration
+    public partial class _160920142 : DbMigration
     {
         public override void Up()
         {
@@ -61,7 +61,7 @@ namespace Antelope.Migrations
                         Type = c.String(),
                         Age = c.String(),
                         PosteDeTravailId = c.Int(),
-                        Service = c.String(),
+                        ServiceId = c.Int(),
                         DateCreation = c.DateTime(nullable: false),
                         DateEvenement = c.DateTime(nullable: false),
                         PersonnesConcernees = c.String(),
@@ -99,6 +99,7 @@ namespace Antelope.Migrations
                 .ForeignKey("dbo.PlageHoraires", t => t.PlageHoraireId)
                 .ForeignKey("dbo.Personnes", t => t.ResponsableId)
                 .ForeignKey("dbo.Risques", t => t.RisqueId, cascadeDelete: true)
+                .ForeignKey("dbo.Services", t => t.ServiceId)
                 .ForeignKey("dbo.Zones", t => t.ZoneId)
                 .Index(t => t.CorpsHumainZoneId)
                 .Index(t => t.DangerId)
@@ -111,6 +112,7 @@ namespace Antelope.Migrations
                 .Index(t => t.PlageHoraireId)
                 .Index(t => t.ResponsableId)
                 .Index(t => t.RisqueId)
+                .Index(t => t.ServiceId)
                 .Index(t => t.ZoneId);
             
             CreateTable(
@@ -264,6 +266,29 @@ namespace Antelope.Migrations
                 .PrimaryKey(t => t.RisqueTypeId);
             
             CreateTable(
+                "dbo.Services",
+                c => new
+                    {
+                        ServiceID = c.Int(nullable: false, identity: true),
+                        SiteId = c.Int(nullable: false),
+                        ServiceTypeId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ServiceID)
+                .ForeignKey("dbo.ServiceTypes", t => t.ServiceTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Sites", t => t.SiteId, cascadeDelete: true)
+                .Index(t => t.ServiceTypeId)
+                .Index(t => t.SiteId);
+            
+            CreateTable(
+                "dbo.ServiceTypes",
+                c => new
+                    {
+                        ServiceTypeId = c.Int(nullable: false, identity: true),
+                        Nom = c.String(),
+                    })
+                .PrimaryKey(t => t.ServiceTypeId);
+            
+            CreateTable(
                 "dbo.ActionSecurites",
                 c => new
                     {
@@ -344,6 +369,9 @@ namespace Antelope.Migrations
             DropForeignKey("dbo.ActionQSEs", "VerificateurId", "dbo.Personnes");
             DropForeignKey("dbo.ActionQSEs", "ResponsableId", "dbo.Personnes");
             DropForeignKey("dbo.FicheSecurites", "ZoneId", "dbo.Zones");
+            DropForeignKey("dbo.FicheSecurites", "ServiceId", "dbo.Services");
+            DropForeignKey("dbo.Services", "SiteId", "dbo.Sites");
+            DropForeignKey("dbo.Services", "ServiceTypeId", "dbo.ServiceTypes");
             DropForeignKey("dbo.Risques", "RisqueTypeId", "dbo.RisqueTypes");
             DropForeignKey("dbo.FicheSecurites", "RisqueId", "dbo.Risques");
             DropForeignKey("dbo.FicheSecurites", "ResponsableId", "dbo.Personnes");
@@ -368,6 +396,9 @@ namespace Antelope.Migrations
             DropIndex("dbo.ActionQSEs", new[] { "VerificateurId" });
             DropIndex("dbo.ActionQSEs", new[] { "ResponsableId" });
             DropIndex("dbo.FicheSecurites", new[] { "ZoneId" });
+            DropIndex("dbo.FicheSecurites", new[] { "ServiceId" });
+            DropIndex("dbo.Services", new[] { "SiteId" });
+            DropIndex("dbo.Services", new[] { "ServiceTypeId" });
             DropIndex("dbo.Risques", new[] { "RisqueTypeId" });
             DropIndex("dbo.FicheSecurites", new[] { "RisqueId" });
             DropIndex("dbo.FicheSecurites", new[] { "ResponsableId" });
@@ -393,6 +424,8 @@ namespace Antelope.Migrations
             DropTable("dbo.Interventions");
             DropTable("dbo.ADRoles");
             DropTable("dbo.ActionSecurites");
+            DropTable("dbo.ServiceTypes");
+            DropTable("dbo.Services");
             DropTable("dbo.RisqueTypes");
             DropTable("dbo.Risques");
             DropTable("dbo.PlageHoraires");

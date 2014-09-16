@@ -22,9 +22,11 @@
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ServiceModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/LieuModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/PosteDeTravailModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/ZoneTypeModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ServiceTypeModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/LieuTypeModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/PosteDeTravailTypeModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/UtilisateurActiveDirectoryModel.js"></script>
@@ -346,7 +348,17 @@
                                 <div class="form-group">
                                     <label for="Service" class="col-sm-5 label-xs">Service&nbsp;:</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="Service" value="<%= ficheSecuriteModel.get('Service') %>">
+                                        <select class="form-control input-xs" id="Service">
+
+                                            <% serviceCollection.each( function(service){ %>
+                                            <option value="<%= service.get('ServiceId') %>"
+                                                <% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceId')){ %> selected <% } %>
+                                                >
+                                                <%= service.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -549,7 +561,7 @@
                         <div class="row">
                             <div class="col-sm-6"></div>
                             <div class="col-sm-6">
-                                <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right form-control input-xs" value="<%= corpsHumainZoneCollection.where({Id:ficheSecuriteModel.get('CorpsHumainZoneId')})[0].get('Nom') %>" disabled />
+                                <input name="CorpsHumainSelected" id="CorpsHumainSelected" type="text" class="pull-right form-control input-xs" value="<%= (ficheSecuriteModel.get('CorpsHumainZoneId') != 0) ? corpsHumainZoneCollection.findWhere({Id:ficheSecuriteModel.get('CorpsHumainZoneId')}).get('Nom') : '' %>" disabled />
                                 <input name="CorpsHumainSelectedHidden" id="CorpsHumainSelectedHidden" type="hidden" class="pull-right" value="" />
                             </div>
                         </div>
@@ -730,13 +742,13 @@
                                             <div class="col-md-11">
                                                 <table class="table table-bordered table-hover table-condensed">
                                                     <tr style="background-color:#ECF6FD;">
+                                                        <td>
+                                                            <%= cause.get('Description') %>
+                                                        </td>
                                                         <td style="width:130px;">
                                                             <button id="BtnAddAction" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormAddActionForCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
                                                             <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditCause" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
                                                             <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnDeleteCause"><span class="glyphicon glyphicon-remove"></span></button>
-                                                        </td>
-                                                        <td>
-                                                            <%= cause.get('Description') %>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -961,6 +973,8 @@
 
         var FicheSecuriteId = "@ViewBag.Id";
 
+        console.log(FicheSecuriteId);
+
         function dateFormatJS(date) {
             var dateFormated = '';
             if(date != null){
@@ -992,12 +1006,16 @@
         ficheSecuriteViewModel.set({ 'ficheSecuriteModel': ficheSecuriteModel });
         ficheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(ficheSecuriteViewModel.get('AllSite')) });
         ficheSecuriteViewModel.set({ 'zoneCollection': new ZoneCollection(ficheSecuriteViewModel.get('AllZone')) });
+        ficheSecuriteViewModel.set({ 'serviceCollection': new ServiceCollection(ficheSecuriteViewModel.get('AllService')) });
         ficheSecuriteViewModel.get('zoneCollection').each(function (zone, index) {
             zone.set({ 'Nom': zone.get('ZoneType').Nom });
         });
         ficheSecuriteViewModel.set({ 'lieuCollection': new LieuCollection(ficheSecuriteViewModel.get('AllLieu')) });
         ficheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
             lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+        });
+        ficheSecuriteViewModel.get('serviceCollection').each(function (service, index) {
+            service.set({ 'Nom': service.get('ServiceType').Nom });
         });
         ficheSecuriteViewModel.set({ 'posteDeTravailCollection': new PosteDeTravailCollection(ficheSecuriteViewModel.get('AllPosteDeTravail')) });
         ficheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
@@ -1178,7 +1196,9 @@
                         mapKey: 'data-code',
                         onClick: $.proxy(this.changeCorpsHumain, this) 
                     }
-                ).mapster('set', true, this.model.get('corpsHumainZoneCollection').findWhere({ 'Id': this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') }).get('Code'));
+                //).mapster('set', true, this.model.get('corpsHumainZoneCollection').findWhere({ 'Id': this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') }).get('Code'));
+                ).mapster('set', true, (this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') != 0) ? this.model.get('corpsHumainZoneCollection').findWhere({'Id':this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId')}).get('Code') : '');
+                // (ficheSecuriteModel.get('CorpsHumainZoneId') != 0) ? corpsHumainZoneCollection.findWhere({Id:ficheSecuriteModel.get('CorpsHumainZoneId')}).get('Nom') : ''
             },
             initialize: function () {
 
@@ -1192,6 +1212,7 @@
                 "change #Site": "changeSite",
                 "change #Zone": "changeZone",
                 "change #Lieu": "changeLieu",
+                "change #Service":"changeService",
                 "change #posteDeTravail":"changePosteDeTravail",
                 "keyup #Age": "changeAge",
                 "change #Type": "changeType",
@@ -1237,6 +1258,9 @@
             },
             changeLieu: function () {
                 this.model.get('ficheSecuriteModel').set({ 'LieuId': $('#Lieu').val() });
+            },
+            changeService: function () {
+                this.model.get('ficheSecuriteModel').set({ 'ServiceId': $('#Service').val() });
             },
             changePosteDETravail: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PosteDeTravailId': $('#PosteDeTravail').val() });

@@ -69,36 +69,23 @@ namespace Antelope.Controllers.HSE
         // GET: /FicheSecurite/Create
         public ActionResult Create()
         {
-            List<Zone> Zones = new List<Zone>();
-            List<Lieu> Lieux = new List<Lieu>();
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
-            ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
-            ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
-            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
-            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
-            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+            //List<Zone> Zones = new List<Zone>();
+            //List<Lieu> Lieux = new List<Lieu>();
+            //ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
+            //ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
+            //ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
+            //ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
+            //ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
+            //ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
 
-            FicheSecurite ficheSecurite = new FicheSecurite() { CorpsHumainZone = new CorpsHumainZone() };
+            //FicheSecurite ficheSecurite = new FicheSecurite() { CorpsHumainZone = new CorpsHumainZone() };
+
+            ViewBag.Id = -1;
             
-            return View("~/Views/HSE/FicheSecurite/Create.cshtml", ficheSecurite);
+            return View("~/Views/HSE/FicheSecurite/Create.cshtml");
         }
 
-        // GET: /FicheSecurite/Create
-        public ActionResult CreateBis()
-        {
-            List<Zone> Zones = new List<Zone>();
-            List<Lieu> Lieux = new List<Lieu>();
-            ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
-            ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
-            ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
-            ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
-            ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
-            ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
 
-            FicheSecurite ficheSecurite = new FicheSecurite();
-
-            return View("~/Views/HSE/FicheSecurite/CreateBis.cshtml", ficheSecurite);
-        }
 
         // GET: /FicheSecurite/Create
         public ActionResult Edit(int ?id)
@@ -345,6 +332,23 @@ namespace Antelope.Controllers.HSE
         //        return HttpNotFound();
         //    }
         //    return View("~/Views/HSE/FicheSecurite/Details.cshtml", ficheSecurite);
+        //}
+
+        //// GET: /FicheSecurite/Create
+        //public ActionResult CreateBis()
+        //{
+        //    List<Zone> Zones = new List<Zone>();
+        //    List<Lieu> Lieux = new List<Lieu>();
+        //    ViewBag.SiteId = new SelectList(db.Sites, "SiteID", "Trigramme");
+        //    ViewBag.ZoneId = new SelectList(Zones, "ZoneId", "Nom");
+        //    ViewBag.LieuId = new SelectList(Lieux, "LieuId", "Nom");
+        //    ViewBag.FicheSecuriteTypeId = new SelectList(db.FicheSecuriteTypes, "FicheSecuriteTypeId", "Nom");
+        //    ViewBag.DangerId = new SelectList(db.Dangers, "DangerId", "Nom");
+        //    ViewBag.PlageHoraireId = new SelectList(db.PlageHoraires, "PlageHoraireId", "Nom");
+
+        //    FicheSecurite ficheSecurite = new FicheSecurite();
+
+        //    return View("~/Views/HSE/FicheSecurite/CreateBis.cshtml", ficheSecurite);
         //}
 
     }

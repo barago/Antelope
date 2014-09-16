@@ -35,7 +35,10 @@ namespace Antelope.Models.HSE
         public virtual PosteDeTravail PosteDeTravail { get; set; }
 
         [DisplayName("Service")]
-        public String Service { get; set; }
+        public Int32? ServiceId { get; set; }
+
+        [JsonIgnore]
+        public virtual Service Service { get; set; }
 
         //[DataType(DataType.DateTime)]
         //[DisplayFormat(DataFormatString = "{0:dd.MM.yy}")]

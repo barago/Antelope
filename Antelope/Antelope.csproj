@@ -185,9 +185,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409121350012_120920142.cs" />
-    <Compile Include="Migrations\201409121350012_120920142.Designer.cs">
-      <DependentUpon>201409121350012_120920142.cs</DependentUpon>
+    <Compile Include="Migrations\201409161244122_160920142.cs" />
+    <Compile Include="Migrations\201409161244122_160920142.Designer.cs">
+      <DependentUpon>201409161244122_160920142.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -212,6 +212,8 @@
     <Compile Include="Models\Socle\PlageHoraire.cs" />
     <Compile Include="Models\Socle\PosteDeTravail.cs" />
     <Compile Include="Models\Socle\PosteDeTravailType.cs" />
+    <Compile Include="Models\Socle\Service.cs" />
+    <Compile Include="Models\Socle\ServiceType.cs" />
     <Compile Include="Models\Socle\Zone.cs" />
     <Compile Include="Models\Socle\Site.cs" />
     <Compile Include="Models\Socle\ZoneType.cs" />
@@ -354,6 +356,8 @@
     <Content Include="Scripts\Application\Socle\LieuTypeModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailTypeModel.js" />
+    <Content Include="Scripts\Application\Socle\ServiceModel.js" />
+    <Content Include="Scripts\Application\Socle\ServiceTypeModel.js" />
     <Content Include="Scripts\Application\Socle\SiteModel.js" />
     <Content Include="Scripts\Application\Socle\UtilisateurActiveDirectoryModel.js" />
     <Content Include="Scripts\Application\Socle\ZoneModel.js" />
@@ -525,8 +529,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409121350012_120920142.resx">
-      <DependentUpon>201409121350012_120920142.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409161244122_160920142.resx">
+      <DependentUpon>201409161244122_160920142.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

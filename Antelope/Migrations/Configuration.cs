@@ -62,49 +62,155 @@ namespace Antelope.Migrations
             context.Sites.Add(siteNSG);
             context.Sites.Add(siteLQN);
 
-            //List<string> AllPosteDeTravailNom = new List<string>() { "Administratif", "Agriculteur", "Cariste", "Chauffeurs", "Encadrement intermédiaire", "Etiqueteur", "Fardeleur", "Laborentin Process / MP", "Laborentin R&D / Microbio", "Magasinier MP", "Magasinier soufflage", "Opérateur SB / R3 / R4", "Palettiseur", "Personne extérieure", "Personnel maintenance", "Pilote process", "Préparateur", "Régleur", "Souffleur", "Technicien terrain" };
+            ServiceType ServiceType1 = new ServiceType() { Nom = "Production" };
+            ServiceType ServiceType2 = new ServiceType() { Nom = "Maintenance/TN" };
+            ServiceType ServiceType3 = new ServiceType() { Nom = "Qualité" };
+            ServiceType ServiceType4 = new ServiceType() { Nom = "Sécurité/Environnement" };
+            ServiceType ServiceType5 = new ServiceType() { Nom = "Amélioration continue" };
+            ServiceType ServiceType6 = new ServiceType() { Nom = "Ressources humaines" };
+            ServiceType ServiceType7 = new ServiceType() { Nom = "Supply chain" };
+            ServiceType ServiceType8 = new ServiceType() { Nom = "Master data" };
+            ServiceType ServiceType9 = new ServiceType() { Nom = "Logistique" };
+            ServiceType ServiceType10 = new ServiceType() { Nom = "Appro/ordo" };
+            ServiceType ServiceType11 = new ServiceType() { Nom = "Qualité" };
+            ServiceType ServiceType12 = new ServiceType() { Nom = "Comptabilité" };
+            ServiceType ServiceType13 = new ServiceType() { Nom = "Standard" };
+            ServiceType ServiceType14 = new ServiceType() { Nom = "Recherche et développement" };
+            ServiceType ServiceType15 = new ServiceType() { Nom = "Communication" };
+            ServiceType ServiceType16 = new ServiceType() { Nom = "Service client" };
+            ServiceType ServiceType17 = new ServiceType() { Nom = "Packaging" };
+            ServiceType ServiceType18 = new ServiceType() { Nom = "Informatique" };
 
-            //List<PosteDeTravail> AllPosteDeTravail = new List<PosteDeTravail>();
+            context.ServiceTypes.Add(ServiceType1);
+            context.ServiceTypes.Add(ServiceType2);
+            context.ServiceTypes.Add(ServiceType3);
+            context.ServiceTypes.Add(ServiceType4);
+            context.ServiceTypes.Add(ServiceType5);
+            context.ServiceTypes.Add(ServiceType6);
+            context.ServiceTypes.Add(ServiceType7);
+            context.ServiceTypes.Add(ServiceType8);
+            context.ServiceTypes.Add(ServiceType9);
+            context.ServiceTypes.Add(ServiceType10);
+            context.ServiceTypes.Add(ServiceType11);
+            context.ServiceTypes.Add(ServiceType12);
+            context.ServiceTypes.Add(ServiceType13);
+            context.ServiceTypes.Add(ServiceType14);
+            context.ServiceTypes.Add(ServiceType15);
+            context.ServiceTypes.Add(ServiceType16);
+            context.ServiceTypes.Add(ServiceType17);
+            context.ServiceTypes.Add(ServiceType18);
 
-            //foreach (string PosteDeTravailNom in AllPosteDeTravailNom)
-            //{
-            //    PosteDeTravail PosteDeTravail = new PosteDeTravail()
-            //    {
-            //        Nom = PosteDeTravailNom
-            //    };
 
-            //    AllPosteDeTravail.Add(PosteDeTravail);
-            //    context.PosteDeTravails.Add(PosteDeTravail);
-            //};
+            //------------------AJOUT DES SERVICES POUR CHAQUE SITE----------------------------
 
-            //ZoneType ZoneRDCRFS = new ZoneType()
-            //{
-            //    Nom = "Rez-de-chaussée",
-            //    Site = siteRFS
-            //};
+            // -------------------------RFS---------------------------------------------
 
-            //ZoneType ZoneEtage1RFS = new ZoneType()
-            //{
-            //    Nom = "1er étage",
-            //    Site = siteRFS
-            //};
+            Service ServiceRFS1 = new Service() { Site = siteRFS, ServiceType = ServiceType3 };
+            Service ServiceRFS2 = new Service() { Site = siteRFS, ServiceType = ServiceType4 };
+            Service ServiceRFS3 = new Service() { Site = siteRFS, ServiceType = ServiceType6 };
+            Service ServiceRFS4 = new Service() { Site = siteRFS, ServiceType = ServiceType8 };
+            Service ServiceRFS5 = new Service() { Site = siteRFS, ServiceType = ServiceType9 };
+            Service ServiceRFS6 = new Service() { Site = siteRFS, ServiceType = ServiceType10 };
+            Service ServiceRFS7 = new Service() { Site = siteRFS, ServiceType = ServiceType11 };
+            Service ServiceRFS8 = new Service() { Site = siteRFS, ServiceType = ServiceType12 };
+            Service ServiceRFS9 = new Service() { Site = siteRFS, ServiceType = ServiceType13 };
+            Service ServiceRFS10 = new Service() { Site = siteRFS, ServiceType = ServiceType14 };
+            Service ServiceRFS11 = new Service() { Site = siteRFS, ServiceType = ServiceType15 };
+            Service ServiceRFS12 = new Service() { Site = siteRFS, ServiceType = ServiceType16 };
+            Service ServiceRFS13 = new Service() { Site = siteRFS, ServiceType = ServiceType17 };
+            Service ServiceRFS14 = new Service() { Site = siteRFS, ServiceType = ServiceType18 };
 
-            //ZoneType ZoneLigne1DLF = new ZoneType()
-            //{
-            //    Nom = "Ligne 1",
-            //    Site = siteDLF
-            //};
+            context.Services.Add(ServiceRFS1);
+            context.Services.Add(ServiceRFS2);
+            context.Services.Add(ServiceRFS3);
+            context.Services.Add(ServiceRFS4);
+            context.Services.Add(ServiceRFS5);
+            context.Services.Add(ServiceRFS6);
+            context.Services.Add(ServiceRFS7);
+            context.Services.Add(ServiceRFS8);
+            context.Services.Add(ServiceRFS9);
+            context.Services.Add(ServiceRFS10);
+            context.Services.Add(ServiceRFS11);
+            context.Services.Add(ServiceRFS12);
+            context.Services.Add(ServiceRFS13);
+            context.Services.Add(ServiceRFS14);
 
-            //ZoneType ZoneLigne2DLF = new ZoneType()
-            //{
-            //    Nom = "Ligne 2",
-            //    Site = siteDLF
-            //};
+            // -------------------------DLF---------------------------------------------
 
-            //context.Zones.Add(ZoneRDCRFS);
-            //context.Zones.Add(ZoneEtage1RFS);
-            //context.Zones.Add(ZoneLigne1DLF);
-            //context.Zones.Add(ZoneLigne2DLF
+            Service ServiceDLF1 = new Service() { Site = siteDLF, ServiceType = ServiceType1 };
+            Service ServiceDLF2 = new Service() { Site = siteDLF, ServiceType = ServiceType2 };
+            Service ServiceDLF3 = new Service() { Site = siteDLF, ServiceType = ServiceType3 };
+            Service ServiceDLF4 = new Service() { Site = siteDLF, ServiceType = ServiceType4 };
+            Service ServiceDLF5 = new Service() { Site = siteDLF, ServiceType = ServiceType5 };
+            Service ServiceDLF6 = new Service() { Site = siteDLF, ServiceType = ServiceType6 };
+            Service ServiceDLF7 = new Service() { Site = siteDLF, ServiceType = ServiceType7 };
+
+            context.Services.Add(ServiceDLF1);
+            context.Services.Add(ServiceDLF2);
+            context.Services.Add(ServiceDLF3);
+            context.Services.Add(ServiceDLF4);
+            context.Services.Add(ServiceDLF5);
+            context.Services.Add(ServiceDLF6);
+            context.Services.Add(ServiceDLF7);
+
+
+            // -------------------------STA---------------------------------------------
+
+            Service ServiceSTA1 = new Service() { Site = siteSTA, ServiceType = ServiceType1 };
+            Service ServiceSTA2 = new Service() { Site = siteSTA, ServiceType = ServiceType2 };
+            Service ServiceSTA3 = new Service() { Site = siteSTA, ServiceType = ServiceType3 };
+            Service ServiceSTA4 = new Service() { Site = siteSTA, ServiceType = ServiceType4 };
+            Service ServiceSTA5 = new Service() { Site = siteSTA, ServiceType = ServiceType5 };
+            Service ServiceSTA6 = new Service() { Site = siteSTA, ServiceType = ServiceType6 };
+            Service ServiceSTA7 = new Service() { Site = siteSTA, ServiceType = ServiceType7 };
+
+            context.Services.Add(ServiceSTA1);
+            context.Services.Add(ServiceSTA2);
+            context.Services.Add(ServiceSTA3);
+            context.Services.Add(ServiceSTA4);
+            context.Services.Add(ServiceSTA5);
+            context.Services.Add(ServiceSTA6);
+            context.Services.Add(ServiceSTA7);
+
+            // -------------------------NSG---------------------------------------------
+
+            Service ServiceNSG1 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
+            Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
+            Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
+            Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
+            Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType5 };
+            Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
+            Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
+
+            context.Services.Add(ServiceNSG1);
+            context.Services.Add(ServiceNSG2);
+            context.Services.Add(ServiceNSG3);
+            context.Services.Add(ServiceNSG4);
+            context.Services.Add(ServiceNSG5);
+            context.Services.Add(ServiceNSG6);
+            context.Services.Add(ServiceNSG7);
+
+            // -------------------------LQN---------------------------------------------
+
+            Service ServiceLQN1 = new Service() { Site = siteLQN, ServiceType = ServiceType1 };
+            Service ServiceLQN2 = new Service() { Site = siteLQN, ServiceType = ServiceType2 };
+            Service ServiceLQN3 = new Service() { Site = siteLQN, ServiceType = ServiceType3 };
+            Service ServiceLQN4 = new Service() { Site = siteLQN, ServiceType = ServiceType4 };
+            Service ServiceLQN5 = new Service() { Site = siteLQN, ServiceType = ServiceType5 };
+            Service ServiceLQN6 = new Service() { Site = siteLQN, ServiceType = ServiceType6 };
+            Service ServiceLQN7 = new Service() { Site = siteLQN, ServiceType = ServiceType7 };
+
+            context.Services.Add(ServiceLQN1);
+            context.Services.Add(ServiceLQN2);
+            context.Services.Add(ServiceLQN3);
+            context.Services.Add(ServiceLQN4);
+            context.Services.Add(ServiceLQN5);
+            context.Services.Add(ServiceLQN6);
+            context.Services.Add(ServiceLQN7);
+
+
+
+
 
 
             ZoneType ZoneType1 = new ZoneType() { Nom = "Tout le site" };
@@ -1481,7 +1587,7 @@ namespace Antelope.Migrations
                 Code = "DLF-2014-1",
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone4_2,
-                Service = "Logistique",
+                Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
@@ -1507,7 +1613,7 @@ namespace Antelope.Migrations
                 Code = "DLF-2014-2",
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
-                Service = "Informatique",
+                Service = ServiceDLF1,
                 Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
@@ -1531,7 +1637,7 @@ namespace Antelope.Migrations
                 Code = "DLF-2014-3",
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
-                Service = "Logistique",
+                Service = ServiceDLF1,
                 Responsable = Responsable3,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
@@ -1556,7 +1662,7 @@ namespace Antelope.Migrations
                 Code = "DLF-2014-4",
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone5_2,
-                Service = "Informatique",
+                Service = ServiceDLF1,
                 Responsable = Responsable4,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,

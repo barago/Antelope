@@ -35,6 +35,8 @@ namespace Antelope.Models
         public DbSet<Risque> Risques { get; set; }
         public DbSet<ZoneType> ZoneTypes { get; set; }
         public DbSet<LieuType> LieuTypes { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<ServiceType> ServiceTypes { get; set; }
 
 
     }

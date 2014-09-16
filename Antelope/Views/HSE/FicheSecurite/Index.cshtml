@@ -403,7 +403,7 @@
                                     CLOTURE ? @*@Html.DisplayFor(modelItem => item.)*@
                                 </td>
                                 <td>
-                                    <a class="glyphicon glyphicon-edit" @*href="@Url.Action("Edit", new { id = item.FicheSecuriteID })"*@></a> |
+                                    <a class="glyphicon glyphicon-edit" href="<%= ficheSecurite.get('urlEdit')%>"></a> |                         @*@Url.Action("Edit", new { id = <% ficheSecurite.get('FicheSecuriteId')%> })*@
                                     <a class="glyphicon glyphicon-remove" @*href="@Url.Action("Delete", new { id = item.FicheSecuriteID })"*@></a>
                                 </td>
                             </tr>
@@ -472,8 +472,20 @@
         rechercheFicheSecuriteViewModel.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(rechercheFicheSecuriteViewModel.get('AllFicheSecurite')) });
 
         rechercheFicheSecuriteViewModel.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
-            ficheSecurite.set({'personneConcerneeModel':new PersonneConcerneeModel(ficheSecurite.PersonneConcernee)})
+            ficheSecurite.set({ 'personneConcerneeModel': new PersonneConcerneeModel(ficheSecurite.PersonneConcernee) });
+
+            //Création d'un ActionLink Razor MVC afin d'accéder à l'édition/suppression de la fiche (triche)
+            var idValue = ficheSecurite.get('FicheSecuriteID');
+            var urlEdit = '@Url.Action("Edit", new { id=-1 })';
+            urlEdit = urlEdit.replace('-1', idValue);
+            ficheSecurite.set({ 'urlEdit': urlEdit });
+
         });
+
+        //var boxIdValue = 233;
+        //var link = '@*@Html.ActionLink("Detail", "Show", "Boxes", new{boxId=-1}, null)*@'
+        //link = link.replace('-1', boxIdValue);
+        //var result = title + '<br />' + link;
 
         //causeCollection.each(function (cause, index) {
         //    cause.set({ 'actionCollection': new ActionCollection(cause.get('Actions')) });
@@ -492,7 +504,7 @@
             id: 'RechercheTableFicheSecurite',
             template: _.template($('#TableRecherche').html()),
             render: function () {
-                this.$el.html(this.template(this.model.toJSON()));  
+                this.$el.html(this.template(this.model.toJSON()));
 
                 //$('#table_id').DataTable({
                 //    "ajax": {

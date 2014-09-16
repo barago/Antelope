@@ -19,6 +19,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public List<Zone> AllZone;
         public List<Lieu> AllLieu;
         public List<Site> AllSite;
+        public List<Service> AllService;
         public List<PosteDeTravail> AllPosteDeTravail;
         public List<FicheSecuriteType> AllFicheSecuriteType;
         public List<Danger> AllDanger;
@@ -44,13 +45,14 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         }
 
         public FicheSecuriteViewModel(
-            FicheSecurite ficheSecurite, List<Zone> AllZone, List<Lieu> AllLieu, List<PosteDeTravail> AllPosteDeTravail
+            FicheSecurite ficheSecurite, List<Zone> AllZone, List<Lieu> AllLieu, List<Service> AllService, List<PosteDeTravail> AllPosteDeTravail
             )
         {
 
             this.FicheSecurite = ficheSecurite;
             this.AllZone = AllZone;
             this.AllLieu = AllLieu;
+            this.AllService = AllService;
             this.AllPosteDeTravail = AllPosteDeTravail;
             this.AllSite = db.Sites.ToList(); // new List<Site>();
             this.AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
