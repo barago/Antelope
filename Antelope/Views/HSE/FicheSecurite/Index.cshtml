@@ -149,7 +149,23 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Service" class="col-sm-4 label-xs">Service&nbsp;:</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control input-xs" id="Service">
 
+                                            <% serviceCollection.each( function(service){ %>
+                                            <option value="<%= service.get('ServiceID') %>"
+                                                    @*<% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %>*@>
+                                                <%= service.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label for="Code" class="label-xs">Code&nbsp;:</label>
@@ -158,19 +174,15 @@
                                     <input type="text" id="Code" class="form-control input-xs" value="" />
                                 </div>
                             </div>
-
-
-                            @*<div class="row">
-                <div class=" col-sm-6">
-
-                    <label for="CodeRecherche" class="label-xs">Code&nbsp;:&nbsp;</label>
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control input-xs" id="CodeRecherche" value="">
-                </div>
-            </div>*@
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Age" class="label-xs">Age&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="Age" class="form-control input-xs" value="" />
+                                </div>
+                            </div>
                         </div>
-
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-sm-4">

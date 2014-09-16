@@ -1445,7 +1445,7 @@ namespace Antelope.Migrations
 
             Personne Responsable1 = new Personne()
             {
-                Nom = "Valjean",
+                Nom = "Clot",
                 Prenom = "Jean"
             };
 
