@@ -52,16 +52,34 @@ namespace Antelope.Controllers.API.HSE
 
             _ficheSecuriteRepository = new FicheSecuriteRepository();
 
-            List<FicheSecurite> AllFicheSecurite = _ficheSecuriteRepository.GetAll();
-            List<FicheSecurite> AllFicheSecurite2 = new List<FicheSecurite>();
-            AllFicheSecurite2.Add(AllFicheSecurite[1]);
-            //List<Site> AllSite = db.Sites.ToList();
-            //List<Zone> AllZone = db.Zones.ToList();
-            //List<Lieu> AllLieu = db.Lieux.ToList();
-            //List<PosteDeTravail> AllPosteDeTravail = db.PosteDeTravails.ToList();
+            //----------------------------
+            var queryFicheSecurite = from a in db.FicheSecurites select a;
 
-            //var RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(AllZone, AllLieu, AllPosteDeTravail);
-            return Request.CreateResponse(HttpStatusCode.OK, AllFicheSecurite2);
+            if(RechercheFicheSecuriteParamModel.SiteId != null && RechercheFicheSecuriteParamModel.SiteId != 0){                         
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.SiteId == RechercheFicheSecuriteParamModel.SiteId);
+            }
+            if (RechercheFicheSecuriteParamModel.ZoneId != null && RechercheFicheSecuriteParamModel.ZoneId != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.ZoneId == RechercheFicheSecuriteParamModel.ZoneId);
+            }
+            if (RechercheFicheSecuriteParamModel.LieuId != null && RechercheFicheSecuriteParamModel.LieuId != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.LieuId == RechercheFicheSecuriteParamModel.LieuId);
+            }    
+ 
+
+
+
+            List<FicheSecurite> AllFicheSecurite = queryFicheSecurite.ToList();
+
+
+            //-----------------------------
+
+            //List<FicheSecurite> AllFicheSecurite = _ficheSecuriteRepository.GetAll();
+            //List<FicheSecurite> AllFicheSecurite2 = new List<FicheSecurite>();
+            //AllFicheSecurite2.Add(AllFicheSecurite[1]);
+
+            return Request.CreateResponse(HttpStatusCode.OK, AllFicheSecurite);
 
         }
 

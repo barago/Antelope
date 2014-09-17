@@ -68,19 +68,14 @@ namespace Antelope.Controllers.API.HSE
 
 
         // POST api/fichesecuriteapi
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/fichesecuriteapi/5
-        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite/* [FromBody]string value */)
+        public HttpResponseMessage Post(FicheSecurite FicheSecurite)
         {
 
             MailMessage mail = new MailMessage();
 
             mail.From = new MailAddress("Sezar@refresco.fr");
-            mail.Subject = "Test Send Email";
-            mail.Body = "Test d'envoi de message !!!";
+            mail.Subject = "Alerte Sécurité !!!";
+            mail.Body = "Nouveau message d'alerte sécurité";
             mail.To.Add("jucok@gmx.fr");
             mail.To.Add("julien.cokelaere@refresco.fr");
             mail.IsBodyHtml = false;
@@ -92,7 +87,21 @@ namespace Antelope.Controllers.API.HSE
             smtp.EnableSsl = false;
             smtp.Send(mail);
 
-            var b = 0;
+            FicheSecurite.DateCreation = DateTime.Now;
+            FicheSecurite.DateEvenement = DateTime.Now;
+
+            db.FicheSecurites.Add(FicheSecurite);
+            db.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+
+        }
+
+        // PUT api/fichesecuriteapi/5
+        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite/* [FromBody]string value */)
+        {
+
 
             db.Entry(ficheSecurite).State = EntityState.Modified;
 

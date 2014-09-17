@@ -996,7 +996,9 @@
         });
 
         var ficheSecuriteModel = new FicheSecuriteModel(ficheSecuriteViewModel.get('FicheSecurite'));
-        ficheSecuriteModel.set({ id: FicheSecuriteId });
+        if (FicheSecuriteId != -1) {
+            ficheSecuriteModel.set({ id: FicheSecuriteId });
+        };
 
         ficheSecuriteModel.set({'DateEvenementJavascript': dateFormatJS(ficheSecuriteModel.get('DateEvenement'))});
         ficheSecuriteModel.set({'HeureEvenementJavascript': heureFormatJS(ficheSecuriteModel.get('DateEvenement')) });

@@ -62,11 +62,32 @@
 
                         </div>
                         <div class="col-md-6">
+                            <div class="col-md-3"> </div>
+                            <div class="col-md-3">
+                                <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                    <span class="glyphicon glyphicon-search"></span> Mes fiches
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                    <span class="glyphicon glyphicon-search"></span> Mes actions
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                    <span class="glyphicon glyphicon-search"></span> Remise à zéro
+                                </button>
+                            </div>
+
+
+
+
+
                         </div>
 
                         <div class="col-md-2">
 
-                            <button id="RechercheBouton" type="submit" class="btn btn-primary btn-xs pull-right">
+                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
                                 <span class="glyphicon glyphicon-search"></span> Chercher
                             </button>
 
@@ -88,11 +109,10 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <select id="Site" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheFicheSecuriteParamModel.get('SiteId') == 0){ %> selected <% } %> ></option>
                                         <% siteCollection.each( function(site){ %>
-                                        <%= console.log('site')%>
-                                        <option value="<%= site.get('SiteID') %>">
-                                            @*<% if (ficheSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
-                            >*@
+                                        <option value="<%= site.get('SiteID') %>"
+                                            <% if (rechercheFicheSecuriteParamModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %> >
                                             <%= site.get('Nom') %>
                                         </option>
                                         <% }); %>
@@ -106,10 +126,10 @@
                                     <label for="Zone" class="col-sm-4 label-xs">Zone&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="Zone">
-
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('ZoneId') == 0){ %> selected <% } %> ></option>
                                             <% zoneCollection.each( function(zone){ %>
                                             <option value="<%= zone.get('ZoneID') %>"
-                                                    @*<% if (ficheSecuriteModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %> >
                                                 <%= zone.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -123,10 +143,10 @@
                                     <label for="Lieu" class="col-sm-4 label-xs">Lieu&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="Lieu">
-
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('LieuId') == 0){ %> selected <% } %> ></option>
                                             <% lieuCollection.each( function(lieu){ %>
                                             <option value="<%= lieu.get('LieuID') %>"
-                                                    @*<% if (ficheSecuriteModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %>*
                                                 <%= lieu.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -140,9 +160,10 @@
                                     <label for="PosteDeTravail" class="col-sm-4 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="PosteDeTravail">
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('PosteDeTravailId') == 0){ %> selected <% } %> ></option>
                                             <% posteDeTravailCollection.each( function(posteDeTravail){ %>
                                             <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
-                                                    @*<% if (ficheSecuriteModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>*
                                                 <%= posteDeTravail.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -156,10 +177,10 @@
                                     <label for="Service" class="col-sm-4 label-xs">Service&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="Service">
-
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('ServiceId') == 0){ %> selected <% } %> ></option>
                                             <% serviceCollection.each( function(service){ %>
                                             <option value="<%= service.get('ServiceID') %>"
-                                                    @*<% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %> >
                                                 <%= service.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -173,7 +194,7 @@
                                     <label for="Code" class="label-xs">Code&nbsp;:</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="text" id="Code" class="form-control input-xs" value="" />
+                                    <input type="text" id="Code" class="form-control input-xs" value="<%= rechercheFicheSecuriteParamModel.get('Code') %>" />
                                 </div>
                             </div>
                             <div class="row">
@@ -181,7 +202,7 @@
                                     <label for="Age" class="label-xs">Age&nbsp;:</label>
                                 </div>
                                 <div class="col-sm-8">
-                                    <input type="text" id="Age" class="form-control input-xs" value="" />
+                                    <input type="text" id="Age" class="form-control input-xs" value="<%= rechercheFicheSecuriteParamModel.get('Age') %>" />
                                 </div>
                             </div>
                         </div>
@@ -192,11 +213,10 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <select id="Type" class="form-control input-xs">
-
+                                        <option value="0" <% if (rechercheFicheSecuriteParamModel.get('FicheSecuriteTypeId') == 0){ %> selected <% } %> ></option>
                                         <% ficheSecuriteTypeCollection.each( function(type){ %>
                                         <option value="<%= type.get('FicheSecuriteTypeID') %>"
-                                                @*<% if (ficheSecuriteModel.get('FicheSecuriteTypeId') == type.get('FicheSecuriteTypeID')){ %> selected <% } %>*@
-                                                >
+                                                <% if (rechercheFicheSecuriteParamModel.get('FicheSecuriteTypeId') == type.get('FicheSecuriteTypeID')){ %> selected <% } %> >
                                                 <%= type.get('Nom') %>
                                             </option>
                                         <% }); %>
@@ -211,7 +231,7 @@
                                 <div class='col-sm-8'>
                                     @*<div class="form-group">*@
                                     <div class='input-group date' id='datetimepicker1'>
-                                        <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="" />
+                                        <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="<%= rechercheFicheSecuriteParamModel.get('DateEvenementDebut') %>" />
                                         <span class="input-group-addon input-xs">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -226,7 +246,7 @@
                                 <div class='col-sm-8'>
                                     @*<div class="form-group">*@
                                     <div class='input-group date' id='datetimepicker2'>
-                                        <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="" />
+                                        <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="<%= rechercheFicheSecuriteParamModel.get('DateEvenementFin') %>" />
                                         <span class="input-group-addon input-xs">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -242,7 +262,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-xs">
-                                            <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="">
+                                            <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= rechercheFicheSecuriteParamModel.get('PersonneConcerneeNom') %>">
                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                             @*<span class="input-group-btn">
                                                 <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
@@ -261,7 +281,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="input-group input-group-xs">
-                                            <input type="text" class="form-control input-xs" id="ResponsableNom" value="">
+                                            <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= rechercheFicheSecuriteParamModel.get('ResponsableNom') %>">
                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
                                             @*<span class="input-group-btn">
                             <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
@@ -277,10 +297,10 @@
                                     <label for="PlageHoraire" class="col-sm-4 label-xs">Plage&nbsp;horaire&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="PlageHoraire">
-
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('PlageHoraireId') == 0){ %> selected <% } %> ></option>
                                             <% plageHoraireCollection.each( function(plageHoraire){ %>
                                             <option value="<%= plageHoraire.get('PlageHoraireID') %>"
-                                                @*<% if (ficheSecuriteModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>*@
+                                                <% if (rechercheFicheSecuriteParamModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
                                                 >
                                                 <%= plageHoraire.get('Nom') %>
                                             </option>
@@ -295,9 +315,10 @@
                                     <label for="Danger" class="col-sm-4 label-xs">Danger&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="Danger">
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('DangerId') == 0){ %> selected <% } %> ></option>
                                             <% dangerCollection.each( function(danger){ %>
                                             <option value="<%= danger.get('DangerID') %>"
-                                                    @*<% if (ficheSecuriteModel.get('DangerId') == danger.get('DangerID')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('DangerId') == danger.get('DangerID')){ %> selected <% } %> >
                                                 <%= danger.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -314,13 +335,13 @@
                                     <label for="Risque" class="col-sm-4 label-xs">Risque&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="Risque">
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('RisqueId') == 0){ %> selected <% } %> ></option>
                                             <% risqueTypeCollection.each( function(risqueType){ %>
                                             <optgroup label="<%= risqueType.get('Nom') %>">
                                                 @*La fonction Where renvoie un array et non pas une collection, on utilise donc _.each et non pas each de Backbone*@
                                                 <% _.each(risqueCollection.where({'RisqueTypeId': risqueType.get('RisqueTypeId')}), function(risque){ %>
                                                 <option value="<%= risque.get('RisqueId') %>"
-                                                    @*<% if (ficheSecuriteModel.get('RisqueId') == risque.get('RisqueId')){ %> selected <% } %>*@
-                                                >
+                                                    <% if (rechercheFicheSecuriteParamModel.get('RisqueId') == risque.get('RisqueId')){ %> selected <% } %> >
                                                     <%= risque.get('Nom') %>
                                                 <% }); %>
                                             </optgroup>
@@ -333,7 +354,7 @@
                                 <div class="form-group">
                                     <label for="Frequence" class="col-sm-4 label-xs">Fréquence&nbsp;:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-xs" id="Frequence" value="">
+                                        <input type="text" class="form-control input-xs" id="Frequence" value="<%= rechercheFicheSecuriteParamModel.get('CotationFrequence') %>">
                                     </div>
                                 </div>
                             </div>
@@ -341,7 +362,7 @@
                                 <div class="form-group">
                                     <label for="Gravite" class="col-sm-4 label-xs">Gravité&nbsp;:</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control input-xs" id="Gravite" value="">
+                                        <input type="text" class="form-control input-xs" id="Gravite" value="<%= rechercheFicheSecuriteParamModel.get('CotationGravite') %>">
                                     </div>
                                 </div>
                             </div>
@@ -350,9 +371,10 @@
                                     <label for="CorpsHumainZone" class="col-sm-4 label-xs">Zone Corps Humain&nbsp;:</label>
                                     <div class="col-sm-8">
                                         <select class="form-control input-xs" id="CorpsHumainZone">
+                                            <option value="0" <% if (rechercheFicheSecuriteParamModel.get('CorpsHumainZoneId') == 0){ %> selected <% } %> ></option>
                                             <% corpsHumainZoneCollection.each( function(corpsHumainZone){ %>
                                             <option value="<%= corpsHumainZone.get('CorpsHumainZoneID') %>"
-                                                    @*<% if (ficheSecuriteModel.get('DangerId') == danger.get('DangerID')){ %> selected <% } %>*@>
+                                                    <% if (rechercheFicheSecuriteParamModel.get('CorpsHumainZoneId') == corpsHumainZone.get('CorpsHumainZoneID')){ %> selected <% } %> >
                                                 <%= corpsHumainZone.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -494,7 +516,7 @@
             async: false   //, success: this.arraysToModelCollections
         });
 
-        rechercheFicheSecuriteViewModel.set({ 'RechercheFicheSecuriteParamModel': new RechercheFicheSecuriteParamModel(rechercheFicheSecuriteViewModel.get('RechercheFicheSecuriteParamModel')) });
+        rechercheFicheSecuriteViewModel.set({ 'rechercheFicheSecuriteParamModel': new RechercheFicheSecuriteParamModel(rechercheFicheSecuriteViewModel.get('RechercheFicheSecuriteParamModel')) });
 
         rechercheFicheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(rechercheFicheSecuriteViewModel.get('AllSite')) });
         rechercheFicheSecuriteViewModel.set({ 'zoneCollection': new ZoneCollection(rechercheFicheSecuriteViewModel.get('AllZone')) });
@@ -580,7 +602,8 @@
                 this.render();
             },
             events: {
-                "click #RechercheBouton": "recherche"
+                "click #RechercheBouton": "recherche",
+                "change #Site": "changeSite",
             },
             recherche: function () {
                 //this.model.get('ficheSecuriteCollection').fetch({ data: { api_key: 'secretkey' }, type: 'POST' });
@@ -588,7 +611,7 @@
                     type: "post",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify(this.model.get('RechercheFicheSecuriteParamModel')),
+                    data: JSON.stringify(this.model.get('rechercheFicheSecuriteParamModel')),
                     async: false,   //, success: this.arraysToModelCollections
                     wait:true
                 });
@@ -606,7 +629,38 @@
 
                 this.render();
 
-            }
+            },
+            changeSite: function () {
+                // Lorsqu'on change le site, la liste des zones doit correspondre au site en question, on charge la liste des zones (REST/Ajax)
+
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'SiteId': $('#Site').val() });
+                console.log($('#Site').val());
+                console.log(this.model.get('rechercheFicheSecuriteParamModel'));
+
+                // Ajout de l'ID de l'URL, voir si il n'y a pas moyen de l'ajouter directement dans le fetch d'une collection Backbone ...
+                //this.model.get('zoneCollection').url = '/api/action/zone/getZonesBySiteId/' + this.model.get('ficheSecuriteModel').get('SiteId');
+
+                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
+                //this.model.get('zoneCollection').fetch({ async: false });
+
+                //this.model.get('zoneCollection').each(function (zone, index) {
+                //    zone.set({ 'Nom': zone.get('ZoneType').Nom });
+                //});
+
+                // Ajout de l'ID de l'URL, voir si il n'y a pas moyen de l'ajouter directement dans le fetch d'une collection Backbone ...
+                //this.model.get('serviceCollection').url = '/api/action/service/getServicesBySiteId/' + this.model.get('ficheSecuriteModel').get('SiteId');
+
+                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
+                //this.model.get('serviceCollection').fetch({ async: false });
+
+                //this.model.get('serviceCollection').each(function (service, index) {
+                //    service.set({ 'Nom': service.get('ServiceType').Nom });
+                //});
+
+                // TODO : Mettre à Zéro les lieux
+
+                this.render();
+            },
 
 
 

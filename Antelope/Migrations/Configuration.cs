@@ -1445,8 +1445,9 @@ namespace Antelope.Migrations
 
             Personne Responsable1 = new Personne()
             {
-                Nom = "Clot",
-                Prenom = "Jean"
+                Nom = "Cokelaere",
+                Prenom = "Julien",
+                GUID = Guid.Parse("04520963-d3aa-4d5c-bf35-089999c1001b")
             };
 
             Personne Responsable2 = new Personne()
@@ -1614,7 +1615,7 @@ namespace Antelope.Migrations
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable2,
+                Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1638,7 +1639,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable3,
+                Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1663,7 +1664,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone5_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable4,
+                Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1681,6 +1682,55 @@ namespace Antelope.Migrations
                 Risque = AllRisque[4]
             };
 
+
+            FicheSecurite FicheSecurite5 = new FicheSecurite()
+            {
+                Code = "STA-2014-3",
+                Type = "FPA",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceSTA1,
+                Responsable = Responsable3,
+                Site = siteSTA,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneSTA2,
+                Lieu = LieuSTAZone2_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType3,
+                Danger = AllDanger[3],
+                PlageHoraire = plagehoraire3,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[3],
+                PersonneConcernee = PersonneConcernee3,
+                Risque = AllRisque[3]
+            };
+
+            FicheSecurite FicheSecurite6 = new FicheSecurite()
+            {
+                Code = "STA-2014-4",
+                Type = "FPA",
+                PosteDeTravail = PosteDeTravailDLFZone5_2,
+                Service = ServiceSTA1,
+                Responsable = Responsable4,
+                Site = siteSTA,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneSTA5,
+                Lieu = LieuSTAZone5_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType4,
+                Danger = AllDanger[3],
+                PlageHoraire = plagehoraire4,
+                CorpsHumainZone = AllCorpsHumainZone[4],
+                PersonneConcernee = PersonneConcernee4,
+                Risque = AllRisque[4]
+            };
 
             ActionSecurite action = new ActionSecurite()
             {
@@ -1706,6 +1756,8 @@ namespace Antelope.Migrations
                 context.FicheSecurites.Add(FicheSecurite2);
                 context.FicheSecurites.Add(FicheSecurite3);
                 context.FicheSecurites.Add(FicheSecurite4);
+                context.FicheSecurites.Add(FicheSecurite5);
+                context.FicheSecurites.Add(FicheSecurite6);
                 //System.Diagnostics.Debug.WriteLine("Passage boucle"); 
                 
             //}

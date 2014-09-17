@@ -64,7 +64,27 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
             this.AllRisqueType = db.RisqueTypes.ToList();
             this.AllRisque = db.Risques.ToList();
             this.AllService = AllService;
-            this.RechercheFicheSecuriteParamModel = new RechercheFicheSecuriteParamModel() {SiteId = 2 };
+            this.RechercheFicheSecuriteParamModel = new RechercheFicheSecuriteParamModel() {
+                SiteId = 2,
+                ZoneId = 0,
+                LieuId = 0,
+                FicheSecuriteTypeId = 0,
+                Code = "",
+                Age = "",
+                PosteDeTravailId = 0,
+                ServiceId = 0,
+                DateEvenementDebut = new DateTime(2014, 01, 01),
+                DateEvenementFin = new DateTime(2020, 12, 31),
+                PersonneConcerneeNom = "",
+                ResponsableNom = "",
+                CotationFrequence = null,
+                CotationGravite = null,
+                RisqueId = 0,
+                DangerId = 0,
+                CorpsHumainZoneId = 0,
+                PlageHoraireId = 0
+            
+            };
 
 
             //this.FicheSecuriteDate = this.FicheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");
