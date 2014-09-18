@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _160920142 : DbMigration
+    public partial class _18092014 : DbMigration
     {
         public override void Up()
         {

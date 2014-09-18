@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Antelope.Models.HSE;
 using Antelope.Models;
+using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 
 namespace Antelope.Repositories.HSE
 {
@@ -31,6 +32,44 @@ namespace Antelope.Repositories.HSE
         public List<FicheSecurite> GetAll()
         {
             return _db.FicheSecurites.ToList();
+        }
+
+        public List<FicheSecurite> GetFromParams(RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel)
+        {
+            var queryFicheSecurite = from a in _db.FicheSecurites 
+                                     //join 
+                                     select a;
+
+
+    //        var innerJoinQuery =
+    //from cust in customers
+    //join dist in distributors on cust.City equals dist.City
+    //select new { CustomerName = cust.Name, DistributorName = dist.Name };
+
+            //if (RechercheFicheSecuriteParamModel.SiteId != null && RechercheFicheSecuriteParamModel.SiteId != 0)
+            //{
+            //    queryFicheSecurite = queryFicheSecurite.Where(q => q.SiteId == RechercheFicheSecuriteParamModel.SiteId);
+            //}
+            if (RechercheFicheSecuriteParamModel.ZoneId != null && RechercheFicheSecuriteParamModel.ZoneId != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.ZoneId == RechercheFicheSecuriteParamModel.ZoneId);
+            }
+            if (RechercheFicheSecuriteParamModel.LieuId != null && RechercheFicheSecuriteParamModel.LieuId != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.LieuId == RechercheFicheSecuriteParamModel.LieuId);
+            }
+            if (RechercheFicheSecuriteParamModel.ResponsableNom != null && RechercheFicheSecuriteParamModel.ResponsableNom != "")
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.Responsable.GUID == RechercheFicheSecuriteParamModel.ResponsableGuid);
+            }
+
+
+
+
+            List<FicheSecurite> AllFicheSecurite = queryFicheSecurite.ToList();
+
+            return AllFicheSecurite;
+
         }
 
         //public Review Add(Review review)

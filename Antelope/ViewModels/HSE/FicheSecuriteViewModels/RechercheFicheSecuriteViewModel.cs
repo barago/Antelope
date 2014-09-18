@@ -5,6 +5,7 @@ using System.Web;
 using Antelope.Models.HSE;
 using Antelope.Models.Socle;
 using Antelope.Models;
+using Antelope.Repositories.HSE;
 
 
 namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
@@ -47,12 +48,17 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         }
 
         public RechercheFicheSecuriteViewModel(
-           List<FicheSecurite>AllFicheSecurite, List<Service> AllService, List<Zone> AllZone, List<Lieu> AllLieu, List<PosteDeTravail> AllPosteDeTravail
-            )
+                                        RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel,
+                                        List<FicheSecurite> AllFicheSecurite, 
+                                        List<Service> AllService, 
+                                        List<Zone> AllZone, 
+                                        List<Lieu> AllLieu, 
+                                        List<PosteDeTravail> AllPosteDeTravail
+        )
         {
 
             this.AllFicheSecurite = AllFicheSecurite;
-
+            this.RechercheFicheSecuriteParamModel = RechercheFicheSecuriteParamModel;
             this.AllZone = AllZone;
             this.AllLieu = AllLieu;
             this.AllPosteDeTravail = AllPosteDeTravail;
@@ -64,31 +70,6 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
             this.AllRisqueType = db.RisqueTypes.ToList();
             this.AllRisque = db.Risques.ToList();
             this.AllService = AllService;
-            this.RechercheFicheSecuriteParamModel = new RechercheFicheSecuriteParamModel() {
-                SiteId = 2,
-                ZoneId = 0,
-                LieuId = 0,
-                FicheSecuriteTypeId = 0,
-                Code = "",
-                Age = "",
-                PosteDeTravailId = 0,
-                ServiceId = 0,
-                DateEvenementDebut = new DateTime(2014, 01, 01),
-                DateEvenementFin = new DateTime(2020, 12, 31),
-                PersonneConcerneeNom = "",
-                ResponsableNom = "",
-                CotationFrequence = null,
-                CotationGravite = null,
-                RisqueId = 0,
-                DangerId = 0,
-                CorpsHumainZoneId = 0,
-                PlageHoraireId = 0
-            
-            };
-
-
-            //this.FicheSecuriteDate = this.FicheSecurite.DateEvenement.Date.ToString("dd/MM/yyyy");
-            //this.FicheSecuriteHeure = this.FicheSecurite.DateEvenement.Date.ToString("HH:mm");
 
         }
 

@@ -30,7 +30,7 @@ namespace Antelope.Migrations
 
             Site siteDLF = new Site()
             {
-                Nom = "Delifruit",
+                Nom = "Delifruits",
                 Trigramme = "DLF",
                 Arouperr = "Site DLF"
             };
@@ -1589,7 +1589,7 @@ namespace Antelope.Migrations
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone4_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable1,
+                Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1615,7 +1615,7 @@ namespace Antelope.Migrations
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable1,
+                Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1639,7 +1639,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable1,
+                Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1664,7 +1664,7 @@ namespace Antelope.Migrations
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone5_2,
                 Service = ServiceDLF1,
-                Responsable = Responsable1,
+                Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
@@ -1732,6 +1732,108 @@ namespace Antelope.Migrations
                 Risque = AllRisque[4]
             };
 
+            FicheSecurite FicheSecurite7 = new FicheSecurite()
+            {
+                Code = "DLF-2014-1",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                Service = ServiceRFS1,
+                Responsable = Responsable1,
+                Site = siteRFS,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF4,
+                Lieu = LieuDLFZone4_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType1,
+                Danger = AllDanger[1],
+                PlageHoraire = plagehoraire1,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1]
+
+            };
+
+            FicheSecurite FicheSecurite8 = new FicheSecurite()
+            {
+                Code = "DLF-2014-2",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteRFS,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF3,
+                Lieu = LieuDLFZone3_2,
+                PersonnesConcernees = "David Leloup, Cyril Clot",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType2,
+                Danger = AllDanger[2],
+                PlageHoraire = plagehoraire2,
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2]
+            };
+
+            FicheSecurite FicheSecurite9 = new FicheSecurite()
+            {
+                Code = "DLF-2014-3",
+                Type = "FPA",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteRFS,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF2,
+                Lieu = LieuDLFZone2_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType3,
+                Danger = AllDanger[3],
+                PlageHoraire = plagehoraire3,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[3],
+                PersonneConcernee = PersonneConcernee3,
+                Risque = AllRisque[3]
+            };
+
+            FicheSecurite FicheSecurite10 = new FicheSecurite()
+            {
+                Code = "DLF-2014-4",
+                Type = "FPA",
+                PosteDeTravail = PosteDeTravailDLFZone5_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteRFS,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF5,
+                Lieu = LieuDLFZone5_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType4,
+                Danger = AllDanger[3],
+                PlageHoraire = plagehoraire4,
+                CorpsHumainZone = AllCorpsHumainZone[4],
+                PersonneConcernee = PersonneConcernee4,
+                Risque = AllRisque[4]
+            };
+
+
+
+
             ActionSecurite action = new ActionSecurite()
             {
                 FicheSecurite = FicheSecurite1,
@@ -1758,6 +1860,10 @@ namespace Antelope.Migrations
                 context.FicheSecurites.Add(FicheSecurite4);
                 context.FicheSecurites.Add(FicheSecurite5);
                 context.FicheSecurites.Add(FicheSecurite6);
+                context.FicheSecurites.Add(FicheSecurite7);
+                context.FicheSecurites.Add(FicheSecurite8);
+                context.FicheSecurites.Add(FicheSecurite9);
+                context.FicheSecurites.Add(FicheSecurite10);
                 //System.Diagnostics.Debug.WriteLine("Passage boucle"); 
                 
             //}

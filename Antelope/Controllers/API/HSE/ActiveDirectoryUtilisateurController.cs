@@ -30,7 +30,7 @@ namespace Antelope.Controllers.API.HSE
             List<ActiveDirectoryUtilisateurViewModel> allActiveDirectoryViewModel = new List<ActiveDirectoryUtilisateurViewModel>();
 
 
-            var context = new PrincipalContext(ContextType.Domain, "refresco.local");
+            var context = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
             //define a "query-by-example" principal - here, we search for a UserPrincipal 
             //and with the first name (GivenName) and a last name (Surname) 
             UserPrincipal qbeUser = new UserPrincipal(context);
