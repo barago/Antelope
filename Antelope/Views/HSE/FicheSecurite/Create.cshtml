@@ -1221,7 +1221,6 @@
                 "keyup #ResponsableNom": "changeResponsableNom",
                 "keyup #ResponsablePrenom": "changeResponsablePrenom",
                 "change #PlageHoraire": "changePlageHoraire",
-                "keyup #Service": "changeService",
                 "change #Danger": "changeDanger",
                 "change #Risque": "changeRisque",
                 "keyup #Temoins": "changeTemoins",
@@ -1271,7 +1270,7 @@
             changeService: function () {
                 this.model.get('ficheSecuriteModel').set({ 'ServiceId': $('#Service').val() });
             },
-            changePosteDETravail: function () {
+            changePosteDeTravail: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PosteDeTravailId': $('#PosteDeTravail').val() });
             },
             changeZone: function () {

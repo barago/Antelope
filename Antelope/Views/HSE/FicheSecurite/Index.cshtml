@@ -145,8 +145,9 @@
                                         <select class="form-control input-xs" id="Lieu">
                                             <option value="0" <% if (rechercheFicheSecuriteParamModel.get('LieuId') == 0){ %> selected <% } %> ></option>
                                             <% lieuCollection.each( function(lieu){ %>
+                                            <% console.log(lieu) %>
                                             <option value="<%= lieu.get('LieuID') %>"
-                                                    <% if (rechercheFicheSecuriteParamModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %>*
+                                                    <% if (rechercheFicheSecuriteParamModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %> >
                                                 <%= lieu.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -163,7 +164,7 @@
                                             <option value="0" <% if (rechercheFicheSecuriteParamModel.get('PosteDeTravailId') == 0){ %> selected <% } %> ></option>
                                             <% posteDeTravailCollection.each( function(posteDeTravail){ %>
                                             <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
-                                                    <% if (rechercheFicheSecuriteParamModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>*
+                                                    <% if (rechercheFicheSecuriteParamModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %> >
                                                 <%= posteDeTravail.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -373,8 +374,8 @@
                                         <select class="form-control input-xs" id="CorpsHumainZone">
                                             <option value="0" <% if (rechercheFicheSecuriteParamModel.get('CorpsHumainZoneId') == 0){ %> selected <% } %> ></option>
                                             <% corpsHumainZoneCollection.each( function(corpsHumainZone){ %>
-                                            <option value="<%= corpsHumainZone.get('CorpsHumainZoneID') %>"
-                                                    <% if (rechercheFicheSecuriteParamModel.get('CorpsHumainZoneId') == corpsHumainZone.get('CorpsHumainZoneID')){ %> selected <% } %> >
+                                            <option value="<%= corpsHumainZone.get('Id') %>"
+                                                    <% if (rechercheFicheSecuriteParamModel.get('CorpsHumainZoneId') == corpsHumainZone.get('Id')){ %> selected <% } %> >
                                                 <%= corpsHumainZone.get('Nom') %>
                                             </option>
                                             <% }); %>
@@ -580,6 +581,7 @@
             id: 'RechercheTableFicheSecurite',
             template: _.template($('#TableRecherche').html()),
             render: function () {
+                console.log(this.model.get('rechercheFicheSecuriteParamModel'));
                 this.$el.html(this.template(this.model.toJSON()));
 
                 //$('#table_id').DataTable({
@@ -604,6 +606,25 @@
             events: {
                 "click #RechercheBouton": "recherche",
                 "change #Site": "changeSite",
+                "change #Zone": "changeZone",
+                "change #Lieu": "changeLieu",
+                "change #Service": "changeService",
+                "change #PosteDeTravail": "changePosteDeTravail",
+                "keyup #Age": "changeAge",
+                "change #Type": "changeType",
+                "keyup #Code": "changeCode",
+                //changeDateEvenementDebut,
+                //changeDateEvenementFin,
+                "keyup #PersonnesConcerneeNom": "changePersonneConcerneeNom",
+                "keyup #ResponsableNom": "changeResponsableNom",
+                "change #PlageHoraire": "changePlageHoraire",
+                "change #Danger": "changeDanger",
+                "change #Risque": "changeRisque",
+                "keyup #Gravite": "changeGravite",
+                "keyup #Frequence": "changeFrequence",
+                "change #CorpsHumainZone" : "changeCorpsHumainZone"
+
+
             },
             recherche: function () {
                 //this.model.get('ficheSecuriteCollection').fetch({ data: { api_key: 'secretkey' }, type: 'POST' });
@@ -633,36 +654,102 @@
             changeSite: function () {
                 // Lorsqu'on change le site, la liste des zones doit correspondre au site en question, on charge la liste des zones (REST/Ajax)
 
-                this.model.get('rechercheFicheSecuriteParamModel').set({ 'SiteId': $('#Site').val() });
-                console.log($('#Site').val());
-                console.log(this.model.get('rechercheFicheSecuriteParamModel'));
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
 
                 // Ajout de l'ID de l'URL, voir si il n'y a pas moyen de l'ajouter directement dans le fetch d'une collection Backbone ...
-                //this.model.get('zoneCollection').url = '/api/action/zone/getZonesBySiteId/' + this.model.get('ficheSecuriteModel').get('SiteId');
+                this.model.get('zoneCollection').url = '/api/action/zone/getZonesBySiteId/' + this.model.get('rechercheFicheSecuriteParamModel').get('SiteId');
 
                 // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
-                //this.model.get('zoneCollection').fetch({ async: false });
+                this.model.get('zoneCollection').fetch({ async: false });
 
-                //this.model.get('zoneCollection').each(function (zone, index) {
-                //    zone.set({ 'Nom': zone.get('ZoneType').Nom });
-                //});
+                this.model.get('zoneCollection').each(function (zone, index) {
+                    zone.set({ 'Nom': zone.get('ZoneType').Nom });
+                });
 
                 // Ajout de l'ID de l'URL, voir si il n'y a pas moyen de l'ajouter directement dans le fetch d'une collection Backbone ...
-                //this.model.get('serviceCollection').url = '/api/action/service/getServicesBySiteId/' + this.model.get('ficheSecuriteModel').get('SiteId');
+                this.model.get('serviceCollection').url = '/api/action/service/getServicesBySiteId/' + this.model.get('rechercheFicheSecuriteParamModel').get('SiteId');
 
                 // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
-                //this.model.get('serviceCollection').fetch({ async: false });
+                this.model.get('serviceCollection').fetch({ async: false });
 
-                //this.model.get('serviceCollection').each(function (service, index) {
-                //    service.set({ 'Nom': service.get('ServiceType').Nom });
-                //});
+                this.model.get('serviceCollection').each(function (service, index) {
+                    service.set({ 'Nom': service.get('ServiceType').Nom });
+                });
 
                 // TODO : Mettre à Zéro les lieux
 
                 this.render();
             },
+            changeZone: function () {
+                // Lorsqu'on change la zone, la liste des lieux doit correspondre à la zone en question, on charge la liste des lieux (REST/Ajax)
 
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'ZoneId': $('#Zone').val() });
 
+                // Ajout de l'ID de l'URL, voir si il n'y a pas moyen de l'ajouter directement dans le fetch d'une collection Backbone ...
+                this.model.get('lieuCollection').url = '/api/action/lieu/getLieuxByZoneId/' + this.model.get('rechercheFicheSecuriteParamModel').get('ZoneId');
+                this.model.get('posteDeTravailCollection').url = '/api/action/posteDeTravail/getPosteDeTravailsByZoneId/' + this.model.get('rechercheFicheSecuriteParamModel').get('ZoneId');
+
+                // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
+                this.model.get('lieuCollection').fetch({ async: false });
+                this.model.get('posteDeTravailCollection').fetch({ async: false });
+
+                this.model.get('lieuCollection').each(function (lieu, index) {
+                    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+                });
+                this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
+                    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
+                });
+
+                this.render();
+            },
+            changeLieu: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'LieuId': $('#Lieu').val() });
+            },
+            changeService: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'ServiceId': $('#Service').val() });
+            },
+            changePosteDeTravail: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'PosteDeTravailId': $('#PosteDeTravail').val() });
+            },
+            changeAge: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'Age': $('#Age').val() });
+            },
+            changeType: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'FicheSecuriteTypeId': $('#Type').val() });
+            },
+            changeCode: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'Code': $('#Code').val() });
+            },
+            changeDateEvenementDebut: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'DateEvenementDebut': this.dateFormatMVC($('#DateEvenementDebut').val()) + 'T00:00:00.0' });
+            },
+            changeDateEvenementFin: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'DateEvenementFin': this.dateFormatMVC($('#DateEvenementFin').val()) + 'T00:00:00.0' });
+            },
+            changePersonneConcerneeNom: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'PersonneConcerneeNom': $('#PersonnesConcerneeNom').val() });
+            },
+            changeResponsableNom: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'ResponsableNom': $('#ResponsableNom').val() });
+            },
+            changePlageHoraire: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
+            },
+            changeDanger: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'DangerId': $('#Danger').val() });
+            },
+            changeRisque: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'RisqueId': $('#Risque').val() });
+            },
+            changeGravite: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'CotationGravite': $('#Gravite').val() });
+            },
+            changeFrequence: function () {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'CotationFrequence': $('#Frequence').val() });
+            },
+            changeCorpsHumainZone: function (data) {
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'CorpsHumainZoneId': $('#CorpsHumainZone').val() });
+            },
 
         });
 
