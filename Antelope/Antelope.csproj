@@ -186,9 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409181310168_18092014.cs" />
-    <Compile Include="Migrations\201409181310168_18092014.Designer.cs">
-      <DependentUpon>201409181310168_18092014.cs</DependentUpon>
+    <Compile Include="Migrations\201409220831491_22092014.cs" />
+    <Compile Include="Migrations\201409220831491_22092014.Designer.cs">
+      <DependentUpon>201409220831491_22092014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -230,6 +230,7 @@
     <Compile Include="Services\Commons\GroupService.cs" />
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
+    <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
@@ -534,8 +535,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409181310168_18092014.resx">
-      <DependentUpon>201409181310168_18092014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409220831491_22092014.resx">
+      <DependentUpon>201409220831491_22092014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

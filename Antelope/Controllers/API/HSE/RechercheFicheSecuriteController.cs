@@ -84,13 +84,15 @@ namespace Antelope.Controllers.API.HSE
                 RisqueId = 0,
                 DangerId = 0,
                 CorpsHumainZoneId = 0,
-                PlageHoraireId = 0
+                PlageHoraireId = 0,
+                Page = 1,
+                PageSize = 25
 
             };
 
-            List<FicheSecurite> AllFicheSecurite = _ficheSecuriteRepository.GetFromParams(RechercheFicheSecuriteParamModel);
+            FicheSecuritePaginatedList FicheSecuritePaginatedList = _ficheSecuriteRepository.GetFromParams(RechercheFicheSecuriteParamModel);
 
-            RechercheFicheSecuriteViewModel RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel,AllFicheSecurite, AllService, AllZone, AllLieu, AllPosteDeTravail);
+            RechercheFicheSecuriteViewModel RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, FicheSecuritePaginatedList, AllService, AllZone, AllLieu, AllPosteDeTravail);
 
             return Request.CreateResponse(HttpStatusCode.OK, RechercheFicheSecuriteViewModel);
         }
@@ -107,91 +109,26 @@ namespace Antelope.Controllers.API.HSE
 
             _ficheSecuriteRepository = new FicheSecuriteRepository();
 
-            //----------------------------
             var queryFicheSecurite = from a in db.FicheSecurites select a;
 
-            if(RechercheFicheSecuriteParamModel.SiteId != null && RechercheFicheSecuriteParamModel.SiteId != 0){                         
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.SiteId == RechercheFicheSecuriteParamModel.SiteId);
-            }
-            if (RechercheFicheSecuriteParamModel.ZoneId != null && RechercheFicheSecuriteParamModel.ZoneId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.ZoneId == RechercheFicheSecuriteParamModel.ZoneId);
-            }
-            if (RechercheFicheSecuriteParamModel.LieuId != null && RechercheFicheSecuriteParamModel.LieuId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.LieuId == RechercheFicheSecuriteParamModel.LieuId);
-            }
-            if (RechercheFicheSecuriteParamModel.FicheSecuriteTypeId != null && RechercheFicheSecuriteParamModel.FicheSecuriteTypeId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecuriteTypeId == RechercheFicheSecuriteParamModel.FicheSecuriteTypeId);
-            }
-            if (RechercheFicheSecuriteParamModel.Code != null && RechercheFicheSecuriteParamModel.Code != "")
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.Code == RechercheFicheSecuriteParamModel.Code);
-            }
-            if (RechercheFicheSecuriteParamModel.Age != null && RechercheFicheSecuriteParamModel.Age != "")
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.Age == RechercheFicheSecuriteParamModel.Age);
-            }
-            if (RechercheFicheSecuriteParamModel.PosteDeTravailId != null && RechercheFicheSecuriteParamModel.PosteDeTravailId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.PosteDeTravailId == RechercheFicheSecuriteParamModel.PosteDeTravailId);
-            }
-            if (RechercheFicheSecuriteParamModel.ServiceId != null && RechercheFicheSecuriteParamModel.ServiceId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.ServiceId == RechercheFicheSecuriteParamModel.ServiceId);
-            }
-            if (RechercheFicheSecuriteParamModel.DateEvenementDebut != null)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.DateEvenement >= RechercheFicheSecuriteParamModel.DateEvenementDebut);
-            }
-            if (RechercheFicheSecuriteParamModel.DateEvenementFin != null)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.DateEvenement <= RechercheFicheSecuriteParamModel.DateEvenementFin);
-            }
-            if (RechercheFicheSecuriteParamModel.PersonneConcerneeNom != null && RechercheFicheSecuriteParamModel.PersonneConcerneeNom != "")
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.PersonneConcernee.Nom == RechercheFicheSecuriteParamModel.PersonneConcerneeNom);
-            }
-            if (RechercheFicheSecuriteParamModel.ResponsableNom != null && RechercheFicheSecuriteParamModel.ResponsableNom != "")
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.Responsable.Nom == RechercheFicheSecuriteParamModel.ResponsableNom);
-            }
-            if (RechercheFicheSecuriteParamModel.CotationFrequence != null && RechercheFicheSecuriteParamModel.CotationFrequence != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationFrequence == RechercheFicheSecuriteParamModel.CotationFrequence);
-            }
-            if (RechercheFicheSecuriteParamModel.CotationGravite != null && RechercheFicheSecuriteParamModel.CotationGravite != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationGravite == RechercheFicheSecuriteParamModel.CotationGravite);
-            }
-            if (RechercheFicheSecuriteParamModel.RisqueId != null && RechercheFicheSecuriteParamModel.RisqueId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.RisqueId == RechercheFicheSecuriteParamModel.RisqueId);
-            }
-            if (RechercheFicheSecuriteParamModel.DangerId != null && RechercheFicheSecuriteParamModel.DangerId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.DangerId == RechercheFicheSecuriteParamModel.DangerId);
-            }
-            if (RechercheFicheSecuriteParamModel.CorpsHumainZoneId != null && RechercheFicheSecuriteParamModel.CorpsHumainZoneId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.CorpsHumainZoneId == RechercheFicheSecuriteParamModel.CorpsHumainZoneId);
-            }
-            if (RechercheFicheSecuriteParamModel.PlageHoraireId != null && RechercheFicheSecuriteParamModel.PlageHoraireId != 0)
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.PlageHoraireId == RechercheFicheSecuriteParamModel.PlageHoraireId);
-            }
-            if (RechercheFicheSecuriteParamModel.ResponsableGuid != null && RechercheFicheSecuriteParamModel.ResponsableGuid != new Guid())
-            {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.Responsable.GUID == RechercheFicheSecuriteParamModel.ResponsableGuid);
-            }
+            FicheSecuritePaginatedList FicheSecuritePaginatedList = _ficheSecuriteRepository.GetFromParams(RechercheFicheSecuriteParamModel);
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, FicheSecuritePaginatedList);
 
 
 
+            //var query = from m in db.Products
+            //            select m;
 
+            //// Set the total count
+            //// so GridView knows how many pages to create
+            //e.Arguments.TotalRowCount = query.Count();
 
-            List<FicheSecurite> AllFicheSecurite = queryFicheSecurite.ToList();
-            return Request.CreateResponse(HttpStatusCode.OK, AllFicheSecurite);
+            //// Get only the rows we need for the page requested
+            //query = query.Skip(GridView1.PageIndex * PAGE_SIZE).Take(PAGE_SIZE);
+
+            //e.Result = query;
 
         }
 

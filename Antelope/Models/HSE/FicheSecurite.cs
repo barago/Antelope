@@ -164,10 +164,11 @@ namespace Antelope.Models.HSE
         public virtual List<CauseQSE> Causes { get; set; }
 
         //Etats de la fiche (Workflow)
-        //public Boolean State10TeamLeaderValidated { get; set; }
-        //public Boolean State20ASEValidated { get; set; }
-        //public Boolean State30TeamLeaderCompleted { get; set; }
-        //public Boolean State40ASECompleted { get; set; }
+        public Boolean WorkFlowDiffusee { get; set; }
+        public Boolean WorkFlowAttenteASEValidation { get; set; }
+        public Boolean WorkFlowASEValidee { get; set; }
+        public Boolean WorkFlowASERejetee { get; set; }
+        public Boolean WorkFlowCloturee { get; set; }
 
     }
 }

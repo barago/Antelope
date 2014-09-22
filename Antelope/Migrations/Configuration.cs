@@ -1700,7 +1700,8 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[1],
                 PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1]
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true
                 
             };
 
@@ -1725,7 +1726,8 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire2,
                 CorpsHumainZone = AllCorpsHumainZone[2],
                 PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2]
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite3 = new FicheSecurite()
@@ -1750,7 +1752,8 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[3],
                 PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3]
+                Risque = AllRisque[3],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite4 = new FicheSecurite()
@@ -1774,7 +1777,8 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire4,
                 CorpsHumainZone = AllCorpsHumainZone[4],
                 PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4]
+                Risque = AllRisque[4],
+                WorkFlowDiffusee = true
             };
 
 
@@ -1800,7 +1804,8 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[3],
                 PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3]
+                Risque = AllRisque[3],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite6 = new FicheSecurite()
@@ -1824,12 +1829,13 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire4,
                 CorpsHumainZone = AllCorpsHumainZone[4],
                 PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4]
+                Risque = AllRisque[4],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite7 = new FicheSecurite()
             {
-                Code = "DLF-2014-1",
+                Code = "RFS-2014-1",
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone4_2,
                 Service = ServiceRFS1,
@@ -1849,13 +1855,14 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[1],
                 PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1]
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true
 
             };
 
             FicheSecurite FicheSecurite8 = new FicheSecurite()
             {
-                Code = "DLF-2014-2",
+                Code = "RFS-2014-2",
                 Type = "FAS",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
@@ -1874,12 +1881,13 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire2,
                 CorpsHumainZone = AllCorpsHumainZone[2],
                 PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2]
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite9 = new FicheSecurite()
             {
-                Code = "DLF-2014-3",
+                Code = "RFS-2014-3",
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone3_2,
                 Service = ServiceDLF1,
@@ -1899,12 +1907,13 @@ namespace Antelope.Migrations
                 ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
                 CorpsHumainZone = AllCorpsHumainZone[3],
                 PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3]
+                Risque = AllRisque[3],
+                WorkFlowDiffusee = true
             };
 
             FicheSecurite FicheSecurite10 = new FicheSecurite()
             {
-                Code = "DLF-2014-4",
+                Code = "RFS-2014-4",
                 Type = "FPA",
                 PosteDeTravail = PosteDeTravailDLFZone5_2,
                 Service = ServiceDLF1,
@@ -1923,10 +1932,226 @@ namespace Antelope.Migrations
                 PlageHoraire = plagehoraire4,
                 CorpsHumainZone = AllCorpsHumainZone[4],
                 PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4]
+                Risque = AllRisque[4],
+                WorkFlowDiffusee = true
+            };
+
+            FicheSecurite FicheSecurite11 = new FicheSecurite()
+            {
+                Code = "DLF-2014-1",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF4,
+                Lieu = LieuDLFZone4_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType1,
+                Danger = AllDanger[1],
+                PlageHoraire = plagehoraire1,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true,
+                WorkFlowAttenteASEValidation = true
+
+            };
+
+            FicheSecurite FicheSecurite12 = new FicheSecurite()
+            {
+                Code = "DLF-2014-2",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF3,
+                Lieu = LieuDLFZone3_2,
+                PersonnesConcernees = "David Leloup, Cyril Clot",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType2,
+                Danger = AllDanger[2],
+                PlageHoraire = plagehoraire2,
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true,
+                WorkFlowAttenteASEValidation = true
+            };
+
+            FicheSecurite FicheSecurite13 = new FicheSecurite()
+            {
+                Code = "DLF-2014-1",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF4,
+                Lieu = LieuDLFZone4_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType1,
+                Danger = AllDanger[1],
+                PlageHoraire = plagehoraire1,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true,
+                WorkFlowASEValidee = true
+
+            };
+
+            FicheSecurite FicheSecurite14 = new FicheSecurite()
+            {
+                Code = "DLF-2014-2",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF3,
+                Lieu = LieuDLFZone3_2,
+                PersonnesConcernees = "David Leloup, Cyril Clot",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType2,
+                Danger = AllDanger[2],
+                PlageHoraire = plagehoraire2,
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true,
+                WorkFlowASEValidee = true
             };
 
 
+            FicheSecurite FicheSecurite15 = new FicheSecurite()
+            {
+                Code = "DLF-2014-1",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF4,
+                Lieu = LieuDLFZone4_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType1,
+                Danger = AllDanger[1],
+                PlageHoraire = plagehoraire1,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true,
+                WorkFlowASERejetee = true
+
+            };
+
+            FicheSecurite FicheSecurite16 = new FicheSecurite()
+            {
+                Code = "DLF-2014-2",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF3,
+                Lieu = LieuDLFZone3_2,
+                PersonnesConcernees = "David Leloup, Cyril Clot",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType2,
+                Danger = AllDanger[2],
+                PlageHoraire = plagehoraire2,
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true,
+                WorkFlowASERejetee = true
+            };
+
+            FicheSecurite FicheSecurite17 = new FicheSecurite()
+            {
+                Code = "DLF-2014-1",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF4,
+                Lieu = LieuDLFZone4_2,
+                PersonnesConcernees = "Jean Dupont",
+                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+                CotationFrequence = 1,
+                CotationGravite = 2,
+                FicheSecuriteType = FicheSecuriteType1,
+                Danger = AllDanger[1],
+                PlageHoraire = plagehoraire1,
+                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+                CorpsHumainZone = AllCorpsHumainZone[1],
+                PersonneConcernee = PersonneConcernee1,
+                Risque = AllRisque[1],
+                WorkFlowDiffusee = true,
+                WorkFlowCloturee = true
+
+            };
+
+            FicheSecurite FicheSecurite18 = new FicheSecurite()
+            {
+                Code = "DLF-2014-2",
+                Type = "FAS",
+                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                Service = ServiceDLF1,
+                Responsable = Responsable1,
+                Site = siteDLF,
+                DateCreation = DateTime.Now,
+                DateEvenement = DateTime.Now,
+                Zone = ZoneDLF3,
+                Lieu = LieuDLFZone3_2,
+                PersonnesConcernees = "David Leloup, Cyril Clot",
+                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+                CotationFrequence = 0,
+                CotationGravite = 4,
+                FicheSecuriteType = FicheSecuriteType2,
+                Danger = AllDanger[2],
+                PlageHoraire = plagehoraire2,
+                CorpsHumainZone = AllCorpsHumainZone[2],
+                PersonneConcernee = PersonneConcernee2,
+                Risque = AllRisque[2],
+                WorkFlowDiffusee = true,
+                WorkFlowCloturee = true
+            };
 
 
             ActionSecurite action = new ActionSecurite()
@@ -1959,6 +2184,14 @@ namespace Antelope.Migrations
                 context.FicheSecurites.Add(FicheSecurite8);
                 context.FicheSecurites.Add(FicheSecurite9);
                 context.FicheSecurites.Add(FicheSecurite10);
+                context.FicheSecurites.Add(FicheSecurite11);
+                context.FicheSecurites.Add(FicheSecurite12);
+                context.FicheSecurites.Add(FicheSecurite13);
+                context.FicheSecurites.Add(FicheSecurite14);
+                context.FicheSecurites.Add(FicheSecurite15);
+                context.FicheSecurites.Add(FicheSecurite16);
+                context.FicheSecurites.Add(FicheSecurite17);
+                context.FicheSecurites.Add(FicheSecurite18);
                 //System.Diagnostics.Debug.WriteLine("Passage boucle"); 
                 
             //}

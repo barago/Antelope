@@ -145,7 +145,6 @@
                                         <select class="form-control input-xs" id="Lieu">
                                             <option value="0" <% if (rechercheFicheSecuriteParamModel.get('LieuId') == 0){ %> selected <% } %> ></option>
                                             <% lieuCollection.each( function(lieu){ %>
-                                            <% console.log(lieu) %>
                                             <option value="<%= lieu.get('LieuID') %>"
                                                     <% if (rechercheFicheSecuriteParamModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %> >
                                                 <%= lieu.get('Nom') %>
@@ -460,9 +459,9 @@
                         </thead>
                         <tbody>
                             <% ficheSecuriteCollection.each( function(ficheSecurite){ %>
-                            <tr>
+                            <tr style="<%= 'background-color:' + ficheSecurite.get('color') + ';' %>">
                                 <td>
-                                    <%= ficheSecurite.get('Code') %>
+                                    <%= ficheSecurite.get('FicheSecuriteID') %>
                                 </td>
                                 <td>
                                     <%= ficheSecurite.get('personneConcerneeModel').get('Nom') %>
@@ -471,7 +470,7 @@
                                     <%= ficheSecurite.get('Description') %>
                                 </td>
                                 <td>
-                                    CLOTURE ? @*@Html.DisplayFor(modelItem => item.)*@
+                                    <%= ficheSecurite.get('WorkFlowAttenteASEValidation') %> <%= ficheSecurite.get('WorkFlowASEValidee') %>                                                    @* CLOTURE ? @Html.DisplayFor(modelItem => item.)*@
                                 </td>
                                 <td>
                                     <a class="glyphicon glyphicon-edit" href="<%= ficheSecurite.get('urlEdit')%>"></a> |                         @*@Url.Action("Edit", new { id = <% ficheSecurite.get('FicheSecuriteId')%> })*@
@@ -546,7 +545,7 @@
 
 
 
-        rechercheFicheSecuriteViewModel.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(rechercheFicheSecuriteViewModel.get('AllFicheSecurite')) });
+        rechercheFicheSecuriteViewModel.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(rechercheFicheSecuriteViewModel.get('FicheSecuritePaginatedList').AllFicheSecurite) });
 
         rechercheFicheSecuriteViewModel.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
             ficheSecurite.set({ 'personneConcerneeModel': new PersonneConcerneeModel(ficheSecurite.PersonneConcernee) });
@@ -556,6 +555,8 @@
             var urlEdit = '@Url.Action("Edit", new { id=-1 })';
             urlEdit = urlEdit.replace('-1', idValue);
             ficheSecurite.set({ 'urlEdit': urlEdit });
+
+            colorWorkFlow(ficheSecurite);
 
         });
 
@@ -575,13 +576,26 @@
         //    cause.get('actionModel').set({ 'Responsable': new ResponsableModel() });
         //});
 
+        function colorWorkFlow(ficheSecurite) {
+            if (ficheSecurite.get('WorkFlowAttenteASEValidation') == true) {
+                ficheSecurite.set({ 'color': 'orange' });
+            }
+            if (ficheSecurite.get('WorkFlowASERejetee') == true) {
+                ficheSecurite.set({ 'color': 'red' });
+            }
+            if (ficheSecurite.get('WorkFlowASEValidee') == true) {
+                ficheSecurite.set({ 'color': 'green' });
+            }
+            if (ficheSecurite.get('WorkFlowCloturee') == true) {
+                ficheSecurite.set({ 'color': 'grey' });
+            }
+        };
 
         var RechercheTableView = Backbone.View.extend({
 
             id: 'RechercheTableFicheSecurite',
             template: _.template($('#TableRecherche').html()),
             render: function () {
-                console.log(this.model.get('rechercheFicheSecuriteParamModel'));
                 this.$el.html(this.template(this.model.toJSON()));
 
                 //$('#table_id').DataTable({
@@ -601,6 +615,7 @@
                 return this;
             },
             initialize: function () {
+                _.bindAll(this, "paginatedListToCollection");
                 this.render();
             },
             events: {
@@ -634,7 +649,8 @@
                     dataType: "json",
                     data: JSON.stringify(this.model.get('rechercheFicheSecuriteParamModel')),
                     async: false,   //, success: this.arraysToModelCollections
-                    wait:true
+                    wait: true,
+                    success: this.paginatedListToCollection //this.paginatedListToCollection(response)
                 });
 
                 this.model.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
@@ -650,6 +666,28 @@
 
                 this.render();
 
+            },
+            paginatedListToCollection: function (model, response) {
+                console.log(model);
+                console.log(response);
+                console.log(this.model);
+                this.model.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(response.AllFicheSecurite) });
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'Page': response.Page });
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'PageSize': response.PageSize });
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'RowCount': response.RowCount });
+
+                this.model.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
+                   
+
+                    //Création d'un ActionLink Razor MVC afin d'accéder à l'édition/suppression de la fiche (triche)
+                    var idValue = ficheSecurite.get('FicheSecuriteID');
+                    var urlEdit = '@Url.Action("Edit", new { id=-1 })';
+                    urlEdit = urlEdit.replace('-1', idValue);
+                    ficheSecurite.set({ 'urlEdit': urlEdit });
+
+                    colorWorkFlow(ficheSecurite);
+
+                });
             },
             changeSite: function () {
                 // Lorsqu'on change le site, la liste des zones doit correspondre au site en question, on charge la liste des zones (REST/Ajax)
@@ -731,6 +769,7 @@
             },
             changeResponsableNom: function () {
                 this.model.get('rechercheFicheSecuriteParamModel').set({ 'ResponsableNom': $('#ResponsableNom').val() });
+                this.model.get('rechercheFicheSecuriteParamModel').set({ 'ResponsableGuid': null });
             },
             changePlageHoraire: function () {
                 this.model.get('rechercheFicheSecuriteParamModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });

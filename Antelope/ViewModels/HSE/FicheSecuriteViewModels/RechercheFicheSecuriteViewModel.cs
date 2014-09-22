@@ -17,7 +17,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 
         private AntelopeContext db = new AntelopeContext();
 
-        public List<FicheSecurite> AllFicheSecurite;
+        public FicheSecuritePaginatedList FicheSecuritePaginatedList;
         public List<Zone> AllZone;
         public List<Lieu> AllLieu;
         public List<Site> AllSite;
@@ -49,7 +49,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 
         public RechercheFicheSecuriteViewModel(
                                         RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel,
-                                        List<FicheSecurite> AllFicheSecurite, 
+                                        FicheSecuritePaginatedList FicheSecuritePaginatedList, 
                                         List<Service> AllService, 
                                         List<Zone> AllZone, 
                                         List<Lieu> AllLieu, 
@@ -57,7 +57,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         )
         {
 
-            this.AllFicheSecurite = AllFicheSecurite;
+            this.FicheSecuritePaginatedList = FicheSecuritePaginatedList;
             this.RechercheFicheSecuriteParamModel = RechercheFicheSecuriteParamModel;
             this.AllZone = AllZone;
             this.AllLieu = AllLieu;

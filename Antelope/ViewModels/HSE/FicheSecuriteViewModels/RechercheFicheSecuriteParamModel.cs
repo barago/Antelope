@@ -27,6 +27,8 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public Int32? CorpsHumainZoneId { get; set; }
         public Int32? PlageHoraireId { get; set; }
         public Guid? ResponsableGuid { get; set; }
-
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+        public int RowCount { get; set; }
     }
 }

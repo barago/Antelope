@@ -90,12 +90,44 @@ namespace Antelope.Controllers.API.HSE
             FicheSecurite.DateCreation = DateTime.Now;
             FicheSecurite.DateEvenement = DateTime.Now;
 
+            FicheSecurite.WorkFlowDiffusee = true;
+
             db.FicheSecurites.Add(FicheSecurite);
             db.SaveChanges();
 
             return Request.CreateResponse(HttpStatusCode.OK);
 
 
+        }
+
+        [AcceptVerbs("PUT")]
+        public HttpResponseMessage ChangeWorkFlowEtat(Int32 id, string param1)
+        {
+
+            FicheSecurite FicheSecurite = _ficheSecuriteRepository.Get(id);
+
+            switch (param1)
+            {
+                case "AttenteASEValidation":
+                    FicheSecurite.WorkFlowASEValidee = false;
+                    FicheSecurite.WorkFlowASERejetee = false;
+                    FicheSecurite.WorkFlowAttenteASEValidation = true;
+                break;
+                case "ASEValidee":
+                    FicheSecurite.WorkFlowAttenteASEValidation = false;
+                    FicheSecurite.WorkFlowASEValidee = true;
+                    FicheSecurite.WorkFlowASERejetee = false;
+                break;
+                case "ASERejetee":
+                    FicheSecurite.WorkFlowAttenteASEValidation = false;
+                    FicheSecurite.WorkFlowASEValidee = false;
+                    FicheSecurite.WorkFlowASERejetee = true;
+                break;
+            } 
+
+            _ficheSecuriteRepository._db.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
         }
 
         // PUT api/fichesecuriteapi/5

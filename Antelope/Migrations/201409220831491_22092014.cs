@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _18092014 : DbMigration
+    public partial class _22092014 : DbMigration
     {
         public override void Up()
         {
@@ -85,6 +85,11 @@ namespace Antelope.Migrations
                         CHSCTMembre = c.String(),
                         PersonneConcerneeId = c.Int(),
                         ResponsableId = c.Int(),
+                        WorkFlowDiffusee = c.Boolean(nullable: false),
+                        WorkFlowAttenteASEValidation = c.Boolean(nullable: false),
+                        WorkFlowASEValidee = c.Boolean(nullable: false),
+                        WorkFlowASERejetee = c.Boolean(nullable: false),
+                        WorkFlowCloturee = c.Boolean(nullable: false),
                         Personne_PersonneId = c.Int(),
                     })
                 .PrimaryKey(t => t.FicheSecuriteID)
