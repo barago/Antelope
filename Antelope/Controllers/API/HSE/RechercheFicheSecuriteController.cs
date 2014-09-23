@@ -86,7 +86,7 @@ namespace Antelope.Controllers.API.HSE
                 CorpsHumainZoneId = 0,
                 PlageHoraireId = 0,
                 Page = 1,
-                PageSize = 25
+                PageSize = 5
 
             };
 

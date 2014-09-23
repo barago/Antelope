@@ -36,7 +36,13 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get(int id)
         {
 
-            var ficheSecurite = (id == -1) ? new FicheSecurite() : _ficheSecuriteRepository.Get(id);
+            var ficheSecurite = (id == -1) ? new FicheSecurite() { 
+                WorkFlowDiffusee = false,
+                WorkFlowAttenteASEValidation = false,
+                WorkFlowASEValidee = false,
+                WorkFlowASERejetee = false,
+                WorkFlowCloturee = false 
+            } : _ficheSecuriteRepository.Get(id);
             if (ficheSecurite == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);

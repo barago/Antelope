@@ -119,10 +119,11 @@ namespace Antelope.Repositories.HSE
             }
 
 
-            //queryFicheSecurite.OrderBy(q => q.WorkFlowAttenteASEValidation).ToList();
-
-
             int TotalRowCount = queryFicheSecurite.Count();
+
+            queryFicheSecurite = queryFicheSecurite.Skip(RechercheFicheSecuriteParamModel.PageSize * (RechercheFicheSecuriteParamModel.Page - 1)).Take(RechercheFicheSecuriteParamModel.PageSize);
+            //queryFicheSecurite = queryFicheSecurite.Skip(0).Take(4);
+
 
                 //.ThenBy(q => q.WorkFlowAttenteASEValidation)
                 //.ThenBy(q => q.WorkFlowASERejetee)

@@ -165,11 +165,20 @@
                         </h4>
                     </div>
                     <div class="col-md-8">
-                        <span class="glyphicon glyphicon-ok pull-right"></span>
-                        <span class="pull-right">Statut : </span>
-                        <button id="Diffusion" type="submit" class="btn pull-right btn-xs">
+
+                        <% if (ficheSecuriteModel.get('WorkFlowDiffusee') == false){ %> 
+                        
+                        <button id="Diffusion" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-envelope"></span> Diffusion
                         </button>
+
+                         <% } else { %>
+                        
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                        <span class="pull-right">Statut&nbsp;:&nbsp;Diffusée&nbsp;</span>
+
+                        <% }%>
+
                     </div>
 
                 </div>
@@ -599,7 +608,7 @@
     </div>
 
     <script type="text/template" id="TemplateInfosCorrectives">
-
+        <% if (ficheSecuriteModel.get('WorkFlowDiffusee') == true){ %>
         <!-- ----------------------INFOS CORRECTIVES ET PREVENTIVES PANEL --------------------- -->
         <div class="panel panel-danger">
 
@@ -616,16 +625,38 @@
                         </h4>
                     </div>
                     <div class="col-md-8">
-                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
-                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
-                        </button>
+
+                        <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) %>
+
                         <button type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-ok"></span> Valider fiche
                         </button>
-                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs">
+
+                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
+                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                        </button>
+
+                        <% }else{ %>
+
+                        <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
+
+                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
+
+                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
                             @*btn-primary*@
                             <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
                         </button>
+
+                        <% }else{ %>
+
+                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
+                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                        </button>
+
+                        <% }%>
+                        <% }%>
+
                     </div>
 
                 </div>
@@ -951,13 +982,14 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
 
 
 
         </div>
+        <% }%>
     </script>
     <div id="DivInfosCorrectives">
     </div>
@@ -1218,7 +1250,7 @@
                 // (ficheSecuriteModel.get('CorpsHumainZoneId') != 0) ? corpsHumainZoneCollection.findWhere({Id:ficheSecuriteModel.get('CorpsHumainZoneId')}).get('Nom') : ''
             },
             initialize: function () {
-
+                console.log(this.model.get('ficheSecuriteModel'));
                 Backbone.applicationEvents.on('rechercheActiveDirectoryViewHidden', function () {
                     this.render();
                 }, this);
