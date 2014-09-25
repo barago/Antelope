@@ -196,6 +196,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Site" class="form-control input-xs">
+                                            <option value="null" <% if (ficheSecuriteModel.get('SiteId') == 'null'){ %> selected <% } %> ></option>
                                             <% siteCollection.each( function(site){ %>
                                             <option value="<%= site.get('SiteID') %>"
                                                 <% if (ficheSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
@@ -215,7 +216,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Type" class="form-control input-xs">
-
+                                            <option value="null" <% if (ficheSecuriteModel.get('FicheSecuriteTypeId') == 'null'){ %> selected <% } %> ></option>
                                             <% ficheSecuriteTypeCollection.each( function(type){ %>
                                             <option value="<%= type.get('FicheSecuriteTypeID') %>"
                                                 <% if (ficheSecuriteModel.get('FicheSecuriteTypeId') == type.get('FicheSecuriteTypeID')){ %> selected <% } %>
@@ -250,7 +251,7 @@
                                     <div class='col-sm-3'>
                                         @*<div class="form-group">*@
                                         <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' name="DateEvenement" id="DateEvenement" class="form-control input-xs" value="<%= ficheSecuriteModel.get('DateEvenementJavascript') %>" />
+                                            <input type='text' name="DateEvenement" id="DateEvenement" class="form-control input-xs" value="<%= (ficheSecuriteModel.get('DateEvenementJavascript') == '01/01/0001') ? '' : ficheSecuriteModel.get('DateEvenementJavascript') %>" />
                                             <span class="input-group-addon input-xs">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
@@ -261,7 +262,7 @@
                                     <div class='col-sm-3'>
                                         @*<div class="form-group">*@
                                         <div class='input-group date' id='datetimepicker2'>
-                                            <input type='text' name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" value="<%= ficheSecuriteModel.get('HeureEvenementJavascript') %>" />
+                                            <input type='text' name="HeureEvenement" id="HeureEvenement" class="form-control input-xs" value="<%= (ficheSecuriteModel.get('DateEvenementJavascript') == '01/01/0001') ? '':  ficheSecuriteModel.get('HeureEvenementJavascript') %>" />
                                             <span class="input-group-addon input-xs">
                                                 <span class="glyphicon glyphicon-time"></span>
                                             </span>
@@ -318,7 +319,7 @@
                                     <label for="PlageHoraire" class="col-sm-5 label-xs">Plage&nbsp;horaire&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="PlageHoraire">
-
+                                            <option value="null" <% if (ficheSecuriteModel.get('PlageHoraireId') == 'null'){ %> selected <% } %> ></option>
                                             <% plageHoraireCollection.each( function(plageHoraire){ %>
                                             <option value="<%= plageHoraire.get('PlageHoraireID') %>"
                                                 <% if (ficheSecuriteModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
@@ -343,6 +344,7 @@
                                     <label for="PosteDeTravail" class="col-sm-5 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="PosteDeTravail">
+                                            <option value="null" <% if (ficheSecuriteModel.get('PosteDeTravailId') == 'null'){ %> selected <% } %> ></option>
                                             <% posteDeTravailCollection.each( function(posteDeTravail){ %>
                                             <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
                                                 <% if (ficheSecuriteModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>
@@ -357,11 +359,11 @@
                                 <div class="form-group">
                                     <label for="Service" class="col-sm-5 label-xs">Service&nbsp;:</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control input-xs" id="Service">
-
+                                        <select id="Service" class="form-control input-xs">
+                                            <option value="null" <% if (ficheSecuriteModel.get('ServiceId') == 'null'){ %> selected <% } %> ></option>
                                             <% serviceCollection.each( function(service){ %>
-                                            <option value="<%= service.get('ServiceId') %>"
-                                                <% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceId')){ %> selected <% } %>
+                                            <option value="<%= service.get('ServiceID') %>"
+                                                <% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %>
                                                 >
                                                 <%= service.get('Nom') %>
                                             </option>
@@ -400,7 +402,7 @@
                                     <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Zone">
-
+                                            <option value="null" <% if (ficheSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
                                             <% zoneCollection.each( function(zone){ %>
                                             <option value="<%= zone.get('ZoneID') %>"
                                                 <% if (ficheSecuriteModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %>
@@ -416,7 +418,7 @@
                                     <label for="Lieu" class="col-sm-5 label-xs">Lieu&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Lieu">
-
+                                            <option value="null" <% if (ficheSecuriteModel.get('LieuId') == 'null'){ %> selected <% } %> ></option>
                                             <% lieuCollection.each( function(lieu){ %>
                                             <option value="<%= lieu.get('LieuID') %>"
                                                 <% if (ficheSecuriteModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %>
@@ -432,6 +434,7 @@
                                     <label for="Danger" class="col-sm-5 label-xs">Danger&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Danger">
+                                            <option value="null" <% if (ficheSecuriteModel.get('DangerId') == 'null'){ %> selected <% } %> ></option>
                                             <% dangerCollection.each( function(danger){ %>
                                             <option value="<%= danger.get('DangerID') %>"
                                                 <% if (ficheSecuriteModel.get('DangerId') == danger.get('DangerID')){ %> selected <% } %>
@@ -446,6 +449,7 @@
                                     <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Risque">
+                                            <option value="null" <% if (ficheSecuriteModel.get('RisqueId') == 'null'){ %> selected <% } %> ></option>
                                             <% risqueTypeCollection.each( function(risqueType){ %>
                                             <optgroup label="<%= risqueType.get('Nom') %>">
                                                 @*La fonction Where renvoie un array et non pas une collection, on utilise donc _.each et non pas each de Backbone*@
@@ -626,44 +630,52 @@
                     </div>
                     <div class="col-md-8">
 
-                        <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) %>
+                        <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) {%>
 
-                        <button type="submit" class="btn pull-right btn-xs" style="color: green">
-                            <span class="glyphicon glyphicon-ok"></span> Valider fiche
+                        <button id="Valider" type="submit" class="btn pull-right btn-xs" style="color: green">
+                            <span class="glyphicon glyphicon-ok"></span> Validé
                         </button>
-
-                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
-                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                        <span class="pull-right">&nbsp;ou&nbsp;</span>
+                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
+                            <span class="glyphicon glyphicon-remove"></span> Rejeté
                         </button>
+                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;:&nbsp;</span>
 
                         <% }else{ %>
 
                         <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                        <span class="glyphicon glyphicon-pencil pull-right"></span>
-                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
-
                         <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
-                            @*btn-primary*@
                             <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
                         </button>
 
+                        <span class="pull-right">&nbsp;Puis&nbsp;:&nbsp;</span>
+                        <span class="glyphicon glyphicon-pencil pull-right"></span>
+                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
+
                         <% }else{ %>
 
-                        <button type="submit" class="btn pull-right btn-xs" style="color: red">
-                            <span class="glyphicon glyphicon-remove"></span> Rejeter fiche
+                        @*IF CLOTURE = MEME BOUTON (REJET, MAIS MESSAGE CLOTURE)*@
+
+                        <span class="pull-right">&nbsp;pour&nbsp;amélioration.</span>
+                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
+                            <span class="glyphicon glyphicon-remove"></span> Rejeter
                         </button>
 
-                        <% }%>
-                        <% }%>
+                        <span class="pull-right">&nbsp;Vous&nbsp;pouvez&nbsp;le&nbsp;</span>
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;validé&nbsp;:&nbsp;</span>
 
-                    </div>
+                            <% }%>
+                            <% }%>
+
+</div>
 
                 </div>
             </div>
 
             <!-- -------------------INFOS CORRECTIVES & PREVENTIVES PANEL BODY--------------------- -->
-            <div id="collapseTwo" class="panel-collapse collapse">
+            <div id="collapseTwo" class="panel-collapse collapse in">
                 <div class="panel-body">
 
                     <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
@@ -772,20 +784,17 @@
 
                                     <div class="row">
                                         <div class="col-md-11">
-                                            <table class="table table-bordered table-hover table-condensed">
-                                                <tr style="background-color:#ECF6FD;">
-                                                    <td>
-                                                        <%= cause.get('Description') %>
-                                                    </td>
-                                                    <td style="width:130px;">
-                                                        <button id="BtnAddAction" type="button" class="btn btn-xs accordion-toggle" data-toggle="collapse" data-target="<%= '#FormAddActionForCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
-                                                        <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditCause" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
-                                                        <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnDeleteCause"><span class="glyphicon glyphicon-remove"></span></button>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <div class="row" style="border-width:1px;padding:5px;margin:5px;border-style:solid;border-color:grey;background-color:#ECF6FD;">
+                                                <div class="col-md-10">
+                                                    <%= cause.get('Description') %>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button id="BtnAddAction" type="button" class="btn btn-xs accordion-toggle pull-right" data-toggle="collapse" data-target="<%= '#FormAddActionForCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
+                                                    <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditCause pull-right" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                    <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnDeleteCause pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                                                </div>
+                                            </div>
                                         </div>
-
                                         <div class="col-md-1"></div>
                                     </div>
 
@@ -883,18 +892,24 @@
                                         <div class="col-md-1"></div>
 
                                         <div class="col-md-11">
-                                            <table class="table table-bordered table-hover table-condensed">
-                                                <tr style="background-color:#FFF5E3;">
-                                                    <td>
-                                                        <%= action.get('Description') %>
-                                                    </td>
-                                                    <td style="width:65px;">
-                                                        <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs BtnDeleteAction"><span class="glyphicon glyphicon-remove"></span></button>
-                                                        @*<button type="button" class="btn btn-xs"><span class="glyphicon glyphicon-remove"></span></button>*@
-                                                        <button id="<%= 'BtnOpenFormEditAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditAction" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <div class="row" style="border-width:1px;padding:5px;margin:5px;border-style:solid;border-color:grey;background-color:#FFF5E3;">
+                                                <div class="col-md-7">
+                                                    <%= action.get('Description') %>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <%= action.get('Responsable').get('Prenom') %> &nbsp; <%= action.get('Responsable').get('Nom') %>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <%= (action.get('DateButoireNouvelle') == "null") ? action.get('DateButoireInitiale') : action.get('DateButoireNouvelle') %>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <%= (action.get('DateCloture') == "null") ? "En cours" : "Cloturée" %>
+                                                </div>
+                                                <div class="col-md-1" style="padding:0px;">
+                                                    <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs BtnDeleteAction pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    <button id="<%= 'BtnOpenFormEditAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditAction pull-right" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -1250,7 +1265,6 @@
                 // (ficheSecuriteModel.get('CorpsHumainZoneId') != 0) ? corpsHumainZoneCollection.findWhere({Id:ficheSecuriteModel.get('CorpsHumainZoneId')}).get('Nom') : ''
             },
             initialize: function () {
-                console.log(this.model.get('ficheSecuriteModel'));
                 Backbone.applicationEvents.on('rechercheActiveDirectoryViewHidden', function () {
                     this.render();
                 }, this);
@@ -1261,8 +1275,8 @@
                 "change #Site": "changeSite",
                 "change #Zone": "changeZone",
                 "change #Lieu": "changeLieu",
-                "change #Service":"changeService",
-                "change #posteDeTravail":"changePosteDeTravail",
+                "change #Service": "changeService",
+                "change #PosteDeTravail":"changePosteDeTravail",
                 "keyup #Age": "changeAge",
                 "change #Type": "changeType",
                 "keyup #Code": "changeCode",
@@ -1317,9 +1331,6 @@
             changeLieu: function () {
                 this.model.get('ficheSecuriteModel').set({ 'LieuId': $('#Lieu').val() });
             },
-            changeService: function () {
-                this.model.get('ficheSecuriteModel').set({ 'ServiceId': $('#Service').val() });
-            },
             changePosteDeTravail: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PosteDeTravailId': $('#PosteDeTravail').val() });
             },
@@ -1373,7 +1384,9 @@
                 this.model.get('ficheSecuriteModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
             },
             changeService: function () {
-                this.model.get('ficheSecuriteModel').set({ 'Service': $('#Service').val() });
+                console.log($('#Service').val());
+                this.model.get('ficheSecuriteModel').set({ 'ServiceId': $('#Service').val() });
+                console.log(this.model.get('ficheSecuriteModel'));
             },
             changeDanger: function () {
                 this.model.get('ficheSecuriteModel').set({ 'DangerId': $('#Danger').val() });
@@ -1534,6 +1547,8 @@
                 "keyup .EditActionResponsablePrenom": "changeEditActionResponsablePrenom",
                 "click .BtnDeleteAction": "deleteAction",
                 "click #ASEEnvoi": "ASEEnvoi",
+                "click #Valider": "Valider",
+                "click #Rejeter": "Rejeter",
 
 
                 
@@ -1662,7 +1677,6 @@
             },
             changeDateButoirInitiale: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                console.log(this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel'));
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) + 'T' + '00:00:00.0' });
                 //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
             },
@@ -1715,12 +1729,29 @@
             },
             ASEEnvoi: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
-                this.model.get('ficheSecuriteModel').save();
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                this.render();
 
                 //TODO : ENVOI D'UN EVENTS afin de rafraichir l'écran "Infos générales" (pour être à jour si l'utilisateur a changé des infos dans cette vue)
             },
+            Valider: function () {
+                this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASEValidee';
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
+
+                this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                this.render();
+
+            },
+            Rejeter: function () {
+                this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
+
+                this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                this.render();
+
+            }
             
 
         });

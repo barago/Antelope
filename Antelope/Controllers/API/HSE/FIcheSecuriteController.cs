@@ -11,6 +11,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Web.Http;
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -36,37 +38,86 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get(int id)
         {
 
-            var ficheSecurite = (id == -1) ? new FicheSecurite() { 
-                WorkFlowDiffusee = false,
-                WorkFlowAttenteASEValidation = false,
-                WorkFlowASEValidee = false,
-                WorkFlowASERejetee = false,
-                WorkFlowCloturee = false 
-            } : _ficheSecuriteRepository.Get(id);
-            if (ficheSecurite == null)
+            FicheSecurite ficheSecurite;
+            List<Zone> AllZone;
+            List<Lieu> AllLieu;
+            List<Service> AllService;
+            List<PosteDeTravail> AllPosteDeTravail;
+
+            // Si l'ID = -1 >> Nouvelle Fiche
+
+            if (id == -1)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
+                UserPrincipal user = UserPrincipal.Current;
+                DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+                String userCompanyName = (String)de.Properties["company"].Value;
+
+                var querySiteUser = from s in db.Sites
+                                    where s.Trigramme == userCompanyName
+                                    select s;
+                Site SiteUser = (Site)querySiteUser.SingleOrDefault();
+
+                ficheSecurite = new FicheSecurite()
+                {
+                    SiteId = SiteUser.SiteID,
+                    WorkFlowDiffusee = false,
+                    WorkFlowAttenteASEValidation = false,
+                    WorkFlowASEValidee = false,
+                    WorkFlowASERejetee = false,
+                    WorkFlowCloturee = false
+                };
+
+                var queryZone = from a in db.Zones
+                                where a.SiteId == SiteUser.SiteID
+                                select a;
+                AllZone = queryZone.ToList();
+
+                AllLieu = new List<Lieu>();
+
+                var queryService = from a in db.Services
+                                   where a.SiteId == SiteUser.SiteID
+                                   select a;
+                AllService = queryService.ToList();
+
+                AllPosteDeTravail = new List<PosteDeTravail>();
+
+
+            }
+            // Si l'ID != -1 >> Fiche existante
+            else
+            {
+
+                ficheSecurite = _ficheSecuriteRepository.Get(id);
+
+                if (ficheSecurite == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                var queryZone = from a in db.Zones
+                                where a.SiteId == ficheSecurite.SiteId
+                                select a;
+                AllZone = queryZone.ToList();
+
+                var queryLieu = from a in db.Lieux
+                                where a.ZoneId == ficheSecurite.ZoneId
+                                select a;
+                AllLieu = queryLieu.ToList();
+
+                var queryService = from a in db.Services
+                                   where a.SiteId == ficheSecurite.SiteId
+                                   select a;
+                AllService = queryService.ToList();
+
+                var queryPosteDeTravail = from a in db.PosteDeTravails
+                                          where a.ZoneId == ficheSecurite.ZoneId
+                                          select a;
+                AllPosteDeTravail = queryPosteDeTravail.ToList();
+
             }
 
-            var queryZone = from a in db.Zones
-                            where a.SiteId == ficheSecurite.SiteId
-                            select a;
-            List<Zone> AllZone = queryZone.ToList();
 
-            var queryLieu = from a in db.Lieux
-                            where a.ZoneId == ficheSecurite.ZoneId
-                            select a;
-            List<Lieu> AllLieu = queryLieu.ToList();
-
-            var queryService = from a in db.Services
-                            where a.SiteId == ficheSecurite.SiteId
-                            select a;
-            List<Service> AllService = queryService.ToList();
-
-            var queryPosteDeTravail = from a in db.PosteDeTravails
-                            where a.ZoneId == ficheSecurite.ZoneId
-                            select a;
-            List<PosteDeTravail> AllPosteDeTravail = queryPosteDeTravail.ToList();
 
             var ficheSecuriteViewModel = new FicheSecuriteViewModel(ficheSecurite, AllZone, AllLieu, AllService, AllPosteDeTravail);
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
