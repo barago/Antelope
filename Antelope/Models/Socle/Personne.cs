@@ -13,7 +13,7 @@ namespace Antelope.Models.Socle
         public Int32 PersonneId { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
-        public Guid GUID { get; set; }
+        public Guid Guid { get; set; }
 
         [JsonIgnore]
         public virtual List<FicheSecurite> FicheSecurites { get; set; }

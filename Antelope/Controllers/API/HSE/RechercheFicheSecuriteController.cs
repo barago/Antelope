@@ -37,7 +37,7 @@ namespace Antelope.Controllers.API.HSE
             _ficheSecuriteRepository = new FicheSecuriteRepository();
 
             var queryPersonneConnectee = from p in db.Personnes
-                    where p.GUID == user.Guid
+                    where p.Guid == user.Guid
                     select p;
             Personne PersonneConnectee = (Personne)queryPersonneConnectee.SingleOrDefault();
 

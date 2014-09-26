@@ -115,7 +115,7 @@ namespace Antelope.Repositories.HSE
             }
             if (RechercheFicheSecuriteParamModel.ResponsableGuid != null && RechercheFicheSecuriteParamModel.ResponsableGuid != new Guid())
             {
-                queryFicheSecurite = queryFicheSecurite.Where(q => q.Responsable.GUID == RechercheFicheSecuriteParamModel.ResponsableGuid);
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.Responsable.Guid == RechercheFicheSecuriteParamModel.ResponsableGuid);
             }
 
 

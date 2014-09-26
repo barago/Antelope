@@ -1542,7 +1542,7 @@ namespace Antelope.Migrations
             {
                 Nom = "Cokelaere",
                 Prenom = "Julien",
-                GUID = Guid.Parse("04520963-d3aa-4d5c-bf35-089999c1001b")
+                Guid = Guid.Parse("04520963-d3aa-4d5c-bf35-089999c1001b")
             };
 
             Personne Responsable2 = new Personne()

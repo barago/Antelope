@@ -12,7 +12,7 @@ namespace Antelope.Models.Socle
         public String RoleCode { get; set; }
         public String RoleType { get; set; }
         public String Name { get; set; }
-        public String GUID { get; set; }
+        public String Guid { get; set; }
 
     }
 }

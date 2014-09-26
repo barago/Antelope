@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _22092014 : DbMigration
+    public partial class _26092014 : DbMigration
     {
         public override void Up()
         {
@@ -236,7 +236,7 @@ namespace Antelope.Migrations
                         PersonneId = c.Int(nullable: false, identity: true),
                         Nom = c.String(),
                         Prenom = c.String(),
-                        GUID = c.Guid(nullable: false),
+                        Guid = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.PersonneId);
             
@@ -315,7 +315,7 @@ namespace Antelope.Migrations
                         RoleCode = c.String(),
                         RoleType = c.String(),
                         Name = c.String(),
-                        GUID = c.String(),
+                        Guid = c.String(),
                     })
                 .PrimaryKey(t => t.ADRoleID);
             
