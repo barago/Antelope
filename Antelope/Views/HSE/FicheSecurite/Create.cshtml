@@ -7,6 +7,7 @@
 
 @*ORDRE DES SCRIPTS : JQUERY / MOMENT / UNDERSCORE / BACKBONE*@
 @*<link href="~/Content/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" type="text/css" />*@
+<script type="text/javascript" src="/Scripts/spin.min.js"></script>
 <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
 @*<script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>*@
@@ -18,6 +19,7 @@
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
 @*<script type="text/javascript" src="@Url.Content("~/Content/Scripts/HSE/FicheSecurite/Create.js")"></script>*@
 <script type="text/javascript" src="~/Scripts/jquery.imagemapster.min.js"></script>
+
 
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteViewModel.js"></script>  @*// A replacer dans des ViewModels ...*@
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
@@ -44,6 +46,7 @@
 <script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/RisqueTypeModel.js"></script>  
  
 
+<div id="loading"></div>
 
 <script type="text/template" id="RechercheActiveDirectory">
     <div class="modal-dialog">
@@ -103,9 +106,15 @@
 
 
                             <% utilisateurActiveDirectoryCollection.each( function(utilisateurActiveDirectory){ %>
-                            <tr>
 
-                             
+
+                            <% if(utilisateurActiveDirectory.get('IsAnnuaireApplication') == true && utilisateurActiveDirectory.get('IsAnnuaireAD') == false) {%>
+                            <tr style="background-color:#F7E5C5;">
+                            <% } %>
+                            <% if(utilisateurActiveDirectory.get('IsAnnuaireAD') == true) {%>
+                            <tr>
+                            <% } %>
+
                                 <td>
                                     <%= utilisateurActiveDirectory.get('Nom') %>
                                 </td>
@@ -1042,6 +1051,32 @@
 
     $(document).ready(function () {
 
+
+        var opts = {
+            lines: 11, // The number of lines to draw
+            length: 33, // The length of each line
+            width: 9, // The line thickness
+            radius: 24, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 48, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#FFFFFF', // #rgb or #rrggbb or array of colors
+            speed: 0.8, // Rounds per second
+            trail: 50, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
+        var target = document.getElementById('loading');
+        var spinner = new Spinner(opts).spin(target);
+       
+        $("#loading").hide();
+        //$(document).ajaxStart(function () { $("#loading").fadeIn(); });
+        //$(document).ajaxComplete(function () { $("#loading").fadeOut(); });
+
         var FicheSecuriteId = "@ViewBag.Id";
 
         function dateFormatJS(date) {
@@ -1191,6 +1226,8 @@
                 if ((this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'PERSONNECONCERNEE') ||
                     (this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'RESPONSABLE')) {
 
+                    console.log(utilisateurActiveDirectorySelectionne.get('PersonneId'));
+
                     switch (this.model.get('sourceActiveDirectoryUtilisateurRecherche')) {
                         case 'PERSONNECONCERNEE':
                             personneFicheSecuriteARemplir = 'PersonneConcernee';
@@ -1211,6 +1248,28 @@
                     this.model.get('ficheSecuriteModel').get(personneFicheSecuriteARemplir).set({
                         'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
                     });
+                    this.model.get('ficheSecuriteModel').get(personneFicheSecuriteARemplir).set({
+                        'PersonneId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                    });
+                    this.model.get('ficheSecuriteModel').get(personneFicheSecuriteARemplir).set({
+                        'IsAnnuaireAD': utilisateurActiveDirectorySelectionne.get('IsAnnuaireAD')
+                    });
+                    this.model.get('ficheSecuriteModel').get(personneFicheSecuriteARemplir).set({
+                        'IsAnnuaireApplication': utilisateurActiveDirectorySelectionne.get('IsAnnuaireApplication')
+                    });
+                    switch (this.model.get('sourceActiveDirectoryUtilisateurRecherche')) {
+                        case 'PERSONNECONCERNEE':
+                            this.model.get('ficheSecuriteModel').set({
+                                'PersonneConcerneeId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                            });
+                            break;
+                        case 'RESPONSABLE':
+                            this.model.get('ficheSecuriteModel').set({
+                                'ResponsableId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                            });
+                            break;
+                    }
+
 
                 }
 
@@ -1229,12 +1288,21 @@
                     this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToAddAction) }).get('actionModel').get('Responsable').set({
                         'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
                     });
-
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToAddAction) }).get('actionModel').get('Responsable').set({
+                        'PersonneId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToAddAction) }).get('actionModel').set({
+                        'ResponsableId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToAddAction) }).get('actionModel').set({
+                        'IsAnnuaireAD': utilisateurActiveDirectorySelectionne.get('IsAnnuaireId')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToAddAction) }).get('actionModel').set({
+                        'IsAnnuaireApplication': utilisateurActiveDirectorySelectionne.get('IsAnnuaireApplication')
+                    });
                 }
 
                 if (this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'RESPONSABLEEDITACTION') {
-
-                    console.log(this.model);
 
                     var causeToEditAction = this.model.get('idCauseActiveDirectoryUtilisateurRecherche');
                     var actionToEdit = this.model.get('idActionActiveDirectoryUtilisateurRecherche');
@@ -1250,6 +1318,25 @@
                     this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).get('Responsable').set({
                         'Guid': utilisateurActiveDirectorySelectionne.get('Guid')
                     });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).get('Responsable').set({
+                        'PersonneId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).set({
+                        'ResponsableId': utilisateurActiveDirectorySelectionne.get('PersonneId')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).set({
+                        'IsAnnuaireAD': utilisateurActiveDirectorySelectionne.get('IsAnnuaireAD')
+                    });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).set({
+                        'IsAnnuaireApplication': utilisateurActiveDirectorySelectionne.get('IsAnnuaireApplication')
+                    });
+                    //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).get('Responsable').unset(
+                    //    'PersonneId'
+                    //);
+                    //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditAction) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEdit) }).unset(
+                    //    'ResponsableId'
+                    //);
+
 
                 }
 
@@ -1274,11 +1361,14 @@
                 });
                 //On écoute les changements sur le DatePicker pour les passer à la fonction Backbone
                 $('#datetimepicker1').on("dp.change", $.proxy(this.changeDateHeureEvenement, this));
+                // TODO : Mettre des dp.hide sur tous les DateTimePickers ! >> Si on ne selectionne rien, il choisit date et heure du jour.
+                $('#datetimepicker1').on("dp.hide", $.proxy(this.changeDateHeureEvenement, this));
                 $('#datetimepicker2').datetimepicker({
                     pickDate: false,
                     language: 'fr'
                 });
                 $('#datetimepicker2').on("dp.change", $.proxy(this.changeDateHeureEvenement, this));
+                $('#datetimepicker2').on("dp.hide", $.proxy(this.changeDateHeureEvenement, this));
 
                 $('#map').mapster(
                     {
@@ -1395,6 +1485,8 @@
             },
             changeDateHeureEvenement: function () {
                 this.model.get('ficheSecuriteModel').set({ 'DateEvenement': this.dateFormatMVC($('#DateEvenement').val()) + 'T' + $('#HeureEvenement').val() + ':00.0' });
+                this.model.get('ficheSecuriteModel').set({ 'DateEvenementJavascript': $('#DateEvenement').val() });
+                this.model.get('ficheSecuriteModel').set({ 'HeureEvenementJavascript': $('#HeureEvenement').val() });
             },
             changePersonneConcerneeNom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
@@ -1445,7 +1537,15 @@
                 this.model.get('ficheSecuriteModel').set({ 'CorpsHumainZoneId': this.model.get('corpsHumainZoneCollection').findWhere({ Code: data.key }).get('Id') });
             },
             Diffusion: function () {
-                this.model.get('ficheSecuriteModel').save();
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait:true});
+                //TODO : Ce qui suit Sur le ON SUCCESS >>
+                this.model.get('ficheSecuriteModel').set({ 'WorkFlowDiffusee': true });
+                // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
+                this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(this.model.get('ficheSecuriteModel').Responsable) });
+                this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(this.model.get('ficheSecuriteModel').PersonneConcernee) });
+                Backbone.applicationEvents.trigger('FicheDiffusee');
+
+                this.render(this.model.get('ficheSecuriteModel'));
             },
             //changeSourceActiveDirectoryUtilisateurRecherche: function () {
             //    this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
@@ -1562,7 +1662,9 @@
 
                 }, this);
 
-
+                Backbone.applicationEvents.on('FicheDiffusee', function () {
+                    this.render();
+                }, this);
 
 
                 this.render();
@@ -1611,7 +1713,6 @@
                 this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
             },
             addCause: function () {
-
                 this.model.get('ficheSecuriteModel').get('causeCollection').create(
                     new CauseModel({
                         'FicheSecuriteID': this.model.get('ficheSecuriteModel').get('FicheSecuriteID'),
@@ -1625,6 +1726,8 @@
                 this.render();
             },
             addAction: function (ev) {
+                 $("#loading").fadeIn();
+
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 var modelToAdd = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel');
                 var actionModelAdded = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').create(
@@ -1646,7 +1749,8 @@
                 actionModelAdded.set({'Responsable':new ResponsableModel(actionModelAdded.get('Responsable'))});
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({'Responsable':new ResponsableModel()});
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Responsable': new ResponsableModel() });
+                 $("#loading").fadeOut();
                 this.render();
             },
             changeEditCauseDescription: function (ev) {
@@ -1672,7 +1776,6 @@
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 //VOIR COMMENTAIRE AU DESSUS
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ id: parseInt(actionToEditId) });
-                console.log();
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).save(null, { async: false, wait: true });
                 this.render();
             },
@@ -1734,6 +1837,13 @@
             },
             changeDateButoirInitiale: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+                console.log('1');
+                console.log(causeToEditId);
+                console.log('2');
+                console.log(this.model.get('ficheSecuriteModel'));
+                console.log('3');
+                console.log(this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel'));
+                console.log('4');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
                 //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });

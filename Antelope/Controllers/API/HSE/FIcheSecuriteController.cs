@@ -13,18 +13,22 @@ using System.Net.Mail;
 using System.Web.Http;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
+using System.Threading;
+using Antelope.Repositories.Socle;
 
 namespace Antelope.Controllers.API.HSE
 {
     public class FicheSecuriteController : ApiController
     {
-        
-        public FicheSecuriteRepository _ficheSecuriteRepository {get; set;}
+
+        public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
+        public PersonneRepository _personneRepository { get; set; }
         private AntelopeContext db = new AntelopeContext();
 
         public FicheSecuriteController() {
 
             _ficheSecuriteRepository = new FicheSecuriteRepository();
+            _personneRepository = new PersonneRepository();
         }
         
         // GET api/fichesecuriteapi
@@ -123,10 +127,21 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, ficheSecuriteViewModel);
         }
 
+        private static void SendMailThread(MailMessage mail, SmtpClient smtp)
+        {
+
+            smtp.Send(mail);
+            
+        }
 
         // POST api/fichesecuriteapi
         public HttpResponseMessage Post(FicheSecurite FicheSecurite)
         {
+
+            var context = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
+            //define a "query-by-example" principal - here, we search for a UserPrincipal 
+            //and with the first name (GivenName) and a last name (Surname) 
+            UserPrincipal qbeUser = new UserPrincipal(context);
 
             MailMessage mail = new MailMessage();
 
@@ -142,17 +157,115 @@ namespace Antelope.Controllers.API.HSE
             smtp.UseDefaultCredentials = true; // si false, décommenter la ligne de dessous
             //smtp.Credentials = new System.Net.NetworkCredential("username", "password"); // Renseigner le nom d'utilisateur et le mot de passe
             smtp.EnableSsl = false;
-            smtp.Send(mail);
+
+            //On crée un nouveau Thread, afin de ne pas attendre l'authentification serveur Exchange pour envoyer le mail.
+            Thread T1 = new Thread(delegate()
+            {                
+                smtp.Send(mail);   
+            });
+            T1.Start();
 
             FicheSecurite.DateCreation = DateTime.Now;
-            FicheSecurite.DateEvenement = DateTime.Now;
+
+            Personne responsable;
+            Personne personneConcernee;
+
+            //TODO : REFACTOR CETTE PARTIE : Très vite
+            if (FicheSecurite.ResponsableId == null)
+            {
+                responsable = _personneRepository.GetPersonneByNomPrenom(FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom);
+                if (responsable == null)
+                {
+                    qbeUser.GivenName = FicheSecurite.Responsable.Prenom;
+                    qbeUser.Surname = FicheSecurite.Responsable.Nom;
+
+                    PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+                    Principal principal = srch.FindOne();
+
+                    if (principal == null)
+                    {
+                        responsable = new Personne()
+                        {
+                            Nom = FicheSecurite.Responsable.Nom,
+                            Prenom = FicheSecurite.Responsable.Prenom
+                        };
+                    }
+                    else
+                    {
+                        var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry;
+                        responsable = new Personne()
+                        {
+                            Nom = (string)utilisateurAD.Properties["sn"].Value,
+                            Prenom = (string)utilisateurAD.Properties["givenName"].Value,
+                            Guid = (Guid)principal.Guid
+                        };
+
+                    }
+                }
+
+            }
+            else{
+                var queryResponsable = from p in db.Personnes
+                                    where p.PersonneId == FicheSecurite.ResponsableId
+                                    select p;
+                responsable = queryResponsable.SingleOrDefault();
+            }
+
+
+            if (FicheSecurite.PersonneConcerneeId == null)
+            {
+                var queryPersonne = from p in db.Personnes
+                                    where p.Nom == FicheSecurite.PersonneConcernee.Nom
+                                    && p.Prenom == FicheSecurite.PersonneConcernee.Prenom 
+                                    select p;
+                personneConcernee = queryPersonne.SingleOrDefault();
+                if (personneConcernee == null)
+                {
+                    qbeUser.GivenName = FicheSecurite.PersonneConcernee.Prenom;
+                    qbeUser.Surname = FicheSecurite.PersonneConcernee.Nom;
+
+                    PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
+                    Principal principal = srch.FindOne();
+
+                    if (principal == null)
+                    {
+                        personneConcernee = new Personne()
+                        {
+                            Nom = FicheSecurite.PersonneConcernee.Nom,
+                            Prenom = FicheSecurite.PersonneConcernee.Prenom
+                        };
+                    }
+                    else
+                    {
+                        var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry;
+                        personneConcernee = new Personne()
+                        {
+                            Nom = (string)utilisateurAD.Properties["sn"].Value,
+                            Prenom = (string)utilisateurAD.Properties["givenName"].Value,
+                            Guid = (Guid)principal.Guid
+                        };
+
+                    }
+                }
+            }
+            else{
+                var queryPersonneConcernee = from p in db.Personnes
+                                        where p.PersonneId == FicheSecurite.PersonneConcerneeId
+                                        select p;
+                personneConcernee = queryPersonneConcernee.SingleOrDefault();
+            }
+
+            // TODO : End du refactor tres vite
+
+            FicheSecurite.Responsable = responsable;
+            FicheSecurite.PersonneConcernee = personneConcernee;
 
             FicheSecurite.WorkFlowDiffusee = true;
 
             db.FicheSecurites.Add(FicheSecurite);
             db.SaveChanges();
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
 
 
         }

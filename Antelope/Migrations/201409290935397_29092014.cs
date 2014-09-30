@@ -3,7 +3,7 @@ namespace Antelope.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _26092014 : DbMigration
+    public partial class _29092014 : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,7 @@ namespace Antelope.Migrations
                         Description = c.String(),
                         DateButoireInitiale = c.DateTime(nullable: false),
                         DateButoireNouvelle = c.DateTime(),
-                        ResponsableId = c.Int(),
+                        ResponsableId = c.Int(nullable: false),
                         Avancement = c.String(),
                         CotationHumain = c.Short(nullable: false),
                         CotationOrganisationnel = c.Short(nullable: false),
@@ -34,7 +34,7 @@ namespace Antelope.Migrations
                     })
                 .PrimaryKey(t => t.ActionQSEId)
                 .ForeignKey("dbo.CauseQSEs", t => t.CauseQSEId, cascadeDelete: true)
-                .ForeignKey("dbo.Personnes", t => t.ResponsableId)
+                .ForeignKey("dbo.Personnes", t => t.ResponsableId, cascadeDelete: true)
                 .ForeignKey("dbo.Personnes", t => t.VerificateurId)
                 .Index(t => t.CauseQSEId)
                 .Index(t => t.ResponsableId)

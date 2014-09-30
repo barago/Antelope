@@ -186,9 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409261447529_26092014.cs" />
-    <Compile Include="Migrations\201409261447529_26092014.Designer.cs">
-      <DependentUpon>201409261447529_26092014.cs</DependentUpon>
+    <Compile Include="Migrations\201409290935397_29092014.cs" />
+    <Compile Include="Migrations\201409290935397_29092014.Designer.cs">
+      <DependentUpon>201409290935397_29092014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -225,6 +225,8 @@
     <Compile Include="Models\Test\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
+    <Compile Include="Repositories\Socle\ActiveDirectoryUtilisateurRepository.cs" />
+    <Compile Include="Repositories\Socle\PersonneRepository.cs" />
     <Compile Include="Repositories\Test\IReviewRepository.cs" />
     <Compile Include="Repositories\Test\ReviewRepository.cs" />
     <Compile Include="Services\Commons\GroupService.cs" />
@@ -459,6 +461,7 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spin.min.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\_references.js" />
@@ -535,8 +538,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409261447529_26092014.resx">
-      <DependentUpon>201409261447529_26092014.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201409290935397_29092014.resx">
+      <DependentUpon>201409290935397_29092014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

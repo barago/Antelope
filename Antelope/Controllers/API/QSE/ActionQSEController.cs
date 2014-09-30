@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Antelope.Models.QSE;
 using Antelope.Models;
+using Antelope.Models.Socle;
 
 namespace Antelope.Controllers.API.QSE
 {
@@ -53,6 +54,16 @@ namespace Antelope.Controllers.API.QSE
 
             try
             {
+                if (actionqse.ResponsableId == 0)
+                {
+                    Personne responsable = new Personne() { 
+                        Nom = actionqse.Responsable.Nom,
+                        Prenom = actionqse.Responsable.Prenom,
+                        Guid = actionqse.Responsable.Guid
+                    };
+                    actionqse.Responsable = responsable;
+                }
+                
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)

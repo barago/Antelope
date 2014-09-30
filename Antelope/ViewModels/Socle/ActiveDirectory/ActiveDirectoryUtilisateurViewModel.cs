@@ -10,6 +10,9 @@ namespace Antelope.ViewModels.Socle.ActiveDirectory
         public string Nom;
         public string Prenom;
         public Guid Guid;
+        public Int32 PersonneId;
+        public Boolean IsAnnuaireAD;
+        public Boolean IsAnnuaireApplication;
 
     }
 }

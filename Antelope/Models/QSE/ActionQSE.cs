@@ -25,7 +25,7 @@ namespace Antelope.Models.QSE
 
         //SE
         [DisplayName("Responsable")]
-        public Int32? ResponsableId { get; set; }
+        public Int32 ResponsableId { get; set; }
 
         [ForeignKey("ResponsableId")]
         public virtual Personne Responsable { get; set; }
