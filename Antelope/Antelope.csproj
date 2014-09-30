@@ -183,6 +183,7 @@
     <Compile Include="Controllers\IndicateurSI\SupportRepartitionTicketController.cs" />
     <Compile Include="Controllers\IndicateurSI\VolumeMailController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
+    <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -230,8 +231,10 @@
     <Compile Include="Repositories\Test\IReviewRepository.cs" />
     <Compile Include="Repositories\Test\ReviewRepository.cs" />
     <Compile Include="Services\Commons\GroupService.cs" />
+    <Compile Include="Services\HSE\EmailService.cs" />
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
+    <Compile Include="Services\Socle\PersonneAnnuaireService.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />

@@ -7,7 +7,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 {
     public class RechercheFicheSecuriteParamModel
     {
-
+        //TODO : Certainement à reclassifier en DTO : RechercheFicheSecuriteDTOModel
         public Int32? SiteId { get; set; }
         public Int32? ZoneId { get; set; }
         public Int32? LieuId { get; set; }
