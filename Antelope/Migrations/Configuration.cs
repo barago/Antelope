@@ -1,23 +1,21 @@
 namespace Antelope.Migrations
 {
-    using Antelope.Models.HSE;
-    using Antelope.Models.Socle;
-    using Antelope.Models.QSE;
-    using Antelope.Models.SI.Indicateur;
+    using Antelope.Domain.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
     using System.Collections.Generic;
+    using Antelope.Infrastructure.EntityFramework;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Antelope.Models.AntelopeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AntelopeEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Antelope.Models.AntelopeContext context)
+        protected override void Seed(AntelopeEntities context)
         {
 
 
@@ -2220,10 +2218,10 @@ namespace Antelope.Migrations
                     FicheSecurite = FicheSecurite2
                 };
 
-            context.Causes.Add(Cause1);
-            context.Causes.Add(Cause2);
-            context.Causes.Add(Cause3);
-            context.Causes.Add(Cause4);
+            context.CauseQSEs.Add(Cause1);
+            context.CauseQSEs.Add(Cause2);
+            context.CauseQSEs.Add(Cause3);
+            context.CauseQSEs.Add(Cause4);
 
             ActionQSE Action1 = new ActionQSE()
             {
@@ -2231,7 +2229,7 @@ namespace Antelope.Migrations
                 DateButoireInitiale = DateTime.Now,
                 Responsable = PersonneConcernee4,
                 Cloture = false,
-                CauseQSE = Cause1,
+                CauseQS = Cause1,
                 DateButoireNouvelle = DateTime.Now,
                 RealiseDate = DateTime.Now,
                 VerifieDate = DateTime.Now,
@@ -2245,14 +2243,14 @@ namespace Antelope.Migrations
                 Responsable = PersonneConcernee3,
                 Cloture = true,
                 ClotureDate = DateTime.Now,
-                CauseQSE = Cause1,
+                CauseQS = Cause1,
                 DateButoireNouvelle = DateTime.Now,
                 RealiseDate = DateTime.Now,
                 VerifieDate = DateTime.Now
             };
 
-            context.Actions.Add(Action1);
-            context.Actions.Add(Action2);
+            context.ActionQSEs.Add(Action1);
+            context.ActionQSEs.Add(Action2);
 
             ADRole ADRoleHSEAdministrateur = new ADRole()
             {

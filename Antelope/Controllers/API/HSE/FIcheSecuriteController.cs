@@ -1,6 +1,4 @@
-﻿using Antelope.Models;
-using Antelope.Models.HSE;
-using Antelope.Models.Socle;
+﻿using Antelope.Domain.Models;
 using Antelope.Repositories.HSE;
 using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 using System;
@@ -18,6 +16,7 @@ using Antelope.Repositories.Socle;
 using Antelope.DTOs.Socle;
 using Antelope.Services.Socle;
 using Antelope.Services.HSE;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -29,7 +28,8 @@ namespace Antelope.Controllers.API.HSE
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
         private EmailService _emailService { get; set; }
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
+        public ActiveDirectoryService _activeDirectoryService { get; set; }
 
         public FicheSecuriteController() {
 
@@ -51,6 +51,8 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get(int id)
         {
 
+            _activeDirectoryService = new ActiveDirectoryService();
+
             FicheSecurite ficheSecurite;
             List<Zone> AllZone;
             List<Lieu> AllLieu;
@@ -62,7 +64,9 @@ namespace Antelope.Controllers.API.HSE
             if (id == -1)
             {
                 PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
-                UserPrincipal user = UserPrincipal.Current;
+                //UserPrincipal user = UserPrincipal.Current;
+                UserPrincipal user = _activeDirectoryService.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+
                 DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
                 String userCompanyName = (String)de.Properties["company"].Value;
 

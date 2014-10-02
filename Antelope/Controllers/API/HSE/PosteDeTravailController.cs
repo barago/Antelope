@@ -8,14 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Antelope.Models.Socle;
-using Antelope.Models;
+using Antelope.Domain.Models;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.API.HSE
 {
     public class PosteDeTravailController : ApiController
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         // GET api/PosteDeTravail
         public IQueryable<PosteDeTravail> GetPosteDeTravails()

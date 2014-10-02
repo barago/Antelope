@@ -1,7 +1,6 @@
 ﻿@using PagedList.Mvc;
 
-@*@model IEnumerable<Antelope.Models.HSE.FicheSecurite>*@
-@model PagedList.IPagedList<Antelope.Models.HSE.FicheSecurite>
+@model PagedList.IPagedList<Antelope.Domain.Models.FicheSecurite>
 
 @{
     ViewBag.Title = "Index";
@@ -476,7 +475,7 @@
                             </tbody>
                         </table>
                         </div>
-                        <ul class="pagination">
+                        <ul class="pagination" style="margin:0px;">
                             <% paginationCollection.each( function(pagination){ %>
                             <li class="<%=pagination.get('class') + ' Page' %>" id="<%='Pagination'+pagination.get('page') %>" data-pageid="<%=pagination.get('page')%>"><a href="#"><%= pagination.get('page') %></a></li>
                             <%  });  %>

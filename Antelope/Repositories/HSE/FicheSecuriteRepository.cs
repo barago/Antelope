@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Antelope.Models.HSE;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Repositories.HSE
 {
     public class FicheSecuriteRepository
     {
 
-        public AntelopeContext _db { get; set; }
+        public AntelopeEntities _db { get; set; }
 
-        public FicheSecuriteRepository() : this(new AntelopeContext())
+        public FicheSecuriteRepository()
+            : this(new AntelopeEntities())
         {
 
         }
 
-        public FicheSecuriteRepository(AntelopeContext db)
+        public FicheSecuriteRepository(AntelopeEntities db)
         {
             _db = db;
         }

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Antelope.Models.HSE;
-using Antelope.Models.Socle;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
 using Antelope.Repositories.HSE;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
+using Antelope.Infrastructure.EntityFramework;
+using System.Web;
+using Antelope.Services.Socle;
 
 
 
@@ -19,8 +20,9 @@ namespace Antelope.Controllers.API.HSE
     public class RechercheFicheSecuriteController : ApiController
     {
 
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
         public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
+        public ActiveDirectoryService _activeDirectoryService { get; set; }
 
 
 
@@ -28,9 +30,14 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get()
         {
 
+            _activeDirectoryService = new ActiveDirectoryService();
+
             // TODO A METTRE DANS UN "ANNUAIRE REPOSITORY" 
             PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
-            UserPrincipal user = UserPrincipal.Current;
+            
+            //UserPrincipal user = UserPrincipal.Current;
+            UserPrincipal user = _activeDirectoryService.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+
             DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
             String userCompanyName = (String)de.Properties["company"].Value;
             
@@ -86,7 +93,7 @@ namespace Antelope.Controllers.API.HSE
                 CorpsHumainZoneId = 0,
                 PlageHoraireId = 0,
                 Page = 1,
-                PageSize = 5
+                PageSize = 12
 
             };
 

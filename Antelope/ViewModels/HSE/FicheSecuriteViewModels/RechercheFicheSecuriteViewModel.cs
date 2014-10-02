@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Antelope.Models.HSE;
-using Antelope.Models.Socle;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using Antelope.Repositories.HSE;
+using Antelope.Infrastructure.EntityFramework;
 
 
 namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
@@ -15,7 +14,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 
 
 
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         public FicheSecuritePaginatedList FicheSecuritePaginatedList;
         public List<Zone> AllZone;

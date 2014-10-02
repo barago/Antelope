@@ -8,17 +8,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Antelope.Models;
-using Antelope.Models.Socle;
+using Antelope.Domain.Models;
 using Antelope.ViewModels.Socle.ActiveDirectory;
 using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.API.HSE
 {
     public class ActiveDirectoryUtilisateurController : ApiController
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
 
 

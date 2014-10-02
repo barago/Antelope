@@ -1,4 +1,4 @@
-﻿using Antelope.Models.HSE;
+﻿using Antelope.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

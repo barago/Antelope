@@ -1,6 +1,4 @@
-﻿using Antelope.Models;
-using Antelope.Models.HSE;
-using Antelope.Models.Socle;
+﻿using Antelope.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,6 +12,8 @@ using System.Web.Http;
 using System.Web.Security;
 using System.Diagnostics;
 using Antelope.Services.HSE.Enums;
+using Antelope.Infrastructure.EntityFramework;
+using Antelope.Models; //TODO : A vérifier >> Pour le TestContext
 
 
 
@@ -40,9 +40,11 @@ namespace Antelope
         void Session_Start()
         {
 
-            AntelopeContext db = new AntelopeContext();
-            HSERoleEnum HSERole = HSERoleEnum.Visiteur;
-            HSERoleEnum CurrentHSERole = HSERoleEnum.Visiteur;
+            AntelopeEntities db = new AntelopeEntities();
+            //HSERoleEnum HSERole = HSERoleEnum.Visiteur;
+            Int16 HSERole = (Int16)HSERoleEnum.Visiteur;
+            //HSERoleEnum CurrentHSERole = HSERoleEnum.Visiteur;
+            Int16 CurrentHSERole = (Int16)HSERoleEnum.Visiteur;
 
             var allADRoleMapped = from a in db.ADRoles
                                   where a.RoleType == "HSE"
@@ -60,20 +62,25 @@ namespace Antelope
                 {
                     Debug.WriteLine(ADRole.Name);
 
+                    //HSERoleEnum RoleToAdd = (HSERoleEnum)Enum.Parse(typeof(HSERoleEnum), ADRole.RoleCode);  //TODO : Renommer RoleCode en APPRoleCode !!! RoleType en APPRoleType
                     HSERoleEnum RoleToAdd = (HSERoleEnum)Enum.Parse(typeof(HSERoleEnum), ADRole.RoleCode);  //TODO : Renommer RoleCode en APPRoleCode !!! RoleType en APPRoleType
 
-                    if ((Int32)RoleToAdd < (Int32)HSERole)
+                    if ((Int16)RoleToAdd < (Int16)HSERole)
                     {
-                        HSERole = RoleToAdd;
-                        CurrentHSERole = RoleToAdd;
+                        HSERole = (Int16)RoleToAdd;
+                        CurrentHSERole = (Int16)RoleToAdd;
                     }
 
                 }
 
             }
 
-            Session["HSERole"] = Enum.GetName(typeof(HSERoleEnum), HSERole);
-            Session["CurrentHSERole"] = Enum.GetName(typeof(HSERoleEnum), CurrentHSERole);
+            //Session["HSERole"] = Enum.GetName(typeof(HSERoleEnum), HSERole);
+            Session["HSERole"] = HSERole;
+            // Dans le futur, l'utilisateur pourra choisir un role inferieur à celui auquel il a droit
+            // Il faut donc utiliser CurrentHSERole dans les pages de l'appli.
+            //Session["CurrentHSERole"] = Enum.GetName(typeof(HSERoleEnum), CurrentHSERole);
+            Session["CurrentHSERole"] = CurrentHSERole;
 
         }
 

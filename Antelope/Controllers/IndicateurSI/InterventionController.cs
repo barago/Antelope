@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient.Properties;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using PagedList;
-using Antelope.Models.SI.Indicateur;
 using System.Net.Mail;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.IndicateurSI
 {
@@ -18,7 +18,7 @@ namespace Antelope.Controllers.IndicateurSI
 
     public class InterventionController : Controller
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
         // GET: Intervention
         public ActionResult Intervention()
         {

@@ -1,4 +1,4 @@
-﻿@model Antelope.Models.HSE.FicheSecurite
+﻿@model Antelope.Domain.Models.FicheSecurite
 
 @{
     ViewBag.Title = "Création Fiche Sécurité";
@@ -201,7 +201,7 @@
                             <div class="col-md-2">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="Site" class="label-xs">Site&nbsp;:</label>
+                                        <label for="Site" class="label-xs"><span style="color:red;">*</span>Site&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Site" class="form-control input-xs">
@@ -221,7 +221,7 @@
                             <div class="col-md-2">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="Type" class="label-xs">Type&nbsp;:</label>
+                                        <label for="Type" class="label-xs"><span style="color:red;">*</span>Type&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Type" class="form-control input-xs">
@@ -251,7 +251,7 @@
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label class="label-xs">Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
+                                        <label class="label-xs"><span style="color:red;">*</span>Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
                                     </div>
                                     @*<div class="col-sm-3">
                                             <input name="DateEvenement" id="DateEvenement" class="form-control input-xs" type="text" value="<%= FicheSecuriteDate %>">
@@ -294,7 +294,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5">
                                         @*style="padding-right:0px;"*@
-                                        <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="PersonnesConcerneeNom" class="label-xs"><span style="color:red;">*</span>Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="input-group input-group-xs">
@@ -311,7 +311,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="PersonnesConcerneePrenom" class="label-xs"><span style="color:red;">*</span>Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="PlageHoraire" class="col-sm-5 label-xs">Plage&nbsp;horaire&nbsp;:</label>
+                                    <label for="PlageHoraire" class="col-sm-5 label-xs"><span style="color:red;">*</span>Plage&nbsp;horaire&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="PlageHoraire">
                                             <option value="null" <% if (ficheSecuriteModel.get('PlageHoraireId') == 'null'){ %> selected <% } %> ></option>
@@ -350,7 +350,7 @@
                                     </div>
                                 </div>*@
                                 <div class="form-group">
-                                    <label for="PosteDeTravail" class="col-sm-5 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
+                                    <label for="PosteDeTravail" class="col-sm-5 label-xs"><span style="color:red;">*</span>Poste&nbsp;de&nbsp;travail&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="PosteDeTravail">
                                             <option value="null" <% if (ficheSecuriteModel.get('PosteDeTravailId') == 'null'){ %> selected <% } %> ></option>
@@ -366,7 +366,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Service" class="col-sm-5 label-xs">Service&nbsp;:</label>
+                                    <label for="Service" class="col-sm-5 label-xs"><span style="color:red;">*</span>Service&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select id="Service" class="form-control input-xs">
                                             <option value="null" <% if (ficheSecuriteModel.get('ServiceId') == 'null'){ %> selected <% } %> ></option>
@@ -384,7 +384,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5">
                                         @*style="padding-right:0px;"*@
-                                        <label for="ResponsableNom" class="label-xs">Nom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="ResponsableNom" class="label-xs"><span style="color:red;">*</span>Nom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="input-group input-group-xs">
@@ -401,7 +401,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-5">
-                                        <label for="ResponsablePrenom" class="label-xs">Prénom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="ResponsablePrenom" class="label-xs"><span style="color:red;">*</span>Prénom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control input-xs" id="ResponsablePrenom" value="<%= ficheSecuriteModel.get('Responsable').get('Prenom') %>">
@@ -424,7 +424,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Lieu" class="col-sm-5 label-xs">Lieu&nbsp;:</label>
+                                    <label for="Lieu" class="col-sm-5 label-xs"><span style="color:red;">*</span>Lieu&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Lieu">
                                             <option value="null" <% if (ficheSecuriteModel.get('LieuId') == 'null'){ %> selected <% } %> ></option>
@@ -440,7 +440,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Danger" class="col-sm-5 label-xs">Danger&nbsp;:</label>
+                                    <label for="Danger" class="col-sm-5 label-xs"><span style="color:red;">*</span>Danger&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Danger">
                                             <option value="null" <% if (ficheSecuriteModel.get('DangerId') == 'null'){ %> selected <% } %> ></option>
@@ -455,7 +455,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:</label>
+                                    <label for="Risque" class="col-sm-5 label-xs"><span style="color:red;">*</span>Risque&nbsp;:</label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Risque">
                                             <option value="null" <% if (ficheSecuriteModel.get('RisqueId') == 'null'){ %> selected <% } %> ></option>
@@ -512,7 +512,7 @@
                                 <div class="col-md-8" style="padding-left:0px;">
                                     <div class="form-group">
 
-                                        <h4>Description</h4>
+                                        <h4><span style="color:red;">*</span>Description</h4>
 
                                         <div class="col-sm-12">
                                             <textarea id="Description" class="form-control input-small" rows="8"><%= ficheSecuriteModel.get('Description') %></textarea>
@@ -529,13 +529,13 @@
 
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label for="Frequence" class="col-sm-8 label-xs">Fréquence&nbsp;:</label>
+                                            <label for="Frequence" class="col-sm-8 label-xs"><span style="color:red;">*</span>Fréquence&nbsp;:</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control input-xs" id="Frequence" value="<%= ficheSecuriteModel.get('CotationFrequence') %>">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="Gravite" class="col-sm-8 label-xs">Gravité&nbsp;:</label>
+                                            <label for="Gravite" class="col-sm-8 label-xs"><span style="color:red;">*</span>Gravité&nbsp;:</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control input-xs" id="Gravite" value="<%= ficheSecuriteModel.get('CotationGravite') %>">
                                             </div>
@@ -641,6 +641,7 @@
 
                         <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) {%>
 
+                        <% if (currentHSERole < 400) { %>
                         <button id="Valider" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-ok"></span> Validé
                         </button>
@@ -648,32 +649,42 @@
                         <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
                             <span class="glyphicon glyphicon-remove"></span> Rejeté
                         </button>
-                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;:&nbsp;</span>
+                        <span class="pull-right">
+                            &nbsp;Il&nbsp;doit&nbsp;être&nbsp;:&nbsp;
+                        </span>
 
-                        <% }else{ %>
 
-                        <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
-                            <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
-                        </button>
+                            <% } %>
+                            <span class="pull-right">
+                                <span class="glyphicon glyphicon-ok pull-right"></span>
+                                Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;envoyé&nbsp;
+                            </span>
 
-                        <span class="pull-right">&nbsp;Puis&nbsp;:&nbsp;</span>
-                        <span class="glyphicon glyphicon-pencil pull-right"></span>
-                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
+                            <% }else{ %>
 
-                        <% }else{ %>
+                            <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                        @*IF CLOTURE = MEME BOUTON (REJET, MAIS MESSAGE CLOTURE)*@
+                            <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
+                                <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
+                            </button>
 
-                        <span class="pull-right">&nbsp;pour&nbsp;amélioration.</span>
-                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
-                            <span class="glyphicon glyphicon-remove"></span> Rejeter
-                        </button>
+                            <span class="pull-right">&nbsp;Puis&nbsp;:&nbsp;</span>
+                            <span class="glyphicon glyphicon-pencil pull-right"></span>
+                            <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
 
-                        <span class="pull-right">&nbsp;Vous&nbsp;pouvez&nbsp;le&nbsp;</span>
-                        <span class="glyphicon glyphicon-ok pull-right"></span>
-                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;validé&nbsp;:&nbsp;</span>
+                            <% }else{ %>
+
+                            @*IF CLOTURE = MEME BOUTON (REJET, MAIS MESSAGE CLOTURE)*@
+
+                            <span class="pull-right">&nbsp;pour&nbsp;amélioration.</span>
+                            <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
+                                <span class="glyphicon glyphicon-remove"></span> Rejeter
+                            </button>
+
+                            <span class="pull-right">&nbsp;Vous&nbsp;pouvez&nbsp;le&nbsp;</span>
+                            <span class="glyphicon glyphicon-ok pull-right"></span>
+                            <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;validé&nbsp;:&nbsp;</span>
 
                             <% }%>
                             <% }%>
@@ -1046,6 +1057,7 @@
 <div id="HardCoded">
 </div>
 
+
 <script type="text/javascript">
 
 
@@ -1078,6 +1090,7 @@
         //$(document).ajaxComplete(function () { $("#loading").fadeOut(); });
 
         var FicheSecuriteId = "@ViewBag.Id";
+        var currentHSERole = "@ViewBag.CurrentHSERole";
 
         function dateFormatJS(date) {
             var dateFormated = '';
@@ -1095,7 +1108,7 @@
             return heureFormated;
         };
 
-        var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId });
+        var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId, currentHSERole : currentHSERole });
 
         ficheSecuriteViewModel.fetch({
             async: false//, success: this.arraysToModelCollections
@@ -1933,6 +1946,35 @@
         });
 
 
+//--------------------------------------------------ALERTES----------------------------------------------------
+
+        AlerteModel = Backbone.Model.extend({});
+
+        alerteModel = new AlerteModel({
+            alerteHidden: true,
+            alerteClass: "alert alert-danger",
+            alerteMessage:"Test d'alerte"
+        });
+
+
+
+        AlerteView = Backbone.View.extend({
+            id: 'alerteInnerDiv',
+            template: _.template($('#alerteTemplate').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+                return this;
+            },
+            initialize: function () {
+
+                this.render();
+            },
+            events: {
+               
+
+            }
+        });
+
 
 //----------------------------------------------INSTANCIATION DES VIEWS------------------------------------------------
 
@@ -1944,6 +1986,11 @@
         var ficheSecuriteActionView = new FicheSecuriteActionView({
             el: $("#DivInfosCorrectives"),
             model: ficheSecuriteViewModel
+        });
+
+        var alerteView = new AlerteView({
+            el: $("#alerteDiv"),
+            model: alerteModel
         })
 
     })

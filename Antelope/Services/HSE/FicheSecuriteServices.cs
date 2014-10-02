@@ -1,4 +1,4 @@
-﻿using Antelope.Models.HSE;
+﻿using Antelope.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Antelope.Services.HSE
         }
 
 
-        public static IQueryable<Models.HSE.FicheSecurite> TriFicheSecurites(IQueryable<Models.HSE.FicheSecurite> ficheSecurites, string ordreTri)
+        public static IQueryable<FicheSecurite> TriFicheSecurites(IQueryable<FicheSecurite> ficheSecurites, string ordreTri)
         {
 
             switch (ordreTri)

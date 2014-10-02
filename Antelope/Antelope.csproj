@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\HSE\HSEParametrageController.cs" />
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
+    <Compile Include="Controllers\HSE\HSEParametrageController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
     <Compile Include="Controllers\IndicateurSI\DegreSatisfactionController.cs" />
     <Compile Include="Controllers\IndicateurSI\DelaiMoyenTicketController.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Services\HSE\EmailService.cs" />
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
+    <Compile Include="Services\Socle\ActiveDirectoryService.cs" />
     <Compile Include="Services\Socle\PersonneAnnuaireService.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
@@ -391,6 +394,7 @@
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Release_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Acceptance_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Test_Publish.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Acceptance.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Production.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Test.pubxml" />
@@ -519,6 +523,8 @@
     <Content Include="Views\HSE\FicheSecurite\Create.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Index2.cshtml" />
+    <Content Include="Views\HSE\Parametrage\Alimentation.cshtml" />
+    <Content Include="Views\Z_Backbone_Model\ModelBackbone.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -544,6 +550,16 @@
     <EmbeddedResource Include="Migrations\201409290935397_29092014.resx">
       <DependentUpon>201409290935397_29092014.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Antelope.Domain.Models\Antelope.Domain.Models.csproj">
+      <Project>{06c442b4-1218-4aca-b731-2b74d75f3dae}</Project>
+      <Name>Antelope.Domain.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Antelope.Infrastructure.EntityFramework\Antelope.Infrastructure.EntityFramework.csproj">
+      <Project>{9ad2a500-5e9c-4c2f-adef-7ae9ea8098bb}</Project>
+      <Name>Antelope.Infrastructure.EntityFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

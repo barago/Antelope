@@ -6,14 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Antelope.Models.HSE;
-using Antelope.Models;
+using Antelope.Domain.Models;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.HSE
 {
     public class ActionSecuriteController : Controller
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         // GET: /ActionSecurite/
         public ActionResult Index()

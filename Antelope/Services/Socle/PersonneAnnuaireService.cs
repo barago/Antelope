@@ -1,6 +1,6 @@
 ﻿using Antelope.DTOs.Socle;
-using Antelope.Models;
-using Antelope.Models.Socle;
+using Antelope.Infrastructure.EntityFramework;
+using Antelope.Domain.Models;
 using Antelope.Repositories.HSE;
 using Antelope.Repositories.Socle;
 using System;
@@ -16,7 +16,7 @@ namespace Antelope.Services.Socle
         public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
         public PersonneRepository _personneRepository { get; set; }
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         public PersonneAnnuaireService()
         {

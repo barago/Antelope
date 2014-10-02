@@ -6,23 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Antelope.Models.HSE;
 using Antelope.Services.HSE;
 using Antelope.Services.Commons;
 using System.Diagnostics;
 using PagedList;
-using Antelope.Models;
-using Antelope.Models.Socle;
+using Antelope.Domain.Models;
 using System.Web.Security;
 using System.Collections;
 using Antelope.ViewModels.HSE.FicheSecuriteViewModels;
+using Antelope.Infrastructure.EntityFramework;
 
 
 namespace Antelope.Controllers.HSE
 {
     public class FicheSecuriteController : Controller
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
 
         //[Authorize(Roles = "RFC-U-Informatique_ResponsableApplications")]
@@ -91,6 +90,8 @@ namespace Antelope.Controllers.HSE
         public ActionResult Edit(int ?id)
         {
             ViewBag.Id = id;
+            ViewBag.CurrentHSERole = Session["CurrentHSERole"];
+
 
             return View("~/Views/HSE/FicheSecurite/Create.cshtml");
         }

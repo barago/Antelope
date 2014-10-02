@@ -1,5 +1,5 @@
-﻿using Antelope.Models;
-using Antelope.Models.Socle;
+﻿using Antelope.Infrastructure.EntityFramework;
+using Antelope.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,15 @@ namespace Antelope.Repositories.Socle
     public class PersonneRepository
     {
 
-        public AntelopeContext _db { get; set; }
+        public AntelopeEntities _db { get; set; }
 
-        public PersonneRepository() : this(new AntelopeContext())
+        public PersonneRepository()
+            : this(new AntelopeEntities())
         {
 
         }
 
-        public PersonneRepository(AntelopeContext db)
+        public PersonneRepository(AntelopeEntities db)
         {
             _db = db;
         }

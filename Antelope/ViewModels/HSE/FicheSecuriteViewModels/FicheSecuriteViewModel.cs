@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Antelope.Models.HSE;
-using Antelope.Models.Socle;
-using Antelope.Models;
+using Antelope.Domain.Models;
+using Antelope.Infrastructure.EntityFramework;
 
 
 namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
@@ -13,7 +12,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
     public class FicheSecuriteViewModel
     {
 
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         public FicheSecurite FicheSecurite;
         public List<Zone> AllZone;
@@ -48,7 +47,6 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
             FicheSecurite ficheSecurite, List<Zone> AllZone, List<Lieu> AllLieu, List<Service> AllService, List<PosteDeTravail> AllPosteDeTravail
             )
         {
-
             this.FicheSecurite = ficheSecurite;
             this.AllZone = AllZone;
             this.AllLieu = AllLieu;

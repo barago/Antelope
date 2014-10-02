@@ -1,11 +1,12 @@
 ﻿using Antelope.DTOs.Socle;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Web;
 using System.DirectoryServices;
+using Antelope.Infrastructure.EntityFramework;
 
 
 namespace Antelope.Repositories.Socle
@@ -13,16 +14,16 @@ namespace Antelope.Repositories.Socle
     public class ActiveDirectoryUtilisateurRepository
     {
 
-        public AntelopeContext _db { get; set; }
+        public AntelopeEntities _db { get; set; }
         public PrincipalContext _principalContext { get; set; }
 
         public ActiveDirectoryUtilisateurRepository()
-            : this(new AntelopeContext(), new PrincipalContext(ContextType.Domain, "refresco.local"))
+            : this(new AntelopeEntities(), new PrincipalContext(ContextType.Domain, "refresco.local"))
         {
 
         }
 
-        public ActiveDirectoryUtilisateurRepository(AntelopeContext db, PrincipalContext principalContext)
+        public ActiveDirectoryUtilisateurRepository(AntelopeEntities db, PrincipalContext principalContext)
         {
             _db = db;
             _principalContext = principalContext;

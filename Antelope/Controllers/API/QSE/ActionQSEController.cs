@@ -8,27 +8,27 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Antelope.Models.QSE;
-using Antelope.Models;
-using Antelope.Models.Socle;
+using Antelope.Domain.Models;
+using Antelope.Infrastructure.EntityFramework;
+
 
 namespace Antelope.Controllers.API.QSE
 {
     public class ActionQSEController : ApiController
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         // GET api/ActionQSE
         public IQueryable<ActionQSE> GetActions()
         {
-            return db.Actions;
+            return db.ActionQSEs;
         }
 
         // GET api/ActionQSE/5
         [ResponseType(typeof(ActionQSE))]
         public IHttpActionResult GetActionQSE(int id)
         {
-            ActionQSE actionqse = db.Actions.Find(id);
+            ActionQSE actionqse = db.ActionQSEs.Find(id);
             if (actionqse == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace Antelope.Controllers.API.QSE
             //    return BadRequest(ModelState);
             //}
 
-            db.Actions.Add(actionQSE);
+            db.ActionQSEs.Add(actionQSE);
             db.SaveChanges();
 
             return Request.CreateResponse<ActionQSE>(HttpStatusCode.OK, actionQSE, Configuration.Formatters.JsonFormatter);
@@ -100,13 +100,13 @@ namespace Antelope.Controllers.API.QSE
         [ResponseType(typeof(ActionQSE))]
         public IHttpActionResult DeleteActionQSE(int id)
         {
-            ActionQSE actionqse = db.Actions.Find(id);
+            ActionQSE actionqse = db.ActionQSEs.Find(id);
             if (actionqse == null)
             {
                 return NotFound();
             }
 
-            db.Actions.Remove(actionqse);
+            db.ActionQSEs.Remove(actionqse);
             db.SaveChanges();
 
             return Ok(actionqse);
@@ -123,7 +123,7 @@ namespace Antelope.Controllers.API.QSE
 
         private bool ActionQSEExists(int id)
         {
-            return db.Actions.Count(e => e.ActionQSEId == id) > 0;
+            return db.ActionQSEs.Count(e => e.ActionQSEId == id) > 0;
         }
     }
 }

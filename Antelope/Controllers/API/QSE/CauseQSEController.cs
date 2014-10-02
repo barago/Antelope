@@ -8,26 +8,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Antelope.Models;
-using Antelope.Models.QSE;
+using Antelope.Domain.Models;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.API.QSE
 {
     public class CauseQSEController : ApiController
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
 
         // GET: api/CauseQSE
         public IQueryable<CauseQSE> GetCauses()
         {
-            return db.Causes;
+            return db.CauseQSEs;
         }
 
         // GET: api/CauseQSE/5
         [ResponseType(typeof(CauseQSE))]
         public IHttpActionResult GetCauseQSE(int id)
         {
-            CauseQSE causeQSE = db.Causes.Find(id);
+            CauseQSE causeQSE = db.CauseQSEs.Find(id);
             if (causeQSE == null)
             {
                 return NotFound();
@@ -74,7 +74,7 @@ namespace Antelope.Controllers.API.QSE
 
         public HttpResponseMessage Post(CauseQSE causeQSE/* [FromBody]string value */)
         {
-            db.Causes.Add(causeQSE);
+            db.CauseQSEs.Add(causeQSE);
             db.SaveChanges();
 
             return Request.CreateResponse<CauseQSE>(HttpStatusCode.OK, causeQSE, Configuration.Formatters.JsonFormatter);
@@ -85,13 +85,13 @@ namespace Antelope.Controllers.API.QSE
         [ResponseType(typeof(CauseQSE))]
         public IHttpActionResult DeleteCauseQSE(int id)
         {
-            CauseQSE causeQSE = db.Causes.Find(id);
+            CauseQSE causeQSE = db.CauseQSEs.Find(id);
             if (causeQSE == null)
             {
                 return NotFound();
             }
 
-            db.Causes.Remove(causeQSE);
+            db.CauseQSEs.Remove(causeQSE);
             db.SaveChanges();
 
             return Ok(causeQSE);
@@ -108,7 +108,7 @@ namespace Antelope.Controllers.API.QSE
 
         private bool CauseQSEExists(int id)
         {
-            return db.Causes.Count(e => e.CauseQSEId == id) > 0;
+            return db.CauseQSEs.Count(e => e.CauseQSEId == id) > 0;
         }
 
 

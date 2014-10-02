@@ -7,15 +7,15 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient.Properties;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
-using Antelope.Models;
+using Antelope.Domain.Models;
 using PagedList;
-using Antelope.Models.SI.Indicateur;
+using Antelope.Infrastructure.EntityFramework;
 
 namespace Antelope.Controllers.IndicateurSI
 {
     public class SauvegardeController : Controller
     {
-        private AntelopeContext db = new AntelopeContext();
+        private AntelopeEntities db = new AntelopeEntities();
         //
         // GET: Sauvegarde
         public ActionResult Sauvegarde()
