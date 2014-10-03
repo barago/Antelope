@@ -16,7 +16,7 @@ namespace Antelope.Services.Socle
         public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
         public PersonneRepository _personneRepository { get; set; }
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
-        private AntelopeEntities db = new AntelopeEntities();
+        //private AntelopeEntities db = new AntelopeEntities();
 
         public PersonneAnnuaireService()
         {
@@ -25,11 +25,18 @@ namespace Antelope.Services.Socle
             _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
         }
 
+        public PersonneAnnuaireService(AntelopeEntities db)
+        {
+            _ficheSecuriteRepository = new FicheSecuriteRepository();
+            _personneRepository = new PersonneRepository(db);
+            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
+        }
+
         //Permet grâce : à l'Id d'une Personne, de retourner celle-ci, 
         //Si l'ID n'est pas présent, on va la chercher dans l'Annuaire Applicatif (Table Personne) par son Nom/Prenom
         //Si la Personne n'est pas trouvée, on va la chercher sans l'Annuaire AD et la créer dans les Personnes
         //Si elle n'est pas trouvée non plus dans l'AD, on va la créer dans les Personnes, sans Guid.
-        public Personne GetPersonneFromAllAnnuaireOrCreate(String Nom, String Prenom, Int32? PersonneId)
+        public Personne GetPersonneFromAllAnnuaireOrCreate(String Nom, String Prenom, Int32? PersonneId, AntelopeEntities db)
         {
 
             Personne personne;

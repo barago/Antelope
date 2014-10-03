@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Antelope.Domain.Models;
 using Antelope.Infrastructure.EntityFramework;
+using Antelope.Services.Socle;
 
 
 namespace Antelope.Controllers.API.QSE
@@ -17,6 +18,13 @@ namespace Antelope.Controllers.API.QSE
     public class ActionQSEController : ApiController
     {
         private AntelopeEntities db = new AntelopeEntities();
+
+        private PersonneAnnuaireService _personneAnnuaireService { get; set; }
+
+        public ActionQSEController()
+        {
+            _personneAnnuaireService = new PersonneAnnuaireService(db);
+        }
 
         // GET api/ActionQSE
         public IQueryable<ActionQSE> GetActions()
@@ -89,6 +97,9 @@ namespace Antelope.Controllers.API.QSE
             //{
             //    return BadRequest(ModelState);
             //}
+            actionQSE.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                actionQSE.Responsable.Nom, actionQSE.Responsable.Prenom, actionQSE.ResponsableId, db
+            );
 
             db.ActionQSEs.Add(actionQSE);
             db.SaveChanges();

@@ -17,10 +17,10 @@ namespace Antelope.Services.HSE
 
             mail.From = new MailAddress("Sezar@refresco.fr");
             mail.Subject = "Alerte Sécurité !!!";
-            mail.Body = "Nouveau message d'alerte sécurité";
+            mail.Body = "<H1>Nouveau message d'alerte sécurité</H1> Hello après le H1";
             mail.To.Add("jucok@gmx.fr");
             mail.To.Add("julien.cokelaere@refresco.fr");
-            mail.IsBodyHtml = false;
+            mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "dlf-sk8vm03.refresco.local";
             smtp.Port = 25;

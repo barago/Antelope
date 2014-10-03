@@ -317,6 +317,22 @@
                                         <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control input-xs" id="Zone">
+                                            <option value="null" <% if (ficheSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
+                                            <% zoneCollection.each( function(zone){ %>
+                                            <option value="<%= zone.get('ZoneID') %>"
+                                                <% if (ficheSecuriteModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %>
+                                                >
+                                                <%= zone.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="Age" class="col-sm-5 label-xs">Âge&nbsp;:</label>
@@ -405,22 +421,6 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control input-xs" id="ResponsablePrenom" value="<%= ficheSecuriteModel.get('Responsable').get('Prenom') %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control input-xs" id="Zone">
-                                            <option value="null" <% if (ficheSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
-                                            <% zoneCollection.each( function(zone){ %>
-                                            <option value="<%= zone.get('ZoneID') %>"
-                                                <% if (ficheSecuriteModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %>
-                                                >
-                                                <%= zone.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -700,6 +700,8 @@
 
                     <!-- ---------------------------LIGNE ENQUETE----------------------------- -->
                     <form class="form-horizontal" role="form">
+                        
+                        <% if(ficheSecuriteModel.get('FicheSecuriteTypeId') == 1 || ficheSecuriteModel.get('FicheSecuriteTypeId') == 2 || ficheSecuriteModel.get('FicheSecuriteTypeId') == 3){%>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -725,6 +727,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <% if(ficheSecuriteModel.get('FicheSecuriteTypeId') == 1 || ficheSecuriteModel.get('FicheSecuriteTypeId') == 2){%>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="CHSCTMembre" class="col-sm-6 label-xs">Membre&nbsp;CHSCT&nbsp;:</label>
@@ -733,7 +736,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <% } %>
                         </div>
+                        <% } %>
                     </form>
 
                     <!-- ---------------------------TABLEAU CAUSES / ACTIONS----------------------------- -->
@@ -1400,6 +1405,10 @@
                     this.render();
                 }, this);
 
+                this.model.get('ficheSecuriteModel').on("invalid", function (model, error) {
+                    Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
+                });
+
                 this.render();
             },
             events: {
@@ -1550,18 +1559,34 @@
                 this.model.get('ficheSecuriteModel').set({ 'CorpsHumainZoneId': this.model.get('corpsHumainZoneCollection').findWhere({ Code: data.key }).get('Id') });
             },
             Diffusion: function () {
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait:true});
-                //TODO : Ce qui suit Sur le ON SUCCESS >>
-                this.model.get('ficheSecuriteModel').set({ 'WorkFlowDiffusee': true });
-                // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
-                this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(this.model.get('ficheSecuriteModel').Responsable) });
-                this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(this.model.get('ficheSecuriteModel').PersonneConcernee) });
-                Backbone.applicationEvents.trigger('FicheDiffusee');
 
-                this.render(this.model.get('ficheSecuriteModel'));
+                $("#loading").fadeIn();
+                this.model.get('ficheSecuriteModel').save(null, {
+                    async: false, wait: true,
+                    success: _.bind(function (model, response) {
+                        this.model.get('ficheSecuriteModel').set({ 'WorkFlowDiffusee': true });
+                        // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
+                        this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(this.model.get('ficheSecuriteModel').Responsable) });
+                        this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(this.model.get('ficheSecuriteModel').PersonneConcernee) });
+                        Backbone.applicationEvents.trigger('FicheDiffusee');
+
+                        this.render(this.model.get('ficheSecuriteModel'));
+                        Backbone.applicationEvents.trigger('validFicheSecurite', 'La Fiche Sécurité est créée et diffusée.');
+
+                    }, this)
+                });
+                $("#loading").fadeOut();
+
             },
             //changeSourceActiveDirectoryUtilisateurRecherche: function () {
             //    this.set({'sourceActiveDirectoryUtilisateurRecherche':'PERSONNECONCERNEE'})
+            //},
+            //inputValidationDiffusion: function(){
+            //    var validated = true;
+            //    validated = ((this.model.get('ficheSecuriteModel').get('SiteId') != 0) 
+
+            //        ) ? 
+
             //},
             showActiveDirectoryUtilisateurRecherche: function (ev) {
 
@@ -1934,12 +1959,15 @@
 
             },
             Rejeter: function () {
-                this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
 
-                this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
-                this.render();
+                var rejet = prompt("Merci de préciser la cause du rejet, un email va être envoyé au responsable de la Fiche Sécurité");
+                if (rejet != null) {
+                    this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
+                    this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
 
+                    this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                    this.render();
+                }
             }
             
 
@@ -1953,7 +1981,8 @@
         alerteModel = new AlerteModel({
             alerteHidden: true,
             alerteClass: "alert alert-danger",
-            alerteMessage:"Test d'alerte"
+            alerteMessage: "Test d'alerte",
+            messages: [{'0':'Vous devez saisir tous les champs obligatoires, merci de compléter votre saisie.'}]
         });
 
 
@@ -1966,6 +1995,29 @@
                 return this;
             },
             initialize: function () {
+
+                Backbone.applicationEvents.on('invalidFicheSecurite', function (error) {
+                    this.model.set({ 'alerteHidden': false })
+                    this.model.set({ 'alerteClass': 'alert alert-danger' })
+                    this.model.set({ 'alerteMessage': error})
+
+                    this.render();
+                }, this);
+
+                Backbone.applicationEvents.on('alerteMessageHide', function () {
+                    this.model.set({ 'alerteHidden': true })
+                    this.model.set({ 'alerteMessage': '' })
+
+                    this.render();
+                }, this);
+
+                Backbone.applicationEvents.on('validFicheSecurite', function (message) {
+                    this.model.set({ 'alerteHidden': false })
+                    this.model.set({ 'alerteClass': 'alert alert-success' })
+                    this.model.set({ 'alerteMessage': message })
+
+                    this.render();
+                }, this);
 
                 this.render();
             },

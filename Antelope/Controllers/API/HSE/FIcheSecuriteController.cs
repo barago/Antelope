@@ -22,13 +22,13 @@ namespace Antelope.Controllers.API.HSE
 {
     public class FicheSecuriteController : ApiController
     {
-
+        private AntelopeEntities db = new AntelopeEntities();
         public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
         public PersonneRepository _personneRepository { get; set; }
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
         private EmailService _emailService { get; set; }
-        private AntelopeEntities db = new AntelopeEntities();
+
         public ActiveDirectoryService _activeDirectoryService { get; set; }
 
         public FicheSecuriteController() {
@@ -36,7 +36,7 @@ namespace Antelope.Controllers.API.HSE
             _ficheSecuriteRepository = new FicheSecuriteRepository();
             _personneRepository = new PersonneRepository();
             _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
-            _personneAnnuaireService = new PersonneAnnuaireService();
+            _personneAnnuaireService = new PersonneAnnuaireService(db);
             _emailService = new EmailService();
         }
         
@@ -151,24 +151,33 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Post(FicheSecurite FicheSecurite)
         {
 
-            _emailService.SendEmailDiffusionFicheSecurite();
-
             FicheSecurite.DateCreation = DateTime.Now;
 
             FicheSecurite.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
-                FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom, FicheSecurite.ResponsableId
+                FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom, FicheSecurite.ResponsableId, db
                 );
             FicheSecurite.PersonneConcernee = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
-                FicheSecurite.PersonneConcernee.Nom, FicheSecurite.PersonneConcernee.Prenom, FicheSecurite.PersonneConcerneeId
+                FicheSecurite.PersonneConcernee.Nom, FicheSecurite.PersonneConcernee.Prenom, FicheSecurite.PersonneConcerneeId, db
                 ); ;
 
             FicheSecurite.WorkFlowDiffusee = true;
 
             db.FicheSecurites.Add(FicheSecurite);
-            db.SaveChanges();
 
-            return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
+            try
+            {
+                db.SaveChanges();
 
+                _emailService.SendEmailDiffusionFicheSecurite();
+
+                return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
+            }
+            catch (Exception e)
+            {
+
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
 
         }
 
