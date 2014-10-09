@@ -436,12 +436,29 @@
             <div class="panel panel-danger">
                 <div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>
                 <div class="panel-body">
+                    <div class="row" style="margin-bottom:5px;">
+                        <div class="col-md-12">
+                            <span style="border-style:solid;border-width:1px;background-color:white;height:10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            &nbsp;Nouvelle Fiche&nbsp;
+                            <span style="border-style:solid;border-width:1px;background-color:#DFF0D8;height:10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                            &nbsp;Plan d'action validé&nbsp;
+                            <span style="border-style:solid;border-width:1px;background-color:#FCF8E3;height:10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            &nbsp;Plan d'action en attente de validation&nbsp;
+                            <span style="border-style:solid;border-width:1px;background-color:#F2DEDE;height:10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            &nbsp;Plan d'action rejeté&nbsp;
+                            <span style="border-style:solid;border-width:1px;background-color:#F5F5F5;height:10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            &nbsp;Plan d'action clôturé&nbsp;
+                        </div>
+
+                    </div>
+
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.ActionLink("Code", "Index", new { sortOrder = ViewBag.TriParametreCode })
+                                        Code
                                     </th>
                                     <th>
                                         Nom
@@ -457,11 +474,11 @@
                             <tbody>
                                 <% ficheSecuriteCollection.each( function(ficheSecurite){ %>
                                 <tr class="<%=ficheSecurite.get('color')%>" href="<%= ficheSecurite.get('urlEdit')%>" onclick="document.location = '<%= ficheSecurite.get("urlEdit")%>';">
-                                    <td style="width: 90px">
+                                    <td style="width: 100px">
                                         <%= ficheSecurite.get('Code') %>
                                     </td>
-                                    <td>
-                                        <%= ficheSecurite.get('personneConcerneeModel').get('Nom') %>
+                                    <td style="width: 100px">
+                                        <%= ficheSecurite.get('PersonneConcernee').Nom %>
                                     </td>
                                     <td>
                                         <%= ficheSecurite.get('Description') %>
@@ -592,7 +609,7 @@
             if (ficheSecurite.get('WorkFlowASEValidee') == true) {
                 ficheSecurite.set({ 'color': 'success' });
             }
-            if (ficheSecurite.get('WorkFlowCloturee') == true) {
+            if (ficheSecurite.get('WorkFlowCloturee') == true && ficheSecurite.get('WorkFlowASEValidee') == true) {
                 ficheSecurite.set({ 'color': 'active' });
             }
         };
@@ -610,20 +627,20 @@
             };
             for (var i = 1; i <= nombrePages; i++) {
 
-                if (i == 1) {
-                    paginationModel = new PaginationModel({ 'page': "<<" });
-                    paginationCollection.add(paginationModel);
-                }
+                //if (i == 1) {
+                //    paginationModel = new PaginationModel({ 'page': "<<" });
+                //    paginationCollection.add(paginationModel);
+                //}
 
                 paginationModel = new PaginationModel({ 'page': i });
                 if (rechercheFicheSecuriteViewModel.get('Page') == i) {
                     paginationModel.set({ 'class': 'active' });
                 };
                 paginationCollection.add(paginationModel);
-                if (i ==  Math.floor(nombrePages)) {
-                    paginationModel = new PaginationModel({ 'page': ">>" });
-                    paginationCollection.add(paginationModel);
-                }
+                //if (i ==  Math.floor(nombrePages)) {
+                //    paginationModel = new PaginationModel({ 'page': ">>" });
+                //    paginationCollection.add(paginationModel);
+                //}
 
 
             }

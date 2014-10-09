@@ -85,5 +85,6 @@
     <Build Include="dbo\Tables\ADRoles.sql" />
     <Build Include="dbo\Tables\ActionSecurites.sql" />
     <Build Include="dbo\Tables\ActionQSEs.sql" />
+    <Build Include="dbo\Tables\ParametrageHSEs.sql" />
   </ItemGroup>
 </Project>

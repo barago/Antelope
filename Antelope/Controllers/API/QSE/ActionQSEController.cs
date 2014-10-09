@@ -11,6 +11,7 @@ using System.Web.Http.Description;
 using Antelope.Domain.Models;
 using Antelope.Infrastructure.EntityFramework;
 using Antelope.Services.Socle;
+using Antelope.Services.HSE;
 
 
 namespace Antelope.Controllers.API.QSE
@@ -20,6 +21,7 @@ namespace Antelope.Controllers.API.QSE
         private AntelopeEntities db = new AntelopeEntities();
 
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
+        private FicheSecuriteServices _ficheSecuriteServices { get; set; }
 
         public ActionQSEController()
         {
@@ -64,15 +66,16 @@ namespace Antelope.Controllers.API.QSE
             {
                 if (actionqse.ResponsableId == 0)
                 {
-                    Personne responsable = new Personne() { 
-                        Nom = actionqse.Responsable.Nom,
-                        Prenom = actionqse.Responsable.Prenom,
-                        Guid = actionqse.Responsable.Guid
-                    };
-                    actionqse.Responsable = responsable;
+                    actionqse.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                        actionqse.Responsable.Nom, actionqse.Responsable.Prenom, actionqse.ResponsableId, db
+                    );
                 }
-                
-                db.SaveChanges();
+
+                    db.SaveChanges();
+
+                    _ficheSecuriteServices = new FicheSecuriteServices();
+                    _ficheSecuriteServices.FicheSecuriteOpenOrClose(actionqse);
+
             }
             catch (DbUpdateConcurrencyException)
             {

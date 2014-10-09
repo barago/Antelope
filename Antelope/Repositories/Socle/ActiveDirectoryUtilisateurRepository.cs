@@ -38,7 +38,7 @@ namespace Antelope.Repositories.Socle
 
             PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
             Principal principal = srch.FindOne();
-            var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry; 
+            var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry;
 
 
             ActiveDirectoryUtilisateurDTO ActiveDirectoryUtilisateurDTO = new ActiveDirectoryUtilisateurDTO()
@@ -49,6 +49,40 @@ namespace Antelope.Repositories.Socle
             };
 
             return ActiveDirectoryUtilisateurDTO;
+        }
+
+
+        public string GetCurrentUserEmail()
+        {
+            UserPrincipal user = GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+            DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+            return (String)de.Properties["mail"].Value;
+        }
+
+        public string GetCurrentUserSiteTrigramme()
+        {
+            UserPrincipal user = GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+            DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
+            return (String)de.Properties["company"].Value;
+        }
+
+
+        // Cette méthode résoud un bug Microsoft (
+        //https://connect.microsoft.com/VisualStudio/feedback/details/748790/userprincipal-current-throws-invalidcastexception
+        //)
+        // Sous IIS : UserPrincipal.Current >> Renvoit un Groupe et non pas l'Utilisateur ... Donc on va chercher l'utilisateur dans l'AD par son Login
+        // A faire en début de session, puis le déclarer en session ? (A voir)
+        //          DEJA TESTE : 
+        //          UserPrincipal user = System.Security.Principal.WindowsIdentity.GetCurrent();
+        //          UserPrincipal user = HttpContext.Current.User;
+        public UserPrincipal GetActiveDirectoryUser(string userName)
+        {
+            using (var ctx = new PrincipalContext(ContextType.Domain))
+            using (var user = new UserPrincipal(ctx) { SamAccountName = userName })
+            using (var searcher = new PrincipalSearcher(user))
+            {
+                return searcher.FindOne() as UserPrincipal;
+            }
         }
 
 

@@ -1,6 +1,12 @@
 ﻿var FicheSecuriteModel = Backbone.Model.extend({
     urlRoot: '/api/FicheSecurite',
+    initialize: function(){
+        this.PersonneConcernee = new PersonneConcerneeModel();
+
+    },
     validate: function (attrs, options) {
+
+
         if (attrs.SiteId == 0) {
             return "Il manque un champ obligatoire, merci de choisir un Site";
         };
@@ -10,16 +16,15 @@
         if (attrs.DateEvenement == '0001-01-01T00:00:00') {
             return "Il manque un champ obligatoire, merci de choisir une date et heure";
         };
-        //console.log(attrs.PersonneConcernee);
-        //console.log(attrs.PersonneConcernee.has('Nom'));
-        //console.log(!attrs.PersonneConcernee.has('Nom'));
-
-        //if (!attrs.PersonneConcernee.has('Nom')) {
-        //    return "Il manque un champ obligatoire, merci de saisir un nom de Personne concernée";
-        //};
-        //if (!attrs.PersonneConcernee.has('Prenom')) {
-        //    return "Il manque un champ obligatoire, merci de saisir un prénom de Personne concernée";
-        //};
+        // Validate se rejoue après la réponse serveur d'un save() et ne possède pas de fonction "has()" >> Triche
+        if (attrs.PersonneConcernee instanceof Backbone.Model) {
+            if (!attrs.PersonneConcernee.has('Nom')) {
+                return "Il manque un champ obligatoire, merci de saisir un nom de Personne concernée";
+            };
+            if (!attrs.PersonneConcernee.has('Prenom')) {
+                return "Il manque un champ obligatoire, merci de saisir un prénom de Personne concernée";
+            };
+        }
         if (attrs.ZoneId == null || attrs.ZoneId == 0) {
             return "Il manque un champ obligatoire, merci de choisir une Zone";
         };
@@ -32,12 +37,14 @@
         if (attrs.ServiceId == null || attrs.ServiceId == 0) {
             return "Il manque un champ obligatoire, merci de choisir un Service";
         };
-        //if (!attrs.Responsable.has('Nom')) {
-        //    return "Il manque un champ obligatoire, merci de saisir un nom de Responsable";
-        //};
-        //if (!attrs.Responsable.has('Prenom')) {
-        //    return "Il manque un champ obligatoire, merci de saisir un prénom de Responsable";
-        //};
+        if (attrs.Responsable instanceof Backbone.Model) {
+            if (!attrs.Responsable.has('Nom')) {
+                return "Il manque un champ obligatoire, merci de saisir un nom de Responsable";
+            };
+            if (!attrs.Responsable.has('Prenom')) {
+                return "Il manque un champ obligatoire, merci de saisir un prénom de Responsable";
+            };
+        }
         if (attrs.LieuId == null || attrs.LieuId == 0) {
             return "Il manque un champ obligatoire, merci de choisir un Lieu";
         };

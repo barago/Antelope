@@ -17,6 +17,8 @@ using Antelope.DTOs.Socle;
 using Antelope.Services.Socle;
 using Antelope.Services.HSE;
 using Antelope.Infrastructure.EntityFramework;
+using System.Web.Mvc;
+using System.Web;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -29,7 +31,6 @@ namespace Antelope.Controllers.API.HSE
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
         private EmailService _emailService { get; set; }
 
-        public ActiveDirectoryService _activeDirectoryService { get; set; }
 
         public FicheSecuriteController() {
 
@@ -51,7 +52,7 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Get(int id)
         {
 
-            _activeDirectoryService = new ActiveDirectoryService();
+            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
 
             FicheSecurite ficheSecurite;
             List<Zone> AllZone;
@@ -63,20 +64,18 @@ namespace Antelope.Controllers.API.HSE
 
             if (id == -1)
             {
-                PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
-                //UserPrincipal user = UserPrincipal.Current;
-                UserPrincipal user = _activeDirectoryService.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
 
-                DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
-                String userCompanyName = (String)de.Properties["company"].Value;
+                String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
 
                 var querySiteUser = from s in db.Sites
-                                    where s.Trigramme == userCompanyName
+                                    where s.Trigramme == SiteTrigramme
                                     select s;
                 Site SiteUser = (Site)querySiteUser.SingleOrDefault();
 
                 ficheSecurite = new FicheSecurite()
                 {
+                    CotationFrequence = 1,
+                    CotationGravite = 1,
                     SiteId = SiteUser.SiteID,
                     WorkFlowDiffusee = false,
                     WorkFlowAttenteASEValidation = false,
@@ -153,6 +152,49 @@ namespace Antelope.Controllers.API.HSE
 
             FicheSecurite.DateCreation = DateTime.Now;
 
+            FicheSecurite.CompteurAnnuelSite = 1;
+
+            var QueryLastFicheSecuriteForSite = from f in db.FicheSecurites
+                                         where f.SiteId == FicheSecurite.SiteId
+                                         orderby f.FicheSecuriteID descending
+                                         select f;
+
+            FicheSecurite LastFicheSecuriteForSite = QueryLastFicheSecuriteForSite.FirstOrDefault();
+
+            if(LastFicheSecuriteForSite != null){
+                if (LastFicheSecuriteForSite.DateCreation.Year == FicheSecurite.DateCreation.Year)
+                {
+                    FicheSecurite.CompteurAnnuelSite = LastFicheSecuriteForSite.CompteurAnnuelSite + 1;
+                }
+            }
+
+            Site site = db.Sites.First(s => s.SiteID == FicheSecurite.SiteId);
+            FicheSecurite.Code += site.Trigramme + "-" + FicheSecurite.DateCreation.Year + "-" + FicheSecurite.CompteurAnnuelSite;
+
+
+
+            //Int32 NewFicheSecuriteCode = 1;
+            //String FicheSecuriteCode = "";
+
+            //Site site = db.Sites.First(s => s.SiteID == FicheSecurite.SiteId);
+            //FicheSecuriteCode += site.Trigramme + "-" + FicheSecurite.DateCreation.Year + "-";
+
+            //try
+            //{
+            //    FicheSecurite LastFicheSecurite = db.FicheSecurites.OrderByDescending(s => s.FicheSecuriteID).FirstOrDefault();
+            //    var LastFicheSecuriteCode = (LastFicheSecurite.Code != null) ? LastFicheSecurite.Code.Substring(LastFicheSecurite.Code.LastIndexOf('-') + 1) : "";
+            //    var LastFicheSecuriteYear = (LastFicheSecurite.Code != null) ? LastFicheSecurite.Code.Substring(4, 7) : "";
+
+            //    if (LastFicheSecuriteCode != "")
+            //    {
+            //        NewFicheSecuriteCode = (Convert.ToInt16(LastFicheSecuriteYear) < FicheSecurite.DateCreation.Year) ? 1 : Convert.ToInt32(LastFicheSecuriteCode) + 1;
+            //    }
+
+            //}
+            //catch { }
+            //FicheSecuriteCode += Convert.ToString(NewFicheSecuriteCode);
+            //FicheSecurite.Code = FicheSecuriteCode;
+
             FicheSecurite.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
                 FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom, FicheSecurite.ResponsableId, db
                 );
@@ -168,7 +210,12 @@ namespace Antelope.Controllers.API.HSE
             {
                 db.SaveChanges();
 
-                _emailService.SendEmailDiffusionFicheSecurite();
+                //Url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = id }), "http", Request.Url.Host)
+                //Url.Link("DefaultApi", new { controller = "Albums", id = 3})
+                UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+                var a = url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = FicheSecurite.FicheSecuriteID }), "http", HttpContext.Current.Request.Url.Host);  
+                
+                _emailService.SendEmailDiffusionFicheSecurite(FicheSecurite);
 
                 return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
             }
@@ -181,8 +228,8 @@ namespace Antelope.Controllers.API.HSE
 
         }
 
-        [AcceptVerbs("PUT")]
-        public HttpResponseMessage ChangeWorkFlowEtat(Int32 id, string param1)
+        [System.Web.Http.AcceptVerbs("POST", "PUT")]
+        public HttpResponseMessage ChangeWorkFlowEtat(FicheSecurite ficheSecurite, Int32 id, string param1)
         {
 
             FicheSecurite FicheSecurite = _ficheSecuriteRepository.Get(id);
@@ -203,6 +250,8 @@ namespace Antelope.Controllers.API.HSE
                     FicheSecurite.WorkFlowAttenteASEValidation = false;
                     FicheSecurite.WorkFlowASEValidee = false;
                     FicheSecurite.WorkFlowASERejetee = true;
+                    FicheSecurite.WorkFlowASERejeteeCause = ficheSecurite.WorkFlowASERejeteeCause;
+                    _emailService.SendEmailRejetPlanActionFicheSecurite(ficheSecurite);
                 break;
             } 
 

@@ -11,7 +11,7 @@ using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
 using Antelope.Infrastructure.EntityFramework;
 using System.Web;
-using Antelope.Services.Socle;
+using Antelope.Repositories.Socle;
 
 
 
@@ -22,24 +22,19 @@ namespace Antelope.Controllers.API.HSE
 
         private AntelopeEntities db = new AntelopeEntities();
         public FicheSecuriteRepository _ficheSecuriteRepository { get; set; }
-        public ActiveDirectoryService _activeDirectoryService { get; set; }
-
+        public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
 
 
         // GET: api/RechercheFicheSecurite
         public HttpResponseMessage Get()
         {
 
-            _activeDirectoryService = new ActiveDirectoryService();
+            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
+      
 
-            // TODO A METTRE DANS UN "ANNUAIRE REPOSITORY" 
-            PrincipalContext ctx = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
-            
-            //UserPrincipal user = UserPrincipal.Current;
-            UserPrincipal user = _activeDirectoryService.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+            UserPrincipal user = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
 
-            DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
-            String userCompanyName = (String)de.Properties["company"].Value;
+            String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
             
             _ficheSecuriteRepository = new FicheSecuriteRepository();
 
@@ -49,7 +44,7 @@ namespace Antelope.Controllers.API.HSE
             Personne PersonneConnectee = (Personne)queryPersonneConnectee.SingleOrDefault();
 
             var querySiteUser = from s in db.Sites
-                                             where s.Trigramme == userCompanyName
+                                where s.Trigramme == SiteTrigramme
                                              select s;
             Site SiteUser = (Site)querySiteUser.SingleOrDefault();
 

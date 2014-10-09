@@ -38,7 +38,7 @@ namespace Antelope.Repositories.HSE
         public FicheSecuritePaginatedList GetFromParams(RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel)
         {
             IQueryable<FicheSecurite> queryFicheSecurite = from a in _db.FicheSecurites
-                                     orderby  a.WorkFlowCloturee, a.WorkFlowASEValidee,a.WorkFlowASERejetee, a.WorkFlowAttenteASEValidation, a.WorkFlowDiffusee
+                                                           orderby a.WorkFlowCloturee && a.WorkFlowASEValidee, a.WorkFlowASEValidee, a.WorkFlowASERejetee, a.WorkFlowAttenteASEValidation, a.WorkFlowDiffusee
                                      select a;
 
 

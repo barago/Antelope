@@ -82,6 +82,7 @@
     <Compile Include="LieuType.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ParametrageHSE.cs" />
     <Compile Include="Personne.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

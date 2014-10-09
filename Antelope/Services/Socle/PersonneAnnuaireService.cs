@@ -42,7 +42,7 @@ namespace Antelope.Services.Socle
             Personne personne;
             ActiveDirectoryUtilisateurDTO ResponsableActiveDirectoryUtilisateurDTO;
 
-            if (PersonneId == null)
+            if (PersonneId == null || PersonneId ==0 )
             {
                 personne = _personneRepository.GetPersonneByNomPrenom(Nom, Prenom);
                 if (personne == null)

@@ -244,7 +244,7 @@
                                         <label for="Code" class="label-xs">Code&nbsp;:</label>
                                     </div>
                                     <div class="col-sm-8">
-                                        <input type="text" id="Code" class="form-control input-xs" value="<%= ficheSecuriteModel.get('Code') %>" />
+                                        <input type="text" id="Code" class="form-control input-xs" value="<%= ficheSecuriteModel.get('Code') %>" disabled />
                                     </div>
                                 </div>
                             </div>
@@ -530,14 +530,24 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <label for="Frequence" class="col-sm-8 label-xs"><span style="color:red;">*</span>Fréquence&nbsp;:</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control input-xs" id="Frequence" value="<%= ficheSecuriteModel.get('CotationFrequence') %>">
+                                            <div class="col-sm-4" style="padding-left:7px;padding-right:7px;">
+                                                <select class="form-control input-xs" id="Frequence">
+                                                    <option value="1" <% if (ficheSecuriteModel.get('CotationFrequence') == 1){ %> selected <% } %> >1</option>
+                                                    <option value="2" <% if (ficheSecuriteModel.get('CotationFrequence') == 2){ %> selected <% } %> >2</option>
+                                                    <option value="3" <% if (ficheSecuriteModel.get('CotationFrequence') == 3){ %> selected <% } %> >3</option>
+                                                    <option value="4" <% if (ficheSecuriteModel.get('CotationFrequence') == 4){ %> selected <% } %> >4</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="Gravite" class="col-sm-8 label-xs"><span style="color:red;">*</span>Gravité&nbsp;:</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control input-xs" id="Gravite" value="<%= ficheSecuriteModel.get('CotationGravite') %>">
+                                            <div class="col-sm-4" style="padding-left:7px;padding-right:7px;">
+                                                <select class="form-control input-xs" id="Gravite">
+                                                    <option value="1" <% if (ficheSecuriteModel.get('CotationGravite') == 1){ %> selected <% } %> >1</option>
+                                                    <option value="2" <% if (ficheSecuriteModel.get('CotationGravite') == 2){ %> selected <% } %> >2</option>
+                                                    <option value="3" <% if (ficheSecuriteModel.get('CotationGravite') == 3){ %> selected <% } %> >3</option>
+                                                    <option value="4" <% if (ficheSecuriteModel.get('CotationGravite') == 4){ %> selected <% } %> >4</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -965,7 +975,7 @@
                                                     <div class="form-group">
                                                         <label for="<%= 'EditActionDateButoirInitialeForAction'+action.get('ActionQSEId') %>">Date butoir initiale</label>
                                                         <div class='input-group date EditActionDateButoirInitiale' id="<%= 'EditActionDateButoirInitialeForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
-                                                            <input type='text' name="DateButoirInitiale" class="form-control input-xs EditActionDateButoirInitiale" id="<%= 'EditActionDateButoirInitialeInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireInitialeJavascript') %>" />
+                                                            <input type='text' name="DateButoirInitiale" class="form-control input-xs EditActionDateButoirInitiale" id="<%= 'EditActionDateButoirInitialeInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireInitialeJavascript') %> " data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" />
                                                             <span class="input-group-addon input-xs">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </span>
@@ -976,7 +986,7 @@
                                                     <div class="form-group">
                                                         <label for="<%= 'EditActionDateButoirNouvelleForAction'+action.get('ActionQSEId') %>">Nouvelle date butoir</label>
                                                         <div class='input-group date EditActionDateButoirNouvelle' id="<%= 'EditActionDateButoirNouvelleForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
-                                                            <input type='text' name="DateButoirNouvelle" class="form-control input-xs EditActionDateButoirNouvelle" id="<%= 'EditActionDateButoirNouvelleInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireNouvelleJavascript') %>" />
+                                                            <input type='text' name="DateButoirNouvelle" class="form-control input-xs EditActionDateButoirNouvelle" id="<%= 'EditActionDateButoirNouvelleInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('DateButoireNouvelleJavascript') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" />
                                                             <span class="input-group-addon input-xs">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </span>
@@ -1010,7 +1020,7 @@
                                                     <div class="form-group">
                                                         <label for="<%= 'EditActionClotureDateForAction'+action.get('ActionQSEId') %>">Date&nbsp;de&nbsp;clôture&nbsp;:</label>
                                                         <div class='input-group date EditActionClotureDate' id="<%= 'EditActionClotureDateForAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
-                                                            <input type='text' name="ClotureDate" class="form-control input-xs EditActionClotureDate" id="<%= 'EditActionClotureDateInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('ClotureDateJavascript') %>" />
+                                                            <input type='text' name="ClotureDate" class="form-control input-xs EditActionClotureDate" id="<%= 'EditActionClotureDateInputForAction'+action.get('ActionQSEId') %>" value="<%= action.get('ClotureDateJavascript') %>" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" />
                                                             <span class="input-group-addon input-xs">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
                                                             </span>
@@ -1156,10 +1166,10 @@
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('PersonneConcernee')) })
         ficheSecuriteViewModel.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Responsable')) })
 
-        var causeCollection = new CauseCollection(ficheSecuriteViewModel.get('ficheSecuriteModel').get('Causes'));
+        var causeCollection = new CauseCollection(ficheSecuriteViewModel.get('ficheSecuriteModel').get('CauseQSEs'));
 
         causeCollection.each(function (cause, index) {
-            cause.set({ 'actionCollection': new ActionCollection(cause.get('Actions')) });
+            cause.set({ 'actionCollection': new ActionCollection(cause.get('ActionQSEs')) });
             cause.set({ 'actionModel': new ActionModel() });
             cause.get('actionCollection').each(function (action, index) {
                 action.set({ 'Responsable': new ResponsableModel(action.get('Responsable')) });
@@ -1429,8 +1439,8 @@
                 "change #Risque": "changeRisque",
                 "keyup #Temoins": "changeTemoins",
                 "keyup #Description": "changeDescription",
-                "keyup #Gravite": "changeGravite",
-                "keyup #Frequence": "changeFrequence",
+                "change #Gravite": "changeGravite",
+                "change #Frequence": "changeFrequence",
                 "keyup #ActionImmediate1": "changeActionImmediate1",
                 "keyup #ActionImmediate2": "changeActionImmediate2",
                 "click #Diffusion": "Diffusion",
@@ -1566,8 +1576,9 @@
                     success: _.bind(function (model, response) {
                         this.model.get('ficheSecuriteModel').set({ 'WorkFlowDiffusee': true });
                         // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
-                        this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(this.model.get('ficheSecuriteModel').Responsable) });
-                        this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(this.model.get('ficheSecuriteModel').PersonneConcernee) });
+                        this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(response.Responsable) });
+                        this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(response.PersonneConcernee) });
+
                         Backbone.applicationEvents.trigger('FicheDiffusee');
 
                         this.render(this.model.get('ficheSecuriteModel'));
@@ -1658,10 +1669,15 @@
 
                 // LE PLUGIN JS DATETIMEPICKER DOIT RELAYER SON "ONCHANGE" A LA BONNE FONCTION BACKBONE 
                 $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeDateButoirInitiale, this));
+                $('.AddActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeDateButoirInitiale, this));
                 $('.AddActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeDateButoirNouvelle, this));
+                $('.AddActionDateButoirNouvelle').on("dp.hide", $.proxy(this.changeDateButoirNouvelle, this));
                 $('.EditActionDateButoirInitiale').on("dp.change", $.proxy(this.changeEditActionDateButoirInitiale, this));
+                $('.EditActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeEditActionDateButoirInitiale, this));
                 $('.EditActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeEditActionDateButoirNouvelle, this));
+                $('.EditActionDateButoirNouvelle').on("dp.hide", $.proxy(this.changeEditActionDateButoirNouvelle, this));
                 $('.EditActionClotureDate').on("dp.change", $.proxy(this.changeEditActionClotureDate, this));
+                $('.EditActionClotureDate').on("dp.hide", $.proxy(this.changeEditActionClotureDate, this));
 
 
                 // TODO : BUG Boostrap, si on n'initialise pas toggle:false, les collapse vont show lorsqu'on fait un hide ...
@@ -1818,17 +1834,24 @@
                 this.render();
             },
             deleteCause: function (ev) {
-                var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).set({ id: parseInt(causeToDeleteId) });
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).destroy({ async: false, wait: true, });
-                this.render();
+                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette cause ?");
+                if (confirmation == true) {
+                    var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).set({ id: parseInt(causeToDeleteId) });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).destroy({ async: false, wait: true, });
+                    this.render();
+                };
+
             },
             deleteAction: function (ev) {
-                var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
-                var actionToDeleteId = $(ev.currentTarget).attr('data-actionId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).set({ id: parseInt(actionToDeleteId) });
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).destroy(null, { async: false, wait: true });
-                this.render();
+                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette action ?");
+                if (confirmation == true) {
+                    var causeToDeleteId = $(ev.currentTarget).attr('data-causeId');
+                    var actionToDeleteId = $(ev.currentTarget).attr('data-actionId');
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).set({ id: parseInt(actionToDeleteId) });
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToDeleteId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).destroy(null, { async: false, wait: true });
+                    this.render();
+                };
             },
             showActiveDirectoryUtilisateurRecherche: function (ev) {
 
@@ -1915,7 +1938,13 @@
             changeEditActionClotureDate: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDate': this.dateFormatMVC($('#EditActionClotureDateInputForAction' + actionToEditId).val()) });
+
+                console.log(ev);
+                console.log(actionToEditId);
+                console.log(causeToEditId);
+
+                console.log(this.model.get('ficheSecuriteModel').get('causeCollection'));
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDate': ($('#EditActionClotureDateInputForAction' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionClotureDateInputForAction' + actionToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDateJavascript': $('#EditActionClotureDateInputForAction' + actionToEditId).val() });
             },
             changeEditActionResponsableNom: function (ev) {
@@ -1943,8 +1972,9 @@
             },
             ASEEnvoi: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
-
+                console.log(this.model.get('ficheSecuriteModel'));
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate:false});
+                console.log(this.model.get('ficheSecuriteModel'));
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
                 this.render();
 
@@ -1952,7 +1982,7 @@
             },
             Valider: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASEValidee';
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
                 this.render();
@@ -1962,12 +1992,21 @@
 
                 var rejet = prompt("Merci de préciser la cause du rejet, un email va être envoyé au responsable de la Fiche Sécurité");
                 if (rejet != null) {
+                    this.model.get('ficheSecuriteModel').set({'WorkFlowASERejeteeCause':rejet});
                     this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
-                    this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
+                    this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                     this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
                     this.render();
                 }
+
+
+                //this.model.get('ficheSecuriteModel').set({ 'WorkflowASERejeteeCause': rejet });
+                //this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
+                //this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true });
+
+                //this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                //this.render();
             }
             
 
