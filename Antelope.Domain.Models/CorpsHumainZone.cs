@@ -23,6 +23,7 @@ namespace Antelope.Domain.Models
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Code { get; set; }
+        public int Rang { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }

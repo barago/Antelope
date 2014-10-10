@@ -22,6 +22,7 @@ namespace Antelope.Domain.Models
     
         public int LieuTypeId { get; set; }
         public string Nom { get; set; }
+        public Nullable<int> Rang { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Lieu> Lieux { get; set; }

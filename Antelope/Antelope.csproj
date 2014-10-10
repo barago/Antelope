@@ -524,9 +524,9 @@
     <Content Include="Views\HSE\FicheSecurite\Create.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Index2.cshtml" />
-    <Content Include="Views\HSE\Parametrage\Index.cshtml" />
     <Content Include="Views\Z_Backbone_Model\ModelBackbone.cshtml" />
     <Content Include="Views\HSE\Parametrage\Changelog.cshtml" />
+    <Content Include="Views\HSE\Parametrage\Index.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

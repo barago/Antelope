@@ -22,6 +22,7 @@ namespace Antelope.Domain.Models
     
         public int PlageHoraireID { get; set; }
         public string Nom { get; set; }
+        public Nullable<int> Rang { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }

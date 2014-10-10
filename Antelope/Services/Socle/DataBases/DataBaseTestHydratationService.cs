@@ -56,24 +56,25 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Sites.Add(siteNSG);
             context.Sites.Add(siteLQN);
 
-            ServiceType ServiceType1 = new ServiceType() { Nom = "Production" };
-            ServiceType ServiceType2 = new ServiceType() { Nom = "Maintenance/TN" };
-            ServiceType ServiceType3 = new ServiceType() { Nom = "Qualité" };
+            ServiceType ServiceType0 = new ServiceType() { Nom = "Tous les services", Rang = 0 };
+            ServiceType ServiceType1 = new ServiceType() { Nom = "Production", Rang = 10 };
+            ServiceType ServiceType2 = new ServiceType() { Nom = "Maintenance/TN", Rang = 7 };
+            ServiceType ServiceType3 = new ServiceType() { Nom = "Qualité", Rang = 11 };
             ServiceType ServiceType4 = new ServiceType() { Nom = "Sécurité/Environnement" };
-            ServiceType ServiceType5 = new ServiceType() { Nom = "Amélioration continue" };
-            ServiceType ServiceType6 = new ServiceType() { Nom = "Ressources humaines" };
-            ServiceType ServiceType7 = new ServiceType() { Nom = "Supply chain" };
-            ServiceType ServiceType8 = new ServiceType() { Nom = "Master data" };
-            ServiceType ServiceType9 = new ServiceType() { Nom = "Logistique" };
-            ServiceType ServiceType10 = new ServiceType() { Nom = "Appro/ordo" };
-            ServiceType ServiceType11 = new ServiceType() { Nom = "Qualité" };
-            ServiceType ServiceType12 = new ServiceType() { Nom = "Comptabilité" };
-            ServiceType ServiceType13 = new ServiceType() { Nom = "Standard" };
-            ServiceType ServiceType14 = new ServiceType() { Nom = "Recherche et développement" };
-            ServiceType ServiceType15 = new ServiceType() { Nom = "Communication" };
-            ServiceType ServiceType16 = new ServiceType() { Nom = "Service client" };
-            ServiceType ServiceType17 = new ServiceType() { Nom = "Packaging" };
-            ServiceType ServiceType18 = new ServiceType() { Nom = "Informatique" };
+            ServiceType ServiceType5 = new ServiceType() { Nom = "Amélioration continue", Rang = 1 };
+            ServiceType ServiceType6 = new ServiceType() { Nom = "Ressources humaines", Rang = 13 };
+            ServiceType ServiceType7 = new ServiceType() { Nom = "Supply chain", Rang = 16 };
+            ServiceType ServiceType8 = new ServiceType() { Nom = "Master data", Rang = 8 };
+            ServiceType ServiceType9 = new ServiceType() { Nom = "Logistique", Rang = 6 };
+            ServiceType ServiceType10 = new ServiceType() { Nom = "Appro/ordo", Rang = 2 };
+            ServiceType ServiceType12 = new ServiceType() { Nom = "Comptabilité", Rang = 4 };
+            ServiceType ServiceType13 = new ServiceType() { Nom = "Standard", Rang = 15 };
+            ServiceType ServiceType14 = new ServiceType() { Nom = "Recherche et développement", Rang = 12 };
+            ServiceType ServiceType15 = new ServiceType() { Nom = "Communication", Rang = 3 };
+            ServiceType ServiceType16 = new ServiceType() { Nom = "Service client", Rang = 14 };
+            ServiceType ServiceType17 = new ServiceType() { Nom = "Packaging", Rang = 9 };
+            ServiceType ServiceType18 = new ServiceType() { Nom = "Informatique", Rang = 5 };
+            ServiceType ServiceType19 = new ServiceType() { Nom = "Autre", Rang = 100 };
 
             context.ServiceTypes.Add(ServiceType1);
             context.ServiceTypes.Add(ServiceType2);
@@ -85,7 +86,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.ServiceTypes.Add(ServiceType8);
             context.ServiceTypes.Add(ServiceType9);
             context.ServiceTypes.Add(ServiceType10);
-            context.ServiceTypes.Add(ServiceType11);
             context.ServiceTypes.Add(ServiceType12);
             context.ServiceTypes.Add(ServiceType13);
             context.ServiceTypes.Add(ServiceType14);
@@ -105,7 +105,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Service ServiceRFS4 = new Service() { Site = siteRFS, ServiceType = ServiceType8 };
             Service ServiceRFS5 = new Service() { Site = siteRFS, ServiceType = ServiceType9 };
             Service ServiceRFS6 = new Service() { Site = siteRFS, ServiceType = ServiceType10 };
-            Service ServiceRFS7 = new Service() { Site = siteRFS, ServiceType = ServiceType11 };
             Service ServiceRFS8 = new Service() { Site = siteRFS, ServiceType = ServiceType12 };
             Service ServiceRFS9 = new Service() { Site = siteRFS, ServiceType = ServiceType13 };
             Service ServiceRFS10 = new Service() { Site = siteRFS, ServiceType = ServiceType14 };
@@ -120,7 +119,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Services.Add(ServiceRFS4);
             context.Services.Add(ServiceRFS5);
             context.Services.Add(ServiceRFS6);
-            context.Services.Add(ServiceRFS7);
             context.Services.Add(ServiceRFS8);
             context.Services.Add(ServiceRFS9);
             context.Services.Add(ServiceRFS10);
@@ -138,6 +136,8 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Service ServiceDLF5 = new Service() { Site = siteDLF, ServiceType = ServiceType5 };
             Service ServiceDLF6 = new Service() { Site = siteDLF, ServiceType = ServiceType6 };
             Service ServiceDLF7 = new Service() { Site = siteDLF, ServiceType = ServiceType7 };
+            Service ServiceDLF8 = new Service() { Site = siteDLF, ServiceType = ServiceType0 };
+            Service ServiceDLF9 = new Service() { Site = siteDLF, ServiceType = ServiceType19 };
 
             context.Services.Add(ServiceDLF1);
             context.Services.Add(ServiceDLF2);
@@ -150,6 +150,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------STA---------------------------------------------
 
+            Service ServiceSTA0 = new Service() { Site = siteSTA, ServiceType = ServiceType0 };
             Service ServiceSTA1 = new Service() { Site = siteSTA, ServiceType = ServiceType1 };
             Service ServiceSTA2 = new Service() { Site = siteSTA, ServiceType = ServiceType2 };
             Service ServiceSTA3 = new Service() { Site = siteSTA, ServiceType = ServiceType3 };
@@ -157,6 +158,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Service ServiceSTA5 = new Service() { Site = siteSTA, ServiceType = ServiceType5 };
             Service ServiceSTA6 = new Service() { Site = siteSTA, ServiceType = ServiceType6 };
             Service ServiceSTA7 = new Service() { Site = siteSTA, ServiceType = ServiceType7 };
+            Service ServiceSTA8 = new Service() { Site = siteSTA, ServiceType = ServiceType19 };
 
             context.Services.Add(ServiceSTA1);
             context.Services.Add(ServiceSTA2);
@@ -207,17 +209,19 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
 
 
-            ZoneType ZoneType1 = new ZoneType() { Nom = "Tout le site" };
-            ZoneType ZoneType2 = new ZoneType() { Nom = "Soufflage" };
-            ZoneType ZoneType3 = new ZoneType() { Nom = "Process" };
-            ZoneType ZoneType4 = new ZoneType() { Nom = "Conditionnement" };
-            ZoneType ZoneType5 = new ZoneType() { Nom = "Dépôts" };
-            ZoneType ZoneType6 = new ZoneType() { Nom = "Maintenance" };
-            ZoneType ZoneType7 = new ZoneType() { Nom = "Qualité" };
-            ZoneType ZoneType8 = new ZoneType() { Nom = "Extérieur" };
-            ZoneType ZoneType9 = new ZoneType() { Nom = "Etage" };
-            ZoneType ZoneType10 = new ZoneType() { Nom = "RDC" };
-            ZoneType ZoneType11 = new ZoneType() { Nom = "Autre" };
+            ZoneType ZoneType1 = new ZoneType() { Nom = "Tout le site", Rang = 1 };
+            ZoneType ZoneType2 = new ZoneType() { Nom = "Soufflage", Rang = 11 };
+            ZoneType ZoneType3 = new ZoneType() { Nom = "Process", Rang = 7 };
+            ZoneType ZoneType4 = new ZoneType() { Nom = "Conditionnement", Rang = 2 };
+            ZoneType ZoneType5 = new ZoneType() { Nom = "Dépôts", Rang = 2 };
+            ZoneType ZoneType6 = new ZoneType() { Nom = "Maintenance", Rang = 6 };
+            ZoneType ZoneType7 = new ZoneType() { Nom = "Qualité", Rang = 8 };
+            ZoneType ZoneType8 = new ZoneType() { Nom = "Extérieur", Rang = 4 };
+            ZoneType ZoneType9 = new ZoneType() { Nom = "Etage", Rang = 3 };
+            ZoneType ZoneType10 = new ZoneType() { Nom = "RDC", Rang = 9 };
+            ZoneType ZoneType11 = new ZoneType() { Nom = "Autre", Rang = 100 };
+            ZoneType ZoneType12 = new ZoneType() { Nom = "Logistique", Rang = 5 };
+            ZoneType ZoneType13 = new ZoneType() { Nom = "Siroperie", Rang = 10 };
 
             context.ZoneTypes.Add(ZoneType1);
             context.ZoneTypes.Add(ZoneType2);
@@ -262,7 +266,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Zone ZoneDLF6 = new Zone() { Site = siteDLF, ZoneType = ZoneType6 };
             Zone ZoneDLF7 = new Zone() { Site = siteDLF, ZoneType = ZoneType7 };
             Zone ZoneDLF8 = new Zone() { Site = siteDLF, ZoneType = ZoneType8 };
-            Zone ZoneDLF9 = new Zone() { Site = siteDLF, ZoneType = ZoneType11 };
+            Zone ZoneDLF11 = new Zone() { Site = siteDLF, ZoneType = ZoneType11 };
 
             context.Zones.Add(ZoneDLF1);
             context.Zones.Add(ZoneDLF2);
@@ -272,7 +276,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Zones.Add(ZoneDLF6);
             context.Zones.Add(ZoneDLF7);
             context.Zones.Add(ZoneDLF8);
-            context.Zones.Add(ZoneDLF9);
+            context.Zones.Add(ZoneDLF11);
 
             // -------------------------STA---------------------------------------------
 
@@ -285,6 +289,8 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Zone ZoneSTA7 = new Zone() { Site = siteSTA, ZoneType = ZoneType7 };
             Zone ZoneSTA8 = new Zone() { Site = siteSTA, ZoneType = ZoneType8 };
             Zone ZoneSTA9 = new Zone() { Site = siteSTA, ZoneType = ZoneType11 };
+            Zone ZoneSTA10 = new Zone() { Site = siteSTA, ZoneType = ZoneType12 };
+            Zone ZoneSTA11 = new Zone() { Site = siteSTA, ZoneType = ZoneType13 };
 
             context.Zones.Add(ZoneSTA1);
             context.Zones.Add(ZoneSTA2);
@@ -342,34 +348,80 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             //------------------------LIEUX-----------------------------
 
+            // LIEUX DLF
+            LieuType LieuType1 = new LieuType() { Nom = "Toute la zone", Rang = 1 };
+            LieuType LieuType2 = new LieuType() { Nom = "DépôtB/P", Rang = 2 };
+            LieuType LieuType3 = new LieuType() { Nom = "DépôtMP", Rang = 2 };
+            LieuType LieuType4 = new LieuType() { Nom = "Préparation / Pré-pesée", Rang = 2 };
+            LieuType LieuType5 = new LieuType() { Nom = "Zone NEP / Dépotage", Rang = 2 };
+            LieuType LieuType6 = new LieuType() { Nom = "SB 1/2", Rang = 2 };
+            LieuType LieuType7 = new LieuType() { Nom = "R 3", Rang = 2 };
+            LieuType LieuType8 = new LieuType() { Nom = "R 4", Rang = 2 };
+            LieuType LieuType9 = new LieuType() { Nom = "Etiqueteuse", Rang = 2 };
+            LieuType LieuType10 = new LieuType() { Nom = "Fardeleuse", Rang = 2 };
+            LieuType LieuType11 = new LieuType() { Nom = "BdL", Rang = 2 };
+            LieuType LieuType12 = new LieuType() { Nom = "AGV", Rang = 2 };
+            LieuType LieuType13 = new LieuType() { Nom = "Dépôt PF", Rang = 2 };
+            LieuType LieuType14 = new LieuType() { Nom = "Energies", Rang = 2 };
+            LieuType LieuType15 = new LieuType() { Nom = "Travaux", Rang = 2 };
+            LieuType LieuType16 = new LieuType() { Nom = "Labo microbiologie", Rang = 2 };
+            LieuType LieuType17 = new LieuType() { Nom = "Zone déchets", Rang = 2 };
+            LieuType LieuType18 = new LieuType() { Nom = "Forage", Rang = 2 };
+            LieuType LieuType19 = new LieuType() { Nom = "Epandage", Rang = 2 };
+            LieuType LieuType20 = new LieuType() { Nom = "Bât. Adm", Rang = 2 };
+            LieuType LieuType21 = new LieuType() { Nom = "Bureaux", Rang = 2 };
+            LieuType LieuType22 = new LieuType() { Nom = "Laboratoire", Rang = 2 };
+            LieuType LieuType23 = new LieuType() { Nom = "Accueil", Rang = 2 };
+            LieuType LieuType24 = new LieuType() { Nom = "Salle Serveurs", Rang = 2 };
+            LieuType LieuType25 = new LieuType() { Nom = "Réfectoire", Rang = 2 };
+            LieuType LieuType26 = new LieuType() { Nom = "Vestiaires", Rang = 2 };
+            LieuType LieuType27 = new LieuType() { Nom = "Autre", Rang = 100 };
 
-            LieuType LieuType1 = new LieuType() { Nom = "Toute la zone" };
-            LieuType LieuType2 = new LieuType() { Nom = "DépôtB/P" };
-            LieuType LieuType3 = new LieuType() { Nom = "DépôtMP" };
-            LieuType LieuType4 = new LieuType() { Nom = "Préparation / Pré-pesée" };
-            LieuType LieuType5 = new LieuType() { Nom = "Zone NEP / Dépotage" };
-            LieuType LieuType6 = new LieuType() { Nom = "SB 1/2" };
-            LieuType LieuType7 = new LieuType() { Nom = "R 3" };
-            LieuType LieuType8 = new LieuType() { Nom = "R 4" };
-            LieuType LieuType9 = new LieuType() { Nom = "Etiqueteuse" };
-            LieuType LieuType10 = new LieuType() { Nom = "Fardeleuse" };
-            LieuType LieuType11 = new LieuType() { Nom = "BdL" };
-            LieuType LieuType12 = new LieuType() { Nom = "AGV" };
-            LieuType LieuType13 = new LieuType() { Nom = "Dépôt PF" };
-            LieuType LieuType14 = new LieuType() { Nom = "Energies" };
-            LieuType LieuType15 = new LieuType() { Nom = "Travaux" };
-            LieuType LieuType16 = new LieuType() { Nom = "Labo microbiologie" };
-            LieuType LieuType17 = new LieuType() { Nom = "Zone déchets" };
-            LieuType LieuType18 = new LieuType() { Nom = "Forage" };
-            LieuType LieuType19 = new LieuType() { Nom = "Epandage" };
-            LieuType LieuType20 = new LieuType() { Nom = "Bât. Adm" };
-            LieuType LieuType21 = new LieuType() { Nom = "Bureaux" };
-            LieuType LieuType22 = new LieuType() { Nom = "Laboratoire" };
-            LieuType LieuType23 = new LieuType() { Nom = "Accueil" };
-            LieuType LieuType24 = new LieuType() { Nom = "Salle Serveurs" };
-            LieuType LieuType25 = new LieuType() { Nom = "Réfectoire" };
-            LieuType LieuType26 = new LieuType() { Nom = "Vestiaires" };
-            LieuType LieuType27 = new LieuType() { Nom = "Autre" };
+            //LIEUX STA
+            LieuType LieuType28 = new LieuType() { Nom = "Bureaux, salles de réunion et parties communes (vestiaires, salles de pause, …)", Rang = 2 };
+            LieuType LieuType29 = new LieuType() { Nom = "Soufflage L2, L3 et L4", Rang = 2 };
+            LieuType LieuType30 = new LieuType() { Nom = "Soutirage / Pasteurisation Ligne 1", Rang = 2 };
+            LieuType LieuType31 = new LieuType() { Nom = "Barquetteuse L1", Rang = 2 };
+            LieuType LieuType32 = new LieuType() { Nom = "Banderolleuses / Palettiseur L1, L2, L3 et L4", Rang = 2 };
+            LieuType LieuType33 = new LieuType() { Nom = "Dépalettiseur L1", Rang = 2 };
+            LieuType LieuType34 = new LieuType() { Nom = "Soutirage L2 et L4", Rang = 2 };
+            LieuType LieuType35 = new LieuType() { Nom = "Soutirage L3", Rang = 2 };
+            LieuType LieuType36 = new LieuType() { Nom = "Etiqueteuse L2, L3, L4 et L5", Rang = 2 };
+            LieuType LieuType37 = new LieuType() { Nom = "Fardeleuse (toutes lignes) (1,2,3,4,5)", Rang = 2 };
+            LieuType LieuType38 = new LieuType() { Nom = "Combi L5", Rang = 2 };
+            LieuType LieuType39 = new LieuType() { Nom = "Banderolleuse / Palettiseur L5", Rang = 2 };
+            LieuType LieuType40 = new LieuType() { Nom = "Fonds de lignes (AGV)", Rang = 2 };
+            LieuType LieuType41 = new LieuType() { Nom = "Repacking", Rang = 2 };
+            LieuType LieuType42 = new LieuType() { Nom = "Labo physico", Rang = 2 };
+            // LABO MICROBIO LieuType LieuType26 = new LieuType() { Nom = "Banderolleuses / Palettiseur L1, L2, L3 et L4", Rang = 2 };
+            LieuType LieuType43 = new LieuType() { Nom = "Stockage Ingrédients (ambiant et frigorifique)", Rang = 2 };
+            LieuType LieuType44 = new LieuType() { Nom = "Atelier préparation", Rang = 2 };
+            LieuType LieuType45 = new LieuType() { Nom = "Dépotage citernes", Rang = 2 };
+            LieuType LieuType46 = new LieuType() { Nom = "Eau Minérale, Eau de Source et Eau process (captages, forages  et traitements)", Rang = 2 };
+            LieuType LieuType47 = new LieuType() { Nom = "Cuves extérieures : CO2, N2, EdS, EM", Rang = 2 };
+            LieuType LieuType48 = new LieuType() { Nom = "Stations NEP et stations chimiques", Rang = 2 };
+            LieuType LieuType49 = new LieuType() { Nom = "Stockage PC", Rang = 2 };
+            LieuType LieuType50 = new LieuType() { Nom = "Zone déchets dont local DID", Rang = 2 };
+            LieuType LieuType51 = new LieuType() { Nom = "Station de neutralisation + Bassin Orage", Rang = 2 };
+            LieuType LieuType52 = new LieuType() { Nom = "Chaufferie", Rang = 2 };
+            LieuType LieuType53 = new LieuType() { Nom = "Locaux électriques (TGBT)", Rang = 2 };
+            LieuType LieuType54 = new LieuType() { Nom = "DLUOthèque", Rang = 2 };
+            LieuType LieuType55 = new LieuType() { Nom = "Local compresseurs", Rang = 2 };
+            LieuType LieuType56 = new LieuType() { Nom = "Dépôt 1 : Quais, stockage MP, blocage , essais, destruction", Rang = 2 };
+            LieuType LieuType57 = new LieuType() { Nom = "Dépôt 2 : quais et stockage", Rang = 2 };
+            LieuType LieuType58 = new LieuType() { Nom = "TK et magasin TK", Rang = 2 };
+            LieuType LieuType59 = new LieuType() { Nom = "Gpes froids", Rang = 2 };
+            LieuType LieuType60 = new LieuType() { Nom = "Eaux Pluviales", Rang = 2 };
+            LieuType LieuType61 = new LieuType() { Nom = "TAR", Rang = 2 };
+            LieuType LieuType62 = new LieuType() { Nom = "Parking VL et PL", Rang = 2 };
+            LieuType LieuType63 = new LieuType() { Nom = "Stockage palettes vides", Rang = 2 };
+            LieuType LieuType64 = new LieuType() { Nom = "Cuve et station GPL", Rang = 2 };
+            LieuType LieuType65 = new LieuType() { Nom = "Sprinklage TK  : cuves de stockage, local et installations", Rang = 2 };
+            LieuType LieuType66 = new LieuType() { Nom = "Atelier maintenance et magasin", Rang = 2 };
+            LieuType LieuType67 = new LieuType() { Nom = "Salle de charge", Rang = 2 };
+
+
+
 
             context.LieuTypes.Add(LieuType1);
             context.LieuTypes.Add(LieuType2);
@@ -432,6 +484,9 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------DLF---------------------------------------------
 
+            Lieu LieuDLFZone1_1 = new Lieu() { Zone = ZoneDLF1, LieuType = LieuType1 };
+            Lieu LieuDLFZone1_2 = new Lieu() { Zone = ZoneDLF1, LieuType = LieuType27 };
+
             Lieu LieuDLFZone2_1 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType1 };
             Lieu LieuDLFZone2_2 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType27 };
 
@@ -471,9 +526,10 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Lieu LieuDLFZone8_2 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType19 };
             Lieu LieuDLFZone8_3 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType27 };
 
-            Lieu LieuDLFZone9_0 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType1 };
-            Lieu LieuDLFZone9_1 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType20 };
-            Lieu LieuDLFZone9_2 = new Lieu() { Zone = ZoneDLF9, LieuType = LieuType27 };
+            Lieu LieuDLFZone9_0 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType1 };
+            Lieu LieuDLFZone9_1 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType20 };
+            Lieu LieuDLFZone9_2 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType27 };
+
 
             context.Lieux.Add(LieuDLFZone2_1);
             context.Lieux.Add(LieuDLFZone2_2);
@@ -520,6 +576,9 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
 
             // -------------------------STA---------------------------------------------
+
+            Lieu LieuSTAZone1_1 = new Lieu() { Zone = ZoneSTA1, LieuType = LieuType1 };
+            Lieu LieuSTAZone1_2 = new Lieu() { Zone = ZoneSTA1, LieuType = LieuType27 };
 
             Lieu LieuSTAZone2_1 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType1 };
             Lieu LieuSTAZone2_2 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType27 };
@@ -787,61 +846,63 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             //------------------------POSTE DE TRAVAIL TYPES-----------------------------
 
 
-            PosteDeTravailType PosteDeTravailType1 = new PosteDeTravailType() { Nom = "Pilote process" };
-            PosteDeTravailType PosteDeTravailType2 = new PosteDeTravailType() { Nom = "Opérateur salle blanche" };
-            PosteDeTravailType PosteDeTravailType3 = new PosteDeTravailType() { Nom = "Souffleur" };
-            PosteDeTravailType PosteDeTravailType4 = new PosteDeTravailType() { Nom = "Polyvalent process" };
-            PosteDeTravailType PosteDeTravailType5 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement" };
-            PosteDeTravailType PosteDeTravailType6 = new PosteDeTravailType() { Nom = "Pilote R3" };
-            PosteDeTravailType PosteDeTravailType7 = new PosteDeTravailType() { Nom = "Pilote R4" };
-            PosteDeTravailType PosteDeTravailType8 = new PosteDeTravailType() { Nom = "Régleur" };
-            PosteDeTravailType PosteDeTravailType9 = new PosteDeTravailType() { Nom = "Etiqueteur 1, 2, 3" };
-            PosteDeTravailType PosteDeTravailType10 = new PosteDeTravailType() { Nom = "Etiqueteur 4" };
-            PosteDeTravailType PosteDeTravailType11 = new PosteDeTravailType() { Nom = "Fardeleur 1, 2, 3" };
-            PosteDeTravailType PosteDeTravailType12 = new PosteDeTravailType() { Nom = "Fardeleur 4" };
-            PosteDeTravailType PosteDeTravailType13 = new PosteDeTravailType() { Nom = "Etiqueteur 5" };
-            PosteDeTravailType PosteDeTravailType14 = new PosteDeTravailType() { Nom = "Pilote combi" };
-            PosteDeTravailType PosteDeTravailType15 = new PosteDeTravailType() { Nom = "Bout de ligne" };
-            PosteDeTravailType PosteDeTravailType16 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement" };
-            PosteDeTravailType PosteDeTravailType17 = new PosteDeTravailType() { Nom = "Responsable d'équipe" };
-            PosteDeTravailType PosteDeTravailType18 = new PosteDeTravailType() { Nom = "Responsable production" };
-            PosteDeTravailType PosteDeTravailType19 = new PosteDeTravailType() { Nom = "Electroposté" };
-            PosteDeTravailType PosteDeTravailType20 = new PosteDeTravailType() { Nom = "Technicien de maintenance" };
-            PosteDeTravailType PosteDeTravailType21 = new PosteDeTravailType() { Nom = "Maitrise maintenance" };
-            PosteDeTravailType PosteDeTravailType22 = new PosteDeTravailType() { Nom = "Responsable maintenance/TN" };
-            PosteDeTravailType PosteDeTravailType23 = new PosteDeTravailType() { Nom = "Laborantin process" };
-            PosteDeTravailType PosteDeTravailType24 = new PosteDeTravailType() { Nom = "Laborantin microbio" };
-            PosteDeTravailType PosteDeTravailType25 = new PosteDeTravailType() { Nom = "Responsable labo microbio" };
-            PosteDeTravailType PosteDeTravailType26 = new PosteDeTravailType() { Nom = "Responsable qualité" };
-            PosteDeTravailType PosteDeTravailType27 = new PosteDeTravailType() { Nom = "Assistant qualité" };
-            PosteDeTravailType PosteDeTravailType55 = new PosteDeTravailType() { Nom = "Pilote prépa" };
-            PosteDeTravailType PosteDeTravailType28 = new PosteDeTravailType() { Nom = "Préparateur" };
-            PosteDeTravailType PosteDeTravailType29 = new PosteDeTravailType() { Nom = "Aide préparateur" };
-            PosteDeTravailType PosteDeTravailType30 = new PosteDeTravailType() { Nom = "Opérateur crusher" };
-            PosteDeTravailType PosteDeTravailType31 = new PosteDeTravailType() { Nom = "Responsable préparation" };
-            PosteDeTravailType PosteDeTravailType32 = new PosteDeTravailType() { Nom = "Technicien services généraux" };
-            PosteDeTravailType PosteDeTravailType33 = new PosteDeTravailType() { Nom = "Directeur Site" };
-            PosteDeTravailType PosteDeTravailType34 = new PosteDeTravailType() { Nom = "Personnel administratif" };
-            PosteDeTravailType PosteDeTravailType35 = new PosteDeTravailType() { Nom = "Responsable zone process" };
-            PosteDeTravailType PosteDeTravailType36 = new PosteDeTravailType() { Nom = "Responsable zone conditionnement" };
-            PosteDeTravailType PosteDeTravailType37 = new PosteDeTravailType() { Nom = "Animateur S/E" };
-            PosteDeTravailType PosteDeTravailType38 = new PosteDeTravailType() { Nom = "Agriculteur" };
-            PosteDeTravailType PosteDeTravailType39 = new PosteDeTravailType() { Nom = "Chauffeur" };
-            PosteDeTravailType PosteDeTravailType40 = new PosteDeTravailType() { Nom = "CHSCT" };
-            PosteDeTravailType PosteDeTravailType41 = new PosteDeTravailType() { Nom = "Responsable RH" };
-            PosteDeTravailType PosteDeTravailType42 = new PosteDeTravailType() { Nom = "Responsable amélioration continue" };
-            PosteDeTravailType PosteDeTravailType43 = new PosteDeTravailType() { Nom = "Cariste de ligne" };
-            PosteDeTravailType PosteDeTravailType44 = new PosteDeTravailType() { Nom = "Cariste expédition" };
-            PosteDeTravailType PosteDeTravailType45 = new PosteDeTravailType() { Nom = "Magasinier MP" };
-            PosteDeTravailType PosteDeTravailType46 = new PosteDeTravailType() { Nom = "Magasinier soufflage" };
-            PosteDeTravailType PosteDeTravailType47 = new PosteDeTravailType() { Nom = "Magasinier soufflerie" };
-            PosteDeTravailType PosteDeTravailType48 = new PosteDeTravailType() { Nom = "Chef d'équipe cariste" };
-            PosteDeTravailType PosteDeTravailType49 = new PosteDeTravailType() { Nom = "Responsable d'exploitation PF" };
-            PosteDeTravailType PosteDeTravailType50 = new PosteDeTravailType() { Nom = "Responsable d'exploitation MP" };
-            PosteDeTravailType PosteDeTravailType51 = new PosteDeTravailType() { Nom = "Gestionnaire de stock" };
-            PosteDeTravailType PosteDeTravailType52 = new PosteDeTravailType() { Nom = "Hôtesse d'accueil PF" };
-            PosteDeTravailType PosteDeTravailType53 = new PosteDeTravailType() { Nom = "Responsable appro/ordo" };
-            PosteDeTravailType PosteDeTravailType54 = new PosteDeTravailType() { Nom = "Responsable supply Chain" };
+            PosteDeTravailType PosteDeTravailType0 = new PosteDeTravailType() { Nom = "Tous les postes de la zone", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType1 = new PosteDeTravailType() { Nom = "Pilote process", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType2 = new PosteDeTravailType() { Nom = "Opérateur salle blanche", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType3 = new PosteDeTravailType() { Nom = "Souffleur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType4 = new PosteDeTravailType() { Nom = "Polyvalent process", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType5 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType6 = new PosteDeTravailType() { Nom = "Pilote R3", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType7 = new PosteDeTravailType() { Nom = "Pilote R4", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType8 = new PosteDeTravailType() { Nom = "Régleur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType9 = new PosteDeTravailType() { Nom = "Etiqueteur 1, 2, 3", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType10 = new PosteDeTravailType() { Nom = "Etiqueteur 4", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType11 = new PosteDeTravailType() { Nom = "Fardeleur 1, 2, 3", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType12 = new PosteDeTravailType() { Nom = "Fardeleur 4", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType13 = new PosteDeTravailType() { Nom = "Etiqueteur 5", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType14 = new PosteDeTravailType() { Nom = "Pilote combi", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType15 = new PosteDeTravailType() { Nom = "Bout de ligne", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType16 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType17 = new PosteDeTravailType() { Nom = "Responsable d'équipe", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType18 = new PosteDeTravailType() { Nom = "Responsable production", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType19 = new PosteDeTravailType() { Nom = "Electroposté", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType20 = new PosteDeTravailType() { Nom = "Technicien de maintenance", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType21 = new PosteDeTravailType() { Nom = "Maitrise maintenance", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType22 = new PosteDeTravailType() { Nom = "Responsable maintenance/TN", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType23 = new PosteDeTravailType() { Nom = "Laborantin process", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType24 = new PosteDeTravailType() { Nom = "Laborantin microbio", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType25 = new PosteDeTravailType() { Nom = "Responsable labo microbio", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType26 = new PosteDeTravailType() { Nom = "Responsable qualité", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType27 = new PosteDeTravailType() { Nom = "Assistant qualité", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType55 = new PosteDeTravailType() { Nom = "Pilote prépa", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType28 = new PosteDeTravailType() { Nom = "Préparateur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType29 = new PosteDeTravailType() { Nom = "Aide préparateur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType30 = new PosteDeTravailType() { Nom = "Opérateur crusher", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType31 = new PosteDeTravailType() { Nom = "Responsable préparation", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType32 = new PosteDeTravailType() { Nom = "Technicien services généraux", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType33 = new PosteDeTravailType() { Nom = "Directeur Site", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType34 = new PosteDeTravailType() { Nom = "Personnel administratif", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType35 = new PosteDeTravailType() { Nom = "Responsable zone process", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType36 = new PosteDeTravailType() { Nom = "Responsable zone conditionnement", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType37 = new PosteDeTravailType() { Nom = "Animateur S/E", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType38 = new PosteDeTravailType() { Nom = "Agriculteur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType39 = new PosteDeTravailType() { Nom = "Chauffeur", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType40 = new PosteDeTravailType() { Nom = "CHSCT", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType41 = new PosteDeTravailType() { Nom = "Responsable RH", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType42 = new PosteDeTravailType() { Nom = "Responsable amélioration continue", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType43 = new PosteDeTravailType() { Nom = "Cariste de ligne", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType44 = new PosteDeTravailType() { Nom = "Cariste expédition", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType45 = new PosteDeTravailType() { Nom = "Magasinier MP", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType46 = new PosteDeTravailType() { Nom = "Magasinier soufflage", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType47 = new PosteDeTravailType() { Nom = "Magasinier soufflerie", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType48 = new PosteDeTravailType() { Nom = "Chef d'équipe cariste", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType49 = new PosteDeTravailType() { Nom = "Responsable d'exploitation PF", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType50 = new PosteDeTravailType() { Nom = "Responsable d'exploitation MP", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType51 = new PosteDeTravailType() { Nom = "Gestionnaire de stock", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType52 = new PosteDeTravailType() { Nom = "Hôtesse d'accueil PF", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType53 = new PosteDeTravailType() { Nom = "Responsable appro/ordo", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType54 = new PosteDeTravailType() { Nom = "Responsable supply Chain", Rang = 2 };
+            PosteDeTravailType PosteDeTravailType56 = new PosteDeTravailType() { Nom = "Autre", Rang = 100 };
 
 
 
@@ -947,6 +1008,13 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------DLF---------------------------------------------
 
+            PosteDeTravail PosteDeTravailDLFZone1_1 = new PosteDeTravail() { Zone = ZoneDLF1, PosteDeTravailType = PosteDeTravailType0 };
+            PosteDeTravail PosteDeTravailDLFZone1_2 = new PosteDeTravail() { Zone = ZoneDLF1, PosteDeTravailType = PosteDeTravailType56 };
+
+            PosteDeTravail PosteDeTravailDLFZone2_1 = new PosteDeTravail() { Zone = ZoneDLF2, PosteDeTravailType = PosteDeTravailType0 };
+            PosteDeTravail PosteDeTravailDLFZone2_2 = new PosteDeTravail() { Zone = ZoneDLF2, PosteDeTravailType = PosteDeTravailType56 };
+
+            PosteDeTravail PosteDeTravailDLFZone3_0 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType0 };
             PosteDeTravail PosteDeTravailDLFZone3_1 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType1 };
             PosteDeTravail PosteDeTravailDLFZone3_2 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType2 };
             PosteDeTravail PosteDeTravailDLFZone3_3 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType3 };
@@ -955,7 +1023,9 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             PosteDeTravail PosteDeTravailDLFZone3_6 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType6 };
             PosteDeTravail PosteDeTravailDLFZone3_7 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType7 };
             PosteDeTravail PosteDeTravailDLFZone3_8 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType8 };
+            PosteDeTravail PosteDeTravailDLFZone3_9 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType56 };
 
+            PosteDeTravail PosteDeTravailDLFZone4_0 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType0 };
             PosteDeTravail PosteDeTravailDLFZone4_1 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType9 };
             PosteDeTravail PosteDeTravailDLFZone4_2 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType10 };
             PosteDeTravail PosteDeTravailDLFZone4_3 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType11 };
@@ -966,7 +1036,11 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             PosteDeTravail PosteDeTravailDLFZone4_8 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType16 };
             PosteDeTravail PosteDeTravailDLFZone4_9 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType17 };
             PosteDeTravail PosteDeTravailDLFZone4_10 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType18 };
+            PosteDeTravail PosteDeTravailDLFZone4_11 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType56 };
+            PosteDeTravail PosteDeTravailDLFZone4_12 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType56 };
 
+
+            PosteDeTravail PosteDeTravailDLFZone5_00 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType0 };
             PosteDeTravail PosteDeTravailDLFZone5_0 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType43 };
             PosteDeTravail PosteDeTravailDLFZone5_1 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType44 };
             PosteDeTravail PosteDeTravailDLFZone5_2 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType45 };
@@ -984,29 +1058,39 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             PosteDeTravail PosteDeTravailDLFZone5_14 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType29 };
             PosteDeTravail PosteDeTravailDLFZone5_15 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType30 };
             PosteDeTravail PosteDeTravailDLFZone5_16 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType31 };
+            PosteDeTravail PosteDeTravailDLFZone5_17 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType56 };
 
+
+            PosteDeTravail PosteDeTravailDLFZone6_0 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType0 };
             PosteDeTravail PosteDeTravailDLFZone6_1 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType19 };
             PosteDeTravail PosteDeTravailDLFZone6_2 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType20 };
             PosteDeTravail PosteDeTravailDLFZone6_3 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType21 };
             PosteDeTravail PosteDeTravailDLFZone6_4 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType22 };
+            PosteDeTravail PosteDeTravailDLFZone6_5 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType56 };
 
+
+            PosteDeTravail PosteDeTravailDLFZone7_0 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType0 };
             PosteDeTravail PosteDeTravailDLFZone7_1 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType23 };
             PosteDeTravail PosteDeTravailDLFZone7_2 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType24 };
             PosteDeTravail PosteDeTravailDLFZone7_3 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType25 };
             PosteDeTravail PosteDeTravailDLFZone7_4 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType26 };
             PosteDeTravail PosteDeTravailDLFZone7_5 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType27 };
+            PosteDeTravail PosteDeTravailDLFZone7_6 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType56 };
 
-            PosteDeTravail PosteDeTravailDLFZone9_1 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType32 };
-            PosteDeTravail PosteDeTravailDLFZone9_2 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType33 };
-            PosteDeTravail PosteDeTravailDLFZone9_3 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType34 };
-            PosteDeTravail PosteDeTravailDLFZone9_4 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType35 };
-            PosteDeTravail PosteDeTravailDLFZone9_5 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType36 };
-            PosteDeTravail PosteDeTravailDLFZone9_6 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType37 };
-            PosteDeTravail PosteDeTravailDLFZone9_7 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType38 };
-            PosteDeTravail PosteDeTravailDLFZone9_8 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType39 };
-            PosteDeTravail PosteDeTravailDLFZone9_9 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType40 };
-            PosteDeTravail PosteDeTravailDLFZone9_10 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType41 };
-            PosteDeTravail PosteDeTravailDLFZone9_11 = new PosteDeTravail() { Zone = ZoneDLF9, PosteDeTravailType = PosteDeTravailType42 };
+
+            PosteDeTravail PosteDeTravailDLFZone9_0 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType0 };
+            PosteDeTravail PosteDeTravailDLFZone9_1 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType32 };
+            PosteDeTravail PosteDeTravailDLFZone9_2 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType33 };
+            PosteDeTravail PosteDeTravailDLFZone9_3 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType34 };
+            PosteDeTravail PosteDeTravailDLFZone9_4 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType35 };
+            PosteDeTravail PosteDeTravailDLFZone9_5 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType36 };
+            PosteDeTravail PosteDeTravailDLFZone9_6 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType37 };
+            PosteDeTravail PosteDeTravailDLFZone9_7 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType38 };
+            PosteDeTravail PosteDeTravailDLFZone9_8 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType39 };
+            PosteDeTravail PosteDeTravailDLFZone9_9 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType40 };
+            PosteDeTravail PosteDeTravailDLFZone9_10 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType41 };
+            PosteDeTravail PosteDeTravailDLFZone9_11 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType42 };
+            PosteDeTravail PosteDeTravailDLFZone9_12 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType56 };
 
 
             context.PosteDeTravails.Add(PosteDeTravailDLFZone3_1);
