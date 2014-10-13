@@ -56,7 +56,7 @@
                 <h4 class="modal-title">Recherche d'un utilisateur dans l'annuaire</h4>
             </div>
             <div class="modal-body">
-                <p>Vauillez saisir un nom et/ou un prénom&hellip;</p>
+                <p>Veuillez saisir un nom et/ou un prénom&hellip;&nbsp;Puis selectionner l'utilisateur voulu</p>
 
 
                 <div class="form-group">
@@ -169,10 +169,20 @@
                         <h4 class="panel-title">
                             <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
                                 @*data-parent="#accordion"*@
-                                FICHE SECURITE
+                                FICHE SECURITE&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;<%= ficheSecuriteModel.get('Code') %>
                             </a>
                         </h4>
                     </div>
+                    @*<div class="col-md-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="Code" class="label-xs">Code&nbsp;:</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <input type="text" id="Code" class="form-control input-xs" value="<%= ficheSecuriteModel.get('Code') %>" disabled />
+                            </div>
+                        </div>
+                    </div>*@
                     <div class="col-md-8">
 
                         <% if (ficheSecuriteModel.get('WorkFlowDiffusee') == false){ %> 
@@ -201,7 +211,7 @@
                             <div class="col-md-2">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="Site" class="label-xs"><span style="color:red;">*</span>Site&nbsp;:</label>
+                                        <label for="Site" class="label-xs">Site&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Site" class="form-control input-xs">
@@ -210,7 +220,7 @@
                                             <option value="<%= site.get('SiteID') %>"
                                                 <% if (ficheSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
                                                 >
-                                                <%= site.get('Nom') %>
+                                                <%= site.get('Trigramme') %>
                                             </option>
                                             <% }); %>
                                             @*%> selected <%*@
@@ -221,7 +231,7 @@
                             <div class="col-md-2">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="Type" class="label-xs"><span style="color:red;">*</span>Type&nbsp;:</label>
+                                        <label for="Type" class="label-xs">Type&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     </div>
                                     <div class="col-sm-8">
                                         <select id="Type" class="form-control input-xs">
@@ -238,20 +248,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label for="Code" class="label-xs">Code&nbsp;:</label>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" id="Code" class="form-control input-xs" value="<%= ficheSecuriteModel.get('Code') %>" disabled />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <label class="label-xs"><span style="color:red;">*</span>Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:</label>
+                                        <label class="label-xs">Date&nbsp;&&nbsp;Heure&nbsp;Evnmt&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     </div>
                                     @*<div class="col-sm-3">
                                             <input name="DateEvenement" id="DateEvenement" class="form-control input-xs" type="text" value="<%= FicheSecuriteDate %>">
@@ -294,7 +294,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-5">
                                         @*style="padding-right:0px;"*@
-                                        <label for="PersonnesConcerneeNom" class="label-xs"><span style="color:red;">*</span>Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="input-group input-group-xs">
@@ -311,14 +311,20 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs"><span style="color:red;">*</span>Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     </div>
                                     <div class="col-sm-7">
                                         <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:</label>
+                                    <label for="Age" class="col-sm-5 label-xs">Âge&nbsp;:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-xs" id="Age" value="<%= ficheSecuriteModel.get('Age') %>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Zone">
                                             <option value="null" <% if (ficheSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
@@ -333,98 +339,8 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <label for="Age" class="col-sm-5 label-xs">Âge&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="Age" value="<%= ficheSecuriteModel.get('Age') %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="PlageHoraire" class="col-sm-5 label-xs"><span style="color:red;">*</span>Plage&nbsp;horaire&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control input-xs" id="PlageHoraire">
-                                            <option value="null" <% if (ficheSecuriteModel.get('PlageHoraireId') == 'null'){ %> selected <% } %> ></option>
-                                            <% plageHoraireCollection.each( function(plageHoraire){ %>
-                                            <option value="<%= plageHoraire.get('PlageHoraireID') %>"
-                                                <% if (ficheSecuriteModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
-                                                >
-                                                <%= plageHoraire.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                @*<div class="form-group">
-                                    <label for="PosteTravail" class="col-sm-5 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control input-xs" id="PosteTravail">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select>
-                                    </div>
-                                </div>*@
-                                <div class="form-group">
-                                    <label for="PosteDeTravail" class="col-sm-5 label-xs"><span style="color:red;">*</span>Poste&nbsp;de&nbsp;travail&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control input-xs" id="PosteDeTravail">
-                                            <option value="null" <% if (ficheSecuriteModel.get('PosteDeTravailId') == 'null'){ %> selected <% } %> ></option>
-                                            <% posteDeTravailCollection.each( function(posteDeTravail){ %>
-                                            <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
-                                                <% if (ficheSecuriteModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>
-                                                >
-                                                <%= posteDeTravail.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Service" class="col-sm-5 label-xs"><span style="color:red;">*</span>Service&nbsp;:</label>
-                                    <div class="col-sm-7">
-                                        <select id="Service" class="form-control input-xs">
-                                            <option value="null" <% if (ficheSecuriteModel.get('ServiceId') == 'null'){ %> selected <% } %> ></option>
-                                            <% serviceCollection.each( function(service){ %>
-                                            <option value="<%= service.get('ServiceID') %>"
-                                                <% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %>
-                                                >
-                                                <%= service.get('Nom') %>
-                                            </option>
-                                            <% }); %>
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        @*style="padding-right:0px;"*@
-                                        <label for="ResponsableNom" class="label-xs"><span style="color:red;">*</span>Nom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="input-group input-group-xs">
-                                            <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= ficheSecuriteModel.get('Responsable').get('Nom') %>">
-                                            @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                            <span class="input-group-btn">
-                                                <button id="ActiveDirectoryResponsableRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                    <span class="glyphicon glyphicon-user">
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="ResponsablePrenom" class="label-xs"><span style="color:red;">*</span>Prénom&nbsp;responsable&nbsp;:&nbsp;&nbsp;</label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="ResponsablePrenom" value="<%= ficheSecuriteModel.get('Responsable').get('Prenom') %>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="Lieu" class="col-sm-5 label-xs"><span style="color:red;">*</span>Lieu&nbsp;:</label>
+                                    <label for="Lieu" class="col-sm-5 label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Lieu&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Lieu">
                                             <option value="null" <% if (ficheSecuriteModel.get('LieuId') == 'null'){ %> selected <% } %> ></option>
@@ -440,7 +356,39 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Danger" class="col-sm-5 label-xs"><span style="color:red;">*</span>Danger&nbsp;:</label>
+                                    <label for="PosteDeTravail" class="col-sm-5 label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Poste&nbsp;de&nbsp;travail&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control input-xs" id="PosteDeTravail">
+                                            <option value="null" <% if (ficheSecuriteModel.get('PosteDeTravailId') == 'null'){ %> selected <% } %> ></option>
+                                            <% posteDeTravailCollection.each( function(posteDeTravail){ %>
+                                            <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
+                                                <% if (ficheSecuriteModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %>
+                                                >
+                                                <%= posteDeTravail.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Service" class="col-sm-5 label-xs">Service&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <div class="col-sm-7">
+                                        <select id="Service" class="form-control input-xs">
+                                            <option value="null" <% if (ficheSecuriteModel.get('ServiceId') == 'null'){ %> selected <% } %> ></option>
+                                            <% serviceCollection.each( function(service){ %>
+                                            <option value="<%= service.get('ServiceID') %>"
+                                                <% if (ficheSecuriteModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %>
+                                                >
+                                                <%= service.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Danger" class="col-sm-5 label-xs">Danger&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Danger">
                                             <option value="null" <% if (ficheSecuriteModel.get('DangerId') == 'null'){ %> selected <% } %> ></option>
@@ -454,8 +402,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                @*<div class="form-group">
+                                    <label for="PosteTravail" class="col-sm-5 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control input-xs" id="PosteTravail">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </div>
+                                </div>*@
                                 <div class="form-group">
-                                    <label for="Risque" class="col-sm-5 label-xs"><span style="color:red;">*</span>Risque&nbsp;:</label>
+                                    <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <div class="col-sm-7">
                                         <select class="form-control input-xs" id="Risque">
                                             <option value="null" <% if (ficheSecuriteModel.get('RisqueId') == 'null'){ %> selected <% } %> ></option>
@@ -482,6 +439,22 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="PlageHoraire" class="col-sm-5 label-xs">Plage&nbsp;horaire&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control input-xs" id="PlageHoraire">
+                                            <option value="null" <% if (ficheSecuriteModel.get('PlageHoraireId') == 'null'){ %> selected <% } %> ></option>
+                                            <% plageHoraireCollection.each( function(plageHoraire){ %>
+                                            <option value="<%= plageHoraire.get('PlageHoraireID') %>"
+                                                <% if (ficheSecuriteModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
+                                                >
+                                                <%= plageHoraire.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
                                 @*<div class="form-group">
                                     <label for="Risque" class="col-sm-5 label-xs">Risque&nbsp;:</label>
                                     <div class="col-sm-7">
@@ -491,6 +464,32 @@
                                         </select>
                                     </div>
                                 </div>*@
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        @*style="padding-right:0px;"*@
+                                        <label for="ResponsableNom" class="label-xs">Nom&nbsp;responsable&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="input-group input-group-xs">
+                                            <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= ficheSecuriteModel.get('Responsable').get('Nom') %>">
+                                            @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                            <span class="input-group-btn">
+                                                <button id="ActiveDirectoryResponsableRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
+                                                    <span class="glyphicon glyphicon-user">
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-5">
+                                        <label for="ResponsablePrenom" class="label-xs">Prénom&nbsp;responsable&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-xs" id="ResponsablePrenom" value="<%= ficheSecuriteModel.get('Responsable').get('Prenom') %>">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="Temoins" class="col-sm-5 label-xs">Témoins&nbsp;:</label>
                                     <div class="col-sm-7">
@@ -512,7 +511,7 @@
                                 <div class="col-md-8" style="padding-left:0px;">
                                     <div class="form-group">
 
-                                        <h4><span style="color:red;">*</span>Description</h4>
+                                        <h4>Description&nbsp;<span style="color:red">*</span></h4>
 
                                         <div class="col-sm-12">
                                             <textarea id="Description" class="form-control input-small" rows="8"><%= ficheSecuriteModel.get('Description') %></textarea>
@@ -527,9 +526,9 @@
 
                                     <h4>Cotation</h4>
 
-                                    <form class="form-horizontal" role="form">
+                                    <form class="form-horizontal" role="form" data-html="true" data-placement="top" title="Fréquence & Gravité : 1 Peu élevé / 4 Très élevé">
                                         <div class="form-group">
-                                            <label for="Frequence" class="col-sm-8 label-xs"><span style="color:red;">*</span>Fréquence&nbsp;:</label>
+                                            <label for="Frequence" class="col-sm-8 label-xs">Fréquence&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                             <div class="col-sm-4" style="padding-left:7px;padding-right:7px;">
                                                 <select class="form-control input-xs" id="Frequence">
                                                     <option value="1" <% if (ficheSecuriteModel.get('CotationFrequence') == 1){ %> selected <% } %> >1</option>
@@ -540,7 +539,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="Gravite" class="col-sm-8 label-xs"><span style="color:red;">*</span>Gravité&nbsp;:</label>
+                                            <label for="Gravite" class="col-sm-8 label-xs">Gravité&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                             <div class="col-sm-4" style="padding-left:7px;padding-right:7px;">
                                                 <select class="form-control input-xs" id="Gravite">
                                                     <option value="1" <% if (ficheSecuriteModel.get('CotationGravite') == 1){ %> selected <% } %> >1</option>
@@ -556,7 +555,14 @@
                                         <div class="form-group">
                                             <label for="CriticiteBrute" class="col-sm-8 label-xs">Criticité&nbsp;Brute&nbsp;:</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control input-xs" id="CriticiteBrute" value="<%= ficheSecuriteModel.get('CotationFrequence') * ficheSecuriteModel.get('CotationGravite') %>" disabled />
+                                                <input type="text"<% if(this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence') > 12) { %>.
+                                                style="background-color:#C42031;color:#FFFFFF;"
+                                                <% } else {%>
+                                                style="background-color:#EEEEEE;color:#000000;"
+                                                <% } %>
+
+                                                class="form-control input-xs" id="CriticiteBrute" value="<%= ficheSecuriteModel.get('CotationFrequence') * ficheSecuriteModel.get('CotationGravite') %>" disabled />
+
                                             </div>
                                         </div>
                                     </form>
@@ -731,7 +737,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="Protagonistes" class="col-sm-6 label-xs">Protagonistes&nbsp;:</label>
+                                    <label for="Protagonistes" class="col-sm-6 label-xs">Enquêteurs&nbsp;:</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control input-xs" id="Protagonistes">
                                     </div>
@@ -1145,16 +1151,16 @@
             zone.set({ 'Nom': zone.get('ZoneType').Nom });
         });
         ficheSecuriteViewModel.set({ 'lieuCollection': new LieuCollection(ficheSecuriteViewModel.get('AllLieu')) });
-        ficheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
-            lieu.set({ 'Nom': lieu.get('LieuType').Nom });
-        });
+        //ficheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
+        //    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+        //});
         ficheSecuriteViewModel.get('serviceCollection').each(function (service, index) {
             service.set({ 'Nom': service.get('ServiceType').Nom });
         });
         ficheSecuriteViewModel.set({ 'posteDeTravailCollection': new PosteDeTravailCollection(ficheSecuriteViewModel.get('AllPosteDeTravail')) });
-        ficheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
-            posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
-        });
+        //ficheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
+        //    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
+        //});
         ficheSecuriteViewModel.set({ 'ficheSecuriteTypeCollection': new FicheSecuriteTypeCollection(ficheSecuriteViewModel.get('AllFicheSecuriteType')) });
         ficheSecuriteViewModel.set({ 'plageHoraireCollection': new PlageHoraireCollection(ficheSecuriteViewModel.get('AllPlageHoraire')) });
         ficheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(ficheSecuriteViewModel.get('AllDanger')) });
@@ -1497,12 +1503,12 @@
                 this.model.get('lieuCollection').fetch({ async: false });
                 this.model.get('posteDeTravailCollection').fetch({ async: false });
 
-                this.model.get('lieuCollection').each(function (lieu, index) {
-                    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
-                });
-                this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
-                    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
-                });
+                //this.model.get('lieuCollection').each(function (lieu, index) {
+                //    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+                //});
+                //this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
+                //    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
+                //});
 
                 this.render();
             },
@@ -1553,10 +1559,27 @@
             changeGravite: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CotationGravite': $('#Gravite').val() });
                 $('#CriticiteBrute').val(this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence'));
+                if (this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence') > 12) {
+                    $('#CriticiteBrute').css('background-color', '#C42031;');
+                    $('#CriticiteBrute').css('color', '#FFFFFF;');
+                }
+                else
+                {
+                    $('#CriticiteBrute').css('background-color', '#EEEEEE');
+                    $('#CriticiteBrute').css('color', '#000000;');
+                }
             },
             changeFrequence: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CotationFrequence': $('#Frequence').val() });
                 $('#CriticiteBrute').val(this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence'));
+                if (this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence') > 12) {
+                    $('#CriticiteBrute').css('background-color', '#C42031;');
+                    $('#CriticiteBrute').css('color', '#FFFFFF;');
+                }
+                else {
+                    $('#CriticiteBrute').css('background-color', '#EEEEEE');
+                    $('#CriticiteBrute').css('color', '##000000;');
+                }
             },
             changeActionImmediate1: function () {
                 this.model.get('ficheSecuriteModel').set({ 'ActionImmediate1': $('#ActionImmediate1').val() });

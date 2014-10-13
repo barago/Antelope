@@ -118,6 +118,7 @@ namespace Antelope.Controllers.API.HSE
 
                 var queryLieu = from a in db.Lieux
                                 where a.ZoneId == ficheSecurite.ZoneId
+                                orderby a.Rang
                                 select a;
                 AllLieu = queryLieu.ToList();
 
@@ -128,6 +129,7 @@ namespace Antelope.Controllers.API.HSE
 
                 var queryPosteDeTravail = from a in db.PosteDeTravails
                                           where a.ZoneId == ficheSecurite.ZoneId
+                                          orderby a.Rang
                                           select a;
                 AllPosteDeTravail = queryPosteDeTravail.ToList();
 

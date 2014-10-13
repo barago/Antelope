@@ -24,10 +24,10 @@ namespace Antelope.Domain.Models
         public int ZoneId { get; set; }
         public int LieuTypeId { get; set; }
         public string Nom { get; set; }
+        public int Rang { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }
-        public virtual LieuType LieuType { get; set; }
         [JsonIgnore]
         public virtual Zone Zone { get; set; }
     }

@@ -545,17 +545,17 @@
             zone.set({ 'Nom': zone.get('ZoneType').Nom });
         });
         rechercheFicheSecuriteViewModel.set({ 'lieuCollection': new LieuCollection(rechercheFicheSecuriteViewModel.get('AllLieu')) });
-        rechercheFicheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
-            lieu.set({ 'Nom': lieu.get('LieuType').Nom });
-        });
+        //rechercheFicheSecuriteViewModel.get('lieuCollection').each(function (lieu, index) {
+        //    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+        //});
         rechercheFicheSecuriteViewModel.set({ 'serviceCollection': new ServiceCollection(rechercheFicheSecuriteViewModel.get('AllService')) });
         rechercheFicheSecuriteViewModel.get('serviceCollection').each(function (service, index) {
             service.set({ 'Nom': service.get('ServiceType').Nom });
         });
         rechercheFicheSecuriteViewModel.set({ 'posteDeTravailCollection': new PosteDeTravailCollection(rechercheFicheSecuriteViewModel.get('AllPosteDeTravail')) });
-        rechercheFicheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
-            posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
-        });
+        //rechercheFicheSecuriteViewModel.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
+        //    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
+        //});
         rechercheFicheSecuriteViewModel.set({ 'ficheSecuriteTypeCollection': new FicheSecuriteTypeCollection(rechercheFicheSecuriteViewModel.get('AllFicheSecuriteType')) });
         rechercheFicheSecuriteViewModel.set({ 'plageHoraireCollection': new PlageHoraireCollection(rechercheFicheSecuriteViewModel.get('AllPlageHoraire')) });
         rechercheFicheSecuriteViewModel.set({ 'dangerCollection': new DangerCollection(rechercheFicheSecuriteViewModel.get('AllDanger')) });
@@ -801,12 +801,12 @@
                 this.model.get('lieuCollection').fetch({ async: false });
                 this.model.get('posteDeTravailCollection').fetch({ async: false });
 
-                this.model.get('lieuCollection').each(function (lieu, index) {
-                    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
-                });
-                this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
-                    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
-                });
+                //this.model.get('lieuCollection').each(function (lieu, index) {
+                //    lieu.set({ 'Nom': lieu.get('LieuType').Nom });
+                //});
+                //this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
+                //    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
+                //});
 
                 this.render();
             },

@@ -194,7 +194,6 @@
       <DependentUpon>201409290935397_29092014.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\UpdateDatabaseList.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HSE\Risque.cs" />
     <Compile Include="Models\HSE\RisqueType.cs" />
     <Compile Include="Models\QSE\ActionQSE.cs" />

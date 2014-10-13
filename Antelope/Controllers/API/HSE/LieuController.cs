@@ -28,6 +28,7 @@ namespace Antelope.Controllers.API.HSE
 
             var queryLieu = from a in db.Lieux
                             where a.ZoneId == id
+                            orderby a.Rang
                             select a;
             List<Lieu> AllLieu = queryLieu.ToList();
 

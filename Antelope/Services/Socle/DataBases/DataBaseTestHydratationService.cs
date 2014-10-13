@@ -76,6 +76,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             ServiceType ServiceType18 = new ServiceType() { Nom = "Informatique", Rang = 5 };
             ServiceType ServiceType19 = new ServiceType() { Nom = "Autre", Rang = 100 };
 
+            context.ServiceTypes.Add(ServiceType0);
             context.ServiceTypes.Add(ServiceType1);
             context.ServiceTypes.Add(ServiceType2);
             context.ServiceTypes.Add(ServiceType3);
@@ -93,39 +94,40 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.ServiceTypes.Add(ServiceType16);
             context.ServiceTypes.Add(ServiceType17);
             context.ServiceTypes.Add(ServiceType18);
+            context.ServiceTypes.Add(ServiceType19);
 
 
             //------------------AJOUT DES SERVICES POUR CHAQUE SITE----------------------------
 
             // -------------------------RFS---------------------------------------------
 
-            Service ServiceRFS1 = new Service() { Site = siteRFS, ServiceType = ServiceType3 };
-            Service ServiceRFS2 = new Service() { Site = siteRFS, ServiceType = ServiceType4 };
-            Service ServiceRFS3 = new Service() { Site = siteRFS, ServiceType = ServiceType6 };
-            Service ServiceRFS4 = new Service() { Site = siteRFS, ServiceType = ServiceType8 };
-            Service ServiceRFS5 = new Service() { Site = siteRFS, ServiceType = ServiceType9 };
-            Service ServiceRFS6 = new Service() { Site = siteRFS, ServiceType = ServiceType10 };
-            Service ServiceRFS8 = new Service() { Site = siteRFS, ServiceType = ServiceType12 };
-            Service ServiceRFS9 = new Service() { Site = siteRFS, ServiceType = ServiceType13 };
-            Service ServiceRFS10 = new Service() { Site = siteRFS, ServiceType = ServiceType14 };
-            Service ServiceRFS11 = new Service() { Site = siteRFS, ServiceType = ServiceType15 };
-            Service ServiceRFS12 = new Service() { Site = siteRFS, ServiceType = ServiceType16 };
-            Service ServiceRFS13 = new Service() { Site = siteRFS, ServiceType = ServiceType17 };
-            Service ServiceRFS14 = new Service() { Site = siteRFS, ServiceType = ServiceType18 };
+            //Service ServiceRFS1 = new Service() { Site = siteRFS, ServiceType = ServiceType3 };
+            //Service ServiceRFS2 = new Service() { Site = siteRFS, ServiceType = ServiceType4 };
+            //Service ServiceRFS3 = new Service() { Site = siteRFS, ServiceType = ServiceType6 };
+            //Service ServiceRFS4 = new Service() { Site = siteRFS, ServiceType = ServiceType8 };
+            //Service ServiceRFS5 = new Service() { Site = siteRFS, ServiceType = ServiceType9 };
+            //Service ServiceRFS6 = new Service() { Site = siteRFS, ServiceType = ServiceType10 };
+            //Service ServiceRFS8 = new Service() { Site = siteRFS, ServiceType = ServiceType12 };
+            //Service ServiceRFS9 = new Service() { Site = siteRFS, ServiceType = ServiceType13 };
+            //Service ServiceRFS10 = new Service() { Site = siteRFS, ServiceType = ServiceType14 };
+            //Service ServiceRFS11 = new Service() { Site = siteRFS, ServiceType = ServiceType15 };
+            //Service ServiceRFS12 = new Service() { Site = siteRFS, ServiceType = ServiceType16 };
+            //Service ServiceRFS13 = new Service() { Site = siteRFS, ServiceType = ServiceType17 };
+            //Service ServiceRFS14 = new Service() { Site = siteRFS, ServiceType = ServiceType18 };
 
-            context.Services.Add(ServiceRFS1);
-            context.Services.Add(ServiceRFS2);
-            context.Services.Add(ServiceRFS3);
-            context.Services.Add(ServiceRFS4);
-            context.Services.Add(ServiceRFS5);
-            context.Services.Add(ServiceRFS6);
-            context.Services.Add(ServiceRFS8);
-            context.Services.Add(ServiceRFS9);
-            context.Services.Add(ServiceRFS10);
-            context.Services.Add(ServiceRFS11);
-            context.Services.Add(ServiceRFS12);
-            context.Services.Add(ServiceRFS13);
-            context.Services.Add(ServiceRFS14);
+            //context.Services.Add(ServiceRFS1);
+            //context.Services.Add(ServiceRFS2);
+            //context.Services.Add(ServiceRFS3);
+            //context.Services.Add(ServiceRFS4);
+            //context.Services.Add(ServiceRFS5);
+            //context.Services.Add(ServiceRFS6);
+            //context.Services.Add(ServiceRFS8);
+            //context.Services.Add(ServiceRFS9);
+            //context.Services.Add(ServiceRFS10);
+            //context.Services.Add(ServiceRFS11);
+            //context.Services.Add(ServiceRFS12);
+            //context.Services.Add(ServiceRFS13);
+            //context.Services.Add(ServiceRFS14);
 
             // -------------------------DLF---------------------------------------------
 
@@ -146,6 +148,8 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Services.Add(ServiceDLF5);
             context.Services.Add(ServiceDLF6);
             context.Services.Add(ServiceDLF7);
+            context.Services.Add(ServiceDLF8);
+            context.Services.Add(ServiceDLF9);
 
 
             // -------------------------STA---------------------------------------------
@@ -170,39 +174,39 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------NSG---------------------------------------------
 
-            Service ServiceNSG1 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
-            Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
-            Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
-            Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
-            Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType5 };
-            Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
-            Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
+            //Service ServiceNSG1 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
+            //Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
+            //Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
+            //Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
+            //Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType5 };
+            //Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
+            //Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
 
-            context.Services.Add(ServiceNSG1);
-            context.Services.Add(ServiceNSG2);
-            context.Services.Add(ServiceNSG3);
-            context.Services.Add(ServiceNSG4);
-            context.Services.Add(ServiceNSG5);
-            context.Services.Add(ServiceNSG6);
-            context.Services.Add(ServiceNSG7);
+            //context.Services.Add(ServiceNSG1);
+            //context.Services.Add(ServiceNSG2);
+            //context.Services.Add(ServiceNSG3);
+            //context.Services.Add(ServiceNSG4);
+            //context.Services.Add(ServiceNSG5);
+            //context.Services.Add(ServiceNSG6);
+            //context.Services.Add(ServiceNSG7);
 
             // -------------------------LQN---------------------------------------------
 
-            Service ServiceLQN1 = new Service() { Site = siteLQN, ServiceType = ServiceType1 };
-            Service ServiceLQN2 = new Service() { Site = siteLQN, ServiceType = ServiceType2 };
-            Service ServiceLQN3 = new Service() { Site = siteLQN, ServiceType = ServiceType3 };
-            Service ServiceLQN4 = new Service() { Site = siteLQN, ServiceType = ServiceType4 };
-            Service ServiceLQN5 = new Service() { Site = siteLQN, ServiceType = ServiceType5 };
-            Service ServiceLQN6 = new Service() { Site = siteLQN, ServiceType = ServiceType6 };
-            Service ServiceLQN7 = new Service() { Site = siteLQN, ServiceType = ServiceType7 };
+            //Service ServiceLQN1 = new Service() { Site = siteLQN, ServiceType = ServiceType1 };
+            //Service ServiceLQN2 = new Service() { Site = siteLQN, ServiceType = ServiceType2 };
+            //Service ServiceLQN3 = new Service() { Site = siteLQN, ServiceType = ServiceType3 };
+            //Service ServiceLQN4 = new Service() { Site = siteLQN, ServiceType = ServiceType4 };
+            //Service ServiceLQN5 = new Service() { Site = siteLQN, ServiceType = ServiceType5 };
+            //Service ServiceLQN6 = new Service() { Site = siteLQN, ServiceType = ServiceType6 };
+            //Service ServiceLQN7 = new Service() { Site = siteLQN, ServiceType = ServiceType7 };
 
-            context.Services.Add(ServiceLQN1);
-            context.Services.Add(ServiceLQN2);
-            context.Services.Add(ServiceLQN3);
-            context.Services.Add(ServiceLQN4);
-            context.Services.Add(ServiceLQN5);
-            context.Services.Add(ServiceLQN6);
-            context.Services.Add(ServiceLQN7);
+            //context.Services.Add(ServiceLQN1);
+            //context.Services.Add(ServiceLQN2);
+            //context.Services.Add(ServiceLQN3);
+            //context.Services.Add(ServiceLQN4);
+            //context.Services.Add(ServiceLQN5);
+            //context.Services.Add(ServiceLQN6);
+            //context.Services.Add(ServiceLQN7);
 
 
 
@@ -241,18 +245,18 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------RFS---------------------------------------------
 
-            Zone ZoneRFS1 = new Zone() { Site = siteRFS, ZoneType = ZoneType1 };
-            Zone ZoneRFS2 = new Zone() { Site = siteRFS, ZoneType = ZoneType8 };
-            Zone ZoneRFS3 = new Zone() { Site = siteRFS, ZoneType = ZoneType9 };
-            Zone ZoneRFS4 = new Zone() { Site = siteRFS, ZoneType = ZoneType10 };
-            Zone ZoneRFS5 = new Zone() { Site = siteRFS, ZoneType = ZoneType11 };
+            //Zone ZoneRFS1 = new Zone() { Site = siteRFS, ZoneType = ZoneType1 };
+            //Zone ZoneRFS8 = new Zone() { Site = siteRFS, ZoneType = ZoneType8 };
+            //Zone ZoneRFS9 = new Zone() { Site = siteRFS, ZoneType = ZoneType9 };
+            //Zone ZoneRFS10 = new Zone() { Site = siteRFS, ZoneType = ZoneType10 };
+            //Zone ZoneRFS11 = new Zone() { Site = siteRFS, ZoneType = ZoneType11 };
 
 
-            context.Zones.Add(ZoneRFS1);
-            context.Zones.Add(ZoneRFS2);
-            context.Zones.Add(ZoneRFS3);
-            context.Zones.Add(ZoneRFS4);
-            context.Zones.Add(ZoneRFS5);
+            //context.Zones.Add(ZoneRFS1);
+            //context.Zones.Add(ZoneRFS8);
+            //context.Zones.Add(ZoneRFS9);
+            //context.Zones.Add(ZoneRFS10);
+            //context.Zones.Add(ZoneRFS11);
 
 
             // -------------------------DLF---------------------------------------------
@@ -288,9 +292,9 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Zone ZoneSTA6 = new Zone() { Site = siteSTA, ZoneType = ZoneType6 };
             Zone ZoneSTA7 = new Zone() { Site = siteSTA, ZoneType = ZoneType7 };
             Zone ZoneSTA8 = new Zone() { Site = siteSTA, ZoneType = ZoneType8 };
-            Zone ZoneSTA9 = new Zone() { Site = siteSTA, ZoneType = ZoneType11 };
-            Zone ZoneSTA10 = new Zone() { Site = siteSTA, ZoneType = ZoneType12 };
-            Zone ZoneSTA11 = new Zone() { Site = siteSTA, ZoneType = ZoneType13 };
+            Zone ZoneSTA11 = new Zone() { Site = siteSTA, ZoneType = ZoneType11 };
+            Zone ZoneSTA12 = new Zone() { Site = siteSTA, ZoneType = ZoneType12 };
+            Zone ZoneSTA13 = new Zone() { Site = siteSTA, ZoneType = ZoneType13 };
 
             context.Zones.Add(ZoneSTA1);
             context.Zones.Add(ZoneSTA2);
@@ -300,1292 +304,648 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Zones.Add(ZoneSTA6);
             context.Zones.Add(ZoneSTA7);
             context.Zones.Add(ZoneSTA8);
-            context.Zones.Add(ZoneSTA9);
+            context.Zones.Add(ZoneSTA11);
+            context.Zones.Add(ZoneSTA12);
+            context.Zones.Add(ZoneSTA13);
 
             // -------------------------NSG---------------------------------------------
-            Zone ZoneNSG1 = new Zone() { Site = siteNSG, ZoneType = ZoneType1 };
-            Zone ZoneNSG2 = new Zone() { Site = siteNSG, ZoneType = ZoneType2 };
-            Zone ZoneNSG3 = new Zone() { Site = siteNSG, ZoneType = ZoneType3 };
-            Zone ZoneNSG4 = new Zone() { Site = siteNSG, ZoneType = ZoneType4 };
-            Zone ZoneNSG5 = new Zone() { Site = siteNSG, ZoneType = ZoneType5 };
-            Zone ZoneNSG6 = new Zone() { Site = siteNSG, ZoneType = ZoneType6 };
-            Zone ZoneNSG7 = new Zone() { Site = siteNSG, ZoneType = ZoneType7 };
-            Zone ZoneNSG8 = new Zone() { Site = siteNSG, ZoneType = ZoneType8 };
-            Zone ZoneNSG9 = new Zone() { Site = siteNSG, ZoneType = ZoneType11 };
+            //Zone ZoneNSG1 = new Zone() { Site = siteNSG, ZoneType = ZoneType1 };
+            //Zone ZoneNSG2 = new Zone() { Site = siteNSG, ZoneType = ZoneType2 };
+            //Zone ZoneNSG3 = new Zone() { Site = siteNSG, ZoneType = ZoneType3 };
+            //Zone ZoneNSG4 = new Zone() { Site = siteNSG, ZoneType = ZoneType4 };
+            //Zone ZoneNSG5 = new Zone() { Site = siteNSG, ZoneType = ZoneType5 };
+            //Zone ZoneNSG6 = new Zone() { Site = siteNSG, ZoneType = ZoneType6 };
+            //Zone ZoneNSG7 = new Zone() { Site = siteNSG, ZoneType = ZoneType7 };
+            //Zone ZoneNSG8 = new Zone() { Site = siteNSG, ZoneType = ZoneType8 };
+            //Zone ZoneNSG11 = new Zone() { Site = siteNSG, ZoneType = ZoneType11 };
 
-            context.Zones.Add(ZoneNSG1);
-            context.Zones.Add(ZoneNSG2);
-            context.Zones.Add(ZoneNSG3);
-            context.Zones.Add(ZoneNSG4);
-            context.Zones.Add(ZoneNSG5);
-            context.Zones.Add(ZoneNSG6);
-            context.Zones.Add(ZoneNSG7);
-            context.Zones.Add(ZoneNSG8);
-            context.Zones.Add(ZoneNSG9);
+            //context.Zones.Add(ZoneNSG1);
+            //context.Zones.Add(ZoneNSG2);
+            //context.Zones.Add(ZoneNSG3);
+            //context.Zones.Add(ZoneNSG4);
+            //context.Zones.Add(ZoneNSG5);
+            //context.Zones.Add(ZoneNSG6);
+            //context.Zones.Add(ZoneNSG7);
+            //context.Zones.Add(ZoneNSG8);
+            //context.Zones.Add(ZoneNSG11);
 
             // -------------------------LQN---------------------------------------------
-            Zone ZoneLQN1 = new Zone() { Site = siteLQN, ZoneType = ZoneType1 };
-            Zone ZoneLQN2 = new Zone() { Site = siteLQN, ZoneType = ZoneType2 };
-            Zone ZoneLQN3 = new Zone() { Site = siteLQN, ZoneType = ZoneType3 };
-            Zone ZoneLQN4 = new Zone() { Site = siteLQN, ZoneType = ZoneType4 };
-            Zone ZoneLQN5 = new Zone() { Site = siteLQN, ZoneType = ZoneType5 };
-            Zone ZoneLQN6 = new Zone() { Site = siteLQN, ZoneType = ZoneType6 };
-            Zone ZoneLQN7 = new Zone() { Site = siteLQN, ZoneType = ZoneType7 };
-            Zone ZoneLQN8 = new Zone() { Site = siteLQN, ZoneType = ZoneType8 };
-            Zone ZoneLQN9 = new Zone() { Site = siteLQN, ZoneType = ZoneType11 };
+            //Zone ZoneLQN1 = new Zone() { Site = siteLQN, ZoneType = ZoneType1 };
+            //Zone ZoneLQN2 = new Zone() { Site = siteLQN, ZoneType = ZoneType2 };
+            //Zone ZoneLQN3 = new Zone() { Site = siteLQN, ZoneType = ZoneType3 };
+            //Zone ZoneLQN4 = new Zone() { Site = siteLQN, ZoneType = ZoneType4 };
+            //Zone ZoneLQN5 = new Zone() { Site = siteLQN, ZoneType = ZoneType5 };
+            //Zone ZoneLQN6 = new Zone() { Site = siteLQN, ZoneType = ZoneType6 };
+            //Zone ZoneLQN7 = new Zone() { Site = siteLQN, ZoneType = ZoneType7 };
+            //Zone ZoneLQN8 = new Zone() { Site = siteLQN, ZoneType = ZoneType8 };
+            //Zone ZoneLQN11 = new Zone() { Site = siteLQN, ZoneType = ZoneType11 };
 
-            context.Zones.Add(ZoneLQN1);
-            context.Zones.Add(ZoneLQN2);
-            context.Zones.Add(ZoneLQN3);
-            context.Zones.Add(ZoneLQN4);
-            context.Zones.Add(ZoneLQN5);
-            context.Zones.Add(ZoneLQN6);
-            context.Zones.Add(ZoneLQN7);
-            context.Zones.Add(ZoneLQN8);
-            context.Zones.Add(ZoneLQN9);
+            //context.Zones.Add(ZoneLQN1);
+            //context.Zones.Add(ZoneLQN2);
+            //context.Zones.Add(ZoneLQN3);
+            //context.Zones.Add(ZoneLQN4);
+            //context.Zones.Add(ZoneLQN5);
+            //context.Zones.Add(ZoneLQN6);
+            //context.Zones.Add(ZoneLQN7);
+            //context.Zones.Add(ZoneLQN8);
+            //context.Zones.Add(ZoneLQN11);
 
             //--------------------------------------------------------------
 
             //------------------------LIEUX-----------------------------
 
             // LIEUX DLF
-            LieuType LieuType1 = new LieuType() { Nom = "Toute la zone", Rang = 1 };
-            LieuType LieuType2 = new LieuType() { Nom = "DépôtB/P", Rang = 2 };
-            LieuType LieuType3 = new LieuType() { Nom = "DépôtMP", Rang = 2 };
-            LieuType LieuType4 = new LieuType() { Nom = "Préparation / Pré-pesée", Rang = 2 };
-            LieuType LieuType5 = new LieuType() { Nom = "Zone NEP / Dépotage", Rang = 2 };
-            LieuType LieuType6 = new LieuType() { Nom = "SB 1/2", Rang = 2 };
-            LieuType LieuType7 = new LieuType() { Nom = "R 3", Rang = 2 };
-            LieuType LieuType8 = new LieuType() { Nom = "R 4", Rang = 2 };
-            LieuType LieuType9 = new LieuType() { Nom = "Etiqueteuse", Rang = 2 };
-            LieuType LieuType10 = new LieuType() { Nom = "Fardeleuse", Rang = 2 };
-            LieuType LieuType11 = new LieuType() { Nom = "BdL", Rang = 2 };
-            LieuType LieuType12 = new LieuType() { Nom = "AGV", Rang = 2 };
-            LieuType LieuType13 = new LieuType() { Nom = "Dépôt PF", Rang = 2 };
-            LieuType LieuType14 = new LieuType() { Nom = "Energies", Rang = 2 };
-            LieuType LieuType15 = new LieuType() { Nom = "Travaux", Rang = 2 };
-            LieuType LieuType16 = new LieuType() { Nom = "Labo microbiologie", Rang = 2 };
-            LieuType LieuType17 = new LieuType() { Nom = "Zone déchets", Rang = 2 };
-            LieuType LieuType18 = new LieuType() { Nom = "Forage", Rang = 2 };
-            LieuType LieuType19 = new LieuType() { Nom = "Epandage", Rang = 2 };
-            LieuType LieuType20 = new LieuType() { Nom = "Bât. Adm", Rang = 2 };
-            LieuType LieuType21 = new LieuType() { Nom = "Bureaux", Rang = 2 };
-            LieuType LieuType22 = new LieuType() { Nom = "Laboratoire", Rang = 2 };
-            LieuType LieuType23 = new LieuType() { Nom = "Accueil", Rang = 2 };
-            LieuType LieuType24 = new LieuType() { Nom = "Salle Serveurs", Rang = 2 };
-            LieuType LieuType25 = new LieuType() { Nom = "Réfectoire", Rang = 2 };
-            LieuType LieuType26 = new LieuType() { Nom = "Vestiaires", Rang = 2 };
-            LieuType LieuType27 = new LieuType() { Nom = "Autre", Rang = 100 };
+
+            Lieu Lieu1_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF1 };
+            Lieu Lieu1_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF1 };
+
+            Lieu Lieu2_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF2 };
+            Lieu Lieu2_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF2 };
+
+            Lieu Lieu1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF5 };
+            Lieu Lieu2 = new Lieu() { Nom = "DépôtB/P", Rang = 2, Zone = ZoneDLF5 };
+            Lieu Lieu3 = new Lieu() { Nom = "DépôtMP", Rang = 2, Zone = ZoneDLF5 };
+            Lieu Lieu13 = new Lieu() { Nom = "Dépôt PF", Rang = 2, Zone = ZoneDLF5 };
+            Lieu Lieu3_1 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF5 };
+
+            Lieu Lieu4_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF3 };
+            Lieu Lieu4 = new Lieu() { Nom = "Préparation / Pré-pesée", Rang = 2, Zone = ZoneDLF3 };
+            Lieu Lieu5 = new Lieu() { Nom = "Zone NEP / Dépotage", Rang = 2, Zone = ZoneDLF3 };
+            Lieu Lieu6 = new Lieu() { Nom = "SB 1/2", Rang = 2, Zone = ZoneDLF3 };
+            Lieu Lieu7 = new Lieu() { Nom = "R 3", Rang = 2, Zone = ZoneDLF3 };
+            Lieu Lieu8 = new Lieu() { Nom = "R 4", Rang = 2, Zone = ZoneDLF3 };
+            Lieu Lieu4_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF3 };
+
+            Lieu Lieu5_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF4 };
+            Lieu Lieu9 = new Lieu() { Nom = "Etiqueteuse", Rang = 2, Zone = ZoneDLF4 };
+            Lieu Lieu10 = new Lieu() { Nom = "Fardeleuse", Rang = 2, Zone = ZoneDLF4 };
+            Lieu Lieu11 = new Lieu() { Nom = "BdL", Rang = 2, Zone = ZoneDLF4 };
+            Lieu Lieu12 = new Lieu() { Nom = "AGV", Rang = 2, Zone = ZoneDLF4 };
+            Lieu Lieu5_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF4 };
+
+            Lieu Lieu6_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF6 };
+            Lieu Lieu14 = new Lieu() { Nom = "Energies", Rang = 2, Zone = ZoneDLF6 };
+            Lieu Lieu15 = new Lieu() { Nom = "Travaux", Rang = 2, Zone = ZoneDLF6 };
+            Lieu Lieu18 = new Lieu() { Nom = "Forage", Rang = 2, Zone = ZoneDLF6 };
+            Lieu Lieu6_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF6 };
+
+            Lieu Lieu7_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF7 };
+            Lieu Lieu16 = new Lieu() { Nom = "Labo microbiologie", Rang = 2, Zone = ZoneDLF7 };
+            Lieu Lieu7_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF7 };
+
+            Lieu Lieu8_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF8 };
+            Lieu Lieu17 = new Lieu() { Nom = "Zone déchets", Rang = 2, Zone = ZoneDLF8 };
+            Lieu Lieu19 = new Lieu() { Nom = "Epandage", Rang = 2, Zone = ZoneDLF8 };
+            Lieu Lieu8_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF8 };
+
+            Lieu Lieu9_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneDLF11 };
+            Lieu Lieu20 = new Lieu() { Nom = "Bât. Adm", Rang = 2, Zone = ZoneDLF11 };
+            Lieu Lieu9_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneDLF11 };
+
+            //LIEUX RFS
+            //Lieu Lieu10_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneRFS9 };
+            //Lieu Lieu21 = new Lieu() { Nom = "Bureaux", Rang = 2, Zone = ZoneRFS9 };
+            //Lieu Lieu22 = new Lieu() { Nom = "Laboratoire", Rang = 2, Zone = ZoneRFS9 };
+            //Lieu Lieu10_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneRFS9 };
+
+            //Lieu Lieu11_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneRFS10 };
+            //Lieu Lieu23 = new Lieu() { Nom = "Accueil", Rang = 2, Zone = ZoneRFS10 };
+            //Lieu Lieu24 = new Lieu() { Nom = "Salle Serveurs", Rang = 2, Zone = ZoneRFS10 };
+            //Lieu Lieu25 = new Lieu() { Nom = "Réfectoire", Rang = 2, Zone = ZoneRFS10 };
+            //Lieu Lieu26 = new Lieu() { Nom = "Vestiaires", Rang = 2, Zone = ZoneRFS10 };
+            //Lieu Lieu11_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneRFS10 };
 
             //LIEUX STA
-            LieuType LieuType28 = new LieuType() { Nom = "Bureaux, salles de réunion et parties communes (vestiaires, salles de pause, …)", Rang = 2 };
-            LieuType LieuType29 = new LieuType() { Nom = "Soufflage L2, L3 et L4", Rang = 2 };
-            LieuType LieuType30 = new LieuType() { Nom = "Soutirage / Pasteurisation Ligne 1", Rang = 2 };
-            LieuType LieuType31 = new LieuType() { Nom = "Barquetteuse L1", Rang = 2 };
-            LieuType LieuType32 = new LieuType() { Nom = "Banderolleuses / Palettiseur L1, L2, L3 et L4", Rang = 2 };
-            LieuType LieuType33 = new LieuType() { Nom = "Dépalettiseur L1", Rang = 2 };
-            LieuType LieuType34 = new LieuType() { Nom = "Soutirage L2 et L4", Rang = 2 };
-            LieuType LieuType35 = new LieuType() { Nom = "Soutirage L3", Rang = 2 };
-            LieuType LieuType36 = new LieuType() { Nom = "Etiqueteuse L2, L3, L4 et L5", Rang = 2 };
-            LieuType LieuType37 = new LieuType() { Nom = "Fardeleuse (toutes lignes) (1,2,3,4,5)", Rang = 2 };
-            LieuType LieuType38 = new LieuType() { Nom = "Combi L5", Rang = 2 };
-            LieuType LieuType39 = new LieuType() { Nom = "Banderolleuse / Palettiseur L5", Rang = 2 };
-            LieuType LieuType40 = new LieuType() { Nom = "Fonds de lignes (AGV)", Rang = 2 };
-            LieuType LieuType41 = new LieuType() { Nom = "Repacking", Rang = 2 };
-            LieuType LieuType42 = new LieuType() { Nom = "Labo physico", Rang = 2 };
-            // LABO MICROBIO LieuType LieuType26 = new LieuType() { Nom = "Banderolleuses / Palettiseur L1, L2, L3 et L4", Rang = 2 };
-            LieuType LieuType43 = new LieuType() { Nom = "Stockage Ingrédients (ambiant et frigorifique)", Rang = 2 };
-            LieuType LieuType44 = new LieuType() { Nom = "Atelier préparation", Rang = 2 };
-            LieuType LieuType45 = new LieuType() { Nom = "Dépotage citernes", Rang = 2 };
-            LieuType LieuType46 = new LieuType() { Nom = "Eau Minérale, Eau de Source et Eau process (captages, forages  et traitements)", Rang = 2 };
-            LieuType LieuType47 = new LieuType() { Nom = "Cuves extérieures : CO2, N2, EdS, EM", Rang = 2 };
-            LieuType LieuType48 = new LieuType() { Nom = "Stations NEP et stations chimiques", Rang = 2 };
-            LieuType LieuType49 = new LieuType() { Nom = "Stockage PC", Rang = 2 };
-            LieuType LieuType50 = new LieuType() { Nom = "Zone déchets dont local DID", Rang = 2 };
-            LieuType LieuType51 = new LieuType() { Nom = "Station de neutralisation + Bassin Orage", Rang = 2 };
-            LieuType LieuType52 = new LieuType() { Nom = "Chaufferie", Rang = 2 };
-            LieuType LieuType53 = new LieuType() { Nom = "Locaux électriques (TGBT)", Rang = 2 };
-            LieuType LieuType54 = new LieuType() { Nom = "DLUOthèque", Rang = 2 };
-            LieuType LieuType55 = new LieuType() { Nom = "Local compresseurs", Rang = 2 };
-            LieuType LieuType56 = new LieuType() { Nom = "Dépôt 1 : Quais, stockage MP, blocage , essais, destruction", Rang = 2 };
-            LieuType LieuType57 = new LieuType() { Nom = "Dépôt 2 : quais et stockage", Rang = 2 };
-            LieuType LieuType58 = new LieuType() { Nom = "TK et magasin TK", Rang = 2 };
-            LieuType LieuType59 = new LieuType() { Nom = "Gpes froids", Rang = 2 };
-            LieuType LieuType60 = new LieuType() { Nom = "Eaux Pluviales", Rang = 2 };
-            LieuType LieuType61 = new LieuType() { Nom = "TAR", Rang = 2 };
-            LieuType LieuType62 = new LieuType() { Nom = "Parking VL et PL", Rang = 2 };
-            LieuType LieuType63 = new LieuType() { Nom = "Stockage palettes vides", Rang = 2 };
-            LieuType LieuType64 = new LieuType() { Nom = "Cuve et station GPL", Rang = 2 };
-            LieuType LieuType65 = new LieuType() { Nom = "Sprinklage TK  : cuves de stockage, local et installations", Rang = 2 };
-            LieuType LieuType66 = new LieuType() { Nom = "Atelier maintenance et magasin", Rang = 2 };
-            LieuType LieuType67 = new LieuType() { Nom = "Salle de charge", Rang = 2 };
-
-
-
-
-            context.LieuTypes.Add(LieuType1);
-            context.LieuTypes.Add(LieuType2);
-            context.LieuTypes.Add(LieuType3);
-            context.LieuTypes.Add(LieuType4);
-            context.LieuTypes.Add(LieuType5);
-            context.LieuTypes.Add(LieuType6);
-            context.LieuTypes.Add(LieuType7);
-            context.LieuTypes.Add(LieuType8);
-            context.LieuTypes.Add(LieuType9);
-            context.LieuTypes.Add(LieuType10);
-            context.LieuTypes.Add(LieuType11);
-            context.LieuTypes.Add(LieuType12);
-            context.LieuTypes.Add(LieuType13);
-            context.LieuTypes.Add(LieuType14);
-            context.LieuTypes.Add(LieuType15);
-            context.LieuTypes.Add(LieuType16);
-            context.LieuTypes.Add(LieuType17);
-            context.LieuTypes.Add(LieuType18);
-            context.LieuTypes.Add(LieuType19);
-            context.LieuTypes.Add(LieuType20);
-            context.LieuTypes.Add(LieuType22);
-            context.LieuTypes.Add(LieuType23);
-            context.LieuTypes.Add(LieuType24);
-            context.LieuTypes.Add(LieuType25);
-            context.LieuTypes.Add(LieuType26);
-            context.LieuTypes.Add(LieuType27);
-
-
-            //------------------AJOUT DES LIEUX POUR CHAQUE ZONE----------------------------
-
-            // -------------------------RFS---------------------------------------------
-
-            Lieu LieuRFSZone3_1 = new Lieu() { Zone = ZoneRFS3, LieuType = LieuType1 };
-            Lieu LieuRFSZone3_2 = new Lieu() { Zone = ZoneRFS3, LieuType = LieuType21 };
-            Lieu LieuRFSZone3_3 = new Lieu() { Zone = ZoneRFS3, LieuType = LieuType22 };
-            Lieu LieuRFSZone3_4 = new Lieu() { Zone = ZoneRFS3, LieuType = LieuType27 };
-
-            Lieu LieuRFSZone4_1 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType1 };
-            Lieu LieuRFSZone4_2 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType21 };
-            Lieu LieuRFSZone4_3 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType23 };
-            Lieu LieuRFSZone4_4 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType24 };
-            Lieu LieuRFSZone4_5 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType25 };
-            Lieu LieuRFSZone4_6 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType26 };
-            Lieu LieuRFSZone4_7 = new Lieu() { Zone = ZoneRFS4, LieuType = LieuType27 };
-
-            context.Lieux.Add(LieuRFSZone3_1);
-            context.Lieux.Add(LieuRFSZone3_2);
-            context.Lieux.Add(LieuRFSZone3_3);
-            context.Lieux.Add(LieuRFSZone3_4);
-
-            context.Lieux.Add(LieuRFSZone4_1);
-            context.Lieux.Add(LieuRFSZone4_2);
-            context.Lieux.Add(LieuRFSZone4_3);
-            context.Lieux.Add(LieuRFSZone4_4);
-            context.Lieux.Add(LieuRFSZone4_5);
-            context.Lieux.Add(LieuRFSZone4_6);
-            context.Lieux.Add(LieuRFSZone4_7);
-
-
-            // -------------------------DLF---------------------------------------------
-
-            Lieu LieuDLFZone1_1 = new Lieu() { Zone = ZoneDLF1, LieuType = LieuType1 };
-            Lieu LieuDLFZone1_2 = new Lieu() { Zone = ZoneDLF1, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone2_1 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType1 };
-            Lieu LieuDLFZone2_2 = new Lieu() { Zone = ZoneDLF2, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone3_0 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType1 };
-            Lieu LieuDLFZone3_1 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType4 };
-            Lieu LieuDLFZone3_2 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType5 };
-            Lieu LieuDLFZone3_3 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType6 };
-            Lieu LieuDLFZone3_4 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType7 };
-            Lieu LieuDLFZone3_5 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType8 };
-            Lieu LieuDLFZone3_6 = new Lieu() { Zone = ZoneDLF3, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone4_0 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType1 };
-            Lieu LieuDLFZone4_1 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType9 };
-            Lieu LieuDLFZone4_2 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType10 };
-            Lieu LieuDLFZone4_3 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType11 };
-            Lieu LieuDLFZone4_4 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType12 };
-            Lieu LieuDLFZone4_5 = new Lieu() { Zone = ZoneDLF4, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone5_0 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType1 };
-            Lieu LieuDLFZone5_1 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType2 };
-            Lieu LieuDLFZone5_2 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType3 };
-            Lieu LieuDLFZone5_3 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType13 };
-            Lieu LieuDLFZone5_4 = new Lieu() { Zone = ZoneDLF5, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone6_0 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType1 };
-            Lieu LieuDLFZone6_1 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType14 };
-            Lieu LieuDLFZone6_2 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType15 };
-            Lieu LieuDLFZone6_3 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType18 };
-            Lieu LieuDLFZone6_4 = new Lieu() { Zone = ZoneDLF6, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone7_0 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType1 };
-            Lieu LieuDLFZone7_1 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType16 };
-            Lieu LieuDLFZone7_2 = new Lieu() { Zone = ZoneDLF7, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone8_0 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType1 };
-            Lieu LieuDLFZone8_1 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType17 };
-            Lieu LieuDLFZone8_2 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType19 };
-            Lieu LieuDLFZone8_3 = new Lieu() { Zone = ZoneDLF8, LieuType = LieuType27 };
-
-            Lieu LieuDLFZone9_0 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType1 };
-            Lieu LieuDLFZone9_1 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType20 };
-            Lieu LieuDLFZone9_2 = new Lieu() { Zone = ZoneDLF11, LieuType = LieuType27 };
-
-
-            context.Lieux.Add(LieuDLFZone2_1);
-            context.Lieux.Add(LieuDLFZone2_2);
-
-            context.Lieux.Add(LieuDLFZone3_0);
-            context.Lieux.Add(LieuDLFZone3_1);
-            context.Lieux.Add(LieuDLFZone3_2);
-            context.Lieux.Add(LieuDLFZone3_3);
-            context.Lieux.Add(LieuDLFZone3_4);
-            context.Lieux.Add(LieuDLFZone3_5);
-            context.Lieux.Add(LieuDLFZone3_6);
-
-            context.Lieux.Add(LieuDLFZone4_0);
-            context.Lieux.Add(LieuDLFZone4_1);
-            context.Lieux.Add(LieuDLFZone4_2);
-            context.Lieux.Add(LieuDLFZone4_3);
-            context.Lieux.Add(LieuDLFZone4_4);
-            context.Lieux.Add(LieuDLFZone4_5);
-
-            context.Lieux.Add(LieuDLFZone5_0);
-            context.Lieux.Add(LieuDLFZone5_1);
-            context.Lieux.Add(LieuDLFZone5_2);
-            context.Lieux.Add(LieuDLFZone5_3);
-            context.Lieux.Add(LieuDLFZone5_4);
-
-            context.Lieux.Add(LieuDLFZone6_0);
-            context.Lieux.Add(LieuDLFZone6_1);
-            context.Lieux.Add(LieuDLFZone6_2);
-            context.Lieux.Add(LieuDLFZone6_3);
-            context.Lieux.Add(LieuDLFZone6_4);
-
-            context.Lieux.Add(LieuDLFZone7_0);
-            context.Lieux.Add(LieuDLFZone7_1);
-            context.Lieux.Add(LieuDLFZone7_2);
-
-            context.Lieux.Add(LieuDLFZone8_0);
-            context.Lieux.Add(LieuDLFZone8_1);
-            context.Lieux.Add(LieuDLFZone8_2);
-            context.Lieux.Add(LieuDLFZone8_3);
-
-            context.Lieux.Add(LieuDLFZone9_0);
-            context.Lieux.Add(LieuDLFZone9_1);
-            context.Lieux.Add(LieuDLFZone9_2);
-
-
-            // -------------------------STA---------------------------------------------
-
-            Lieu LieuSTAZone1_1 = new Lieu() { Zone = ZoneSTA1, LieuType = LieuType1 };
-            Lieu LieuSTAZone1_2 = new Lieu() { Zone = ZoneSTA1, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone2_1 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType1 };
-            Lieu LieuSTAZone2_2 = new Lieu() { Zone = ZoneSTA2, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone3_0 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType1 };
-            Lieu LieuSTAZone3_1 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType4 };
-            Lieu LieuSTAZone3_2 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType5 };
-            Lieu LieuSTAZone3_3 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType6 };
-            Lieu LieuSTAZone3_4 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType7 };
-            Lieu LieuSTAZone3_5 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType8 };
-            Lieu LieuSTAZone3_6 = new Lieu() { Zone = ZoneSTA3, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone4_0 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType1 };
-            Lieu LieuSTAZone4_1 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType9 };
-            Lieu LieuSTAZone4_2 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType10 };
-            Lieu LieuSTAZone4_3 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType11 };
-            Lieu LieuSTAZone4_4 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType12 };
-            Lieu LieuSTAZone4_5 = new Lieu() { Zone = ZoneSTA4, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone5_0 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType1 };
-            Lieu LieuSTAZone5_1 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType2 };
-            Lieu LieuSTAZone5_2 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType3 };
-            Lieu LieuSTAZone5_3 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType13 };
-            Lieu LieuSTAZone5_4 = new Lieu() { Zone = ZoneSTA5, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone6_0 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType1 };
-            Lieu LieuSTAZone6_1 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType14 };
-            Lieu LieuSTAZone6_2 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType15 };
-            Lieu LieuSTAZone6_3 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType18 };
-            Lieu LieuSTAZone6_4 = new Lieu() { Zone = ZoneSTA6, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone7_0 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType1 };
-            Lieu LieuSTAZone7_1 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType16 };
-            Lieu LieuSTAZone7_2 = new Lieu() { Zone = ZoneSTA7, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone8_0 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType1 };
-            Lieu LieuSTAZone8_1 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType17 };
-            Lieu LieuSTAZone8_2 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType19 };
-            Lieu LieuSTAZone8_3 = new Lieu() { Zone = ZoneSTA8, LieuType = LieuType27 };
-
-            Lieu LieuSTAZone9_0 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType1 };
-            Lieu LieuSTAZone9_1 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType20 };
-            Lieu LieuSTAZone9_2 = new Lieu() { Zone = ZoneSTA9, LieuType = LieuType27 };
-
-            context.Lieux.Add(LieuSTAZone2_1);
-            context.Lieux.Add(LieuSTAZone2_2);
-
-            context.Lieux.Add(LieuSTAZone3_0);
-            context.Lieux.Add(LieuSTAZone3_1);
-            context.Lieux.Add(LieuSTAZone3_2);
-            context.Lieux.Add(LieuSTAZone3_3);
-            context.Lieux.Add(LieuSTAZone3_4);
-            context.Lieux.Add(LieuSTAZone3_5);
-            context.Lieux.Add(LieuSTAZone3_6);
-
-            context.Lieux.Add(LieuSTAZone4_0);
-            context.Lieux.Add(LieuSTAZone4_1);
-            context.Lieux.Add(LieuSTAZone4_2);
-            context.Lieux.Add(LieuSTAZone4_3);
-            context.Lieux.Add(LieuSTAZone4_4);
-            context.Lieux.Add(LieuSTAZone4_5);
-
-            context.Lieux.Add(LieuSTAZone5_0);
-            context.Lieux.Add(LieuSTAZone5_1);
-            context.Lieux.Add(LieuSTAZone5_2);
-            context.Lieux.Add(LieuSTAZone5_3);
-            context.Lieux.Add(LieuSTAZone5_4);
-
-            context.Lieux.Add(LieuSTAZone6_0);
-            context.Lieux.Add(LieuSTAZone6_1);
-            context.Lieux.Add(LieuSTAZone6_2);
-            context.Lieux.Add(LieuSTAZone6_3);
-            context.Lieux.Add(LieuSTAZone6_4);
-
-            context.Lieux.Add(LieuSTAZone7_0);
-            context.Lieux.Add(LieuSTAZone7_1);
-            context.Lieux.Add(LieuSTAZone7_2);
-
-            context.Lieux.Add(LieuSTAZone8_0);
-            context.Lieux.Add(LieuSTAZone8_1);
-            context.Lieux.Add(LieuSTAZone8_2);
-            context.Lieux.Add(LieuSTAZone8_3);
-
-            context.Lieux.Add(LieuSTAZone9_0);
-            context.Lieux.Add(LieuSTAZone9_1);
-            context.Lieux.Add(LieuSTAZone9_2);
-
-            // -------------------------NSG---------------------------------------------
-
-            Lieu LieuNSGZone2_1 = new Lieu() { Zone = ZoneNSG2, LieuType = LieuType1 };
-            Lieu LieuNSGZone2_2 = new Lieu() { Zone = ZoneNSG2, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone3_0 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType1 };
-            Lieu LieuNSGZone3_1 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType4 };
-            Lieu LieuNSGZone3_2 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType5 };
-            Lieu LieuNSGZone3_3 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType6 };
-            Lieu LieuNSGZone3_4 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType7 };
-            Lieu LieuNSGZone3_5 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType8 };
-            Lieu LieuNSGZone3_6 = new Lieu() { Zone = ZoneNSG3, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone4_0 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType1 };
-            Lieu LieuNSGZone4_1 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType9 };
-            Lieu LieuNSGZone4_2 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType10 };
-            Lieu LieuNSGZone4_3 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType11 };
-            Lieu LieuNSGZone4_4 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType12 };
-            Lieu LieuNSGZone4_5 = new Lieu() { Zone = ZoneNSG4, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone5_0 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType1 };
-            Lieu LieuNSGZone5_1 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType2 };
-            Lieu LieuNSGZone5_2 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType3 };
-            Lieu LieuNSGZone5_3 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType13 };
-            Lieu LieuNSGZone5_4 = new Lieu() { Zone = ZoneNSG5, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone6_0 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType1 };
-            Lieu LieuNSGZone6_1 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType14 };
-            Lieu LieuNSGZone6_2 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType15 };
-            Lieu LieuNSGZone6_3 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType18 };
-            Lieu LieuNSGZone6_4 = new Lieu() { Zone = ZoneNSG6, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone7_0 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType1 };
-            Lieu LieuNSGZone7_1 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType16 };
-            Lieu LieuNSGZone7_2 = new Lieu() { Zone = ZoneNSG7, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone8_0 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType1 };
-            Lieu LieuNSGZone8_1 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType17 };
-            Lieu LieuNSGZone8_2 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType19 };
-            Lieu LieuNSGZone8_3 = new Lieu() { Zone = ZoneNSG8, LieuType = LieuType27 };
-
-            Lieu LieuNSGZone9_0 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType1 };
-            Lieu LieuNSGZone9_1 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType20 };
-            Lieu LieuNSGZone9_2 = new Lieu() { Zone = ZoneNSG9, LieuType = LieuType27 };
-
-            context.Lieux.Add(LieuNSGZone2_1);
-            context.Lieux.Add(LieuNSGZone2_2);
-
-            context.Lieux.Add(LieuNSGZone3_0);
-            context.Lieux.Add(LieuNSGZone3_1);
-            context.Lieux.Add(LieuNSGZone3_2);
-            context.Lieux.Add(LieuNSGZone3_3);
-            context.Lieux.Add(LieuNSGZone3_4);
-            context.Lieux.Add(LieuNSGZone3_5);
-            context.Lieux.Add(LieuNSGZone3_6);
-
-            context.Lieux.Add(LieuNSGZone4_0);
-            context.Lieux.Add(LieuNSGZone4_1);
-            context.Lieux.Add(LieuNSGZone4_2);
-            context.Lieux.Add(LieuNSGZone4_3);
-            context.Lieux.Add(LieuNSGZone4_4);
-            context.Lieux.Add(LieuNSGZone4_5);
-
-            context.Lieux.Add(LieuNSGZone5_0);
-            context.Lieux.Add(LieuNSGZone5_1);
-            context.Lieux.Add(LieuNSGZone5_2);
-            context.Lieux.Add(LieuNSGZone5_3);
-            context.Lieux.Add(LieuNSGZone5_4);
-
-            context.Lieux.Add(LieuNSGZone6_0);
-            context.Lieux.Add(LieuNSGZone6_1);
-            context.Lieux.Add(LieuNSGZone6_2);
-            context.Lieux.Add(LieuNSGZone6_3);
-            context.Lieux.Add(LieuNSGZone6_4);
-
-            context.Lieux.Add(LieuNSGZone7_0);
-            context.Lieux.Add(LieuNSGZone7_1);
-            context.Lieux.Add(LieuNSGZone7_2);
-
-            context.Lieux.Add(LieuNSGZone8_0);
-            context.Lieux.Add(LieuNSGZone8_1);
-            context.Lieux.Add(LieuNSGZone8_2);
-            context.Lieux.Add(LieuNSGZone8_3);
-
-            context.Lieux.Add(LieuNSGZone9_0);
-            context.Lieux.Add(LieuNSGZone9_1);
-            context.Lieux.Add(LieuNSGZone9_2);
-
-            // -------------------------LQN---------------------------------------------
-
-            Lieu LieuLQNZone2_1 = new Lieu() { Zone = ZoneLQN2, LieuType = LieuType1 };
-            Lieu LieuLQNZone2_2 = new Lieu() { Zone = ZoneLQN2, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone3_0 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType1 };
-            Lieu LieuLQNZone3_1 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType4 };
-            Lieu LieuLQNZone3_2 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType5 };
-            Lieu LieuLQNZone3_3 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType6 };
-            Lieu LieuLQNZone3_4 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType7 };
-            Lieu LieuLQNZone3_5 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType8 };
-            Lieu LieuLQNZone3_6 = new Lieu() { Zone = ZoneLQN3, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone4_0 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType1 };
-            Lieu LieuLQNZone4_1 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType9 };
-            Lieu LieuLQNZone4_2 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType10 };
-            Lieu LieuLQNZone4_3 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType11 };
-            Lieu LieuLQNZone4_4 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType12 };
-            Lieu LieuLQNZone4_5 = new Lieu() { Zone = ZoneLQN4, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone5_0 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType1 };
-            Lieu LieuLQNZone5_1 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType2 };
-            Lieu LieuLQNZone5_2 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType3 };
-            Lieu LieuLQNZone5_3 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType13 };
-            Lieu LieuLQNZone5_4 = new Lieu() { Zone = ZoneLQN5, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone6_0 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType1 };
-            Lieu LieuLQNZone6_1 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType14 };
-            Lieu LieuLQNZone6_2 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType15 };
-            Lieu LieuLQNZone6_3 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType18 };
-            Lieu LieuLQNZone6_4 = new Lieu() { Zone = ZoneLQN6, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone7_0 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType1 };
-            Lieu LieuLQNZone7_1 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType16 };
-            Lieu LieuLQNZone7_2 = new Lieu() { Zone = ZoneLQN7, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone8_0 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType1 };
-            Lieu LieuLQNZone8_1 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType17 };
-            Lieu LieuLQNZone8_2 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType19 };
-            Lieu LieuLQNZone8_3 = new Lieu() { Zone = ZoneLQN8, LieuType = LieuType27 };
-
-            Lieu LieuLQNZone9_0 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType1 };
-            Lieu LieuLQNZone9_1 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType20 };
-            Lieu LieuLQNZone9_2 = new Lieu() { Zone = ZoneLQN9, LieuType = LieuType27 };
-
-            context.Lieux.Add(LieuLQNZone2_1);
-            context.Lieux.Add(LieuLQNZone2_2);
-
-            context.Lieux.Add(LieuLQNZone3_0);
-            context.Lieux.Add(LieuLQNZone3_1);
-            context.Lieux.Add(LieuLQNZone3_2);
-            context.Lieux.Add(LieuLQNZone3_3);
-            context.Lieux.Add(LieuLQNZone3_4);
-            context.Lieux.Add(LieuLQNZone3_5);
-            context.Lieux.Add(LieuLQNZone3_6);
-
-            context.Lieux.Add(LieuLQNZone4_0);
-            context.Lieux.Add(LieuLQNZone4_1);
-            context.Lieux.Add(LieuLQNZone4_2);
-            context.Lieux.Add(LieuLQNZone4_3);
-            context.Lieux.Add(LieuLQNZone4_4);
-            context.Lieux.Add(LieuLQNZone4_5);
-
-            context.Lieux.Add(LieuLQNZone5_0);
-            context.Lieux.Add(LieuLQNZone5_1);
-            context.Lieux.Add(LieuLQNZone5_2);
-            context.Lieux.Add(LieuLQNZone5_3);
-            context.Lieux.Add(LieuLQNZone5_4);
-
-            context.Lieux.Add(LieuLQNZone6_0);
-            context.Lieux.Add(LieuLQNZone6_1);
-            context.Lieux.Add(LieuLQNZone6_2);
-            context.Lieux.Add(LieuLQNZone6_3);
-            context.Lieux.Add(LieuLQNZone6_4);
-
-            context.Lieux.Add(LieuLQNZone7_0);
-            context.Lieux.Add(LieuLQNZone7_1);
-            context.Lieux.Add(LieuLQNZone7_2);
-
-            context.Lieux.Add(LieuLQNZone8_0);
-            context.Lieux.Add(LieuLQNZone8_1);
-            context.Lieux.Add(LieuLQNZone8_2);
-            context.Lieux.Add(LieuLQNZone8_3);
-
-            context.Lieux.Add(LieuLQNZone9_0);
-            context.Lieux.Add(LieuLQNZone9_1);
-            context.Lieux.Add(LieuLQNZone9_2);
-
-
-            //------------------------POSTE DE TRAVAIL TYPES-----------------------------
-
-
-            PosteDeTravailType PosteDeTravailType0 = new PosteDeTravailType() { Nom = "Tous les postes de la zone", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType1 = new PosteDeTravailType() { Nom = "Pilote process", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType2 = new PosteDeTravailType() { Nom = "Opérateur salle blanche", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType3 = new PosteDeTravailType() { Nom = "Souffleur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType4 = new PosteDeTravailType() { Nom = "Polyvalent process", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType5 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType6 = new PosteDeTravailType() { Nom = "Pilote R3", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType7 = new PosteDeTravailType() { Nom = "Pilote R4", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType8 = new PosteDeTravailType() { Nom = "Régleur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType9 = new PosteDeTravailType() { Nom = "Etiqueteur 1, 2, 3", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType10 = new PosteDeTravailType() { Nom = "Etiqueteur 4", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType11 = new PosteDeTravailType() { Nom = "Fardeleur 1, 2, 3", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType12 = new PosteDeTravailType() { Nom = "Fardeleur 4", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType13 = new PosteDeTravailType() { Nom = "Etiqueteur 5", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType14 = new PosteDeTravailType() { Nom = "Pilote combi", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType15 = new PosteDeTravailType() { Nom = "Bout de ligne", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType16 = new PosteDeTravailType() { Nom = "Polyvalent conditionnement", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType17 = new PosteDeTravailType() { Nom = "Responsable d'équipe", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType18 = new PosteDeTravailType() { Nom = "Responsable production", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType19 = new PosteDeTravailType() { Nom = "Electroposté", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType20 = new PosteDeTravailType() { Nom = "Technicien de maintenance", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType21 = new PosteDeTravailType() { Nom = "Maitrise maintenance", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType22 = new PosteDeTravailType() { Nom = "Responsable maintenance/TN", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType23 = new PosteDeTravailType() { Nom = "Laborantin process", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType24 = new PosteDeTravailType() { Nom = "Laborantin microbio", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType25 = new PosteDeTravailType() { Nom = "Responsable labo microbio", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType26 = new PosteDeTravailType() { Nom = "Responsable qualité", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType27 = new PosteDeTravailType() { Nom = "Assistant qualité", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType55 = new PosteDeTravailType() { Nom = "Pilote prépa", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType28 = new PosteDeTravailType() { Nom = "Préparateur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType29 = new PosteDeTravailType() { Nom = "Aide préparateur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType30 = new PosteDeTravailType() { Nom = "Opérateur crusher", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType31 = new PosteDeTravailType() { Nom = "Responsable préparation", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType32 = new PosteDeTravailType() { Nom = "Technicien services généraux", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType33 = new PosteDeTravailType() { Nom = "Directeur Site", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType34 = new PosteDeTravailType() { Nom = "Personnel administratif", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType35 = new PosteDeTravailType() { Nom = "Responsable zone process", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType36 = new PosteDeTravailType() { Nom = "Responsable zone conditionnement", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType37 = new PosteDeTravailType() { Nom = "Animateur S/E", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType38 = new PosteDeTravailType() { Nom = "Agriculteur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType39 = new PosteDeTravailType() { Nom = "Chauffeur", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType40 = new PosteDeTravailType() { Nom = "CHSCT", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType41 = new PosteDeTravailType() { Nom = "Responsable RH", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType42 = new PosteDeTravailType() { Nom = "Responsable amélioration continue", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType43 = new PosteDeTravailType() { Nom = "Cariste de ligne", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType44 = new PosteDeTravailType() { Nom = "Cariste expédition", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType45 = new PosteDeTravailType() { Nom = "Magasinier MP", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType46 = new PosteDeTravailType() { Nom = "Magasinier soufflage", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType47 = new PosteDeTravailType() { Nom = "Magasinier soufflerie", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType48 = new PosteDeTravailType() { Nom = "Chef d'équipe cariste", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType49 = new PosteDeTravailType() { Nom = "Responsable d'exploitation PF", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType50 = new PosteDeTravailType() { Nom = "Responsable d'exploitation MP", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType51 = new PosteDeTravailType() { Nom = "Gestionnaire de stock", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType52 = new PosteDeTravailType() { Nom = "Hôtesse d'accueil PF", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType53 = new PosteDeTravailType() { Nom = "Responsable appro/ordo", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType54 = new PosteDeTravailType() { Nom = "Responsable supply Chain", Rang = 2 };
-            PosteDeTravailType PosteDeTravailType56 = new PosteDeTravailType() { Nom = "Autre", Rang = 100 };
-
-
-
-            context.PosteDeTravailTypes.Add(PosteDeTravailType1);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType2);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType3);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType4);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType5);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType6);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType7);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType8);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType9);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType10);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType11);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType12);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType13);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType14);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType15);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType16);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType17);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType18);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType19);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType20);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType21);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType22);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType23);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType24);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType25);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType26);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType27);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType28);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType29);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType30);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType31);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType32);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType33);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType34);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType35);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType36);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType37);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType38);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType39);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType40);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType41);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType42);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType43);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType44);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType45);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType46);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType47);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType48);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType49);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType50);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType51);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType52);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType53);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType54);
-            context.PosteDeTravailTypes.Add(PosteDeTravailType55);
-
-
-            // -------------------------RFS---------------------------------------------
-
-            PosteDeTravail PosteDeTravailRFSZone3_1 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType1 };
-            PosteDeTravail PosteDeTravailRFSZone3_2 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType2 };
-            PosteDeTravail PosteDeTravailRFSZone3_3 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType3 };
-            PosteDeTravail PosteDeTravailRFSZone3_4 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType4 };
-            PosteDeTravail PosteDeTravailRFSZone3_5 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType5 };
-            PosteDeTravail PosteDeTravailRFSZone3_6 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType6 };
-            PosteDeTravail PosteDeTravailRFSZone3_7 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType7 };
-            PosteDeTravail PosteDeTravailRFSZone3_8 = new PosteDeTravail() { Zone = ZoneRFS3, PosteDeTravailType = PosteDeTravailType8 };
-
-            PosteDeTravail PosteDeTravailRFSZone4_1 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType9 };
-            PosteDeTravail PosteDeTravailRFSZone4_2 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType10 };
-            PosteDeTravail PosteDeTravailRFSZone4_3 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType11 };
-            PosteDeTravail PosteDeTravailRFSZone4_4 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType12 };
-            PosteDeTravail PosteDeTravailRFSZone4_5 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType13 };
-            PosteDeTravail PosteDeTravailRFSZone4_6 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType14 };
-            PosteDeTravail PosteDeTravailRFSZone4_7 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType15 };
-            PosteDeTravail PosteDeTravailRFSZone4_8 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType16 };
-            PosteDeTravail PosteDeTravailRFSZone4_9 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType17 };
-            PosteDeTravail PosteDeTravailRFSZone4_10 = new PosteDeTravail() { Zone = ZoneRFS4, PosteDeTravailType = PosteDeTravailType18 };
-
-
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_1);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_2);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_3);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_4);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_5);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_6);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_7);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone3_8);
-
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_1);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_2);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_3);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_4);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_5);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_6);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_7);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_8);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_9);
-            context.PosteDeTravails.Add(PosteDeTravailRFSZone4_10);
-
-            // -------------------------DLF---------------------------------------------
-
-            PosteDeTravail PosteDeTravailDLFZone1_1 = new PosteDeTravail() { Zone = ZoneDLF1, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone1_2 = new PosteDeTravail() { Zone = ZoneDLF1, PosteDeTravailType = PosteDeTravailType56 };
-
-            PosteDeTravail PosteDeTravailDLFZone2_1 = new PosteDeTravail() { Zone = ZoneDLF2, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone2_2 = new PosteDeTravail() { Zone = ZoneDLF2, PosteDeTravailType = PosteDeTravailType56 };
-
-            PosteDeTravail PosteDeTravailDLFZone3_0 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone3_1 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType1 };
-            PosteDeTravail PosteDeTravailDLFZone3_2 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType2 };
-            PosteDeTravail PosteDeTravailDLFZone3_3 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType3 };
-            PosteDeTravail PosteDeTravailDLFZone3_4 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType4 };
-            PosteDeTravail PosteDeTravailDLFZone3_5 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType5 };
-            PosteDeTravail PosteDeTravailDLFZone3_6 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType6 };
-            PosteDeTravail PosteDeTravailDLFZone3_7 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType7 };
-            PosteDeTravail PosteDeTravailDLFZone3_8 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType8 };
-            PosteDeTravail PosteDeTravailDLFZone3_9 = new PosteDeTravail() { Zone = ZoneDLF3, PosteDeTravailType = PosteDeTravailType56 };
-
-            PosteDeTravail PosteDeTravailDLFZone4_0 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone4_1 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType9 };
-            PosteDeTravail PosteDeTravailDLFZone4_2 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType10 };
-            PosteDeTravail PosteDeTravailDLFZone4_3 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType11 };
-            PosteDeTravail PosteDeTravailDLFZone4_4 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType12 };
-            PosteDeTravail PosteDeTravailDLFZone4_5 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType13 };
-            PosteDeTravail PosteDeTravailDLFZone4_6 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType14 };
-            PosteDeTravail PosteDeTravailDLFZone4_7 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType15 };
-            PosteDeTravail PosteDeTravailDLFZone4_8 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType16 };
-            PosteDeTravail PosteDeTravailDLFZone4_9 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType17 };
-            PosteDeTravail PosteDeTravailDLFZone4_10 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType18 };
-            PosteDeTravail PosteDeTravailDLFZone4_11 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType56 };
-            PosteDeTravail PosteDeTravailDLFZone4_12 = new PosteDeTravail() { Zone = ZoneDLF4, PosteDeTravailType = PosteDeTravailType56 };
-
-
-            PosteDeTravail PosteDeTravailDLFZone5_00 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone5_0 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType43 };
-            PosteDeTravail PosteDeTravailDLFZone5_1 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType44 };
-            PosteDeTravail PosteDeTravailDLFZone5_2 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType45 };
-            PosteDeTravail PosteDeTravailDLFZone5_3 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType46 };
-            PosteDeTravail PosteDeTravailDLFZone5_4 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType47 };
-            PosteDeTravail PosteDeTravailDLFZone5_5 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType48 };
-            PosteDeTravail PosteDeTravailDLFZone5_6 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType49 };
-            PosteDeTravail PosteDeTravailDLFZone5_7 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType50 };
-            PosteDeTravail PosteDeTravailDLFZone5_8 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType51 };
-            PosteDeTravail PosteDeTravailDLFZone5_9 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType52 };
-            PosteDeTravail PosteDeTravailDLFZone5_10 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType53 };
-            PosteDeTravail PosteDeTravailDLFZone5_11 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType54 };
-            PosteDeTravail PosteDeTravailDLFZone5_12 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType55 };
-            PosteDeTravail PosteDeTravailDLFZone5_13 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType28 };
-            PosteDeTravail PosteDeTravailDLFZone5_14 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType29 };
-            PosteDeTravail PosteDeTravailDLFZone5_15 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType30 };
-            PosteDeTravail PosteDeTravailDLFZone5_16 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType31 };
-            PosteDeTravail PosteDeTravailDLFZone5_17 = new PosteDeTravail() { Zone = ZoneDLF5, PosteDeTravailType = PosteDeTravailType56 };
-
-
-            PosteDeTravail PosteDeTravailDLFZone6_0 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone6_1 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType19 };
-            PosteDeTravail PosteDeTravailDLFZone6_2 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType20 };
-            PosteDeTravail PosteDeTravailDLFZone6_3 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType21 };
-            PosteDeTravail PosteDeTravailDLFZone6_4 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType22 };
-            PosteDeTravail PosteDeTravailDLFZone6_5 = new PosteDeTravail() { Zone = ZoneDLF6, PosteDeTravailType = PosteDeTravailType56 };
-
-
-            PosteDeTravail PosteDeTravailDLFZone7_0 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone7_1 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType23 };
-            PosteDeTravail PosteDeTravailDLFZone7_2 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType24 };
-            PosteDeTravail PosteDeTravailDLFZone7_3 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType25 };
-            PosteDeTravail PosteDeTravailDLFZone7_4 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType26 };
-            PosteDeTravail PosteDeTravailDLFZone7_5 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType27 };
-            PosteDeTravail PosteDeTravailDLFZone7_6 = new PosteDeTravail() { Zone = ZoneDLF7, PosteDeTravailType = PosteDeTravailType56 };
-
-
-            PosteDeTravail PosteDeTravailDLFZone9_0 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType0 };
-            PosteDeTravail PosteDeTravailDLFZone9_1 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType32 };
-            PosteDeTravail PosteDeTravailDLFZone9_2 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType33 };
-            PosteDeTravail PosteDeTravailDLFZone9_3 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType34 };
-            PosteDeTravail PosteDeTravailDLFZone9_4 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType35 };
-            PosteDeTravail PosteDeTravailDLFZone9_5 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType36 };
-            PosteDeTravail PosteDeTravailDLFZone9_6 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType37 };
-            PosteDeTravail PosteDeTravailDLFZone9_7 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType38 };
-            PosteDeTravail PosteDeTravailDLFZone9_8 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType39 };
-            PosteDeTravail PosteDeTravailDLFZone9_9 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType40 };
-            PosteDeTravail PosteDeTravailDLFZone9_10 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType41 };
-            PosteDeTravail PosteDeTravailDLFZone9_11 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType42 };
-            PosteDeTravail PosteDeTravailDLFZone9_12 = new PosteDeTravail() { Zone = ZoneDLF11, PosteDeTravailType = PosteDeTravailType56 };
-
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_4);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_5);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_6);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_7);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone3_8);
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_4);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_5);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_6);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_7);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_8);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_9);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone4_10);
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_0);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_4);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_5);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_6);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_7);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_8);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_9);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_10);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_11);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_12);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_13);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_14);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_15);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone5_16);
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone6_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone6_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone6_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone6_4);
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone7_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone7_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone7_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone7_4);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone7_5);
-
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_1);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_2);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_3);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_4);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_5);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_6);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_7);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_8);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_9);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_10);
-            context.PosteDeTravails.Add(PosteDeTravailDLFZone9_11);
-
-            // -------------------------STA---------------------------------------------
-
-            PosteDeTravail PosteDeTravailSTAZone3_1 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType1 };
-            PosteDeTravail PosteDeTravailSTAZone3_2 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType2 };
-            PosteDeTravail PosteDeTravailSTAZone3_3 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType3 };
-            PosteDeTravail PosteDeTravailSTAZone3_4 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType4 };
-            PosteDeTravail PosteDeTravailSTAZone3_5 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType5 };
-            PosteDeTravail PosteDeTravailSTAZone3_6 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType6 };
-            PosteDeTravail PosteDeTravailSTAZone3_7 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType7 };
-            PosteDeTravail PosteDeTravailSTAZone3_8 = new PosteDeTravail() { Zone = ZoneSTA3, PosteDeTravailType = PosteDeTravailType8 };
-
-            PosteDeTravail PosteDeTravailSTAZone4_1 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType9 };
-            PosteDeTravail PosteDeTravailSTAZone4_2 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType10 };
-            PosteDeTravail PosteDeTravailSTAZone4_3 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType11 };
-            PosteDeTravail PosteDeTravailSTAZone4_4 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType12 };
-            PosteDeTravail PosteDeTravailSTAZone4_5 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType13 };
-            PosteDeTravail PosteDeTravailSTAZone4_6 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType14 };
-            PosteDeTravail PosteDeTravailSTAZone4_7 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType15 };
-            PosteDeTravail PosteDeTravailSTAZone4_8 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType16 };
-            PosteDeTravail PosteDeTravailSTAZone4_9 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType17 };
-            PosteDeTravail PosteDeTravailSTAZone4_10 = new PosteDeTravail() { Zone = ZoneSTA4, PosteDeTravailType = PosteDeTravailType18 };
-
-            PosteDeTravail PosteDeTravailSTAZone5_0 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType43 };
-            PosteDeTravail PosteDeTravailSTAZone5_1 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType44 };
-            PosteDeTravail PosteDeTravailSTAZone5_2 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType45 };
-            PosteDeTravail PosteDeTravailSTAZone5_3 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType46 };
-            PosteDeTravail PosteDeTravailSTAZone5_4 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType47 };
-            PosteDeTravail PosteDeTravailSTAZone5_5 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType48 };
-            PosteDeTravail PosteDeTravailSTAZone5_6 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType49 };
-            PosteDeTravail PosteDeTravailSTAZone5_7 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType50 };
-            PosteDeTravail PosteDeTravailSTAZone5_8 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType51 };
-            PosteDeTravail PosteDeTravailSTAZone5_9 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType52 };
-            PosteDeTravail PosteDeTravailSTAZone5_10 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType53 };
-            PosteDeTravail PosteDeTravailSTAZone5_11 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType54 };
-            PosteDeTravail PosteDeTravailSTAZone5_12 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType55 };
-            PosteDeTravail PosteDeTravailSTAZone5_13 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType28 };
-            PosteDeTravail PosteDeTravailSTAZone5_14 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType29 };
-            PosteDeTravail PosteDeTravailSTAZone5_15 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType30 };
-            PosteDeTravail PosteDeTravailSTAZone5_16 = new PosteDeTravail() { Zone = ZoneSTA5, PosteDeTravailType = PosteDeTravailType31 };
-
-            PosteDeTravail PosteDeTravailSTAZone6_1 = new PosteDeTravail() { Zone = ZoneSTA6, PosteDeTravailType = PosteDeTravailType19 };
-            PosteDeTravail PosteDeTravailSTAZone6_2 = new PosteDeTravail() { Zone = ZoneSTA6, PosteDeTravailType = PosteDeTravailType20 };
-            PosteDeTravail PosteDeTravailSTAZone6_3 = new PosteDeTravail() { Zone = ZoneSTA6, PosteDeTravailType = PosteDeTravailType21 };
-            PosteDeTravail PosteDeTravailSTAZone6_4 = new PosteDeTravail() { Zone = ZoneSTA6, PosteDeTravailType = PosteDeTravailType22 };
-
-            PosteDeTravail PosteDeTravailSTAZone7_1 = new PosteDeTravail() { Zone = ZoneSTA7, PosteDeTravailType = PosteDeTravailType23 };
-            PosteDeTravail PosteDeTravailSTAZone7_2 = new PosteDeTravail() { Zone = ZoneSTA7, PosteDeTravailType = PosteDeTravailType24 };
-            PosteDeTravail PosteDeTravailSTAZone7_3 = new PosteDeTravail() { Zone = ZoneSTA7, PosteDeTravailType = PosteDeTravailType25 };
-            PosteDeTravail PosteDeTravailSTAZone7_4 = new PosteDeTravail() { Zone = ZoneSTA7, PosteDeTravailType = PosteDeTravailType26 };
-            PosteDeTravail PosteDeTravailSTAZone7_5 = new PosteDeTravail() { Zone = ZoneSTA7, PosteDeTravailType = PosteDeTravailType27 };
-
-            PosteDeTravail PosteDeTravailSTAZone9_1 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType32 };
-            PosteDeTravail PosteDeTravailSTAZone9_2 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType33 };
-            PosteDeTravail PosteDeTravailSTAZone9_3 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType34 };
-            PosteDeTravail PosteDeTravailSTAZone9_4 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType35 };
-            PosteDeTravail PosteDeTravailSTAZone9_5 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType36 };
-            PosteDeTravail PosteDeTravailSTAZone9_6 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType37 };
-            PosteDeTravail PosteDeTravailSTAZone9_7 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType38 };
-            PosteDeTravail PosteDeTravailSTAZone9_8 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType39 };
-            PosteDeTravail PosteDeTravailSTAZone9_9 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType40 };
-            PosteDeTravail PosteDeTravailSTAZone9_10 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType41 };
-            PosteDeTravail PosteDeTravailSTAZone9_11 = new PosteDeTravail() { Zone = ZoneSTA9, PosteDeTravailType = PosteDeTravailType42 };
-
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_4);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_5);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_6);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_7);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone3_8);
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_4);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_5);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_6);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_7);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_8);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_9);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone4_10);
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_0);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_4);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_5);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_6);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_7);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_8);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_9);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_10);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_11);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_12);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_13);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_14);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_15);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone5_16);
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone6_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone6_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone6_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone6_4);
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone7_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone7_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone7_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone7_4);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone7_5);
-
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_1);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_2);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_3);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_4);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_5);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_6);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_7);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_8);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_9);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_10);
-            context.PosteDeTravails.Add(PosteDeTravailSTAZone9_11);
-
-
-            // -------------------------NSG---------------------------------------------
-
-            PosteDeTravail PosteDeTravailNSGZone3_1 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType1 };
-            PosteDeTravail PosteDeTravailNSGZone3_2 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType2 };
-            PosteDeTravail PosteDeTravailNSGZone3_3 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType3 };
-            PosteDeTravail PosteDeTravailNSGZone3_4 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType4 };
-            PosteDeTravail PosteDeTravailNSGZone3_5 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType5 };
-            PosteDeTravail PosteDeTravailNSGZone3_6 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType6 };
-            PosteDeTravail PosteDeTravailNSGZone3_7 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType7 };
-            PosteDeTravail PosteDeTravailNSGZone3_8 = new PosteDeTravail() { Zone = ZoneNSG3, PosteDeTravailType = PosteDeTravailType8 };
-
-            PosteDeTravail PosteDeTravailNSGZone4_1 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType9 };
-            PosteDeTravail PosteDeTravailNSGZone4_2 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType10 };
-            PosteDeTravail PosteDeTravailNSGZone4_3 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType11 };
-            PosteDeTravail PosteDeTravailNSGZone4_4 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType12 };
-            PosteDeTravail PosteDeTravailNSGZone4_5 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType13 };
-            PosteDeTravail PosteDeTravailNSGZone4_6 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType14 };
-            PosteDeTravail PosteDeTravailNSGZone4_7 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType15 };
-            PosteDeTravail PosteDeTravailNSGZone4_8 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType16 };
-            PosteDeTravail PosteDeTravailNSGZone4_9 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType17 };
-            PosteDeTravail PosteDeTravailNSGZone4_10 = new PosteDeTravail() { Zone = ZoneNSG4, PosteDeTravailType = PosteDeTravailType18 };
-
-            PosteDeTravail PosteDeTravailNSGZone5_0 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType43 };
-            PosteDeTravail PosteDeTravailNSGZone5_1 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType44 };
-            PosteDeTravail PosteDeTravailNSGZone5_2 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType45 };
-            PosteDeTravail PosteDeTravailNSGZone5_3 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType46 };
-            PosteDeTravail PosteDeTravailNSGZone5_4 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType47 };
-            PosteDeTravail PosteDeTravailNSGZone5_5 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType48 };
-            PosteDeTravail PosteDeTravailNSGZone5_6 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType49 };
-            PosteDeTravail PosteDeTravailNSGZone5_7 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType50 };
-            PosteDeTravail PosteDeTravailNSGZone5_8 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType51 };
-            PosteDeTravail PosteDeTravailNSGZone5_9 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType52 };
-            PosteDeTravail PosteDeTravailNSGZone5_10 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType53 };
-            PosteDeTravail PosteDeTravailNSGZone5_11 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType54 };
-            PosteDeTravail PosteDeTravailNSGZone5_12 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType55 };
-            PosteDeTravail PosteDeTravailNSGZone5_13 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType28 };
-            PosteDeTravail PosteDeTravailNSGZone5_14 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType29 };
-            PosteDeTravail PosteDeTravailNSGZone5_15 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType30 };
-            PosteDeTravail PosteDeTravailNSGZone5_16 = new PosteDeTravail() { Zone = ZoneNSG5, PosteDeTravailType = PosteDeTravailType31 };
-
-            PosteDeTravail PosteDeTravailNSGZone6_1 = new PosteDeTravail() { Zone = ZoneNSG6, PosteDeTravailType = PosteDeTravailType19 };
-            PosteDeTravail PosteDeTravailNSGZone6_2 = new PosteDeTravail() { Zone = ZoneNSG6, PosteDeTravailType = PosteDeTravailType20 };
-            PosteDeTravail PosteDeTravailNSGZone6_3 = new PosteDeTravail() { Zone = ZoneNSG6, PosteDeTravailType = PosteDeTravailType21 };
-            PosteDeTravail PosteDeTravailNSGZone6_4 = new PosteDeTravail() { Zone = ZoneNSG6, PosteDeTravailType = PosteDeTravailType22 };
-
-            PosteDeTravail PosteDeTravailNSGZone7_1 = new PosteDeTravail() { Zone = ZoneNSG7, PosteDeTravailType = PosteDeTravailType23 };
-            PosteDeTravail PosteDeTravailNSGZone7_2 = new PosteDeTravail() { Zone = ZoneNSG7, PosteDeTravailType = PosteDeTravailType24 };
-            PosteDeTravail PosteDeTravailNSGZone7_3 = new PosteDeTravail() { Zone = ZoneNSG7, PosteDeTravailType = PosteDeTravailType25 };
-            PosteDeTravail PosteDeTravailNSGZone7_4 = new PosteDeTravail() { Zone = ZoneNSG7, PosteDeTravailType = PosteDeTravailType26 };
-            PosteDeTravail PosteDeTravailNSGZone7_5 = new PosteDeTravail() { Zone = ZoneNSG7, PosteDeTravailType = PosteDeTravailType27 };
-
-            PosteDeTravail PosteDeTravailNSGZone9_1 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType32 };
-            PosteDeTravail PosteDeTravailNSGZone9_2 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType33 };
-            PosteDeTravail PosteDeTravailNSGZone9_3 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType34 };
-            PosteDeTravail PosteDeTravailNSGZone9_4 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType35 };
-            PosteDeTravail PosteDeTravailNSGZone9_5 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType36 };
-            PosteDeTravail PosteDeTravailNSGZone9_6 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType37 };
-            PosteDeTravail PosteDeTravailNSGZone9_7 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType38 };
-            PosteDeTravail PosteDeTravailNSGZone9_8 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType39 };
-            PosteDeTravail PosteDeTravailNSGZone9_9 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType40 };
-            PosteDeTravail PosteDeTravailNSGZone9_10 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType41 };
-            PosteDeTravail PosteDeTravailNSGZone9_11 = new PosteDeTravail() { Zone = ZoneNSG9, PosteDeTravailType = PosteDeTravailType42 };
-
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_4);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_5);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_6);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_7);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone3_8);
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_4);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_5);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_6);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_7);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_8);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_9);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone4_10);
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_0);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_4);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_5);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_6);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_7);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_8);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_9);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_10);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_11);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_12);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_13);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_14);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_15);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone5_16);
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone6_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone6_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone6_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone6_4);
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone7_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone7_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone7_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone7_4);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone7_5);
-
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_1);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_2);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_3);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_4);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_5);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_6);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_7);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_8);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_9);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_10);
-            context.PosteDeTravails.Add(PosteDeTravailNSGZone9_11);
-
-            // -------------------------LQN---------------------------------------------
-
-            PosteDeTravail PosteDeTravailLQNZone3_1 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType1 };
-            PosteDeTravail PosteDeTravailLQNZone3_2 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType2 };
-            PosteDeTravail PosteDeTravailLQNZone3_3 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType3 };
-            PosteDeTravail PosteDeTravailLQNZone3_4 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType4 };
-            PosteDeTravail PosteDeTravailLQNZone3_5 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType5 };
-            PosteDeTravail PosteDeTravailLQNZone3_6 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType6 };
-            PosteDeTravail PosteDeTravailLQNZone3_7 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType7 };
-            PosteDeTravail PosteDeTravailLQNZone3_8 = new PosteDeTravail() { Zone = ZoneLQN3, PosteDeTravailType = PosteDeTravailType8 };
-
-            PosteDeTravail PosteDeTravailLQNZone4_1 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType9 };
-            PosteDeTravail PosteDeTravailLQNZone4_2 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType10 };
-            PosteDeTravail PosteDeTravailLQNZone4_3 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType11 };
-            PosteDeTravail PosteDeTravailLQNZone4_4 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType12 };
-            PosteDeTravail PosteDeTravailLQNZone4_5 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType13 };
-            PosteDeTravail PosteDeTravailLQNZone4_6 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType14 };
-            PosteDeTravail PosteDeTravailLQNZone4_7 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType15 };
-            PosteDeTravail PosteDeTravailLQNZone4_8 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType16 };
-            PosteDeTravail PosteDeTravailLQNZone4_9 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType17 };
-            PosteDeTravail PosteDeTravailLQNZone4_10 = new PosteDeTravail() { Zone = ZoneLQN4, PosteDeTravailType = PosteDeTravailType18 };
-
-            PosteDeTravail PosteDeTravailLQNZone5_0 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType43 };
-            PosteDeTravail PosteDeTravailLQNZone5_1 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType44 };
-            PosteDeTravail PosteDeTravailLQNZone5_2 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType45 };
-            PosteDeTravail PosteDeTravailLQNZone5_3 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType46 };
-            PosteDeTravail PosteDeTravailLQNZone5_4 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType47 };
-            PosteDeTravail PosteDeTravailLQNZone5_5 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType48 };
-            PosteDeTravail PosteDeTravailLQNZone5_6 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType49 };
-            PosteDeTravail PosteDeTravailLQNZone5_7 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType50 };
-            PosteDeTravail PosteDeTravailLQNZone5_8 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType51 };
-            PosteDeTravail PosteDeTravailLQNZone5_9 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType52 };
-            PosteDeTravail PosteDeTravailLQNZone5_10 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType53 };
-            PosteDeTravail PosteDeTravailLQNZone5_11 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType54 };
-            PosteDeTravail PosteDeTravailLQNZone5_12 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType55 };
-            PosteDeTravail PosteDeTravailLQNZone5_13 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType28 };
-            PosteDeTravail PosteDeTravailLQNZone5_14 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType29 };
-            PosteDeTravail PosteDeTravailLQNZone5_15 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType30 };
-            PosteDeTravail PosteDeTravailLQNZone5_16 = new PosteDeTravail() { Zone = ZoneLQN5, PosteDeTravailType = PosteDeTravailType31 };
-
-            PosteDeTravail PosteDeTravailLQNZone6_1 = new PosteDeTravail() { Zone = ZoneLQN6, PosteDeTravailType = PosteDeTravailType19 };
-            PosteDeTravail PosteDeTravailLQNZone6_2 = new PosteDeTravail() { Zone = ZoneLQN6, PosteDeTravailType = PosteDeTravailType20 };
-            PosteDeTravail PosteDeTravailLQNZone6_3 = new PosteDeTravail() { Zone = ZoneLQN6, PosteDeTravailType = PosteDeTravailType21 };
-            PosteDeTravail PosteDeTravailLQNZone6_4 = new PosteDeTravail() { Zone = ZoneLQN6, PosteDeTravailType = PosteDeTravailType22 };
-
-            PosteDeTravail PosteDeTravailLQNZone7_1 = new PosteDeTravail() { Zone = ZoneLQN7, PosteDeTravailType = PosteDeTravailType23 };
-            PosteDeTravail PosteDeTravailLQNZone7_2 = new PosteDeTravail() { Zone = ZoneLQN7, PosteDeTravailType = PosteDeTravailType24 };
-            PosteDeTravail PosteDeTravailLQNZone7_3 = new PosteDeTravail() { Zone = ZoneLQN7, PosteDeTravailType = PosteDeTravailType25 };
-            PosteDeTravail PosteDeTravailLQNZone7_4 = new PosteDeTravail() { Zone = ZoneLQN7, PosteDeTravailType = PosteDeTravailType26 };
-            PosteDeTravail PosteDeTravailLQNZone7_5 = new PosteDeTravail() { Zone = ZoneLQN7, PosteDeTravailType = PosteDeTravailType27 };
-
-            PosteDeTravail PosteDeTravailLQNZone9_1 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType32 };
-            PosteDeTravail PosteDeTravailLQNZone9_2 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType33 };
-            PosteDeTravail PosteDeTravailLQNZone9_3 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType34 };
-            PosteDeTravail PosteDeTravailLQNZone9_4 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType35 };
-            PosteDeTravail PosteDeTravailLQNZone9_5 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType36 };
-            PosteDeTravail PosteDeTravailLQNZone9_6 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType37 };
-            PosteDeTravail PosteDeTravailLQNZone9_7 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType38 };
-            PosteDeTravail PosteDeTravailLQNZone9_8 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType39 };
-            PosteDeTravail PosteDeTravailLQNZone9_9 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType40 };
-            PosteDeTravail PosteDeTravailLQNZone9_10 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType41 };
-            PosteDeTravail PosteDeTravailLQNZone9_11 = new PosteDeTravail() { Zone = ZoneLQN9, PosteDeTravailType = PosteDeTravailType42 };
-
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_4);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_5);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_6);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_7);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone3_8);
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_4);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_5);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_6);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_7);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_8);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_9);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone4_10);
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_0);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_4);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_5);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_6);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_7);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_8);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_9);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_10);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_11);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_12);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_13);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_14);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_15);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone5_16);
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone6_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone6_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone6_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone6_4);
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone7_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone7_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone7_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone7_4);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone7_5);
-
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_1);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_2);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_3);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_4);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_5);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_6);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_7);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_8);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_9);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_10);
-            context.PosteDeTravails.Add(PosteDeTravailLQNZone9_11);
-
-            //Lieu LieuRefectoireRFS = new Lieu()
-            //{
-            //    Nom = "Refectoire",
-            //    Zone = ZoneRDCRFS
-            //};
-
-            //Lieu LieuSalleServeurRFS = new Lieu()
-            //{
-            //    Nom = "Salle des serveurs",
-            //    Zone = ZoneRDCRFS
-            //};
-
-            //Lieu LieuBureauComptaRFS = new Lieu()
-            //{
-            //    Nom = "Bureau Comptabilite",
-            //    Zone = ZoneEtage1RFS
-            //};
-
-            //Lieu LieuBureauMarketingRFS = new Lieu()
-            //{
-            //    Nom = "Bureau Marketing",
-            //    Zone = ZoneEtage1RFS
-            //};
-
-            //Lieu LieuRemplisseuseL1DLF = new Lieu()
-            //{
-            //    Nom = "Remplisseuse",
-            //    Zone = ZoneLigne1DLF
-            //};
-
-            //Lieu LieuEtiqueteuseL1DLF = new Lieu()
-            //{
-            //    Nom = "Etiqueteuse",
-            //    Zone = ZoneLigne1DLF
-            //};
-
-            //Lieu LieuRemplisseuseL2DLF = new Lieu()
-            //{
-            //    Nom = "Remplisseuse",
-            //    Zone = ZoneLigne2DLF
-            //};
-
-            //Lieu LieuEtiqueteuseL2DLF = new Lieu()
-            //{
-            //    Nom = "Etiqueteuse",
-            //    Zone = ZoneLigne2DLF
-            //};
-
-            //context.Lieux.Add(LieuRefectoireRFS);
-            //context.Lieux.Add(LieuSalleServeurRFS);
-            //context.Lieux.Add(LieuBureauComptaRFS);
-            //context.Lieux.Add(LieuBureauMarketingRFS);
-            //context.Lieux.Add(LieuRemplisseuseL1DLF);
-            //context.Lieux.Add(LieuEtiqueteuseL1DLF);
-            //context.Lieux.Add(LieuRemplisseuseL2DLF);
-            //context.Lieux.Add(LieuEtiqueteuseL2DLF);
+            Lieu Lieu12_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA1 };
+            Lieu Lieu12_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA1 };
+
+            Lieu Lieu13_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA11 };
+            Lieu Lieu28 = new Lieu() { Nom = "Bureaux, salles de réunion et parties communes (vestiaires, salles de pause, …)", Rang = 2, Zone = ZoneSTA11 };
+            Lieu Lieu13_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA11 };
+
+            Lieu Lieu14_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA2 };
+            Lieu Lieu29 = new Lieu() { Nom = "Soufflage L2, L3 et L4", Rang = 2, Zone = ZoneSTA2 };
+            Lieu Lieu14_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA2 };
+
+            Lieu Lieu15_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA3 };
+            Lieu Lieu30 = new Lieu() { Nom = "Soutirage / Pasteurisation Ligne 1", Rang = 2, Zone = ZoneSTA3 };
+            Lieu Lieu34 = new Lieu() { Nom = "Soutirage L2 et L4", Rang = 2, Zone = ZoneSTA3 };
+            Lieu Lieu35 = new Lieu() { Nom = "Soutirage L3", Rang = 2, Zone = ZoneSTA3 };
+            Lieu Lieu38 = new Lieu() { Nom = "Combi L5", Rang = 2, Zone = ZoneSTA3 };
+            Lieu Lieu15_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA3 };
+
+            Lieu Lieu16_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA4 };
+            Lieu Lieu31 = new Lieu() { Nom = "Barquetteuse L1", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu32 = new Lieu() { Nom = "Banderolleuses / Palettiseur L1, L2, L3 et L4", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu33 = new Lieu() { Nom = "Dépalettiseur L1", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu36 = new Lieu() { Nom = "Etiqueteuse L2, L3, L4 et L5", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu37 = new Lieu() { Nom = "Fardeleuse (toutes lignes) (1,2,3,4,5)", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu39 = new Lieu() { Nom = "Banderolleuse / Palettiseur L5", Rang = 2, Zone = ZoneSTA4 };
+            Lieu Lieu16_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA4 };
+
+            Lieu Lieu17_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA12 };
+            Lieu Lieu40 = new Lieu() { Nom = "Fonds de lignes (AGV)", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu41 = new Lieu() { Nom = "Repacking", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu56 = new Lieu() { Nom = "Dépôt 1 : Quais, stockage MP, blocage , essais, destruction", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu57 = new Lieu() { Nom = "Dépôt 2 : quais et stockage", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu58 = new Lieu() { Nom = "TK et magasin TK", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu67 = new Lieu() { Nom = "Salle de charge", Rang = 2, Zone = ZoneSTA12 };
+            Lieu Lieu17_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA12 };
+
+            Lieu Lieu18_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA7 };
+            Lieu Lieu42 = new Lieu() { Nom = "Labo physico", Rang = 2, Zone = ZoneSTA7 };
+            Lieu Lieu42_2 = new Lieu() { Nom = "Labo Microbiologie", Rang = 2, Zone = ZoneSTA7 };
+            Lieu Lieu54 = new Lieu() { Nom = "DLUOthèque", Rang = 2, Zone = ZoneSTA7 };
+            Lieu Lieu18_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA7 };
+
+            Lieu Lieu19_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA13 };
+            Lieu Lieu43 = new Lieu() { Nom = "Stockage Ingrédients (ambiant et frigorifique)", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu44 = new Lieu() { Nom = "Atelier préparation", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu45 = new Lieu() { Nom = "Dépotage citernes", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu46 = new Lieu() { Nom = "Eau Minérale, Eau de Source et Eau process (captages, forages  et traitements)", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu47 = new Lieu() { Nom = "Cuves extérieures : CO2, N2, EdS, EM", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu48 = new Lieu() { Nom = "Stations NEP et stations chimiques", Rang = 2, Zone = ZoneSTA13 };
+            Lieu Lieu19_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA13 };
+
+            Lieu Lieu20_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA8 };
+            Lieu Lieu49 = new Lieu() { Nom = "Stockage PC", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu50 = new Lieu() { Nom = "Zone déchets dont local DID", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu51 = new Lieu() { Nom = "Station de neutralisation + Bassin Orage", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu52 = new Lieu() { Nom = "Chaufferie", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu60 = new Lieu() { Nom = "Eaux Pluviales", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu62 = new Lieu() { Nom = "Parking VL et PL", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu63 = new Lieu() { Nom = "Stockage palettes vides", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu64 = new Lieu() { Nom = "Cuve et station GPL", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu65 = new Lieu() { Nom = "Sprinklage TK  : cuves de stockage, local et installations", Rang = 2, Zone = ZoneSTA8 };
+            Lieu Lieu20_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA8 };
+
+            Lieu Lieu21_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA6 };
+            Lieu Lieu53 = new Lieu() { Nom = "Locaux électriques (TGBT)", Rang = 2, Zone = ZoneSTA6 };
+            Lieu Lieu55 = new Lieu() { Nom = "Local compresseurs", Rang = 2, Zone = ZoneSTA6 };
+            Lieu Lieu59 = new Lieu() { Nom = "Gpes froids", Rang = 2, Zone = ZoneSTA6 };
+            Lieu Lieu61 = new Lieu() { Nom = "TAR", Rang = 2, Zone = ZoneSTA6 };
+            Lieu Lieu66 = new Lieu() { Nom = "Atelier maintenance et magasin", Rang = 2, Zone = ZoneSTA6 };
+            Lieu Lieu21_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA6 };
+
+
+
+             context.Lieux.Add(Lieu1_1);
+             context.Lieux.Add(Lieu1_2);
+
+             context.Lieux.Add(Lieu2_1);
+             context.Lieux.Add(Lieu2_2);
+
+             context.Lieux.Add(Lieu1);
+             context.Lieux.Add(Lieu2);
+             context.Lieux.Add(Lieu3);
+             context.Lieux.Add(Lieu13);
+             context.Lieux.Add(Lieu3_1);
+
+             context.Lieux.Add(Lieu4_1); 
+             context.Lieux.Add(Lieu4);
+             context.Lieux.Add(Lieu5);
+             context.Lieux.Add(Lieu6);
+             context.Lieux.Add(Lieu7); 
+             context.Lieux.Add(Lieu8 );
+             context.Lieux.Add(Lieu4_2); 
+
+             context.Lieux.Add(Lieu5_1); 
+             context.Lieux.Add(Lieu9); 
+             context.Lieux.Add(Lieu10);
+             context.Lieux.Add(Lieu11);
+             context.Lieux.Add(Lieu12); 
+             context.Lieux.Add(Lieu5_2);
+
+             context.Lieux.Add(Lieu6_1);
+             context.Lieux.Add(Lieu14);
+             context.Lieux.Add(Lieu15);
+             context.Lieux.Add(Lieu18);
+             context.Lieux.Add(Lieu6_2);
+
+             context.Lieux.Add(Lieu7_1); 
+             context.Lieux.Add(Lieu16);
+             context.Lieux.Add(Lieu7_2);
+
+             context.Lieux.Add(Lieu8_1);
+             context.Lieux.Add(Lieu19); 
+             context.Lieux.Add(Lieu8_2); 
+
+             context.Lieux.Add(Lieu9_1);
+             context.Lieux.Add(Lieu20); 
+             context.Lieux.Add(Lieu9_2);
+
+            //context.Lieux.Add(LieuX RFS
+             //context.Lieux.Add(Lieu10_1);
+             //context.Lieux.Add(Lieu21);
+             //context.Lieux.Add(Lieu22);
+             //context.Lieux.Add(Lieu10_2); 
+
+             //context.Lieux.Add(Lieu11_1); 
+             //context.Lieux.Add(Lieu23);
+             //context.Lieux.Add(Lieu24); 
+             //context.Lieux.Add(Lieu25);
+             //context.Lieux.Add(Lieu26 );
+             //context.Lieux.Add(Lieu11_2); 
+
+            //context.Lieux.Add(LieuX STA
+             context.Lieux.Add(Lieu12_1);
+             context.Lieux.Add(Lieu12_2);
+
+             context.Lieux.Add(Lieu13_1); 
+             context.Lieux.Add(Lieu28);
+             context.Lieux.Add(Lieu13_2);
+
+             context.Lieux.Add(Lieu14_1); 
+             context.Lieux.Add(Lieu29 );
+             context.Lieux.Add(Lieu14_2);
+
+             context.Lieux.Add(Lieu15_1); 
+             context.Lieux.Add(Lieu30 );
+             context.Lieux.Add(Lieu34 );
+             context.Lieux.Add(Lieu35 );
+             context.Lieux.Add(Lieu38 );
+             context.Lieux.Add(Lieu15_2 );
+
+             context.Lieux.Add(Lieu16_1 );
+             context.Lieux.Add(Lieu31 );
+             context.Lieux.Add(Lieu32);
+             context.Lieux.Add(Lieu33 );
+             context.Lieux.Add(Lieu36 );
+             context.Lieux.Add(Lieu37 );
+             context.Lieux.Add(Lieu39);
+             context.Lieux.Add(Lieu16_2); 
+
+             context.Lieux.Add(Lieu17_1 );
+             context.Lieux.Add(Lieu40);
+             context.Lieux.Add(Lieu41 );
+             context.Lieux.Add(Lieu56 );
+             context.Lieux.Add(Lieu57 );
+             context.Lieux.Add(Lieu58 );
+             context.Lieux.Add(Lieu67 );
+             context.Lieux.Add(Lieu17_2 );
+
+             context.Lieux.Add(Lieu18_1 );
+             context.Lieux.Add(Lieu42 );
+             context.Lieux.Add(Lieu42_2 );
+             context.Lieux.Add(Lieu54);
+             context.Lieux.Add(Lieu18_2); 
+
+             context.Lieux.Add(Lieu19_1 );
+             context.Lieux.Add(Lieu43);
+             context.Lieux.Add(Lieu44 );
+             context.Lieux.Add(Lieu45 );
+             context.Lieux.Add(Lieu46 );
+             context.Lieux.Add(Lieu47 );
+             context.Lieux.Add(Lieu48 );
+             context.Lieux.Add(Lieu19_2 );
+
+             context.Lieux.Add(Lieu20_1 );
+             context.Lieux.Add(Lieu49 );
+             context.Lieux.Add(Lieu50 );
+             context.Lieux.Add(Lieu51 );
+             context.Lieux.Add(Lieu52 );
+             context.Lieux.Add(Lieu60 );
+             context.Lieux.Add(Lieu62 );
+             context.Lieux.Add(Lieu63 );
+             context.Lieux.Add(Lieu64);
+             context.Lieux.Add(Lieu65 );
+             context.Lieux.Add(Lieu20_2);
+
+             context.Lieux.Add(Lieu21_1);
+             context.Lieux.Add(Lieu53 );
+             context.Lieux.Add(Lieu55);
+             context.Lieux.Add(Lieu59);
+             context.Lieux.Add(Lieu61 );
+             context.Lieux.Add(Lieu66 );
+             context.Lieux.Add(Lieu21_2);
+
+
+
+
+
+            //------------------------POSTE DE TRAVAIL -----------------------------
+
+            //POSTES DE TRAVAIL DE DLF
+            PosteDeTravail PosteDeTravail1_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF1 };
+            PosteDeTravail PosteDeTravail1_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF1 };
+
+            PosteDeTravail PosteDeTravail2_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF2 };
+            PosteDeTravail PosteDeTravail2_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF2 };
+
+            PosteDeTravail PosteDeTravail3_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail1 = new PosteDeTravail() { Nom = "Pilote process", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail2 = new PosteDeTravail() { Nom = "Opérateur salle blanche", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail3 = new PosteDeTravail() { Nom = "Souffleur", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail4 = new PosteDeTravail() { Nom = "Polyvalent process", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail5 = new PosteDeTravail() { Nom = "Polyvalent conditionnement", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail6 = new PosteDeTravail() { Nom = "Pilote R3", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail7 = new PosteDeTravail() { Nom = "Pilote R4", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail8 = new PosteDeTravail() { Nom = "Régleur", Rang = 2, Zone = ZoneDLF3 };
+            PosteDeTravail PosteDeTravail3_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF3 };
+
+            PosteDeTravail PosteDeTravail4_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail9 = new PosteDeTravail() { Nom = "Etiqueteur 1, 2, 3", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail10 = new PosteDeTravail() { Nom = "Etiqueteur 4", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail11 = new PosteDeTravail() { Nom = "Fardeleur 1, 2, 3", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail12 = new PosteDeTravail() { Nom = "Fardeleur 4", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail13 = new PosteDeTravail() { Nom = "Etiqueteur 5", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail14 = new PosteDeTravail() { Nom = "Pilote combi", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail15 = new PosteDeTravail() { Nom = "Bout de ligne", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail16 = new PosteDeTravail() { Nom = "Polyvalent conditionnement", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail17 = new PosteDeTravail() { Nom = "Responsable d'équipe", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail18 = new PosteDeTravail() { Nom = "Responsable production", Rang = 2, Zone = ZoneDLF4 };
+            PosteDeTravail PosteDeTravail4_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF4 };
+
+            PosteDeTravail PosteDeTravail5_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF6 };
+            PosteDeTravail PosteDeTravail19 = new PosteDeTravail() { Nom = "Electroposté", Rang = 2, Zone = ZoneDLF6 };
+            PosteDeTravail PosteDeTravail20 = new PosteDeTravail() { Nom = "Technicien de maintenance", Rang = 2, Zone = ZoneDLF6 };
+            PosteDeTravail PosteDeTravail21 = new PosteDeTravail() { Nom = "Maitrise maintenance", Rang = 2, Zone = ZoneDLF6 };
+            PosteDeTravail PosteDeTravail22 = new PosteDeTravail() { Nom = "Responsable maintenance/TN", Rang = 2, Zone = ZoneDLF6 };
+            PosteDeTravail PosteDeTravail5_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF6 };
+
+            PosteDeTravail PosteDeTravail6_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail23 = new PosteDeTravail() { Nom = "Laborantin process", Rang = 2, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail24 = new PosteDeTravail() { Nom = "Laborantin microbio", Rang = 2, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail25 = new PosteDeTravail() { Nom = "Responsable labo microbio", Rang = 2, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail26 = new PosteDeTravail() { Nom = "Responsable qualité", Rang = 2, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail27 = new PosteDeTravail() { Nom = "Assistant qualité", Rang = 2, Zone = ZoneDLF7 };
+            PosteDeTravail PosteDeTravail6_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF7 };
+
+            PosteDeTravail PosteDeTravail7_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail55 = new PosteDeTravail() { Nom = "Pilote prépa", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail28 = new PosteDeTravail() { Nom = "Préparateur", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail29 = new PosteDeTravail() { Nom = "Aide préparateur", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail30 = new PosteDeTravail() { Nom = "Opérateur crusher", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail31 = new PosteDeTravail() { Nom = "Responsable préparation", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail7_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF5 };
+
+            PosteDeTravail PosteDeTravail8_1 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail32 = new PosteDeTravail() { Nom = "Technicien services généraux", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail33 = new PosteDeTravail() { Nom = "Directeur Site", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail34 = new PosteDeTravail() { Nom = "Personnel administratif", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail35 = new PosteDeTravail() { Nom = "Responsable zone process", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail36 = new PosteDeTravail() { Nom = "Responsable zone conditionnement", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail37 = new PosteDeTravail() { Nom = "Animateur S/E", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail38 = new PosteDeTravail() { Nom = "Agriculteur", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail39 = new PosteDeTravail() { Nom = "Chauffeur", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail40 = new PosteDeTravail() { Nom = "CHSCT", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail41 = new PosteDeTravail() { Nom = "Responsable RH", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail42 = new PosteDeTravail() { Nom = "Responsable amélioration continue", Rang = 2, Zone = ZoneDLF11 };
+            PosteDeTravail PosteDeTravail8_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneDLF11 };
+
+
+            PosteDeTravail PosteDeTravail43 = new PosteDeTravail() { Nom = "Cariste de ligne", Rang = 1, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail44 = new PosteDeTravail() { Nom = "Cariste expédition", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail45 = new PosteDeTravail() { Nom = "Magasinier MP", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail46 = new PosteDeTravail() { Nom = "Magasinier soufflage", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail47 = new PosteDeTravail() { Nom = "Magasinier soufflerie", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail48 = new PosteDeTravail() { Nom = "Chef d'équipe cariste", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail49 = new PosteDeTravail() { Nom = "Responsable d'exploitation PF", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail50 = new PosteDeTravail() { Nom = "Responsable d'exploitation MP", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail51 = new PosteDeTravail() { Nom = "Gestionnaire de stock", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail52 = new PosteDeTravail() { Nom = "Hôtesse d'accueil PF", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail53 = new PosteDeTravail() { Nom = "Responsable appro/ordo", Rang = 2, Zone = ZoneDLF5 };
+            PosteDeTravail PosteDeTravail54 = new PosteDeTravail() { Nom = "Responsable supply Chain", Rang = 2, Zone = ZoneDLF5 };
+
+            // POSTES DE TRAVAIL DE STA
+
+            PosteDeTravail PosteDeTravail56 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail57 = new PosteDeTravail() { Nom = "Agent entretien", Rang = 2, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail58 = new PosteDeTravail() { Nom = "Animateur SE", Rang = 2, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail59 = new PosteDeTravail() { Nom = "Coordinateur AC", Rang = 2, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail60 = new PosteDeTravail() { Nom = "Directeur site", Rang = 2, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail61 = new PosteDeTravail() { Nom = "Responsable production", Rang = 2, Zone = ZoneSTA1 };
+            PosteDeTravail PosteDeTravail62 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA1 };
+
+            PosteDeTravail PosteDeTravail63 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail64 = new PosteDeTravail() { Nom = "Animateur repacking", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail65 = new PosteDeTravail() { Nom = "Cariste", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail66 = new PosteDeTravail() { Nom = "Cariste ligne", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail67 = new PosteDeTravail() { Nom = "Cariste MP", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail68 = new PosteDeTravail() { Nom = "Chef d'exploitation D2", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail69 = new PosteDeTravail() { Nom = "Chef magasinier MP", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail70 = new PosteDeTravail() { Nom = "Gestionnaire de stock", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail71 = new PosteDeTravail() { Nom = "Opérateur repacking", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail72 = new PosteDeTravail() { Nom = "Responsable supply", Rang = 2, Zone = ZoneSTA12 };
+            PosteDeTravail PosteDeTravail73 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA12 };
+
+            PosteDeTravail PosteDeTravail74 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA7 };
+            PosteDeTravail PosteDeTravail75 = new PosteDeTravail() { Nom = "Laborantin", Rang = 2, Zone = ZoneSTA7 };
+            PosteDeTravail PosteDeTravail76 = new PosteDeTravail() { Nom = "Responsable Qualité / Labo", Rang = 2, Zone = ZoneSTA7 };
+            PosteDeTravail PosteDeTravail77 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA7 };
+
+            PosteDeTravail PosteDeTravail78 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail79 = new PosteDeTravail() { Nom = "Chef d'équipe", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail80 = new PosteDeTravail() { Nom = "Opérateur Combi L5", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail81 = new PosteDeTravail() { Nom = "Opérateur Soutireuse L1", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail82 = new PosteDeTravail() { Nom = "Opérateur Soutireuse L2", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail83 = new PosteDeTravail() { Nom = "Opérateur Soutireuse L3", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail84 = new PosteDeTravail() { Nom = "Opérateur Soutireuse L4", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail85 = new PosteDeTravail() { Nom = "Responsable Process", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail86 = new PosteDeTravail() { Nom = "Opérateur Polyvalent ", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail87 = new PosteDeTravail() { Nom = "Régleur", Rang = 2, Zone = ZoneSTA3 };
+            PosteDeTravail PosteDeTravail88 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA3 };
+
+            PosteDeTravail PosteDeTravail89 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA6 };
+            PosteDeTravail PosteDeTravail90 = new PosteDeTravail() { Nom = "Coordinateur Maintenance", Rang = 2, Zone = ZoneSTA6 };
+            PosteDeTravail PosteDeTravail91 = new PosteDeTravail() { Nom = "Responsable maintenance", Rang = 2, Zone = ZoneSTA6 };
+            PosteDeTravail PosteDeTravail92 = new PosteDeTravail() { Nom = "Technicien maintenance", Rang = 2, Zone = ZoneSTA6 };
+            PosteDeTravail PosteDeTravail93 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA6 };
+
+            PosteDeTravail PosteDeTravail94 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail95 = new PosteDeTravail() { Nom = "Opérateur Barqueteuse L1", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail96 = new PosteDeTravail() { Nom = "Opérateur Etiq L3 / Fard L4", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail97 = new PosteDeTravail() { Nom = "Opérateur Etiqueteuse L5", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail98 = new PosteDeTravail() { Nom = "Opérateur Fardeleuse L1", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail99 = new PosteDeTravail() { Nom = "Opérateur Fardeleuse L2", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail100 = new PosteDeTravail() { Nom = "Opérateur Fardeleuse L3", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail101 = new PosteDeTravail() { Nom = "Opérateur Pal L2", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail102 = new PosteDeTravail() { Nom = "Opérateur Pal L3", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail103 = new PosteDeTravail() { Nom = "Opérateur Pal L4", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail104 = new PosteDeTravail() { Nom = "Opérateur Pal L5", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail105 = new PosteDeTravail() { Nom = "Opérateur Pal/Dépal L1 ", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail106 = new PosteDeTravail() { Nom = "Opérateur Polyvalent ", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail107 = new PosteDeTravail() { Nom = "Régleur", Rang = 2, Zone = ZoneSTA4 };
+            PosteDeTravail PosteDeTravail108 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA6 };
+
+            PosteDeTravail PosteDeTravail109 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA13 };
+            PosteDeTravail PosteDeTravail110 = new PosteDeTravail() { Nom = "Opérateur TTDE", Rang = 2, Zone = ZoneSTA13 };
+            PosteDeTravail PosteDeTravail111 = new PosteDeTravail() { Nom = "Peseur", Rang = 2, Zone = ZoneSTA13 };
+            PosteDeTravail PosteDeTravail112 = new PosteDeTravail() { Nom = "Responsable Siroperie / TTDE", Rang = 2, Zone = ZoneSTA13 };
+            PosteDeTravail PosteDeTravail113 = new PosteDeTravail() { Nom = "Siropier", Rang = 2, Zone = ZoneSTA13 };
+            PosteDeTravail PosteDeTravail114 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA13 };
+
+            PosteDeTravail PosteDeTravail115 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail116 = new PosteDeTravail() { Nom = "Assistant RH", Rang = 2, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail117 = new PosteDeTravail() { Nom = "Coordinateur Appro/Planning", Rang = 2, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail118 = new PosteDeTravail() { Nom = "Personnel Administratif", Rang = 2, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail119 = new PosteDeTravail() { Nom = "Responsable RH", Rang = 2, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail120 = new PosteDeTravail() { Nom = "Superviseur Admin", Rang = 2, Zone = ZoneSTA11 };
+            PosteDeTravail PosteDeTravail121 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA11 };
+
+
+
+             context.PosteDeTravails.Add(PosteDeTravail1_1);
+             context.PosteDeTravails.Add(PosteDeTravail1_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail2_1);
+             context.PosteDeTravails.Add(PosteDeTravail2_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail3_1);
+             context.PosteDeTravails.Add(PosteDeTravail1);
+             context.PosteDeTravails.Add(PosteDeTravail2);
+             context.PosteDeTravails.Add(PosteDeTravail3);
+             context.PosteDeTravails.Add(PosteDeTravail4);
+             context.PosteDeTravails.Add(PosteDeTravail5);
+             context.PosteDeTravails.Add(PosteDeTravail6);
+             context.PosteDeTravails.Add(PosteDeTravail7);
+             context.PosteDeTravails.Add(PosteDeTravail8);
+             context.PosteDeTravails.Add(PosteDeTravail3_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail4_1);
+             context.PosteDeTravails.Add(PosteDeTravail9);
+             context.PosteDeTravails.Add(PosteDeTravail10);
+             context.PosteDeTravails.Add(PosteDeTravail11);
+             context.PosteDeTravails.Add(PosteDeTravail12);
+             context.PosteDeTravails.Add(PosteDeTravail13);
+             context.PosteDeTravails.Add(PosteDeTravail14);
+             context.PosteDeTravails.Add(PosteDeTravail15);
+             context.PosteDeTravails.Add(PosteDeTravail16);
+             context.PosteDeTravails.Add(PosteDeTravail17);
+             context.PosteDeTravails.Add(PosteDeTravail18);
+             context.PosteDeTravails.Add(PosteDeTravail4_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail5_1);
+             context.PosteDeTravails.Add(PosteDeTravail19);
+             context.PosteDeTravails.Add(PosteDeTravail20);
+             context.PosteDeTravails.Add(PosteDeTravail21);
+             context.PosteDeTravails.Add(PosteDeTravail22);
+             context.PosteDeTravails.Add(PosteDeTravail5_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail6_1);
+             context.PosteDeTravails.Add(PosteDeTravail23);
+             context.PosteDeTravails.Add(PosteDeTravail24);
+             context.PosteDeTravails.Add(PosteDeTravail25);
+             context.PosteDeTravails.Add(PosteDeTravail26);
+             context.PosteDeTravails.Add(PosteDeTravail27);
+             context.PosteDeTravails.Add(PosteDeTravail6_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail7_1);
+             context.PosteDeTravails.Add(PosteDeTravail55);
+             context.PosteDeTravails.Add(PosteDeTravail28);
+             context.PosteDeTravails.Add(PosteDeTravail29);
+             context.PosteDeTravails.Add(PosteDeTravail30);
+             context.PosteDeTravails.Add(PosteDeTravail31);
+             context.PosteDeTravails.Add(PosteDeTravail7_2);
+
+             context.PosteDeTravails.Add(PosteDeTravail8_1);
+             context.PosteDeTravails.Add(PosteDeTravail32);
+             context.PosteDeTravails.Add(PosteDeTravail33);
+             context.PosteDeTravails.Add(PosteDeTravail34);
+             context.PosteDeTravails.Add(PosteDeTravail35);
+             context.PosteDeTravails.Add(PosteDeTravail36);
+             context.PosteDeTravails.Add(PosteDeTravail37);
+             context.PosteDeTravails.Add(PosteDeTravail38);
+             context.PosteDeTravails.Add(PosteDeTravail39);
+             context.PosteDeTravails.Add(PosteDeTravail40);
+             context.PosteDeTravails.Add(PosteDeTravail41);
+             context.PosteDeTravails.Add(PosteDeTravail42);
+             context.PosteDeTravails.Add(PosteDeTravail8_2);
+
+
+             context.PosteDeTravails.Add(PosteDeTravail43);
+             context.PosteDeTravails.Add(PosteDeTravail44);
+             context.PosteDeTravails.Add(PosteDeTravail45);
+             context.PosteDeTravails.Add(PosteDeTravail46);
+             context.PosteDeTravails.Add(PosteDeTravail47);
+             context.PosteDeTravails.Add(PosteDeTravail48);
+             context.PosteDeTravails.Add(PosteDeTravail49);
+             context.PosteDeTravails.Add(PosteDeTravail50);
+             context.PosteDeTravails.Add(PosteDeTravail51);
+             context.PosteDeTravails.Add(PosteDeTravail52);
+             context.PosteDeTravails.Add(PosteDeTravail53);
+             context.PosteDeTravails.Add(PosteDeTravail54);
+
+            // POSTES DE TRAVAIL DE STA
+
+             context.PosteDeTravails.Add(PosteDeTravail56);
+             context.PosteDeTravails.Add(PosteDeTravail57);
+             context.PosteDeTravails.Add(PosteDeTravail58);
+             context.PosteDeTravails.Add(PosteDeTravail59);
+             context.PosteDeTravails.Add(PosteDeTravail60);
+             context.PosteDeTravails.Add(PosteDeTravail61);
+             context.PosteDeTravails.Add(PosteDeTravail62);
+            
+             context.PosteDeTravails.Add(PosteDeTravail63);
+             context.PosteDeTravails.Add(PosteDeTravail64);
+             context.PosteDeTravails.Add(PosteDeTravail65);
+             context.PosteDeTravails.Add(PosteDeTravail66);
+             context.PosteDeTravails.Add(PosteDeTravail67);
+             context.PosteDeTravails.Add(PosteDeTravail68);
+             context.PosteDeTravails.Add(PosteDeTravail69);
+             context.PosteDeTravails.Add(PosteDeTravail70);
+             context.PosteDeTravails.Add(PosteDeTravail71);
+             context.PosteDeTravails.Add(PosteDeTravail72);
+             context.PosteDeTravails.Add(PosteDeTravail73);
+
+             context.PosteDeTravails.Add(PosteDeTravail74);
+             context.PosteDeTravails.Add(PosteDeTravail75);
+             context.PosteDeTravails.Add(PosteDeTravail76);
+             context.PosteDeTravails.Add(PosteDeTravail77);
+
+             context.PosteDeTravails.Add(PosteDeTravail78);
+             context.PosteDeTravails.Add(PosteDeTravail79);
+             context.PosteDeTravails.Add(PosteDeTravail80);
+             context.PosteDeTravails.Add(PosteDeTravail81);
+             context.PosteDeTravails.Add(PosteDeTravail82);
+             context.PosteDeTravails.Add(PosteDeTravail83);
+             context.PosteDeTravails.Add(PosteDeTravail84);
+             context.PosteDeTravails.Add(PosteDeTravail85);
+             context.PosteDeTravails.Add(PosteDeTravail86);
+             context.PosteDeTravails.Add(PosteDeTravail87);
+             context.PosteDeTravails.Add(PosteDeTravail88);
+            
+             context.PosteDeTravails.Add(PosteDeTravail89);
+             context.PosteDeTravails.Add(PosteDeTravail90);
+             context.PosteDeTravails.Add(PosteDeTravail91);
+             context.PosteDeTravails.Add(PosteDeTravail92);
+             context.PosteDeTravails.Add(PosteDeTravail93);
+
+             context.PosteDeTravails.Add(PosteDeTravail94);
+             context.PosteDeTravails.Add(PosteDeTravail95);
+             context.PosteDeTravails.Add(PosteDeTravail96);
+             context.PosteDeTravails.Add(PosteDeTravail97);
+             context.PosteDeTravails.Add(PosteDeTravail98);
+             context.PosteDeTravails.Add(PosteDeTravail99);
+             context.PosteDeTravails.Add(PosteDeTravail100);
+             context.PosteDeTravails.Add(PosteDeTravail101);
+             context.PosteDeTravails.Add(PosteDeTravail102);
+             context.PosteDeTravails.Add(PosteDeTravail103);
+             context.PosteDeTravails.Add(PosteDeTravail104);
+             context.PosteDeTravails.Add(PosteDeTravail105);
+             context.PosteDeTravails.Add(PosteDeTravail106);
+             context.PosteDeTravails.Add(PosteDeTravail107);
+             context.PosteDeTravails.Add(PosteDeTravail108);
+
+             context.PosteDeTravails.Add(PosteDeTravail109);
+             context.PosteDeTravails.Add(PosteDeTravail110);
+             context.PosteDeTravails.Add(PosteDeTravail111);
+             context.PosteDeTravails.Add(PosteDeTravail112);
+             context.PosteDeTravails.Add(PosteDeTravail113);
+             context.PosteDeTravails.Add(PosteDeTravail114);
+            
+             context.PosteDeTravails.Add(PosteDeTravail115);
+             context.PosteDeTravails.Add(PosteDeTravail116);
+             context.PosteDeTravails.Add(PosteDeTravail117);
+             context.PosteDeTravails.Add(PosteDeTravail118);
+             context.PosteDeTravails.Add(PosteDeTravail119);
+             context.PosteDeTravails.Add(PosteDeTravail120);
+             context.PosteDeTravails.Add(PosteDeTravail121);
+            
+
+
+
+
 
             Personne PersonneConcernee1 = new Personne()
             {
@@ -1663,12 +1023,12 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             FicheSecuriteType FicheSecuriteType4 = new FicheSecuriteType()
             {
-                Nom = "PA"
+                Nom = "Presque Accident"
             };
 
             FicheSecuriteType FicheSecuriteType5 = new FicheSecuriteType()
             {
-                Nom = "SD"
+                Nom = "Situation Dangereuse"
             };
 
             context.FicheSecuriteTypes.Add(FicheSecuriteType1);
@@ -1760,14 +1120,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-1",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                PosteDeTravail = PosteDeTravail23,
                 Service = ServiceDLF1,
                 Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
+                Lieu = Lieu13,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -1788,14 +1148,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-2",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail23,
                 Service = ServiceDLF1,
                 Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
+                Lieu = Lieu13,
                 PersonnesConcernees = "David Leloup, Cyril Clot",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -1815,14 +1175,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-3",
                 Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail38,
                 Service = ServiceDLF1,
                 Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF2,
-                Lieu = LieuDLFZone2_2,
+                Lieu = Lieu20,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -1843,14 +1203,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-4",
                 Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone5_2,
+                PosteDeTravail = PosteDeTravail38,
                 Service = ServiceDLF1,
                 Responsable = Responsable2,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF5,
-                Lieu = LieuDLFZone5_2,
+                Lieu = Lieu20,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -1871,14 +1231,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "STA-2014-3",
                 Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail72,
                 Service = ServiceSTA1,
                 Responsable = Responsable3,
                 Site = siteSTA,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneSTA2,
-                Lieu = LieuSTAZone2_2,
+                Lieu = Lieu55,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -1899,14 +1259,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "STA-2014-4",
                 Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone5_2,
+                PosteDeTravail = PosteDeTravail72,
                 Service = ServiceSTA1,
                 Responsable = Responsable4,
                 Site = siteSTA,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneSTA5,
-                Lieu = LieuSTAZone5_2,
+                Lieu = Lieu55,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -1921,129 +1281,129 @@ namespace Antelope.Services.Socle.DataBaseHydratation
                 CompteurAnnuelSite = 4
             };
 
-            FicheSecurite FicheSecurite7 = new FicheSecurite()
-            {
-                Code = "RFS-2014-1",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
-                Service = ServiceRFS1,
-                Responsable = Responsable1,
-                Site = siteRFS,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 1
+            //FicheSecurite FicheSecurite7 = new FicheSecurite()
+            //{
+            //    Code = "RFS-2014-1",
+            //    Type = "FAS",
+            //    PosteDeTravail = PosteDeTravail72,
+            //    Service = ServiceRFS1,
+            //    Responsable = Responsable1,
+            //    Site = siteRFS,
+            //    DateCreation = DateTime.Now,
+            //    DateEvenement = DateTime.Now,
+            //    Zone = ZoneDLF4,
+            //    Lieu = Lieu55,
+            //    PersonnesConcernees = "Jean Dupont",
+            //    Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+            //    CotationFrequence = 1,
+            //    CotationGravite = 2,
+            //    FicheSecuriteType = FicheSecuriteType1,
+            //    Danger = AllDanger[1],
+            //    PlageHoraire = plagehoraire1,
+            //    ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+            //    CorpsHumainZone = AllCorpsHumainZone[1],
+            //    PersonneConcernee = PersonneConcernee1,
+            //    Risque = AllRisque[1],
+            //    WorkFlowDiffusee = true,
+            //    CompteurAnnuelSite = 1
 
 
-            };
+            //};
 
-            FicheSecurite FicheSecurite8 = new FicheSecurite()
-            {
-                Code = "RFS-2014-2",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteRFS,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 2
+            //FicheSecurite FicheSecurite8 = new FicheSecurite()
+            //{
+            //    Code = "RFS-2014-2",
+            //    Type = "FAS",
+            //    PosteDeTravail = PosteDeTravailDLFZone3_2,
+            //    Service = ServiceDLF1,
+            //    Responsable = Responsable1,
+            //    Site = siteRFS,
+            //    DateCreation = DateTime.Now,
+            //    DateEvenement = DateTime.Now,
+            //    Zone = ZoneDLF3,
+            //    Lieu = LieuDLFZone3_2,
+            //    PersonnesConcernees = "David Leloup, Cyril Clot",
+            //    Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+            //    CotationFrequence = 1,
+            //    CotationGravite = 4,
+            //    FicheSecuriteType = FicheSecuriteType2,
+            //    Danger = AllDanger[2],
+            //    PlageHoraire = plagehoraire2,
+            //    CorpsHumainZone = AllCorpsHumainZone[2],
+            //    PersonneConcernee = PersonneConcernee2,
+            //    Risque = AllRisque[2],
+            //    WorkFlowDiffusee = true,
+            //    CompteurAnnuelSite = 2
 
-            };
+            //};
 
-            FicheSecurite FicheSecurite9 = new FicheSecurite()
-            {
-                Code = "RFS-2014-3",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteRFS,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF2,
-                Lieu = LieuDLFZone2_2,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType3,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire3,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[3],
-                PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 3
+            //FicheSecurite FicheSecurite9 = new FicheSecurite()
+            //{
+            //    Code = "RFS-2014-3",
+            //    Type = "FPA",
+            //    PosteDeTravail = PosteDeTravailDLFZone3_2,
+            //    Service = ServiceDLF1,
+            //    Responsable = Responsable1,
+            //    Site = siteRFS,
+            //    DateCreation = DateTime.Now,
+            //    DateEvenement = DateTime.Now,
+            //    Zone = ZoneDLF2,
+            //    Lieu = LieuDLFZone2_2,
+            //    PersonnesConcernees = "Jean Dupont",
+            //    Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
+            //    CotationFrequence = 1,
+            //    CotationGravite = 2,
+            //    FicheSecuriteType = FicheSecuriteType3,
+            //    Danger = AllDanger[3],
+            //    PlageHoraire = plagehoraire3,
+            //    ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
+            //    CorpsHumainZone = AllCorpsHumainZone[3],
+            //    PersonneConcernee = PersonneConcernee3,
+            //    Risque = AllRisque[3],
+            //    WorkFlowDiffusee = true,
+            //    CompteurAnnuelSite = 3
 
-            };
+            //};
 
-            FicheSecurite FicheSecurite10 = new FicheSecurite()
-            {
-                Code = "RFS-2014-4",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravailDLFZone5_2,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteRFS,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF5,
-                Lieu = LieuDLFZone5_2,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType4,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire4,
-                CorpsHumainZone = AllCorpsHumainZone[4],
-                PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 4
+            //FicheSecurite FicheSecurite10 = new FicheSecurite()
+            //{
+            //    Code = "RFS-2014-4",
+            //    Type = "FPA",
+            //    PosteDeTravail = PosteDeTravailDLFZone5_2,
+            //    Service = ServiceDLF1,
+            //    Responsable = Responsable1,
+            //    Site = siteRFS,
+            //    DateCreation = DateTime.Now,
+            //    DateEvenement = DateTime.Now,
+            //    Zone = ZoneDLF5,
+            //    Lieu = LieuDLFZone5_2,
+            //    PersonnesConcernees = "Jean Dupont",
+            //    Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
+            //    CotationFrequence = 1,
+            //    CotationGravite = 4,
+            //    FicheSecuriteType = FicheSecuriteType4,
+            //    Danger = AllDanger[3],
+            //    PlageHoraire = plagehoraire4,
+            //    CorpsHumainZone = AllCorpsHumainZone[4],
+            //    PersonneConcernee = PersonneConcernee4,
+            //    Risque = AllRisque[4],
+            //    WorkFlowDiffusee = true,
+            //    CompteurAnnuelSite = 4
 
-            };
+            //};
 
             FicheSecurite FicheSecurite11 = new FicheSecurite()
             {
                 Code = "DLF-2014-5",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                PosteDeTravail = PosteDeTravail15,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
+                Lieu = Lieu15,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -2066,14 +1426,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-6",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail15,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
+                Lieu = Lieu15,
                 PersonnesConcernees = "David Leloup, Cyril Clot",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -2094,14 +1454,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-7",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                PosteDeTravail = PosteDeTravail15,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
+                Lieu = Lieu15,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -2124,14 +1484,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-8",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail16,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
+                Lieu = Lieu16,
                 PersonnesConcernees = "David Leloup, Cyril Clot",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -2153,14 +1513,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-9",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                PosteDeTravail = PosteDeTravail17,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
+                Lieu = Lieu17,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -2183,14 +1543,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-10",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail18,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
+                Lieu = Lieu18,
                 PersonnesConcernees = "David Leloup, Cyril Clot",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -2211,14 +1571,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-11",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone4_2,
+                PosteDeTravail = PosteDeTravail19,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF4,
-                Lieu = LieuDLFZone4_2,
+                Lieu = Lieu19,
                 PersonnesConcernees = "Jean Dupont",
                 Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
                 CotationFrequence = 1,
@@ -2241,14 +1601,14 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             {
                 Code = "DLF-2014-12",
                 Type = "FAS",
-                PosteDeTravail = PosteDeTravailDLFZone3_2,
+                PosteDeTravail = PosteDeTravail20,
                 Service = ServiceDLF1,
                 Responsable = Responsable1,
                 Site = siteDLF,
                 DateCreation = DateTime.Now,
                 DateEvenement = DateTime.Now,
                 Zone = ZoneDLF3,
-                Lieu = LieuDLFZone3_2,
+                Lieu = Lieu20,
                 PersonnesConcernees = "David Leloup, Cyril Clot",
                 Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
                 CotationFrequence = 1,
@@ -2292,10 +1652,10 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.FicheSecurites.Add(FicheSecurite4);
             context.FicheSecurites.Add(FicheSecurite5);
             context.FicheSecurites.Add(FicheSecurite6);
-            context.FicheSecurites.Add(FicheSecurite7);
-            context.FicheSecurites.Add(FicheSecurite8);
-            context.FicheSecurites.Add(FicheSecurite9);
-            context.FicheSecurites.Add(FicheSecurite10);
+            //context.FicheSecurites.Add(FicheSecurite7);
+            //context.FicheSecurites.Add(FicheSecurite8);
+            //context.FicheSecurites.Add(FicheSecurite9);
+            //context.FicheSecurites.Add(FicheSecurite10);
             context.FicheSecurites.Add(FicheSecurite11);
             context.FicheSecurites.Add(FicheSecurite12);
             context.FicheSecurites.Add(FicheSecurite13);
@@ -2399,6 +1759,15 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.ADRoles.Add(ADRoleHSEASE);
 
             context.SaveChanges();
+
+            //try
+            //{
+            //    context.SaveChanges();
+            //}
+            //catch (Exception e)
+            //{
+            //    var a = 0;
+            //}
 
         }
     }

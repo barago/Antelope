@@ -23,10 +23,11 @@ namespace Antelope.Domain.Models
         public int PosteDeTravailId { get; set; }
         public int ZoneId { get; set; }
         public int PosteDeTravailTypeId { get; set; }
+        public string Nom { get; set; }
+        public int Rang { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }
-        public virtual PosteDeTravailType PosteDeTravailType { get; set; }
         [JsonIgnore]
         public virtual Zone Zone { get; set; }
     }

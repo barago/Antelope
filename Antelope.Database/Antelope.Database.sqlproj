@@ -70,12 +70,10 @@
     <Build Include="dbo\Tables\RisqueTypes.sql" />
     <Build Include="dbo\Tables\Risques.sql" />
     <Build Include="dbo\Tables\Projets.sql" />
-    <Build Include="dbo\Tables\PosteDeTravailTypes.sql" />
     <Build Include="dbo\Tables\PosteDeTravails.sql" />
     <Build Include="dbo\Tables\PlageHoraires.sql" />
     <Build Include="dbo\Tables\Personnes.sql" />
     <Build Include="dbo\Tables\Lieux.sql" />
-    <Build Include="dbo\Tables\LieuTypes.sql" />
     <Build Include="dbo\Tables\Interventions.sql" />
     <Build Include="dbo\Tables\FicheSecuriteTypes.sql" />
     <Build Include="dbo\Tables\FicheSecurites.sql" />

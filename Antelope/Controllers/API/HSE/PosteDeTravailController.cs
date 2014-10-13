@@ -28,6 +28,7 @@ namespace Antelope.Controllers.API.HSE
 
             var queryPosteDeTravail = from a in db.PosteDeTravails
                             where a.ZoneId == id
+                            orderby a.Rang
                             select a;
             List<PosteDeTravail> AllPosteDeTravail = queryPosteDeTravail.ToList();
 
