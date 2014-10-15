@@ -844,7 +844,7 @@
                                     <div class="accordian-body collapse AjoutActionCollapse" id="<%= 'FormAddActionForCause'+cause.get('CauseQSEId') %>">
                                         <form class="form" role="form">
                                             <div class="form-group">
-                                                <label for="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>"> Description de l'Action</label>
+                                                <label for="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>"> Description de l'Action&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <textarea id="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>" class="form-control AddActionDescription" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "></textarea>
@@ -857,7 +857,7 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>">Date butoir initiale</label>
+                                                        <label for="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>">Date butoir initiale&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                         <div class='input-group date AddActionDateButoirInitiale' id="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
                                                             <input type='text' name="DateButoirInitiale" class="form-control input-xs AddActionDateButoirInitiale" id="<%= 'AddActionDateButoirInitialeInputForCause'+cause.get('CauseQSEId') %>" />
                                                             <span class="input-group-addon input-xs">
@@ -879,7 +879,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="<%= 'AddActionResponsableNomForCause'+cause.get('CauseQSEId') %>">Nom responsable</label>
+                                                        <label for="<%= 'AddActionResponsableNomForCause'+cause.get('CauseQSEId') %>">Nom responsable&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                         <div class="input-group input-group-xs">
                                                             <input type="text" class="form-control input-xs AddActionResponsableNom" id="<%= 'AddActionResponsableNomForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" />
                                                             @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
@@ -893,7 +893,7 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <label for="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>">Prénom&nbsp;responsable&nbsp;:</label>
+                                                        <label for="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>">Prénom&nbsp;responsable&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                         <input type="text" class="form-control input-xs AddActionResponsablePrenom" id="<%= 'AddActionResponsablePrenomForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
                                                     </div>
                                                 </div>
@@ -1259,8 +1259,6 @@
                 //d'un autre objet de mettre les données à jour ... 
                 if ((this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'PERSONNECONCERNEE') ||
                     (this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'RESPONSABLE')) {
-
-                    console.log(utilisateurActiveDirectorySelectionne.get('PersonneId'));
 
                     switch (this.model.get('sourceActiveDirectoryUtilisateurRecherche')) {
                         case 'PERSONNECONCERNEE':
@@ -1737,6 +1735,10 @@
 
                     }
 
+                    //this.model.get('ficheSecuriteModel').get('ActionQSEModel').on("invalid", function (model, error) {
+                    //    Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
+                    //});
+
                 }, this);
 
                 Backbone.applicationEvents.on('FicheDiffusee', function () {
@@ -1790,7 +1792,7 @@
                 this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
             },
             addCause: function () {
-                this.model.get('ficheSecuriteModel').get('causeCollection').create(
+                var caucau = this.model.get('ficheSecuriteModel').get('causeCollection').create(
                     new CauseModel({
                         'FicheSecuriteID': this.model.get('ficheSecuriteModel').get('FicheSecuriteID'),
                         'Description': this.model.get('causeModel').get('Description'),
@@ -1804,31 +1806,46 @@
             },
             addAction: function (ev) {
                  $("#loading").fadeIn();
-
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 var modelToAdd = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel');
+                var newActionModel = new ActionModel({
+                    'CauseQSEId': parseInt(causeToEditId),
+                    'Description': modelToAdd.get('Description'),
+                    'DateButoireInitiale': modelToAdd.get('DateButoireInitiale'),
+                    'DateButoireInitialeJavascript': modelToAdd.get('DateButoireInitialeJavascript'),
+                    'DateButoireNouvelle': modelToAdd.get('DateButoireNouvelle'),
+                    'DateButoireNouvelleJavascript': modelToAdd.get('DateButoireNouvelleJavascript'),
+                    'Responsable': new ResponsableModel({
+                        'Nom': modelToAdd.get('Responsable').get('Nom'),
+                        'Prenom': modelToAdd.get('Responsable').get('Prenom'),
+                        'Guid': modelToAdd.get('Responsable').get('Guid')
+                    })
+                });
+                newActionModel.on("invalid", function (model, error) {
+                        console.log('INVALID');
+                        Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
+                });
                 var actionModelAdded = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').create(
-                        new ActionModel({
-                            'CauseQSEId': parseInt(causeToEditId),
-                            'Description': modelToAdd.get('Description'),
-                            'DateButoireInitiale': modelToAdd.get('DateButoireInitiale'),
-                            'DateButoireInitialeJavascript': modelToAdd.get('DateButoireInitialeJavascript'),
-                            'DateButoireNouvelle': modelToAdd.get('DateButoireNouvelle'),
-                            'DateButoireNouvelleJavascript': modelToAdd.get('DateButoireNouvelleJavascript'),
-                            'Responsable': new ResponsableModel({
-                                'Nom': modelToAdd.get('Responsable').get('Nom'),
-                                'Prenom': modelToAdd.get('Responsable').get('Prenom'),
-                                'Guid': modelToAdd.get('Responsable').get('Guid')
-                            })
-                        }), { async: false, wait: true }
+                        newActionModel, { async: false, wait: true }
                     );
 
-                actionModelAdded.set({'Responsable':new ResponsableModel(actionModelAdded.get('Responsable'))});
+                if (actionModelAdded.validationError != null) {
 
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Responsable': new ResponsableModel() });
-                 $("#loading").fadeOut();
-                this.render();
+
+                } else {
+
+                    actionModelAdded.set({ 'Responsable': new ResponsableModel(actionModelAdded.get('Responsable')) });
+
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
+                    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Responsable': new ResponsableModel() });
+                    this.render();
+
+                };
+
+                $("#loading").fadeOut();
+                console.log(actionModelAdded);
+                
+
             },
             changeEditCauseDescription: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
@@ -1921,13 +1938,6 @@
             },
             changeDateButoirInitiale: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                console.log('1');
-                console.log(causeToEditId);
-                console.log('2');
-                console.log(this.model.get('ficheSecuriteModel'));
-                console.log('3');
-                console.log(this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel'));
-                console.log('4');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
                 //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
@@ -1962,11 +1972,6 @@
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
 
-                console.log(ev);
-                console.log(actionToEditId);
-                console.log(causeToEditId);
-
-                console.log(this.model.get('ficheSecuriteModel').get('causeCollection'));
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDate': ($('#EditActionClotureDateInputForAction' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionClotureDateInputForAction' + actionToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDateJavascript': $('#EditActionClotureDateInputForAction' + actionToEditId).val() });
             },
@@ -1995,9 +2000,9 @@
             },
             ASEEnvoi: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
-                console.log(this.model.get('ficheSecuriteModel'));
+
                 this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate:false});
-                console.log(this.model.get('ficheSecuriteModel'));
+
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
                 this.render();
 

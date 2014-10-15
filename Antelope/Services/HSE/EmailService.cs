@@ -60,23 +60,24 @@ namespace Antelope.Services.HSE
 
             string ActionImmediate2 = "";
             if(FicheSecurite.ActionImmediate2 != null && FicheSecurite.ActionImmediate2 != ""){
-                ActionImmediate2 = "<div> Deuxième action immédiate : " + FicheSecurite.ActionImmediate2 + "</div>";
+                ActionImmediate2 = "<div>&nbsp;&nbsp;-&nbsp;" + FicheSecurite.ActionImmediate2 + "</div>";
             }
 
-            String body = "<H1>Alerte Sécurité</H1>" +
-                "<div> Site : " + FicheSecurite.Site.Nom + "</div>" +
-                "<div> Type d'alerte : " + db.FicheSecuriteTypes.Find(FicheSecurite.FicheSecuriteTypeId).Nom + "</div>" +
-                "<div> Nom et Prénom : " + FicheSecurite.PersonneConcernee.Prenom + " " + FicheSecurite.PersonneConcernee.Nom + "</div>" +
-                "<div> Zone : " + db.Zones.Find(FicheSecurite.ZoneId).ZoneType.Nom + "</div>" +
-                "<div> Zone de la lésion : " + db.CorpsHumainZones.Find(FicheSecurite.CorpsHumainZoneId).Nom + "</div>" +
-                "<div> Déscription : " + FicheSecurite.Description + "</div>" +
-                "<div> Action immédiate : " + FicheSecurite.ActionImmediate1 + "</div>" +
+            String body = "<div style='font-family: Verdana, sans-serif;'><H1 style='background-color:#C42031;color:#FFFFFF;text-align:center;border-radius: 25px;'>Nouvelle Fiche Sécurité à " + FicheSecurite.Site.Trigramme + "</H1>" +
+                "<div><span style='font-weight: bold;text-decoration: underline;'>" + db.FicheSecuriteTypes.Find(FicheSecurite.FicheSecuriteTypeId).Nom + "</span>" +
+                " de <span style='font-weight: bold;text-decoration: underline;'>" + FicheSecurite.PersonneConcernee.Prenom + " " + FicheSecurite.PersonneConcernee.Nom + "</span></div>" +
+                "<br/>" +
+                "<div style='font-weight: bold;text-decoration: underline;'>Déscription :</div>" +
+                "<div>" + FicheSecurite.Description + "</div>" +
+                "<br/>" +
+                "<div style='font-weight: bold;text-decoration: underline;'>Action(s) immédiate(s) :</div>" +
+                "<div>&nbsp;&nbsp;-&nbsp;" + FicheSecurite.ActionImmediate1 + "</div>" +
                 ActionImmediate2 +
-                "<div> Lien vers la fiche  : " + urlToFicheSecurite + "</div>"
-                ;
+                "<br/>"+
+                "<div> Lien vers la fiche  : " + urlToFicheSecurite + "</div></div>";
 
             MailAddress from = new MailAddress("Sezar@refresco.fr");
-            string subject = "Alerte Sécurité";
+            string subject = "Nouvelle Fiche Sécurité à " + FicheSecurite.Site.Trigramme;
             string to = GetEmailFor("DiffusionFicheSecurite");
 
             SendEmail(from, subject, body, to);
@@ -88,7 +89,7 @@ namespace Antelope.Services.HSE
 
             MailAddress from = new MailAddress("Sezar@refresco.fr");
             string subject = "Rejet Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause;
+            string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause;
             string to = GetEmailFor("RejetPlanActionFicheSecurite");
 
             SendEmail(from, subject, body, to);

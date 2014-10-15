@@ -145,6 +145,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\pdfs\" />
+    <Folder Include="Controllers\QSE\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
     <Folder Include="Views\IndicateurSIIndex\" />
@@ -236,6 +237,7 @@
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
     <Compile Include="Services\Socle\ActiveDirectoryService.cs" />
+    <Compile Include="Services\Socle\DataBases\DataBaseAcceptanceHydratationService.cs" />
     <Compile Include="Services\Socle\DataBases\DataBaseTestHydratationService.cs" />
     <Compile Include="Services\Socle\PersonneAnnuaireService.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
@@ -389,12 +391,15 @@
     <None Include="Properties\PublishProfiles\antelope - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\antelope - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\antelope.pubxml" />
+    <None Include="Properties\PublishProfiles\Antelope_Acceptance.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Azure.pubxml" />
+    <None Include="Properties\PublishProfiles\Antelope_Release.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Local_Debug_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Release_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Acceptance_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_Work_Server_Test_Publish.pubxml" />
     <None Include="Properties\PublishProfiles\Antelope_test.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Acceptance.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Production.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Test.pubxml" />
@@ -538,6 +543,7 @@
     </None>
     <None Include="Web.Test.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

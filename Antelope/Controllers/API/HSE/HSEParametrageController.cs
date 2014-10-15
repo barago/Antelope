@@ -16,6 +16,7 @@ namespace Antelope.Controllers.API.HSE
 
         private AntelopeEntities context = new AntelopeEntities();
         private DataBaseTestHydratationService _dataBaseTestHydratationService = new DataBaseTestHydratationService();
+        private DataBaseAcceptanceHydratationService _dataBaseAcceptanceHydratationService = new DataBaseAcceptanceHydratationService();
 
         [AcceptVerbs("GET")]       
         public HttpResponseMessage GetHSEParametrage()
@@ -46,6 +47,14 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage AlimenteBaseTest()
         {
             _dataBaseTestHydratationService.FullDataBaseTestHydrate();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AcceptVerbs("POST")]
+        public HttpResponseMessage AlimenteBaseAcceptance()
+        {
+            _dataBaseAcceptanceHydratationService.FullDataBaseAcceptanceHydrate();
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

@@ -158,7 +158,7 @@ namespace Antelope.Controllers.API.HSE
 
             var QueryLastFicheSecuriteForSite = from f in db.FicheSecurites
                                          where f.SiteId == FicheSecurite.SiteId
-                                         orderby f.FicheSecuriteID descending
+                                         orderby f.CompteurAnnuelSite descending
                                          select f;
 
             FicheSecurite LastFicheSecuriteForSite = QueryLastFicheSecuriteForSite.FirstOrDefault();

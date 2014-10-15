@@ -7,20 +7,20 @@ using System.Web;
 
 namespace Antelope.Services.Socle.DataBaseHydratation
 {
-    public class DataBaseTestHydratationService
+    public class DataBaseAcceptanceHydratationService
     {
 
         private AntelopeEntities context = new AntelopeEntities();
 
-        public void FullDataBaseTestHydrate()
+        public void FullDataBaseAcceptanceHydrate()
         {
 
             Site siteRFS = new Site()
-     {
-         Nom = "Refresco",
-         Trigramme = "RFS",
-         Arouperr = "RFS-Batiment Administratif"
-     };
+            {
+                Nom = "Refresco",
+                Trigramme = "RFS",
+                Arouperr = "RFS-Batiment Administratif"
+            };
 
             Site siteDLF = new Site()
             {
@@ -490,138 +490,138 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Lieu Lieu22_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA5 };
             Lieu Lieu22_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA5 };
 
-             context.Lieux.Add(Lieu1_1);
-             context.Lieux.Add(Lieu1_2);
+            context.Lieux.Add(Lieu1_1);
+            context.Lieux.Add(Lieu1_2);
 
-             context.Lieux.Add(Lieu2_1);
-             context.Lieux.Add(Lieu2_2);
+            context.Lieux.Add(Lieu2_1);
+            context.Lieux.Add(Lieu2_2);
 
-             context.Lieux.Add(Lieu1);
-             context.Lieux.Add(Lieu2);
-             context.Lieux.Add(Lieu3);
-             context.Lieux.Add(Lieu13);
-             context.Lieux.Add(Lieu3_1);
+            context.Lieux.Add(Lieu1);
+            context.Lieux.Add(Lieu2);
+            context.Lieux.Add(Lieu3);
+            context.Lieux.Add(Lieu13);
+            context.Lieux.Add(Lieu3_1);
 
-             context.Lieux.Add(Lieu4_1); 
-             context.Lieux.Add(Lieu4);
-             context.Lieux.Add(Lieu5);
-             context.Lieux.Add(Lieu6);
-             context.Lieux.Add(Lieu7); 
-             context.Lieux.Add(Lieu8 );
-             context.Lieux.Add(Lieu4_2); 
+            context.Lieux.Add(Lieu4_1);
+            context.Lieux.Add(Lieu4);
+            context.Lieux.Add(Lieu5);
+            context.Lieux.Add(Lieu6);
+            context.Lieux.Add(Lieu7);
+            context.Lieux.Add(Lieu8);
+            context.Lieux.Add(Lieu4_2);
 
-             context.Lieux.Add(Lieu5_1); 
-             context.Lieux.Add(Lieu9); 
-             context.Lieux.Add(Lieu10);
-             context.Lieux.Add(Lieu11);
-             context.Lieux.Add(Lieu12); 
-             context.Lieux.Add(Lieu5_2);
+            context.Lieux.Add(Lieu5_1);
+            context.Lieux.Add(Lieu9);
+            context.Lieux.Add(Lieu10);
+            context.Lieux.Add(Lieu11);
+            context.Lieux.Add(Lieu12);
+            context.Lieux.Add(Lieu5_2);
 
-             context.Lieux.Add(Lieu6_1);
-             context.Lieux.Add(Lieu14);
-             context.Lieux.Add(Lieu15);
-             context.Lieux.Add(Lieu18);
-             context.Lieux.Add(Lieu6_2);
+            context.Lieux.Add(Lieu6_1);
+            context.Lieux.Add(Lieu14);
+            context.Lieux.Add(Lieu15);
+            context.Lieux.Add(Lieu18);
+            context.Lieux.Add(Lieu6_2);
 
-             context.Lieux.Add(Lieu7_1); 
-             context.Lieux.Add(Lieu16);
-             context.Lieux.Add(Lieu7_2);
+            context.Lieux.Add(Lieu7_1);
+            context.Lieux.Add(Lieu16);
+            context.Lieux.Add(Lieu7_2);
 
-             context.Lieux.Add(Lieu8_1);
-             context.Lieux.Add(Lieu19); 
-             context.Lieux.Add(Lieu8_2); 
+            context.Lieux.Add(Lieu8_1);
+            context.Lieux.Add(Lieu19);
+            context.Lieux.Add(Lieu8_2);
 
-             context.Lieux.Add(Lieu9_1);
-             context.Lieux.Add(Lieu20);
-             context.Lieux.Add(Lieu9_2);
+            context.Lieux.Add(Lieu9_1);
+            context.Lieux.Add(Lieu20);
+            context.Lieux.Add(Lieu9_2);
 
             //context.Lieux.Add(LieuX RFS
-             //context.Lieux.Add(Lieu10_1);
-             //context.Lieux.Add(Lieu21);
-             //context.Lieux.Add(Lieu22);
-             //context.Lieux.Add(Lieu10_2); 
+            //context.Lieux.Add(Lieu10_1);
+            //context.Lieux.Add(Lieu21);
+            //context.Lieux.Add(Lieu22);
+            //context.Lieux.Add(Lieu10_2); 
 
-             //context.Lieux.Add(Lieu11_1); 
-             //context.Lieux.Add(Lieu23);
-             //context.Lieux.Add(Lieu24); 
-             //context.Lieux.Add(Lieu25);
-             //context.Lieux.Add(Lieu26 );
-             //context.Lieux.Add(Lieu11_2); 
+            //context.Lieux.Add(Lieu11_1); 
+            //context.Lieux.Add(Lieu23);
+            //context.Lieux.Add(Lieu24); 
+            //context.Lieux.Add(Lieu25);
+            //context.Lieux.Add(Lieu26 );
+            //context.Lieux.Add(Lieu11_2); 
 
             //context.Lieux.Add(LieuX STA
-             context.Lieux.Add(Lieu12_1);
-             context.Lieux.Add(Lieu12_2);
+            context.Lieux.Add(Lieu12_1);
+            context.Lieux.Add(Lieu12_2);
 
-             context.Lieux.Add(Lieu13_1); 
-             context.Lieux.Add(Lieu28);
-             context.Lieux.Add(Lieu13_2);
+            context.Lieux.Add(Lieu13_1);
+            context.Lieux.Add(Lieu28);
+            context.Lieux.Add(Lieu13_2);
 
-             context.Lieux.Add(Lieu14_1); 
-             context.Lieux.Add(Lieu29 );
-             context.Lieux.Add(Lieu14_2);
+            context.Lieux.Add(Lieu14_1);
+            context.Lieux.Add(Lieu29);
+            context.Lieux.Add(Lieu14_2);
 
-             context.Lieux.Add(Lieu15_1); 
-             context.Lieux.Add(Lieu30 );
-             context.Lieux.Add(Lieu34 );
-             context.Lieux.Add(Lieu35 );
-             context.Lieux.Add(Lieu38 );
-             context.Lieux.Add(Lieu15_2 );
+            context.Lieux.Add(Lieu15_1);
+            context.Lieux.Add(Lieu30);
+            context.Lieux.Add(Lieu34);
+            context.Lieux.Add(Lieu35);
+            context.Lieux.Add(Lieu38);
+            context.Lieux.Add(Lieu15_2);
 
-             context.Lieux.Add(Lieu16_1 );
-             context.Lieux.Add(Lieu31 );
-             context.Lieux.Add(Lieu32);
-             context.Lieux.Add(Lieu33 );
-             context.Lieux.Add(Lieu36 );
-             context.Lieux.Add(Lieu37 );
-             context.Lieux.Add(Lieu39);
-             context.Lieux.Add(Lieu16_2); 
+            context.Lieux.Add(Lieu16_1);
+            context.Lieux.Add(Lieu31);
+            context.Lieux.Add(Lieu32);
+            context.Lieux.Add(Lieu33);
+            context.Lieux.Add(Lieu36);
+            context.Lieux.Add(Lieu37);
+            context.Lieux.Add(Lieu39);
+            context.Lieux.Add(Lieu16_2);
 
-             context.Lieux.Add(Lieu17_1 );
-             context.Lieux.Add(Lieu40);
-             context.Lieux.Add(Lieu41 );
-             context.Lieux.Add(Lieu56 );
-             context.Lieux.Add(Lieu57 );
-             context.Lieux.Add(Lieu58 );
-             context.Lieux.Add(Lieu67 );
-             context.Lieux.Add(Lieu17_2 );
+            context.Lieux.Add(Lieu17_1);
+            context.Lieux.Add(Lieu40);
+            context.Lieux.Add(Lieu41);
+            context.Lieux.Add(Lieu56);
+            context.Lieux.Add(Lieu57);
+            context.Lieux.Add(Lieu58);
+            context.Lieux.Add(Lieu67);
+            context.Lieux.Add(Lieu17_2);
 
-             context.Lieux.Add(Lieu18_1 );
-             context.Lieux.Add(Lieu42 );
-             context.Lieux.Add(Lieu42_2 );
-             context.Lieux.Add(Lieu54);
-             context.Lieux.Add(Lieu18_2); 
+            context.Lieux.Add(Lieu18_1);
+            context.Lieux.Add(Lieu42);
+            context.Lieux.Add(Lieu42_2);
+            context.Lieux.Add(Lieu54);
+            context.Lieux.Add(Lieu18_2);
 
-             context.Lieux.Add(Lieu19_1 );
-             context.Lieux.Add(Lieu43);
-             context.Lieux.Add(Lieu44 );
-             context.Lieux.Add(Lieu45 );
-             context.Lieux.Add(Lieu46 );
-             context.Lieux.Add(Lieu47 );
-             context.Lieux.Add(Lieu48 );
-             context.Lieux.Add(Lieu19_2 );
+            context.Lieux.Add(Lieu19_1);
+            context.Lieux.Add(Lieu43);
+            context.Lieux.Add(Lieu44);
+            context.Lieux.Add(Lieu45);
+            context.Lieux.Add(Lieu46);
+            context.Lieux.Add(Lieu47);
+            context.Lieux.Add(Lieu48);
+            context.Lieux.Add(Lieu19_2);
 
-             context.Lieux.Add(Lieu20_1 );
-             context.Lieux.Add(Lieu49 );
-             context.Lieux.Add(Lieu50 );
-             context.Lieux.Add(Lieu51 );
-             context.Lieux.Add(Lieu52 );
-             context.Lieux.Add(Lieu60 );
-             context.Lieux.Add(Lieu62 );
-             context.Lieux.Add(Lieu63 );
-             context.Lieux.Add(Lieu64);
-             context.Lieux.Add(Lieu65 );
-             context.Lieux.Add(Lieu20_2);
+            context.Lieux.Add(Lieu20_1);
+            context.Lieux.Add(Lieu49);
+            context.Lieux.Add(Lieu50);
+            context.Lieux.Add(Lieu51);
+            context.Lieux.Add(Lieu52);
+            context.Lieux.Add(Lieu60);
+            context.Lieux.Add(Lieu62);
+            context.Lieux.Add(Lieu63);
+            context.Lieux.Add(Lieu64);
+            context.Lieux.Add(Lieu65);
+            context.Lieux.Add(Lieu20_2);
 
-             context.Lieux.Add(Lieu21_1);
-             context.Lieux.Add(Lieu53 );
-             context.Lieux.Add(Lieu55);
-             context.Lieux.Add(Lieu59);
-             context.Lieux.Add(Lieu61 );
-             context.Lieux.Add(Lieu66 );
-             context.Lieux.Add(Lieu21_2);
+            context.Lieux.Add(Lieu21_1);
+            context.Lieux.Add(Lieu53);
+            context.Lieux.Add(Lieu55);
+            context.Lieux.Add(Lieu59);
+            context.Lieux.Add(Lieu61);
+            context.Lieux.Add(Lieu66);
+            context.Lieux.Add(Lieu21_2);
 
-             context.Lieux.Add(Lieu22_1);
-             context.Lieux.Add(Lieu22_2);
+            context.Lieux.Add(Lieu22_1);
+            context.Lieux.Add(Lieu22_2);
 
 
 
@@ -798,174 +798,174 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             PosteDeTravail PosteDeTravail127 = new PosteDeTravail() { Nom = "Opérateur souffleur", Rang = 1, Zone = ZoneSTA2 };
             PosteDeTravail PosteDeTravail128 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA2 };
 
-             context.PosteDeTravails.Add(PosteDeTravail1_1);
-             context.PosteDeTravails.Add(PosteDeTravail1_2);
+            context.PosteDeTravails.Add(PosteDeTravail1_1);
+            context.PosteDeTravails.Add(PosteDeTravail1_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail2_1);
-             context.PosteDeTravails.Add(PosteDeTravail2_2);
+            context.PosteDeTravails.Add(PosteDeTravail2_1);
+            context.PosteDeTravails.Add(PosteDeTravail2_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail3_1);
-             context.PosteDeTravails.Add(PosteDeTravail1);
-             context.PosteDeTravails.Add(PosteDeTravail2);
-             context.PosteDeTravails.Add(PosteDeTravail3);
-             context.PosteDeTravails.Add(PosteDeTravail4);
-             context.PosteDeTravails.Add(PosteDeTravail5);
-             context.PosteDeTravails.Add(PosteDeTravail6);
-             context.PosteDeTravails.Add(PosteDeTravail7);
-             context.PosteDeTravails.Add(PosteDeTravail8);
-             context.PosteDeTravails.Add(PosteDeTravail3_2);
+            context.PosteDeTravails.Add(PosteDeTravail3_1);
+            context.PosteDeTravails.Add(PosteDeTravail1);
+            context.PosteDeTravails.Add(PosteDeTravail2);
+            context.PosteDeTravails.Add(PosteDeTravail3);
+            context.PosteDeTravails.Add(PosteDeTravail4);
+            context.PosteDeTravails.Add(PosteDeTravail5);
+            context.PosteDeTravails.Add(PosteDeTravail6);
+            context.PosteDeTravails.Add(PosteDeTravail7);
+            context.PosteDeTravails.Add(PosteDeTravail8);
+            context.PosteDeTravails.Add(PosteDeTravail3_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail4_1);
-             context.PosteDeTravails.Add(PosteDeTravail9);
-             context.PosteDeTravails.Add(PosteDeTravail10);
-             context.PosteDeTravails.Add(PosteDeTravail11);
-             context.PosteDeTravails.Add(PosteDeTravail12);
-             context.PosteDeTravails.Add(PosteDeTravail13);
-             context.PosteDeTravails.Add(PosteDeTravail14);
-             context.PosteDeTravails.Add(PosteDeTravail15);
-             context.PosteDeTravails.Add(PosteDeTravail16);
-             context.PosteDeTravails.Add(PosteDeTravail17);
-             context.PosteDeTravails.Add(PosteDeTravail18);
-             context.PosteDeTravails.Add(PosteDeTravail4_2);
+            context.PosteDeTravails.Add(PosteDeTravail4_1);
+            context.PosteDeTravails.Add(PosteDeTravail9);
+            context.PosteDeTravails.Add(PosteDeTravail10);
+            context.PosteDeTravails.Add(PosteDeTravail11);
+            context.PosteDeTravails.Add(PosteDeTravail12);
+            context.PosteDeTravails.Add(PosteDeTravail13);
+            context.PosteDeTravails.Add(PosteDeTravail14);
+            context.PosteDeTravails.Add(PosteDeTravail15);
+            context.PosteDeTravails.Add(PosteDeTravail16);
+            context.PosteDeTravails.Add(PosteDeTravail17);
+            context.PosteDeTravails.Add(PosteDeTravail18);
+            context.PosteDeTravails.Add(PosteDeTravail4_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail5_1);
-             context.PosteDeTravails.Add(PosteDeTravail19);
-             context.PosteDeTravails.Add(PosteDeTravail20);
-             context.PosteDeTravails.Add(PosteDeTravail21);
-             context.PosteDeTravails.Add(PosteDeTravail22);
-             context.PosteDeTravails.Add(PosteDeTravail5_2);
+            context.PosteDeTravails.Add(PosteDeTravail5_1);
+            context.PosteDeTravails.Add(PosteDeTravail19);
+            context.PosteDeTravails.Add(PosteDeTravail20);
+            context.PosteDeTravails.Add(PosteDeTravail21);
+            context.PosteDeTravails.Add(PosteDeTravail22);
+            context.PosteDeTravails.Add(PosteDeTravail5_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail6_1);
-             context.PosteDeTravails.Add(PosteDeTravail23);
-             context.PosteDeTravails.Add(PosteDeTravail24);
-             context.PosteDeTravails.Add(PosteDeTravail25);
-             context.PosteDeTravails.Add(PosteDeTravail26);
-             context.PosteDeTravails.Add(PosteDeTravail27);
-             context.PosteDeTravails.Add(PosteDeTravail6_2);
+            context.PosteDeTravails.Add(PosteDeTravail6_1);
+            context.PosteDeTravails.Add(PosteDeTravail23);
+            context.PosteDeTravails.Add(PosteDeTravail24);
+            context.PosteDeTravails.Add(PosteDeTravail25);
+            context.PosteDeTravails.Add(PosteDeTravail26);
+            context.PosteDeTravails.Add(PosteDeTravail27);
+            context.PosteDeTravails.Add(PosteDeTravail6_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail7_1);
-             context.PosteDeTravails.Add(PosteDeTravail55);
-             context.PosteDeTravails.Add(PosteDeTravail28);
-             context.PosteDeTravails.Add(PosteDeTravail29);
-             context.PosteDeTravails.Add(PosteDeTravail30);
-             context.PosteDeTravails.Add(PosteDeTravail31);
-             context.PosteDeTravails.Add(PosteDeTravail7_2);
+            context.PosteDeTravails.Add(PosteDeTravail7_1);
+            context.PosteDeTravails.Add(PosteDeTravail55);
+            context.PosteDeTravails.Add(PosteDeTravail28);
+            context.PosteDeTravails.Add(PosteDeTravail29);
+            context.PosteDeTravails.Add(PosteDeTravail30);
+            context.PosteDeTravails.Add(PosteDeTravail31);
+            context.PosteDeTravails.Add(PosteDeTravail7_2);
 
-             context.PosteDeTravails.Add(PosteDeTravail8_1);
-             context.PosteDeTravails.Add(PosteDeTravail32);
-             context.PosteDeTravails.Add(PosteDeTravail33);
-             context.PosteDeTravails.Add(PosteDeTravail34);
-             context.PosteDeTravails.Add(PosteDeTravail35);
-             context.PosteDeTravails.Add(PosteDeTravail36);
-             context.PosteDeTravails.Add(PosteDeTravail37);
-             context.PosteDeTravails.Add(PosteDeTravail38);
-             context.PosteDeTravails.Add(PosteDeTravail39);
-             context.PosteDeTravails.Add(PosteDeTravail40);
-             context.PosteDeTravails.Add(PosteDeTravail41);
-             context.PosteDeTravails.Add(PosteDeTravail42);
-             context.PosteDeTravails.Add(PosteDeTravail8_2);
+            context.PosteDeTravails.Add(PosteDeTravail8_1);
+            context.PosteDeTravails.Add(PosteDeTravail32);
+            context.PosteDeTravails.Add(PosteDeTravail33);
+            context.PosteDeTravails.Add(PosteDeTravail34);
+            context.PosteDeTravails.Add(PosteDeTravail35);
+            context.PosteDeTravails.Add(PosteDeTravail36);
+            context.PosteDeTravails.Add(PosteDeTravail37);
+            context.PosteDeTravails.Add(PosteDeTravail38);
+            context.PosteDeTravails.Add(PosteDeTravail39);
+            context.PosteDeTravails.Add(PosteDeTravail40);
+            context.PosteDeTravails.Add(PosteDeTravail41);
+            context.PosteDeTravails.Add(PosteDeTravail42);
+            context.PosteDeTravails.Add(PosteDeTravail8_2);
 
 
-             context.PosteDeTravails.Add(PosteDeTravail43);
-             context.PosteDeTravails.Add(PosteDeTravail44);
-             context.PosteDeTravails.Add(PosteDeTravail45);
-             context.PosteDeTravails.Add(PosteDeTravail46);
-             context.PosteDeTravails.Add(PosteDeTravail47);
-             context.PosteDeTravails.Add(PosteDeTravail48);
-             context.PosteDeTravails.Add(PosteDeTravail49);
-             context.PosteDeTravails.Add(PosteDeTravail50);
-             context.PosteDeTravails.Add(PosteDeTravail51);
-             context.PosteDeTravails.Add(PosteDeTravail52);
-             context.PosteDeTravails.Add(PosteDeTravail53);
-             context.PosteDeTravails.Add(PosteDeTravail54);
+            context.PosteDeTravails.Add(PosteDeTravail43);
+            context.PosteDeTravails.Add(PosteDeTravail44);
+            context.PosteDeTravails.Add(PosteDeTravail45);
+            context.PosteDeTravails.Add(PosteDeTravail46);
+            context.PosteDeTravails.Add(PosteDeTravail47);
+            context.PosteDeTravails.Add(PosteDeTravail48);
+            context.PosteDeTravails.Add(PosteDeTravail49);
+            context.PosteDeTravails.Add(PosteDeTravail50);
+            context.PosteDeTravails.Add(PosteDeTravail51);
+            context.PosteDeTravails.Add(PosteDeTravail52);
+            context.PosteDeTravails.Add(PosteDeTravail53);
+            context.PosteDeTravails.Add(PosteDeTravail54);
 
             // POSTES DE TRAVAIL DE STA
 
-             context.PosteDeTravails.Add(PosteDeTravail56);
-             context.PosteDeTravails.Add(PosteDeTravail57);
-             context.PosteDeTravails.Add(PosteDeTravail58);
-             context.PosteDeTravails.Add(PosteDeTravail59);
-             context.PosteDeTravails.Add(PosteDeTravail60);
-             context.PosteDeTravails.Add(PosteDeTravail61);
-             context.PosteDeTravails.Add(PosteDeTravail62);
-            
-             context.PosteDeTravails.Add(PosteDeTravail63);
-             context.PosteDeTravails.Add(PosteDeTravail64);
-             context.PosteDeTravails.Add(PosteDeTravail65);
-             context.PosteDeTravails.Add(PosteDeTravail66);
-             context.PosteDeTravails.Add(PosteDeTravail67);
-             context.PosteDeTravails.Add(PosteDeTravail68);
-             context.PosteDeTravails.Add(PosteDeTravail69);
-             context.PosteDeTravails.Add(PosteDeTravail70);
-             context.PosteDeTravails.Add(PosteDeTravail71);
-             context.PosteDeTravails.Add(PosteDeTravail72);
-             context.PosteDeTravails.Add(PosteDeTravail73);
+            context.PosteDeTravails.Add(PosteDeTravail56);
+            context.PosteDeTravails.Add(PosteDeTravail57);
+            context.PosteDeTravails.Add(PosteDeTravail58);
+            context.PosteDeTravails.Add(PosteDeTravail59);
+            context.PosteDeTravails.Add(PosteDeTravail60);
+            context.PosteDeTravails.Add(PosteDeTravail61);
+            context.PosteDeTravails.Add(PosteDeTravail62);
 
-             context.PosteDeTravails.Add(PosteDeTravail74);
-             context.PosteDeTravails.Add(PosteDeTravail75);
-             context.PosteDeTravails.Add(PosteDeTravail76);
-             context.PosteDeTravails.Add(PosteDeTravail76_2);
-             context.PosteDeTravails.Add(PosteDeTravail77);
+            context.PosteDeTravails.Add(PosteDeTravail63);
+            context.PosteDeTravails.Add(PosteDeTravail64);
+            context.PosteDeTravails.Add(PosteDeTravail65);
+            context.PosteDeTravails.Add(PosteDeTravail66);
+            context.PosteDeTravails.Add(PosteDeTravail67);
+            context.PosteDeTravails.Add(PosteDeTravail68);
+            context.PosteDeTravails.Add(PosteDeTravail69);
+            context.PosteDeTravails.Add(PosteDeTravail70);
+            context.PosteDeTravails.Add(PosteDeTravail71);
+            context.PosteDeTravails.Add(PosteDeTravail72);
+            context.PosteDeTravails.Add(PosteDeTravail73);
 
-             context.PosteDeTravails.Add(PosteDeTravail78);
-             context.PosteDeTravails.Add(PosteDeTravail79);
-             context.PosteDeTravails.Add(PosteDeTravail80);
-             context.PosteDeTravails.Add(PosteDeTravail81);
-             context.PosteDeTravails.Add(PosteDeTravail82);
-             context.PosteDeTravails.Add(PosteDeTravail83);
-             context.PosteDeTravails.Add(PosteDeTravail84);
-             context.PosteDeTravails.Add(PosteDeTravail85);
-             context.PosteDeTravails.Add(PosteDeTravail86);
-             context.PosteDeTravails.Add(PosteDeTravail87);
-             context.PosteDeTravails.Add(PosteDeTravail88);
-            
-             context.PosteDeTravails.Add(PosteDeTravail89);
-             context.PosteDeTravails.Add(PosteDeTravail90);
-             context.PosteDeTravails.Add(PosteDeTravail91);
-             context.PosteDeTravails.Add(PosteDeTravail92);
-             context.PosteDeTravails.Add(PosteDeTravail93);
+            context.PosteDeTravails.Add(PosteDeTravail74);
+            context.PosteDeTravails.Add(PosteDeTravail75);
+            context.PosteDeTravails.Add(PosteDeTravail76);
+            context.PosteDeTravails.Add(PosteDeTravail76_2);
+            context.PosteDeTravails.Add(PosteDeTravail77);
 
-             context.PosteDeTravails.Add(PosteDeTravail94);
-             context.PosteDeTravails.Add(PosteDeTravail95);
-             context.PosteDeTravails.Add(PosteDeTravail96);
-             context.PosteDeTravails.Add(PosteDeTravail97);
-             context.PosteDeTravails.Add(PosteDeTravail98);
-             context.PosteDeTravails.Add(PosteDeTravail99);
-             context.PosteDeTravails.Add(PosteDeTravail100);
-             context.PosteDeTravails.Add(PosteDeTravail101);
-             context.PosteDeTravails.Add(PosteDeTravail102);
-             context.PosteDeTravails.Add(PosteDeTravail103);
-             context.PosteDeTravails.Add(PosteDeTravail104);
-             context.PosteDeTravails.Add(PosteDeTravail105);
-             context.PosteDeTravails.Add(PosteDeTravail106);
-             context.PosteDeTravails.Add(PosteDeTravail107);
-             context.PosteDeTravails.Add(PosteDeTravail108);
+            context.PosteDeTravails.Add(PosteDeTravail78);
+            context.PosteDeTravails.Add(PosteDeTravail79);
+            context.PosteDeTravails.Add(PosteDeTravail80);
+            context.PosteDeTravails.Add(PosteDeTravail81);
+            context.PosteDeTravails.Add(PosteDeTravail82);
+            context.PosteDeTravails.Add(PosteDeTravail83);
+            context.PosteDeTravails.Add(PosteDeTravail84);
+            context.PosteDeTravails.Add(PosteDeTravail85);
+            context.PosteDeTravails.Add(PosteDeTravail86);
+            context.PosteDeTravails.Add(PosteDeTravail87);
+            context.PosteDeTravails.Add(PosteDeTravail88);
 
-             context.PosteDeTravails.Add(PosteDeTravail109);
-             context.PosteDeTravails.Add(PosteDeTravail110);
-             context.PosteDeTravails.Add(PosteDeTravail111);
-             context.PosteDeTravails.Add(PosteDeTravail112);
-             context.PosteDeTravails.Add(PosteDeTravail113);
-             context.PosteDeTravails.Add(PosteDeTravail114);
-            
-             context.PosteDeTravails.Add(PosteDeTravail115);
-             context.PosteDeTravails.Add(PosteDeTravail116);
-             context.PosteDeTravails.Add(PosteDeTravail117);
-             context.PosteDeTravails.Add(PosteDeTravail118);
-             context.PosteDeTravails.Add(PosteDeTravail119);
-             context.PosteDeTravails.Add(PosteDeTravail120);
-             context.PosteDeTravails.Add(PosteDeTravail121);
+            context.PosteDeTravails.Add(PosteDeTravail89);
+            context.PosteDeTravails.Add(PosteDeTravail90);
+            context.PosteDeTravails.Add(PosteDeTravail91);
+            context.PosteDeTravails.Add(PosteDeTravail92);
+            context.PosteDeTravails.Add(PosteDeTravail93);
 
-             context.PosteDeTravails.Add(PosteDeTravail122);
-             context.PosteDeTravails.Add(PosteDeTravail123);
+            context.PosteDeTravails.Add(PosteDeTravail94);
+            context.PosteDeTravails.Add(PosteDeTravail95);
+            context.PosteDeTravails.Add(PosteDeTravail96);
+            context.PosteDeTravails.Add(PosteDeTravail97);
+            context.PosteDeTravails.Add(PosteDeTravail98);
+            context.PosteDeTravails.Add(PosteDeTravail99);
+            context.PosteDeTravails.Add(PosteDeTravail100);
+            context.PosteDeTravails.Add(PosteDeTravail101);
+            context.PosteDeTravails.Add(PosteDeTravail102);
+            context.PosteDeTravails.Add(PosteDeTravail103);
+            context.PosteDeTravails.Add(PosteDeTravail104);
+            context.PosteDeTravails.Add(PosteDeTravail105);
+            context.PosteDeTravails.Add(PosteDeTravail106);
+            context.PosteDeTravails.Add(PosteDeTravail107);
+            context.PosteDeTravails.Add(PosteDeTravail108);
 
-             context.PosteDeTravails.Add(PosteDeTravail124);
-             context.PosteDeTravails.Add(PosteDeTravail125);
+            context.PosteDeTravails.Add(PosteDeTravail109);
+            context.PosteDeTravails.Add(PosteDeTravail110);
+            context.PosteDeTravails.Add(PosteDeTravail111);
+            context.PosteDeTravails.Add(PosteDeTravail112);
+            context.PosteDeTravails.Add(PosteDeTravail113);
+            context.PosteDeTravails.Add(PosteDeTravail114);
 
-             context.PosteDeTravails.Add(PosteDeTravail126);
-             context.PosteDeTravails.Add(PosteDeTravail127);
-             context.PosteDeTravails.Add(PosteDeTravail128);
-            
+            context.PosteDeTravails.Add(PosteDeTravail115);
+            context.PosteDeTravails.Add(PosteDeTravail116);
+            context.PosteDeTravails.Add(PosteDeTravail117);
+            context.PosteDeTravails.Add(PosteDeTravail118);
+            context.PosteDeTravails.Add(PosteDeTravail119);
+            context.PosteDeTravails.Add(PosteDeTravail120);
+            context.PosteDeTravails.Add(PosteDeTravail121);
+
+            context.PosteDeTravails.Add(PosteDeTravail122);
+            context.PosteDeTravails.Add(PosteDeTravail123);
+
+            context.PosteDeTravails.Add(PosteDeTravail124);
+            context.PosteDeTravails.Add(PosteDeTravail125);
+
+            context.PosteDeTravails.Add(PosteDeTravail126);
+            context.PosteDeTravails.Add(PosteDeTravail127);
+            context.PosteDeTravails.Add(PosteDeTravail128);
+
 
 
 
@@ -1148,624 +1148,13 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.PlageHoraires.Add(plagehoraire5);
             context.PlageHoraires.Add(plagehoraire6);
 
-            FicheSecurite FicheSecurite1 = new FicheSecurite()
+            ADRole ADRoleHSESuperAdministrateur = new ADRole()
             {
-                Code = "DLF-2014-1",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail23,
-                Service = ServiceDLF1,
-                Responsable = Responsable2,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = Lieu13,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 1
+                Name = "REFRESCO\\\\RFS-Service des Systemes d'Information-Responsable Logicielles",
+                RoleType = "HSE",
+                RoleCode = "100"
 
             };
-
-            FicheSecurite FicheSecurite2 = new FicheSecurite()
-            {
-                Code = "DLF-2014-2",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail23,
-                Service = ServiceDLF1,
-                Responsable = Responsable2,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = Lieu13,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 2
-
-            };
-
-            FicheSecurite FicheSecurite3 = new FicheSecurite()
-            {
-                Code = "DLF-2014-3",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravail38,
-                Service = ServiceDLF1,
-                Responsable = Responsable2,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF2,
-                Lieu = Lieu20,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType3,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire3,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[3],
-                PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 3
-
-            };
-
-            FicheSecurite FicheSecurite4 = new FicheSecurite()
-            {
-                Code = "DLF-2014-4",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravail38,
-                Service = ServiceDLF1,
-                Responsable = Responsable2,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF5,
-                Lieu = Lieu20,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType4,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire4,
-                CorpsHumainZone = AllCorpsHumainZone[4],
-                PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 4
-
-            };
-
-
-            FicheSecurite FicheSecurite5 = new FicheSecurite()
-            {
-                Code = "STA-2014-3",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravail72,
-                Service = ServiceSTA1,
-                Responsable = Responsable3,
-                Site = siteSTA,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneSTA2,
-                Lieu = Lieu55,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType3,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire3,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[3],
-                PersonneConcernee = PersonneConcernee3,
-                Risque = AllRisque[3],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 3
-
-            };
-
-            FicheSecurite FicheSecurite6 = new FicheSecurite()
-            {
-                Code = "STA-2014-4",
-                Type = "FPA",
-                PosteDeTravail = PosteDeTravail72,
-                Service = ServiceSTA1,
-                Responsable = Responsable4,
-                Site = siteSTA,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneSTA5,
-                Lieu = Lieu55,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType4,
-                Danger = AllDanger[3],
-                PlageHoraire = plagehoraire4,
-                CorpsHumainZone = AllCorpsHumainZone[4],
-                PersonneConcernee = PersonneConcernee4,
-                Risque = AllRisque[4],
-                WorkFlowDiffusee = true,
-                CompteurAnnuelSite = 4
-            };
-
-            //FicheSecurite FicheSecurite7 = new FicheSecurite()
-            //{
-            //    Code = "RFS-2014-1",
-            //    Type = "FAS",
-            //    PosteDeTravail = PosteDeTravail72,
-            //    Service = ServiceRFS1,
-            //    Responsable = Responsable1,
-            //    Site = siteRFS,
-            //    DateCreation = DateTime.Now,
-            //    DateEvenement = DateTime.Now,
-            //    Zone = ZoneDLF4,
-            //    Lieu = Lieu55,
-            //    PersonnesConcernees = "Jean Dupont",
-            //    Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-            //    CotationFrequence = 1,
-            //    CotationGravite = 2,
-            //    FicheSecuriteType = FicheSecuriteType1,
-            //    Danger = AllDanger[1],
-            //    PlageHoraire = plagehoraire1,
-            //    ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-            //    CorpsHumainZone = AllCorpsHumainZone[1],
-            //    PersonneConcernee = PersonneConcernee1,
-            //    Risque = AllRisque[1],
-            //    WorkFlowDiffusee = true,
-            //    CompteurAnnuelSite = 1
-
-
-            //};
-
-            //FicheSecurite FicheSecurite8 = new FicheSecurite()
-            //{
-            //    Code = "RFS-2014-2",
-            //    Type = "FAS",
-            //    PosteDeTravail = PosteDeTravailDLFZone3_2,
-            //    Service = ServiceDLF1,
-            //    Responsable = Responsable1,
-            //    Site = siteRFS,
-            //    DateCreation = DateTime.Now,
-            //    DateEvenement = DateTime.Now,
-            //    Zone = ZoneDLF3,
-            //    Lieu = LieuDLFZone3_2,
-            //    PersonnesConcernees = "David Leloup, Cyril Clot",
-            //    Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-            //    CotationFrequence = 1,
-            //    CotationGravite = 4,
-            //    FicheSecuriteType = FicheSecuriteType2,
-            //    Danger = AllDanger[2],
-            //    PlageHoraire = plagehoraire2,
-            //    CorpsHumainZone = AllCorpsHumainZone[2],
-            //    PersonneConcernee = PersonneConcernee2,
-            //    Risque = AllRisque[2],
-            //    WorkFlowDiffusee = true,
-            //    CompteurAnnuelSite = 2
-
-            //};
-
-            //FicheSecurite FicheSecurite9 = new FicheSecurite()
-            //{
-            //    Code = "RFS-2014-3",
-            //    Type = "FPA",
-            //    PosteDeTravail = PosteDeTravailDLFZone3_2,
-            //    Service = ServiceDLF1,
-            //    Responsable = Responsable1,
-            //    Site = siteRFS,
-            //    DateCreation = DateTime.Now,
-            //    DateEvenement = DateTime.Now,
-            //    Zone = ZoneDLF2,
-            //    Lieu = LieuDLFZone2_2,
-            //    PersonnesConcernees = "Jean Dupont",
-            //    Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-            //    CotationFrequence = 1,
-            //    CotationGravite = 2,
-            //    FicheSecuriteType = FicheSecuriteType3,
-            //    Danger = AllDanger[3],
-            //    PlageHoraire = plagehoraire3,
-            //    ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-            //    CorpsHumainZone = AllCorpsHumainZone[3],
-            //    PersonneConcernee = PersonneConcernee3,
-            //    Risque = AllRisque[3],
-            //    WorkFlowDiffusee = true,
-            //    CompteurAnnuelSite = 3
-
-            //};
-
-            //FicheSecurite FicheSecurite10 = new FicheSecurite()
-            //{
-            //    Code = "RFS-2014-4",
-            //    Type = "FPA",
-            //    PosteDeTravail = PosteDeTravailDLFZone5_2,
-            //    Service = ServiceDLF1,
-            //    Responsable = Responsable1,
-            //    Site = siteRFS,
-            //    DateCreation = DateTime.Now,
-            //    DateEvenement = DateTime.Now,
-            //    Zone = ZoneDLF5,
-            //    Lieu = LieuDLFZone5_2,
-            //    PersonnesConcernees = "Jean Dupont",
-            //    Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-            //    CotationFrequence = 1,
-            //    CotationGravite = 4,
-            //    FicheSecuriteType = FicheSecuriteType4,
-            //    Danger = AllDanger[3],
-            //    PlageHoraire = plagehoraire4,
-            //    CorpsHumainZone = AllCorpsHumainZone[4],
-            //    PersonneConcernee = PersonneConcernee4,
-            //    Risque = AllRisque[4],
-            //    WorkFlowDiffusee = true,
-            //    CompteurAnnuelSite = 4
-
-            //};
-
-            FicheSecurite FicheSecurite11 = new FicheSecurite()
-            {
-                Code = "DLF-2014-5",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail15,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = Lieu15,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                WorkFlowAttenteASEValidation = true,
-                CompteurAnnuelSite = 5
-
-
-            };
-
-            FicheSecurite FicheSecurite12 = new FicheSecurite()
-            {
-                Code = "DLF-2014-6",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail15,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = Lieu15,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                WorkFlowAttenteASEValidation = true,
-                CompteurAnnuelSite = 6
-
-            };
-
-            FicheSecurite FicheSecurite13 = new FicheSecurite()
-            {
-                Code = "DLF-2014-7",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail15,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = Lieu15,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                WorkFlowASEValidee = true,
-                CompteurAnnuelSite = 7
-
-
-            };
-
-            FicheSecurite FicheSecurite14 = new FicheSecurite()
-            {
-                Code = "DLF-2014-8",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail16,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = Lieu16,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                WorkFlowASEValidee = true,
-                CompteurAnnuelSite = 8
-
-            };
-
-
-            FicheSecurite FicheSecurite15 = new FicheSecurite()
-            {
-                Code = "DLF-2014-9",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail17,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = Lieu17,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                WorkFlowASERejetee = true,
-                CompteurAnnuelSite = 9
-
-
-            };
-
-            FicheSecurite FicheSecurite16 = new FicheSecurite()
-            {
-                Code = "DLF-2014-10",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail18,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = Lieu18,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                WorkFlowASERejetee = true,
-                CompteurAnnuelSite = 10
-
-            };
-
-            FicheSecurite FicheSecurite17 = new FicheSecurite()
-            {
-                Code = "DLF-2014-11",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail19,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF4,
-                Lieu = Lieu19,
-                PersonnesConcernees = "Jean Dupont",
-                Description = "L'opérateur a pris une charge trop lourde avec son chariot et il s'est renversé",
-                CotationFrequence = 1,
-                CotationGravite = 2,
-                FicheSecuriteType = FicheSecuriteType1,
-                Danger = AllDanger[1],
-                PlageHoraire = plagehoraire1,
-                ActionImmediate1 = "Rappel à tous les caristes de ne prendre les palettes que deux par deux",
-                CorpsHumainZone = AllCorpsHumainZone[1],
-                PersonneConcernee = PersonneConcernee1,
-                Risque = AllRisque[1],
-                WorkFlowDiffusee = true,
-                WorkFlowCloturee = true,
-                CompteurAnnuelSite = 11
-
-
-            };
-
-            FicheSecurite FicheSecurite18 = new FicheSecurite()
-            {
-                Code = "DLF-2014-12",
-                Type = "FAS",
-                PosteDeTravail = PosteDeTravail20,
-                Service = ServiceDLF1,
-                Responsable = Responsable1,
-                Site = siteDLF,
-                DateCreation = DateTime.Now,
-                DateEvenement = DateTime.Now,
-                Zone = ZoneDLF3,
-                Lieu = Lieu20,
-                PersonnesConcernees = "David Leloup, Cyril Clot",
-                Description = "Pour ouvrir les fûts, l'opérateur utilise une pince monseigneur et un outil pointu permettant d'ecarter la vis du fût avec laquelle il s'est coupé",
-                CotationFrequence = 1,
-                CotationGravite = 4,
-                FicheSecuriteType = FicheSecuriteType2,
-                Danger = AllDanger[2],
-                PlageHoraire = plagehoraire2,
-                CorpsHumainZone = AllCorpsHumainZone[2],
-                PersonneConcernee = PersonneConcernee2,
-                Risque = AllRisque[2],
-                WorkFlowDiffusee = true,
-                WorkFlowCloturee = true,
-                CompteurAnnuelSite = 12
-
-            };
-
-
-            ActionSecurite action = new ActionSecurite()
-            {
-                FicheSecurite = FicheSecurite1,
-                Code = "OPQR",
-                Description = "Des musolières ont été achetées pour les datacores",
-                FaitPar = "Nicolas Bouhet"
-            };
-
-            ActionSecurite action2 = new ActionSecurite()
-            {
-                FicheSecurite = FicheSecurite1,
-                Code = "STUV",
-                Description = "Les racks serveurs ont été renforcés",
-                FaitPar = "Nicolas Bouhet"
-            };
-
-            //for (int i = 0; i < 10; i++)
-            //{
-            context.FicheSecurites.Add(FicheSecurite1);
-            context.ActionSecurites.Add(action);
-            context.ActionSecurites.Add(action2);
-            context.FicheSecurites.Add(FicheSecurite2);
-            context.FicheSecurites.Add(FicheSecurite3);
-            context.FicheSecurites.Add(FicheSecurite4);
-            context.FicheSecurites.Add(FicheSecurite5);
-            context.FicheSecurites.Add(FicheSecurite6);
-            //context.FicheSecurites.Add(FicheSecurite7);
-            //context.FicheSecurites.Add(FicheSecurite8);
-            //context.FicheSecurites.Add(FicheSecurite9);
-            //context.FicheSecurites.Add(FicheSecurite10);
-            context.FicheSecurites.Add(FicheSecurite11);
-            context.FicheSecurites.Add(FicheSecurite12);
-            context.FicheSecurites.Add(FicheSecurite13);
-            context.FicheSecurites.Add(FicheSecurite14);
-            context.FicheSecurites.Add(FicheSecurite15);
-            context.FicheSecurites.Add(FicheSecurite16);
-            context.FicheSecurites.Add(FicheSecurite17);
-            context.FicheSecurites.Add(FicheSecurite18);
-            //System.Diagnostics.Debug.WriteLine("Passage boucle"); 
-
-            //}
-
-            CauseQSE Cause1 = new CauseQSE()
-            {
-                Description = "Manque de formation",
-                FicheSecurite = FicheSecurite1
-            };
-
-            CauseQSE Cause2 = new CauseQSE()
-            {
-                Description = "Règles non respectées",
-                FicheSecurite = FicheSecurite1
-            };
-
-            CauseQSE Cause3 = new CauseQSE()
-            {
-                Description = "Port d'une protection non respecté",
-                FicheSecurite = FicheSecurite2
-            };
-
-            CauseQSE Cause4 = new CauseQSE()
-            {
-                Description = "Remplacement de l'opérateur habituel à la volée",
-                FicheSecurite = FicheSecurite2
-            };
-
-            context.CauseQSEs.Add(Cause1);
-            context.CauseQSEs.Add(Cause2);
-            context.CauseQSEs.Add(Cause3);
-            context.CauseQSEs.Add(Cause4);
-
-            ActionQSE Action1 = new ActionQSE()
-            {
-                Description = "Prévoir une nouvelle formation cariste",
-                DateButoireInitiale = DateTime.Now,
-                Responsable = PersonneConcernee4,
-                Cloture = false,
-                CauseQS = Cause1,
-                DateButoireNouvelle = DateTime.Now,
-                RealiseDate = DateTime.Now,
-                VerifieDate = DateTime.Now,
-                ClotureDate = DateTime.Now
-            };
-
-            ActionQSE Action2 = new ActionQSE()
-            {
-                Description = "S'avertir les uns les autres",
-                DateButoireInitiale = DateTime.Now,
-                Responsable = PersonneConcernee3,
-                Cloture = true,
-                ClotureDate = DateTime.Now,
-                CauseQS = Cause1,
-                DateButoireNouvelle = DateTime.Now,
-                RealiseDate = DateTime.Now,
-                VerifieDate = DateTime.Now
-            };
-
-            context.ActionQSEs.Add(Action1);
-            context.ActionQSEs.Add(Action2);
-
-            //ROLE A AJOUTER A LA MAIN AU PREMIER LANCEMENT
-            //ADRole ADRoleHSESuperAdministrateur = new ADRole()
-            //{
-            //    Name = "REFRESCO\\\\RFS-Service des Systemes d'Information-Responsable Logicielles",
-            //    RoleType = "HSE",
-            //    RoleCode = "100"
-
-            //};
 
             ADRole ADRoleHSEAdministrateur = new ADRole()
             {
@@ -1790,11 +1179,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             };
 
             context.ADRoles.Add(ADRoleHSEASE);
-            //ROLE A AJOUTER A LA MAIN AU PREMIER LANCEMENT
-            //context.ADRoles.Add(ADRoleHSESuperAdministrateur);
-            context.ADRoles.Add(ADRoleHSEAdministrateur);
-
-            context.ParametrageHSEs.Add(parametrageHSE);
 
             context.SaveChanges();
 

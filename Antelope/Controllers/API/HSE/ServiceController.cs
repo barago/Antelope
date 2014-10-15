@@ -28,6 +28,7 @@ namespace Antelope.Controllers.API.HSE
 
             var queryService = from a in db.Services
                             where a.SiteId == id
+                            orderby a.ServiceType.Rang
                             select a;
             List<Service> AllService = queryService.ToList();
 

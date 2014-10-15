@@ -28,6 +28,7 @@ namespace Antelope.Controllers.API.HSE
 
             var queryZone = from a in db.Zones
                             where a.SiteId == id
+                            orderby a.ZoneType.Rang
                             select a;
             List<Zone> AllZone = queryZone.ToList();
 
