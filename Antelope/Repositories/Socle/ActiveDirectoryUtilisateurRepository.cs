@@ -66,6 +66,18 @@ namespace Antelope.Repositories.Socle
             return (String)de.Properties["company"].Value;
         }
 
+        public Site GetCurrentUserSite()
+        {
+
+            String SiteTrigramme = GetCurrentUserSiteTrigramme();
+
+            var querySiteUser = from s in _db.Sites
+                                where s.Trigramme == SiteTrigramme
+                                select s;
+            return (Site)querySiteUser.SingleOrDefault();
+
+        }
+
 
         // Cette méthode résoud un bug Microsoft (
         //https://connect.microsoft.com/VisualStudio/feedback/details/748790/userprincipal-current-throws-invalidcastexception

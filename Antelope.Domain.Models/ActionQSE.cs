@@ -36,10 +36,13 @@ namespace Antelope.Domain.Models
         public bool Cloture { get; set; }
         public Nullable<System.DateTime> ClotureDate { get; set; }
         public int CauseQSEId { get; set; }
+        public int NonConformiteId { get; set; }
 
         [JsonIgnore]
         public virtual CauseQSE CauseQS { get; set; }
         public virtual Personne Responsable { get; set; }
         public virtual Personne Verificateur { get; set; }
+        [JsonIgnore]
+        public virtual NonConformite NonConformite{ get; set; }
     }
 }

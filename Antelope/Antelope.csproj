@@ -145,11 +145,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\pdfs\" />
-    <Folder Include="Controllers\QSE\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
     <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
+    <Folder Include="Views\NonConformite\" />
     <Folder Include="Views\Phantom\" />
     <Folder Include="Views\Sauvegarde\" />
   </ItemGroup>
@@ -167,6 +167,7 @@
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
     <Compile Include="Controllers\API\QSE\ActionQSEController.cs" />
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
+    <Compile Include="Controllers\API\QSE\NonConformiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
@@ -185,6 +186,8 @@
     <Compile Include="Controllers\IndicateurSI\SupportNombreTicketController.cs" />
     <Compile Include="Controllers\IndicateurSI\SupportRepartitionTicketController.cs" />
     <Compile Include="Controllers\IndicateurSI\VolumeMailController.cs" />
+    <Compile Include="Controllers\QSE\NonConformiteController.cs" />
+    <Compile Include="Controllers\QSE\QSEHomeController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
     <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +247,7 @@
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformiteViewModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +278,7 @@
     <Content Include="Content\images\HSE\Home\Head Protection icon2.jpg" />
     <Content Include="Content\images\HSE\Home\PICTO_environnement.png" />
     <Content Include="Content\images\HSE\Home\PICTO_securite.png" />
+    <Content Include="Content\images\ICONE_APPLI_QSE.png" />
     <Content Include="Content\images\IndicateurSI\calendrier.png" />
     <Content Include="Content\images\IndicateurSI\camembert.png" />
     <Content Include="Content\images\IndicateurSI\empty_star.png" />
@@ -368,6 +373,11 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteDomaineModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteGraviteModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteOrigineModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\ViewModel.js" />
     <Content Include="Scripts\Application\Socle\LieuModel.js" />
     <Content Include="Scripts\Application\Socle\LieuTypeModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailModel.js" />
@@ -531,6 +541,9 @@
     <Content Include="Views\Z_Backbone_Model\ModelBackbone.cshtml" />
     <Content Include="Views\HSE\Parametrage\Changelog.cshtml" />
     <Content Include="Views\HSE\Parametrage\Index.cshtml" />
+    <Content Include="Views\QSE\Shared\_Layout.cshtml" />
+    <Content Include="Views\QSE\QSEHome\Index.cshtml" />
+    <Content Include="Views\QSE\NonConformite\Create.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -19,10 +19,12 @@
     [Cloture]                           BIT            NOT NULL,
     [ClotureDate]                       DATETIME       NULL,
     [CauseQSEId]                        INT            NOT NULL,
+    [NonConformiteId] INT NULL, 
     CONSTRAINT [PK_dbo.ActionQSEs] PRIMARY KEY CLUSTERED ([ActionQSEId] ASC),
     CONSTRAINT [FK_dbo.ActionQSEs_dbo.CauseQSEs_CauseQSEId] FOREIGN KEY ([CauseQSEId]) REFERENCES [dbo].[CauseQSEs] ([CauseQSEId]) ON DELETE CASCADE,
     CONSTRAINT [FK_dbo.ActionQSEs_dbo.Personnes_ResponsableId] FOREIGN KEY ([ResponsableId]) REFERENCES [dbo].[Personnes] ([PersonneId]) ON DELETE CASCADE,
-    CONSTRAINT [FK_dbo.ActionQSEs_dbo.Personnes_VerificateurId] FOREIGN KEY ([VerificateurId]) REFERENCES [dbo].[Personnes] ([PersonneId])
+    CONSTRAINT [FK_dbo.ActionQSEs_dbo.Personnes_VerificateurId] FOREIGN KEY ([VerificateurId]) REFERENCES [dbo].[Personnes] ([PersonneId]), 
+    CONSTRAINT [FK_ActionQSEs_NonConformites] FOREIGN KEY ([NonConformiteId]) REFERENCES [NonConformites]([Id])
 );
 
 

@@ -79,6 +79,10 @@
     <Compile Include="Lieu.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="NonConformite.cs" />
+    <Compile Include="NonConformiteDomaine.cs" />
+    <Compile Include="NonConformiteGravite.cs" />
+    <Compile Include="NonConformiteOrigine.cs" />
     <Compile Include="ParametrageHSE.cs" />
     <Compile Include="Personne.cs">
       <DependentUpon>Entities.tt</DependentUpon>

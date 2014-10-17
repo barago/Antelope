@@ -65,12 +65,7 @@ namespace Antelope.Controllers.API.HSE
             if (id == -1)
             {
 
-                String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
-
-                var querySiteUser = from s in db.Sites
-                                    where s.Trigramme == SiteTrigramme
-                                    select s;
-                Site SiteUser = (Site)querySiteUser.SingleOrDefault();
+                Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
 
                 ficheSecurite = new FicheSecurite()
                 {

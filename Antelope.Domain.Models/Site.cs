@@ -30,6 +30,8 @@ namespace Antelope.Domain.Models
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }
         [JsonIgnore]
+        public virtual ICollection<NonConformite> NonConformites{ get; set; }
+        [JsonIgnore]
         public virtual ICollection<Service> Services { get; set; }
         [JsonIgnore]
         public virtual ICollection<Zone> Zones { get; set; }
