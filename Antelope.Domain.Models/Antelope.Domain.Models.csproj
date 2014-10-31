@@ -84,6 +84,7 @@
     <Compile Include="NonConformiteGravite.cs" />
     <Compile Include="NonConformiteOrigine.cs" />
     <Compile Include="ParametrageHSE.cs" />
+    <Compile Include="ParametrageQSE.cs" />
     <Compile Include="Personne.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

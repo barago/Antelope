@@ -88,5 +88,6 @@
     <Build Include="dbo\Tables\NonConformiteOrigines.sql" />
     <Build Include="dbo\Tables\NonConformiteDomaines.sql" />
     <Build Include="dbo\Tables\NonConformiteGravites.sql" />
+    <Build Include="dbo\Tables\ParametrageQSE.sql" />
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@ using Antelope.Domain.Models;
 using Antelope.Infrastructure.EntityFramework;
 using Antelope.Repositories.Socle;
 using Antelope.ViewModels.QSE.NonConformiteViewModels;
+using Antelope.ViewModels.Socle.DataTables;
 
 namespace Antelope.Controllers.API.QSE
 {
@@ -22,9 +23,19 @@ namespace Antelope.Controllers.API.QSE
 
 
         // GET: api/NonConformite
-        public IQueryable<NonConformite> GetNonConformites()
+        public HttpResponseMessage Get()
         {
-            return db.NonConformites;
+            List<NonConformite> nonConformites = db.NonConformites.ToList();
+            Dictionary<string, string> dataTableParameters = new Dictionary<string, string>();
+            dataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+            DataTableViewModel<NonConformite> DataTableViewModel = new DataTableViewModel<NonConformite>();
+            DataTableViewModel.aaData = nonConformites;
+            DataTableViewModel.iTotalRecords = 1;
+            DataTableViewModel.iTotalDisplayRecords = 1;
+            //DataTableViewModel.sEcho = int.Parse(dataTableParameters["sEcho"]);
+
+            return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModel);
         }
 
         // GET: api/NonConformite/5
@@ -93,17 +104,44 @@ namespace Antelope.Controllers.API.QSE
 
         // POST: api/NonConformite
         [ResponseType(typeof(NonConformite))]
-        public IHttpActionResult PostNonConformite(NonConformite nonConformite)
+        public HttpResponseMessage Post(NonConformite nonConformite)
         {
-            if (!ModelState.IsValid)
+            nonConformite.DateCreation = DateTime.Now;
+
+            nonConformite.CompteurAnnuelSite = 1;
+
+            var QueryLastNonConformiteForSite = from n in db.NonConformites
+                                                where n.SiteId == nonConformite.SiteId
+                                                orderby n.CompteurAnnuelSite descending
+                                                select n;
+
+            NonConformite LastNonConformiteForSite = QueryLastNonConformiteForSite.FirstOrDefault();
+
+            if (LastNonConformiteForSite != null)
             {
-                return BadRequest(ModelState);
+                if (LastNonConformiteForSite.DateCreation.Year == nonConformite.DateCreation.Year)
+                {
+                    nonConformite.CompteurAnnuelSite = LastNonConformiteForSite.CompteurAnnuelSite + 1;
+                }
             }
 
-            db.NonConformites.Add(nonConformite);
-            db.SaveChanges();
+            Site site = db.Sites.First(s => s.SiteID == nonConformite.SiteId);
+            nonConformite.Code += site.Trigramme + "-" + nonConformite.DateCreation.Year + "-" + nonConformite.CompteurAnnuelSite;
 
-            return CreatedAtRoute("DefaultApi", new { id = nonConformite.Id }, nonConformite);
+            db.NonConformites.Add(nonConformite);
+
+            try
+            {
+                db.SaveChanges();
+
+                return Request.CreateResponse(HttpStatusCode.OK, nonConformite);
+            }
+            catch (Exception e)
+            {
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            }
+
         }
 
         // DELETE: api/NonConformite/5

@@ -151,6 +151,7 @@
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\NonConformite\" />
     <Folder Include="Views\Phantom\" />
+    <Folder Include="Views\QSEParametrage\" />
     <Folder Include="Views\Sauvegarde\" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <Compile Include="Controllers\API\QSE\ActionQSEController.cs" />
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
     <Compile Include="Controllers\API\QSE\NonConformiteController.cs" />
+    <Compile Include="Controllers\API\QSE\QSEParametrageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="Controllers\IndicateurSI\VolumeMailController.cs" />
     <Compile Include="Controllers\QSE\NonConformiteController.cs" />
     <Compile Include="Controllers\QSE\QSEHomeController.cs" />
+    <Compile Include="Controllers\QSE\QSEParametrageController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
     <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -249,6 +252,7 @@
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformiteViewModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
+    <Compile Include="ViewModels\Socle\DataTables\DataTableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
@@ -414,6 +418,7 @@
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Production.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Test.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\datatables_lang_fr.js" />
     <Content Include="Scripts\HighCharts\adapters\mootools-adapter.js" />
     <Content Include="Scripts\HighCharts\adapters\mootools-adapter.src.js" />
     <Content Include="Scripts\HighCharts\adapters\prototype-adapter.js" />
@@ -544,6 +549,9 @@
     <Content Include="Views\QSE\Shared\_Layout.cshtml" />
     <Content Include="Views\QSE\QSEHome\Index.cshtml" />
     <Content Include="Views\QSE\NonConformite\Create.cshtml" />
+    <Content Include="Views\QSE\Parametrage\Changelog.cshtml" />
+    <Content Include="Views\QSE\Parametrage\Index.cshtml" />
+    <Content Include="Views\QSE\NonConformite\Index.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

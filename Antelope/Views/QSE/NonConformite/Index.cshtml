@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/QSE/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="/Scripts/underscore.js"></script>
+<script type="text/javascript" src="/Scripts/backbone.js"></script>
+
+@*<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteViewModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteParamModel.js"></script>*@
+<script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/ViewModel.js"></script>
+
+
+
+
+
+<script type="text/template" id="TableRecherche">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-danger">
+                <div class="panel-heading" style="background-color :#3465A8; color: white">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            Filtres
+                            <div class="col-sm-8">
+                                <select id="Site" class="form-control input-xs">
+                                    <option value="0" >option1</option>
+                                    <option value="1">option2</option>
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-search"></span> Chercher
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="panel-body" style="padding:0px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-danger">
+                @*<div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>*@
+                <div class="panel-heading" style="background-color :#3465A8; color: white">Résultats&nbsp;:</div>
+                <div class="panel-body">
+
+                    @*<table id="Table">
+                        <thead>
+                            <tr><th>Sites</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>SitePoint</td></tr>
+                            <tr><td>Learnable</td></tr>
+                            <tr><td>Flippa</td></tr>
+                        </tbody>
+                    </table>*@
+
+
+                    <table id="Table">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Date </th>
+                                <th>Origine</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</script>
+
+<div id="TableRechercheDiv">
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        var viewModel = new ViewModel();
+
+
+
+
+
+
+        var RechercheTableView = Backbone.View.extend({
+            id: 'RechercheTableFicheSecurite',
+            template: _.template($('#TableRecherche').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+                //$('#Table').DataTable({
+                //    "ajax": {
+                //        "url": "/api/NonConformite",
+                //        "dataSrc": "tableData"
+                //    },
+                //    "columns": [
+                //        { "data": "Code" },
+                //        { "data": "Nom" },
+                //        { "data": "Déscription" },
+                //        { "data": "Clôture" },
+                //    ]
+
+                //});
+
+                var table = $("#Table").dataTable({
+                    "serverSide": true,
+                    "processing":true,
+                    //"sAjaxSource": "/api/NonConformite",
+                    "ajax": {
+                        "url": "/api/NonConformite",
+                        "data": {
+                            "qsdqd":5465
+                        }
+                        
+                    },
+                    "columns": [
+                        {
+                            "mData": "Code",
+                            "sTitle":"Code"
+                        },
+                        {
+                            "mData": "Date",
+                            "sTitle": "Date",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                return new Date(date).toDateString();
+                            }
+                        },
+                        {
+                            "mData": "NonConformiteOrigineId",
+                            "sTitle": "Origine"
+                        },
+                        {
+                            "mData": "Description",
+                            "sTitle": "Description"
+                        }
+                    ],
+                    "oLanguage": {
+                        "sUrl": "Scripts/datatables_lang_fr.js"
+                    }
+                    //"aaData": [
+                    //  ["RFS-2014-1", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
+                    //  ["RFS-2014-2", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
+                    //  ["RFS-2014-3", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
+                    //  ["RFS-2014-4", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
+
+                    //]
+                });
+
+                return this;
+            },
+            initialize: function () {
+                this.render();
+            },
+            events: {}
+        });
+
+
+        var rechercheTableView = new RechercheTableView({
+            el: $("#TableRechercheDiv"),
+            model: viewModel
+        });
+
+
+    });
+
+
+</script>
+

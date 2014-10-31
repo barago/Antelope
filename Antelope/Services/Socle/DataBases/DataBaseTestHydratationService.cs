@@ -1808,5 +1808,119 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             //}
 
         }
+
+
+        public void QSEListsTestHydrate()
+        {
+
+            List<string> AllOrigineNom = new List<string>() { 
+                "Audit IFS",
+                "Audit ISO",
+                "Audit KORE",
+                "Audit AIB",
+                "Audit QAS",
+                "Audit OS",
+                "Non-conformités",
+                "Réclamations",
+                "Audits internes",
+                "Inspection usine",
+                "Revue de direction",
+                "Gestion de crise",
+                "Autre",
+                "ISO14001"
+            };
+
+            List<NonConformiteOrigine> AllOrigine = new List<NonConformiteOrigine>();
+
+            foreach(string OrigineNom in AllOrigineNom){
+                NonConformiteOrigine Origine = new NonConformiteOrigine() { Nom = OrigineNom};
+                AllOrigine.Add(Origine);
+                context.NonConformiteOrigines.Add(Origine);
+                context.SaveChanges();
+            }
+
+            List<string> AllDomaineNom = new List<string>() { 
+                "Gestion documentaire",
+                "Responsabilité de la direction",
+                "Planification",
+                "Revue de direction",
+                "Ressources Humaines",
+                "Infrastructures",
+                "Réalisation du produits",
+                "Ecoute client",
+                "Conception et développement",
+                "Achat",
+                "Métrologie",
+                "Surveillance et mesurage",
+                "Maîtrise du produit non-conforme",
+                "Amélioration",
+                "Biovigilance",
+                "Sécurité des Denrée Alimentaires",
+                "Dépôts MPA",
+                "Dépôts MPC",
+                "Dépôts PF",
+                "Dépots Extérieurs",
+                "Extérieurs",
+                "Communs",
+                "Bureaux",
+                "Soufflage",
+                "Préparation",
+                "Process",
+                "Traitement des eaux",
+                "Packaging",
+                "Lutte contre les nuisibles",
+            };
+
+            List<NonConformiteDomaine> AllDomaine = new List<NonConformiteDomaine>();
+
+            foreach (string DomaineNom in AllDomaineNom)
+            {
+                NonConformiteDomaine Domaine = new NonConformiteDomaine() { Nom = DomaineNom };
+                AllDomaine.Add(Domaine);
+                context.NonConformiteDomaines.Add(Domaine);
+                context.SaveChanges();
+            }
+
+
+            List<string> AllGraviteNom = new List<string>() { 
+                "Mineur",
+                "Majeur",
+                "OA"
+            };
+
+            List<NonConformiteGravite> AllGravite = new List<NonConformiteGravite>();
+
+            foreach (string GraviteNom in AllGraviteNom)
+            {
+                NonConformiteGravite Gravite = new NonConformiteGravite() { Nom = GraviteNom };
+                AllGravite.Add(Gravite);
+                context.NonConformiteGravites.Add(Gravite);
+                context.SaveChanges();
+            }
+
+            //ROLE A AJOUTER A LA MAIN AU PREMIER LANCEMENT
+            //ADRole ADRoleHSESuperAdministrateur = new ADRole()
+            //{
+            //    Name = "REFRESCO\\\\RFS-Service des Systemes d'Information-Responsable Logicielles",
+            //    RoleType = "QSE",
+            //    RoleCode = "100"
+
+            //};
+
+            //context.ADRoles.Add(ADRoleHSESuperAdministrateur);
+
+            ParametrageQSE parametrageQSE = new ParametrageQSE()
+            {
+
+            };
+
+            context.ParametrageQSEs.Add(parametrageQSE);
+
+            context.SaveChanges();
+
+        }
+
+
+
     }
 }

@@ -41,16 +41,17 @@ namespace Antelope
         {
 
             AntelopeEntities db = new AntelopeEntities();
-            //HSERoleEnum HSERole = HSERoleEnum.Visiteur;
+
+            //-_-_-_-_-_-Traitements pour HSE-_-_-_-_-_-
+
             Int16 HSERole = (Int16)HSERoleEnum.Visiteur;
-            //HSERoleEnum CurrentHSERole = HSERoleEnum.Visiteur;
             Int16 CurrentHSERole = (Int16)HSERoleEnum.Visiteur;
 
-            var allADRoleMapped = from a in db.ADRoles
+            var allADHSERoleMapped = from a in db.ADRoles
                                   where a.RoleType == "HSE"
                                   select a;
 
-            foreach (ADRole ADRole in allADRoleMapped)
+            foreach (ADRole ADRole in allADHSERoleMapped)
             {
 
                 Debug.WriteLine(ADRole.Name);
@@ -62,7 +63,6 @@ namespace Antelope
                 {
                     Debug.WriteLine(ADRole.Name);
 
-                    //HSERoleEnum RoleToAdd = (HSERoleEnum)Enum.Parse(typeof(HSERoleEnum), ADRole.RoleCode);  //TODO : Renommer RoleCode en APPRoleCode !!! RoleType en APPRoleType
                     HSERoleEnum RoleToAdd = (HSERoleEnum)Enum.Parse(typeof(HSERoleEnum), ADRole.RoleCode);  //TODO : Renommer RoleCode en APPRoleCode !!! RoleType en APPRoleType
 
                     if ((Int16)RoleToAdd < (Int16)HSERole)
@@ -75,12 +75,51 @@ namespace Antelope
 
             }
 
-            //Session["HSERole"] = Enum.GetName(typeof(HSERoleEnum), HSERole);
             Session["HSERole"] = HSERole;
             // Dans le futur, l'utilisateur pourra choisir un role inferieur à celui auquel il a droit
             // Il faut donc utiliser CurrentHSERole dans les pages de l'appli.
             //Session["CurrentHSERole"] = Enum.GetName(typeof(HSERoleEnum), CurrentHSERole);
             Session["CurrentHSERole"] = CurrentHSERole;
+
+
+            //-_-_-_-_-_-Traitements pour QSE-_-_-_-_-_-
+
+            Int16 QSERole = (Int16)HSERoleEnum.Visiteur;
+            Int16 CurrentQSERole = (Int16)HSERoleEnum.Visiteur;
+
+            var allADQSERoleMapped = from a in db.ADRoles
+                                     where a.RoleType == "QSE"
+                                     select a;
+
+            foreach (ADRole ADRole in allADQSERoleMapped)
+            {
+
+                Debug.WriteLine(ADRole.Name);
+
+                var id = ClaimsPrincipal.Current.Identities.First();
+                string[] roles = Roles.GetRolesForUser(id.Name);
+
+                if (Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\")))
+                {
+                    Debug.WriteLine(ADRole.Name);
+
+                    HSERoleEnum RoleToAdd = (HSERoleEnum)Enum.Parse(typeof(HSERoleEnum), ADRole.RoleCode);  //TODO : Renommer RoleCode en APPRoleCode !!! RoleType en APPRoleType
+
+                    if ((Int16)RoleToAdd < (Int16)QSERole)
+                    {
+                        QSERole = (Int16)RoleToAdd;
+                        CurrentQSERole = (Int16)RoleToAdd;
+                    }
+
+                }
+
+            }
+
+            Session["QSERole"] = QSERole;
+            // Voir commentaire pour les rôles HSE
+            Session["CurrentQSERole"] = CurrentQSERole;
+
+
 
         }
 

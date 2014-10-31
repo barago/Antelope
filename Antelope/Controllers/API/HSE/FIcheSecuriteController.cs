@@ -168,30 +168,6 @@ namespace Antelope.Controllers.API.HSE
             Site site = db.Sites.First(s => s.SiteID == FicheSecurite.SiteId);
             FicheSecurite.Code += site.Trigramme + "-" + FicheSecurite.DateCreation.Year + "-" + FicheSecurite.CompteurAnnuelSite;
 
-
-
-            //Int32 NewFicheSecuriteCode = 1;
-            //String FicheSecuriteCode = "";
-
-            //Site site = db.Sites.First(s => s.SiteID == FicheSecurite.SiteId);
-            //FicheSecuriteCode += site.Trigramme + "-" + FicheSecurite.DateCreation.Year + "-";
-
-            //try
-            //{
-            //    FicheSecurite LastFicheSecurite = db.FicheSecurites.OrderByDescending(s => s.FicheSecuriteID).FirstOrDefault();
-            //    var LastFicheSecuriteCode = (LastFicheSecurite.Code != null) ? LastFicheSecurite.Code.Substring(LastFicheSecurite.Code.LastIndexOf('-') + 1) : "";
-            //    var LastFicheSecuriteYear = (LastFicheSecurite.Code != null) ? LastFicheSecurite.Code.Substring(4, 7) : "";
-
-            //    if (LastFicheSecuriteCode != "")
-            //    {
-            //        NewFicheSecuriteCode = (Convert.ToInt16(LastFicheSecuriteYear) < FicheSecurite.DateCreation.Year) ? 1 : Convert.ToInt32(LastFicheSecuriteCode) + 1;
-            //    }
-
-            //}
-            //catch { }
-            //FicheSecuriteCode += Convert.ToString(NewFicheSecuriteCode);
-            //FicheSecurite.Code = FicheSecuriteCode;
-
             FicheSecurite.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
                 FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom, FicheSecurite.ResponsableId, db
                 );
@@ -209,8 +185,8 @@ namespace Antelope.Controllers.API.HSE
 
                 //Url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = id }), "http", Request.Url.Host)
                 //Url.Link("DefaultApi", new { controller = "Albums", id = 3})
-                UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                var a = url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = FicheSecurite.FicheSecuriteID }), "http", HttpContext.Current.Request.Url.Host);  
+                //UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+                //var a = url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = FicheSecurite.FicheSecuriteID }), "http", HttpContext.Current.Request.Url.Host);  
                 
                 _emailService.SendEmailDiffusionFicheSecurite(FicheSecurite);
 
