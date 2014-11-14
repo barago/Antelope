@@ -13,8 +13,7 @@ namespace Antelope.Repositories.HSE
 
         public AntelopeEntities _db { get; set; }
 
-        public FicheSecuriteRepository()
-            : this(new AntelopeEntities())
+        public FicheSecuriteRepository() : this(new AntelopeEntities())
         {
 
         }

@@ -7,10 +7,10 @@ namespace Antelope.ViewModels.Socle.DataTables
 {
     public class DataTableViewModel<T>
     {
-        public int iTotalRecords { get; set; }
-        public int iTotalDisplayRecords { get; set; }
-        public int sEcho { get;set; }
+        public int recordsTotal { get; set; }
+        public int recordsFiltered { get; set; }
+        //public int Echo { get;set; }
 
-        public List<T> aaData { get; set; }
+        public List<T> data { get; set; }
     }
 }

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\API\QSE\CauseQSEController.cs" />
     <Compile Include="Controllers\API\QSE\NonConformiteController.cs" />
     <Compile Include="Controllers\API\QSE\QSEParametrageController.cs" />
+    <Compile Include="Controllers\API\QSE\RechercheNonConformiteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Models\Test\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
+    <Compile Include="Repositories\QSE\NonConformiteRepository.cs" />
     <Compile Include="Repositories\Socle\ActiveDirectoryUtilisateurRepository.cs" />
     <Compile Include="Repositories\Socle\PersonneRepository.cs" />
     <Compile Include="Repositories\Test\IReviewRepository.cs" />
@@ -250,7 +252,10 @@
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformitePaginatedList.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformiteViewModel.cs" />
+    <Compile Include="ViewModels\QSE\NonConformiteViewModels\RechercheNonConformiteParamModel.cs" />
+    <Compile Include="ViewModels\QSE\NonConformiteViewModels\RechercheNonConformiteViewModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
     <Compile Include="ViewModels\Socle\DataTables\DataTableViewModel.cs" />
   </ItemGroup>
@@ -377,11 +382,13 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ViewModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteDomaineModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteGraviteModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteOrigineModel.js" />
-    <Content Include="Scripts\Application\QSE\NonConformite\ViewModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Recherche\RechercheNonConformiteParamModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Recherche\ViewModel.js" />
     <Content Include="Scripts\Application\Socle\LieuModel.js" />
     <Content Include="Scripts\Application\Socle\LieuTypeModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailModel.js" />

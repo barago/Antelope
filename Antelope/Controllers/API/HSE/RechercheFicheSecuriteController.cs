@@ -111,7 +111,7 @@ namespace Antelope.Controllers.API.HSE
 
             _ficheSecuriteRepository = new FicheSecuriteRepository();
 
-            var queryFicheSecurite = from a in db.FicheSecurites select a;
+            //var queryFicheSecurite = from a in db.FicheSecurites select a;
 
             FicheSecuritePaginatedList FicheSecuritePaginatedList = _ficheSecuriteRepository.GetFromParams(RechercheFicheSecuriteParamModel);
 

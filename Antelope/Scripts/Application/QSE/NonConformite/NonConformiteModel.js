@@ -3,6 +3,6 @@
 });
 
 var NonConformiteCollection = Backbone.Collection.extend({
-    url: '/api/RechercheNonConformite',
+    url: '/api/NonConformite',
     model: NonConformiteModel
 });

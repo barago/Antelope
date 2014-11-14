@@ -13,6 +13,7 @@ using Antelope.Infrastructure.EntityFramework;
 using Antelope.Repositories.Socle;
 using Antelope.ViewModels.QSE.NonConformiteViewModels;
 using Antelope.ViewModels.Socle.DataTables;
+using Antelope.Repositories.QSE;
 
 namespace Antelope.Controllers.API.QSE
 {
@@ -20,19 +21,22 @@ namespace Antelope.Controllers.API.QSE
     {
         private AntelopeEntities db = new AntelopeEntities();
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
-
+        public NonConformiteRepository _nonConformiteRepository { get; set; }
 
         // GET: api/NonConformite
         public HttpResponseMessage Get()
         {
-            List<NonConformite> nonConformites = db.NonConformites.ToList();
-            Dictionary<string, string> dataTableParameters = new Dictionary<string, string>();
-            dataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
 
-            DataTableViewModel<NonConformite> DataTableViewModel = new DataTableViewModel<NonConformite>();
-            DataTableViewModel.aaData = nonConformites;
-            DataTableViewModel.iTotalRecords = 1;
-            DataTableViewModel.iTotalDisplayRecords = 1;
+            _nonConformiteRepository = new NonConformiteRepository();
+                        
+            Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
+            DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+            DataTableViewModel<NonConformite> DataTableViewModel = _nonConformiteRepository.GetFromParams(DataTableParameters);
+
+            //DataTableViewModel.aaData = nonConformites;
+            //DataTableViewModel.iTotalRecords = 1;
+            //DataTableViewModel.iTotalDisplayRecords = 1;
             //DataTableViewModel.sEcho = int.Parse(dataTableParameters["sEcho"]);
 
             return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModel);
