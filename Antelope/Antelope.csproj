@@ -382,6 +382,10 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ActionView.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\NonConformiteView.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryView.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ViewModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteDomaineModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteGraviteModel.js" />
