@@ -1,5 +1,6 @@
 ﻿var NonConformiteModel = Backbone.Model.extend({
-    urlRoot: '/api/NonConformite'
+    urlRoot: '/api/NonConformite',
+    idAttribute: 'Id',
 });
 
 var NonConformiteCollection = Backbone.Collection.extend({

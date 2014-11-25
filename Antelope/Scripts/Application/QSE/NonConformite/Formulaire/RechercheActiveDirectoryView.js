@@ -52,11 +52,14 @@
         },
         choixUtilisateurActiveDirectory: function (ev) {
 
-            var utilisateurActiveDirectorySelectionne = this.model.get('rechercheActiveDirectoryCollection').find(
+            var utilisateurSelectionne = this.model.get('rechercheActiveDirectoryCollection').find(
                 function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }
             );
 
-        
+            this.model.set({ "utilisateurSelectionne": utilisateurSelectionne });
+            this.model.get('utilisateurSelectionne').set({ "sourceUtilisateurField": this.model.get('sourceUtilisateurField') });
+
+            Backbone.applicationEvents.trigger('selectionUtilisateur',this.model.get('utilisateurSelectionne'));
 
 
             
@@ -66,5 +69,5 @@
         }
 
     });
-    //console.log(app);
+    
 });

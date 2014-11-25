@@ -154,9 +154,10 @@
                         </table>*@
 
 
-                    <table id="Table">
+                    <table id="Table" class="stripe hover">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Code</th>
                                 <th>Date </th>
                                 <th>Origine</th>
@@ -230,6 +231,7 @@
             initialize: function () {
                 //_.bindAll(this, table);
                 this.render();
+
             },
             events: {
                 "change #Site": "changeSite",
@@ -246,7 +248,7 @@
 
                 $("#Table").DataTable().destroy();
 
-                this.table = $("#Table").DataTable({
+                table = $("#Table").DataTable({
                     "serverSide": true,
                     "processing": true,
                     "filter": false,
@@ -262,6 +264,11 @@
 
                     },
                     "columns": [
+                        {
+                            "mData": "Id",
+                            "sTitle": "Code"
+                            //"visible": false
+                        },
                         {
                             "mData": "Code",
                             "sTitle": "Code"
@@ -287,14 +294,34 @@
                     "oLanguage": {
                         "sUrl": "Scripts/datatables_lang_fr.js"
                     }
-                    //"aaData": [
-                    //  ["RFS-2014-1", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
-                    //  ["RFS-2014-2", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
-                    //  ["RFS-2014-3", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
-                    //  ["RFS-2014-4", "2013-10-15 10:30:00", "Audit IFS", "la description sdfsdfds srfzef zef ezfzef"],
-
-                    //]
                 });
+
+
+                table.$('tr.selected').removeClass('selected');
+                
+                $('#Table tbody').on('click', 'tr', function () {
+
+                    var aData = $("#Table").dataTable().fnGetData(this);
+                    var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                    window.location.href = url.replace('__id__', aData.Id);
+
+                    // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page 
+                    // Ne marche pas car les tr sont selected après le Destray, alors que dans le DOM ils ne sont pas selected ...
+                    
+                    @*if ($(this).hasClass('selected')) {
+
+                        var aData = $("#Table").dataTable().fnGetData(this);
+
+                        var url = '@Url.Action("Create", "NonConformite", new { id = "__id__" })';
+                        window.location.href = url.replace('__id__', aData.Id);
+                    }
+                    else {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }*@
+                });
+
+
 
 
             },

@@ -91,3 +91,7 @@ input[type="checkbox"].input-validation-error {
     background:rgba(0,0,0,0.3);
 }
 
+#Table tbody tr{
+    cursor: pointer;
+}
+

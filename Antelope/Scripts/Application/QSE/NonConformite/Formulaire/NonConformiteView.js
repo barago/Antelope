@@ -33,7 +33,6 @@
             "click #Enregistrer": "enregistrer"
         },
         changeDescription: function () {
-            console.log('passage change description');
             this.model.get('nonConformiteModel').set({ 'Description': $('#Description').val() });
         },
         changeAttendu: function () {

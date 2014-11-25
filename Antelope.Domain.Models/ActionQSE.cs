@@ -35,7 +35,7 @@ namespace Antelope.Domain.Models
         public Nullable<System.DateTime> VerifieDate { get; set; }
         public bool Cloture { get; set; }
         public Nullable<System.DateTime> ClotureDate { get; set; }
-        public int CauseQSEId { get; set; }
+        public Nullable<int> CauseQSEId { get; set; }
         public Nullable<int> NonConformiteId { get; set; }
 
         [JsonIgnore]

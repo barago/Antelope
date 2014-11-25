@@ -386,6 +386,8 @@
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\NonConformiteView.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryView.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ResponsableModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\VerificateurModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ViewModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteDomaineModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\NonConformiteGraviteModel.js" />

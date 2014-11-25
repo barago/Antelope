@@ -18,7 +18,7 @@
     [VerifieDate]                       DATETIME       NULL,
     [Cloture]                           BIT            NOT NULL,
     [ClotureDate]                       DATETIME       NULL,
-    [CauseQSEId]                        INT            NOT NULL,
+    [CauseQSEId]                        INT            NULL,
     [NonConformiteId] INT NULL, 
     CONSTRAINT [PK_dbo.ActionQSEs] PRIMARY KEY CLUSTERED ([ActionQSEId] ASC),
     CONSTRAINT [FK_dbo.ActionQSEs_dbo.CauseQSEs_CauseQSEId] FOREIGN KEY ([CauseQSEId]) REFERENCES [dbo].[CauseQSEs] ([CauseQSEId]) ON DELETE CASCADE,

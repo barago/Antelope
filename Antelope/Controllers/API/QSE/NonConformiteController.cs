@@ -47,11 +47,12 @@ namespace Antelope.Controllers.API.QSE
         public HttpResponseMessage Get(int id)
         {
             _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
-            
+            _nonConformiteRepository = new NonConformiteRepository();
+
             NonConformite nonConformite;
 
-            //if (id == -1)
-            //{
+            if (id == -1)
+            {
                 Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
 
                 nonConformite = new NonConformite()
@@ -60,12 +61,16 @@ namespace Antelope.Controllers.API.QSE
                 };
 
 
-            //}
-            //else
-            //{
+            }
+            else
+            {
+                nonConformite = _nonConformiteRepository.Get(id);
 
-
-            //}
+                if (nonConformite == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+            }
 
             var nonConformiteViewModel = new NonConformiteViewModel(nonConformite);
             return Request.CreateResponse(HttpStatusCode.OK, nonConformiteViewModel);
@@ -73,7 +78,7 @@ namespace Antelope.Controllers.API.QSE
 
         // PUT: api/NonConformite/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutNonConformite(int id, NonConformite nonConformite)
+        public IHttpActionResult Put(int id, NonConformite nonConformite)
         {
             if (!ModelState.IsValid)
             {

@@ -23,6 +23,12 @@ namespace Antelope.Repositories.QSE
             _db = db;
         }
 
+        public NonConformite Get(Int32 id)
+        {
+            NonConformite NonConformite = _db.NonConformites.SingleOrDefault(r => r.Id == id);
+            return NonConformite;
+        }
+
         public DataTableViewModel<NonConformite> GetFromParams(Dictionary<string, string> DataTableParameters)
         {
 
