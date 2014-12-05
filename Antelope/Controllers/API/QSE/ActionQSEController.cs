@@ -71,6 +71,13 @@ namespace Antelope.Controllers.API.QSE
                     );
                 }
 
+                if (actionqse.VerificateurId == 0)
+                {
+                    actionqse.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                        actionqse.Responsable.Nom, actionqse.Responsable.Prenom, actionqse.ResponsableId, db
+                    );
+                }
+
                     db.SaveChanges();
 
                     _ficheSecuriteServices = new FicheSecuriteServices();
@@ -103,7 +110,13 @@ namespace Antelope.Controllers.API.QSE
             actionQSE.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
                 actionQSE.Responsable.Nom, actionQSE.Responsable.Prenom, actionQSE.ResponsableId, db
             );
+            if (actionQSE.VerificateurId != 0 && actionQSE.VerificateurId != null)
+            {
+            actionQSE.Verificateur = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                actionQSE.Verificateur.Nom, actionQSE.Verificateur.Prenom, actionQSE.VerificateurId, db
+            );
 
+            }
             db.ActionQSEs.Add(actionQSE);
             db.SaveChanges();
 

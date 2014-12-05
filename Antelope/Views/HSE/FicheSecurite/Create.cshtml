@@ -1963,6 +1963,8 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitialeJavascript': $('#EditActionDateButoirInitialeInputForAction' + actionToEditId).val() });
             },
             changeEditActionDateButoirNouvelle: function (ev) {
+                console.log(ev);
+                console.log($(ev.currentTarget).attr('data-actionId'));
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelle': this.dateFormatMVC($('#EditActionDateButoirNouvelleInputForAction' + actionToEditId).val()) });

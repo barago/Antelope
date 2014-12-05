@@ -59,7 +59,7 @@
             this.model.set({ "utilisateurSelectionne": utilisateurSelectionne });
             this.model.get('utilisateurSelectionne').set({ "sourceUtilisateurField": this.model.get('sourceUtilisateurField') });
 
-            Backbone.applicationEvents.trigger('selectionUtilisateur',this.model.get('utilisateurSelectionne'));
+            Backbone.applicationEvents.trigger('selectionUtilisateur',[this.model.get('utilisateurSelectionne'), '1']);
 
 
             

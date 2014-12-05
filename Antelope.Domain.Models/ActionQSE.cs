@@ -17,6 +17,7 @@ namespace Antelope.Domain.Models
     public partial class ActionQSE
     {
         public int ActionQSEId { get; set; }
+        public string Titre { get; set; }
         public string Description { get; set; }
         public System.DateTime DateButoireInitiale { get; set; }
         public Nullable<System.DateTime> DateButoireNouvelle { get; set; }
@@ -37,6 +38,8 @@ namespace Antelope.Domain.Models
         public Nullable<System.DateTime> ClotureDate { get; set; }
         public Nullable<int> CauseQSEId { get; set; }
         public Nullable<int> NonConformiteId { get; set; }
+        public string CritereEfficaciteVerification { get; set; }
+
 
         [JsonIgnore]
         public virtual CauseQSE CauseQS { get; set; }
