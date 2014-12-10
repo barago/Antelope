@@ -37,7 +37,7 @@ namespace Antelope.Controllers.API.QSE
         }
 
         // PUT: api/CauseQSE/5
-        [ResponseType(typeof(void))]
+        //[ResponseType(typeof(void))]
         public HttpResponseMessage PutCauseQSE(int id, CauseQSE causeQSE)
         {
             if (!ModelState.IsValid)
@@ -49,6 +49,7 @@ namespace Antelope.Controllers.API.QSE
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
             }
+
 
             db.Entry(causeQSE).State = EntityState.Modified;
 
@@ -68,7 +69,7 @@ namespace Antelope.Controllers.API.QSE
                 }
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, Configuration.Formatters.JsonFormatter);
+            return Request.CreateResponse(HttpStatusCode.OK, causeQSE, Configuration.Formatters.JsonFormatter);
         }
 
 

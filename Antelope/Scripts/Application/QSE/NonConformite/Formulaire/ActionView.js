@@ -64,8 +64,19 @@
                     $('#AddActionVerificateurPrenom').val(this.model.get('actionModel').get('Verificateur').get('Prenom'));
 
                     break;
-                default:
-                    alert ('ELSE');
+                case "EditActionResponsable":
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).set({ 'Responsable': params[0] });
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).set({ 'ResponsableId': params[0].get('PersonneId') });
+
+                    $('#EditActionResponsableNom' + parseInt(params[1])).val(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).get('Responsable').get('Nom'));
+                    $('#EditActionResponsablePrenom' + parseInt(params[1])).val(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).get('Responsable').get('Prenom'));
+                    break;
+                case "EditActionVerificateur":
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).set({ 'Verificateur': params[0] });
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).set({ 'VerificateurId': params[0].get('PersonneId') });
+
+                    $('#EditActionVerificateurNom' + parseInt(params[1])).val(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).get('Verificateur').get('Nom'));
+                    $('#EditActionVerificateurPrenom' + parseInt(params[1])).val(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(params[1]) }).get('Verificateur').get('Prenom'));
                     break;
             }
 
@@ -95,11 +106,10 @@
             "click .ActiveDirectoryEditActionResponsableRecherche": "showActiveDirectoryUtilisateurRecherche",
             "click .ActiveDirectoryEditActionVerificateurRecherche": "showActiveDirectoryUtilisateurRecherche",
             "keyup #AddActionDateButoireInitiale": "changeAddActionDateButoireInitiale",
-            "click #BtnAddActionEnregistrer": "enregistrerAddAction",
+            "click #BtnAddActionEnregistrer": "saveAddAction",
             "keyup .EditActionTitre": "changeEditActionTitre",
-            "click .BtnEditActionDelete": "deleteAction",
-            "click .BtnEditActionSave": "saveAction",
-            "keyup .EditActionTitre": "changeEditActionTitre",
+            "click .BtnEditActionDelete": "deleteEditAction",
+            "click .BtnEditActionSave": "saveEditAction",
             "keyup .EditActionDescription": "changeEditActionDescription",
             "keyup .EditActionAvancement": "changeEditActionAvancement",
             "keyup .EditActionCritere": "changeEditActionCritere",
@@ -142,30 +152,76 @@
             this.model.get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoireInitialeInput').val()) + 'T' + '00:00:00.0' });
             this.model.get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoireInitialeInput').val() });
         },
-        enregistrerAddAction: function(){
+        saveAddAction: function(){
 
             var actionToAdd = this.model.get('actionModel');
+            console.log(actionToAdd);
             var actionAdded = this.model.get('nonConformiteModel').get('actionCollection').create(
-                    new ActionModel(actionToAdd.toJSON()), { async: false, wait: true }
-                )
+                    new ActionModel(actionToAdd.toJSON()), {
+                        async: false, wait: true,
+                        success: _.bind(function (model, response) {
+                            console.log(model);
+                            model.set({ 'Responsable': new ResponsableModel(model.get('Responsable')) });
+                            model.set({ 'Verificateur': new ResponsableModel(model.get('Verificateur')) });
 
-            actionAdded.set({ 'Responsable': new ResponsableModel(actionAdded.get('Responsable')) });
-            actionAdded.set({ 'Verificateur': new ResponsableModel(actionAdded.get('Verificateur')) });
-            
-            
-            this.model.get('actionModel').clear();
-            this.model.get('actionModel').set({ 'Responsable': new ResponsableModel() });
-            this.model.get('actionModel').set({ 'Verificateur': new ResponsableModel() });
+                            this.model.get('actionModel').clear();
+                            this.model.get('actionModel').set({ 'Responsable': new ResponsableModel() });
+                            this.model.get('actionModel').set({ 'Verificateur': new ResponsableModel() });
 
+                            this.render();
 
-            this.render();
+                            Backbone.applicationEvents.trigger('alerteValid', 'l\' action \"' + model.get('Titre') + '\" a été ajoutée');
+
+                        }, this),
+                        error: _.bind(function (model, response) {
+                            Backbone.applicationEvents.trigger('alerteInvalid', 'Une erreur est survenue sur l\'ajout de l\'action');
+                        }, this)
+                    });
+
 
         },
-        deleteAction: function(){
-            alert('DELETE');
+        deleteEditAction: function(ev){
+            var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette action ?");
+            if (confirmation == true) {
+                var actionToDeleteId = $(ev.currentTarget).attr('data-actionid');
+                this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).set({ id: parseInt(actionToDeleteId) });
+                this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).destroy({
+                    async: false, wait: true,
+                    success: _.bind(function (model, response) {
+                        console.log('PASSAGE DELETE');
+                        console.log(model);
+                        this.render();
+                        Backbone.applicationEvents.trigger('alerteValid', 'l\' action \"' + model.get('Titre') + '\" a été supprimée');
+                    }, this),
+                    error: _.bind(function (model, response) {
+                        Backbone.applicationEvents.trigger('alerteInvalid', 'Une erreur est survenue sur la suppression de l\'action');
+                    }, this)
+                });
+                
+            };
         },
-        saveAction: function(){
-            alert('SAVE');
+        saveEditAction: function (ev) {
+            var actionToEditId = $(ev.currentTarget).attr('data-actionId');
+
+            //Ajout de l'id de l'enregistrement à la volée
+            //Il faudrait soit initialiser les Models dans les Collections avec le bon id, soit côté Serveur MVC appeler "id" la clef primaire, simplifiant toute la chaîne d'enregistrement...
+            //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).id = parseInt(causeToEditId)  //.   get('CauseId');
+            // OU ENCORE : Utiliser IdAttribute de Backbone Model !
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ id: parseInt(actionToEditId) });  //.   get('ActionId');
+
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).save(null, { async: false, wait: true, 
+                success: _.bind(function (model, repsonse) {
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Responsable': new ResponsableModel(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).Responsable) });
+                    this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Verificateur': new VerificateurModel(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).Verificateur) });
+
+                    this.render();
+                    Backbone.applicationEvents.trigger('alerteValid', 'l\' action a été mise à jour');
+                }, this),
+                error: _.bind(function (model, response) {
+                    Backbone.applicationEvents.trigger('alerteInvalid', 'Une erreur est survenue sur l\'édition de l\'action');
+                }, this)
+            });
+            
         },
         changeEditActionTitre: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
@@ -197,7 +253,6 @@
         changeEditActionCritere: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'CritereEfficaciteVerification': $(ev.currentTarget).val() });
-            console.log(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }));
         },
         changeEditActionCommentaire: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
@@ -207,7 +262,6 @@
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerificationDate': this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerificationDateJavascript': $('#EditActionDateVerificationInput' + actionToEditId).val() });
-            console.log(this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }));
         },
     });
 

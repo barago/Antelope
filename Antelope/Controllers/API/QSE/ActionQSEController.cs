@@ -48,47 +48,54 @@ namespace Antelope.Controllers.API.QSE
         }
 
         // PUT api/ActionQSE/5
-        public IHttpActionResult PutActionQSE(int id, ActionQSE actionqse)
+        public HttpResponseMessage PutActionQSE(int id, ActionQSE actionqse)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
             }
 
             if (id != actionqse.ActionQSEId)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
             }
 
-            db.Entry(actionqse).State = EntityState.Modified;
+
+            var currentAction = db.ActionQSEs.Find(actionqse.ActionQSEId);
+            db.Entry(currentAction).CurrentValues.SetValues(actionqse);
+
+            db.Entry(currentAction).State = EntityState.Modified;
 
             try
             {
-                if (actionqse.ResponsableId == 0)
+                if (currentAction.ResponsableId == 0)
                 {
-                    actionqse.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
-                        actionqse.Responsable.Nom, actionqse.Responsable.Prenom, actionqse.ResponsableId, db
+                    currentAction.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                        currentAction.Responsable.Nom, currentAction.Responsable.Prenom, currentAction.ResponsableId, db
                     );
                 }
 
-                if (actionqse.VerificateurId == 0)
+                if (currentAction.VerificateurId == 0)
                 {
-                    actionqse.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
-                        actionqse.Responsable.Nom, actionqse.Responsable.Prenom, actionqse.ResponsableId, db
+                    currentAction.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                        currentAction.Responsable.Nom, currentAction.Responsable.Prenom, currentAction.ResponsableId, db
                     );
                 }
 
                     db.SaveChanges();
 
-                    _ficheSecuriteServices = new FicheSecuriteServices();
-                    _ficheSecuriteServices.FicheSecuriteOpenOrClose(actionqse);
+                    if (currentAction.NonConformiteId == 0 && currentAction.NonConformiteId == null)
+                    {
+                        _ficheSecuriteServices = new FicheSecuriteServices();
+                        _ficheSecuriteServices.FicheSecuriteOpenOrClose(currentAction);
+                    }
 
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!ActionQSEExists(id))
                 {
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, Configuration.Formatters.JsonFormatter);
                 }
                 else
                 {
@@ -96,7 +103,8 @@ namespace Antelope.Controllers.API.QSE
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.OK, currentAction, Configuration.Formatters.JsonFormatter);
+                //StatusCode(HttpStatusCode.NoContent, currentAction, Configuration.Formatters.JsonFormatter);
         }
 
         // POST api/ActionQSE

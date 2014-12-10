@@ -67,13 +67,28 @@
                 {
                     async: false, wait: true,
                     success: _.bind(function (model, response) {
+                        console.log('THIS.MODEL.GET');
+                        console.log(this.model.get('nonConformiteModel').get('Id'));
+                        console.log('MODEL');
+                        console.log(model);
+
+
+
+                        this.model.set({ 'actionModel': new ActionModel() });
+                        this.model.get('actionModel').set({ 'Responsable': new ResponsableModel() });
+                        this.model.get('actionModel').set({ 'Verificateur': new VerificateurModel() });
+                        this.model.get('actionModel').set({ 'NonConformiteId': this.model.get('nonConformiteModel').get('Id') });
 
                         Backbone.applicationEvents.trigger('NonConformiteEnregistree');
 
                         this.render(this.model.get('nonConformiteModel'));
-                        Backbone.applicationEvents.trigger('validNonConformite', 'La Non-Conformité est enregistrée.');
+                        Backbone.applicationEvents.trigger('alerteValid', 'La Non-Conformité \"' + this.model.get('nonConformiteModel').get('Code') + '\" est enregistrée.');
 
+                    }, this),
+                    error: _.bind(function (model, response) {
+                        Backbone.applicationEvents.trigger('alerteInvalid', 'Une erreur est survenue sur l\'ajout de la Non-Conformité');
                     }, this)
+                    
                 });
         }
 

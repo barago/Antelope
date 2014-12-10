@@ -27,11 +27,12 @@
         <div class="col-md-12">
 
             <div class="panel panel-primary">
-                <div class="panel-heading" style="background-color :#3465A8; color: white">
+                <div class="panel-heading" style="background-color :#006573; color: white">
 
                     <div class="row">
 
                         <div class="col-md-10">
+                            FILTRES&nbsp;:
                         </div>
                         <div class="col-md-2">
 
@@ -139,20 +140,8 @@
 
             <div class="panel panel-primary">
                 @*<div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>*@
-                <div class="panel-heading" style="background-color :#3465A8; color: white">Résultats&nbsp;:</div>
+                <div class="panel-heading" style="background-color :#006573; color: white">RESULTATS&nbsp;:</div>
                 <div class="panel-body">
-
-                    @*<table id="Table">
-                            <thead>
-                                <tr><th>Sites</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>SitePoint</td></tr>
-                                <tr><td>Learnable</td></tr>
-                                <tr><td>Flippa</td></tr>
-                            </tbody>
-                        </table>*@
-
 
                     <table id="Table" class="stripe hover">
                         <thead>
@@ -249,6 +238,7 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
+                    "autoWidth": false,
                     "serverSide": true,
                     "processing": true,
                     "filter": false,
@@ -266,24 +256,32 @@
                     "columns": [
                         {
                             "mData": "Id",
-                            "sTitle": "Code"
-                            //"visible": false
+                            "sTitle": "Code",
+                            "visible": false,
+                            "orderable": false,
                         },
                         {
                             "mData": "Code",
-                            "sTitle": "Code"
+                            "sTitle": "Code",
+                            "orderable": false,
+                            "width": "10%"
                         },
                         {
                             "mData": "Date",
                             "sTitle": "Date",
                             "sType": "date",
                             "mRender": function (date, type, full) {
-                                return new Date(date).toDateString();
-                            }
+                                //return new Date(date).toLocaleString();
+                                return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                            },
+                            "orderable": false,
+                            "width": "10%"
                         },
                         {
-                            "mData": "NonConformiteOrigineId",
-                            "sTitle": "Origine"
+                            "mData": "NonConformiteOrigine.Nom",
+                            "sTitle": "Origine",
+                            "orderable": false,
+                            "width": "15%"
                         },
                         {
                             "mData": "Description",

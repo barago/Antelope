@@ -383,6 +383,8 @@
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ActionView.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\AlerteModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\AlerteView.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\NonConformiteView.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\RechercheActiveDirectoryView.js" />
