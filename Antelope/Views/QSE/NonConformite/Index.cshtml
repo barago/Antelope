@@ -26,7 +26,7 @@
 
         <div class="col-md-12">
 
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" style="border-color: #006573;">
                 <div class="panel-heading" style="background-color :#006573; color: white">
 
                     <div class="row">
@@ -138,7 +138,7 @@
 
         <div class="col-md-12">
 
-            <div class="panel panel-primary">
+            <div class="panel panel-primary" style="border-color: #006573;">
                 @*<div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>*@
                 <div class="panel-heading" style="background-color :#006573; color: white">RESULTATS&nbsp;:</div>
                 <div class="panel-body">
@@ -147,10 +147,13 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Code</th>
-                                <th>Date </th>
-                                <th>Origine</th>
-                                <th>Description</th>
+                                <th>Titre</th>
+                                <th>Responsable</th>
+                                <th>Date Butoir</th>
+                                @*<th>Code</th>
+                            <th>Date </th>
+                            <th>Origine</th>
+                            <th>Description</th>*@
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -161,8 +164,6 @@
             </div>
         </div>
     </div>
-
-
 
 </script>
 
@@ -238,13 +239,14 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
+                    "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
                     "processing": true,
                     "filter": false,
                     //"sAjaxSource": "/api/NonConformite",
                     "ajax": {
-                        "url": "/api/NonConformite",
+                        "url": "/api/ActionQSE",
                         "data": {
                             "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
                             "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
@@ -255,39 +257,68 @@
                     },
                     "columns": [
                         {
-                            "mData": "Id",
-                            "sTitle": "Code",
+                            "mData": "NonConformiteId",
+                            "sTitle": "Id",
                             "visible": false,
                             "orderable": false,
                         },
                         {
-                            "mData": "Code",
-                            "sTitle": "Code",
+                            "mData": "Titre",
+                            "sTitle": "Titre",
                             "orderable": false,
                             "width": "10%"
                         },
                         {
+                            "mData": "ResponsableNom",
+                            "sTitle": "Responsable",
+                            "orderable": false,
+                            "width": "10%",
+                            "mRender": function (date, type, full) {
+                                        return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
+                                    }
+                        },
+                        {
                             "mData": "Date",
-                            "sTitle": "Date",
+                            "sTitle": "Date Butoir",
                             "sType": "date",
                             "mRender": function (date, type, full) {
                                 //return new Date(date).toLocaleString();
+                                //return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                                var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
                                 return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
                             },
                             "orderable": false,
                             "width": "10%"
                         },
-                        {
-                            "mData": "NonConformiteOrigine.Nom",
-                            "sTitle": "Origine",
-                            "orderable": false,
-                            "width": "15%"
-                        },
-                        {
-                            "mData": "Description",
-                            "sTitle": "Description",
-                            "orderable":false
-                        }
+                        //},
+                        //{
+                        //    "mData": "Code",
+                        //    "sTitle": "Code",
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "Date",
+                        //    "sTitle": "Date",
+                        //    "sType": "date",
+                        //    "mRender": function (date, type, full) {
+                        //        //return new Date(date).toLocaleString();
+                        //        return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                        //    },
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "NonConformiteOrigine.Nom",
+                        //    "sTitle": "Origine",
+                        //    "orderable": false,
+                        //    "width": "15%"
+                        //},
+                        //{
+                        //    "mData": "Description",
+                        //    "sTitle": "Description",
+                        //    "orderable":false
+                        //}
                     ],
                     "oLanguage": {
                         "sUrl": "Scripts/datatables_lang_fr.js"
@@ -301,7 +332,7 @@
 
                     var aData = $("#Table").dataTable().fnGetData(this);
                     var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
-                    window.location.href = url.replace('__id__', aData.Id);
+                    window.location.href = url.replace('__id__', aData.NonConformiteId);
 
                     // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page 
                     // Ne marche pas car les tr sont selected après le Destray, alors que dans le DOM ils ne sont pas selected ...

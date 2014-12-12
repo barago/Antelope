@@ -61,13 +61,12 @@ namespace Antelope.Repositories.QSE
                 queryNonConformite = queryNonConformite.Where(q => q.NonConformiteDomaineId == ParameterDomaineId);
             }
 
-            int RecordsTotal = queryNonConformite.Count();
+            int RecordsFiltered = queryNonConformite.Count();
+            int RecordsTotal = _db.NonConformites.Count();
 
             queryNonConformite = queryNonConformite.Skip(ParameterStart).Take(ParameterLength);
 
             List<NonConformite> AllNonConformite = queryNonConformite.ToList();
-
-            int RecordsFiltered = AllNonConformite.Count();
 
             DataTableViewModel<NonConformite> DataTableViewModel = new DataTableViewModel<NonConformite>()
             {

@@ -12,6 +12,8 @@ using Antelope.Domain.Models;
 using Antelope.Infrastructure.EntityFramework;
 using Antelope.Services.Socle;
 using Antelope.Services.HSE;
+using Antelope.Repositories.QSE;
+using Antelope.ViewModels.Socle.DataTables;
 
 
 namespace Antelope.Controllers.API.QSE
@@ -22,6 +24,7 @@ namespace Antelope.Controllers.API.QSE
 
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
         private FicheSecuriteServices _ficheSecuriteServices { get; set; }
+        private ActionQSERepository _actionQSERepository { get; set; }
 
         public ActionQSEController()
         {
@@ -29,9 +32,27 @@ namespace Antelope.Controllers.API.QSE
         }
 
         // GET api/ActionQSE
-        public IQueryable<ActionQSE> GetActions()
+        //public IQueryable<ActionQSE> GetActions()
+        //{
+        //    return db.ActionQSEs;
+        //}
+
+
+        public HttpResponseMessage Get()
         {
-            return db.ActionQSEs;
+            _actionQSERepository = new ActionQSERepository();
+
+            Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
+            DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+            DataTableViewModel<ActionQSE> DataTableViewModel = _actionQSERepository.GetFromParams(DataTableParameters);
+
+            //DataTableViewModel.aaData = nonConformites;
+            //DataTableViewModel.iTotalRecords = 1;
+            //DataTableViewModel.iTotalDisplayRecords = 1;
+            //DataTableViewModel.sEcho = int.Parse(dataTableParameters["sEcho"]);
+
+            return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModel);
         }
 
         // GET api/ActionQSE/5

@@ -63,16 +63,14 @@
             return dateFormated;
         },
         enregistrer: function () {
+            this.model.get('nonConformiteModel').on("invalid", function (model, error) {
+                Backbone.applicationEvents.trigger('alerteInvalid', error);
+                console.log("INVALID");
+            });
             this.model.get('nonConformiteModel').save(null,
                 {
                     async: false, wait: true,
                     success: _.bind(function (model, response) {
-                        console.log('THIS.MODEL.GET');
-                        console.log(this.model.get('nonConformiteModel').get('Id'));
-                        console.log('MODEL');
-                        console.log(model);
-
-
 
                         this.model.set({ 'actionModel': new ActionModel() });
                         this.model.get('actionModel').set({ 'Responsable': new ResponsableModel() });

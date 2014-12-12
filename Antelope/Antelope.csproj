@@ -235,6 +235,7 @@
     <Compile Include="Models\Test\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
+    <Compile Include="Repositories\QSE\ActionQSERepository.cs" />
     <Compile Include="Repositories\QSE\NonConformiteRepository.cs" />
     <Compile Include="Repositories\Socle\ActiveDirectoryUtilisateurRepository.cs" />
     <Compile Include="Repositories\Socle\PersonneRepository.cs" />
@@ -382,6 +383,7 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
     <Content Include="Scripts\Application\QSE\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\CauseModel.js" />
+    <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ActionModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\ActionView.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\AlerteModel.js" />
     <Content Include="Scripts\Application\QSE\NonConformite\Formulaire\AlerteView.js" />
