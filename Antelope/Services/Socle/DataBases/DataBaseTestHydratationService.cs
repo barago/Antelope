@@ -1815,19 +1815,16 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             List<string> AllOrigineNom = new List<string>() { 
                 "Audit IFS",
-                "Audit ISO",
-                "Audit KORE",
+                "Audit ISO 9001",
+                "Audit FSSC 22000",
                 "Audit AIB",
-                "Audit QAS",
-                "Audit OS",
-                "Non-conformités",
-                "Réclamations",
-                "Audits internes",
-                "Inspection usine",
-                "Revue de direction",
-                "Gestion de crise",
-                "Autre",
-                "ISO14001"
+                "Audit KAS",
+                "Audit KORE",
+                "Audit externe autre",
+                "Audit interne",
+                "Non-conformités", 
+                "Réclamations", 
+                "Revue de Direction"
             };
 
             List<NonConformiteOrigine> AllOrigine = new List<NonConformiteOrigine>();
