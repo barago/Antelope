@@ -43,6 +43,7 @@ namespace Antelope.Repositories.QSE
                                                            orderby a.ActionQSEId
                                                            select a;
 
+            queryActionQSE = queryActionQSE.Where(q => q.NonConformiteId != null);
 
             if (ParameterSiteId != null && ParameterSiteId != 0)
             {

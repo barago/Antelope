@@ -174,21 +174,23 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             // -------------------------NSG---------------------------------------------
 
-            //Service ServiceNSG1 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
-            //Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
-            //Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
-            //Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
-            //Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType5 };
-            //Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
-            //Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
+            Service ServiceNSG1 = new Service() { Site = siteNSG, ServiceType = ServiceType0 };
+            Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
+            Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
+            Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
+            Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
+            Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
+            Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
+            Service ServiceNSG8 = new Service() { Site = siteNSG, ServiceType = ServiceType19 };
 
-            //context.Services.Add(ServiceNSG1);
-            //context.Services.Add(ServiceNSG2);
-            //context.Services.Add(ServiceNSG3);
-            //context.Services.Add(ServiceNSG4);
-            //context.Services.Add(ServiceNSG5);
-            //context.Services.Add(ServiceNSG6);
-            //context.Services.Add(ServiceNSG7);
+            context.Services.Add(ServiceNSG1);
+            context.Services.Add(ServiceNSG2);
+            context.Services.Add(ServiceNSG3);
+            context.Services.Add(ServiceNSG4);
+            context.Services.Add(ServiceNSG5);
+            context.Services.Add(ServiceNSG6);
+            context.Services.Add(ServiceNSG7);
+            context.Services.Add(ServiceNSG8);
 
             // -------------------------LQN---------------------------------------------
 
@@ -215,17 +217,18 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             ZoneType ZoneType1 = new ZoneType() { Nom = "Tout le site", Rang = 1 };
             ZoneType ZoneType2 = new ZoneType() { Nom = "Soufflage", Rang = 11 };
-            ZoneType ZoneType3 = new ZoneType() { Nom = "Process", Rang = 7 };
+            ZoneType ZoneType3 = new ZoneType() { Nom = "Process", Rang = 8 };
             ZoneType ZoneType4 = new ZoneType() { Nom = "Conditionnement", Rang = 2 };
             ZoneType ZoneType5 = new ZoneType() { Nom = "Dépôts", Rang = 2 };
             ZoneType ZoneType6 = new ZoneType() { Nom = "Maintenance", Rang = 6 };
-            ZoneType ZoneType7 = new ZoneType() { Nom = "Qualité", Rang = 8 };
+            ZoneType ZoneType7 = new ZoneType() { Nom = "Qualité", Rang = 9 };
             ZoneType ZoneType8 = new ZoneType() { Nom = "Extérieur", Rang = 4 };
             ZoneType ZoneType9 = new ZoneType() { Nom = "Etage", Rang = 3 };
-            ZoneType ZoneType10 = new ZoneType() { Nom = "RDC", Rang = 9 };
+            ZoneType ZoneType10 = new ZoneType() { Nom = "RDC", Rang = 10 };
             ZoneType ZoneType11 = new ZoneType() { Nom = "Autre", Rang = 100 };
             ZoneType ZoneType12 = new ZoneType() { Nom = "Logistique", Rang = 5 };
-            ZoneType ZoneType13 = new ZoneType() { Nom = "Siroperie / TTDE", Rang = 10 };
+            ZoneType ZoneType13 = new ZoneType() { Nom = "Siroperie / TTDE", Rang = 11 };
+            ZoneType ZoneType14 = new ZoneType() { Nom = "Préparation dépotage", Rang = 7 };
 
             context.ZoneTypes.Add(ZoneType1);
             context.ZoneTypes.Add(ZoneType2);
@@ -238,6 +241,9 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.ZoneTypes.Add(ZoneType9);
             context.ZoneTypes.Add(ZoneType10);
             context.ZoneTypes.Add(ZoneType11);
+            context.ZoneTypes.Add(ZoneType12);
+            context.ZoneTypes.Add(ZoneType13);
+            context.ZoneTypes.Add(ZoneType14);
 
 
 
@@ -309,25 +315,25 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             context.Zones.Add(ZoneSTA13);
 
             // -------------------------NSG---------------------------------------------
-            //Zone ZoneNSG1 = new Zone() { Site = siteNSG, ZoneType = ZoneType1 };
-            //Zone ZoneNSG2 = new Zone() { Site = siteNSG, ZoneType = ZoneType2 };
-            //Zone ZoneNSG3 = new Zone() { Site = siteNSG, ZoneType = ZoneType3 };
-            //Zone ZoneNSG4 = new Zone() { Site = siteNSG, ZoneType = ZoneType4 };
-            //Zone ZoneNSG5 = new Zone() { Site = siteNSG, ZoneType = ZoneType5 };
-            //Zone ZoneNSG6 = new Zone() { Site = siteNSG, ZoneType = ZoneType6 };
-            //Zone ZoneNSG7 = new Zone() { Site = siteNSG, ZoneType = ZoneType7 };
-            //Zone ZoneNSG8 = new Zone() { Site = siteNSG, ZoneType = ZoneType8 };
-            //Zone ZoneNSG11 = new Zone() { Site = siteNSG, ZoneType = ZoneType11 };
+            Zone ZoneNSG1 = new Zone() { Site = siteNSG, ZoneType = ZoneType1 };
+            Zone ZoneNSG2 = new Zone() { Site = siteNSG, ZoneType = ZoneType14 };
+            Zone ZoneNSG3 = new Zone() { Site = siteNSG, ZoneType = ZoneType6 };
+            Zone ZoneNSG4 = new Zone() { Site = siteNSG, ZoneType = ZoneType4 };
+            Zone ZoneNSG5 = new Zone() { Site = siteNSG, ZoneType = ZoneType3 };
+            Zone ZoneNSG7 = new Zone() { Site = siteNSG, ZoneType = ZoneType5 };
+            Zone ZoneNSG8 = new Zone() { Site = siteNSG, ZoneType = ZoneType7 };
+            Zone ZoneNSG9 = new Zone() { Site = siteNSG, ZoneType = ZoneType8 };
+            Zone ZoneNSG11 = new Zone() { Site = siteNSG, ZoneType = ZoneType11 };
 
-            //context.Zones.Add(ZoneNSG1);
-            //context.Zones.Add(ZoneNSG2);
-            //context.Zones.Add(ZoneNSG3);
-            //context.Zones.Add(ZoneNSG4);
-            //context.Zones.Add(ZoneNSG5);
-            //context.Zones.Add(ZoneNSG6);
-            //context.Zones.Add(ZoneNSG7);
-            //context.Zones.Add(ZoneNSG8);
-            //context.Zones.Add(ZoneNSG11);
+            context.Zones.Add(ZoneNSG1);
+            context.Zones.Add(ZoneNSG2);
+            context.Zones.Add(ZoneNSG3);
+            context.Zones.Add(ZoneNSG4);
+            context.Zones.Add(ZoneNSG5);
+            context.Zones.Add(ZoneNSG7);
+            context.Zones.Add(ZoneNSG8);
+            context.Zones.Add(ZoneNSG9);
+            context.Zones.Add(ZoneNSG11);
 
             // -------------------------LQN---------------------------------------------
             //Zone ZoneLQN1 = new Zone() { Site = siteLQN, ZoneType = ZoneType1 };
@@ -490,6 +496,59 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             Lieu Lieu22_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneSTA5 };
             Lieu Lieu22_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneSTA5 };
 
+            //----------LIEUX NSG --------------
+
+            Lieu Lieu23_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG1 };
+            Lieu Lieu23_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG1 };
+
+            Lieu Lieu24_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG2 };
+            Lieu Lieu68 = new Lieu() { Nom = "Préparation", Rang = 3, Zone = ZoneNSG2 };
+            Lieu Lieu69 = new Lieu() { Nom = "Dépotage", Rang = 2, Zone = ZoneNSG2 };
+            Lieu Lieu24_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG2 };
+
+            Lieu Lieu25_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG5 };
+            Lieu Lieu70 = new Lieu() { Nom = "Combi", Rang = 2, Zone = ZoneNSG5 };
+            Lieu Lieu71 = new Lieu() { Nom = "Isolateur", Rang = 3, Zone = ZoneNSG5 };
+            Lieu Lieu72 = new Lieu() { Nom = "Local Nep", Rang = 4, Zone = ZoneNSG5 };
+            Lieu Lieu25_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG5 };
+
+            Lieu Lieu26_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG7 };
+            Lieu Lieu73 = new Lieu() { Nom = "Stockage MP", Rang = 4, Zone = ZoneNSG7 };
+            Lieu Lieu74 = new Lieu() { Nom = "Dépôt 1", Rang = 2, Zone = ZoneNSG7 };
+            Lieu Lieu75 = new Lieu() { Nom = "Dépôt 2", Rang = 3, Zone = ZoneNSG7 };
+            Lieu Lieu26_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG7 };
+
+            Lieu Lieu27_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG4 };
+            Lieu Lieu76 = new Lieu() { Nom = "Etiquetage", Rang = 5, Zone = ZoneNSG4 };
+            Lieu Lieu77 = new Lieu() { Nom = "BdL1", Rang = 2, Zone = ZoneNSG4 };
+            Lieu Lieu78 = new Lieu() { Nom = "BdL2", Rang = 3, Zone = ZoneNSG4 };
+            Lieu Lieu79 = new Lieu() { Nom = "BdL3", Rang = 4, Zone = ZoneNSG4 };
+            Lieu Lieu27_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG4 };
+
+            Lieu Lieu28_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG11 };
+            Lieu Lieu80 = new Lieu() { Nom = "Bureaux / Vestiaires", Rang = 2, Zone = ZoneNSG11 };
+            Lieu Lieu81 = new Lieu() { Nom = "Local rejets", Rang = 4, Zone = ZoneNSG11 };
+            Lieu Lieu82 = new Lieu() { Nom = "Cantine", Rang = 3, Zone = ZoneNSG11 };
+            Lieu Lieu28_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG11 };
+
+            Lieu Lieu29_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG3 };
+            Lieu Lieu83 = new Lieu() { Nom = "Maintenance", Rang = 3, Zone = ZoneNSG3 };
+            Lieu Lieu84 = new Lieu() { Nom = "Locaux Energies", Rang = 2, Zone = ZoneNSG3 };
+            Lieu Lieu29_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG3 };
+
+            Lieu Lieu30_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG8 };
+            Lieu Lieu85 = new Lieu() { Nom = "Etuvage", Rang = 2, Zone = ZoneNSG8 };
+            Lieu Lieu86 = new Lieu() { Nom = "Laboratoire", Rang = 3, Zone = ZoneNSG8 };
+            Lieu Lieu30_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG8 };
+
+            Lieu Lieu31_1 = new Lieu() { Nom = "Toute la zone", Rang = 1, Zone = ZoneNSG9 };
+            Lieu Lieu87 = new Lieu() { Nom = "Extérieur", Rang = 5, Zone = ZoneNSG9 };
+            Lieu Lieu88 = new Lieu() { Nom = "Zone déchets/ global", Rang = 2, Zone = ZoneNSG9 };
+            Lieu Lieu89 = new Lieu() { Nom = "Parking visiteurs", Rang = 4, Zone = ZoneNSG9 };
+            Lieu Lieu90 = new Lieu() { Nom = "Parking personnel", Rang = 3, Zone = ZoneNSG9 };
+            Lieu Lieu31_2 = new Lieu() { Nom = "Autre", Rang = 100, Zone = ZoneNSG9 };
+
+
              context.Lieux.Add(Lieu1_1);
              context.Lieux.Add(Lieu1_2);
 
@@ -624,6 +683,55 @@ namespace Antelope.Services.Socle.DataBaseHydratation
              context.Lieux.Add(Lieu22_2);
 
 
+             context.Lieux.Add(Lieu23_1);
+             context.Lieux.Add(Lieu23_2);
+
+             context.Lieux.Add(Lieu24_1);
+             context.Lieux.Add(Lieu68);
+             context.Lieux.Add(Lieu69);
+             context.Lieux.Add(Lieu24_2);
+
+             context.Lieux.Add(Lieu25_1);
+             context.Lieux.Add(Lieu70);
+             context.Lieux.Add(Lieu71);
+             context.Lieux.Add(Lieu72);
+             context.Lieux.Add(Lieu25_2);
+
+             context.Lieux.Add(Lieu26_1);
+             context.Lieux.Add(Lieu73);
+             context.Lieux.Add(Lieu74);
+             context.Lieux.Add(Lieu75);
+             context.Lieux.Add(Lieu26_2);
+
+             context.Lieux.Add(Lieu27_1);
+             context.Lieux.Add(Lieu76);
+             context.Lieux.Add(Lieu77);
+             context.Lieux.Add(Lieu78);
+             context.Lieux.Add(Lieu79);
+             context.Lieux.Add(Lieu27_2);
+
+             context.Lieux.Add(Lieu28_1);
+             context.Lieux.Add(Lieu80);
+             context.Lieux.Add(Lieu81);
+             context.Lieux.Add(Lieu82);
+             context.Lieux.Add(Lieu28_2);
+
+             context.Lieux.Add(Lieu29_1);
+             context.Lieux.Add(Lieu83);
+             context.Lieux.Add(Lieu84);
+             context.Lieux.Add(Lieu29_2);
+
+             context.Lieux.Add(Lieu30_1);
+             context.Lieux.Add(Lieu85);
+             context.Lieux.Add(Lieu86);
+             context.Lieux.Add(Lieu30_2);
+
+             context.Lieux.Add(Lieu31_1);
+             context.Lieux.Add(Lieu87);
+             context.Lieux.Add(Lieu88);
+             context.Lieux.Add(Lieu89);
+             context.Lieux.Add(Lieu90);
+             context.Lieux.Add(Lieu31_2);
 
 
 
@@ -798,11 +906,74 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             PosteDeTravail PosteDeTravail127 = new PosteDeTravail() { Nom = "Opérateur souffleur", Rang = 1, Zone = ZoneSTA2 };
             PosteDeTravail PosteDeTravail128 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneSTA2 };
 
-             context.PosteDeTravails.Add(PosteDeTravail1_1);
-             context.PosteDeTravails.Add(PosteDeTravail1_2);
+            // ------POSTES DE TRAVAIL NSG ----------
 
-             context.PosteDeTravails.Add(PosteDeTravail2_1);
-             context.PosteDeTravails.Add(PosteDeTravail2_2);
+            PosteDeTravail PosteDeTravail129 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail130 = new PosteDeTravail() { Nom = "Responsable production", Rang = 13, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail131 = new PosteDeTravail() { Nom = "Régleur", Rang = 10, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail132 = new PosteDeTravail() { Nom = "Polyvalent ", Rang = 9, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail133 = new PosteDeTravail() { Nom = "Directeur Site", Rang = 5, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail134 = new PosteDeTravail() { Nom = "Personnel administratif", Rang = 8, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail135 = new PosteDeTravail() { Nom = "Responsable RH", Rang = 12, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail136 = new PosteDeTravail() { Nom = "Responsable Process- Ammélioration", Rang = 14, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail137 = new PosteDeTravail() { Nom = "Animateur S/E", Rang = 2, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail138 = new PosteDeTravail() { Nom = "CHSCT", Rang = 4, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail139 = new PosteDeTravail() { Nom = "Entreprise extérieure/visiteur", Rang = 6, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail140 = new PosteDeTravail() { Nom = "Responsable appro MPC", Rang = 11, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail141 = new PosteDeTravail() { Nom = "Gestionnaire appro planning", Rang = 7, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail142 = new PosteDeTravail() { Nom = "Assistant  Appro MPA", Rang = 3, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail143 = new PosteDeTravail() { Nom = "Responsable supply Chain", Rang = 15, Zone = ZoneNSG11 };
+            PosteDeTravail PosteDeTravail144 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG11 };
+
+
+            PosteDeTravail PosteDeTravail145 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG5 };
+            PosteDeTravail PosteDeTravail146 = new PosteDeTravail() { Nom = "Pilote isolateur", Rang = 3, Zone = ZoneNSG5 };
+            PosteDeTravail PosteDeTravail147 = new PosteDeTravail() { Nom = "Pilote combi", Rang = 2, Zone = ZoneNSG5 };
+            PosteDeTravail PosteDeTravail148 = new PosteDeTravail() { Nom = "Souffleur /appro préformes", Rang = 4, Zone = ZoneNSG5 };
+            PosteDeTravail PosteDeTravail149 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG5 };
+
+            PosteDeTravail PosteDeTravail150 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG4 };
+            PosteDeTravail PosteDeTravail151 = new PosteDeTravail() { Nom = "Etiqueteur ", Rang = 3, Zone = ZoneNSG4 };
+            PosteDeTravail PosteDeTravail152 = new PosteDeTravail() { Nom = "Opérateur Bout de ligne", Rang = 2, Zone = ZoneNSG4 };
+            PosteDeTravail PosteDeTravail153 = new PosteDeTravail() { Nom = "Cariste Bout de ligne", Rang = 4, Zone = ZoneNSG4 };
+            PosteDeTravail PosteDeTravail154 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG4 };
+
+            PosteDeTravail PosteDeTravail155 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG2 };
+            PosteDeTravail PosteDeTravail156 = new PosteDeTravail() { Nom = "Préparateur ", Rang = 4, Zone = ZoneNSG2 };
+            PosteDeTravail PosteDeTravail157 = new PosteDeTravail() { Nom = "Aide préparateur", Rang = 2, Zone = ZoneNSG2 };
+            PosteDeTravail PosteDeTravail158 = new PosteDeTravail() { Nom = "Chauffeur citernes", Rang = 3, Zone = ZoneNSG2 };
+            PosteDeTravail PosteDeTravail159 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG2 };
+
+            PosteDeTravail PosteDeTravail160 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG3 };
+            PosteDeTravail PosteDeTravail161 = new PosteDeTravail() { Nom = "Tech posté", Rang = 4, Zone = ZoneNSG3 };
+            PosteDeTravail PosteDeTravail162 = new PosteDeTravail() { Nom = "Technicien journée", Rang = 2, Zone = ZoneNSG3 };
+            PosteDeTravail PosteDeTravail163 = new PosteDeTravail() { Nom = "Maitrise maintenance", Rang = 3, Zone = ZoneNSG3 };
+            PosteDeTravail PosteDeTravail164 = new PosteDeTravail() { Nom = "Responsable maintenance/TN", Rang = 3, Zone = ZoneNSG3 };
+            PosteDeTravail PosteDeTravail165 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG3 };
+
+            PosteDeTravail PosteDeTravail166 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail167 = new PosteDeTravail() { Nom = "Assistant contrôle qualité", Rang = 2, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail168 = new PosteDeTravail() { Nom = "Laborantin posté", Rang = 6, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail169 = new PosteDeTravail() { Nom = "Laborantin journée", Rang = 5, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail170 = new PosteDeTravail() { Nom = "Responsable qualité", Rang = 7, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail171 = new PosteDeTravail() { Nom = "Assistant qualité", Rang = 3, Zone = ZoneNSG8 };
+            PosteDeTravail PosteDeTravail172 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG8 };
+
+            PosteDeTravail PosteDeTravail173 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail174 = new PosteDeTravail() { Nom = "Chauffeur", Rang = 5, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail175 = new PosteDeTravail() { Nom = "Cariste navettes", Rang = 3, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail176 = new PosteDeTravail() { Nom = "Cariste polyvalent expédition", Rang = 4, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail177 = new PosteDeTravail() { Nom = "Cariste appro MP", Rang = 2, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail178 = new PosteDeTravail() { Nom = "Gestionnaire de stock", Rang = 7, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail179 = new PosteDeTravail() { Nom = "Chef d'équipe cariste", Rang = 6, Zone = ZoneNSG7 };
+            PosteDeTravail PosteDeTravail180 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG7 };
+
+            PosteDeTravail PosteDeTravail181 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG1 };
+            PosteDeTravail PosteDeTravail182 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG1 };
+
+
+            PosteDeTravail PosteDeTravail185 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneNSG9 };
+            PosteDeTravail PosteDeTravail186 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneNSG9 };
 
              context.PosteDeTravails.Add(PosteDeTravail3_1);
              context.PosteDeTravails.Add(PosteDeTravail1);
@@ -966,7 +1137,73 @@ namespace Antelope.Services.Socle.DataBaseHydratation
              context.PosteDeTravails.Add(PosteDeTravail127);
              context.PosteDeTravails.Add(PosteDeTravail128);
             
+            //---NSG-----
 
+             context.PosteDeTravails.Add(PosteDeTravail129);
+             context.PosteDeTravails.Add(PosteDeTravail130);
+             context.PosteDeTravails.Add(PosteDeTravail131);
+             context.PosteDeTravails.Add(PosteDeTravail132);
+             context.PosteDeTravails.Add(PosteDeTravail133);
+             context.PosteDeTravails.Add(PosteDeTravail134);
+             context.PosteDeTravails.Add(PosteDeTravail135);
+             context.PosteDeTravails.Add(PosteDeTravail136);
+             context.PosteDeTravails.Add(PosteDeTravail137);
+             context.PosteDeTravails.Add(PosteDeTravail138);
+             context.PosteDeTravails.Add(PosteDeTravail139);
+             context.PosteDeTravails.Add(PosteDeTravail140);
+             context.PosteDeTravails.Add(PosteDeTravail141);
+             context.PosteDeTravails.Add(PosteDeTravail142);
+             context.PosteDeTravails.Add(PosteDeTravail143);
+             context.PosteDeTravails.Add(PosteDeTravail144);
+
+
+             context.PosteDeTravails.Add(PosteDeTravail145);
+             context.PosteDeTravails.Add(PosteDeTravail146);
+             context.PosteDeTravails.Add(PosteDeTravail147);
+             context.PosteDeTravails.Add(PosteDeTravail148);
+             context.PosteDeTravails.Add(PosteDeTravail149);
+
+             context.PosteDeTravails.Add(PosteDeTravail150);
+             context.PosteDeTravails.Add(PosteDeTravail151);
+             context.PosteDeTravails.Add(PosteDeTravail152);
+             context.PosteDeTravails.Add(PosteDeTravail153);
+             context.PosteDeTravails.Add(PosteDeTravail154);
+
+             context.PosteDeTravails.Add(PosteDeTravail155);
+             context.PosteDeTravails.Add(PosteDeTravail156);
+             context.PosteDeTravails.Add(PosteDeTravail157);
+             context.PosteDeTravails.Add(PosteDeTravail158);
+             context.PosteDeTravails.Add(PosteDeTravail159);
+
+             context.PosteDeTravails.Add(PosteDeTravail160);
+             context.PosteDeTravails.Add(PosteDeTravail161);
+             context.PosteDeTravails.Add(PosteDeTravail162);
+             context.PosteDeTravails.Add(PosteDeTravail163);
+             context.PosteDeTravails.Add(PosteDeTravail164);
+             context.PosteDeTravails.Add(PosteDeTravail165);
+
+             context.PosteDeTravails.Add(PosteDeTravail166);
+             context.PosteDeTravails.Add(PosteDeTravail167);
+             context.PosteDeTravails.Add(PosteDeTravail168);
+             context.PosteDeTravails.Add(PosteDeTravail169);
+             context.PosteDeTravails.Add(PosteDeTravail170);
+             context.PosteDeTravails.Add(PosteDeTravail171);
+             context.PosteDeTravails.Add(PosteDeTravail172);
+
+             context.PosteDeTravails.Add(PosteDeTravail173);
+             context.PosteDeTravails.Add(PosteDeTravail174);
+             context.PosteDeTravails.Add(PosteDeTravail175);
+             context.PosteDeTravails.Add(PosteDeTravail176);
+             context.PosteDeTravails.Add(PosteDeTravail177);
+             context.PosteDeTravails.Add(PosteDeTravail178);
+             context.PosteDeTravails.Add(PosteDeTravail179);
+             context.PosteDeTravails.Add(PosteDeTravail180);
+
+             context.PosteDeTravails.Add(PosteDeTravail181);
+             context.PosteDeTravails.Add(PosteDeTravail182);
+
+             context.PosteDeTravails.Add(PosteDeTravail185);
+             context.PosteDeTravails.Add(PosteDeTravail186);
 
 
 
@@ -1917,7 +2154,50 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
         }
 
+        public void NSGAllListTestHydrate()
+        {
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Tous les services").FirstOrDefault() };
+            //Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
+            //Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
+            //Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
+            //Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType5 };
+            //Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
+            //Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
 
+            //context.Services.Add(ServiceNSG1);
+            //context.Services.Add(ServiceNSG2);
+            //context.Services.Add(ServiceNSG3);
+            //context.Services.Add(ServiceNSG4);
+            //context.Services.Add(ServiceNSG5);
+            //context.Services.Add(ServiceNSG6);
+            //context.Services.Add(ServiceNSG7);
+
+
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Tous les services").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Production").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Maintenance/TN").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Qualité").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Sécurité/Environnement").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Tous les services").FirstOrDefault() };
+            //Service ServiceNSG1 = new Service() { Site = context.Sites.Where(s => s.Trigramme == "NSG").FirstOrDefault(), ServiceType = context.ServiceTypes.Where(st => st.Nom == "Tous les services").FirstOrDefault() };
+            //Service ServiceNSG2 = new Service() { Site = siteNSG, ServiceType = ServiceType1 };
+            //Service ServiceNSG3 = new Service() { Site = siteNSG, ServiceType = ServiceType2 };
+            //Service ServiceNSG4 = new Service() { Site = siteNSG, ServiceType = ServiceType3 };
+            //Service ServiceNSG5 = new Service() { Site = siteNSG, ServiceType = ServiceType4 };
+            //Service ServiceNSG6 = new Service() { Site = siteNSG, ServiceType = ServiceType6 };
+            //Service ServiceNSG7 = new Service() { Site = siteNSG, ServiceType = ServiceType7 };
+            //Service ServiceNSG8 = new Service() { Site = siteNSG, ServiceType = ServiceType19 };
+
+            //context.Services.Add(ServiceNSG1);
+            //context.Services.Add(ServiceNSG2);
+            //context.Services.Add(ServiceNSG3);
+            //context.Services.Add(ServiceNSG4);
+            //context.Services.Add(ServiceNSG5);
+            //context.Services.Add(ServiceNSG6);
+            //context.Services.Add(ServiceNSG7);
+            //context.Services.Add(ServiceNSG8);
+
+        }
 
     }
 }

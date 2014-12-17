@@ -59,5 +59,13 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [AcceptVerbs("POST")]
+        public HttpResponseMessage AlimenteListeNSG()
+        {
+            _dataBaseTestHydratationService.FullDataBaseTestHydrate();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
     }
 }

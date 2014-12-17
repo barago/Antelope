@@ -38,15 +38,22 @@ namespace Antelope.Repositories.Socle
 
             PrincipalSearcher srch = new PrincipalSearcher(qbeUser);
             Principal principal = srch.FindOne();
-            var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry;
 
+            ActiveDirectoryUtilisateurDTO ActiveDirectoryUtilisateurDTO = null;
 
-            ActiveDirectoryUtilisateurDTO ActiveDirectoryUtilisateurDTO = new ActiveDirectoryUtilisateurDTO()
+            if (principal != null)
             {
-                Guid = (Guid)principal.Guid,
-                Nom = (string)utilisateurAD.Properties["sn"].Value,
-                Prenom = (string)utilisateurAD.Properties["givenName"].Value
-            };
+                var utilisateurAD = principal.GetUnderlyingObject() as DirectoryEntry;
+
+
+                ActiveDirectoryUtilisateurDTO = new ActiveDirectoryUtilisateurDTO()
+                {
+                    Guid = (Guid)principal.Guid,
+                    Nom = (string)utilisateurAD.Properties["sn"].Value,
+                    Prenom = (string)utilisateurAD.Properties["givenName"].Value
+                };
+
+            }
 
             return ActiveDirectoryUtilisateurDTO;
         }

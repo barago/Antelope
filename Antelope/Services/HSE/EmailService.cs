@@ -116,7 +116,18 @@ namespace Antelope.Services.HSE
             //On crée un nouveau Thread, afin de ne pas attendre l'authentification serveur Exchange pour envoyer le mail.
             Thread T1 = new Thread(delegate()
             {
-                smtp.Send(mail);
+
+                try
+                {
+                    smtp.Send(mail);
+                }
+                catch (Exception e)
+                {
+                    var a = 1;
+                    Console.WriteLine(e);
+
+                }
+                
             });
             T1.Start();
 
