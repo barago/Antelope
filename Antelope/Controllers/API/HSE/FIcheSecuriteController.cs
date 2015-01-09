@@ -234,7 +234,7 @@ namespace Antelope.Controllers.API.HSE
         }
 
         // PUT api/fichesecuriteapi/5
-        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite/* [FromBody]string value */)
+        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite, Boolean CHSCTSave/* [FromBody]string value */)
         {
 
 
@@ -248,6 +248,32 @@ namespace Antelope.Controllers.API.HSE
 
 
         }
+
+                // PUT api/fichesecuriteapi/5
+        [System.Web.Http.AcceptVerbs("POST", "PUT")]
+        public HttpResponseMessage PutCHSCTFields(FicheSecurite ficheSecurite, Int32 id, string param1)
+        {
+
+            FicheSecurite ficheSecuriteToEdit = db.FicheSecurites.Find(ficheSecurite.FicheSecuriteID);
+
+            ficheSecuriteToEdit.EnqueteDate = ficheSecurite.EnqueteDate;
+            ficheSecuriteToEdit.EnqueteProtagoniste = ficheSecurite.EnqueteProtagoniste;
+            ficheSecuriteToEdit.EnqueteRealisee = ficheSecurite.EnqueteRealisee;
+            ficheSecuriteToEdit.CHSCTMembre = ficheSecurite.CHSCTMembre;
+
+
+            //db.Entry(ficheSecurite).State = EntityState.Modified;
+
+       
+                db.SaveChanges();
+
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+
+
+        }
+
+        
 
         // DELETE api/fichesecuriteapi/5
         public void Delete(int id)
