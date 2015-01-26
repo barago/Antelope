@@ -213,11 +213,13 @@ namespace Antelope.Controllers.API.HSE
                     FicheSecurite.WorkFlowASEValidee = false;
                     FicheSecurite.WorkFlowASERejetee = false;
                     FicheSecurite.WorkFlowAttenteASEValidation = true;
+                    _emailService.SendEmailDiffusionPlanActionFicheSecurite(ficheSecurite);
                 break;
                 case "ASEValidee":
                     FicheSecurite.WorkFlowAttenteASEValidation = false;
                     FicheSecurite.WorkFlowASEValidee = true;
                     FicheSecurite.WorkFlowASERejetee = false;
+                    _emailService.SendEmailValidationPlanActionFicheSecurite(ficheSecurite);
                 break;
                 case "ASERejetee":
                     FicheSecurite.WorkFlowAttenteASEValidation = false;
@@ -234,7 +236,8 @@ namespace Antelope.Controllers.API.HSE
         }
 
         // PUT api/fichesecuriteapi/5
-        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite, Boolean CHSCTSave/* [FromBody]string value */)
+        [System.Web.Http.AcceptVerbs("PUT")]
+        public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite)
         {
 
 
@@ -244,7 +247,7 @@ namespace Antelope.Controllers.API.HSE
                 db.SaveChanges();
 
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, ficheSecurite);
 
 
         }
@@ -276,8 +279,19 @@ namespace Antelope.Controllers.API.HSE
         
 
         // DELETE api/fichesecuriteapi/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+
+            FicheSecurite FicheSecurite = db.FicheSecurites.Find(id);
+            if (FicheSecurite == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            db.FicheSecurites.Remove(FicheSecurite);
+            db.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

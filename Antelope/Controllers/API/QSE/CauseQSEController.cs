@@ -50,8 +50,10 @@ namespace Antelope.Controllers.API.QSE
                 return Request.CreateResponse(HttpStatusCode.BadRequest, Configuration.Formatters.JsonFormatter);
             }
 
+            var currentCause = db.CauseQSEs.Find(causeQSE.CauseQSEId);
+            db.Entry(currentCause).CurrentValues.SetValues(causeQSE);
 
-            db.Entry(causeQSE).State = EntityState.Modified;
+            db.Entry(currentCause).State = EntityState.Modified;
 
             try
             {

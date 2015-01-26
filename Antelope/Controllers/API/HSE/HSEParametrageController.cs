@@ -28,13 +28,21 @@ namespace Antelope.Controllers.API.HSE
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK , ParametrageHSE);
+            var queryRoles = from a in context.ADRoles
+                            where a.RoleType == "HSE"
+                            select a;
+            List<ADRole> AllADRole = queryRoles.ToList();
+
+            // ! Créer une objet de réponse au lieu de mettre ça dans un dictionnary
+            Dictionary<String, Object> Response = new Dictionary<String, Object>();
+            Response.Add("Parametrage", ParametrageHSE);
+            Response.Add("Roles", AllADRole);
+
+            return Request.CreateResponse(HttpStatusCode.OK, Response);
         }
 
         public HttpResponseMessage saveParametrageHSEEmail(ParametrageHSE parametrageHSE)
         {
-           //ParametrageHSE ParametrageHSE = context.ParametrageHSEs.FirstOrDefault(p => p.Id == parametrageHSE.Id);
-           //ParametrageHSE.EmailDiffusionFS = parametrageHSE.EmailDiffusionFS;
            context.Entry(parametrageHSE).State = EntityState.Modified;
            context.SaveChanges();
 
@@ -65,6 +73,32 @@ namespace Antelope.Controllers.API.HSE
             _dataBaseTestHydratationService.FullDataBaseTestHydrate();
 
             return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        public HttpResponseMessage AddADRole(ADRole ADRole,Int32 id)
+        {
+
+            context.ADRoles.Add(ADRole);
+
+            context.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK, ADRole);
+        }
+
+        public HttpResponseMessage DeleteADRole(ADRole ADRole, Int32 id)
+        {
+
+            ADRole ADRoleToDelete =  context.ADRoles.Find(id);
+
+            if (ADRoleToDelete == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ADRole);
+            }
+
+            context.ADRoles.Remove(ADRoleToDelete);
+            context.SaveChanges();
+
+            return Request.CreateResponse(HttpStatusCode.OK, ADRoleToDelete);
         }
 
     }

@@ -50,7 +50,8 @@ namespace Antelope.Repositories.Socle
                 {
                     Guid = (Guid)principal.Guid,
                     Nom = (string)utilisateurAD.Properties["sn"].Value,
-                    Prenom = (string)utilisateurAD.Properties["givenName"].Value
+                    Prenom = (string)utilisateurAD.Properties["givenName"].Value,
+                    email = (string)utilisateurAD.Properties["mail"].Value
                 };
 
             }

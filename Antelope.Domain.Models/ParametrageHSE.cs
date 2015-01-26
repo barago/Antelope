@@ -10,7 +10,8 @@ namespace Antelope.Domain.Models
     {
         public Int32 Id { get; set; }
         public string EmailDiffusionFS { get; set; }
-        public string EmailRejetPlanActionFS { get; set; }
+        public string EmailValidationRejetPlanActionFS { get; set; }
+        public string EmailDiffusionPlanAction { get; set; }
 
     }
 }

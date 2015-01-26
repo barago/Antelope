@@ -11,7 +11,6 @@ using System.DirectoryServices.AccountManagement;
 using System.DirectoryServices;
 using Antelope.Services.Socle;
 using Antelope.Repositories.Socle;
-using Antelope.DTOs.Socle;
 
 
 namespace Antelope.Services.HSE
@@ -37,24 +36,16 @@ namespace Antelope.Services.HSE
                     email = ParametrageHSE.EmailDiffusionFS;
                     break;
                 case "RejetPlanActionFicheSecurite":
-                    email = ParametrageHSE.EmailValidationRejetPlanActionFS;
-                    break;
-                case "ValidationPlanActionFicheSecurite":
-                    email = ParametrageHSE.EmailValidationRejetPlanActionFS;
-                    break;
-                case "DiffusionPlanActionFicheSecurite":
-                    email = ParametrageHSE.EmailDiffusionPlanAction;
+                    email = ParametrageHSE.EmailRejetPlanActionFS;
                     break;
             }
             
-            if (email == "SELF")
+            if (ParametrageHSE.EmailDiffusionFS == "SELF")
             {
                 email = _activeDirectoryUtilisateurRepository.GetCurrentUserEmail();
             }
 
-            string emailWithoutSiteSpecialCaracters = SiteSpecialCaractersReplace(email, trigramme);
-
-            return emailWithoutSiteSpecialCaracters;
+            return SiteSpecialCaractersReplace(email, trigramme);
         }
 
         private string SiteSpecialCaractersReplace(string emailString, string trigramme)
@@ -65,7 +56,7 @@ namespace Antelope.Services.HSE
 
 
         public void SendEmailDiffusionFicheSecurite (FicheSecurite FicheSecurite){
-
+            
             MailMessage mail = new MailMessage();
 
             // TODO : Créer une classe pour construire des adresses ... ?
@@ -93,121 +84,25 @@ namespace Antelope.Services.HSE
 
             MailAddress from = new MailAddress("Sezar@refresco.fr");
             string subject = "Nouvelle Fiche Sécurité à " + FicheSecurite.Site.Trigramme;
-
-
-            string to = GetEmailFor("DiffusionFicheSecurite", FicheSecurite.Site.Trigramme); //db.Sites.Find(FicheSecurite.SiteId).Trigramme);
-
-            to = addFicheSecuriteResponsableEmailToString(to, FicheSecurite);
+            string to = GetEmailFor("DiffusionFicheSecurite", FicheSecurite.Site.Trigramme);
 
             SendEmail(from, subject, body, to);
         }
 
-        public void SendEmailDiffusionPlanActionFicheSecurite(FicheSecurite ficheSecurite)
-        {
-
-            Site site = db.Sites.First(s => s.SiteID == ficheSecurite.SiteId);
-
-            string to = GetEmailFor("DiffusionPlanActionFicheSecurite", db.Sites.Find(ficheSecurite.SiteId).Trigramme );
-
-            to = addFicheSecuriteResponsableEmailToString(to, ficheSecurite);
-
-            to = addActionResponsableEmailToString(to, ficheSecurite);
-
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
-            string subject = "Diffusion Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être diffusé</H4> </br>";
-
-            SendEmail(from, subject, body, to);
-
-        }
-
-        public void SendEmailValidationPlanActionFicheSecurite(FicheSecurite ficheSecurite)
-        {
-
-            Site site = db.Sites.First(s => s.SiteID == ficheSecurite.SiteId);
-
-            string to = GetEmailFor("ValidationPlanActionFicheSecurite", db.Sites.Find(ficheSecurite.SiteId).Trigramme);
-
-            to = addFicheSecuriteResponsableEmailToString(to, ficheSecurite);
-
-            to = addActionResponsableEmailToString(to, ficheSecurite);
-
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
-            string subject = "Validation Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être validé</H4> </br>";
-
-            SendEmail(from, subject, body, to);
-
-        }
 
         public void SendEmailRejetPlanActionFicheSecurite(FicheSecurite ficheSecurite)
         {
 
             Site site = db.Sites.First(s => s.SiteID == ficheSecurite.SiteId);
-
-            string to = GetEmailFor("RejetPlanActionFicheSecurite", db.Sites.Find(ficheSecurite.SiteId).Trigramme);
-
-            to = addFicheSecuriteResponsableEmailToString(to, ficheSecurite);
-
-            to = addActionResponsableEmailToString(to, ficheSecurite);
-
+            
             MailAddress from = new MailAddress("Sezar@refresco.fr");
             string subject = "Rejet Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause; 
+            string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause;
+            string to = GetEmailFor("RejetPlanActionFicheSecurite", ficheSecurite.Site.Trigramme);
 
             SendEmail(from, subject, body, to);
 
         }
-
-        private string addFicheSecuriteResponsableEmailToString(String to, FicheSecurite ficheSecurite)
-        {
-            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
-
-            ActiveDirectoryUtilisateurDTO ResponsableActiveDirectoryUtilisateurDTO;
-
-            ResponsableActiveDirectoryUtilisateurDTO = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUtilisateurByNomPrenom(ficheSecurite.Responsable.Nom, ficheSecurite.Responsable.Prenom);
-            
-            string toResponsable = ResponsableActiveDirectoryUtilisateurDTO.email;
-
-            if (toResponsable != "")
-            {
-                if(to != ""){
-                    to += ",";
-                }
-                to += toResponsable;
-            }
-
-            return to;
-        }
-
-        private string addActionResponsableEmailToString(String to, FicheSecurite ficheSecurite)
-        {
-            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
-
-            ActiveDirectoryUtilisateurDTO ResponsableActiveDirectoryUtilisateurDTO;
-
-            List<Personne> allActionResponsable = new List<Personne>();
-
-            foreach (CauseQSE cause in ficheSecurite.CauseQSEs)
-            {
-                foreach (ActionQSE action in cause.ActionQSEs)
-                {
-                    allActionResponsable.Add(action.Responsable);
-                }
-            }
-
-            for (int i = 0; i < allActionResponsable.Count(); i++)
-            {
-                to += (to == "") ? "" : ",";
-
-                ResponsableActiveDirectoryUtilisateurDTO = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUtilisateurByNomPrenom(allActionResponsable[i].Nom, allActionResponsable[i].Prenom);
-
-                to += ResponsableActiveDirectoryUtilisateurDTO.email;
-            }
-
-            return to;
-        }
-
 
         private void SendEmail(MailAddress from, String subject, string body, string to)
         {

@@ -1273,18 +1273,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
 
             PosteDeTravail PosteDeTravail239 = new PosteDeTravail() { Nom = "Assistant HSE", Rang = 2, Zone = ZoneLQN11 };
 
-            PosteDeTravail PosteDeTravail239_2 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneLQN4 };
-            PosteDeTravail PosteDeTravail240_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneLQN4 };
-
-            PosteDeTravail PosteDeTravail241_2 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneLQN5 };
-            PosteDeTravail PosteDeTravail242_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneLQN5 };
-
-            PosteDeTravail PosteDeTravail243_2 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneLQN8 };
-            PosteDeTravail PosteDeTravail244_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneLQN8 };
-
-            PosteDeTravail PosteDeTravail245_2 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneLQN14 };
-            PosteDeTravail PosteDeTravail246_2 = new PosteDeTravail() { Nom = "Autre", Rang = 100, Zone = ZoneLQN14 };
-
             // RFS
 
             PosteDeTravail PosteDeTravail240 = new PosteDeTravail() { Nom = "Tous les postes de la zone", Rang = 1, Zone = ZoneRFS1 };
@@ -1659,18 +1647,6 @@ namespace Antelope.Services.Socle.DataBaseHydratation
              context.PosteDeTravails.Add(PosteDeTravail238);
 
              context.PosteDeTravails.Add(PosteDeTravail239);
-
-             context.PosteDeTravails.Add(PosteDeTravail239_2);
-             context.PosteDeTravails.Add(PosteDeTravail240_2);
-
-             context.PosteDeTravails.Add(PosteDeTravail241_2);
-             context.PosteDeTravails.Add(PosteDeTravail242_2);
-
-             context.PosteDeTravails.Add(PosteDeTravail243_2);
-             context.PosteDeTravails.Add(PosteDeTravail244_2);
-
-             context.PosteDeTravails.Add(PosteDeTravail245_2);
-             context.PosteDeTravails.Add(PosteDeTravail246_2);
 
             // RFS
 
@@ -2573,8 +2549,7 @@ namespace Antelope.Services.Socle.DataBaseHydratation
             ParametrageHSE parametrageHSE = new ParametrageHSE()
             {
                 EmailDiffusionFS = "SELF",
-                EmailValidationRejetPlanActionFS = "SELF",
-                EmailDiffusionPlanAction = "SELF"
+                EmailRejetPlanActionFS = "SELF"
             };
 
             context.ADRoles.Add(ADRoleHSEASE);

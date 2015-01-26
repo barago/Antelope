@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="a80b11d9-a974-46c7-a781-56e792cfb81f" ChangeDateTime="01/16/2015 08:18:37">
+    <Property Name="ElementName" Value="[dbo].[ParametrageHSEs].[EmailRejetPlanActionFS]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ParametrageHSEs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmailValidationRejetPlanActionFS" />
+  </Operation>
+</Operations>

@@ -27,7 +27,7 @@ namespace Antelope.Controllers.API.QSE
 
             UserPrincipal user = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
 
-            String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
+           // String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
 
             //_ficheSecuriteRepository = new FicheSecuriteRepository();
 
@@ -36,11 +36,12 @@ namespace Antelope.Controllers.API.QSE
                                          select p;
             Personne PersonneConnectee = (Personne)queryPersonneConnectee.SingleOrDefault();
 
-            var querySiteUser = from s in db.Sites
-                                where s.Trigramme == SiteTrigramme
-                                select s;
-            Site SiteUser = (Site)querySiteUser.SingleOrDefault();
+            //var querySiteUser = from s in db.Sites
+                                //where s.Trigramme == SiteTrigramme
+                                //select s;
+            //Site SiteUser = (Site)querySiteUser.SingleOrDefault();
 
+            Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
 
             RechercheNonConformiteParamModel RechercheNonConformiteParamModel = new RechercheNonConformiteParamModel()
             {

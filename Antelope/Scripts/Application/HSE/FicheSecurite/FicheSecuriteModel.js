@@ -1,5 +1,6 @@
 ﻿var FicheSecuriteModel = Backbone.Model.extend({
     urlRoot: '/api/FicheSecurite',
+    idAttribute: "FicheSecuriteID",
     initialize: function(){
         this.PersonneConcernee = new PersonneConcerneeModel();
 

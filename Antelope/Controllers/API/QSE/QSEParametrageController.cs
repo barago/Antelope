@@ -31,36 +31,14 @@ namespace Antelope.Controllers.API.QSE
             return Request.CreateResponse(HttpStatusCode.OK, ParametrageQSE);
         }
 
-        //public HttpResponseMessage saveParametrageHSEEmail(ParametrageHSE parametrageHSE)
-        //{
-        //    //ParametrageHSE ParametrageHSE = context.ParametrageHSEs.FirstOrDefault(p => p.Id == parametrageHSE.Id);
-        //    //ParametrageHSE.EmailDiffusionFS = parametrageHSE.EmailDiffusionFS;
-        //    context.Entry(parametrageHSE).State = EntityState.Modified;
-        //    context.SaveChanges();
-
-
-        //    return Request.CreateResponse(HttpStatusCode.OK, parametrageHSE);
-        //}
-
 
         [AcceptVerbs("POST")]
         public HttpResponseMessage AlimenteBaseTest()
         {
-            _dataBaseTestHydratationService.QSEListsTestHydrate();
+            _dataBaseAcceptanceHydratationService.QSEListsAcceptanceHydrate();
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-        //[AcceptVerbs("POST")]
-        //public HttpResponseMessage AlimenteBaseAcceptance()
-        //{
-        //    _dataBaseAcceptanceHydratationService.FullDataBaseAcceptanceHydrate();
-
-        //    return Request.CreateResponse(HttpStatusCode.OK);
-        //}
-
-
-
 
 
     }

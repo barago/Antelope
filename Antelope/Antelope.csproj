@@ -153,6 +153,7 @@
     <Folder Include="Views\Phantom\" />
     <Folder Include="Views\QSEParametrage\" />
     <Folder Include="Views\Sauvegarde\" />
+    <Folder Include="Views\ServicesHome\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Controllers\API\QSE\NonConformiteController.cs" />
     <Compile Include="Controllers\API\QSE\QSEParametrageController.cs" />
     <Compile Include="Controllers\API\QSE\RechercheNonConformiteController.cs" />
+    <Compile Include="Controllers\API\Services\AnnuaireController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
@@ -192,6 +194,8 @@
     <Compile Include="Controllers\QSE\NonConformiteController.cs" />
     <Compile Include="Controllers\QSE\QSEHomeController.cs" />
     <Compile Include="Controllers\QSE\QSEParametrageController.cs" />
+    <Compile Include="Controllers\Services\AnnuaireController.cs" />
+    <Compile Include="Controllers\Services\ServicesHomeController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
     <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
     <Compile Include="Global.asax.cs">
@@ -322,6 +326,7 @@
     <Content Include="Content\images\IndicateurSI\Website_Background.jpg" />
     <Content Include="Content\images\IndicateurSI\Website_Background.png" />
     <Content Include="Content\images\RfsDlfSmall.JPG" />
+    <Content Include="Content\images\Services\ICONE_APPLI_SERVICES.png" />
     <Content Include="Content\images\sort_asc.png" />
     <Content Include="Content\images\sort_asc_disabled.png" />
     <Content Include="Content\images\sort_both.png" />
@@ -569,6 +574,9 @@
     <Content Include="Views\QSE\Parametrage\Changelog.cshtml" />
     <Content Include="Views\QSE\Parametrage\Index.cshtml" />
     <Content Include="Views\QSE\NonConformite\Index.cshtml" />
+    <Content Include="Views\Services\ServicesHome\Index.cshtml" />
+    <Content Include="Views\Services\Shared\_Layout.cshtml" />
+    <Content Include="Views\Services\Annuaire\Index.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

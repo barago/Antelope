@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[ParametrageHSEs]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1, 1), 
-    [EmailDiffusionFS] NVARCHAR(50) NULL, 
-    [EmailRejetPlanActionFS] NVARCHAR(50) NULL
+    [EmailDiffusionFS] NVARCHAR(250) NULL, 
+    [EmailValidationRejetPlanActionFS] NVARCHAR(250) NULL, 
+    [EmailDiffusionPlanAction] NVARCHAR(250) NULL
 )
