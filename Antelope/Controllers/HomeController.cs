@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Antelope.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
   

@@ -18,6 +18,7 @@ using Antelope.Models; //TODO : A vérifier >> Pour le TestContext
 
 
 
+
 namespace Antelope
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -46,7 +47,6 @@ namespace Antelope
 
             Int16 HSERole = (Int16)HSERoleEnum.Visiteur;
             Int16 CurrentHSERole = (Int16)HSERoleEnum.Visiteur;
-
             var allADHSERoleMapped = from a in db.ADRoles
                                   where a.RoleType == "HSE"
                                   select a;
@@ -57,6 +57,7 @@ namespace Antelope
                 Debug.WriteLine(ADRole.Name);
 
                 var id = ClaimsPrincipal.Current.Identities.First();
+
                 string[] roles = Roles.GetRolesForUser(id.Name);
 
                 if (Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\")))

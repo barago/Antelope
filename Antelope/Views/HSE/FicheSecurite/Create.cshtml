@@ -682,7 +682,6 @@
                     <div class="col-md-8">
 
                         <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) {%>
-
                         <% if (currentHSERole < 400) { %>
                         <button id="Valider" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-ok"></span> Validé
@@ -694,37 +693,37 @@
                         <span class="pull-right">
                             &nbsp;Il&nbsp;doit&nbsp;être&nbsp;:&nbsp;
                         </span>
+                        <% } %>
+                        <span class="pull-right">
+                            <span class="glyphicon glyphicon-ok pull-right"></span>
+                            Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;envoyé&nbsp;
+                        </span>
 
+                        <% }else{ %>
 
+                        <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                            <% } %>
-                            <span class="pull-right">
-                                <span class="glyphicon glyphicon-ok pull-right"></span>
-                                Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;envoyé&nbsp;
-                            </span>
-
-                            <% }else{ %>
-
-                            <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
-
-                            <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
-                                <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
-                            </button>
+                        <% if (currentHSERole < 400) { %>
+                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
+                            <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
+                        </button>
 
                             <span class="pull-right">&nbsp;Puis&nbsp;:&nbsp;</span>
+                        <% } %>
                             <span class="glyphicon glyphicon-pencil pull-right"></span>
                             <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;doit&nbsp;être&nbsp;complété&nbsp;:&nbsp;</span>
 
                             <% }else{ %>
 
                             @*IF CLOTURE = MEME BOUTON (REJET, MAIS MESSAGE CLOTURE)*@
-
+                        <% if (currentHSERole < 400) { %>
                             <span class="pull-right">&nbsp;pour&nbsp;amélioration.</span>
                             <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
                                 <span class="glyphicon glyphicon-remove"></span> Rejeter
                             </button>
 
                             <span class="pull-right">&nbsp;Vous&nbsp;pouvez&nbsp;le&nbsp;</span>
+                        <% } %>
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                             <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;validé&nbsp;:&nbsp;</span>
 
@@ -1940,8 +1939,10 @@
                     'Responsable': new ResponsableModel({
                         'Nom': modelToAdd.get('Responsable').get('Nom'),
                         'Prenom': modelToAdd.get('Responsable').get('Prenom'),
-                        'Guid': modelToAdd.get('Responsable').get('Guid')
-                    })
+                        'Guid': modelToAdd.get('Responsable').get('Guid'),
+                        'PersonneId': modelToAdd.get('Responsable').get('PersonneId')
+                    }),
+                    'ResponsableId': modelToAdd.get('Responsable').get('PersonneId')
                 });
                 newActionModel.on("invalid", function (model, error) {
                         Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
