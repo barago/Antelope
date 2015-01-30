@@ -188,14 +188,16 @@
                         <% if (ficheSecuriteModel.get('WorkFlowDiffusee') == false){ %> 
                         
                         <% if (currentHSERole < 500) { %>
+                        @* DIFFUSION NOUVELLE FS*@
                         <button id="Diffusion" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-envelope"></span> Diffusion
                         </button>
                         <% } %>
 
                          <% } else { %>
-                        
-                        <% if (currentHSERole < 400) { %>
+
+                        <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                        @* EDITER/ENREGISTRER FS*@
                         <button id="EnregistrerFicheSecurite" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-floppy-disk"></span> Enregistrer
                         </button>
@@ -1171,17 +1173,18 @@
         };
         var target = document.getElementById('loading');
         var spinner = new Spinner(opts).spin(target);
-       
+
         $("#loading").hide();
         //$(document).ajaxStart(function () { $("#loading").fadeIn(); });
         //$(document).ajaxComplete(function () { $("#loading").fadeOut(); });
 
         var FicheSecuriteId = "@ViewBag.Id";
         var currentHSERole = "@ViewBag.CurrentHSERole";
+        var currentGuid = "@ViewBag.CurrentGuid";
 
         function dateFormatJS(date) {
             var dateFormated = '';
-            if(date != null){
+            if (date != null) {
                 dateFormated = date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
             }
             return dateFormated;
@@ -1195,7 +1198,7 @@
             return heureFormated;
         };
 
-        var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId, currentHSERole : currentHSERole });
+        var ficheSecuriteViewModel = new FicheSecuriteViewModel({ id: FicheSecuriteId, currentHSERole: currentHSERole, currentGuid:currentGuid });
 
         ficheSecuriteViewModel.fetch({
             async: false//, success: this.arraysToModelCollections
@@ -1206,12 +1209,12 @@
             ficheSecuriteModel.set({ id: FicheSecuriteId });
         };
 
-        if(ficheSecuriteModel.get('FicheSecuriteID') === 0){
+        if (ficheSecuriteModel.get('FicheSecuriteID') === 0) {
             ficheSecuriteModel.set({ 'FicheSecuriteID': null });
         }
 
-        ficheSecuriteModel.set({'DateEvenementJavascript': dateFormatJS(ficheSecuriteModel.get('DateEvenement'))});
-        ficheSecuriteModel.set({'HeureEvenementJavascript': heureFormatJS(ficheSecuriteModel.get('DateEvenement')) });
+        ficheSecuriteModel.set({ 'DateEvenementJavascript': dateFormatJS(ficheSecuriteModel.get('DateEvenement')) });
+        ficheSecuriteModel.set({ 'HeureEvenementJavascript': heureFormatJS(ficheSecuriteModel.get('DateEvenement')) });
         ficheSecuriteModel.set({ 'EnqueteDateJavascript': dateFormatJS(ficheSecuriteModel.get('EnqueteDate')) });
 
         ficheSecuriteViewModel.set({ 'ficheSecuriteModel': ficheSecuriteModel });
@@ -1269,7 +1272,7 @@
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
 
 
-//--------------------------POPUP RECHERCHE ACTIVE DIRECTORY---------------------------------------------------
+        //--------------------------POPUP RECHERCHE ACTIVE DIRECTORY---------------------------------------------------
         //TODO : Cette View est à découpler de FicheSecurite View et Model afin d'être réutilisable
         //Clairement pas le temps maintenant malheureusement.
         var RechercheActiveDirectoryView = Backbone.View.extend({
@@ -1327,7 +1330,7 @@
                 var personneFicheSecuriteARemplir = '';
 
                 //TODO : Cette partie du traitement ne devrait pas être ici, le popup doit donner les infos utilisateur, et à charge
-                //d'un autre objet de mettre les données à jour ... 
+                //d'un autre objet de mettre les données à jour ...
                 if ((this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'PERSONNECONCERNEE') ||
                     (this.model.get('sourceActiveDirectoryUtilisateurRecherche') == 'RESPONSABLE')) {
 
@@ -1450,7 +1453,7 @@
         });
 
 
-//------------------------------------------------INFOS GENERALES---------------------------------------------------
+        //------------------------------------------------INFOS GENERALES---------------------------------------------------
 
         var FicheSecuriteInfoGeneralesView = Backbone.View.extend({
             template: _.template($('#TestTemplate2').html()),
@@ -1479,10 +1482,10 @@
                         fillOpacity: 0.3,
                         singleSelect: true,
                         mapKey: 'data-code',
-                        onClick: $.proxy(this.changeCorpsHumain, this) 
+                        onClick: $.proxy(this.changeCorpsHumain, this)
                     }
                 //).mapster('set', true, this.model.get('corpsHumainZoneCollection').findWhere({ 'Id': this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') }).get('Code'));
-                ).mapster('set', true, (this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') != 0) ? this.model.get('corpsHumainZoneCollection').findWhere({'Id':this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId')}).get('Code') : '');
+                ).mapster('set', true, (this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') != 0) ? this.model.get('corpsHumainZoneCollection').findWhere({ 'Id': this.model.get('ficheSecuriteModel').get('CorpsHumainZoneId') }).get('Code') : '');
                 // (ficheSecuriteModel.get('CorpsHumainZoneId') != 0) ? corpsHumainZoneCollection.findWhere({Id:ficheSecuriteModel.get('CorpsHumainZoneId')}).get('Nom') : ''
             },
             initialize: function () {
@@ -1501,7 +1504,7 @@
                 "change #Zone": "changeZone",
                 "change #Lieu": "changeLieu",
                 "change #Service": "changeService",
-                "change #PosteDeTravail":"changePosteDeTravail",
+                "change #PosteDeTravail": "changePosteDeTravail",
                 "keyup #Age": "changeAge",
                 "change #Type": "changeType",
                 "keyup #Code": "changeCode",
@@ -1522,8 +1525,8 @@
                 //"click #ActiveDirectoryUtilisateurModal": "changeSourceActiveDirectoryUtilisateurRecherche",
                 "click #ActiveDirectoryPersonneConcerneeRecherche": "showActiveDirectoryUtilisateurRecherche",
                 "click #ActiveDirectoryResponsableRecherche": "showActiveDirectoryUtilisateurRecherche",
-                "click #EnregistrerFicheSecurite": "enregistrerFicheSecurite" 
-                
+                "click #EnregistrerFicheSecurite": "enregistrerFicheSecurite"
+
 
             },
             changeSite: function () {
@@ -1634,8 +1637,7 @@
                     $('#CriticiteBrute').css('background-color', '#C42031;');
                     $('#CriticiteBrute').css('color', '#FFFFFF;');
                 }
-                else
-                {
+                else {
                     $('#CriticiteBrute').css('background-color', '#EEEEEE');
                     $('#CriticiteBrute').css('color', '#000000;');
                 }
@@ -1672,7 +1674,7 @@
                         console.log(this.model.get('ficheSecuriteModel'));
                         this.model.get('ficheSecuriteModel').set({ 'WorkFlowDiffusee': true });
                         // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
-                        
+
                         this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(response.Responsable) });
                         this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(response.PersonneConcernee) });
 
@@ -1703,9 +1705,9 @@
                         this.render(this.model.get('ficheSecuriteModel')); // RENDER LES ACTIONS ?
                         Backbone.applicationEvents.trigger('validFicheSecurite', 'La Fiche Sécurité est enregistrée.');
 
-                    },this),
+                    }, this),
                     //url: '/api/action/FicheSecurite/PutCHSCTFields/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/true'
-                   
+
                 });
             },
             //changeSourceActiveDirectoryUtilisateurRecherche: function () {
@@ -1713,9 +1715,9 @@
             //},
             //inputValidationDiffusion: function(){
             //    var validated = true;
-            //    validated = ((this.model.get('ficheSecuriteModel').get('SiteId') != 0) 
+            //    validated = ((this.model.get('ficheSecuriteModel').get('SiteId') != 0)
 
-            //        ) ? 
+            //        ) ?
 
             //},
             showActiveDirectoryUtilisateurRecherche: function (ev) {
@@ -1744,7 +1746,7 @@
         });
 
 
-//--------------------------------------------------CAUSES & ACTIONS----------------------------------------------------
+        //--------------------------------------------------CAUSES & ACTIONS----------------------------------------------------
         var FicheSecuriteActionView = Backbone.View.extend({
             template: _.template($('#TemplateInfosCorrectives').html()),
             render: function () {
@@ -1791,7 +1793,7 @@
                     language: 'fr'
                 });
 
-                // LE PLUGIN JS DATETIMEPICKER DOIT RELAYER SON "ONCHANGE" A LA BONNE FONCTION BACKBONE 
+                // LE PLUGIN JS DATETIMEPICKER DOIT RELAYER SON "ONCHANGE" A LA BONNE FONCTION BACKBONE
                 $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeDateButoirInitiale, this));
                 $('.AddActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeDateButoirInitiale, this));
                 $('.AddActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeDateButoirNouvelle, this));
@@ -1810,7 +1812,7 @@
                 $('.AjoutActionCollapse').collapse({ 'toggle': false });
                 $('.EditCauseCollapse').collapse({ 'toggle': false });
                 $('.EditActionCollapse').collapse({ 'toggle': false });
-                
+
 
             },
             initialize: function () {
@@ -1888,7 +1890,7 @@
                 "keyup #CHSCTMembre": "changeCHSCTMembre",
                 "click #CHSCTSave": "CHSCTSecuritySave"
 
-                
+
             },
             hideShow: function (ev) {
                 $('.AjoutCauseCollapse').collapse('hide');
@@ -1914,19 +1916,20 @@
 
                 var causeModelAdded = this.model.get('ficheSecuriteModel').get('causeCollection').create(
                     newCauseModel, {
-                        async: false, wait: true});
+                        async: false, wait: true
+                    });
                 if (causeModelAdded.validationError != null) {
 
                 } else {
-                          this.model.get('causeModel').clear();
-                          this.render();
+                    this.model.get('causeModel').clear();
+                    this.render();
 
-                        Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été ajoutée');
+                    Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été ajoutée');
                 };
 
             },
             addAction: function (ev) {
-                 $("#loading").fadeIn();
+                $("#loading").fadeIn();
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 var modelToAdd = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel');
                 var newActionModel = new ActionModel({
@@ -1945,7 +1948,7 @@
                     'ResponsableId': modelToAdd.get('Responsable').get('PersonneId')
                 });
                 newActionModel.on("invalid", function (model, error) {
-                        Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
+                    Backbone.applicationEvents.trigger('invalidFicheSecurite', error);
                 });
                 var actionModelAdded = this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').create(
                         newActionModel, { async: false, wait: true }
@@ -1965,13 +1968,13 @@
                 };
 
                 $("#loading").fadeOut();
-                
+
 
             },
             changeEditCauseDescription: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({ Description: $(ev.currentTarget).val() });
-                
+
             },
             editCause: function (ev) {
 
@@ -1981,9 +1984,9 @@
                 //Il faudrait soit initialiser les Models dans les Collections avec le bon id, soit côté Serveur MVC appeler "id" la clef primaire, simplifiant toute la chaîne d'enregistrement...
                 //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).id = parseInt(causeToEditId)  //.   get('CauseId');
                 // OU ENCORE : Utiliser IdAttribute de Backbone Model !
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({id : parseInt(causeToEditId)});  //.   get('CauseId');
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({ id: parseInt(causeToEditId) });  //.   get('CauseId');
 
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).save(null,{ async: false, wait: true });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).save(null, { async: false, wait: true });
                 this.render();
             },
             editAction: function (ev) {
@@ -2077,12 +2080,12 @@
             //    var causeToEditId = $(ev.currentTarget).attr('data-causeId');
             //    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'ClotureDate': this.dateFormatMVC($('#AddActionClotureDateInputForCause' + causeToEditId).val()) + 'T' + '00:00:00.0' });
             //},
-            changeEditActionDescription : function(ev){
+            changeEditActionDescription: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Description': $(ev.currentTarget).val() });
             },
-            changeEditActionDateButoirInitiale : function(ev){
+            changeEditActionDateButoirInitiale: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitiale': this.dateFormatMVC($('#EditActionDateButoirInitialeInputForAction' + actionToEditId).val()) });
@@ -2106,7 +2109,7 @@
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'Nom': $(ev.currentTarget).val() });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'PersonneId': 0 });
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({'ResponsableId':null});
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ResponsableId': null });
             },
             changeEditActionResponsablePrenom: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
@@ -2127,7 +2130,7 @@
             ASEEnvoi: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
 
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate:false});
+                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
                 this.render();
@@ -2146,7 +2149,7 @@
 
                 var rejet = prompt("Merci de préciser la cause du rejet, un email va être envoyé au responsable de la Fiche Sécurité");
                 if (rejet != null) {
-                    this.model.get('ficheSecuriteModel').set({'WorkFlowASERejeteeCause':rejet});
+                    this.model.get('ficheSecuriteModel').set({ 'WorkFlowASERejeteeCause': rejet });
                     this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASERejetee';
                     this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
@@ -2157,17 +2160,17 @@
 
             },
 
-            changeEnqueteRealise: function(){
+            changeEnqueteRealise: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteRealisee': $('#EnqueteRealisee').prop('checked') });
             },
-            changeProtagonistes: function(){
+            changeProtagonistes: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteProtagoniste': $('#Protagonistes').val() });
             },
             changeDateEnquete: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteDate': this.dateFormatMVC($('#DateEnqueteInput').val()) });
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteDateJavaScript': $('#DateEnqueteInput').val() });
             },
-            changeCHSCTMembre: function(){
+            changeCHSCTMembre: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CHSCTMembre': $('#CHSCTMembre').val() });
             },
             CHSCTSecuritySave: function () {
@@ -2176,7 +2179,7 @@
                 this.model.get('ficheSecuriteModel').save(null, {
                     async: false, wait: true,
                     success: _.bind(function (model, response) {
-                        
+
                         // On met à jour les Responsables et PersonnesConcernee comme Model de la View (Puisque le Backoffice les a créé alors qu'ils n'existaient pas)
                         this.model.get('ficheSecuriteModel').set({ 'Responsable': new ResponsableModel(response.Responsable) });
                         this.model.get('ficheSecuriteModel').set({ 'PersonneConcernee': new PersonneConcerneeModel(response.PersonneConcernee) });
@@ -2187,10 +2190,10 @@
                         Backbone.applicationEvents.trigger('validFicheSecurite', 'La Fiche Sécurité est créée et diffusée.');
 
                     },
-                    
+
                     this),
                     url: '/api/action/FicheSecurite/PutCHSCTFields/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/true'
-                   
+
                 });
 
 
@@ -2198,12 +2201,12 @@
 
 
             }
-            
+
 
         });
 
 
-//--------------------------------------------------ALERTES----------------------------------------------------
+        //--------------------------------------------------ALERTES----------------------------------------------------
 
         AlerteModel = Backbone.Model.extend({});
 
@@ -2211,7 +2214,7 @@
             alerteHidden: true,
             alerteClass: "alert alert-danger",
             alerteMessage: "Test d'alerte",
-            messages: [{'0':'Vous devez saisir tous les champs obligatoires, merci de compléter votre saisie.'}]
+            messages: [{ '0': 'Vous devez saisir tous les champs obligatoires, merci de compléter votre saisie.' }]
         });
 
 
@@ -2228,7 +2231,7 @@
                 Backbone.applicationEvents.on('invalidFicheSecurite', function (error) {
                     this.model.set({ 'alerteHidden': false })
                     this.model.set({ 'alerteClass': 'alert alert-danger' })
-                    this.model.set({ 'alerteMessage': error})
+                    this.model.set({ 'alerteMessage': error })
 
                     this.render();
                 }, this);
@@ -2252,13 +2255,13 @@
                 this.render();
             },
             events: {
-               
+
 
             }
         });
 
 
-//----------------------------------------------INSTANCIATION DES VIEWS------------------------------------------------
+        //----------------------------------------------INSTANCIATION DES VIEWS------------------------------------------------
 
         var ficheSecuriteInfoGeneralesView = new FicheSecuriteInfoGeneralesView({
             el: $("#TestDiv2"),

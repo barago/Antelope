@@ -166,12 +166,18 @@ namespace Antelope.Services.HSE
             ActiveDirectoryUtilisateurDTO ResponsableActiveDirectoryUtilisateurDTO;
 
             ResponsableActiveDirectoryUtilisateurDTO = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUtilisateurByNomPrenom(ficheSecurite.Responsable.Nom, ficheSecurite.Responsable.Prenom);
-            
-            string toResponsable = ResponsableActiveDirectoryUtilisateurDTO.email;
 
-            if (toResponsable != "")
+
+            String toResponsable = "";
+
+            if (ResponsableActiveDirectoryUtilisateurDTO != null)
             {
-                if(to != ""){
+               toResponsable = ResponsableActiveDirectoryUtilisateurDTO.email;
+            }
+            
+            if (toResponsable != "" && toResponsable != null)
+            {
+                if(to != "" && toResponsable != null){
                     to += ",";
                 }
                 to += toResponsable;

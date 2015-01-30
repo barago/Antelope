@@ -20,6 +20,7 @@ using Antelope.Infrastructure.EntityFramework;
 using System.Web.Mvc;
 using System.Web;
 using System.Web.Security;
+using Microsoft.AspNet.Identity;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -52,6 +53,9 @@ namespace Antelope.Controllers.API.HSE
         // GET api/fichesecuriteapi/5
         public HttpResponseMessage Get(int id)
         {
+            var boo = User.Identity.IsAuthenticated;
+            var z = User.Identity.GetUserId();
+            var p = 1;
 
             _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
 
@@ -180,8 +184,8 @@ namespace Antelope.Controllers.API.HSE
 
             db.FicheSecurites.Add(FicheSecurite);
 
-            try
-            {
+            //try
+            //{
                 db.SaveChanges();
 
                 //Url.Action("Edit", "FicheSecurite", new System.Web.Routing.RouteValueDictionary(new { id = id }), "http", Request.Url.Host)
@@ -192,13 +196,13 @@ namespace Antelope.Controllers.API.HSE
                 _emailService.SendEmailDiffusionFicheSecurite(FicheSecurite);
 
                 return Request.CreateResponse(HttpStatusCode.OK, FicheSecurite);
-            }
-            catch (Exception e)
-            {
+            //}
+            //catch (Exception e)
+            //{
 
 
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
-            }
+                //return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            //}
 
         }
 
@@ -241,14 +245,16 @@ namespace Antelope.Controllers.API.HSE
         public HttpResponseMessage Put(int id, FicheSecurite ficheSecurite)
         {
 
+            var currentFicheSecurite = db.FicheSecurites.Find(ficheSecurite.FicheSecuriteID);
+            db.Entry(currentFicheSecurite).CurrentValues.SetValues(ficheSecurite);
 
-            db.Entry(ficheSecurite).State = EntityState.Modified;
-
-       
-                db.SaveChanges();
+            db.Entry(currentFicheSecurite).State = EntityState.Modified;
 
 
-            return Request.CreateResponse(HttpStatusCode.OK, ficheSecurite);
+            db.SaveChanges();
+
+
+            return Request.CreateResponse(HttpStatusCode.OK, currentFicheSecurite);
 
 
         }

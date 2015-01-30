@@ -91,6 +91,7 @@ namespace Antelope.Controllers.HSE
         {
             ViewBag.Id = id;
             ViewBag.CurrentHSERole = Session["CurrentHSERole"];
+            ViewBag.CurrentGuid = Session["CurrentGuid"];
 
 
             return View("~/Views/HSE/FicheSecurite/Create.cshtml");

@@ -14,9 +14,8 @@ using System.Diagnostics;
 using Antelope.Services.HSE.Enums;
 using Antelope.Infrastructure.EntityFramework;
 using Antelope.Models; //TODO : A vérifier >> Pour le TestContext
-
-
-
+using System.DirectoryServices.AccountManagement;
+using System.DirectoryServices;
 
 
 namespace Antelope
@@ -51,14 +50,33 @@ namespace Antelope
                                   where a.RoleType == "HSE"
                                   select a;
 
+            var id = ClaimsPrincipal.Current.Identities.First();
+
+            //Seul contournement trouvé au fait que 
+            //Guid guid = (Guid)Membership.GetUser().ProviderUserKey;
+            // Ne fonctionne pas (l'utilisateur est authentifié, mais pas loggué, on dirait...)
+            // A refactor dans une méthode !!!
+            string login = HttpContext.Current.User.Identity.Name;
+            string domain = login.Substring(0, login.IndexOf('\\'));
+            string userName = login.Substring(login.IndexOf('\\') + 1);
+            DirectoryEntry domainEntry = new DirectoryEntry("LDAP://" + domain);
+            DirectorySearcher searcher = new DirectorySearcher(domainEntry);
+            searcher.Filter = string.Format("(&(objectCategory=person)(objectClass=user)(sAMAccountName={0}))", userName);
+            SearchResult searchResult = searcher.FindOne();
+            DirectoryEntry entry = searchResult.GetDirectoryEntry();
+            Guid objectGuid = entry.Guid;
+
+            System.Security.Principal.WindowsIdentity.GetCurrent();
+
+            Session["CurrentGuid"] = objectGuid;
+
             foreach (ADRole ADRole in allADHSERoleMapped)
             {
 
                 Debug.WriteLine(ADRole.Name);
 
-                var id = ClaimsPrincipal.Current.Identities.First();
-
                 string[] roles = Roles.GetRolesForUser(id.Name);
+
 
                 if (Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\")))
                 {
@@ -82,7 +100,6 @@ namespace Antelope
             //Session["CurrentHSERole"] = Enum.GetName(typeof(HSERoleEnum), CurrentHSERole);
             Session["CurrentHSERole"] = CurrentHSERole;
 
-
             //-_-_-_-_-_-Traitements pour QSE-_-_-_-_-_-
 
             Int16 QSERole = (Int16)HSERoleEnum.Visiteur;
@@ -97,7 +114,7 @@ namespace Antelope
 
                 Debug.WriteLine(ADRole.Name);
 
-                var id = ClaimsPrincipal.Current.Identities.First();
+                //var id = ClaimsPrincipal.Current.Identities.First();
                 string[] roles = Roles.GetRolesForUser(id.Name);
 
                 if (Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\")))
