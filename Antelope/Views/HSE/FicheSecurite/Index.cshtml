@@ -486,7 +486,9 @@
                                     </td>
                                     <td>
                                         <a class="glyphicon glyphicon-edit" href="<%= ficheSecurite.get('urlEdit')%>"></a> |                         @*@Url.Action("Edit", new { id = <% ficheSecurite.get('FicheSecuriteId')%> })*@
+                                        <% if (currentHSERole < 400) { %>
                                         <a id="deleteFicheSecurite" class="glyphicon glyphicon-remove" data-id="<%=ficheSecurite.get('FicheSecuriteID')%>" href="#" @*href="@Url.Action("Delete", new { id = item.FicheSecuriteID })"*@></a>
+                                        <% } %>
                                     </td>
                                 </tr>
                                 <%  });  %>
@@ -533,16 +535,18 @@
 
     $(document).ready(function () {
 
-
-
+        var currentHSERole = "@ViewBag.CurrentHSERole";
+        var currentGuid = "@ViewBag.CurrentGuid";
 
         var rechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel();
 
-        //TODO : CE FETCH POURRAIT ETRE A L'INITIALISATION (initialize) APPEL DE LA FONCTION (recherche) ... Celà éviterait deux fois la même initialisation 
+        //TODO : CE FETCH POURRAIT ETRE A L'INITIALISATION (initialize) APPEL DE LA FONCTION (recherche) ... Celà éviterait deux fois la même initialisation
         rechercheFicheSecuriteViewModel.fetch({
             async: false   //, success: this.arraysToModelCollections
         });
 
+        rechercheFicheSecuriteViewModel.set({ 'currentHSERole': currentHSERole });
+        rechercheFicheSecuriteViewModel.set({ 'currentGuid': currentGuid });
         rechercheFicheSecuriteViewModel.set({ 'rechercheFicheSecuriteParamModel': new RechercheFicheSecuriteParamModel(rechercheFicheSecuriteViewModel.get('RechercheFicheSecuriteParamModel')) });
 
         rechercheFicheSecuriteViewModel.set({ 'siteCollection': new SiteCollection(rechercheFicheSecuriteViewModel.get('AllSite')) });
@@ -712,7 +716,7 @@
 
             },
             recherche: function (ev) {
-                var pageToSearch 
+                var pageToSearch
                 if (this.model.get('pageToKeep') != undefined){
                     pageToSearch = this.model.get('pageToKeep');
                 }
@@ -729,7 +733,7 @@
                 this.model.set({'pageToKeep':undefined});
                 console.log(pageToSearch);
                 //this.model.get('ficheSecuriteCollection').fetch({ data: { api_key: 'secretkey' }, type: 'POST' });
-                this.model.get('ficheSecuriteCollection').fetch({ 
+                this.model.get('ficheSecuriteCollection').fetch({
                     type: "post",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -761,7 +765,7 @@
                 this.model.set({ 'RowCount': response.RowCount });
 
                 this.model.get('ficheSecuriteCollection').each(function (ficheSecurite, index) {
-                   
+
 
                     //Création d'un ActionLink Razor MVC afin d'accéder à l'édition/suppression de la fiche (triche)
                     var idValue = ficheSecurite.get('FicheSecuriteID');
@@ -886,16 +890,16 @@
                     this.model.get('ficheSecuriteCollection').findWhere({FicheSecuriteID: parseInt(FicheSecuriteToDeleteId)}).destroy({
                         async: false, wait: true,
                         success: _.bind(function (model, repsonse) {
-                           //Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été supprimée');
+                            //Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été supprimée');
                         }, this)
                     });
-                    this.model.set({"pageToKeep":this.model.get('rechercheFicheSecuriteParamModel').get('Page')}) 
+                    this.model.set({"pageToKeep":this.model.get('rechercheFicheSecuriteParamModel').get('Page')})
                     this.recherche(ev);
                 }
 
-            }, 
+            },
             editFicheSecurite: function(ev){
- 
+
                 var FicheSecuriteToGoId = $(ev.currentTarget).attr('data-id');
 
                 urlToGo = this.model.get('ficheSecuriteCollection').findWhere({FicheSecuriteID: parseInt(FicheSecuriteToGoId)}).get('urlEdit');

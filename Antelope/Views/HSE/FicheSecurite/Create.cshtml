@@ -705,7 +705,7 @@
 
                         <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                        <% if (currentHSERole < 400) { %>
+                        <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                         <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
                             <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
                         </button>
@@ -797,7 +797,7 @@
 
                                         <div class="col-md-3">
 
-                                            <% if (currentHSERole < 400) { %>
+                                            <% if (currentHSERole < 400 ) { %>
                                             <button id="CHSCTSave" type="submit" class="btn pull-right btn-xs">
                                                 <span class="glyphicon glyphicon-floppy-disk"></span> Enregistrer
                                             </button>
@@ -864,7 +864,7 @@
                                                                         <textarea id="AddCauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
                                                                     </div>
                                                                     <div class="col-md-2">
-                                                                        <% if (currentHSERole < 400) { %>
+                                                                        <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                                         <button id="BtnSaveAddCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                                         <% } %>
                                                                     </div>
@@ -888,7 +888,7 @@
                                                             <%= cause.get('Description') %>
                                                         </div>
                                                         <div class="col-md-2" style="padding:0px;">
-                                                            <% if (currentHSERole < 400) { %>
+                                                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                             <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-danger btn-xs BtnDeleteCause pull-right"><span class="glyphicon glyphicon-remove"></span></button>
                                                             <% } %>
                                                             <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-danger btn-xs accordion-toggle BtnEditCause pull-right" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -909,7 +909,7 @@
                                                             <div class="col-md-10">
                                                                 <textarea id="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>" class="form-control AddActionDescription" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "></textarea>
                                                             </div>
-                                                            <% if (currentHSERole < 400) { %>
+                                                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                             <div class="col-md-2">
                                                                 <button id="<%= 'BtnSaveAddActionForCause'+cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnSaveAddAction" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                             </div>
@@ -921,7 +921,7 @@
                                                             <div class="form-group">
                                                                 <label for="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>">Date butoir initiale&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                                 <div class='input-group date AddActionDateButoirInitiale' id="<%= 'AddActionDateButoirInitialeForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
-                                                                    <input type='text' name="DateButoirInitiale" class="form-control input-xs AddActionDateButoirInitiale" id="<%= 'AddActionDateButoirInitialeInputForCause'+cause.get('CauseQSEId') %>" />
+                                                                    <input type='text' name="DateButoirInitiale" class="form-control input-xs AddActionDateButoirInitialeInput" id="<%= 'AddActionDateButoirInitialeInputForCause'+cause.get('CauseQSEId') %>" />
                                                                     <span class="input-group-addon input-xs">
                                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                                     </span>
@@ -932,7 +932,7 @@
                                                             <div class="form-group">
                                                                 <label for="<%= 'AddActionDateButoirNouvelleForCause'+cause.get('CauseQSEId') %>">Nouvelle date butoir</label>
                                                                 <div class='input-group date AddActionDateButoirNouvelle' id="<%= 'AddActionDateButoirNouvelleForCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>">
-                                                                    <input type='text' name="DateButoirNouvelle" class="form-control input-xs AddActionDateButoirNouvelle" id="<%= 'AddActionDateButoirNouvelleInputForCause'+cause.get('CauseQSEId') %>" />
+                                                                    <input type='text' name="DateButoirNouvelle" class="form-control input-xs AddActionDateButoirNouvelleInput" id="<%= 'AddActionDateButoirNouvelleInputForCause'+cause.get('CauseQSEId') %>" />
                                                                     <span class="input-group-addon input-xs">
                                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                                     </span>
@@ -974,7 +974,7 @@
                                                                     <div class="col-md-10">
                                                                         <textarea id="CauseDescription" data-causeid="<%=cause.get('CauseQSEId') %>" class="form-control EditCauseDescription" rows="2" style="max-width: 100%; "><%= cause.get('Description') %></textarea>
                                                                     </div>
-                                                                    <% if (currentHSERole < 400) { %>
+                                                                    <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                                     <div class="col-md-2">
                                                                         <button id="<%= 'BtnEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnSaveEditCause"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                                     </div>
@@ -1018,7 +1018,7 @@
 
                                                         </div>
                                                         <div class="col-md-1" style="padding:0px;">
-                                                            <% if (currentHSERole < 400) { %>
+                                                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                             <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-danger btn-xs BtnDeleteAction pull-right"><span class="glyphicon glyphicon-remove"></span></button>
                                                             <% } %>
                                                             <button id="<%= 'BtnOpenFormEditAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-danger btn-xs accordion-toggle BtnEditAction pull-right" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#CauseActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -1037,7 +1037,7 @@
                                                             <div class="col-md-10">
                                                                 <textarea id="<%= 'EditActionDescriptionForAction'+action.get('ActionQSEId') %>" class="form-control EditActionDescription" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "><%= action.get('Description') %></textarea>
                                                             </div>
-                                                            <% if (currentHSERole < 400) { %>
+                                                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid') || currentGuid === action.get('Responsable').get('Guid')) { %>
                                                             <div class="col-md-2">
                                                                 <button id="<%= 'BtnSaveEditActionForAction'+action.get('ActionQSEId') %>" type="button" class="btn btn-xs BtnSaveEditAction" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                             </div>
@@ -1794,16 +1794,20 @@
                 });
 
                 // LE PLUGIN JS DATETIMEPICKER DOIT RELAYER SON "ONCHANGE" A LA BONNE FONCTION BACKBONE
-                $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeDateButoirInitiale, this));
-                $('.AddActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeDateButoirInitiale, this));
-                $('.AddActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeDateButoirNouvelle, this));
-                $('.AddActionDateButoirNouvelle').on("dp.hide", $.proxy(this.changeDateButoirNouvelle, this));
+                // $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeDateButoirInitiale, this));
+                // $('.AddActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeDateButoirInitiale, this));
+                
+                $('.AddActionDateButoirInitiale').on("dp.change", $.proxy(this.changeAddActionDateButoirInitiale, this));
+                $('.AddActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeAddActionDateButoirInitiale, this));
+                $('.AddActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeAddActionDateButoirNouvelle, this));
+                $('.AddActionDateButoirNouvelle').on("dp.hide", $.proxy(this.changeAddActionDateButoirNouvelle, this));
                 $('.EditActionDateButoirInitiale').on("dp.change", $.proxy(this.changeEditActionDateButoirInitiale, this));
                 $('.EditActionDateButoirInitiale').on("dp.hide", $.proxy(this.changeEditActionDateButoirInitiale, this));
                 $('.EditActionDateButoirNouvelle').on("dp.change", $.proxy(this.changeEditActionDateButoirNouvelle, this));
                 $('.EditActionDateButoirNouvelle').on("dp.hide", $.proxy(this.changeEditActionDateButoirNouvelle, this));
                 $('.EditActionClotureDate').on("dp.change", $.proxy(this.changeEditActionClotureDate, this));
                 $('.EditActionClotureDate').on("dp.hide", $.proxy(this.changeEditActionClotureDate, this));
+                $('#DateEnquete').on("dp.change", $.proxy(this.changeDateEnquete, this));
                 $('#DateEnquete').on("dp.hide", $.proxy(this.changeDateEnquete, this));
 
 
@@ -1964,6 +1968,7 @@
                     this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').clear();
                     this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Responsable': new ResponsableModel() });
                     this.render();
+                    Backbone.applicationEvents.trigger('validFicheSecurite', 'l\'action a été ajoutée');
 
                 };
 
@@ -2050,12 +2055,19 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Description': $(ev.currentTarget).val() });
             },
             changeAddActionDateButoirInitiale: function (ev) {
+                console.log('KEYUP');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirInitiale': this.dateFormatMVC($(ev.currentTarget).val()) });
+                //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirInitiale': this.dateFormatMVC($(ev.currentTarget).val()) });
+
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
             },
             changeAddActionDateButoirNouvelle: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirNouvelle': this.dateFormatMVC($(ev.currentTarget).val()) });
+                //this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoirNouvelle': this.dateFormatMVC($(ev.currentTarget).val()) });
+
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelle': this.dateFormatMVC($('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val()) });
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelleJavascript': $('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val() });
             },
             changeAddActionResponsableNom: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
@@ -2065,12 +2077,12 @@
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
             },
-            changeDateButoirInitiale: function (ev) {
-                var causeToEditId = $(ev.currentTarget).attr('data-causeId');
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
-                //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
-            },
+            //changeDateButoirInitiale: function (ev) {
+            //    var causeToEditId = $(ev.currentTarget).attr('data-causeId');
+            //    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
+            //    this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
+            //    //this.model.get('ficheSecuriteModel').set({ 'DateEvenement': $('#DateEvenement').val() + 'T' + $('#HeureEvenement').val() + ':00.0' });
+            //},
             changeDateButoirNouvelle: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelle': this.dateFormatMVC($('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val()) });

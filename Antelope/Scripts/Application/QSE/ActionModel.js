@@ -5,7 +5,7 @@
         if (attrs.Description == null) {
             return "Il manque un champ obligatoire, merci de saisir une Description de l'action";
         };
-        if (attrs.DateButoireInitiale == '0001-01-01T00:00:00') {
+        if (attrs.DateButoireInitiale == '0001-01-01T00:00:00' || attrs.DateButoireInitiale == null) {
             return "Il manque un champ obligatoire, merci de choisir une date initiale de l'action";
         };
         if (attrs.Responsable instanceof Backbone.Model) {

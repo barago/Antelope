@@ -50,6 +50,9 @@ namespace Antelope.Controllers.HSE
 
             int pageSize = 8;
 
+            ViewBag.CurrentHSERole = Session["CurrentHSERole"];
+            ViewBag.CurrentGuid = Session["CurrentGuid"];
+
             return View("~/Views/HSE/FicheSecurite/Index.cshtml", ficheSecurites.ToPagedList(page, pageSize));
         }
 
