@@ -1,6 +1,10 @@
 ﻿using Antelope.Domain.Models;
+using Antelope.DTOs.Services;
 using Antelope.Infrastructure.EntityFramework;
+using Antelope.Repositories.Services;
 using Antelope.Repositories.Socle;
+using Antelope.ViewModels.Services;
+using Antelope.ViewModels.Socle.DataTables;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
@@ -16,6 +20,7 @@ namespace Antelope.Controllers.API.Services
     {
 
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
+        public AnnuaireRepository _annuaireRepository { get; set; }
         private AntelopeEntities db = new AntelopeEntities();
 
         public HttpResponseMessage GetAnnuaire()
@@ -34,30 +39,32 @@ namespace Antelope.Controllers.API.Services
 
             var AllSite = db.Sites;
 
-            //var AllUtilisateur;
-
-            var context = new PrincipalContext(ContextType.Domain, "refresco.local"); //"refresco.local" > Pas obligatoire ?
-            //define a "query-by-example" principal - here, we search for a UserPrincipal 
-            //and with the first name (GivenName) and a last name (Surname) 
-            UserPrincipal qbeUser = new UserPrincipal(context);
-
-            PrincipalSearcher ps = new PrincipalSearcher(qbeUser);
-            ((DirectorySearcher)ps.GetUnderlyingSearcher()).Filter = "(&(objectCategory=Person)(objectClass=User)(company='RFS'))";
-
-            foreach (var result in ps.FindAll())
+            AnnuaireParamModel AnnuaireParamModel= new AnnuaireParamModel()
             {
-                var a = 1;
+                SiteId = (SiteUser == null)? 0 : SiteUser.SiteID,
+                Nom="",
+                Prenom=""
+            };
 
-            }
+            Object Response = new { AnnuaireParamModel = AnnuaireParamModel, AllSite = AllSite };
 
-            //DirectoryEntry de = qbeUser.GetUnderlyingObject() as DirectoryEntry;
-            //de.Properties["company"].Value = "RFS";
+             return Request.CreateResponse(HttpStatusCode.OK, Response);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
 
+        public HttpResponseMessage GetData()
+        {
 
+            _annuaireRepository = new AnnuaireRepository();
+
+            Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
+            DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+            DataTableViewModel<AnnuaireUtilisateurDTO> DataTableViewModel = _annuaireRepository.GetFromParams(DataTableParameters);
+
+            return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModel);
+        }
 
     }
 }

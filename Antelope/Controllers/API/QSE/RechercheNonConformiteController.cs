@@ -27,35 +27,20 @@ namespace Antelope.Controllers.API.QSE
 
             UserPrincipal user = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
 
-           // String SiteTrigramme = _activeDirectoryUtilisateurRepository.GetCurrentUserSiteTrigramme();
-
-            //_ficheSecuriteRepository = new FicheSecuriteRepository();
-
-            var queryPersonneConnectee = from p in db.Personnes
-                                         where p.Guid == user.Guid
-                                         select p;
-            Personne PersonneConnectee = (Personne)queryPersonneConnectee.SingleOrDefault();
-
-            //var querySiteUser = from s in db.Sites
-                                //where s.Trigramme == SiteTrigramme
-                                //select s;
-            //Site SiteUser = (Site)querySiteUser.SingleOrDefault();
-
-            Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
+                Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
 
             RechercheNonConformiteParamModel RechercheNonConformiteParamModel = new RechercheNonConformiteParamModel()
             {
-                SiteId = SiteUser.SiteID,
+                SiteId = (SiteUser == null)? 0 : SiteUser.SiteID,
                 NonConformiteDomaineId = 0,
                 NonConformiteGraviteId = 0,
                 NonConformiteOrigineId = 0
             };
 
-            //NonConformitePaginatedList FicheSecuritePaginatedList = _nonConformiteRepository.GetFromParams(RechercheNonConformiteParamModel);
+            RechercheNonConformiteViewModel RechercheNonConformiteViewModel = new RechercheNonConformiteViewModel(RechercheNonConformiteParamModel);
 
-            RechercheNonConformiteViewModel RechercheFicheSecuriteViewModel = new RechercheNonConformiteViewModel(RechercheNonConformiteParamModel);
+            return Request.CreateResponse(HttpStatusCode.OK, RechercheNonConformiteViewModel);
 
-            return Request.CreateResponse(HttpStatusCode.OK, RechercheFicheSecuriteViewModel);
         }
 
 

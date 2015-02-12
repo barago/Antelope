@@ -1,8 +1,4 @@
-﻿@using PagedList.Mvc;
-
-@model PagedList.IPagedList<Antelope.Domain.Models.FicheSecurite>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/HSE/Shared/_Layout.cshtml";
 }
@@ -14,59 +10,475 @@
 <script type="text/javascript" src="/Scripts/underscore.js"></script>
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
 
+<script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/FicheSecuriteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/Recherche/ViewModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/HSE/FicheSecurite/Recherche/ParamModel.js"></script>
+
+
+
+@*<script type="text/template" id="TableRecherche">*@
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-primary" style="border-color: #006573;">
+                <div class="panel-heading" style="background-color :#006573; color: white">
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            FILTRES&nbsp;:
+                        </div>
+                        <div class="col-md-2">
+
+                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-search"></span> Chercher
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding:0px;">
+
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#FicheSecurite" id="FicheSecurite-tab" role="tab" data-toggle="tab" aria-controls="FicheSecurite" aria-expanded="true">Fiches Sécurité</a></li>
+                        <li role="presentation"><a href="#Action" role="tab" id="Action-tab" data-toggle="tab" aria-controls="Action">Actions</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="FicheSecurite" aria-labelledby="FicheSecurite-tab">
+                            <div class="col-md-4" style="margin-top:5px;">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Site" class="label-xs">Site&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select id="Site" class="form-control input-xs">
+                                            <option value="0" <% if (ParamModel.get('SiteId') == 0){ %> selected <% } %> ></option>
+                                            <% siteCollection.each( function(site){ %>
+                                            <option value="<%= site.get('SiteID') %>"
+                                            <% if (ParamModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %> >
+                                            <%= site.get('Nom') %>
+                                        </option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Zone" class="col-sm-4 label-xs">Zone&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="Zone">
+                                                <option value="0" <% if (ParamModel.get('ZoneId') == 0){ %> selected <% } %> ></option>
+                                                <% zoneCollection.each( function(zone){ %>
+                                                <option value="<%= zone.get('ZoneID') %>"
+                                                    <% if (ParamModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %> >
+                                                <%= zone.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Lieu" class="col-sm-4 label-xs">Lieu&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="Lieu">
+                                                <option value="0" <% if (ParamModel.get('LieuId') == 0){ %> selected <% } %> ></option>
+                                                <% lieuCollection.each( function(lieu){ %>
+                                                <option value="<%= lieu.get('LieuID') %>"
+                                                    <% if (ParamModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %> >
+                                                <%= lieu.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="PosteDeTravail" class="col-sm-4 label-xs">Poste&nbsp;de&nbsp;travail&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="PosteDeTravail">
+                                                <option value="0" <% if (ParamModel.get('PosteDeTravailId') == 0){ %> selected <% } %> ></option>
+                                                <% posteDeTravailCollection.each( function(posteDeTravail){ %>
+                                                <option value="<%= posteDeTravail.get('PosteDeTravailId') %>"
+                                                    <% if (ParamModel.get('PosteDeTravailId') == posteDeTravail.get('PosteDeTravailId')){ %> selected <% } %> >
+                                                <%= posteDeTravail.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Service" class="col-sm-4 label-xs">Service&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="Service">
+                                                <option value="0" <% if (ParamModel.get('ServiceId') == 0){ %> selected <% } %> ></option>
+                                                <% serviceCollection.each( function(service){ %>
+                                                <option value="<%= service.get('ServiceID') %>"
+                                                    <% if (ParamModel.get('ServiceId') == service.get('ServiceID')){ %> selected <% } %> >
+                                                <%= service.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Code" class="label-xs">Code&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="Code" class="form-control input-xs" value="<%= ParamModel.get('Code') %>" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Age" class="label-xs">Age&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="Age" class="form-control input-xs" value="<%= ParamModel.get('Age') %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="margin-top:5px;">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="Type" class="label-xs">Type&nbsp;:</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select id="Type" class="form-control input-xs">
+                                            <option value="0" <% if (ParamModel.get('FicheSecuriteTypeId') == 0){ %> selected <% } %> ></option>
+                                            <% ficheSecuriteTypeCollection.each( function(type){ %>
+                                            <option value="<%= type.get('FicheSecuriteTypeID') %>"
+                                                <% if (ParamModel.get('FicheSecuriteTypeId') == type.get('FicheSecuriteTypeID')){ %> selected <% } %> >
+                                                <%= type.get('Nom') %>
+                                            </option>
+                                            <% }); %>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Début&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementDebut') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Fin&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementFin') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @*style="padding-right:0px;"*@
+                                            <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-xs">
+                                                <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ParamModel.get('PersonneConcerneeNom') %>">
+                                                @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                                @*<span class="input-group-btn">
+                                <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
+                                    <span class="glyphicon glyphicon-user">
+                                </button>
+                            </span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @*style="padding-right:0px;"*@
+                                            <label for="ResponsableNom" class="label-xs">Nom&nbsp;responsable&nbsp;:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-xs">
+                                                <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= ParamModel.get('ResponsableNom') %>">
+                                                @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                                @*<span class="input-group-btn">
+                                <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
+                                    <span class="glyphicon glyphicon-user">
+                                </button>
+                            </span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="PlageHoraire" class="col-sm-4 label-xs">Plage&nbsp;horaire&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="PlageHoraire">
+                                                <option value="0" <% if (ParamModel.get('PlageHoraireId') == 0){ %> selected <% } %> ></option>
+                                                <% plageHoraireCollection.each( function(plageHoraire){ %>
+                                                <option value="<%= plageHoraire.get('PlageHoraireID') %>"
+                                                <% if (ParamModel.get('PlageHoraireId') == plageHoraire.get('PlageHoraireID')){ %> selected <% } %>
+                                                >
+                                                <%= plageHoraire.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Danger" class="col-sm-4 label-xs">Danger&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="Danger">
+                                                <option value="0" <% if (ParamModel.get('DangerId') == 0){ %> selected <% } %> ></option>
+                                                <% dangerCollection.each( function(danger){ %>
+                                                <option value="<%= danger.get('DangerID') %>"
+                                                    <% if (ParamModel.get('DangerId') == danger.get('DangerID')){ %> selected <% } %> >
+                                                <%= danger.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-4" style="margin-top:5px;">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Risque" class="col-sm-4 label-xs">Risque&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="Risque">
+                                                <option value="0" <% if (ParamModel.get('RisqueId') == 0){ %> selected <% } %> ></option>
+                                                <% risqueTypeCollection.each( function(risqueType){ %>
+                                                <optgroup label="<%= risqueType.get('Nom') %>">
+                                                    @*La fonction Where renvoie un array et non pas une collection, on utilise donc _.each et non pas each de Backbone*@
+                                                    <% _.each(risqueCollection.where({'RisqueTypeId': risqueType.get('RisqueTypeId')}), function(risque){ %>
+                                                    <option value="<%= risque.get('RisqueId') %>"
+                                                    <% if (ParamModel.get('RisqueId') == risque.get('RisqueId')){ %> selected <% } %> >
+                                                    <%= risque.get('Nom') %>
+                                                <% }); %>
+                                                </optgroup>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Frequence" class="col-sm-4 label-xs">Fréquence&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control input-xs" id="Frequence" value="<%= ParamModel.get('CotationFrequence') %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="Gravite" class="col-sm-4 label-xs">Gravité&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control input-xs" id="Gravite" value="<%= ParamModel.get('CotationGravite') %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="CorpsHumainZone" class="col-sm-4 label-xs">Zone Corps Humain&nbsp;:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control input-xs" id="CorpsHumainZone">
+                                                <option value="0" <% if (ParamModel.get('CorpsHumainZoneId') == 0){ %> selected <% } %> ></option>
+                                                <% corpsHumainZoneCollection.each( function(corpsHumainZone){ %>
+                                                <option value="<%= corpsHumainZone.get('Id') %>"
+                                                    <% if (ParamModel.get('CorpsHumainZoneId') == corpsHumainZone.get('Id')){ %> selected <% } %> >
+                                                <%= corpsHumainZone.get('Nom') %>
+                                            </option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
 
 
-----------------------------------------------------
 
 
-<script type="text/template" id="TableRecherche">
+                            </div>
+                        <div role="tabpanel" class="tab-pane fade" id="Action" aria-labelledby="Action-tab">
 
 
-    <table id="table_id" class="display">
-        @*<thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Clôturée</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Row 1 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 3</td>
-                    <td>Row 1 Data 4</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
-                <tr>
-                    <td>Row 2 Data 1</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 1 Data 2</td>
-                    <td>Row 2 Data 2</td>
-                </tr>
-            </tbody>*@
-    </table>
+                            <div class="col-md-4" style="margin-top:5px;">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Début&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementDebut') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Fin&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementFin') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-4" style="margin-top:5px;">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Début&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' name="DateEvenementDebut" id="DateEvenementDebut" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementDebut') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label class="label-xs">Date&nbsp;Evnmt&nbsp;Fin&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='datetimepicker2'>
+                                            <input type='text' name="DateEvenementFin" id="DateEvenementFin" class="form-control input-xs" value="<%= ParamModel.get('DateEvenementFin') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-md-4" style="margin-top:5px;">
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            @*style="padding-right:0px;"*@
+                                            <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;&nbsp;</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="input-group input-group-xs">
+                                                <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ParamModel.get('PersonneConcerneeNom') %>">
+                                                @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
+                                                @*<span class="input-group-btn">
+                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal">
+                                <span class="glyphicon glyphicon-user">
+                            </button>
+                        </span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                                </div>
+                    </div>
 
 
 
 
 
-</script>
+
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-primary" style="border-color: #006573;">
+                <div class="panel-heading" style="background-color :#006573; color: white">RESULTATS&nbsp;:</div>
+                <div class="panel-body">
+
+                    <table id="Table" class="stripe hover">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+@*</script>*@
 
 <div id="TableRechercheDiv">
 </div>
@@ -79,60 +491,150 @@
     $(document).ready(function () {
 
 
+        @*var viewModel = new ViewModel();
 
+        viewModel.fetch({
+            async: false
+        });
 
+        viewModel.set({ 'rechercheNonConformiteParamModel': new RechercheNonConformiteParamModel(viewModel.get('RechercheNonConformiteParamModel')) });
 
+        viewModel.set({ 'siteCollection': new SiteCollection(viewModel.get('AllSite')) });
+        viewModel.set({ 'nonConformiteDomaineCollection': new SiteCollection(viewModel.get('AllNonConformiteDomaine')) });
+        viewModel.set({ 'nonConformiteOrigineCollection': new SiteCollection(viewModel.get('AllNonConformiteOrigine')) });
+        viewModel.set({ 'nonConformiteGraviteCollection': new SiteCollection(viewModel.get('AllNonConformiteGravite')) });
 
-
-
-
-
-
+        console.log("viewModel");
+        console.log(viewModel);
 
         var RechercheTableView = Backbone.View.extend({
-
             id: 'RechercheTableFicheSecurite',
             template: _.template($('#TableRecherche').html()),
             render: function () {
-                this.$el.html(this.template());   //this.model.toJSON()
+                this.$el.html(this.template(this.model.toJSON()));
 
-                $('#table_id').DataTable({
-                    "ajax": {
-                        "url": "/api/FicheSecurite",
-                        "dataSrc": "tableData"
-                    },
-                    "columns": [
-                        { "data": "Code" },
-                        { "data": "Nom" },
-                        { "data": "Déscription" },
-                        { "data": "Clôture" },
-                    ]
-
-                });
-
-
+                this.buildDataTable();
 
                 return this;
             },
             initialize: function () {
                 this.render();
+
             },
             events: {
+                "change #Site": "changeSite",
+                "change #Origine": "changeOrigine",
+                "change #Domaine": "changeDomaine",
+                "change #Gravite": "changeGravite",
+                "click #RechercheBouton": "recherche"
 
             },
+            buildDataTable: function () {
+                // /!\ Les fonctions d'ajout de 'datas' supplémentaires de DataTables ne fonctionnent pas très bien
+                // Donc à chaque recherche, nous réinstancions le tableau
+                // A chaque recherche, les paramètres de tri ne sont donc pas sauvegardés ... A voir si c'est grâve.
+
+                $("#Table").DataTable().destroy();
+
+                table = $("#Table").DataTable({
+                    "scrollY": "400px",
+                    "autoWidth": false,
+                    "serverSide": true,
+                    "processing": true,
+                    "filter": false,
+                    "ajax": {
+                        "url": "/api/ActionQSE",
+                        "data": {
+                            "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
+                            "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
+                            "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
+                            "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId')
+                        }
+
+                    },
+                    "columns": [
+                        {
+                            "mData": "NonConformiteId",
+                            "sTitle": "Id",
+                            "visible": false,
+                            "orderable": false,
+                        },
+                        {
+                            "mData": "Titre",
+                            "sTitle": "Titre",
+                            "orderable": false,
+                            "width": "10%"
+                        },
+                        {
+                            "mData": "ResponsableNom",
+                            "sTitle": "Responsable",
+                            "orderable": false,
+                            "width": "10%",
+                            "mRender": function (date, type, full) {
+                                return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
+                            }
+                        },
+                        {
+                            "mData": "Date",
+                            "sTitle": "Date Butoir",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
+                                return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                            },
+                            "orderable": false,
+                            "width": "10%"
+                        },
+
+                    ],
+                    "oLanguage": {
+                        "sUrl": "Scripts/datatables_lang_fr.js"
+                    }
+                });
+
+
+                table.$('tr.selected').removeClass('selected');
+
+                $('#Table tbody').on('click', 'tr', function () {
+
+                    var aData = $("#Table").dataTable().fnGetData(this);
+                    var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                    window.location.href = url.replace('__id__', aData.NonConformiteId);
+
+                });
 
 
 
+
+            },
+            recherche: function () {
+
+                this.buildDataTable();
+            },
+            changeSite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
+            },
+            changeOrigine: function () {
+                console.log(parseInt($('#Origine').val()));
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
+            },
+            changeDomaine: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteDomaineId': parseInt($('#Domaine').val()) });
+            },
+            changeGravite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteGraviteId': parseInt($('#Gravite').val()) });
+            }
         });
+
 
         var rechercheTableView = new RechercheTableView({
             el: $("#TableRechercheDiv"),
-
-        });
-
+            model: viewModel
+        });*@
 
 
     });
 
 
 </script>
+

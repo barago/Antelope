@@ -72,6 +72,30 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
 
         }
 
+        public RechercheFicheSecuriteViewModel(
+                                RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel,
+                                List<Service> AllService,
+                                List<Zone> AllZone,
+                                List<Lieu> AllLieu,
+                                List<PosteDeTravail> AllPosteDeTravail
+)
+        {
+
+            this.RechercheFicheSecuriteParamModel = RechercheFicheSecuriteParamModel;
+            this.AllZone = AllZone;
+            this.AllLieu = AllLieu;
+            this.AllPosteDeTravail = AllPosteDeTravail;
+            this.AllSite = db.Sites.ToList(); // new List<Site>();
+            this.AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
+            this.AllDanger = db.Dangers.ToList();
+            this.AllPlageHoraire = db.PlageHoraires.ToList();
+            this.AllCorpsHumainZone = db.CorpsHumainZones.ToList();
+            this.AllRisqueType = db.RisqueTypes.ToList();
+            this.AllRisque = db.Risques.ToList();
+            this.AllService = AllService;
+
+        }
+
     }
 
 

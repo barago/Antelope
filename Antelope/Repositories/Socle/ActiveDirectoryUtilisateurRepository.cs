@@ -71,7 +71,7 @@ namespace Antelope.Repositories.Socle
         {
             UserPrincipal user = GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
             DirectoryEntry de = user.GetUnderlyingObject() as DirectoryEntry;
-            return (String)de.Properties["company"].Value;
+            return (String)de.Properties["company"][0];
         }
 
         public Site GetCurrentUserSite()
@@ -82,7 +82,7 @@ namespace Antelope.Repositories.Socle
             var querySiteUser = from s in _db.Sites
                                 where s.Trigramme == SiteTrigramme
                                 select s;
-            return (Site)querySiteUser.SingleOrDefault();
+            return (Site)querySiteUser.FirstOrDefault();
 
         }
 

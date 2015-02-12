@@ -155,6 +155,7 @@
     <Folder Include="Content\pdfs\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
+    <Folder Include="Views\HSEStatistique\" />
     <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\NonConformite\" />
@@ -169,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\HSE\HSEParametrageController.cs" />
+    <Compile Include="Controllers\API\HSE\HSEStatistiqueController.cs" />
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
@@ -187,6 +189,7 @@
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\HSEParametrageController.cs" />
+    <Compile Include="Controllers\HSE\HSEStatistiqueController.cs" />
     <Compile Include="Controllers\HSE\PhantomController.cs" />
     <Compile Include="Controllers\IndicateurSI\DegreSatisfactionController.cs" />
     <Compile Include="Controllers\IndicateurSI\DelaiMoyenTicketController.cs" />
@@ -205,6 +208,8 @@
     <Compile Include="Controllers\Services\AnnuaireController.cs" />
     <Compile Include="Controllers\Services\ServicesHomeController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
+    <Compile Include="DTOs\HSE\FicheSecuriteStatistique.cs" />
+    <Compile Include="DTOs\Services\AnnuaireUtilisateurDTO.cs" />
     <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -249,6 +254,7 @@
     <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
     <Compile Include="Repositories\QSE\ActionQSERepository.cs" />
     <Compile Include="Repositories\QSE\NonConformiteRepository.cs" />
+    <Compile Include="Repositories\Services\AnnuaireRepository.cs" />
     <Compile Include="Repositories\Socle\ActiveDirectoryUtilisateurRepository.cs" />
     <Compile Include="Repositories\Socle\PersonneRepository.cs" />
     <Compile Include="Repositories\Test\IReviewRepository.cs" />
@@ -269,6 +275,7 @@
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformiteViewModel.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\RechercheNonConformiteParamModel.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\RechercheNonConformiteViewModel.cs" />
+    <Compile Include="ViewModels\Services\AnnuaireParamModel.cs" />
     <Compile Include="ViewModels\Socle\ActiveDirectory\ActiveDirectoryUtilisateurViewModel.cs" />
     <Compile Include="ViewModels\Socle\DataTables\DataTableViewModel.cs" />
   </ItemGroup>
@@ -391,6 +398,8 @@
     <Content Include="Scripts\Application\HSE\FicheSecurite\PlageHoraireModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RechercheFicheSecuriteParamModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RechercheFicheSecuriteViewModel.js" />
+    <Content Include="Scripts\Application\HSE\FicheSecurite\Recherche\ParamModel.js" />
+    <Content Include="Scripts\Application\HSE\FicheSecurite\Recherche\ViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\ResponsableModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\RisqueTypeModel.js" />
@@ -585,6 +594,8 @@
     <Content Include="Views\Services\ServicesHome\Index.cshtml" />
     <Content Include="Views\Services\Shared\_Layout.cshtml" />
     <Content Include="Views\Services\Annuaire\Index.cshtml" />
+    <Content Include="Views\HSE\HSEStatistique\Index.cshtml" />
+    <Content Include="Views\HSE\HSEStatistique\NbFSChrono.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

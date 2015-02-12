@@ -93,7 +93,7 @@ namespace Antelope
                 }
 
             }
-
+            
             Session["HSERole"] = HSERole;
             // Dans le futur, l'utilisateur pourra choisir un role inferieur à celui auquel il a droit
             // Il faut donc utiliser CurrentHSERole dans les pages de l'appli.

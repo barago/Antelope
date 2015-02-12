@@ -53,7 +53,7 @@ namespace Antelope.Controllers.HSE
             ViewBag.CurrentHSERole = Session["CurrentHSERole"];
             ViewBag.CurrentGuid = Session["CurrentGuid"];
 
-            return View("~/Views/HSE/FicheSecurite/Index.cshtml", ficheSecurites.ToPagedList(page, pageSize));
+            return View("~/Views/HSE/FicheSecurite/Index2.cshtml", ficheSecurites.ToPagedList(page, pageSize));
         }
 
         //[Authorize(Roles = "RFC-U-Informatique_ResponsableApplications")]

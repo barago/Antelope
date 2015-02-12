@@ -99,6 +99,69 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, RechercheFicheSecuriteViewModel);
         }
 
+
+        // GET: api/RechercheNonConformite
+        public HttpResponseMessage Get2()
+        {
+
+            _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
+            _ficheSecuriteRepository = new FicheSecuriteRepository();
+
+            UserPrincipal user = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUser(System.Web.HttpContext.Current.User.Identity.Name.Split('\\')[1]);
+
+            Site SiteUser = _activeDirectoryUtilisateurRepository.GetCurrentUserSite();
+
+            // TODO ZONEREPOSITORY
+            var queryZone = from a in db.Zones
+                            where a.SiteId == SiteUser.SiteID
+                            select a;
+            List<Zone> AllZone = queryZone.ToList();
+
+            // TODO LIEUREPOSITORY
+            List<Lieu> AllLieu = new List<Lieu>();
+
+            // TODO POSTEDETRAVAILREPOSITORY
+            List<PosteDeTravail> AllPosteDeTravail = new List<PosteDeTravail>();
+
+            // TODO SERVICEREPOSITORY
+            var queryService = from a in db.Services
+                               where a.SiteId == SiteUser.SiteID
+                               select a;
+            List<Service> AllService = queryService.ToList();
+
+            RechercheFicheSecuriteParamModel RechercheFicheSecuriteParamModel = new RechercheFicheSecuriteParamModel()
+            {
+                SiteId = (SiteUser == null) ? 0 : SiteUser.SiteID,
+                ZoneId = 0,
+                LieuId = 0,
+                FicheSecuriteTypeId = 0,
+                Code = "",
+                Age = "",
+                PosteDeTravailId = 0,
+                ServiceId = 0,
+                DateEvenementDebut = new DateTime(2014, 01, 01),
+                DateEvenementFin = new DateTime(2020, 12, 31),
+                PersonneConcerneeNom = "",
+                ResponsableNom = user.Surname,
+                ResponsableGuid = user.Guid,
+                CotationFrequence = null,
+                CotationGravite = null,
+                RisqueId = 0,
+                DangerId = 0,
+                CorpsHumainZoneId = 0,
+                PlageHoraireId = 0,
+                Page = 1,
+                PageSize = 12
+            };
+
+            RechercheFicheSecuriteViewModel RechercheNonConformiteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, AllService, AllZone, AllLieu, AllPosteDeTravail);
+            
+            return Request.CreateResponse(HttpStatusCode.OK, RechercheNonConformiteViewModel);
+
+        }
+
+
+
         // GET: api/RechercheFicheSecurite/5
         public string Get(int id)
         {

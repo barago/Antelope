@@ -191,6 +191,8 @@
         viewModel.set({ 'nonConformiteOrigineCollection': new SiteCollection(viewModel.get('AllNonConformiteOrigine')) });
         viewModel.set({ 'nonConformiteGraviteCollection': new SiteCollection(viewModel.get('AllNonConformiteGravite')) });
 
+        console.log("viewModel");
+        console.log(viewModel);
 
         var RechercheTableView = Backbone.View.extend({
             id: 'RechercheTableFicheSecurite',

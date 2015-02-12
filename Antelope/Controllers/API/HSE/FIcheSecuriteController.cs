@@ -156,22 +156,24 @@ namespace Antelope.Controllers.API.HSE
 
             FicheSecurite.CompteurAnnuelSite = 1;
 
-            var QueryLastFicheSecuriteForSite = from f in db.FicheSecurites
+            var QueryLastFicheSecuriteForSiteAnnee = from f in db.FicheSecurites
                                          where f.SiteId == FicheSecurite.SiteId
+                                         && f.DateEvenement.Year == FicheSecurite.DateEvenement.Year
                                          orderby f.CompteurAnnuelSite descending
                                          select f;
 
-            FicheSecurite LastFicheSecuriteForSite = QueryLastFicheSecuriteForSite.FirstOrDefault();
+            FicheSecurite LastFicheSecuriteForSiteAnnee = QueryLastFicheSecuriteForSiteAnnee.FirstOrDefault();
 
-            if(LastFicheSecuriteForSite != null){
-                if (LastFicheSecuriteForSite.DateCreation.Year == FicheSecurite.DateCreation.Year)
+            if (LastFicheSecuriteForSiteAnnee != null)
+            {
+                if (LastFicheSecuriteForSiteAnnee.DateEvenement.Year == FicheSecurite.DateEvenement.Year)
                 {
-                    FicheSecurite.CompteurAnnuelSite = LastFicheSecuriteForSite.CompteurAnnuelSite + 1;
+                    FicheSecurite.CompteurAnnuelSite = LastFicheSecuriteForSiteAnnee.CompteurAnnuelSite + 1;
                 }
             }
 
             Site site = db.Sites.First(s => s.SiteID == FicheSecurite.SiteId);
-            FicheSecurite.Code += site.Trigramme + "-" + FicheSecurite.DateCreation.Year + "-" + FicheSecurite.CompteurAnnuelSite;
+            FicheSecurite.Code += site.Trigramme + "-" + FicheSecurite.DateEvenement.Year + "-" + FicheSecurite.CompteurAnnuelSite;
 
             FicheSecurite.Responsable = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
                 FicheSecurite.Responsable.Nom, FicheSecurite.Responsable.Prenom, FicheSecurite.ResponsableId, db

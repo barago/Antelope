@@ -57,7 +57,7 @@ namespace Antelope.Controllers.API.QSE
 
                 nonConformite = new NonConformite()
                 {
-                   SiteId = SiteUser.SiteID
+                    SiteId = (SiteUser == null) ? 0 : SiteUser.SiteID
                 };
 
 
@@ -119,23 +119,24 @@ namespace Antelope.Controllers.API.QSE
 
             nonConformite.CompteurAnnuelSite = 1;
 
-            var QueryLastNonConformiteForSite = from n in db.NonConformites
+            var QueryLastNonConformiteForSiteAnnee = from n in db.NonConformites
                                                 where n.SiteId == nonConformite.SiteId
+                                                && n.Date.Year == nonConformite.Date.Year
                                                 orderby n.CompteurAnnuelSite descending
                                                 select n;
 
-            NonConformite LastNonConformiteForSite = QueryLastNonConformiteForSite.FirstOrDefault();
+            NonConformite LastNonConformiteForSiteAnnee = QueryLastNonConformiteForSiteAnnee.FirstOrDefault();
 
-            if (LastNonConformiteForSite != null)
+            if (LastNonConformiteForSiteAnnee != null)
             {
-                if (LastNonConformiteForSite.DateCreation.Year == nonConformite.DateCreation.Year)
+                if (LastNonConformiteForSiteAnnee.Date.Year == nonConformite.Date.Year)
                 {
-                    nonConformite.CompteurAnnuelSite = LastNonConformiteForSite.CompteurAnnuelSite + 1;
+                    nonConformite.CompteurAnnuelSite = LastNonConformiteForSiteAnnee.CompteurAnnuelSite + 1;
                 }
             }
 
             Site site = db.Sites.First(s => s.SiteID == nonConformite.SiteId);
-            nonConformite.Code += site.Trigramme + "-" + nonConformite.DateCreation.Year + "-" + nonConformite.CompteurAnnuelSite;
+            nonConformite.Code += site.Trigramme + "-" + nonConformite.Date.Year + "-" + nonConformite.CompteurAnnuelSite;
 
             db.NonConformites.Add(nonConformite);
 
