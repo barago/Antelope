@@ -95,3 +95,35 @@ input[type="checkbox"].input-validation-error {
     cursor: pointer;
 }
 
+.limited{
+    white-space: nowrap;
+    width: 100%;                   
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* don't show the x for text inputs */
+::-ms-clear {
+    width : 0;
+    height: 0;
+}
+
+/* don't show the eye for password inputs */
+::-ms-reveal {
+    width : 0;
+    height: 0;
+}
+
+.StatistiquesPyramideTable th{
+    padding: 15px;
+}
+
+.ui-tooltip { 
+    background: #ECED89;  
+    color: black;
+    max-width: 600px;
+    width: 600px;
+    border-style: dashed;
+    border-width: 1px;
+    padding:10px;
+}

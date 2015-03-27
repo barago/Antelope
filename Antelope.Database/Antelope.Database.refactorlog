@@ -7,4 +7,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="EmailValidationRejetPlanActionFS" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="22ac68dc-3fab-4188-adbc-333b2d684c40" ChangeDateTime="02/17/2015 10:45:44">
+    <Property Name="ElementName" Value="[dbo].[ImportNonConformite].[NonConformiteDomaine]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImportNonConformite]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NonConformiteDomaineId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e58f1843-5282-4b0e-ba3a-5dbe83059731" ChangeDateTime="02/17/2015 10:45:57">
+    <Property Name="ElementName" Value="[dbo].[ImportNonConformite].[Non]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImportNonConformite]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NonConformiteGraviteId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="556f68c9-8231-4210-b827-4b2bd51d41ca" ChangeDateTime="02/17/2015 10:46:24">
+    <Property Name="ElementName" Value="[dbo].[ImportNonConformite].[Site]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImportNonConformite]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SiteId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2b5f44ad-4f91-4026-8e85-af097c1a9a2f" ChangeDateTime="02/17/2015 14:02:02">
+    <Property Name="ElementName" Value="[dbo].[ImportActions].[DateButoireIntiale]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImportActions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateButoireInitiale" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7752373d-8520-429d-9adb-b90680a48eb9" ChangeDateTime="02/18/2015 13:26:48">
+    <Property Name="ElementName" Value="[dbo].[ImportNonConformites].[OldId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ImportNonConformites]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ImportId" />
+  </Operation>
 </Operations>

@@ -30,5 +30,15 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public int Page { get; set; }
         public int PageSize { get; set; }
         public int RowCount { get; set; }
+        public Boolean IsNouvelleFiche { get; set; }
+        public Boolean IsPlanActionValide { get; set; }
+        public Boolean IsPlanActionAttente { get; set; }
+        public Boolean IsPlanActionRejete { get; set; }
+        public Boolean IsPlanActionCloture { get; set; }
+        public DateTime? DateButoirDebut { get; set; }
+        public DateTime? DateButoirFin { get; set; }
+        public DateTime? DateClotureDebut { get; set; }
+        public DateTime? DateClotureFin { get; set; }
+        public String ResponsableNomAction { get; set; }
     }
 }

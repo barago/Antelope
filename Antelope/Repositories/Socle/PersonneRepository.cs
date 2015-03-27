@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MMLib.Extensions;
 
 namespace Antelope.Repositories.Socle
 {
@@ -29,7 +30,7 @@ namespace Antelope.Repositories.Socle
                                 where p.Nom == Nom
                                 && p.Prenom == Prenom
                                 select p;
-            Personne personne = queryPersonne.SingleOrDefault();
+            Personne personne = queryPersonne.FirstOrDefault();
             return personne;
         }
 

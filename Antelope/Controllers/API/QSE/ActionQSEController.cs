@@ -105,7 +105,7 @@ namespace Antelope.Controllers.API.QSE
 
                     db.SaveChanges();
 
-                    if (currentAction.NonConformiteId == 0 && currentAction.NonConformiteId == null)
+                    if (currentAction.CauseQSEId != 0 && currentAction.CauseQSEId != null)
                     {
                         _ficheSecuriteServices = new FicheSecuriteServices();
                         _ficheSecuriteServices.FicheSecuriteOpenOrClose(currentAction);

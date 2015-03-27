@@ -1,6 +1,6 @@
-﻿var RechercheFicheSecuriteParamModel = Backbone.Model.extend({
+﻿var ParamModel = Backbone.Model.extend({
 });
 
-var RechercheFicheSecuriteParamCollection = Backbone.Collection.extend({
-    model: RechercheFicheSecuriteParamModel
+var ParamModelCollection = Backbone.Collection.extend({
+    model: ParamModel
 });

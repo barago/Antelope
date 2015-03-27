@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Binbin.Linq.PredicateBuilder">
+      <HintPath>..\packages\Binbin.Linq.PredicateBuilder.1.0\lib\net40\Binbin.Linq.PredicateBuilder.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
@@ -48,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidationNA">
+      <HintPath>..\packages\FluentValidationNA.1.2.16\lib\net40\FluentValidationNA.dll</HintPath>
     </Reference>
     <Reference Include="iTextSharp">
       <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
@@ -59,6 +65,12 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MMLib.Core">
+      <HintPath>..\packages\MMLib.Extensions.1.0.10.13\lib\MMLib.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MMLib.Extensions">
+      <HintPath>..\packages\MMLib.Extensions.1.0.10.13\lib\MMLib.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\MySql.Data.dll</HintPath>
@@ -79,6 +91,9 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.Library.1.1.13\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -174,6 +189,7 @@
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
+    <Compile Include="Controllers\API\HSE\RechercheActionController.cs" />
     <Compile Include="Controllers\API\HSE\RechercheFicheSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\ServiceController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
@@ -208,6 +224,7 @@
     <Compile Include="Controllers\Services\AnnuaireController.cs" />
     <Compile Include="Controllers\Services\ServicesHomeController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
+    <Compile Include="DTOs\HSE\FicheSecuriteActionRecherche.cs" />
     <Compile Include="DTOs\HSE\FicheSecuriteStatistique.cs" />
     <Compile Include="DTOs\Services\AnnuaireUtilisateurDTO.cs" />
     <Compile Include="DTOs\Socle\ActiveDirectoryUtilisateurDTO.cs" />
@@ -271,6 +288,7 @@
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\StatistiquePyramideParamModel.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformitePaginatedList.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\NonConformiteViewModel.cs" />
     <Compile Include="ViewModels\QSE\NonConformiteViewModels\RechercheNonConformiteParamModel.cs" />
@@ -303,6 +321,8 @@
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody4.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody6.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody_Red.jpg" />
+    <Content Include="Content\images\HSE\FicheSecurite\pyramid.jpg" />
+    <Content Include="Content\images\HSE\FicheSecurite\pyramid2.jpg" />
     <Content Include="Content\images\HSE\Home\Environment_icon2.jpg" />
     <Content Include="Content\images\HSE\Home\Head Protection icon2.jpg" />
     <Content Include="Content\images\HSE\Home\PICTO_environnement.png" />
@@ -596,6 +616,7 @@
     <Content Include="Views\Services\Annuaire\Index.cshtml" />
     <Content Include="Views\HSE\HSEStatistique\Index.cshtml" />
     <Content Include="Views\HSE\HSEStatistique\NbFSChrono.cshtml" />
+    <Content Include="Views\HSE\HSEStatistique\Pyramide.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

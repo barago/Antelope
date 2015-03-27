@@ -86,6 +86,8 @@
     <Compile Include="FicheSecuriteType.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImportAction.cs" />
+    <Compile Include="ImportNonConformite.cs" />
     <Compile Include="Intervention.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

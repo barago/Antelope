@@ -4,7 +4,29 @@
     Layout = "~/Views/HSE/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>c
+<h2>
+    <img alt="" width="32" height="32" src="/Content/images/IndicateurSI/histogramme.png">
+    Tableaux de statistiques
+</h2>
 
-@Html.ActionLink("Nb de FS", "NbFSChrono", "HSEStatistique", null, new { @class = "btn-lg btn-default" })
 
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 text-center">
+       @Html.ActionLink("Nombre de Fiches Sécurité", "NbFSChrono", "HSEStatistique", null, new { @class = "btn-lg btn-default" })
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 text-center">
+       @Html.ActionLink("Pyramide des risques", "Pyramide", "HSEStatistique", null, new { @class = "btn-lg btn-default" })
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>

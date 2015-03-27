@@ -1,5 +1,6 @@
 ﻿using Antelope.Domain.Models;
 using Antelope.Infrastructure.EntityFramework;
+using Antelope.Services.HSE;
 using Antelope.Services.Socle.DataBaseHydratation;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,21 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, parametrageHSE);
         }
 
+        [AcceptVerbs("POST")]
+        public HttpResponseMessage DebugFicheCloturees()
+        {
+            
+            List<ActionQSE> allActionQSE = context.ActionQSEs.Where(a => a.CauseQSEId != null).ToList();
+
+
+            foreach (ActionQSE action in allActionQSE)
+            {
+                FicheSecuriteServices _ficheSecuriteServices = new FicheSecuriteServices();
+                _ficheSecuriteServices.FicheSecuriteOpenOrClose(action);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
 
         [AcceptVerbs("POST")]
         public HttpResponseMessage AlimenteBaseTest()

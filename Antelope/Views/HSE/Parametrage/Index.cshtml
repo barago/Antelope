@@ -355,6 +355,13 @@
                     </button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <button id="DebugFicheCloturees" type="submit" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-search"></span> Clôture les plans d'action clôturés
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <% } %>
@@ -418,6 +425,7 @@
                 this.render();
             },
             events: {
+                "click #DebugFicheCloturees": "debugFicheCloturees",
                 "click #AlimentationBaseTest": "alimentationBaseTest",
                 "click #AlimentationBaseAcceptance": "alimentationBaseAcceptance",
                 "click #SaveParametrageHSEEmail": "saveParametrageHSEEmail",
@@ -433,13 +441,20 @@
                 "click .DeleteRole": "deleteRole"
 
             },
+            debugFicheCloturees: function(){
+                var r = confirm("Debug des plans d'action clôturés ?");
+                if (r == true) {
+                    this.model.url = '/api/action/HSEParametrage/DebugFicheCloturees';
+                    this.model.save(null, { async: false, wait: true });
+                } 
+
+            },
             alimentationBaseTest: function () {
                 var r = confirm("Vous allez alimenter la BDD EN COURS (Test, Acceptance ou PROD, avec le jeu de données TEST original, Si vous ne savez pas ce que vous faites, ANNULEZ, Merci.");
                 if (r == true) {
                     this.model.url = '/api/action/HSEParametrage/AlimenteBaseTest';
                     this.model.save(null, { async: false, wait: true });
-                } else {
-                }
+                } 
 
             },
             alimentationBaseAcceptance: function () {
@@ -447,8 +462,7 @@
                 if (r == true) {
                     this.model.url = '/api/action/HSEParametrage/AlimenteBaseAcceptance';
                     this.model.save(null, { async: false, wait: true });
-                } else {
-                }
+                } 
             },
             saveParametrageHSEEmail: function () {
                 this.model.url = '/api/action/HSEParametrage/SaveParametrageHSEEmail';

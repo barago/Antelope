@@ -12,6 +12,9 @@ namespace Antelope.DTOs.HSE
         public DateTime DateEvnmt { get; set; }
         public String Site { get; set; }
         public Int32 TimeStamp { get; set; }
+        public String FicheSecuriteType{ get; set; }
+        public Int32? ZoneId { get; set; }
+        public Int32? SiteId { get; set; }
 
         public virtual ICollection<CauseQSE> CauseQSEs { get; set; }
     }

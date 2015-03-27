@@ -16,12 +16,12 @@ namespace Antelope.Controllers.HSE
 
         public ActionResult NbFSChrono()
         {
-            
-            
-            
             return View("~/Views/HSE/HSEStatistique/NbFSChrono.cshtml");
         }
-
+        public ActionResult Pyramide()
+        {
+            return View("~/Views/HSE/HSEStatistique/Pyramide.cshtml");
+        }
 
 
     }

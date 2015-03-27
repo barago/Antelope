@@ -88,7 +88,12 @@ namespace Antelope.Controllers.API.HSE
                 CorpsHumainZoneId = 0,
                 PlageHoraireId = 0,
                 Page = 1,
-                PageSize = 12
+                PageSize = 12,
+                IsNouvelleFiche = true ,
+                IsPlanActionValide = true,
+                IsPlanActionAttente = true,
+                IsPlanActionRejete = true,
+                IsPlanActionCloture = true
 
             };
 
@@ -100,7 +105,7 @@ namespace Antelope.Controllers.API.HSE
         }
 
 
-        // GET: api/RechercheNonConformite
+        //// GET: api/RechercheNonConformite
         public HttpResponseMessage Get2()
         {
 
@@ -139,8 +144,8 @@ namespace Antelope.Controllers.API.HSE
                 Age = "",
                 PosteDeTravailId = 0,
                 ServiceId = 0,
-                DateEvenementDebut = new DateTime(2014, 01, 01),
-                DateEvenementFin = new DateTime(2020, 12, 31),
+                DateEvenementDebut = new DateTime(DateTime.Now.Year, 1, 1),
+                DateEvenementFin = null,
                 PersonneConcerneeNom = "",
                 ResponsableNom = user.Surname,
                 ResponsableGuid = user.Guid,
@@ -151,11 +156,21 @@ namespace Antelope.Controllers.API.HSE
                 CorpsHumainZoneId = 0,
                 PlageHoraireId = 0,
                 Page = 1,
-                PageSize = 12
+                PageSize = 12,
+                IsNouvelleFiche = true,
+                IsPlanActionValide = true,
+                IsPlanActionAttente = true,
+                IsPlanActionRejete = true,
+                IsPlanActionCloture = true,
+                DateButoirDebut = null,
+                DateButoirFin = null,
+                DateClotureDebut = null,
+                DateClotureFin = null,
+                ResponsableNomAction = ""
             };
 
             RechercheFicheSecuriteViewModel RechercheNonConformiteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, AllService, AllZone, AllLieu, AllPosteDeTravail);
-            
+
             return Request.CreateResponse(HttpStatusCode.OK, RechercheNonConformiteViewModel);
 
         }

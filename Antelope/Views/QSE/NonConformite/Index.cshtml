@@ -230,12 +230,12 @@
                 "change #Origine": "changeOrigine",
                 "change #Domaine": "changeDomaine",
                 "change #Gravite": "changeGravite",
-                "click #RechercheBouton":"recherche"
+                "click #RechercheBouton": "recherche"
 
             },
             buildDataTable: function () {
                 // /!\ Les fonctions d'ajout de 'datas' supplémentaires de DataTables ne fonctionnent pas très bien
-                // Donc à chaque recherche, nous réinstancions le tableau 
+                // Donc à chaque recherche, nous réinstancions le tableau
                 // A chaque recherche, les paramètres de tri ne sont donc pas sauvegardés ... A voir si c'est grâve.
 
                 $("#Table").DataTable().destroy();
@@ -276,8 +276,8 @@
                             "orderable": false,
                             "width": "10%",
                             "mRender": function (date, type, full) {
-                                        return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
-                                    }
+                                return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
+                            }
                         },
                         {
                             "mData": "Date",
@@ -329,16 +329,18 @@
 
 
                 table.$('tr.selected').removeClass('selected');
-                
+
                 $('#Table tbody').on('click', 'tr', function () {
 
                     var aData = $("#Table").dataTable().fnGetData(this);
+                    console.log('aData');
+                    console.log(aData);
                     var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
                     window.location.href = url.replace('__id__', aData.NonConformiteId);
 
-                    // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page 
+                    // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page
                     // Ne marche pas car les tr sont selected après le Destray, alors que dans le DOM ils ne sont pas selected ...
-                    
+
                     @*if ($(this).hasClass('selected')) {
 
                         var aData = $("#Table").dataTable().fnGetData(this);
@@ -350,6 +352,18 @@
                         table.$('tr.selected').removeClass('selected');
                         $(this).addClass('selected');
                     }*@
+                });
+
+                $('#Table tbody').on('mousedown', 'tr', function (e) {
+                    e.preventDefault();
+                    if (e.button == 2 || e.button == 1) {
+                        var aData = $("#Table").dataTable().fnGetData(this);
+                        console.log('aData');
+                        console.log(aData);
+                        var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                        var realUrl = url.replace('__id__', aData.NonConformiteId)
+                        window.open(realUrl);
+                    }
                 });
 
 

@@ -21,6 +21,8 @@ using System.Web.Mvc;
 using System.Web;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using Antelope.ViewModels.Socle.DataTables;
+using Antelope.DTOs.HSE;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -46,8 +48,43 @@ namespace Antelope.Controllers.API.HSE
         // GET api/fichesecuriteapi
         public HttpResponseMessage Get()
         {
-            var ficheSecurites = _ficheSecuriteRepository.GetAll();
-            return Request.CreateResponse(HttpStatusCode.OK, ficheSecurites);
+            //var ficheSecurites = _ficheSecuriteRepository.GetAll();
+            //return Request.CreateResponse(HttpStatusCode.OK, ficheSecurites);
+
+            //----
+           // _ficheSecuriteRepository = new FicheSecuriteRepository();
+
+            Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
+            DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+            String ParameterRechercheType = DataTableParameters["rechercheType"];
+
+            DataTableViewModel<FicheSecurite> DataTableViewModelForFicheSecurite;
+            DataTableViewModel<FicheSecuriteActionRecherche> DataTableViewModelForAction;
+
+            if (ParameterRechercheType == "FICHESECURITE")
+            {
+                DataTableViewModelForFicheSecurite = _ficheSecuriteRepository.GetFromParams2(DataTableParameters);
+                return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModelForFicheSecurite);
+            }
+            if (ParameterRechercheType == "ACTION")
+            {
+                DataTableViewModelForAction = _ficheSecuriteRepository.GetFromParams3(DataTableParameters);
+                return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModelForAction);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            //DataTableViewModel.aaData = nonConformites;
+            //DataTableViewModel.iTotalRecords = 1;
+            //DataTableViewModel.iTotalDisplayRecords = 1;
+            //DataTableViewModel.sEcho = int.Parse(dataTableParameters["sEcho"]);
+
+            
+
+
         }
 
         // GET api/fichesecuriteapi/5
