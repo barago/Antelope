@@ -22,6 +22,10 @@ namespace Antelope.Controllers.HSE
         {
             return View("~/Views/HSE/HSEStatistique/Pyramide.cshtml");
         }
+        public ActionResult Detail()
+        {
+            return View("~/Views/HSE/HSEStatistique/Detail.cshtml");
+        }
 
 
     }

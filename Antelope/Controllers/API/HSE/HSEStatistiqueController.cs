@@ -26,7 +26,7 @@ namespace Antelope.Controllers.API.HSE
             var queryFicheSecurite = from f in db.FicheSecurites
                                      where f.DateEvenement >= DateDebut
                                      && f.DateEvenement <= DateFin
-                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom};
+                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom, Responsable = f.Responsable, FicheSecurtiteTypeID = f.FicheSecuriteTypeId, WorkFlowASEValidee = f.WorkFlowASEValidee };
 
             var AllFicheSecurite = queryFicheSecurite.ToList();
 
@@ -37,12 +37,14 @@ namespace Antelope.Controllers.API.HSE
 
             List<Site> AllSite = db.Sites.ToList();
             List<Zone> AllZone = db.Zones.ToList();
+            List<FicheSecuriteType> AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
 
             Dictionary<string, Object> Response = new Dictionary<string, Object>();
             Dictionary<string, Object> ParamModel = new Dictionary<string, Object>();
             Response.Add("AllFicheSecurite", AllFicheSecurite);
             Response.Add("AllSite", AllSite);
             Response.Add("AllZone", AllZone);
+            Response.Add("AllFicheSecuriteType", AllFicheSecuriteType);
             ParamModel.Add("DateDebut", DateDebut);
             ParamModel.Add("DateFin", DateFin);
             Response.Add("ParamModel", ParamModel);
@@ -66,7 +68,7 @@ namespace Antelope.Controllers.API.HSE
             var queryFicheSecurite = from f in db.FicheSecurites
                                      where f.DateEvenement >= DateDebut
                                      && f.DateEvenement <= DateFin
-                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom };
+                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom, Responsable = f.Responsable, FicheSecurtiteTypeID = f.FicheSecuriteTypeId };
 
             var AllFicheSecurite = queryFicheSecurite.ToList();
 

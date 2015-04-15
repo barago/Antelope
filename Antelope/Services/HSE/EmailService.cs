@@ -82,7 +82,7 @@ namespace Antelope.Services.HSE
                 "<div><span style='font-weight: bold;text-decoration: underline;'>" + db.FicheSecuriteTypes.Find(FicheSecurite.FicheSecuriteTypeId).Nom + "</span>" +
                 " de <span style='font-weight: bold;text-decoration: underline;'>" + FicheSecurite.PersonneConcernee.Prenom + " " + FicheSecurite.PersonneConcernee.Nom + "</span></div>" +
                 "<br/>" +
-                "<div style='font-weight: bold;text-decoration: underline;'>Déscription :</div>" +
+                "<div style='font-weight: bold;text-decoration: underline;'>Description :</div>" +
                 "<div>" + FicheSecurite.Description + "</div>" +
                 "<br/>" +
                 "<div style='font-weight: bold;text-decoration: underline;'>Action(s) immédiate(s) :</div>" +
@@ -99,7 +99,10 @@ namespace Antelope.Services.HSE
 
             to = addFicheSecuriteResponsableEmailToString(to, FicheSecurite);
 
-            SendEmail(from, subject, body, to);
+            if (to != "" && to != null)
+            {
+                SendEmail(from, subject, body, to);
+            }
         }
 
         public void SendEmailDiffusionPlanActionFicheSecurite(FicheSecurite ficheSecurite)
@@ -117,7 +120,10 @@ namespace Antelope.Services.HSE
             string subject = "Diffusion Plan d'action";
             string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être diffusé</H4> </br>";
 
-            SendEmail(from, subject, body, to);
+            if (to != "" && to != null)
+            {
+                SendEmail(from, subject, body, to);
+            }
 
         }
 
@@ -136,7 +142,10 @@ namespace Antelope.Services.HSE
             string subject = "Validation Plan d'action";
             string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être validé</H4> </br>";
 
-            SendEmail(from, subject, body, to);
+            if (to != "" && to != null)
+            {
+                SendEmail(from, subject, body, to);
+            }
 
         }
 
@@ -153,9 +162,12 @@ namespace Antelope.Services.HSE
 
             MailAddress from = new MailAddress("Sezar@refresco.fr");
             string subject = "Rejet Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause; 
+            string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause;
 
-            SendEmail(from, subject, body, to);
+            if (to != "" && to != null)
+            {
+                SendEmail(from, subject, body, to);
+            }
 
         }
 
@@ -204,11 +216,24 @@ namespace Antelope.Services.HSE
 
             for (int i = 0; i < allActionResponsable.Count(); i++)
             {
-                to += (to == "") ? "" : ",";
 
+                String toResponsable = "";
                 ResponsableActiveDirectoryUtilisateurDTO = _activeDirectoryUtilisateurRepository.GetActiveDirectoryUtilisateurByNomPrenom(allActionResponsable[i].Nom, allActionResponsable[i].Prenom);
 
-                to += ResponsableActiveDirectoryUtilisateurDTO.email;
+
+                if (ResponsableActiveDirectoryUtilisateurDTO != null)
+                {
+                    toResponsable = ResponsableActiveDirectoryUtilisateurDTO.email;
+                }
+
+                if (toResponsable != "" && toResponsable != null)
+                {
+                    if (to != "" && toResponsable != null)
+                    {
+                        to += ",";
+                    }
+                    to += toResponsable;
+                }
             }
 
             return to;

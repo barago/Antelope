@@ -15,6 +15,9 @@ namespace Antelope.DTOs.HSE
         public String FicheSecuriteType{ get; set; }
         public Int32? ZoneId { get; set; }
         public Int32? SiteId { get; set; }
+        public Personne Responsable { get; set; }
+        public Int32 FicheSecurtiteTypeID { get; set; }
+        public Boolean WorkFlowASEValidee { get; set; }
 
         public virtual ICollection<CauseQSE> CauseQSEs { get; set; }
     }

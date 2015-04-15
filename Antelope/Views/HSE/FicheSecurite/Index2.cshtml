@@ -49,13 +49,14 @@
                         </div>
                         <div class="col-md-5">
 
-                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                            <button id="RechercheActionBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-search"></span> Chercher les Actions
+                            </button>
+
+                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right" style="margin-right:10px">
                                 <span class="glyphicon glyphicon-search"></span> Chercher les Fiches Sécurité
                             </button>
 
-                            <button id="RechercheActionBouton" type="submit" class="btn btn-default btn-xs pull-right" style="margin-right:10px">
-                                <span class="glyphicon glyphicon-search"></span> Chercher les Actions
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -458,15 +459,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="IsNouvelleFiche" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;Nouvelle Fiche&nbsp;</span></label>
-                            <input type="checkbox" id="IsNouvelleFiche"<% if(paramModel.get('IsNouvelleFiche')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;
-                            <label for="IsPlanActionValide" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FFC000;height:10px;">&nbsp;Plan d'action validé&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionValide"<% if(paramModel.get('IsPlanActionValide')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsNouvelleFiche"<% if(paramModel.get('IsNouvelleFiche')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionAttente" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#BFBFBF;height:10px;">&nbsp;Plan d'action en attente de validation&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionAttente"<% if(paramModel.get('IsPlanActionAttente')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionAttente"<% if(paramModel.get('IsPlanActionAttente')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsPlanActionValide" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FFC000;height:10px;">&nbsp;Plan d'action validé&nbsp;</span></label>
+                            <input type="checkbox" id="IsPlanActionValide"<% if(paramModel.get('IsPlanActionValide')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionRejete" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FF0000;height:10px;">&nbsp;Plan d'action rejeté&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionRejete"<% if(paramModel.get('IsPlanActionRejete')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionRejete"<% if(paramModel.get('IsPlanActionRejete')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00B0F0;height:10px;">&nbsp;Plan d'action clôturé&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </div>
                     </div>
                 </div>
@@ -493,7 +494,7 @@
                             <% if(paramModel.get('typeRecherche')==="FICHESECURITE") { %> <span style="text-decoration:underline;font-weight:bold;">FICHES SECURITE</span> :  <% } %>
                             <% if(paramModel.get('typeRecherche')==="ACTION") { %> <span style="text-decoration:underline;font-weight:bold;">ACTIONS</span> :  <% } %>
                         </div>
-                        <div class="col-md-5 pull-right">Click Droit ou Milieu : Ouvrir dans une nouvelle fenêtre</div>
+                        @*<div class="col-md-5 pull-right">Click Droit ou Milieu : Ouvrir dans une nouvelle fenêtre</div>*@
                     </div>
                 </div>
                 <div class="panel-body" oncontextmenu="return false;">
@@ -560,6 +561,8 @@
 
     $(document).ready(function () {
 
+        var currentHSERole = "@ViewBag.CurrentHSERole";
+
         $(function () {
             $(document).tooltip({ show: 1500 });
         });
@@ -577,6 +580,8 @@
         viewModel.fetch({
             async: false
         });
+
+        viewModel.set({ 'currentHSERole': currentHSERole });
 
         viewModel.set({ 'paramModel': new ParamModel(viewModel.get('RechercheFicheSecuriteParamModel')) });
 
@@ -1006,8 +1011,15 @@
                                 //    }
                                 //}
 
-                                return '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;' +
-                                    '<a id="deleteFicheSecurite" data-id="' + full.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>'
+                                var links = '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;';
+                                //console.log(currentHSERole);
+                                if (@ViewBag.CurrentHSERole < 400) {
+
+                                    links = links + '<a id="deleteFicheSecurite" data-id="' + full.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>';
+                                }
+
+
+                                return links;
                             }
                         }
 
@@ -1024,7 +1036,7 @@
 
                     // !!! Triche >> Pour raison X, le click sur un élément la ligne ou un élément de celle-ci se joue deux fois
                     // On n'active donc le code qu'une fois sur deux (Ce n'est pas une question de propagation Bubbling ... )
-                    var a = 0;
+                    var i = 0;
                     i++
                     if (i % 2 > 0) {
 
@@ -1045,9 +1057,15 @@
                                     table.ajax.reload(null, false);
                                 }
                             } else {
+                                // CODE POUR OUVRIR DANS MEME FENETRE NE PAS SUPPRIMER 
+                                @*var aData = $("#Table").dataTable().fnGetData(this);
+                                var url = '@Url.Action("Edit", "FicheSecurite", new { id = "__id__" })';
+                                window.location.href = url.replace('__id__', aData.FicheSecuriteID);*@
+
                                 var aData = $("#Table").dataTable().fnGetData(this);
                                 var url = '@Url.Action("Edit", "FicheSecurite", new { id = "__id__" })';
-                                window.location.href = url.replace('__id__', aData.FicheSecuriteID);
+                                var realUrl = url.replace('__id__', aData.FicheSecuriteID)
+                                window.open(realUrl, "_blank");
                             }
                         }
 
@@ -1270,8 +1288,15 @@
                                 //    }
                                 //}
 
-                                return '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;' +
-                                    '<a id="deleteFicheSecurite" data-id="' + full.FicheSecurite.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>'
+                                var links = '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;';
+                                //console.log(currentHSERole);
+                                if (@ViewBag.CurrentHSERole < 400) {
+
+                                    links = links + '<a id="deleteFicheSecurite" data-id="' + full.FicheSecurite.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>';
+                                }
+
+
+                                return links;
                             }
                         }
 

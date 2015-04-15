@@ -1,0 +1,761 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/Scripts/underscore.js"></script>
+<script type="text/javascript" src="/Scripts/backbone.js"></script>
+
+<script type="text/javascript" src="~/Scripts/jquery.scrollTableBody-1.0.0.js"></script>
+
+<script type="text/javascript" src="/Scripts/HighStock/highstock.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.ddslick.min.js"></script>
+
+<script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/FicheSecuriteTypeModel.js"></script>
+
+<script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/template" id="StatistiqueTemplate">
+
+    <div class="row" >
+
+        @*<div class="col-md-2">
+            <img src="../../Content/images/HSE/FicheSecurite/stats.jpg" alt="..." style="max-width:100%;">
+        </div>*@
+        <div class="col-md-2">
+
+            <div class='input-group date' id='DateDebut'>
+                <input type='text' name="DateDebut" id="DateDebutInput" class="form-control input-xs" value="<%= paramModel.get('dateDebutJavascript') %>" />
+                <div class="input-group-addon input-xs">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
+
+            <div class='input-group date' id='DateFin'>
+                <input type='text' name="DateFin" id="DateFinInput" class="form-control input-xs" value="<%= paramModel.get('dateFinJavascript') %>" />
+                <div class="input-group-addon input-xs">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
+
+            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                <span class="glyphicon glyphicon-search"></span> Chercher
+            </button>
+        </div>
+
+        <div class="col-md-2">
+            <select id="Site" class="form-control input-xs">
+                <option value="0" <% if (siteId == 0){ %> selected <% } %> ></option>
+                <% siteCollection.each( function(site){ %>
+                <option value="<%= site.get('SiteID') %>"
+                    <% if (site.get('SiteID') == siteId){ %> selected <% } %>
+                    >
+                <%= site.get('Trigramme') %>
+            </option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <select id="Type" class="form-control input-xs">
+                <option value="RESPONSABLE"  <% if (type === 'RESPONSABLE'){ %> selected <%}%> >Responsable</option>
+                <option value="ZONE"<% if (type === 'ZONE'){ %> selected <%}%>> Zone </option>
+                <option value="TYPE"<% if (type === 'TYPE'){ %> selected <%}%>> Type </option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top:0px;padding-top:0px;">
+
+        @*<div class="col-md-12">*@
+
+            <table id="table" class="StatistiquesPyramideTable"  width:100%;">
+                <thead style="border-bottom: 3px solid black;font-size:x-small;">
+                    <tr>
+
+                        <th class="rotate45" >
+                            <div>
+                                <span>
+                                    <%= type  %>
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#8BAC27;">
+                                    Nb FS émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#D4E898;">
+                                    Nb FS dont PA est validé
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#8BAC27;">
+                                    Nb FS clôturées
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#D4E898;">
+                                    Nb Actions
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#8BAC27;">
+                                    Nb Actions clôturées
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#D4E898;">
+                                    Nb Actions clôturées à temps
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#8BAC27;">
+                                    Nb Actions retard 1 mois
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#D4E898;">
+                                    Nb Actions retard 3 mois
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#8BAC27;">
+                                    Nb Actions en retard
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FD9910;">
+                                    % FS clôturées/FS émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FCD194;">
+                                    % FS PA validé/FS émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FD9910;">
+                                    % Actions clôturées/Actions émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FCD194;">
+                                    % Actions clôturée à temps/Actions émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FD9910;">
+                                    % Actions retard 1M/Actions restantes
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FCD194;">
+                                    % Actions retard 3M/Actions restantes
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45">
+                            <div>
+                                <span style="background-color:#FD9910;">
+                                    % Actions retard/Actions restantes
+                                </span>
+                            </div>
+                        </th>
+
+
+                    </tr>
+
+                </thead>
+                <tbody style="width:1000px;">
+
+                    <% typeOccurenceCollection.each( function(typeOccurence){ %>
+
+                    <tr style="border: 1px solid black; height:15px;">
+                        <th>
+                            <%= typeOccurence.get('nom') %>
+                        </th>
+                        <th style="background-color:#8BAC27;">
+                            <%= typeOccurence.get('nbFSEmises') %>
+                        </th>
+                        <th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbFSPAValidees') %>
+                        </th>
+                        <th style="background-color:#8BAC27;">
+                            <%= typeOccurence.get('nbFSCloturees') %>
+                        </th>
+                        <th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbAction') %>
+                        </th>
+                        <th style="background-color:#8BAC27;">
+                            <%= typeOccurence.get('nbActionCloturees') %>
+                        </th>
+                        <th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbActionClotureesATemps') %>
+                        </th>
+                        <th style="background-color:#8BAC27;">
+                            <%= typeOccurence.get('nbActionDepassees1Mois') %>
+                        </th>
+                        <th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbActionDepassees3Mois') %>
+                        </th>
+                        <th style="background-color:#8BAC27;">
+                            <%= typeOccurence.get('nbActionEnRetard') %>
+                        </th>
+                        <th style="background-color:#FD9910;">
+                            <%= typeOccurence.get('prctgFSCloturees') %>
+                        </th>
+                        <th style="background-color:#FCD194;">
+                            <%= typeOccurence.get('prctgFSPlanActionValide') %>
+                        </th>
+                        <th style="background-color:#FD9910;">
+                            <%= typeOccurence.get('prctgActionCloturees') %>
+                        </th>
+                        <th style="background-color:#FCD194;">
+                            <%= typeOccurence.get('prctgActionClotureesATemps') %>
+                        </th>
+                        <th style="background-color:#FD9910;">
+                            <%= typeOccurence.get('prctgActionDepassees1Mois') %>
+                        </th>
+                        <th style="background-color:#FCD194;">
+                            <%= typeOccurence.get('prctgActionDepassees3Mois') %>
+                        </th>
+                        <th style="background-color:#FD9910;">
+                            <%= typeOccurence.get('prctgActionEnRetard') %>
+                        </th>
+
+                    </tr>
+
+                    <% }) %>
+
+                </tbody>
+            </table>
+
+        @*</div>*@
+    </div>
+
+</script>
+
+<div id="PrincipalDiv">
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    function dateFormatJS(date) {
+        var dateFormated = '';
+        if (date != null) {
+            dateFormated = date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+        }
+        return dateFormated;
+    };
+
+    ParamModel = Backbone.Model.extend({});
+    FicheSecuriteModel = Backbone.Model.extend({});
+    FicheSecuriteCollection = Backbone.Collection.extend({ model: FicheSecuriteModel });
+
+    ResponseModel = Backbone.Model.extend({
+        url: '/api/HSEStatistique/',
+        id: 0
+    });
+
+    responseModel = new ResponseModel();
+
+    responseModel.fetch({ async: false, wait: true/*, url: 'api/action/GetHSEStatistique' */ });
+
+    responseModel.set({ "paramModel": new ParamModel(responseModel.get('ParamModel')) });
+
+    responseModel.get('paramModel').set({ 'dateDebutJavascript': dateFormatJS(responseModel.get('ParamModel').DateDebut) });
+    responseModel.get('paramModel').set({ 'dateFinJavascript': dateFormatJS(responseModel.get('ParamModel').DateFin) });
+
+    responseModel.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(responseModel.get('AllFicheSecurite')) });
+    responseModel.set({ 'siteCollection': new SiteCollection(responseModel.get('AllSite')) });
+    responseModel.set({ 'zoneCollection': new ZoneCollection(responseModel.get('AllZone')) });
+    responseModel.set({ 'typeCollection': new FicheSecuriteTypeCollection(responseModel.get('AllFicheSecuriteType')) });
+    responseModel.set({ 'siteId': 0 });
+
+    responseModel.get('ficheSecuriteCollection').forEach(function (FS) {
+        FS.TimeStamp *= 1000;
+    });
+
+    TypeOccurenceModel = Backbone.Model.extend({});
+    TypeOccurenceCollection = Backbone.Collection.extend({
+        model: TypeOccurenceModel
+    });
+
+    responseModel.set({ 'type': 'RESPONSABLE' });
+    responseModel.set({ 'typeOccurenceCollection': new TypeOccurenceCollection });
+    responseModel.set({ 'typeOccurenceCollectionForResponsable': new TypeOccurenceCollection });
+    responseModel.set({ 'typeOccurenceCollectionForZone': new TypeOccurenceCollection });
+    responseModel.set({ 'typeOccurenceCollectionForType': new TypeOccurenceCollection });
+
+    calculTableauGeneral(responseModel);
+
+
+    StatistiqueView = Backbone.View.extend({
+        id: 'StatistiqueDiv',
+        template: _.template($('#StatistiqueTemplate').html()),
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+
+            //this.buildChart();
+
+            $('#DateDebut').datetimepicker({
+                pickTime: false,
+                language: 'fr'
+            });
+            $('#DateFin').datetimepicker({
+                pickTime: false,
+                language: 'fr'
+            });
+
+            //On écoute les changements sur le DatePicker pour les passer à la fonction Backbone
+            $('#DateDebut').on("dp.change", $.proxy(this.changeDateDebut, this));
+            // TODO : Mettre des dp.hide sur tous les DateTimePickers ! >> Si on ne selectionne rien, il choisit date et heure du jour.
+            $('#DateDebut').on("dp.hide", $.proxy(this.changeDateDebut, this));
+            $('#DateFin').on("dp.change", $.proxy(this.changeDateFin, this));
+            $('#DateFin').on("dp.hide", $.proxy(this.changeDateFin, this));
+
+            $('#table').scrollTableBody({ rowsToDisplay:9 });
+
+            return this;
+        },
+        initialize: function () {
+
+            //// Change the selector if needed
+            //var $table = $('table.scroll'),
+            //    $bodyCells = $table.find('tbody tr:first').children(),
+            //    colWidth;
+
+            //// Adjust the width of thead cells when window resizes
+            //$(window).resize(function () {
+            //    // Get the tbody columns width array
+            //    colWidth = $bodyCells.map(function () {
+            //        return $(this).width();
+            //    }).get();
+
+            //    // Set the width of thead columns
+            //    $table.find('thead tr').children().each(function (i, v) {
+            //        $(v).width(colWidth[i]);
+            //    });
+            //}).resize(); // Trigger resize handler
+
+            
+
+            this.render();
+        },
+        events: {
+            "change #Site": "changeSite",
+            "change #Type": "changeType",
+            "keyup #DateDebutInput": "changeDateDebut",
+            "keyup #DateFinInput": "changeDateFin",
+            "click #RechercheBouton": "recherche"
+
+        },
+        recherche: function () {
+            this.model.get('ficheSecuriteCollection').fetch({
+                async: false, wait: true,
+                url: '/api/action/HSEStatistique/statistiqueFiltered/',
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(this.model.get('paramModel')),
+            });
+
+            calculTableauGeneral(this.model);
+
+            this.render();
+
+        },
+        changeSite: function () {
+            this.model.set({ 'siteId': parseInt($('#Site').val()) });
+
+            calculTableauGeneral(this.model);
+
+            this.render();
+
+        },
+        changeType: function () {
+            this.model.set({ 'type': $('#Type').val() });
+
+            calculTableauGeneral(this.model);
+
+            this.render();
+
+        },
+        changeDateDebut: function () {
+            this.model.get('paramModel').set({ 'DateDebut': this.dateFormatMVC($('#DateDebutInput').val()) + 'T' + '00:00:00.0' });
+            this.model.get('paramModel').set({ 'dateDebutJavascript': $('#DateDebutInput').val() });
+        },
+        changeDateFin: function () {
+            this.model.get('paramModel').set({ 'DateFin': this.dateFormatMVC($('#DateFinInput').val()) + 'T' + '00:00:00.0' });
+            this.model.get('paramModel').set({ 'dateFinJavascript': $('#DateFinInput').val() });
+        },
+        dateFormatMVC: function (date) {
+            // De date FR à DateTime
+            var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
+            return dateFormated;
+        },
+
+    });
+
+    var statistiqueView = new StatistiqueView({
+        el: $("#PrincipalDiv"),
+        model: responseModel
+    });
+
+    function calculTableauGeneral(responseModel) {
+
+
+        var totalNbFSEmises = 0;
+        var totalNbFSPAValide = 0;
+        var totalNbFScloturees = 0;
+        var totalNbAction = 0;
+        var totalNbActionCloturees = 0;
+        var totalNbActionATemps = 0;
+        var totalNbActionDepassees1Mois = 0;
+        var totalNbActionDepassees3Mois = 0;
+        var totalNbActionEnRetard = 0;
+
+
+        
+
+
+        responseModel.get('typeOccurenceCollection').reset();
+
+        //responseModel.get('typeOccurenceCollectionForResponsable').reset();
+        //responseModel.get('typeOccurenceCollectionForZone').reset();
+        //responseModel.get('typeOccurenceCollectionForType').reset();
+
+        switch (responseModel.get('type')) {
+            //case 'RESPONSABLE':
+            //var typeOccurenceFS = responseModel.get('typeOccurenceCollectionForResponsable').findWhere({ 'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom });
+            //break;
+            case 'ZONE':
+                responseModel.get('zoneCollection').forEach(function (zone) {
+
+                    if (zone.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
+                        responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
+                            'nom': zone.get('Site').Trigramme + ' / ' + zone.get('ZoneType').Nom,
+                            'id': zone.get('ZoneID'),
+                            'nbFSEmises': 0,
+                            'nbFSPAValidees': 0,
+                            'nbFSCloturees': 0,
+                            'nbAction': 0,
+                            'nbActionCloturees': 0,
+                            'nbActionClotureesATemps': 0,
+                            'nbActionDepassees1Mois': 0,
+                            'nbActionDepassees3Mois': 0,
+                            'nbActionEnRetard': 0,
+                            'prctgFSCloturees' : 0,
+                            'prctgFSPlanActionValide':0,
+                            'prctgActionCloturees': 0,
+                            'prctgActionClotureesATemps': 0,
+                            'prctgActionDepassees1Mois': 0,
+                            'prctgActionDepassees3Mois': 0,
+                            'prctgActionEnRetard': 0
+                        }));
+
+                    }
+
+                });
+                break;
+            case 'TYPE':
+                responseModel.get('typeCollection').forEach(function (type) {
+
+                    responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
+                        'nom': type.get('Nom'),
+                        'id': type.get('FicheSecuriteTypeID'),
+                        'nbFSEmises': 0,
+                        'nbFSPAValidees': 0,
+                        'nbFSCloturees': 0,
+                        'nbAction': 0,
+                        'nbActionCloturees': 0,
+                        'nbActionClotureesATemps': 0,
+                        'nbActionDepassees1Mois': 0,
+                        'nbActionDepassees3Mois': 0,
+                        'nbActionEnRetard': 0,
+                        'prctgFSCloturees': 0,
+                        'prctgFSPlanActionValide': 0,
+                        'prctgActionCloturees': 0,
+                        'prctgActionClotureesATemps': 0,
+                        'prctgActionDepassees1Mois': 0,
+                        'prctgActionDepassees3Mois': 0,
+                        'prctgActionEnRetard': 0
+                    }));
+
+                });
+                break;
+            default:
+
+                break;
+        }
+        responseModel.get('ficheSecuriteCollection').forEach(function (FS) {
+
+            if (FS.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
+
+                switch (responseModel.get('type')) {
+                    case 'RESPONSABLE':
+                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom });
+
+                        if (typeOccurenceFS === undefined) {
+
+                            typeOccurenceFS = new TypeOccurenceModel({
+                                'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom,
+                                'nbFSEmises': 0,
+                                'nbFSPAValidees': 0,
+                                'nbFSCloturees': 0,
+                                'nbAction': 0,
+                                'nbActionCloturees': 0,
+                                'nbActionClotureesATemps': 0,
+                                'nbActionDepassees1Mois': 0,
+                                'nbActionDepassees3Mois': 0,
+                                'nbActionEnRetard': 0,
+                                'prctgFSCloturees': 0,
+                                'prctgFSPlanActionValide': 0,
+                                'prctgActionCloturees': 0,
+                                'prctgActionClotureesATemps': 0,
+                                'prctgActionDepassees1Mois': 0,
+                                'prctgActionDepassees3Mois': 0,
+                                'prctgActionEnRetard': 0
+                            });
+
+                            responseModel.get('typeOccurenceCollection').add(typeOccurenceFS)
+
+                        }
+
+                        break;
+                    case 'ZONE':
+                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'id': FS.get('ZoneId') });
+                        break;
+                    case 'TYPE':
+                        console.log("FS");
+                        console.log(FS);
+                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'id': FS.get('FicheSecurtiteTypeID') });
+                        break;
+                    default:
+
+                        break;
+                }
+
+                typeOccurenceFS.set({ 'nbFSEmises': typeOccurenceFS.get('nbFSEmises') + 1 });
+                totalNbFSEmises++;
+                if (FS.get('WorkFlowASEValidee') === true) {
+                    typeOccurenceFS.set({ 'nbFSPAValidees': typeOccurenceFS.get('nbFSPAValidees') + 1 });
+                    totalNbFSPAValide++;
+                }
+
+                if (1 === 0) { // TODO Lorsque nous aurons les clotures de fiche
+                    typeOccurenceFS.set({ 'nbFSPACloturees': typeOccurenceFS.get('nbFSPACloturees') + 1 });
+                    totalNbFScloturees++;
+                }
+
+                FS.get('CauseQSEs').forEach(function (Cause) {
+                    Cause.ActionQSEs.forEach(function (Action) {
+
+
+                        Action.DateButoireInitialeJavascript = new Date(Action.DateButoireInitiale.substring(0, 4), Action.DateButoireInitiale.substring(5, 7)-1, Action.DateButoireInitiale.substring(8, 10));
+                        if (Action.DateButoireNouvelle != null) {
+                            Action.DateButoireNouvelleJavascript = new Date(Action.DateButoireNouvelle.substring(0, 4), Action.DateButoireNouvelle.substring(5, 7) - 1, Action.DateButoireNouvelle.substring(8, 10));
+                        }
+                        else {
+                            Action.DateButoireNouvelleJavascript = null;
+
+                        }
+                        if (Action.ClotureDate != null) {
+                            Action.ClotureDateJavascript = new Date(Action.ClotureDate.substring(0, 4), Action.ClotureDate.substring(5, 7) - 1, Action.ClotureDate.substring(8, 10));
+                        }
+                        else {
+                            Action.ClotureDateJavascript = null;
+                        }
+
+                        switch (responseModel.get('type')) {
+                            case 'RESPONSABLE':
+                                var typeOccurenceAction = responseModel.get('typeOccurenceCollection').findWhere({ 'nom': Action.Responsable.Nom + ' ' + Action.Responsable.Prenom });
+
+                                if (typeOccurenceAction === undefined) {
+
+                                    typeOccurenceAction = new TypeOccurenceModel({
+                                        'nom': Action.Responsable.Nom + ' ' + Action.Responsable.Prenom,
+                                        'nbFSEmises': 0,
+                                        'nbFSPAValidees': 0,
+                                        'nbFSCloturees': 0,
+                                        'nbAction': 0,
+                                        'nbActionCloturees': 0,
+                                        'nbActionClotureesATemps': 0,
+                                        'nbActionDepassees1Mois': 0,
+                                        'nbActionDepassees3Mois': 0,
+                                        'nbActionEnRetard': 0,
+                                        'prctgFSCloturees': 0,
+                                        'prctgFSPlanActionValide': 0,
+                                        'prctgActionCloturees': 0,
+                                        'prctgActionClotureesATemps': 0,
+                                        'prctgActionDepassees1Mois': 0,
+                                        'prctgActionDepassees3Mois': 0,
+                                        'prctgActionEnRetard': 0
+                                    });
+
+                                    responseModel.get('typeOccurenceCollection').add(typeOccurenceAction)
+
+                                }
+                                break;
+                            case 'ZONE':
+                                var typeOccurenceAction = typeOccurenceFS;
+                                break;
+                            case 'TYPE':
+                                var typeOccurenceAction = typeOccurenceFS;
+                                break;
+                            default:
+
+                                break;
+                        }
+
+
+
+                        typeOccurenceAction.set({ 'nbAction': typeOccurenceAction.get('nbAction') + 1 });
+                        totalNbAction++;
+
+                        if (Action.ClotureDateJavascript != null) {
+                            typeOccurenceAction.set({ 'nbActionCloturees': typeOccurenceAction.get('nbActionCloturees') + 1 });
+                            totalNbActionCloturees++;
+                        }
+
+                        if (Action.ClotureDateJavascript != null && (Action.ClotureDateJavascript <= Action.DateButoireInitialeJavascript)) {
+                            typeOccurenceAction.set({ 'nbActionClotureesATemps': typeOccurenceAction.get('nbActionClotureesATemps') + 1 });
+                            totalNbActionATemps++;
+                        }
+
+                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 1)
+                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                            typeOccurenceAction.set({ 'nbActionDepassees1Mois': typeOccurenceAction.get('nbActionDepassees1Mois') + 1 });
+                            totalNbActionDepassees1Mois++;
+                        }
+
+                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 2)
+                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                            typeOccurenceAction.set({ 'nbActionDepassees3Mois': typeOccurenceAction.get('nbActionDepassees3Mois') + 1 });
+                            totalNbActionDepassees3Mois++;
+                        }
+
+                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() - 3)
+
+                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                            typeOccurenceAction.set({ 'nbActionEnRetard': typeOccurenceAction.get('nbActionEnRetard') + 1 });
+                            totalNbActionEnRetard++;
+                        }
+
+                    });
+                });
+            }
+        });
+
+
+        responseModel.get('typeOccurenceCollection').forEach(function (typeOccurence) {
+
+            var prctgFSPlanActionValide = (Math.round(typeOccurence.get('nbFSPAValidees') / typeOccurence.get('nbFSEmises') * 100));
+            if (isNaN(prctgFSPlanActionValide)) {
+                prctgFSPlanActionValide = '--';
+            }
+            var prctgActionCloturees = (Math.round(typeOccurence.get('nbActionCloturees') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionCloturees)) {
+                prctgActionCloturees = '--';
+            }
+            var prctgActionClotureesATemps = (Math.round(typeOccurence.get('nbActionClotureesATemps') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionClotureesATemps)) {
+                prctgActionClotureesATemps = '--';
+            }
+            var prctgActionDepassees1Mois = (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            if (isNaN(prctgActionDepassees1Mois)) {
+                prctgActionDepassees1Mois = '--';
+            }
+            var prctgActionDepassees3Mois = (Math.round(typeOccurence.get('nbActionDepassees3Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            if (isNaN(prctgActionDepassees3Mois)) {
+                prctgActionDepassees3Mois = '--';
+            }
+            var prctgActionEnRetard = (Math.round(typeOccurence.get('nbActionEnRetard') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            if (isNaN(prctgActionEnRetard)) {
+                prctgActionEnRetard = '--';
+            }
+
+            typeOccurence.set({ 'prctgFSPlanActionValide': prctgFSPlanActionValide });
+            typeOccurence.set({ 'prctgActionCloturees': prctgActionCloturees });
+            typeOccurence.set({ 'prctgActionClotureesATemps': prctgActionClotureesATemps });
+            typeOccurence.set({ 'prctgActionDepassees1Mois': prctgActionDepassees1Mois });
+            typeOccurence.set({ 'prctgActionDepassees3Mois': prctgActionDepassees3Mois });
+            typeOccurence.set({ 'prctgActionEnRetard': prctgActionEnRetard });
+            
+        });
+
+
+        responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
+            'nom': 'TOTAL',
+            'nbFSEmises': totalNbFSEmises,
+            'nbFSPAValidees': totalNbFSPAValide,
+            'nbFSCloturees': totalNbFScloturees,
+            'nbAction': totalNbAction,
+            'nbActionCloturees': totalNbActionCloturees,
+            'nbActionClotureesATemps': totalNbActionATemps,
+            'nbActionDepassees1Mois': totalNbActionDepassees1Mois,
+            'nbActionDepassees3Mois': totalNbActionDepassees3Mois,
+            'nbActionEnRetard': totalNbActionEnRetard,
+            'prctgFSCloturees': 0,
+            'prctgFSPlanActionValide': (Math.round(totalNbFSPAValide / totalNbFSEmises * 100)) || '--',
+            'prctgActionCloturees': (Math.round(totalNbActionCloturees / totalNbAction * 100) ) || '--',
+            'prctgActionClotureesATemps': (Math.round(totalNbActionATemps / totalNbAction * 100)) || '--',
+            'prctgActionDepassees1Mois': (Math.round(totalNbActionDepassees1Mois / (totalNbAction - totalNbActionCloturees) * 100)) || '--',
+            'prctgActionDepassees3Mois': (Math.round(totalNbActionDepassees3Mois / (totalNbAction - totalNbActionCloturees) * 100)) || '--',
+            'prctgActionEnRetard': (Math.round(totalNbActionEnRetard / (totalNbAction - totalNbActionCloturees) * 100)) || '--'
+
+
+    //typeOccurence.set({ 'prctgFSPlanActionValide': (Math.round(typeOccurence.get('nbFSPAValidees') / typeOccurence.get('nbFSEmises') * 100)) || '--' });
+    //typeOccurence.set({ 'prctgActionCloturees': (Math.round(typeOccurence.get('nbActionCloturees') / typeOccurence.get('nbAction') * 100)) || '--' });
+    //typeOccurence.set({ 'prctgActionClotureesATemps': (Math.round(typeOccurence.get('nbActionClotureesATemps') / typeOccurence.get('nbAction') * 100)) || '--' });
+    //typeOccurence.set({ 'prctgActionDepassees1Mois': (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100)) || '--' });
+    //typeOccurence.set({ 'prctgActionDepassees3Mois': (Math.round(typeOccurence.get('nbActionDepassees3Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100)) || '--' });
+    //typeOccurence.set({ 'prctgActionEnRetard': (Math.round(typeOccurence.get('nbActionEnRetard') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100)) || '--' });
+
+
+        }));
+
+    }
+
+    });
+
+</script>

@@ -323,6 +323,7 @@
     <Content Include="Content\images\HSE\FicheSecurite\HumanBody_Red.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\pyramid.jpg" />
     <Content Include="Content\images\HSE\FicheSecurite\pyramid2.jpg" />
+    <Content Include="Content\images\HSE\FicheSecurite\stats.jpg" />
     <Content Include="Content\images\HSE\Home\Environment_icon2.jpg" />
     <Content Include="Content\images\HSE\Home\Head Protection icon2.jpg" />
     <Content Include="Content\images\HSE\Home\PICTO_environnement.png" />
@@ -542,6 +543,7 @@
     <Content Include="Scripts\jquery.ddslick.min.js" />
     <Content Include="Scripts\jquery.imagemapster.min.js" />
     <Content Include="Scripts\jquery.maphilight.min.js" />
+    <Content Include="Scripts\jquery.scrollTableBody-1.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-langs.js" />
     <Content Include="Scripts\moment.js" />
@@ -617,6 +619,7 @@
     <Content Include="Views\HSE\HSEStatistique\Index.cshtml" />
     <Content Include="Views\HSE\HSEStatistique\NbFSChrono.cshtml" />
     <Content Include="Views\HSE\HSEStatistique\Pyramide.cshtml" />
+    <Content Include="Views\HSE\HSEStatistique\Detail.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

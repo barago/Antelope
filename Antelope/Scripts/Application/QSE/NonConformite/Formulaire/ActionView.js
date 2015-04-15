@@ -163,7 +163,6 @@
                     new ActionModel(actionToAdd.toJSON()), {
                         async: false, wait: true,
                         success: _.bind(function (model, response) {
-                            console.log(model);
                             model.set({ 'Responsable': new ResponsableModel(model.get('Responsable')) });
                             model.set({ 'Verificateur': new ResponsableModel(model.get('Verificateur')) });
 
@@ -182,7 +181,6 @@
                     });
 
             if (actionAdded.validationError != null) {
-                console.log(actionAdded);
                 Backbone.applicationEvents.trigger('alerteInvalid', actionAdded.validationError);
 
             } else {
@@ -198,8 +196,6 @@
                 this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToDeleteId) }).destroy({
                     async: false, wait: true,
                     success: _.bind(function (model, response) {
-                        console.log('PASSAGE DELETE');
-                        console.log(model);
                         this.render();
                         Backbone.applicationEvents.trigger('alerteValid', 'l\' action \"' + model.get('Titre') + '\" a été supprimée');
                     }, this),
@@ -220,7 +216,6 @@
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ id: parseInt(actionToEditId) });  //.   get('ActionId');
 
             var actionToEdit = this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) });
-
             actionToEdit.save(null, { async: false, wait: true, 
                 success: _.bind(function (model, response) {
                     this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Responsable': new ResponsableModel(response.Responsable) });
@@ -235,7 +230,6 @@
             });
 
             if (actionToEdit.validationError != null) {
-                console.log(actionToEdit);
                 Backbone.applicationEvents.trigger('alerteInvalid', actionToEdit.validationError);
 
             } else {
@@ -270,6 +264,11 @@
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDate': this.dateFormatMVC($('#InputEditActionRealiseDate' + actionToEditId).val()) + 'T' + '00:00:00.0' });
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDateJavascript': $('#InputEditActionRealiseDate' + actionToEditId).val() });
         },
+        changeEditActionVerificationDate: function (ev) {
+            var actionToEditId = $(ev.currentTarget).attr('data-actionid');
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDate': this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDateJavascript': $('#EditActionDateVerificationInput' + actionToEditId).val() });
+        },
         changeEditActionCritere: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'CritereEfficaciteVerification': $(ev.currentTarget).val() });
@@ -277,11 +276,6 @@
         changeEditActionCommentaire: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'CommentaireEfficaciteVerification': $(ev.currentTarget).val() });
-        },
-        changeEditActionVerificationDate: function (ev) {
-            var actionToEditId = $(ev.currentTarget).attr('data-actionid');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerificationDate': this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerificationDateJavascript': $('#EditActionDateVerificationInput' + actionToEditId).val() });
         },
         changeEditActionResponsableNom: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');

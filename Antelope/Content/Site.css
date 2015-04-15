@@ -127,3 +127,24 @@ input[type="checkbox"].input-validation-error {
     border-width: 1px;
     padding:10px;
 }
+
+
+th.rotate45 {
+  /* Something you can count on */
+  height: 210px;
+  white-space: nowrap;
+}
+
+th.rotate45 > div {
+  transform: 
+    /* Magic Numbers */
+    translate(0px, 98px)
+    /* 45 is really 360 - 45 */
+    rotate(310deg);
+  width: 10px;
+}
+th.rotate45 > div > span {
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
