@@ -272,6 +272,20 @@ namespace Antelope.Controllers.API.HSE
                     FicheSecurite.WorkFlowASERejeteeCause = ficheSecurite.WorkFlowASERejeteeCause;
                     _emailService.SendEmailRejetPlanActionFicheSecurite(ficheSecurite);
                 break;
+                case "ASEFicheSecuriteCloturee":
+                FicheSecurite.WorkFlowAttenteASEValidation = false;
+                FicheSecurite.WorkFlowASEValidee = true;
+                FicheSecurite.WorkFlowASERejetee = false;
+                FicheSecurite.WorkFlowFicheSecuriteCloturee = true;
+                // _emailService.SendEmailRejetPlanActionFicheSecurite(ficheSecurite); TODO : Voir si il faut un email à cette étape
+                break;
+                case "ASEFicheSecuriteOuvrir":
+                FicheSecurite.WorkFlowAttenteASEValidation = false;
+                FicheSecurite.WorkFlowASEValidee = true;
+                FicheSecurite.WorkFlowASERejetee = false;
+                FicheSecurite.WorkFlowFicheSecuriteCloturee = false;
+                // _emailService.SendEmailRejetPlanActionFicheSecurite(ficheSecurite); TODO : Voir si il faut un email à cette étape
+                break;
             } 
 
             _ficheSecuriteRepository._db.SaveChanges();

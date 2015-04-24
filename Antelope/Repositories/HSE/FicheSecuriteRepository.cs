@@ -825,45 +825,60 @@ namespace Antelope.Repositories.HSE
                 queryFicheSecurite = queryFicheSecurite
                     .Join(_db.CauseQSEs, fs => fs.FicheSecurite.FicheSecuriteID, c => c.FicheSecuriteId, (fs, c) => new { FicheSecurite = fs, CauseQSE = c })
                     .Join(_db.ActionQSEs, fs2 => fs2.CauseQSE.CauseQSEId, a => a.CauseQSEId, (fs2, a) => new { FicheSecurite2 = fs2.FicheSecurite, CauseQSE2 = fs2.CauseQSE, ActionQSE2 = a })
-                    .Where(j => j.ActionQSE2.DateButoireInitiale >= ParameterDateButoirDebut)
+                    //.Where(j => j.ActionQSE2.DateButoireInitiale >= ParameterDateButoirDebut)
                     .Select(q => q.FicheSecurite2)
                     .Distinct();
+
+                queryFicheSecurite = queryFicheSecurite
+                .Where(w => w.ActionQSE.DateButoireInitiale >= ParameterDateButoirDebut);
             }
             if (ParameterDateButoirFin != null)
             {
                 queryFicheSecurite = queryFicheSecurite
                 .Join(_db.CauseQSEs, fs => fs.FicheSecurite.FicheSecuriteID, c => c.FicheSecuriteId, (fs, c) => new { FicheSecurite = fs, CauseQSE = c })
                 .Join(_db.ActionQSEs, fs2 => fs2.CauseQSE.CauseQSEId, a => a.CauseQSEId, (fs2, a) => new { FicheSecurite2 = fs2.FicheSecurite, CauseQSE2 = fs2.CauseQSE, ActionQSE2 = a })
-                .Where(j => j.ActionQSE2.DateButoireInitiale <= ParameterDateButoirFin)
+                //.Where(j => j.ActionQSE2.DateButoireInitiale <= ParameterDateButoirFin)
                 .Select(q => q.FicheSecurite2)
                 .Distinct();
+
+                queryFicheSecurite = queryFicheSecurite
+                .Where(w => w.ActionQSE.DateButoireInitiale <= ParameterDateButoirFin);
             }
             if (ParameterDateClotureDebut != null)
             {
                 queryFicheSecurite = queryFicheSecurite
                 .Join(_db.CauseQSEs, fs => fs.FicheSecurite.FicheSecuriteID, c => c.FicheSecuriteId, (fs, c) => new { FicheSecurite = fs, CauseQSE = c })
                 .Join(_db.ActionQSEs, fs2 => fs2.CauseQSE.CauseQSEId, a => a.CauseQSEId, (fs2, a) => new { FicheSecurite2 = fs2.FicheSecurite, CauseQSE2 = fs2.CauseQSE, ActionQSE2 = a })
-                .Where(j => j.ActionQSE2.ClotureDate >= ParameterDateClotureDebut)
+                //.Where(j => j.ActionQSE2.ClotureDate >= ParameterDateClotureDebut)
                 .Select(q => q.FicheSecurite2)
                 .Distinct();
+
+                queryFicheSecurite = queryFicheSecurite
+                .Where(w => w.ActionQSE.ClotureDate >= ParameterDateClotureDebut);
             }
             if (ParameterDateClotureFin != null)
             {
                 queryFicheSecurite = queryFicheSecurite
                 .Join(_db.CauseQSEs, fs => fs.FicheSecurite.FicheSecuriteID, c => c.FicheSecuriteId, (fs, c) => new { FicheSecurite = fs, CauseQSE = c })
                 .Join(_db.ActionQSEs, fs2 => fs2.CauseQSE.CauseQSEId, a => a.CauseQSEId, (fs2, a) => new { FicheSecurite2 = fs2.FicheSecurite, CauseQSE2 = fs2.CauseQSE, ActionQSE2 = a })
-                .Where(j => j.ActionQSE2.ClotureDate >= ParameterDateClotureFin)
+                //.Where(j => j.ActionQSE2.ClotureDate >= ParameterDateClotureFin)
                 .Select(q => q.FicheSecurite2)
                 .Distinct();
+
+                queryFicheSecurite = queryFicheSecurite
+                .Where(w => w.ActionQSE.ClotureDate >= ParameterDateClotureFin);
             }
             if (ParameterResponsableNomAction != null && ParameterResponsableNomAction != "")
             {
                 queryFicheSecurite = queryFicheSecurite
                 .Join(_db.CauseQSEs, fs => fs.FicheSecurite.FicheSecuriteID, c => c.FicheSecuriteId, (fs, c) => new { FicheSecurite = fs, CauseQSE = c })
                 .Join(_db.ActionQSEs, fs2 => fs2.CauseQSE.CauseQSEId, a => a.CauseQSEId, (fs2, a) => new { FicheSecurite2 = fs2.FicheSecurite, CauseQSE2 = fs2.CauseQSE, ActionQSE2 = a })
-                .Where(j => j.ActionQSE2.Responsable.Nom == ParameterResponsableNomAction)
+                //.Where(j => j.ActionQSE2.Responsable.Nom == ParameterResponsableNomAction)
                 .Select(q => q.FicheSecurite2)
                 .Distinct();
+
+                queryFicheSecurite = queryFicheSecurite
+                    .Where(w => w.ActionQSE.Responsable.Nom == ParameterResponsableNomAction);
             }
 
             //var queryFicheSecurite2 = from queryFicheSecurite

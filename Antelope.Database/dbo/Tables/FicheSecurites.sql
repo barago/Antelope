@@ -35,6 +35,7 @@
     [WorkFlowCloturee]             BIT            NOT NULL DEFAULT 0,
     [WorkFlowASERejeteeCause] NVARCHAR(MAX) NULL, 
     [CompteurAnnuelSite] INT NOT NULL DEFAULT 1, 
+    [WorkFlowFicheSecuriteCloturee] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_dbo.FicheSecurites] PRIMARY KEY CLUSTERED ([FicheSecuriteID] ASC),
     CONSTRAINT [FK_dbo.FicheSecurites_dbo.CorpsHumainZones_CorpsHumainZoneId] FOREIGN KEY ([CorpsHumainZoneId]) REFERENCES [dbo].[CorpsHumainZones] ([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_dbo.FicheSecurites_dbo.Dangers_DangerId] FOREIGN KEY ([DangerId]) REFERENCES [dbo].[Dangers] ([DangerID]) ON DELETE CASCADE,

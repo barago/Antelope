@@ -148,3 +148,16 @@ th.rotate45 > div > span {
   padding: 5px 10px;
 }
 
+@media screen {
+    .bodyAdjustForSecondNavBar {
+        margin-top: 68px;
+        z-index: 998;
+    }
+}
+
+@media print {
+    body {
+        padding-top:0px;
+    }
+}
+

@@ -241,7 +241,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-4">
                                             @*style="padding-right:0px;"*@
-                                            <label for="ResponsableNom" class="label-xs">Nom&nbsp;responsable&nbsp;:</label>
+                                            <label for="ResponsableNom" class="label-xs">Nom&nbsp;Resp.&nbsp;Fiche&nbsp;:</label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-xs">
@@ -430,7 +430,7 @@
                                     <div class="form-group">
                                         <div class="col-sm-4">
                                             @*style="padding-right:0px;"*@
-                                            <label for="ResponsableNomAction" class="label-xs">Nom&nbsp;Responsable&nbsp;:&nbsp;&nbsp;</label>
+                                            <label for="ResponsableNomAction" class="label-xs">Nom&nbsp;Resp.&nbsp;Action&nbsp;:&nbsp;&nbsp;</label>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="input-group input-group-xs">
@@ -459,15 +459,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="IsNouvelleFiche" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;Nouvelle Fiche&nbsp;</span></label>
-                            <input type="checkbox" id="IsNouvelleFiche"<% if(paramModel.get('IsNouvelleFiche')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsNouvelleFiche"<% if(paramModel.get('IsNouvelleFiche')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionAttente" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#BFBFBF;height:10px;">&nbsp;Plan d'action en attente de validation&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionAttente"<% if(paramModel.get('IsPlanActionAttente')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionAttente"<% if(paramModel.get('IsPlanActionAttente')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionValide" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FFC000;height:10px;">&nbsp;Plan d'action validé&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionValide"<% if(paramModel.get('IsPlanActionValide')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionValide"<% if(paramModel.get('IsPlanActionValide')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionRejete" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FF0000;height:10px;">&nbsp;Plan d'action rejeté&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionRejete"<% if(paramModel.get('IsPlanActionRejete')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionRejete"<% if(paramModel.get('IsPlanActionRejete')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00B0F0;height:10px;">&nbsp;Plan d'action clôturé&nbsp;</span></label>
-                            <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsFicheSecuriteCloturee" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;Fiche Sécurité clôturée&nbsp;</span></label>
+                            <input type="checkbox" id="IsFicheSecuriteCloturee"><% if(paramModel.get('IsFicheSecuriteCloture')===true) { %> checked <% } %>
                         </div>
                     </div>
                 </div>
@@ -700,6 +702,7 @@
                 "click #IsPlanActionAttente": "changeIsPlanActionAttente",
                 "click #IsPlanActionRejete": "changeIsPlanActionRejete",
                 "click #IsPlanActionCloture": "changeIsPlanActionCloture",
+                "click #IsFicheSecuriteCloture":"changeIsFicheSecuriteCloture",
                 "keyup #ResponsableNomAction": "changeResponsableNomAction",
 
             },
@@ -838,6 +841,9 @@
             changeIsPlanActionCloture: function () {
                 this.model.get('paramModel').set({ 'IsPlanActionCloture': $('#IsPlanActionCloture').is(":checked") });
             },
+            changeIsFicheSecuriteCloture: function () {
+                this.model.get('paramModel').set({ 'IsFicheSecuriteCloture': $('#IsFicheSecuriteCloture').is(":checked") });
+            },
             changeResponsableNomAction: function () {
                 this.model.get('paramModel').set({ 'ResponsableNomAction': $('#ResponsableNomAction').val() });
                 this.model.get('paramModel').set({ 'ResponsableNomActionGuid': null });
@@ -914,6 +920,7 @@
                             "isPlanActionAttente": this.model.get('paramModel').get('IsPlanActionAttente'),
                             "isPlanActionRejete": this.model.get('paramModel').get('IsPlanActionRejete'),
                             "isPlanActionCloture": this.model.get('paramModel').get('IsPlanActionCloture'),
+                            "isFicheSecuriteCloture": this.model.get('paramModel').get('IsFicheSecuriteCloture'),
                             "responsableNomAction": this.model.get('paramModel').get('ResponsableNomAction'),
                             "rechercheType": "FICHESECURITE"
                         }
@@ -947,6 +954,12 @@
                         if (aData.WorkFlowCloturee == true && aData.WorkFlowASEValidee == true) {
                             colorHeavy = "#00B0F0";
                             colorLight = "#AFE8FD";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+                        if (aData.WorkFlowFicheSecuriteCloturee == true) {
+                            colorHeavy = "#00FF00";
+                            colorLight = "#AFFDAF";
                             $nRow.css({ "background-color": colorLight });
                             $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         }

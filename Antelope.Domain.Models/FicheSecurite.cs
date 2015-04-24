@@ -56,6 +56,7 @@ namespace Antelope.Domain.Models
         public bool WorkFlowASERejetee { get; set; }
         public bool WorkFlowCloturee { get; set; }
         public string WorkFlowASERejeteeCause { get; set; }
+        public bool WorkFlowFicheSecuriteCloturee { get; set; }
         public int CompteurAnnuelSite { get; set; }
 
     

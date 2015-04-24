@@ -5,7 +5,7 @@
 
 @*<div class="navbar-xs">
     <div class="navbar-primary">*@
-        <div class="navbar navbar-fixed-top navbar-default navbar-lower" style="margin-top:28px;z-index:500;">
+        <div class="navbar navbar-fixed-top navbar-default navbar-lower hidden-print" style="margin-top:28px;z-index:500;">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#secondNavbar">
@@ -48,7 +48,7 @@
     @*</div>
 </div>*@
 
-<div class="navbar-xs">
+<div class="navbar-xs hidden-print">
     <div class="navbar-primary">
         <div class="navbar navbar-fixed-top navbar-default navbar-lower" style="margin-top:79px;z-index:499;">
             <div class="container">
@@ -68,7 +68,7 @@
       
     </script>
 
-    <div id="alerteDiv" class="row" style="margin-top:29px;position:fixed;z-index:499;width:70%">
+    <div id="alerteDiv" class="row hidden-print" style="margin-top:29px;position:fixed;z-index:499;width:70%">
     </div>
 
 
@@ -82,8 +82,8 @@
     @Scripts.Render("~/Scripts/jquery-ui-1.10.4.custom.min.js")
 
 
-    <div style="margin-top:68px;z-index:998;">
+    <div class="bodyAdjustForSecondNavBar">
 
-        @RenderBody()
+    @RenderBody()
 
-    </div>
+</div>
