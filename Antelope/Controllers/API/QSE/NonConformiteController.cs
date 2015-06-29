@@ -14,6 +14,7 @@ using Antelope.Repositories.Socle;
 using Antelope.ViewModels.QSE.NonConformiteViewModels;
 using Antelope.ViewModels.Socle.DataTables;
 using Antelope.Repositories.QSE;
+using Antelope.DTOs.QSE;
 
 namespace Antelope.Controllers.API.QSE
 {
@@ -78,19 +79,23 @@ namespace Antelope.Controllers.API.QSE
 
         // PUT: api/NonConformite/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Put(int id, NonConformite nonConformite)
+        public HttpResponseMessage Put(int id, NonConformite nonConformite)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
             if (id != nonConformite.Id)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(nonConformite).State = EntityState.Modified;
+
+            var currentNonConformite = db.NonConformites.Find(nonConformite.Id);
+            db.Entry(currentNonConformite).CurrentValues.SetValues(nonConformite);
+
+            db.Entry(currentNonConformite).State = EntityState.Modified;
 
             try
             {
@@ -100,7 +105,7 @@ namespace Antelope.Controllers.API.QSE
             {
                 if (!NonConformiteExists(id))
                 {
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, currentNonConformite);
                 }
                 else
                 {
@@ -108,7 +113,7 @@ namespace Antelope.Controllers.API.QSE
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.OK, currentNonConformite);
         }
 
         // POST: api/NonConformite

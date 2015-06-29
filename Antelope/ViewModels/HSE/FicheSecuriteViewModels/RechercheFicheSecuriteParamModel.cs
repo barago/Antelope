@@ -35,6 +35,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public Boolean IsPlanActionAttente { get; set; }
         public Boolean IsPlanActionRejete { get; set; }
         public Boolean IsPlanActionCloture { get; set; }
+        public Boolean IsFicheSecuriteCloture { get; set; }
         public DateTime? DateButoirDebut { get; set; }
         public DateTime? DateButoirFin { get; set; }
         public DateTime? DateClotureDebut { get; set; }

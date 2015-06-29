@@ -16,7 +16,7 @@ namespace Antelope.Controllers.IndicateurSI
         // GET: /IndicateurSIHome/
         public ActionResult Index()
         {
-            MySqlConnection connection = new MySqlConnection("Database=glpi; Data Source=dlf-sk8k03; User Id=export; Password=Exp0rt;");
+            MySqlConnection connection = new MySqlConnection("Database=glpi-prod; Data Source=dlf-s12k04; User Id=export; Password=Exp0rt;");
             connection.Open();
 
             MySqlCommand command = connection.CreateCommand();

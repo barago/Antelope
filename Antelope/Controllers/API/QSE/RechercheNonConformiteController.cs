@@ -43,7 +43,23 @@ namespace Antelope.Controllers.API.QSE
 
         }
 
+        public HttpResponseMessage ExtractionFromParameters(Object obj)
+        {
 
+            var a = 1;
+
+            Dictionary<string, int> DataTableParameters = new Dictionary<string, int>();
+            DataTableParameters["start"] = 0;
+            DataTableParameters["length"] = 0;
+            DataTableParameters["siteId"] = 1;
+            DataTableParameters["nonConformiteOrigineId"] = 1;
+            DataTableParameters["nonConformiteGraviteId"] = 1;
+            DataTableParameters["nonConformiteDomaineId"] = 1;
+            
+
+            return null;
+
+        }
 
     }
 }

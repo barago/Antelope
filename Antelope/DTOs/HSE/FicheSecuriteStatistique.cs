@@ -19,6 +19,9 @@ namespace Antelope.DTOs.HSE
         public Personne Responsable { get; set; }
         public Int32 FicheSecurtiteTypeID { get; set; }
         public Boolean WorkFlowASEValidee { get; set; }
+        public Boolean WorkFlowFicheSecuriteCloturee { get; set; }
+        public Boolean WorkFlowCloturee { get; set; }
+
 
         public virtual ICollection<CauseQSE> CauseQSEs { get; set; }
     }

@@ -408,7 +408,7 @@ namespace Antelope.Controllers.IndicateurSI
             // Décodage du code HTML
             string bodyHTML = body.Replace("%2F", "/").Replace("%139", "<").Replace("%155", ">");
 
-            MySqlConnection connection = new MySqlConnection("Database=glpi; Data Source=dlf-sk8k03; User Id=export; Password=Exp0rt;");
+            MySqlConnection connection = new MySqlConnection("Database=glpi-prod; Data Source=dlf-s12k04; User Id=export; Password=Exp0rt;");
 
             MySqlCommand cmd = connection.CreateCommand();
             string[] name = User.Identity.Name.Split('\\');

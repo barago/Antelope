@@ -93,7 +93,8 @@ namespace Antelope.Controllers.API.HSE
                 IsPlanActionValide = true,
                 IsPlanActionAttente = true,
                 IsPlanActionRejete = true,
-                IsPlanActionCloture = true
+                IsPlanActionCloture = true,
+                IsFicheSecuriteCloture = true
 
             };
 
@@ -162,6 +163,7 @@ namespace Antelope.Controllers.API.HSE
                 IsPlanActionAttente = true,
                 IsPlanActionRejete = true,
                 IsPlanActionCloture = true,
+                IsFicheSecuriteCloture = true,
                 DateButoirDebut = null,
                 DateButoirFin = null,
                 DateClotureDebut = null,

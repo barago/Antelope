@@ -4,8 +4,10 @@
 }
 
 
-<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/Scripts/jquery.dataTables.min.js"></script>
+<link href="~/Scripts/DataTables-1.10.7/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<link href="~/Scripts/DataTables-1.10.7/extensions/TableTools/css/dataTables.tableTools.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="/Scripts/underscore.js"></script>
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
@@ -17,10 +19,13 @@
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/ViewModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/RechercheNonConformiteParamModel.js"></script>
 
+<script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.min.js"></script>
 
 
-<script type="text/template" id="TableRecherche">
 
+<script type="text/template" id="TableFiltre">
 
     <div class="row">
 
@@ -31,13 +36,17 @@
 
                     <div class="row">
 
-                        <div class="col-md-10">
+                        <div class="col-md-3">
                             FILTRES&nbsp;:
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-9">
 
                             <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
-                                <span class="glyphicon glyphicon-search"></span> Chercher
+                                <span class="glyphicon glyphicon-search"></span> Chercher les Actions
+                            </button>
+
+                            <button id="RechercheNonConformiteBouton" type="submit" class="btn btn-default btn-xs pull-right" style="margin-right:10px">
+                                <span class="glyphicon glyphicon-search"></span> Chercher les Non-Conformités
                             </button>
 
                         </div>
@@ -123,6 +132,50 @@
 
                         </div>
                         <div class="col-md-4">
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    @*style="padding-right:0px;"*@
+                                    <label for="ResponsableNom" class="label-xs">Nom&nbsp;Resp.&nbsp;Action&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="input-group input-group-xs">
+                                        <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= rechercheNonConformiteParamModel.get('ResponsableNom') %>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="DateButoirDebut" class="label-xs">Date&nbsp;butoir&nbsp;Début&nbsp;:</label>
+                                </div>
+                                <div class='col-sm-8'>
+                                    @*<div class="form-group">*@
+                                    <div class='input-group date' id='DateButoirDebut'>
+                                        <input type='text' name="DateButoirDebut" id="DateButoirDebutInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirDebutJavascript') %>" />
+                                        <div class="input-group-addon input-xs">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                    @*</div>*@
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="DateButoirFin" class="label-xs">Date&nbsp;butoir&nbsp;Fin&nbsp;:</label>
+                                </div>
+                                <div class='col-sm-8'>
+                                    @*<div class="form-group">*@
+                                    <div class='input-group date' id='DateButoirFin'>
+                                        <input type='text' name="DateButoirFin" id="DateButoirFinInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirFinJavascript') %>" />
+                                        <span class="input-group-addon input-xs">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    @*</div>*@
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-md-4">
                         </div>
@@ -132,7 +185,9 @@
         </div>
     </div>
 
+</script>
 
+<script type="text/template" id="TableRecherche">
 
     <div class="row">
 
@@ -140,8 +195,13 @@
 
             <div class="panel panel-primary" style="border-color: #006573;">
                 @*<div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>*@
-                <div class="panel-heading" style="background-color :#006573; color: white">RESULTATS&nbsp;:</div>
+                <div class="panel-heading" style="background-color :#006573; color: white">
+                    <% if(rechercheNonConformiteParamModel.get('typeRecherche')==="NONCONFORMITE") { %> <span style="text-decoration:underline;font-weight:bold;">NON CONFORMITES</span> :  <% } %>
+                    <% if(rechercheNonConformiteParamModel.get('typeRecherche')==="ACTION") { %> <span style="text-decoration:underline;font-weight:bold;">ACTIONS</span> :  <% } %>
+                </div>
                 <div class="panel-body">
+
+                    <% if(rechercheNonConformiteParamModel.get('typeRecherche')==="ACTION") { %>
 
                     <table id="Table" class="stripe hover">
                         <thead>
@@ -150,15 +210,36 @@
                                 <th>Titre</th>
                                 <th>Responsable</th>
                                 <th>Date Butoir</th>
+                                <th>Description</th>
                                 @*<th>Code</th>
-                            <th>Date </th>
-                            <th>Origine</th>
-                            <th>Description</th>*@
+                                    <th>Date </th>
+                                    <th>Origine</th>
+                                    *@
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
 
+                    <% } %>
+
+                    <% if(rechercheNonConformiteParamModel.get('typeRecherche')==="NONCONFORMITE") { %>
+
+                    <table id="Table" class="stripe hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Code</th>
+                                <th>Date</th>
+                                <th>Origine</th>
+                                @*<th>Domaine</th>
+                                    <th>Gravité</th>*@
+                                <th>Desciption</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                    <% } %>
 
                 </div>
             </div>
@@ -166,6 +247,9 @@
     </div>
 
 </script>
+
+<div id="TableFiltreDiv">
+</div>
 
 <div id="TableRechercheDiv">
 </div>
@@ -177,6 +261,14 @@
 
     $(document).ready(function () {
 
+
+        function dateFormatJS(date) {
+            var dateFormated = '';
+            if (date != null) {
+                dateFormated = date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+            }
+            return dateFormated;
+        };
 
         var viewModel = new ViewModel();
 
@@ -191,37 +283,41 @@
         viewModel.set({ 'nonConformiteOrigineCollection': new SiteCollection(viewModel.get('AllNonConformiteOrigine')) });
         viewModel.set({ 'nonConformiteGraviteCollection': new SiteCollection(viewModel.get('AllNonConformiteGravite')) });
 
+
+        viewModel.get('rechercheNonConformiteParamModel').set({ 'DateButoirDebutJavascript': dateFormatJS(viewModel.get('rechercheNonConformiteParamModel').get('DateButoirDebut')) });
+        viewModel.get('rechercheNonConformiteParamModel').set({ 'DateButoirFinJavascript': dateFormatJS(viewModel.get('rechercheNonConformiteParamModel').get('DateButoirFin')) });
+
+        viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'ACTION' });
+
+        Backbone.applicationEvents = _.extend({}, Backbone.Events);
+
         console.log("viewModel");
         console.log(viewModel);
 
-        var RechercheTableView = Backbone.View.extend({
-            id: 'RechercheTableFicheSecurite',
-            template: _.template($('#TableRecherche').html()),
+        var FiltreTableView = Backbone.View.extend({
+            id: 'FiltreTableNonConformite',
+            template: _.template($('#TableFiltre').html()),
             render: function () {
+
                 this.$el.html(this.template(this.model.toJSON()));
 
-                //$('#Table').DataTable({
-                //    "ajax": {
-                //        "url": "/api/NonConformite",
-                //        "dataSrc": "tableData"
-                //    },
-                //    "columns": [
-                //        { "data": "Code" },
-                //        { "data": "Nom" },
-                //        { "data": "Déscription" },
-                //        { "data": "Clôture" },
-                //    ]
-                //});
+                $('#DateButoirDebut').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
+                $('#DateButoirFin').datetimepicker({
+                    pickTime: false,
+                    language: 'fr'
+                });
 
-
-                this.buildDataTable();
-
-
+                $('#DateButoirDebut').on("dp.change", $.proxy(this.changeDateButoirDebut, this));
+                $('#DateButoirDebut').on("dp.hide", $.proxy(this.changeDateButoirDebut, this));
+                $('#DateButoirFin').on("dp.change", $.proxy(this.changeDateButoirFin, this));
+                $('#DateButoirFin').on("dp.hide", $.proxy(this.changeDateButoirFin, this));
 
                 return this;
             },
             initialize: function () {
-                //_.bindAll(this, table);
                 this.render();
 
             },
@@ -230,7 +326,93 @@
                 "change #Origine": "changeOrigine",
                 "change #Domaine": "changeDomaine",
                 "change #Gravite": "changeGravite",
-                "click #RechercheBouton": "recherche"
+                "click #RechercheBouton": "recherche",
+                "click #RechercheNonConformiteBouton": "rechercheNonConformite",
+                "keyup #DateButoirDebutInput": "changeDateButoirDebut",
+                "keyup #DateButoirFinInput": "changeDateButoirFin",
+                "keyup #ResponsableNom": "changeResponsableNom",
+
+            },
+            triggerRechercheSurEntree: function (e) {
+                if (e.which === 13) {
+                    if (viewModel.get('paramModel').get('typeRecherche') === 'NONCONFORMITE') {
+                        Backbone.applicationEvents.trigger('rechercheNonConformite');
+                    }
+                    if (viewModel.get('paramModel').get('typeRecherche') === 'ACTION') {
+                        Backbone.applicationEvents.trigger('recherche');
+                    }
+                }
+            },
+            rechercheNonConformite: function () {
+                console.log('RECHERCHENONCONFORMITE');
+                viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'FICHESECURITE' });
+                Backbone.applicationEvents.trigger('rechercheNonConformite');
+            },
+            recherche: function () {
+                console.log('RECHERCHEACTION');
+                viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'ACTION' });
+                Backbone.applicationEvents.trigger('recherche');
+            },
+            changeResponsableNom: function (e) {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableNom': $('#ResponsableNom').val() });
+                this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableGuid': null });
+
+                //this.triggerRechercheSurEntree(e);
+            },
+            changeDateButoirDebut: function (e) {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'DateButoirDebut': this.dateFormatMVC($('#DateButoirDebutInput').val()) + 'T' + '00:00:00.0' });
+                this.model.get('rechercheNonConformiteParamModel').set({ 'DateButoirDebutJavascript': $('#DateButoirDebutInput').val() });
+
+                //this.triggerRechercheSurEntree(e);
+            },
+            changeDateButoirFin: function (e) {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'DateButoirFin': this.dateFormatMVC($('#DateButoirFinInput').val()) + 'T' + '00:00:00.0' });
+                this.model.get('rechercheNonConformiteParamModel').set({ 'DateButoirFinJavascript': $('#DateButoirFinInput').val() });
+
+                //this.triggerRechercheSurEntree(e);
+            },
+            changeSite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
+            },
+            changeOrigine: function () {
+                console.log(parseInt($('#Origine').val()));
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
+            },
+            changeDomaine: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteDomaineId': parseInt($('#Domaine').val()) });
+            },
+            changeGravite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteGraviteId': parseInt($('#Gravite').val()) });
+            },
+            dateFormatMVC: function (date) {
+                // De date FR à DateTime
+                var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
+                return dateFormated;
+            }
+        })
+
+
+
+        var RechercheTableView = Backbone.View.extend({
+            id: 'RechercheTableNonConformite',
+            template: _.template($('#TableRecherche').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+                this.buildDataTable();
+
+                return this;
+            },
+            initialize: function () {
+
+                Backbone.applicationEvents.on('recherche', function () {
+                    this.recherche();
+                }, this);
+
+                this.render();
+            },
+            events: {
+                //"click #RechercheBouton": "recherche"
 
             },
             buildDataTable: function () {
@@ -241,6 +423,29 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": [1, 2, 3, 4],
+                                "sPdfMessage": "Liste des Actions"
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": [1, 2, 3, 4]
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1, 2, 3, 4]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1, 2, 3, 4]
+                            }
+                        ]
+                    },
                     "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
@@ -253,10 +458,14 @@
                             "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
                             "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
                             "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
-                            "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId')
+                            "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId'),
+                            "responsableNom": this.model.get('rechercheNonConformiteParamModel').get('ResponsableNom'),
+                            "dateButoirDebut": this.model.get('rechercheNonConformiteParamModel').get('DateButoirDebut'),
+                            "dateButoirFin": this.model.get('rechercheNonConformiteParamModel').get('DateButoirFin'),
                         }
 
                     },
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
                     "columns": [
                         {
                             "mData": "NonConformiteId",
@@ -291,6 +500,16 @@
                             },
                             "orderable": false,
                             "width": "10%"
+                        },
+                        {
+                            "mData": "Description",
+                            "sTitle": "Description",
+                            "orderable": false,
+                            "visible": true,
+                            "mRender": function (date, type, full) {
+                                return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
+                            },
+                            "width": "15%"
                         },
                         //},
                         //{
@@ -366,35 +585,193 @@
                     }
                 });
 
-
-
-
             },
             recherche: function () {
-
+                viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'ACTION' });
+                this.render();
                 this.buildDataTable();
-            },
-            changeSite: function () {
-                this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
-            },
-            changeOrigine: function () {
-                console.log(parseInt($('#Origine').val()));
-                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
-            },
-            changeDomaine: function () {
-                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteDomaineId': parseInt($('#Domaine').val()) });
-            },
-            changeGravite: function () {
-                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteGraviteId': parseInt($('#Gravite').val()) });
             }
+
         });
 
+
+        var RechercheNonConformiteTableView = Backbone.View.extend({
+            id: 'RechercheTableFicheSecurite',
+            template: _.template($('#TableRecherche').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+                this.buildDataTable();
+
+                return this;
+            },
+            initialize: function () {
+
+                Backbone.applicationEvents.on('rechercheNonConformite', function () {
+                    this.rechercheNonConformite();
+                }, this);
+
+            },
+            events: {
+                // "click #RechercheNonConformiteBouton": "rechercheNonConformite"
+            },
+            buildDataTable: function () {
+                // /!\ Les fonctions d'ajout de 'datas' supplémentaires de DataTables ne fonctionnent pas très bien
+                // Donc à chaque recherche, nous réinstancions le tableau
+                // A chaque recherche, les paramètres de tri ne sont donc pas sauvegardés ... A voir si c'est grâve.
+
+                $("#Table").DataTable().destroy();
+
+                table = $("#Table").DataTable({
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": [1, 2, 3, 4],
+                                "sPdfMessage": "Liste des Non-Conformités"
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": [1, 2, 3, 4]
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1, 2, 3, 4]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1, 2, 3, 4]
+                            }
+                        ]
+                    },
+                    "scrollY": "400px",
+                    "autoWidth": false,
+                    "serverSide": true,
+                    "processing": true,
+                    "filter": false,
+                    //"sAjaxSource": "/api/NonConformite",
+                    "ajax": {
+                        "url": "/api/NonConformite",
+                        "data": {
+                            "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
+                            "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
+                            "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
+                            "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId'),
+                            "responsableNom": this.model.get('rechercheNonConformiteParamModel').get('ResponsableNom'),
+                            "dateButoirDebut": this.model.get('rechercheNonConformiteParamModel').get('DateButoirDebut'),
+                            "dateButoirFin": this.model.get('rechercheNonConformiteParamModel').get('DateButoirFin'),
+                        }
+
+                    },
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
+                    "columns": [
+                        {
+                            "mData": "Id",
+                            "sTitle": "Id",
+                            "visible": false,
+                            "orderable": false,
+                        },
+                        {
+                            "mData": "Code",
+                            "sTitle": "Code",
+                            "orderable": false,
+                            "width": "10%"
+                        },
+                        {
+                            "mData": "Date",
+                            "sTitle": "Date",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                //return new Date(date).toLocaleString();
+                                return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                            },
+                            "orderable": false,
+                            "width": "10%"
+                        },
+                        {
+                            "mData": "NonConformiteOrigine.Nom",
+                            "sTitle": "Origine",
+                            "orderable": false,
+                            "width": "15%"
+                        },
+                        {
+                            "mData": "Description",
+                            "sTitle": "Description",
+                            "orderable": false
+                        }
+                    ],
+                    "oLanguage": {
+                        "sUrl": "Scripts/datatables_lang_fr.js"
+                    }
+                });
+
+
+                table.$('tr.selected').removeClass('selected');
+
+                $('#Table tbody').on('click', 'tr', function () {
+
+                    var aData = $("#Table").dataTable().fnGetData(this);
+                    console.log('aData');
+                    console.log(aData);
+                    var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                    window.location.href = url.replace('__id__', aData.Id);
+
+                    // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page
+                    // Ne marche pas car les tr sont selected après le Destray, alors que dans le DOM ils ne sont pas selected ...
+
+                    @*if ($(this).hasClass('selected')) {
+
+                            var aData = $("#Table").dataTable().fnGetData(this);
+
+                            var url = '@Url.Action("Create", "NonConformite", new { id = "__id__" })';
+                            window.location.href = url.replace('__id__', aData.Id);
+                        }
+                    else {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }*@
+                });
+
+                $('#Table tbody').on('mousedown', 'tr', function (e) {
+                    e.preventDefault();
+                    if (e.button == 2 || e.button == 1) {
+                        var aData = $("#Table").dataTable().fnGetData(this);
+                        console.log('aData');
+                        console.log(aData);
+                        var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                        var realUrl = url.replace('__id__', aData.Id)
+                        window.open(realUrl);
+                    }
+                });
+
+            },
+            rechercheNonConformite: function () {
+                viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'NONCONFORMITE' });
+                this.render();
+                this.buildDataTable();
+            }
+
+        });
+
+
+
+
+        var filtreTableView = new FiltreTableView({
+            el: $("#TableFiltreDiv"),
+            model: viewModel
+        });
 
         var rechercheTableView = new RechercheTableView({
             el: $("#TableRechercheDiv"),
             model: viewModel
         });
 
+        var rechercheNonConformiteTableView = new RechercheNonConformiteTableView({
+            el: $("#TableRechercheDiv"),
+            model: viewModel
+        });
 
     });
 

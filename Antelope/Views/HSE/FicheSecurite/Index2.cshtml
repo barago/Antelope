@@ -5,7 +5,9 @@
 
 
 <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/Scripts/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<link href="~/Scripts/DataTables-1.10.7/extensions/TableTools/css/dataTables.tableTools.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="/Scripts/underscore.js"></script>
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
@@ -469,7 +471,7 @@
                             <label for="IsPlanActionCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00B0F0;height:10px;">&nbsp;Plan d'action clôturé&nbsp;</span></label>
                             <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsFicheSecuriteCloturee" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;Fiche Sécurité clôturée&nbsp;</span></label>
-                            <input type="checkbox" id="IsFicheSecuriteCloturee"><% if(paramModel.get('IsFicheSecuriteCloture')===true) { %> checked <% } %>
+                            <input type="checkbox" id="IsFicheSecuriteCloturee"<% if(paramModel.get('IsFicheSecuriteCloture')===true) { %> checked <% } %> >
                         </div>
                     </div>
                 </div>
@@ -706,11 +708,23 @@
                 "keyup #ResponsableNomAction": "changeResponsableNomAction",
 
             },
+            triggerRechercheSurEntree : function(e){
+                if ( e.which === 13 ) { 
+                    if(viewModel.get('paramModel').get('typeRecherche') === 'FICHESECURITE'){
+                    Backbone.applicationEvents.trigger('recherche');
+                }
+                    if(viewModel.get('paramModel').get('typeRecherche') === 'ACTION'){
+                        Backbone.applicationEvents.trigger('rechercheAction');
+                }
+                }
+            },
             recherche: function () {
+                console.log('RECHERCHE');
                 viewModel.get('paramModel').set({ 'typeRecherche': 'FICHESECURITE' });
                 Backbone.applicationEvents.trigger('recherche');
             },
             rechercheAction: function () {
+                console.log('RECHERCHEACTION');
                 viewModel.get('paramModel').set({ 'typeRecherche': 'ACTION' });
                 Backbone.applicationEvents.trigger('rechercheAction');
             },
@@ -769,15 +783,21 @@
             changeType: function () {
                 this.model.get('paramModel').set({ 'FicheSecuriteTypeId': $('#Type').val() });
             },
-            changeCode: function () {
+            changeCode: function (e) {
                 this.model.get('paramModel').set({ 'Code': $('#Code').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changePersonneConcerneeNom: function () {
+            changePersonneConcerneeNom: function (e) {
                 this.model.get('paramModel').set({ 'PersonneConcerneeNom': $('#PersonnesConcerneeNom').val() });
+                
+                this.triggerRechercheSurEntree(e);
             },
-            changeResponsableNom: function () {
+            changeResponsableNom: function (e) {
                 this.model.get('paramModel').set({ 'ResponsableNom': $('#ResponsableNom').val() });
                 this.model.get('paramModel').set({ 'ResponsableGuid': null });
+
+                this.triggerRechercheSurEntree(e);
             },
             changePlageHoraire: function () {
                 this.model.get('paramModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
@@ -788,38 +808,54 @@
             changeRisque: function () {
                 this.model.get('paramModel').set({ 'RisqueId': $('#Risque').val() });
             },
-            changeGravite: function () {
+            changeGravite: function (e) {
                 this.model.get('paramModel').set({ 'CotationGravite': $('#Gravite').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeFrequence: function () {
+            changeFrequence: function (e) {
                 this.model.get('paramModel').set({ 'CotationFrequence': $('#Frequence').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
             changeCorpsHumainZone: function (data) {
                 this.model.get('paramModel').set({ 'CorpsHumainZoneId': $('#CorpsHumainZone').val() });
             },
-            changeDateEvenementDebut: function () {
+            changeDateEvenementDebut: function (e) {
                 this.model.get('paramModel').set({ 'DateEvenementDebut': this.dateFormatMVC($('#DateEvenementDebutInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateEvenementDebutJavascript': $('#DateEvenementDebutInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeDateEvenementFin: function () {
+            changeDateEvenementFin: function (e) {
                 this.model.get('paramModel').set({ 'DateEvenementFin': this.dateFormatMVC($('#DateEvenementFinInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateEvenementFinJavascript': $('#DateEvenementFinInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeDateButoirDebut: function () {
+            changeDateButoirDebut: function (e) {
                 this.model.get('paramModel').set({ 'DateButoirDebut': this.dateFormatMVC($('#DateButoirDebutInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateButoirDebutJavascript': $('#DateButoirDebutInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeDateButoirFin: function () {
+            changeDateButoirFin: function (e) {
                 this.model.get('paramModel').set({ 'DateButoirFin': this.dateFormatMVC($('#DateButoirFinInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateButoirFinJavascript': $('#DateButoirFinInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeDateClotureDebut: function () {
+            changeDateClotureDebut: function (e) {
                 this.model.get('paramModel').set({ 'DateClotureDebut': this.dateFormatMVC($('#DateClotureDebutInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateClotureDebutJavascript': $('#DateClotureDebutInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
-            changeDateClotureFin: function () {
+            changeDateClotureFin: function (e) {
                 this.model.get('paramModel').set({ 'DateClotureFin': this.dateFormatMVC($('#DateClotureFinInput').val()) + 'T' + '00:00:00.0' });
                 this.model.get('paramModel').set({ 'DateClotureFinJavascript': $('#DateClotureFinInput').val() });
+
+                this.triggerRechercheSurEntree(e);
             },
             dateFormatMVC: function (date) {
                 // De date FR à DateTime
@@ -844,9 +880,11 @@
             changeIsFicheSecuriteCloture: function () {
                 this.model.get('paramModel').set({ 'IsFicheSecuriteCloture': $('#IsFicheSecuriteCloture').is(":checked") });
             },
-            changeResponsableNomAction: function () {
+            changeResponsableNomAction: function (e) {
                 this.model.get('paramModel').set({ 'ResponsableNomAction': $('#ResponsableNomAction').val() });
                 this.model.get('paramModel').set({ 'ResponsableNomActionGuid': null });
+
+                this.triggerRechercheSurEntree(e);
             },
         });
 
@@ -884,6 +922,28 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": [1,2,3]
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": [1,2,3]
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1,2,3]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1,2,3]
+                            }
+                        ]
+                    },
                     "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
@@ -926,6 +986,7 @@
                         }
 
                     },
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
                     "fnRowCallback": function (nRow, aData) {
                         var $nRow = $(nRow); // cache the row wrapped up in jQuery
 
@@ -1025,7 +1086,6 @@
                                 //}
 
                                 var links = '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;';
-                                //console.log(currentHSERole);
                                 if (@ViewBag.CurrentHSERole < 400) {
 
                                     links = links + '<a id="deleteFicheSecurite" data-id="' + full.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>';
@@ -1134,6 +1194,28 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": [1,2,3,4,5,6]
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": [1,2,3,4,5,6]
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1,2,3,4,5,6]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1,2,3,4,5,6]
+                            }
+                        ]
+                    },
                     "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
@@ -1171,11 +1253,13 @@
                             "isPlanActionAttente": this.model.get('paramModel').get('IsPlanActionAttente'),
                             "isPlanActionRejete": this.model.get('paramModel').get('IsPlanActionRejete'),
                             "isPlanActionCloture": this.model.get('paramModel').get('IsPlanActionCloture'),
+                            "isFicheSecuriteCloture": this.model.get('paramModel').get('IsFicheSecuriteCloture'),
                             "responsableNomAction": this.model.get('paramModel').get('ResponsableNomAction'),
                             "rechercheType":"ACTION"
                         }
 
                     },
+                    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
                     "fnRowCallback": function (nRow, aData) {
                         var $nRow = $(nRow); // cache the row wrapped up in jQuery
 
@@ -1204,6 +1288,12 @@
                         if (aData.FicheSecurite.WorkFlowCloturee == true && aData.FicheSecurite.WorkFlowASEValidee == true) {
                             colorHeavy = "#00B0F0";
                             colorLight = "#AFE8FD";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+                        if (aData.FicheSecurite.WorkFlowFicheSecuriteCloturee == true) {
+                            colorHeavy = "#00FF00";
+                            colorLight = "#AFFDAF";
                             $nRow.css({ "background-color": colorLight });
                             $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         }
@@ -1245,7 +1335,6 @@
                             "sTitle": "Description",
                             "orderable": false,
                             "mRender": function (date, type, full) {
-                                console.log(full.ActionQSE);
                                 return '<span title="' + full.ActionQSE.Description + '">' + full.ActionQSE.Description.substring(0, 40) + '...</span>'
                             }
                         },
@@ -1302,7 +1391,6 @@
                                 //}
 
                                 var links = '<div ><a class="glyphicon glyphicon-edit" href="' + urlEdit + '"></a>&nbsp;&nbsp;';
-                                //console.log(currentHSERole);
                                 if (@ViewBag.CurrentHSERole < 400) {
 
                                     links = links + '<a id="deleteFicheSecurite" data-id="' + full.FicheSecurite.FicheSecuriteID + '" class="glyphicon glyphicon-remove"></a></div>';

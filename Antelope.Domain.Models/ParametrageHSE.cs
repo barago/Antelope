@@ -12,6 +12,7 @@ namespace Antelope.Domain.Models
         public string EmailDiffusionFS { get; set; }
         public string EmailValidationRejetPlanActionFS { get; set; }
         public string EmailDiffusionPlanAction { get; set; }
+        public Boolean IsEmailDiffusion { get; set; }
 
     }
 }

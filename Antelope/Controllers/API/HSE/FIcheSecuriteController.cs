@@ -257,12 +257,14 @@ namespace Antelope.Controllers.API.HSE
                     FicheSecurite.WorkFlowASEValidee = false;
                     FicheSecurite.WorkFlowASERejetee = false;
                     FicheSecurite.WorkFlowAttenteASEValidation = true;
+                    FicheSecurite.WorkFlowFicheSecuriteCloturee = false;
                     _emailService.SendEmailDiffusionPlanActionFicheSecurite(ficheSecurite);
                 break;
                 case "ASEValidee":
                     FicheSecurite.WorkFlowAttenteASEValidation = false;
                     FicheSecurite.WorkFlowASEValidee = true;
                     FicheSecurite.WorkFlowASERejetee = false;
+                    FicheSecurite.WorkFlowFicheSecuriteCloturee = false;
                     _emailService.SendEmailValidationPlanActionFicheSecurite(ficheSecurite);
                 break;
                 case "ASERejetee":
@@ -270,6 +272,7 @@ namespace Antelope.Controllers.API.HSE
                     FicheSecurite.WorkFlowASEValidee = false;
                     FicheSecurite.WorkFlowASERejetee = true;
                     FicheSecurite.WorkFlowASERejeteeCause = ficheSecurite.WorkFlowASERejeteeCause;
+                    FicheSecurite.WorkFlowFicheSecuriteCloturee = false;
                     _emailService.SendEmailRejetPlanActionFicheSecurite(ficheSecurite);
                 break;
                 case "ASEFicheSecuriteCloturee":

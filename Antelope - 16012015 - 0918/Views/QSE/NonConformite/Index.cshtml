@@ -1,0 +1,387 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/QSE/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="/Scripts/underscore.js"></script>
+<script type="text/javascript" src="/Scripts/backbone.js"></script>
+
+@*<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteViewModel.js"></script>
+    <script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteParamModel.js"></script>*@
+<script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/ViewModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/RechercheNonConformiteParamModel.js"></script>
+
+
+
+<script type="text/template" id="TableRecherche">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-primary" style="border-color: #006573;">
+                <div class="panel-heading" style="background-color :#006573; color: white">
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            FILTRES&nbsp;:
+                        </div>
+                        <div class="col-md-2">
+
+                            <button id="RechercheBouton" type="submit" class="btn btn-default btn-xs pull-right">
+                                <span class="glyphicon glyphicon-search"></span> Chercher
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding:0px;">
+                    <div class="row input-sm">
+                        <div class="col-md-4">
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Site" class="label-xs">Site&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="Site" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheNonConformiteParamModel.get('SiteId') == 0){ %> selected <% } %> ></option>
+                                        <% siteCollection.each( function(site){ %>
+                                        <option value="<%= site.get('SiteID') %>"
+                                            <% if (rechercheNonConformiteParamModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %> >
+                                            <%= site.get('Nom') %>
+                                        </option>
+                                        <% }); %>
+                                        @*%> selected <%*@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Origine" class="label-xs">Origine&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="Origine" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheNonConformiteParamModel.get('NonConformiteOrigineId') == 0){ %> selected <% } %> ></option>
+                                        <% nonConformiteOrigineCollection.each( function(nonConformiteOrigine){ %>
+                                        <option value="<%= nonConformiteOrigine.get('Id') %>"
+                                            <% if (rechercheNonConformiteParamModel.get('NonConformiteOrigineId') == nonConformiteOrigine.get('Id')){ %> selected <% } %> >
+                                            <%= nonConformiteOrigine.get('Nom') %>
+                                        </option>
+                                        <% }); %>
+                                        @*%> selected <%*@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Domaine" class="label-xs">Domaine&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="Domaine" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheNonConformiteParamModel.get('NonConformiteDomaineId') == 0){ %> selected <% } %> ></option>
+                                        <% nonConformiteDomaineCollection.each( function(nonConformiteDomaine){ %>
+                                        <option value="<%= nonConformiteDomaine.get('Id') %>"
+                                            <% if (rechercheNonConformiteParamModel.get('NonConformiteDomaineId') == nonConformiteDomaine.get('Id')){ %> selected <% } %> >
+                                            <%= nonConformiteDomaine.get('Nom') %>
+                                        </option>
+                                        <% }); %>
+                                        @*%> selected <%*@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Gravite" class="label-xs">Gravite&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="Gravite" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheNonConformiteParamModel.get('NonConformiteGraviteId') == 0){ %> selected <% } %> ></option>
+                                        <% nonConformiteGraviteCollection.each( function(nonConformiteGravite){ %>
+                                        <option value="<%= nonConformiteGravite.get('Id') %>"
+                                            <% if (rechercheNonConformiteParamModel.get('NonConformiteGraviteId') == nonConformiteGravite.get('Id')){ %> selected <% } %> >
+                                            <%= nonConformiteGravite.get('Nom') %>
+                                        </option>
+                                        <% }); %>
+                                        @*%> selected <%*@
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel panel-primary" style="border-color: #006573;">
+                @*<div class="panel-heading" style="background-color :#c42031; color: white">Résultats&nbsp;:&nbsp;<span class="pull-right">&nbsp;&nbsp;enregistrements&nbsp; <%= (PageSize*(Page-1))+1 %> &nbsp;à&nbsp; <%= (Page*PageSize < RowCount)? Page*PageSize : RowCount  %> &nbsp;sur&nbsp;un&nbsp;total&nbsp;de&nbsp;:&nbsp;<%= RowCount %></span></div>*@
+                <div class="panel-heading" style="background-color :#006573; color: white">RESULTATS&nbsp;:</div>
+                <div class="panel-body">
+
+                    <table id="Table" class="stripe hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titre</th>
+                                <th>Responsable</th>
+                                <th>Date Butoir</th>
+                                @*<th>Code</th>
+                            <th>Date </th>
+                            <th>Origine</th>
+                            <th>Description</th>*@
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+<div id="TableRechercheDiv">
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        var viewModel = new ViewModel();
+
+        viewModel.fetch({
+            async: false
+        });
+
+        viewModel.set({ 'rechercheNonConformiteParamModel': new RechercheNonConformiteParamModel(viewModel.get('RechercheNonConformiteParamModel')) });
+
+        viewModel.set({ 'siteCollection': new SiteCollection(viewModel.get('AllSite')) });
+        viewModel.set({ 'nonConformiteDomaineCollection': new SiteCollection(viewModel.get('AllNonConformiteDomaine')) });
+        viewModel.set({ 'nonConformiteOrigineCollection': new SiteCollection(viewModel.get('AllNonConformiteOrigine')) });
+        viewModel.set({ 'nonConformiteGraviteCollection': new SiteCollection(viewModel.get('AllNonConformiteGravite')) });
+
+
+        var RechercheTableView = Backbone.View.extend({
+            id: 'RechercheTableFicheSecurite',
+            template: _.template($('#TableRecherche').html()),
+            render: function () {
+                this.$el.html(this.template(this.model.toJSON()));
+
+                //$('#Table').DataTable({
+                //    "ajax": {
+                //        "url": "/api/NonConformite",
+                //        "dataSrc": "tableData"
+                //    },
+                //    "columns": [
+                //        { "data": "Code" },
+                //        { "data": "Nom" },
+                //        { "data": "Déscription" },
+                //        { "data": "Clôture" },
+                //    ]
+                //});
+
+
+                this.buildDataTable();
+
+
+
+                return this;
+            },
+            initialize: function () {
+                //_.bindAll(this, table);
+                this.render();
+
+            },
+            events: {
+                "change #Site": "changeSite",
+                "change #Origine": "changeOrigine",
+                "change #Domaine": "changeDomaine",
+                "change #Gravite": "changeGravite",
+                "click #RechercheBouton":"recherche"
+
+            },
+            buildDataTable: function () {
+                // /!\ Les fonctions d'ajout de 'datas' supplémentaires de DataTables ne fonctionnent pas très bien
+                // Donc à chaque recherche, nous réinstancions le tableau 
+                // A chaque recherche, les paramètres de tri ne sont donc pas sauvegardés ... A voir si c'est grâve.
+
+                $("#Table").DataTable().destroy();
+
+                table = $("#Table").DataTable({
+                    "scrollY": "400px",
+                    "autoWidth": false,
+                    "serverSide": true,
+                    "processing": true,
+                    "filter": false,
+                    //"sAjaxSource": "/api/NonConformite",
+                    "ajax": {
+                        "url": "/api/ActionQSE",
+                        "data": {
+                            "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
+                            "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
+                            "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
+                            "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId')
+                        }
+
+                    },
+                    "columns": [
+                        {
+                            "mData": "NonConformiteId",
+                            "sTitle": "Id",
+                            "visible": false,
+                            "orderable": false,
+                        },
+                        {
+                            "mData": "Titre",
+                            "sTitle": "Titre",
+                            "orderable": false,
+                            "width": "10%"
+                        },
+                        {
+                            "mData": "ResponsableNom",
+                            "sTitle": "Responsable",
+                            "orderable": false,
+                            "width": "10%",
+                            "mRender": function (date, type, full) {
+                                        return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
+                                    }
+                        },
+                        {
+                            "mData": "Date",
+                            "sTitle": "Date Butoir",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                //return new Date(date).toLocaleString();
+                                //return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                                var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
+                                return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                            },
+                            "orderable": false,
+                            "width": "10%"
+                        },
+                        //},
+                        //{
+                        //    "mData": "Code",
+                        //    "sTitle": "Code",
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "Date",
+                        //    "sTitle": "Date",
+                        //    "sType": "date",
+                        //    "mRender": function (date, type, full) {
+                        //        //return new Date(date).toLocaleString();
+                        //        return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                        //    },
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "NonConformiteOrigine.Nom",
+                        //    "sTitle": "Origine",
+                        //    "orderable": false,
+                        //    "width": "15%"
+                        //},
+                        //{
+                        //    "mData": "Description",
+                        //    "sTitle": "Description",
+                        //    "orderable":false
+                        //}
+                    ],
+                    "oLanguage": {
+                        "sUrl": "Scripts/datatables_lang_fr.js"
+                    }
+                });
+
+
+                table.$('tr.selected').removeClass('selected');
+                
+                $('#Table tbody').on('click', 'tr', function () {
+
+                    var aData = $("#Table").dataTable().fnGetData(this);
+                    var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                    window.location.href = url.replace('__id__', aData.NonConformiteId);
+
+                    // TODO : Faire un premier clic de selection, puis le deuxième envoi sur la page 
+                    // Ne marche pas car les tr sont selected après le Destray, alors que dans le DOM ils ne sont pas selected ...
+                    
+                    @*if ($(this).hasClass('selected')) {
+
+                        var aData = $("#Table").dataTable().fnGetData(this);
+
+                        var url = '@Url.Action("Create", "NonConformite", new { id = "__id__" })';
+                        window.location.href = url.replace('__id__', aData.Id);
+                    }
+                    else {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }*@
+                });
+
+
+
+
+            },
+            recherche: function () {
+
+                this.buildDataTable();
+            },
+            changeSite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
+            },
+            changeOrigine: function () {
+                console.log(parseInt($('#Origine').val()));
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
+            },
+            changeDomaine: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteDomaineId': parseInt($('#Domaine').val()) });
+            },
+            changeGravite: function () {
+                this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteGraviteId': parseInt($('#Gravite').val()) });
+            }
+        });
+
+
+        var rechercheTableView = new RechercheTableView({
+            el: $("#TableRechercheDiv"),
+            model: viewModel
+        });
+
+
+    });
+
+
+</script>
+

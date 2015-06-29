@@ -177,6 +177,7 @@ namespace Antelope.Repositories.HSE
             Boolean ParameterIsPlanActionAttente = Convert.ToBoolean(DataTableParameters["isPlanActionAttente"]);
             Boolean ParameterIsPlanActionRejete = Convert.ToBoolean(DataTableParameters["isPlanActionRejete"]);
             Boolean ParameterIsPlanActionCloture = Convert.ToBoolean(DataTableParameters["isPlanActionCloture"]);
+            Boolean ParameterIsFicheSecuriteCloture = Convert.ToBoolean(DataTableParameters["isFicheSecuriteCloture"]);
             //Guid ParameterResponsableGuid = Guid.Parse(DataTableParameters["responsableGuid"]);
             Boolean ParameterIsColonne1Ordonnee = Convert.ToBoolean(Int32.Parse(DataTableParameters["order[0].column"]));
             String ParameterColonne1Sens = DataTableParameters["order[0].dir"];
@@ -294,61 +295,54 @@ namespace Antelope.Repositories.HSE
             if (ParameterIsPlanActionAttente == true)
             {
                 FirstWorkFlowPredicate = true;
-                WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == true && WorkFlowASERejetee == false && WorkFlowCloturee == false) || (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == true && WorkFlowASERejetee == false && WorkFlowCloturee == true)";
+                WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == true && WorkFlowASERejetee == false && WorkFlowCloturee == false && WorkFlowFicheSecuriteCloturee == false) || (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == true && WorkFlowASERejetee == false && WorkFlowCloturee == true && WorkFlowFicheSecuriteCloturee == false)";
             };
 
             if (ParameterIsPlanActionValide == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-
-                    WorkFlowWhereClause += "|| (WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false)";
-                }
+                WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false && WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsPlanActionRejete == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == true && WorkFlowCloturee == false)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == true && WorkFlowCloturee == false)";
-                }
+                WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == true && WorkFlowCloturee == false && WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsPlanActionCloture == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
+                WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true && WorkFlowFicheSecuriteCloturee == false)";
+                FirstWorkFlowPredicate = true;
+            }
+            if (ParameterIsFicheSecuriteCloture == true)
+            {
+                if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
+                WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true && WorkFlowFicheSecuriteCloturee == true)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsNouvelleFiche == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false) || (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false) || (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true)";
-                }
+                WorkFlowWhereClause += "(WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == false && WorkFlowFicheSecuriteCloturee == false) || (WorkFlowASEValidee == false && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true && WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
-
-
-
             if (WorkFlowWhereClause != "")
             {
                 queryFicheSecurite = queryFicheSecurite.Where(WorkFlowWhereClause);
@@ -485,7 +479,7 @@ namespace Antelope.Repositories.HSE
             int RecordsFiltered = queryFicheSecurite.Count();
             int RecordsTotal = _db.FicheSecurites.Count();
 
-            queryFicheSecurite = queryFicheSecurite.OrderBy(i => i.WorkFlowCloturee && i.WorkFlowASEValidee).ThenBy(i => i.WorkFlowASEValidee).ThenBy(i => i.WorkFlowASERejetee).ThenBy(i => i.WorkFlowAttenteASEValidation).ThenBy(i => i.WorkFlowDiffusee);
+            queryFicheSecurite = queryFicheSecurite.OrderBy(i => i.WorkFlowFicheSecuriteCloturee).ThenBy(i => i.WorkFlowCloturee && i.WorkFlowASEValidee).ThenBy(i => i.WorkFlowASEValidee).ThenBy(i => i.WorkFlowASERejetee).ThenBy(i => i.WorkFlowAttenteASEValidation).ThenBy(i => i.WorkFlowDiffusee);
 
             if (ParameterIsColonne1Ordonnee == true)
             {
@@ -500,8 +494,10 @@ namespace Antelope.Repositories.HSE
                 }
             }
 
-            queryFicheSecurite = queryFicheSecurite.Skip(ParameterStart).Take(ParameterLength);
-
+            if (ParameterLength != -1)
+            {
+                queryFicheSecurite = queryFicheSecurite.Skip(ParameterStart).Take(ParameterLength);
+            }
 
             //queryFicheSecurite.Select(s => s.f).Distinct();
             //queryFicheSecurite = queryFicheSecurite.GroupBy(q => q.f.FicheSecuriteID);
@@ -556,6 +552,7 @@ namespace Antelope.Repositories.HSE
             Boolean ParameterIsPlanActionAttente = Convert.ToBoolean(DataTableParameters["isPlanActionAttente"]);
             Boolean ParameterIsPlanActionRejete = Convert.ToBoolean(DataTableParameters["isPlanActionRejete"]);
             Boolean ParameterIsPlanActionCloture = Convert.ToBoolean(DataTableParameters["isPlanActionCloture"]);
+            Boolean ParameterIsFicheSecuriteCloture = Convert.ToBoolean(DataTableParameters["isFicheSecuriteCloture"]);
             //Guid ParameterResponsableGuid = Guid.Parse(DataTableParameters["responsableGuid"]);
             Boolean ParameterIsColonne1Ordonnee = false;
             String ParameterColonne1Sens = null;
@@ -689,60 +686,54 @@ namespace Antelope.Repositories.HSE
             if (ParameterIsPlanActionAttente == true)
             {
                 FirstWorkFlowPredicate = true;
-                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == true && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false) || (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == true && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true)";
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == true && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false && FicheSecurite.WorkFlowFicheSecuriteCloturee == false) || (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == true && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true && FicheSecurite.WorkFlowFicheSecuriteCloturee == false)";
             };
 
             if (ParameterIsPlanActionValide == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-
-                    WorkFlowWhereClause += "|| (FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false)";
-                }
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false && FicheSecurite.WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsPlanActionRejete == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == true && FicheSecurite.WorkFlowCloturee == false)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == true && FicheSecurite.WorkFlowCloturee == false)";
-                }
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == true && FicheSecurite.WorkFlowCloturee == false && FicheSecurite.WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsPlanActionCloture == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true && FicheSecurite.WorkFlowFicheSecuriteCloturee == false)";
+                FirstWorkFlowPredicate = true;
+            }
+            if (ParameterIsFicheSecuriteCloture == true)
+            {
+                if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true && FicheSecurite.WorkFlowFicheSecuriteCloturee == true)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsNouvelleFiche == true)
             {
                 if (FirstWorkFlowPredicate == true)
                 {
-                    WorkFlowWhereClause += "|| (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false) || (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true)";
+                    WorkFlowWhereClause += "|| ";
                 }
-                else
-                {
-                    WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false) || (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true)";
-                }
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == false && FicheSecurite.WorkFlowFicheSecuriteCloturee == false) || (FicheSecurite.WorkFlowASEValidee == false && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true && FicheSecurite.WorkFlowFicheSecuriteCloturee == false)";
                 FirstWorkFlowPredicate = true;
             }
-
-
 
             if (WorkFlowWhereClause != "")
             {
@@ -866,7 +857,7 @@ namespace Antelope.Repositories.HSE
                 .Distinct();
 
                 queryFicheSecurite = queryFicheSecurite
-                .Where(w => w.ActionQSE.ClotureDate >= ParameterDateClotureFin);
+                .Where(w => w.ActionQSE.ClotureDate <= ParameterDateClotureFin);
             }
             if (ParameterResponsableNomAction != null && ParameterResponsableNomAction != "")
             {
@@ -895,7 +886,7 @@ namespace Antelope.Repositories.HSE
             int RecordsFiltered = queryFicheSecurite.Count();
             int RecordsTotal = _db.FicheSecurites.Count();
 
-            queryFicheSecurite = queryFicheSecurite.OrderBy(i => i.FicheSecurite.WorkFlowCloturee && i.FicheSecurite.WorkFlowASEValidee).ThenBy(i => i.FicheSecurite.WorkFlowASEValidee).ThenBy(i => i.FicheSecurite.WorkFlowASERejetee).ThenBy(i => i.FicheSecurite.WorkFlowAttenteASEValidation).ThenBy(i => i.FicheSecurite.WorkFlowDiffusee);
+            queryFicheSecurite = queryFicheSecurite.OrderBy(i => i.FicheSecurite.WorkFlowFicheSecuriteCloturee).ThenBy(i => i.FicheSecurite.WorkFlowCloturee && i.FicheSecurite.WorkFlowASEValidee).ThenBy(i => i.FicheSecurite.WorkFlowASEValidee).ThenBy(i => i.FicheSecurite.WorkFlowASERejetee).ThenBy(i => i.FicheSecurite.WorkFlowAttenteASEValidation).ThenBy(i => i.FicheSecurite.WorkFlowDiffusee);
 
             if (ParameterIsColonne1Ordonnee == true)
             {

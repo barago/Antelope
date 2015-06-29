@@ -36,11 +36,11 @@ namespace Antelope.Controllers
         {
 
             var client = new HttpClient();
-            client.BaseAddress = new Uri("http://dlf-sk8k03");
+            client.BaseAddress = new Uri("http://dlf-s12k04");
             var buffer = Encoding.ASCII.GetBytes("export:Exp0rt");
             var authHeader = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(buffer));
             client.DefaultRequestHeaders.Authorization = authHeader;
-            var response = client.GetAsync("glpi.listTickets").Result;
+            var response = client.GetAsync("glpi-prod.listTickets").Result;
 
             string responseBody = "ET NON";
             

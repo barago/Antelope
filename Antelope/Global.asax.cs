@@ -78,7 +78,7 @@ namespace Antelope
                 string[] roles = Roles.GetRolesForUser(id.Name);
 
 
-                if (Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\")))
+                if ((Roles.IsUserInRole(ADRole.Name.Replace(@"\\", @"\"))) || (ADRole.Name.Replace(@"\\", @"\") == login))
                 {
                     Debug.WriteLine(ADRole.Name);
 

@@ -41,6 +41,33 @@ namespace Antelope.Repositories.QSE
             Int32 ParameterGraviteId = Int32.Parse(DataTableParameters["nonConformiteGraviteId"]);
             Int32 ParameterDomaineId = Int32.Parse(DataTableParameters["nonConformiteDomaineId"]);
 
+            String ParameterResponsableNom = DataTableParameters["responsableNom"];
+            DateTime? ParameterDateButoirDebut = null;
+            DateTime? ParameterDateButoirFin = null;
+
+            if (DataTableParameters["dateButoirDebut"] != "")
+            {
+                try
+                {
+                    ParameterDateButoirDebut = DateTime.Parse(DataTableParameters["dateButoirDebut"]);
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+            if (DataTableParameters["dateButoirFin"] != "")
+            {
+                try
+                {
+                    ParameterDateButoirFin = DateTime.Parse(DataTableParameters["dateButoirFin"]);
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
             IQueryable<ActionQSE> queryActionQSE = from a in _db.ActionQSEs
                                                            orderby a.ActionQSEId
                                                            select a;
@@ -63,12 +90,33 @@ namespace Antelope.Repositories.QSE
             {
                 queryActionQSE = queryActionQSE.Where(q => q.NonConformite.NonConformiteDomaineId == ParameterDomaineId);
             }
+            if (ParameterResponsableNom != null && ParameterResponsableNom != "")
+            {
+                queryActionQSE = queryActionQSE.Where(q => q.Responsable.Nom == ParameterResponsableNom);
+            }
+            if (ParameterDateButoirDebut != null)
+            {
+                queryActionQSE = queryActionQSE.Where(
+                    q => q.DateButoireInitiale >= ParameterDateButoirDebut 
+                        || q.DateButoireNouvelle >= ParameterDateButoirDebut
+                        );
+            }
+            if (ParameterDateButoirFin != null)
+            {
+                queryActionQSE = queryActionQSE.Where(
+                    q => q.DateButoireInitiale <= ParameterDateButoirFin
+                        || q.DateButoireNouvelle <= ParameterDateButoirFin
+                        );
+          
+            }
 
             int RecordsFiltered = queryActionQSE.Count();
             int RecordsTotal = _db.ActionQSEs.Count();
 
-            queryActionQSE = queryActionQSE.Skip(ParameterStart).Take(ParameterLength);
-
+            if (ParameterLength != -1)
+            {
+                queryActionQSE = queryActionQSE.Skip(ParameterStart).Take(ParameterLength);
+            }
             List<ActionQSE> AllActionQSE = queryActionQSE.ToList();
 
             DataTableViewModel<ActionQSE> DataTableViewModel = new DataTableViewModel<ActionQSE>()
@@ -77,7 +125,6 @@ namespace Antelope.Repositories.QSE
                 recordsFiltered = RecordsFiltered,
                 data = AllActionQSE
             };
-
 
             return DataTableViewModel;
 

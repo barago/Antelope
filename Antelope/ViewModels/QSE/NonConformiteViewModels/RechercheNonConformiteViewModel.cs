@@ -14,6 +14,7 @@ namespace Antelope.ViewModels.QSE.NonConformiteViewModels
 
         //public NonConformitePaginatedList FicheSecuritePaginatedList;
 
+
         public List<Site> AllSite;
         public List<NonConformiteDomaine> AllNonConformiteDomaine;
         public List<NonConformiteOrigine> AllNonConformiteOrigine;
@@ -26,7 +27,7 @@ namespace Antelope.ViewModels.QSE.NonConformiteViewModels
         {
             this.AllSite = db.Sites.ToList();
             this.AllNonConformiteDomaine = db.NonConformiteDomaines.ToList();
-            this.AllNonConformiteOrigine = db.NonConformiteOrigines.ToList();
+            this.AllNonConformiteOrigine = db.NonConformiteOrigines.OrderBy(o => o.Nom).ToList();
             this.AllNonConformiteGravite = db.NonConformiteGravites.ToList();
 
             this.RechercheNonConformiteParamModel = rechercheNonConformiteParamModel;

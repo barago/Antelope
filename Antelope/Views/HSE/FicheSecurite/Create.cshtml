@@ -160,7 +160,7 @@
 
     <script type="text/template" id="TestTemplate2">
 
-
+        <!-- ---------------------------------!!!!VERSION IMPRESSION !!!!-------------------------------- -->
         <div id="ToPrint" class=" visible-print">
 
             <div id="toto" class="panel panel-danger">
@@ -193,7 +193,7 @@
 
                             <% } else { %>
 
-                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                            <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                             @* EDITER/ENREGISTRER FS*@
 
                             <% } %>
@@ -362,7 +362,7 @@
                                     <h4>Actions Immediates&nbsp;</h4>
 
                                     <div class="col-sm-12">
-                                        <textarea id="ActionImmediate1" class="form-control input-small" rows="8" style="max-width: 100%;font-size:8pt; "><%= ficheSecuriteModel.get('ActionImmediate1') %></textarea>
+                                        <textarea id="ActionImmediate1Print" class="form-control input-small" rows="8" style="max-width: 100%;font-size:8pt; "><%= ficheSecuriteModel.get('ActionImmediate1') %></textarea>
                                     </div>
 
 
@@ -380,7 +380,7 @@
                                         <div class="form-group">
                                             <br/><br />
                                             <div class="col-sm-12">
-                                                <textarea id="Description" class="form-control input-small" rows="14" style="font-size:8pt;"><%= ficheSecuriteModel.get('Description') %></textarea>
+                                                <textarea id="DescriptionPrint" class="form-control input-small" rows="14" style="font-size:8pt;"><%= ficheSecuriteModel.get('Description') %></textarea>
                                             </div>
 
                                         </div>
@@ -412,7 +412,7 @@
                                             <area data-name="Dos" data-code="DOS" class="DOS" alt="Dos" href="#" shape="poly" coords="175,56,175,44,177,40,181,36,186,33,212,33,219,37,222,42,223,44,223,57,222,60,219,65,214,69,185,69,180,66,177,63,176,61,175,56" />
                                         </map>
 
-                                        <br /><br />
+                                   
                                     </div>
                                     </div>
 
@@ -438,7 +438,7 @@
 
                     <div class="col-md-4">
                         <h4 class="panel-title">
-                            <button id="ImprimerFicheSecurite" type="submit" class="pull-left btn-xs" style="color: grey">
+                            <button id="ImprimerFicheSecurite" type="submit" class="pull-left btn-xs" style="color:#333333">
                                 <span class="glyphicon glyphicon-print"></span>
                             </button>&nbsp;&nbsp;
                             <a data-toggle="collapse" href="#collapseOne" data-target="#collapseOne">
@@ -463,16 +463,16 @@
 
                         <% if (currentHSERole < 500) { %>
                         @* DIFFUSION NOUVELLE FS*@
-                        <button id="Diffusion" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <button id="Diffusion" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-envelope"></span> Diffusion
                         </button>
                         <% } %>
 
                         <% } else { %>
 
-                        <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                        <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                         @* EDITER/ENREGISTRER FS*@
-                        <button id="EnregistrerFicheSecurite" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <button id="EnregistrerFicheSecurite" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-floppy-disk"></span> Enregistrer
                         </button>
                         <% } %>
@@ -794,17 +794,37 @@
                             <div class="row">
 
                                 <!-- ---------------CHAMP DESCRIPTION----------------- -->
-                                <div class="col-md-8" style="padding-left:0px;">
+                                <div class="col-md-12" style="padding-left:0px;">
                                     <div class="form-group">
 
                                         <h4>Description&nbsp;<span style="color:red">*</span></h4>
 
                                         <div class="col-sm-12">
-                                            <textarea id="Description" class="form-control input-small" rows="8"><%= ficheSecuriteModel.get('Description') %></textarea>
+                                            <textarea id="Description" class="form-control input-small" rows="8" style="max-width: 100%; "><%= ficheSecuriteModel.get('Description') %></textarea>
                                         </div>
 
                                     </div>
                                 </div>
+
+                            </div>
+
+                            <!-- ---------------CHAMPS ACTIONS----------------- -->
+                            <div class="row">
+                                <br />
+                                <br />
+
+                                <div class="col-md-8" style="padding-left:0px;">
+                                    <div class="form-group">
+
+                                        <h4>Actions Immediates&nbsp;<span style="color:red">*</span></h4>
+
+                                        <div class="col-sm-12">
+                                            <textarea id="ActionImmediate1" class="form-control input-small" rows="8" style="max-width: 100%; "><%= ficheSecuriteModel.get('ActionImmediate1') %></textarea>
+                                        </div>
+
+                                    </div>
+                                </div>
+
 
                                 <!-- ---------------CHAMPS COTATION----------------- -->
 
@@ -841,38 +861,18 @@
                                         <div class="form-group">
                                             <label for="CriticiteBrute" class="col-sm-8 label-xs">Criticité&nbsp;Brute&nbsp;:</label>
                                             <div class="col-sm-4">
-                                                <input type="text"<% if(this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence') > 11) { %>
+                                                <input type="text" <% if(this.model.get('ficheSecuriteModel').get('CotationGravite') * this.model.get('ficheSecuriteModel').get('CotationFrequence') > 11) { %>
                                                 style="background-color:#C42031;color:#FFFFFF;"
                                                 <% } else {%>
                                                 style="background-color:#EEEEEE;color:#000000;"
                                                 <% } %>
-                                                
+
                                                 class="form-control input-xs" id="CriticiteBrute" value="<%= ficheSecuriteModel.get('CotationFrequence') * ficheSecuriteModel.get('CotationGravite') %>" disabled />
 
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-
-                            <!-- ---------------CHAMPS ACTIONS----------------- -->
-                            <div class="row">
-                                <br />
-                                <br />
-
-                                <div class="col-md-12" style="padding-left:0px;">
-                                    <div class="form-group">
-
-                                        <h4>Actions Immediates&nbsp;<span style="color:red">*</span></h4>
-
-                                        <div class="col-sm-12">
-                                            <textarea id="ActionImmediate1" class="form-control input-small" rows="8" style="max-width: 100%; "><%= ficheSecuriteModel.get('ActionImmediate1') %></textarea>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
 
 
                                 @*<div class="panel panel-default">
@@ -963,11 +963,11 @@
 
                         <% if (ficheSecuriteModel.get('WorkFlowAttenteASEValidation') == true) {%>
                         <% if (currentHSERole < 400) { %>
-                        <button id="Valider" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <button id="Valider" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-ok"></span> Validé
                         </button>
                         <span class="pull-right">&nbsp;ou&nbsp;</span>
-                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
+                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-remove"></span> Rejeté
                         </button>
                         <span class="pull-right">
@@ -983,8 +983,8 @@
 
                         <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == false){ %>
 
-                        <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
-                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                        <button id="ASEEnvoi" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-envelope"></span> Envoi à l'ASE
                         </button>
 
@@ -998,7 +998,7 @@
                         @*IF CLOTURE = MEME BOUTON (REJET, MAIS MESSAGE CLOTURE)*@
                         <% if (currentHSERole < 400) { %>
                         <span class="pull-right">&nbsp;pour&nbsp;amélioration.</span>
-                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color: red">
+                        <button id="Rejeter" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-remove"></span> Rejeter
                         </button>
 
@@ -1107,9 +1107,9 @@
                                                         CAUSES
                                                     </td>
                                                     <td>
-
+                                                        <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == false) {%>
                                                         <button id="BtnAddCause" type="button" class="btn btn-danger btn-xs accordion-toggle" data-toggle="collapse" data-target="#FormAjoutCause" data-parent="#CauseActionCollapse"><span class="glyphicon glyphicon-plus"></span>&nbsp;Cause</button>
-
+                                                        <% } %>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1144,7 +1144,7 @@
                                                                 <textarea id="AddCauseDescription" class="form-control" rows="2" style="max-width: 100%; "></textarea>
                                                             </div>
                                                             <div class="col-md-2">
-                                                                <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                                <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                                 <button id="BtnSaveAddCause" type="button" class="btn btn-xs"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                                 <% } %>
                                                             </div>
@@ -1168,11 +1168,15 @@
                                                     <%= cause.get('Description') %>
                                                 </div>
                                                 <div class="col-md-2" style="padding:0px;">
-                                                    <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                    <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                    <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == false) {%>
                                                     <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-danger btn-xs BtnDeleteCause pull-right"><span class="glyphicon glyphicon-remove"></span></button>
                                                     <% } %>
+                                                    <% } %>
                                                     <button id="<%= 'BtnOpenFormEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-danger btn-xs accordion-toggle BtnEditCause pull-right" data-toggle="collapse" data-target="<%= '#FormEditCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                    <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == false) {%>
                                                     <button id="BtnAddAction" type="button" class="btn btn-danger btn-xs accordion-toggle pull-right" data-toggle="collapse" data-target="<%= '#FormAddActionForCause'+cause.get('CauseQSEId') %>" data-parent="#CauseActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-plus"></span>&nbsp;Action</button>
+                                                    <% } %>
                                                 </div>
                                             </div>
                                         </div>
@@ -1189,7 +1193,7 @@
                                                     <div class="col-md-10">
                                                         <textarea id="<%= 'AddActionDescriptionForCause'+cause.get('CauseQSEId') %>" class="form-control AddActionDescription" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "></textarea>
                                                     </div>
-                                                    <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                    <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                     <div class="col-md-2">
                                                         <button id="<%= 'BtnSaveAddActionForCause'+cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnSaveAddAction" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                     </div>
@@ -1254,7 +1258,7 @@
                                                             <div class="col-md-10">
                                                                 <textarea id="CauseDescription" data-causeid="<%=cause.get('CauseQSEId') %>" class="form-control EditCauseDescription" rows="2" style="max-width: 100%; "><%= cause.get('Description') %></textarea>
                                                             </div>
-                                                            <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                            <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
                                                             <div class="col-md-2">
                                                                 <button id="<%= 'BtnEditCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" type="button" class="btn btn-xs BtnSaveEditCause"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                             </div>
@@ -1278,28 +1282,30 @@
 
                                         <div class="col-md-11">
                                             <div class="row" style="border-width:1px;padding:5px;margin:5px;border-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
-                                                <div class="col-md-7" style="border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
+                                                <div class="col-md-6" style="border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;border-right-color:#808181;">
                                                     <%= action.get('Description') %>
                                                 </div>
-                                                <div class="col-md-2" style="border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
+                                                <div class="col-md-2" style="border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;border-right-color:#808181;">
                                                     <%= action.get('Responsable').get('Prenom') %> &nbsp; <%= action.get('Responsable').get('Nom') %>
                                                 </div>
-                                                <div class="col-md-1" style="text-align:center;padding:0px;border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
+                                                <div class="col-md-1" style="text-align:center;padding:0px;border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;border-right-color:#808181;">
                                                     <%= (action.get('DateButoireNouvelle') == null) ? action.get('DateButoireInitialeJavascript') : action.get('DateButoireNouvelleJavascript') %>
                                                 </div>
-                                                <div class="col-md-1" style="text-align:center;padding:0px;border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
+                                                <div class="col-md-2" style="text-align:center;padding:0px;border-width:1px;border-right-style:solid;border-color:#DDDDDD;background-color:#DDDDDD;">
                                                     <% if (action.get('ClotureDate') == null) { %>
                                                     En cours
                                                     <% } else { %>
-                                                    Cloturée <span class="glyphicon glyphicon-ok pull-right"></span>
+                                                    &nbsp;<span class="glyphicon glyphicon-ok"></span> Clôturée: <%= action.get('ClotureDateJavascript')%>
 
                                                     <% }%>
 
 
                                                 </div>
                                                 <div class="col-md-1" style="padding:0px;">
-                                                    <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                    <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid')) { %>
+                                                    <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == false) {%>
                                                     <button id="<%= 'BtnDeleteCause'+cause.get('CauseQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-danger btn-xs BtnDeleteAction pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                                                    <% } %>
                                                     <% } %>
                                                     <button id="<%= 'BtnOpenFormEditAction'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-danger btn-xs accordion-toggle BtnEditAction pull-right" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#CauseActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-pencil"></span></button>
                                                 </div>
@@ -1317,7 +1323,7 @@
                                                     <div class="col-md-10">
                                                         <textarea id="<%= 'EditActionDescriptionForAction'+action.get('ActionQSEId') %>" class="form-control EditActionDescription" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>" rows="2" style="max-width: 100%; "><%= action.get('Description') %></textarea>
                                                     </div>
-                                                    <% if (currentHSERole < 400 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid') || currentGuid === action.get('Responsable').get('Guid')) { %>
+                                                    <% if (currentHSERole < 500 || currentGuid === ficheSecuriteModel.get('Responsable').get('Guid') || currentGuid === action.get('Responsable').get('Guid')) { %>
                                                     <div class="col-md-2">
                                                         <button id="<%= 'BtnSaveEditActionForAction'+action.get('ActionQSEId') %>" type="button" class="btn btn-xs BtnSaveEditAction" data-actionid="<%=action.get('ActionQSEId') %>" data-causeid="<%=cause.get('CauseQSEId') %>"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Enregistrer</button>
                                                     </div>
@@ -1405,7 +1411,7 @@
                     <div class="col-md-4">
                         <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee')) { %>
 
-                        TOTOTO
+       
                         <% } %>
                     </div>
                     <div class="col-md-8">
@@ -1413,21 +1419,21 @@
                         <% if (ficheSecuriteModel.get('WorkFlowASEValidee') == true && ficheSecuriteModel.get('WorkFlowCloturee') == true && ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == false) { %>
                        
                         <span class="pull-right">&nbsp;la&nbsp;fiche.</span>
-                        <button id="CloturerFiche" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <button id="CloturerFiche" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-ok"></span> Clôturer
                         </button>
 
                         <span class="pull-right">&nbsp;Vous&nbsp;pouvez&nbsp;</span>
                       
                         <span class="glyphicon glyphicon-ok pull-right"></span>
-                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Le&nbsp;plan&nbsp;d'action&nbsp;est&nbsp;validé&nbsp;et&nbsp;les&nbsp;actions&nbsp;clôtur&eacute;es,&nbsp;</span>
+                        <span class="pull-right">&nbsp;&nbsp;Statut&nbsp;:&nbsp;Les&nbsp;actions&nbsp;sont&nbsp;clôtur&eacute;es,&nbsp;</span>
 
                         <% }%>
 
                         <% if (ficheSecuriteModel.get('WorkFlowFicheSecuriteCloturee') == true) {%>
 
                         <span class="pull-right">&nbsp;la&nbsp;fiche.</span>
-                        <button id="OuvrirFiche" type="submit" class="btn pull-right btn-xs" style="color: green">
+                        <button id="OuvrirFiche" type="submit" class="btn pull-right btn-xs" style="color:#333333">
                             <span class="glyphicon glyphicon-ok"></span> Ré-Ouvrir
                         </button>
 
@@ -1904,14 +1910,16 @@
                 });
 
                 // TODO : Mettre à Zéro les lieux
-
+                Backbone.applicationEvents.trigger('alerteMessageHide');
                 this.render();
             },
             changeLieu: function () {
                 this.model.get('ficheSecuriteModel').set({ 'LieuId': $('#Lieu').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changePosteDeTravail: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PosteDeTravailId': $('#PosteDeTravail').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeZone: function () {
                 // Lorsqu'on change la zone, la liste des lieux doit correspondre à la zone en question, on charge la liste des lieux (REST/Ajax)
@@ -1932,52 +1940,66 @@
                 //this.model.get('posteDeTravailCollection').each(function (posteDeTravail, index) {
                 //    posteDeTravail.set({ 'Nom': posteDeTravail.get('PosteDeTravailType').Nom });
                 //});
-
+                Backbone.applicationEvents.trigger('alerteMessageHide');
                 this.render();
             },
             changeAge: function () {
                 this.model.get('ficheSecuriteModel').set({ 'Age': $('#Age').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeType: function () {
                 this.model.get('ficheSecuriteModel').set({ 'FicheSecuriteTypeId': $('#Type').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeCode: function () {
                 this.model.get('ficheSecuriteModel').set({ 'Code': $('#Code').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeDateHeureEvenement: function () {
                 this.model.get('ficheSecuriteModel').set({ 'DateEvenement': this.dateFormatMVC($('#DateEvenement').val()) + 'T' + $('#HeureEvenement').val() + ':00.0' });
                 this.model.get('ficheSecuriteModel').set({ 'DateEvenementJavascript': $('#DateEvenement').val() });
                 this.model.get('ficheSecuriteModel').set({ 'HeureEvenementJavascript': $('#HeureEvenement').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changePersonneConcerneeNom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Nom': $('#PersonnesConcerneeNom').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changePersonneConcerneePrenom: function () {
                 this.model.get('ficheSecuriteModel').get('PersonneConcernee').set({ 'Prenom': $('#PersonnesConcerneePrenom').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeResponsableNom: function () {
                 this.model.get('ficheSecuriteModel').get('Responsable').set({ 'Nom': $('#ResponsableNom').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeResponsablePrenom: function () {
                 this.model.get('ficheSecuriteModel').get('Responsable').set({ 'Prenom': $('#ResponsablePrenom').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changePlageHoraire: function () {
                 this.model.get('ficheSecuriteModel').set({ 'PlageHoraireId': $('#PlageHoraire').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeService: function () {
                 this.model.get('ficheSecuriteModel').set({ 'ServiceId': $('#Service').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeDanger: function () {
                 this.model.get('ficheSecuriteModel').set({ 'DangerId': $('#Danger').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeRisque: function () {
                 this.model.get('ficheSecuriteModel').set({ 'RisqueId': $('#Risque').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeTemoins: function () {
                 this.model.get('ficheSecuriteModel').set({ 'Temoins': $('#Temoins').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeDescription: function () {
                 this.model.get('ficheSecuriteModel').set({ 'Description': $('#Description').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeGravite: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CotationGravite': $('#Gravite').val() });
@@ -1990,6 +2012,7 @@
                     $('#CriticiteBrute').css('background-color', '#EEEEEE');
                     $('#CriticiteBrute').css('color', '#000000;');
                 }
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeFrequence: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CotationFrequence': $('#Frequence').val() });
@@ -2002,16 +2025,20 @@
                     $('#CriticiteBrute').css('background-color', '#EEEEEE');
                     $('#CriticiteBrute').css('color', '##000000;');
                 }
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeActionImmediate1: function () {
                 this.model.get('ficheSecuriteModel').set({ 'ActionImmediate1': $('#ActionImmediate1').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeActionImmediate2: function () {
                 this.model.get('ficheSecuriteModel').set({ 'ActionImmediate2': $('#ActionImmediate2').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeCorpsHumain: function (data) {
                 $('#CorpsHumainSelected').val(this.model.get('corpsHumainZoneCollection').findWhere({ Code: data.key }).get('Nom'));
                 this.model.get('ficheSecuriteModel').set({ 'CorpsHumainZoneId': this.model.get('corpsHumainZoneCollection').findWhere({ Code: data.key }).get('Id') });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             Diffusion: function () {
 
@@ -2099,7 +2126,7 @@
                     model: this.model
                 });
                 rechercheActiveDirectoryView.show()
-
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             dateFormatMVC: function (date) {
                 // De date FR à DateTime
@@ -2258,7 +2285,7 @@
                 "keyup #CHSCTMembre": "changeCHSCTMembre",
                 "click #CHSCTSave": "CHSCTSecuritySave",
                 "click #CloturerFiche": "cloturerFiche",
-                "click #OuvrirFiche" : "ouvrirFiche"
+                "click #OuvrirFiche": "ouvrirFiche"
 
 
             },
@@ -2270,6 +2297,7 @@
             },
             changeAddCauseDescription: function () {
                 this.model.get('causeModel').set({ 'Description': $('#AddCauseDescription').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             addCause: function () {
 
@@ -2345,7 +2373,7 @@
             changeEditCauseDescription: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({ Description: $(ev.currentTarget).val() });
-
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             editCause: function (ev) {
 
@@ -2358,15 +2386,27 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).set({ id: parseInt(causeToEditId) });  //.   get('CauseId');
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).save(null, { async: false, wait: true });
+                
                 this.render();
             },
             editAction: function (ev) {
+                console.log('PASSAGE SAVE');
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 //VOIR COMMENTAIRE AU DESSUS
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ id: parseInt(actionToEditId) });
-                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).save(null, { async: false, wait: true });
-                this.render();
+                this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).save(null, {
+                    async: false, wait: true,
+                    success: _.bind(function (model, response) {
+                        this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Responsable': new ResponsableModel(response.Action.Responsable) });
+                        this.model.get('ficheSecuriteModel').set({ 'WorkFlowCloturee': response.FicheSecurite.WorkFlowCloturee });
+                        this.render();
+                        Backbone.applicationEvents.trigger('validFicheSecurite', 'l\' action a été mise à jour');
+                    }, this),
+                    error: _.bind(function (model, response) {
+                        Backbone.applicationEvents.trigger('invalidFicheSecurite', 'Une erreur est survenue sur l\'édition de l\'action');
+                    }, this)
+                });
             },
             deleteCause: function (ev) {
                 var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette cause ?");
@@ -2414,11 +2454,12 @@
                     model: this.model
                 });
                 rechercheActiveDirectoryView.show()
-
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeAddActionDescription: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'Description': $(ev.currentTarget).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeAddActionDateButoirInitiale: function (ev) {
                 console.log('KEYUP');
@@ -2427,6 +2468,7 @@
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoirInitialeInputForCause' + causeToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeAddActionDateButoirNouvelle: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
@@ -2434,14 +2476,17 @@
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelle': this.dateFormatMVC($('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelleJavascript': $('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeAddActionResponsableNom: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Nom': $(ev.currentTarget).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeAddActionResponsablePrenom: function (ev) {
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             //changeDateButoirInitiale: function (ev) {
             //    var causeToEditId = $(ev.currentTarget).attr('data-causeId');
@@ -2453,6 +2498,7 @@
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelle': this.dateFormatMVC($('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionModel').set({ 'DateButoireNouvelleJavascript': $('#AddActionDateButoirNouvelleInputForCause' + causeToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             //changeClotureDate: function (ev) {
             //    var causeToEditId = $(ev.currentTarget).attr('data-causeId');
@@ -2462,18 +2508,21 @@
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'Description': $(ev.currentTarget).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeEditActionDateButoirInitiale: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitiale': this.dateFormatMVC($('#EditActionDateButoirInitialeInputForAction' + actionToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitialeJavascript': $('#EditActionDateButoirInitialeInputForAction' + actionToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeEditActionDateButoirNouvelle: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
                 var causeToEditId = $(ev.currentTarget).attr('data-causeId');
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelle': this.dateFormatMVC($('#EditActionDateButoirNouvelleInputForAction' + actionToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelleJavascript': $('#EditActionDateButoirNouvelleInputForAction' + actionToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeEditActionClotureDate: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
@@ -2481,6 +2530,7 @@
 
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDate': ($('#EditActionClotureDateInputForAction' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionClotureDateInputForAction' + actionToEditId).val()) });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ClotureDateJavascript': $('#EditActionClotureDateInputForAction' + actionToEditId).val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeEditActionResponsableNom: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
@@ -2488,6 +2538,7 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'Nom': $(ev.currentTarget).val() });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'PersonneId': 0 });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ResponsableId': null });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeEditActionResponsablePrenom: function (ev) {
                 var actionToEditId = $(ev.currentTarget).attr('data-actionId');
@@ -2495,6 +2546,7 @@
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'Prenom': $(ev.currentTarget).val() });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).get('Responsable').set({ 'PersonneId': 0 });
                 this.model.get('ficheSecuriteModel').get('causeCollection').findWhere({ CauseQSEId: parseInt(causeToEditId) }).get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'ResponsableId': null });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             dateFormatMVC: function (date) {
                 // De date FR à DateTime
@@ -2508,10 +2560,28 @@
             ASEEnvoi: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
 
-                this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
+                this.model.get('ficheSecuriteModel').save(null, {
+                    async: false, wait: true, validate: false,
+                    success: _.bind(function (model, response) {
+
+                        var url = '@Url.Action("Index", "FicheSecurite")';
+                        window.location.href = url;
+                    }, this),
+                    error: _.bind(function (model, response) {
+
+                        this.render();
+                    }, this)
+                });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
-                this.render();
+                Backbone.applicationEvents.trigger('alerteMessageHide');
+
+                // ANCIENNEMENT (Je parie qu'on va revenir au fonctionnement précédent)
+                //this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/AttenteASEValidation';
+
+                //this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
+
+                //this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
 
                 //TODO : ENVOI D'UN EVENTS afin de rafraichir l'écran "Infos générales" (pour être à jour si l'utilisateur a changé des infos dans cette vue)
             },
@@ -2520,6 +2590,7 @@
                 this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                Backbone.applicationEvents.trigger('alerteMessageHide');
                 this.render();
 
             },
@@ -2532,6 +2603,7 @@
                     this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                     this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                    Backbone.applicationEvents.trigger('alerteMessageHide');
                     this.render();
                 }
 
@@ -2544,28 +2616,34 @@
                 this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                Backbone.applicationEvents.trigger('alerteMessageHide');
                 this.render();
             },
-            ouvrirFiche : function(){
+            ouvrirFiche: function () {
                 this.model.get('ficheSecuriteModel').url = '/api/action/FicheSecurite/ChangeWorkFlowEtat/' + this.model.get('ficheSecuriteModel').get('FicheSecuriteID') + '/ASEFicheSecuriteOuvrir';
                 this.model.get('ficheSecuriteModel').save(null, { async: false, wait: true, validate: false });
 
                 this.model.get('ficheSecuriteModel').url = '/api/FicheSecurite';
+                Backbone.applicationEvents.trigger('alerteMessageHide');
                 this.render();
 
             },
             changeEnqueteRealise: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteRealisee': $('#EnqueteRealisee').prop('checked') });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeProtagonistes: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteProtagoniste': $('#Protagonistes').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeDateEnquete: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteDate': this.dateFormatMVC($('#DateEnqueteInput').val()) });
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteDateJavaScript': $('#DateEnqueteInput').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeCHSCTMembre: function () {
                 this.model.get('ficheSecuriteModel').set({ 'CHSCTMembre': $('#CHSCTMembre').val() });
+                Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             CHSCTSecuritySave: function () {
                 this.model.get('ficheSecuriteModel').set({ "CHSCTSave": "true" })

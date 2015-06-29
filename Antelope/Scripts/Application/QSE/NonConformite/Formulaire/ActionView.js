@@ -157,8 +157,9 @@
         },
         saveAddAction: function(){
 
+            this.model.get('actionModel').set({ NonConformiteId: this.model.get('nonConformiteModel').get('Id') });
             var actionToAdd = this.model.get('actionModel');
-
+            console.log(actionToAdd);
             var actionAdded = this.model.get('nonConformiteModel').get('actionCollection').create(
                     new ActionModel(actionToAdd.toJSON()), {
                         async: false, wait: true,

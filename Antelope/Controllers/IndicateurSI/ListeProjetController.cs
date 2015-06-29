@@ -185,7 +185,7 @@ namespace Antelope.Controllers.IndicateurSI
 
         public ActionResult recupNameSI()
         {
-            MySqlConnection connection = new MySqlConnection("Database=glpi; Data Source=dlf-sk8k03; User Id=export; Password=Exp0rt;");
+            MySqlConnection connection = new MySqlConnection("Database=glpi-prod; Data Source=dlf-s12k04; User Id=export; Password=Exp0rt;");
 
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT name FROM glpi_itilcategories WHERE level = 1";

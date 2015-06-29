@@ -123,7 +123,16 @@ namespace Antelope.Controllers.API.QSE
                     throw;
                 }
             }
+            // Si l'action appartient à une FS (et non une NC) >> On passe aussi la FS pour chercher la mise à jour de l'état de la FS (Workflow) dans la View.
+            if (currentAction.CauseQSEId != null)
+            {
+                Dictionary<string, Object> Response = new Dictionary<string, Object>();
 
+                Response.Add("FicheSecurite", currentAction.CauseQS.FicheSecurite);
+                Response.Add("Action", currentAction);
+
+                return Request.CreateResponse(HttpStatusCode.OK, Response, Configuration.Formatters.JsonFormatter);
+            }
             return Request.CreateResponse(HttpStatusCode.OK, currentAction, Configuration.Formatters.JsonFormatter);
                 //StatusCode(HttpStatusCode.NoContent, currentAction, Configuration.Formatters.JsonFormatter);
         }

@@ -26,7 +26,7 @@ namespace Antelope.Controllers.API.HSE
             var queryFicheSecurite = from f in db.FicheSecurites
                                      where f.DateEvenement >= DateDebut
                                      && f.DateEvenement <= DateFin
-                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, ServiceId = f.ServiceId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom, Responsable = f.Responsable, FicheSecurtiteTypeID = f.FicheSecuriteTypeId, WorkFlowASEValidee = f.WorkFlowASEValidee };
+                                     select new FicheSecuriteStatistique { Id = f.FicheSecuriteID, DateEvnmt = f.DateEvenement, SiteId = f.SiteId, Site = f.Site.Trigramme, ZoneId = f.ZoneId, ServiceId = f.ServiceId, CauseQSEs = f.CauseQSEs, FicheSecuriteType = f.FicheSecuriteType.Nom, Responsable = f.Responsable, FicheSecurtiteTypeID = f.FicheSecuriteTypeId, WorkFlowASEValidee = f.WorkFlowASEValidee, WorkFlowFicheSecuriteCloturee = f.WorkFlowFicheSecuriteCloturee, WorkFlowCloturee = f.WorkFlowCloturee };
 
             var AllFicheSecurite = queryFicheSecurite.ToList();
 

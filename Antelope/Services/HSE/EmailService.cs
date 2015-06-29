@@ -242,6 +242,7 @@ namespace Antelope.Services.HSE
 
         private void SendEmail(MailAddress from, String subject, string body, string to)
         {
+            ParametrageHSE ParametrageHSE = db.ParametrageHSEs.FirstOrDefault();
 
             MailMessage mail = new MailMessage();
 
@@ -263,13 +264,15 @@ namespace Antelope.Services.HSE
 
                 try
                 {
-                    smtp.Send(mail);
+
+                    if (ParametrageHSE.IsEmailDiffusion == true)
+                    {
+                        smtp.Send(mail);
+                    }
                 }
                 catch (Exception e)
                 {
-                    var a = 1;
                     Console.WriteLine(e);
-
                 }
                 
             });
