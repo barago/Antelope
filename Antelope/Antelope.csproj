@@ -170,7 +170,6 @@
     <Folder Include="Content\pdfs\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
-    <Folder Include="Views\HSEStatistique\" />
     <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\MatriceApplicative\" />
@@ -950,6 +949,7 @@
     <Content Include="Views\HSE\HSEStatistique\Detail.cshtml" />
     <Content Include="Views\IndicateurSI\MatriceApplicative\MatriceApplicative.cshtml" />
     <Content Include="Views\QSE\QSEStatistique\Detail.cshtml" />
+    <Content Include="Views\QSE\QSEStatistique\Index.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

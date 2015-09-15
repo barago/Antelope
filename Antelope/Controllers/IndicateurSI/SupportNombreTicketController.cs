@@ -69,7 +69,9 @@ namespace Antelope.Controllers.IndicateurSI
 
         public JsonResult JsonTab(int granularite, string dateDebut, string dateFin, string SIId)
         {
-            MySqlConnection connection = new MySqlConnection("Database=glpi-prod; Data Source=dlf-s12k04; User Id=export; Password=Exp0rt;");
+            string ConnexionString = System.Configuration.ConfigurationManager.ConnectionStrings["GLPI"].ConnectionString;
+
+            MySqlConnection connection = new MySqlConnection(ConnexionString);
 
             MySqlCommand cmd;
             MySqlDataReader reader;
@@ -182,7 +184,9 @@ namespace Antelope.Controllers.IndicateurSI
 
         public ActionResult recupNameSI()
         {
-            MySqlConnection connection = new MySqlConnection("Database=glpi-prod; Data Source=dlf-s12k04; User Id=export; Password=Exp0rt;");
+            string ConnexionString = System.Configuration.ConfigurationManager.ConnectionStrings["GLPI"].ConnectionString;
+
+            MySqlConnection connection = new MySqlConnection(ConnexionString);
 
             MySqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT name FROM glpi_itilcategories WHERE level = 1";

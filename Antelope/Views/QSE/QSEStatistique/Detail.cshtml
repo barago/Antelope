@@ -64,9 +64,8 @@
         <div class="col-md-2">
             <select id="Type" class="form-control input-xs">
                 <option value="RESPONSABLE"  <% if (type === 'RESPONSABLE'){ %> selected <%}%> >Responsable</option>
-                <option value="ZONE"<% if (type === 'ZONE'){ %> selected <%}%>> Zone </option>
-                <option value="TYPE"<% if (type === 'TYPE'){ %> selected <%}%>> Type </option>
-                <option value="SERVICE"<% if (type === 'SERVICE'){ %> selected <%}%>> Service </option>
+                <option value="DOMAINE"<% if (type === 'DOMAINE'){ %> selected <%}%>> Zone </option>
+                <option value="ORIGINE"<% if (type === 'ORIGINE'){ %> selected <%}%>> Type </option>
             </select>
         </div>
 
@@ -90,28 +89,28 @@
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#8BAC27;">
-                                    Nb FS émises
+                                    Nb NC Concernées
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#D4E898;">
-                                    Nb FS dont PA est validé
+                                    Nb NC dont PA est en cours
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#8BAC27;">
-                                    Nb FS dont PA est clôturé
+                                    Nb NC dont PA réalisé
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#D4E898;">
-                                    Nb FS clôturées
+                                    Nb NC vérifiées
                                 </span>
                             </div>
                         </th>

@@ -1077,7 +1077,7 @@
 
                                 <div class="col-md-3">
 
-                                    <% if (currentHSERole < 400 ) { %>
+                                    <% if (currentHSERole < 500 ) { %>
                                     <button id="CHSCTSave" type="submit" class="btn pull-right btn-xs">
                                         <span class="glyphicon glyphicon-floppy-disk"></span> Enregistrer
                                     </button>
@@ -2638,7 +2638,7 @@
             },
             changeDateEnquete: function () {
                 this.model.get('ficheSecuriteModel').set({ 'EnqueteDate': this.dateFormatMVC($('#DateEnqueteInput').val()) });
-                this.model.get('ficheSecuriteModel').set({ 'EnqueteDateJavaScript': $('#DateEnqueteInput').val() });
+                this.model.get('ficheSecuriteModel').set({ 'EnqueteDateJavascript': $('#DateEnqueteInput').val() });
                 Backbone.applicationEvents.trigger('alerteMessageHide');
             },
             changeCHSCTMembre: function () {

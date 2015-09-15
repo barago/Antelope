@@ -192,7 +192,7 @@ namespace Antelope.Controllers.API.HSE
             FicheSecurite.DateCreation = DateTime.Now;
 
             FicheSecurite.CompteurAnnuelSite = 1;
-
+            
             var QueryLastFicheSecuriteForSiteAnnee = from f in db.FicheSecurites
                                          where f.SiteId == FicheSecurite.SiteId
                                          && f.DateEvenement.Year == FicheSecurite.DateEvenement.Year

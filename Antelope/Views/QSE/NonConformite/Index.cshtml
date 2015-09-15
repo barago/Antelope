@@ -506,9 +506,9 @@
                             "sTitle": "Description",
                             "orderable": false,
                             "visible": true,
-                            "mRender": function (date, type, full) {
-                                return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
-                            },
+                            //"mRender": function (date, type, full) {
+                            //    return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
+                            //},
                             "width": "15%"
                         },
                         //},
@@ -629,12 +629,12 @@
                         "aButtons": [
                             {
                                 "sExtends": "pdf",
-                                "mColumns": [1, 2, 3, 4],
+                                "mColumns": "all",
                                 "sPdfMessage": "Liste des Non-Conformités"
                             },
                             {
                                 "sExtends": "csv",
-                                "mColumns": [1, 2, 3, 4]
+                                "mColumns": "all"
                             },
                             {
                                 "sExtends": "print",

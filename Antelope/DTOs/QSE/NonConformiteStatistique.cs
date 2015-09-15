@@ -13,9 +13,10 @@ namespace Antelope.DTOs.QSE
         public String Site { get; set; }
         public Int32 TimeStamp { get; set; }
         public String FicheSecuriteType { get; set; }
-        public Int32? ZoneId { get; set; }
         public Int32? SiteId { get; set; }
-        public Int32? ServiceId { get; set; }
+        public Int32? NonConformiteOrigineId { get; set; }
+        public Int32? NonConformiteDomaineId { get; set; }
+        public Int32? NonConformiteGraviteId { get; set; }
         public Personne Responsable { get; set; }
         public Int32 FicheSecurtiteTypeID { get; set; }
         public Boolean WorkFlowASEValidee { get; set; }

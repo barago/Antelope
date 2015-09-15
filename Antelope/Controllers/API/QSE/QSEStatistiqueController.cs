@@ -27,7 +27,7 @@ namespace Antelope.Controllers.API.QSE
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut
                                      && n.Date <= DateFin
-                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme};
+                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId};
 
             var AllNonConformite = queryNonConformite.ToList();
 
@@ -38,17 +38,17 @@ namespace Antelope.Controllers.API.QSE
 
             List<Site> AllSite = db.Sites.ToList();
 
-            List<Zone> AllZone = db.Zones.ToList();
-            List<Service> AllService = db.Services.ToList();
-            List<FicheSecuriteType> AllFicheSecuriteType = db.FicheSecuriteTypes.ToList();
+            List<NonConformiteDomaine> AllDomaine = db.NonConformiteDomaines.ToList();
+            List<NonConformiteOrigine> AllOrigine = db.NonConformiteOrigines.ToList();
+            List<NonConformiteGravite> AllGravite = db.NonConformiteGravites.ToList();
 
             Dictionary<string, Object> Response = new Dictionary<string, Object>();
             Dictionary<string, Object> ParamModel = new Dictionary<string, Object>();
             Response.Add("AllNonConformite", AllNonConformite);
             Response.Add("AllSite", AllSite);
-            Response.Add("AllZone", AllZone);
-            Response.Add("AllService", AllService);
-            Response.Add("AllFicheSecuriteType", AllFicheSecuriteType);
+            Response.Add("AllDomaine", AllDomaine);
+            Response.Add("AllOrigine", AllOrigine);
+            Response.Add("AllGravite", AllGravite);
             ParamModel.Add("DateDebut", DateDebut);
             ParamModel.Add("DateFin", DateFin);
             Response.Add("ParamModel", ParamModel);
