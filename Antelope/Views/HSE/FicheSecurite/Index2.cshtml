@@ -470,8 +470,8 @@
                             <input type="checkbox" id="IsPlanActionRejete"<% if(paramModel.get('IsPlanActionRejete')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
                             <label for="IsPlanActionCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00B0F0;height:10px;">&nbsp;Plan d'action clôturé&nbsp;</span></label>
                             <input type="checkbox" id="IsPlanActionCloture"<% if(paramModel.get('IsPlanActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label for="IsFicheSecuriteCloturee" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;Fiche Sécurité clôturée&nbsp;</span></label>
-                            <input type="checkbox" id="IsFicheSecuriteCloturee"<% if(paramModel.get('IsFicheSecuriteCloture')===true) { %> checked <% } %> >
+                            <label for="IsFicheSecuriteCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;Fiche Sécurité clôturée&nbsp;</span></label>
+                            <input type="checkbox" id="IsFicheSecuriteCloture"<% if(paramModel.get('IsFicheSecuriteCloture')===true) { %> checked <% } %> >
                         </div>
                     </div>
                 </div>
@@ -1334,9 +1334,10 @@
                             "mData": "Description",
                             "sTitle": "Description",
                             "orderable": false,
-                            //"mRender": function (date, type, full) {
-                            //    return '<span title="' + full.ActionQSE.Description + '">' + full.ActionQSE.Description.substring(0, 40) + '...</span>'
-                            //}
+                            "mRender": function (date, type, full) {
+                                //return '<span title="' + full.ActionQSE.Description + '" </span>>' + full.ActionQSE.Description.substring(0, 40) + '...</span>'
+                                return full.ActionQSE.Description;
+                            }
                         },
                         {
                             "mData": "DateButoireInitiale",

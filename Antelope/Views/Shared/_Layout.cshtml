@@ -14,7 +14,7 @@
     <div class="navbar-xs hidden-print">
         <div class="navbar-primary">
             <div class="navbar navbar-fixed-top small-margin" style="background-color: #7F7F7F;">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#firstNavbar">
                             <span class="icon-bar"></span>
@@ -30,7 +30,7 @@
                             <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @style = "color:white" })</li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right" style="line-height: 28px;">
-                            <li  style="color:white">Bonjour, @User.Identity.Name</li> @*class="navbar-text"*@
+                            <li style="color:white">Bonjour, @User.Identity.Name</li> @*class="navbar-text"*@
                         </ul>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-            <div class="container body-content">
+            <div class="container-fluid body-content" style="max-width:1440px">
 
                 @*@Scripts.Render("~/bundles/jquery")
                     @Scripts.Render("~/bundles/bootstrap")*@
