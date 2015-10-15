@@ -26,7 +26,7 @@ namespace Antelope.ViewModels.QSE.NonConformiteViewModels
         public RechercheNonConformiteViewModel(RechercheNonConformiteParamModel rechercheNonConformiteParamModel)
         {
             this.AllSite = db.Sites.ToList();
-            this.AllNonConformiteDomaine = db.NonConformiteDomaines.ToList();
+            this.AllNonConformiteDomaine = db.NonConformiteDomaines.OrderBy(o => o.Nom).ToList();
             this.AllNonConformiteOrigine = db.NonConformiteOrigines.OrderBy(o => o.Nom).ToList();
             this.AllNonConformiteGravite = db.NonConformiteGravites.ToList();
 

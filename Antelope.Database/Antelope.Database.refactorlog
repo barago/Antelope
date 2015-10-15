@@ -42,4 +42,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ImportId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="9fd07537-9877-4dba-b743-27ef63dd53ba" ChangeDateTime="09/17/2015 14:11:21">
+    <Property Name="ElementName" Value="[dbo].[FilePaths].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FilePaths]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FilePathId" />
+  </Operation>
 </Operations>

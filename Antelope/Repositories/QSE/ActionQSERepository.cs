@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using Binbin.Linq;
 using System.Linq.Dynamic;
+using Antelope.DTOs.QSE;
 
 namespace Antelope.Repositories.QSE
 {
@@ -31,7 +32,7 @@ namespace Antelope.Repositories.QSE
             return ActionQSE;
         }
 
-        public DataTableViewModel<ActionQSE> GetFromParams(Dictionary<string, string> DataTableParameters)
+        public DataTableViewModel<ActionQSEDTO> GetFromParams(Dictionary<string, string> DataTableParameters)
         {
 
             Int32 ParameterStart = Int32.Parse(DataTableParameters["start"]);
@@ -68,9 +69,22 @@ namespace Antelope.Repositories.QSE
                 }
             }
 
-            IQueryable<ActionQSE> queryActionQSE = from a in _db.ActionQSEs
-                                                           orderby a.ActionQSEId
-                                                           select a;
+            IQueryable<ActionQSEDTO> queryActionQSE = from a in _db.ActionQSEs
+                                                   join nc in _db.NonConformites on a.NonConformiteId equals nc.Id
+                                                      orderby nc.Date
+                                                   select new ActionQSEDTO () { 
+                                                        ActionQSEId = a.ActionQSEId,
+                                                        Titre = a.Titre,
+                                                        Description = a.Description,
+                                                        DateButoireInitiale = a.DateButoireInitiale,
+                                                        DateButoireNouvelle = a.DateButoireNouvelle,
+                                                        NonConformiteId = a.NonConformiteId,
+                                                        Responsable = a.Responsable,
+                                                        NonConformite = a.NonConformite,
+                                                        RealiseDate = a.RealiseDate,
+                                                        VerifieDate = a.VerifieDate,
+                                                        ClotureDate = a.ClotureDate
+                                                   };
 
             queryActionQSE = queryActionQSE.Where(q => q.NonConformiteId != null);
 
@@ -117,9 +131,9 @@ namespace Antelope.Repositories.QSE
             {
                 queryActionQSE = queryActionQSE.Skip(ParameterStart).Take(ParameterLength);
             }
-            List<ActionQSE> AllActionQSE = queryActionQSE.ToList();
+            List<ActionQSEDTO> AllActionQSE = queryActionQSE.ToList();
 
-            DataTableViewModel<ActionQSE> DataTableViewModel = new DataTableViewModel<ActionQSE>()
+            DataTableViewModel<ActionQSEDTO> DataTableViewModel = new DataTableViewModel<ActionQSEDTO>()
             {
                 recordsTotal = RecordsTotal,
                 recordsFiltered = RecordsFiltered,

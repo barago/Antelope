@@ -160,19 +160,19 @@ namespace Antelope.Controllers.API.QSE
         }
 
         // DELETE: api/NonConformite/5
-        [ResponseType(typeof(NonConformite))]
-        public IHttpActionResult DeleteNonConformite(int id)
+        //[ResponseType(typeof(NonConformite))]
+        public HttpResponseMessage Delete(int id)
         {
             NonConformite nonConformite = db.NonConformites.Find(id);
             if (nonConformite == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
             db.NonConformites.Remove(nonConformite);
             db.SaveChanges();
 
-            return Ok(nonConformite);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         protected override void Dispose(bool disposing)

@@ -723,6 +723,15 @@
                         typeOccurenceAction.set({ 'nbAction': typeOccurenceAction.get('nbAction') + 1 });
                         totalNbAction++;
 
+                        if (typeOccurenceAction.get('nom') === 'Boyse Gaelle') {
+
+                            console.log(typeOccurenceAction.get('nom'));
+                            console.log(Action.ClotureDateJavascript);
+                            console.log(Action.DateButoireInitialeJavascript);
+
+
+                        }
+
                         if (Action.ClotureDateJavascript != null) {
                             typeOccurenceAction.set({ 'nbActionCloturees': typeOccurenceAction.get('nbActionCloturees') + 1 });
                             totalNbActionCloturees++;
@@ -733,8 +742,10 @@
                             totalNbActionATemps++;
                         }
 
+
                         Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 1)
                         if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                         
                             typeOccurenceAction.set({ 'nbActionDepassees1Mois': typeOccurenceAction.get('nbActionDepassees1Mois') + 1 });
                             totalNbActionDepassees1Mois++;
                         }

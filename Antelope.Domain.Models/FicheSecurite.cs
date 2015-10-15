@@ -64,6 +64,8 @@ namespace Antelope.Domain.Models
         
         public virtual ICollection<CauseQSE> CauseQSEs { get; set; }
         [JsonIgnore]
+        public virtual ICollection<FilePath> FilePaths { get; set; }
+        [JsonIgnore]
         public virtual CorpsHumainZone CorpsHumainZone { get; set; }
         [JsonIgnore]
         public virtual Danger Danger { get; set; }

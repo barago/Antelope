@@ -14,6 +14,7 @@
 
 @*<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteViewModel.js"></script>
     <script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/RechercheFicheSecuriteParamModel.js"></script>*@
+<script type="text/javascript" src="~/Scripts/Application/QSE/NonConformite/NonConformiteModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/ViewModel.js"></script>
@@ -207,10 +208,12 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>CodeNC</th>
                                 <th>Titre</th>
                                 <th>Responsable</th>
                                 <th>Date Butoir</th>
                                 <th>Description</th>
+                                <th>Description Non Conformite</th>
                                 @*<th>Code</th>
                                     <th>Date </th>
                                     <th>Origine</th>
@@ -234,6 +237,7 @@
                                 @*<th>Domaine</th>
                                     <th>Gravité</th>*@
                                 <th>Desciption</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -291,9 +295,6 @@
 
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
 
-        console.log("viewModel");
-        console.log(viewModel);
-
         var FiltreTableView = Backbone.View.extend({
             id: 'FiltreTableNonConformite',
             template: _.template($('#TableFiltre').html()),
@@ -344,12 +345,10 @@
                 }
             },
             rechercheNonConformite: function () {
-                console.log('RECHERCHENONCONFORMITE');
                 viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'FICHESECURITE' });
                 Backbone.applicationEvents.trigger('rechercheNonConformite');
             },
             recherche: function () {
-                console.log('RECHERCHEACTION');
                 viewModel.get('rechercheNonConformiteParamModel').set({ 'typeRecherche': 'ACTION' });
                 Backbone.applicationEvents.trigger('recherche');
             },
@@ -375,7 +374,6 @@
                 this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
             },
             changeOrigine: function () {
-                console.log(parseInt($('#Origine').val()));
                 this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
             },
             changeDomaine: function () {
@@ -429,20 +427,20 @@
                         "aButtons": [
                             {
                                 "sExtends": "pdf",
-                                "mColumns": [1, 2, 3, 4],
+                                "mColumns": [1, 2, 3, 4, 5, 6],
                                 "sPdfMessage": "Liste des Actions"
                             },
                             {
                                 "sExtends": "csv",
-                                "mColumns": [1, 2, 3, 4]
+                                "mColumns": [1, 2, 3, 4, 5, 6]
                             },
                             {
                                 "sExtends": "print",
-                                "mColumns": [1, 2, 3, 4]
+                                "mColumns": [1, 2, 3, 4, 5, 6]
                             },
                             {
                                 "sExtends": "copy",
-                                "mColumns": [1, 2, 3, 4]
+                                "mColumns": [1, 2, 3, 4, 5, 6]
                             }
                         ]
                     },
@@ -466,12 +464,71 @@
 
                     },
                     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
+                    "fnRowCallback": function (nRow, aData) {
+
+
+                        var $nRow = $(nRow); // cache the row wrapped up in jQuery
+
+                        $('td:eq(0)', nRow).css({ "border-style": "solid", "border-width": "1px", "border-color": "#B4B4B4" });
+                        var color = "white";
+                        var colorHeavy = "white";
+                        var colorLight = "white";
+                        //if (aData.WorkFlowAttenteASEValidation == true) {
+                        //    colorHeavy = "#BFBFBF";
+                        //    colorLight = "#E0E0E0";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+
+                        if (aData.RealiseDate !== null && aData.VerifieDate === null) {
+                            colorHeavy = "#FFC000";
+                            colorLight = "#FCE6A2";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+                        if (new Date(Date.parse(aData.RealiseDate)) > new Date(Date.parse(aData.DateButoireInitiale))) {
+                            colorHeavy = "#FF0000";
+                            colorLight = "#FFE7FF";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+                        if (aData.RealiseDate !== null && aData.VerifieDate !== null) {
+                            colorHeavy = "#00FF00";
+                            colorLight = "#AFFDAF";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+                        //if (aData.WorkFlowFicheSecuriteCloturee == true) {
+                        //    colorHeavy = "#00B0F0";
+                        //    colorLight = "#AFE8FD";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+                        $(nRow).hover(function () {
+                            //$nRow.css({ "background-color": "#EAEAEA" });
+                            $nRow.css({ "background-color": "#808181", "color": "white" });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy, "color": "black" });
+                        }, function () {
+                            $nRow.css({ "background-color": colorLight, "color": "black" });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy, "color": "black" });
+                        });
+                        return nRow
+                    },
                     "columns": [
                         {
                             "mData": "NonConformiteId",
                             "sTitle": "Id",
                             "visible": false,
                             "orderable": false,
+                        },
+                        {
+                            "mData": "NonConformiteCode",
+                            "sTitle": "Code Non-Conformite",
+                            "orderable": false,
+                            "width": "7%",
+                            "mRender": function (date, type, full) {
+                                return full.NonConformite.Code;
+                            }
                         },
                         {
                             "mData": "Titre",
@@ -483,7 +540,7 @@
                             "mData": "ResponsableNom",
                             "sTitle": "Responsable",
                             "orderable": false,
-                            "width": "10%",
+                            "width": "8%",
                             "mRender": function (date, type, full) {
                                 return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
                             }
@@ -499,7 +556,7 @@
                                 return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
                             },
                             "orderable": false,
-                            "width": "10%"
+                            "width": "6%"
                         },
                         {
                             "mData": "Description",
@@ -509,7 +566,16 @@
                             //"mRender": function (date, type, full) {
                             //    return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
                             //},
-                            "width": "15%"
+                            "width": "25%"
+                        },
+                        {
+                            "mData": "NonConformiteDescription",
+                            "sTitle": "Description Non-Conformite",
+                            "orderable": false,
+                            "width": "25%",
+                            "mRender": function (date, type, full) {
+                                return full.NonConformite.Description;
+                            }
                         },
                         //},
                         //{
@@ -549,11 +615,58 @@
 
                 table.$('tr.selected').removeClass('selected');
 
-                $('#Table tbody').on('click', 'tr', function () {
+                $('#Table tbody').on('mousedown', 'tr', function (e) {
+
+                    // !!! Triche >> Pour raison X, le click sur un élément la ligne ou un élément de celle-ci se joue deux fois
+                    // On n'active donc le code qu'une fois sur deux (Ce n'est pas une question de propagation Bubbling ... )
+                    var i = 0;
+                    i++
+                    if (i % 2 > 0) {
+
+                        if (e.button == 0) {
+
+                            if (e.target.id == "deleteFicheSecurite") {
+
+                                var id = e.target.getAttribute("data-id");
+                                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette Fiche Sécurité ?");
+                                if (confirmation == true) {
+                                    var ficheSecuriteToDeleteModel = new FicheSecuriteModel({ "FicheSecuriteID": id })
+                                    ficheSecuriteToDeleteModel.destroy({
+                                        async: false, wait: true,
+                                        success: _.bind(function (model, repsonse) {
+                                            //Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été supprimée');
+                                        }, this)
+                                    });
+                                    table.ajax.reload(null, false);
+                                }
+                            } else {
+                                // CODE POUR OUVRIR DANS MEME FENETRE NE PAS SUPPRIMER
+                                @*var aData = $("#Table").dataTable().fnGetData(this);
+                                var url = '@Url.Action("Edit", "FicheSecurite", new { id = "__id__" })';
+                                window.location.href = url.replace('__id__', aData.FicheSecuriteID);*@
+
+                                var aData = $("#Table").dataTable().fnGetData(this);
+                                var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                                var realUrl = url.replace('__id__', aData.NonConformiteId)
+                                window.open(realUrl, "_blank");
+                            }
+                        }
+
+                        e.preventDefault();
+
+                        if (e.button == 2 || e.button == 1) {
+                            var aData = $("#Table").dataTable().fnGetData(this);
+                            var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                            var realUrl = url.replace('__id__', aData.NonConformiteId)
+                            window.open(realUrl, "_blank");
+                        }
+
+                    }
+                });
+
+                @*$('#Table tbody').on('click', 'tr', function () {
 
                     var aData = $("#Table").dataTable().fnGetData(this);
-                    console.log('aData');
-                    console.log(aData);
                     var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
                     window.location.href = url.replace('__id__', aData.NonConformiteId);
 
@@ -570,20 +683,19 @@
                     else {
                         table.$('tr.selected').removeClass('selected');
                         $(this).addClass('selected');
-                    }*@
+                    }
                 });
 
                 $('#Table tbody').on('mousedown', 'tr', function (e) {
                     e.preventDefault();
                     if (e.button == 2 || e.button == 1) {
                         var aData = $("#Table").dataTable().fnGetData(this);
-                        console.log('aData');
-                        console.log(aData);
                         var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
                         var realUrl = url.replace('__id__', aData.NonConformiteId)
                         window.open(realUrl);
                     }
-                });
+                });*@
+
 
             },
             recherche: function () {
@@ -700,6 +812,21 @@
                             "mData": "Description",
                             "sTitle": "Description",
                             "orderable": false
+                        },
+                        {
+                            "mData": "NonConformiteID",
+                            "sTitle": "Action",
+                            "orderable": false,
+                            "width": "5%",
+                            "mRender": function (date, type, full) {
+
+                                @*var urlEdit = '@Url.Action("Edit", new { id=-1 })';
+                                urlEdit = urlEdit.replace('-1', full.FicheSecuriteID);*@
+
+                                var links =  '<a id="deleteNonConformite" data-id="' + full.Id + '" class="glyphicon glyphicon-remove"></a></div>';
+                                
+                                return links;
+                            }
                         }
                     ],
                     "oLanguage": {
@@ -710,11 +837,58 @@
 
                 table.$('tr.selected').removeClass('selected');
 
-                $('#Table tbody').on('click', 'tr', function () {
+                $('#Table tbody').on('mousedown', 'tr', function (e) {
+
+                    // !!! Triche >> Pour raison X, le click sur un élément la ligne ou un élément de celle-ci se joue deux fois
+                    // On n'active donc le code qu'une fois sur deux (Ce n'est pas une question de propagation Bubbling ... )
+                    var i = 0;
+                    i++
+                    if (i % 2 > 0) {
+
+                        if (e.button == 0) {
+
+                            if (e.target.id == "deleteNonConformite") {
+
+                                var id = e.target.getAttribute("data-id");
+                                var confirmation = confirm("Êtes-vous sûr de vouloir supprimer cette Non-Conformité ?");
+                                if (confirmation == true) {
+                                    var nonConformiteToDeleteModel = new NonConformiteModel({ "Id": id })
+                                    nonConformiteToDeleteModel.destroy({
+                                        async: false, wait: true,
+                                        success: _.bind(function (model, repsonse) {
+                                            //Backbone.applicationEvents.trigger('validFicheSecurite', 'la cause a été supprimée');
+                                        }, this)
+                                    });
+                                    table.ajax.reload(null, false);
+                                }
+                            } else {
+                                // CODE POUR OUVRIR DANS MEME FENETRE NE PAS SUPPRIMER
+                                @*var aData = $("#Table").dataTable().fnGetData(this);
+                                var url = '@Url.Action("Edit", "FicheSecurite", new { id = "__id__" })';
+                                window.location.href = url.replace('__id__', aData.FicheSecuriteID);*@
+
+                                var aData = $("#Table").dataTable().fnGetData(this);
+                                var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                                var realUrl = url.replace('__id__', aData.Id)
+                                window.open(realUrl, "_blank");
+                            }
+                        }
+
+                        e.preventDefault();
+
+                        if (e.button == 2 || e.button == 1) {
+                            var aData = $("#Table").dataTable().fnGetData(this);
+                            var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
+                            var realUrl = url.replace('__id__', aData.Id)
+                            window.open(realUrl, "_blank");
+                        }
+
+                    }
+                });
+
+                @*$('#Table tbody').on('click', 'tr', function () {
 
                     var aData = $("#Table").dataTable().fnGetData(this);
-                    console.log('aData');
-                    console.log(aData);
                     var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
                     window.location.href = url.replace('__id__', aData.Id);
 
@@ -731,20 +905,18 @@
                     else {
                         table.$('tr.selected').removeClass('selected');
                         $(this).addClass('selected');
-                    }*@
+                    }
                 });
 
                 $('#Table tbody').on('mousedown', 'tr', function (e) {
                     e.preventDefault();
                     if (e.button == 2 || e.button == 1) {
                         var aData = $("#Table").dataTable().fnGetData(this);
-                        console.log('aData');
-                        console.log(aData);
                         var url = '@Url.Action("Edit", "NonConformite", new { id = "__id__" })';
                         var realUrl = url.replace('__id__', aData.Id)
                         window.open(realUrl);
                     }
-                });
+                });*@
 
             },
             rechercheNonConformite: function () {

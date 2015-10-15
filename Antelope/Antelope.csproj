@@ -231,6 +231,7 @@
     <Compile Include="Controllers\Test\ReviewsController.cs" />
     <Compile Include="DTOs\HSE\FicheSecuriteActionRecherche.cs" />
     <Compile Include="DTOs\HSE\FicheSecuriteStatistique.cs" />
+    <Compile Include="DTOs\QSE\ActionQSEDTO.cs" />
     <Compile Include="DTOs\QSE\NonConformiteActionRecherche.cs" />
     <Compile Include="DTOs\QSE\NonConformiteStatistique.cs" />
     <Compile Include="DTOs\Services\AnnuaireUtilisateurDTO.cs" />

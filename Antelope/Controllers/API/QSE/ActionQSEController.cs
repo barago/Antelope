@@ -14,6 +14,7 @@ using Antelope.Services.Socle;
 using Antelope.Services.HSE;
 using Antelope.Repositories.QSE;
 using Antelope.ViewModels.Socle.DataTables;
+using Antelope.DTOs.QSE;
 
 
 namespace Antelope.Controllers.API.QSE
@@ -45,7 +46,7 @@ namespace Antelope.Controllers.API.QSE
             Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
             DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
 
-            DataTableViewModel<ActionQSE> DataTableViewModel = _actionQSERepository.GetFromParams(DataTableParameters);
+            DataTableViewModel<ActionQSEDTO> DataTableViewModel = _actionQSERepository.GetFromParams(DataTableParameters);
 
             //DataTableViewModel.aaData = nonConformites;
             //DataTableViewModel.iTotalRecords = 1;

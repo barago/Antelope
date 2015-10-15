@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Detail";
-    Layout = "~/Views/HSE/Shared/_Layout.cshtml";
+    Layout = "~/Views/QSE/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript" src="/Scripts/underscore.js"></script>
@@ -12,9 +12,12 @@
 <script type="text/javascript" src="/Scripts/jquery.ddslick.min.js"></script>
 
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
-<script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
-<script type="text/javascript" src="/Scripts/Application/Socle/ServiceModel.js"></script>
-<script type="text/javascript" src="~/Scripts/Application/HSE/FicheSecurite/FicheSecuriteTypeModel.js"></script>
+@*<script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ServiceModel.js"></script>*@
+<script type="text/javascript" src="~/Scripts/Application/QSE/NonConformite/NonConformiteModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/QSE/NonConformite/NonConformiteGraviteModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/QSE/NonConformite/NonConformiteOrigineModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/QSE/NonConformite/NonConformiteDomaineModel.js"></script>
 
 <script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
 <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
@@ -64,8 +67,8 @@
         <div class="col-md-2">
             <select id="Type" class="form-control input-xs">
                 <option value="RESPONSABLE"  <% if (type === 'RESPONSABLE'){ %> selected <%}%> >Responsable</option>
-                <option value="DOMAINE"<% if (type === 'DOMAINE'){ %> selected <%}%>> Zone </option>
-                <option value="ORIGINE"<% if (type === 'ORIGINE'){ %> selected <%}%>> Type </option>
+                <option value="DOMAINE"<% if (type === 'DOMAINE'){ %> selected <%}%>> Domaine </option>
+                <option value="ORIGINE"<% if (type === 'ORIGINE'){ %> selected <%}%>> Origine </option>
             </select>
         </div>
 
@@ -88,12 +91,12 @@
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#8BAC27;">
+                                <span style="background-color:#D4E898;">
                                     Nb NC Concernées
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        @*<th class="rotate45">
                             <div>
                                 <span style="background-color:#D4E898;">
                                     Nb NC dont PA est en cours
@@ -113,7 +116,7 @@
                                     Nb NC vérifiées
                                 </span>
                             </div>
-                        </th>
+                        </th>*@
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#8BAC27;">
@@ -124,14 +127,14 @@
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#D4E898;">
-                                    Nb Actions clôturées
+                                    Nb Actions réalisées
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#8BAC27;">
-                                    Nb Actions clôturées à temps
+                                    Nb Actions réalisées à temps
                                 </span>
                             </div>
                         </th>
@@ -156,38 +159,38 @@
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        @*<th class="rotate45">
                             <div>
                                 <span style="background-color:#FD9910;">
-                                    % FS clôturées/FS émises
+                                    % NC clôturées/NC émises
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#FCD194;">
-                                    % FS PA validé/FS émises
+                                    % NC PA validé/NC émises
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#FD9910;">
-                                    % FS PA clôturé/FS émises
+                                    % NC PA clôturé/NC émises
                                 </span>
                             </div>
-                        </th>
+                        </th>*@
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#FCD194;">
-                                    % Actions clôturées/Actions émises
+                                    % Actions réalisées/Actions émises
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
                                 <span style="background-color:#FD9910;">
-                                    % Actions clôturée à temps/Actions émises
+                                    % Actions réalisées à temps/Actions émises
                                 </span>
                             </div>
                         </th>
@@ -225,26 +228,26 @@
                         <th>
                             <%= typeOccurence.get('nom') %>
                         </th>
+                        <th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbNCEmises') %>
+                        </th>
+                        @*<th style="background-color:#D4E898;">
+                            <%= typeOccurence.get('nbNCPAValidees') %>
+                        </th>
                         <th style="background-color:#8BAC27;">
-                            <%= typeOccurence.get('nbFSEmises') %>
+                            <%= typeOccurence.get('nbNCPACloturees') %>
                         </th>
                         <th style="background-color:#D4E898;">
-                            <%= typeOccurence.get('nbFSPAValidees') %>
-                        </th>
-                        <th style="background-color:#8BAC27;">
-                            <%= typeOccurence.get('nbFSPACloturees') %>
-                        </th>
-                        <th style="background-color:#D4E898;">
-                            <%= typeOccurence.get('nbFSCloturees') %>
-                        </th>
+                            <%= typeOccurence.get('nbNCCloturees') %>
+                        </th>*@
                         <th style="background-color:#8BAC27;">
                             <%= typeOccurence.get('nbAction') %>
                         </th>
                         <th style="background-color:#D4E898;">
-                            <%= typeOccurence.get('nbActionCloturees') %>
+                            <%= typeOccurence.get('nbActionRealisees') %>
                         </th>
                         <th style="background-color:#8BAC27;">
-                            <%= typeOccurence.get('nbActionClotureesATemps') %>
+                            <%= typeOccurence.get('nbActionRealiseesATemps') %>
                         </th>
                         <th style="background-color:#D4E898;">
                             <%= typeOccurence.get('nbActionDepassees1Mois') %>
@@ -255,20 +258,20 @@
                         <th style="background-color:#D4E898;">
                             <%= typeOccurence.get('nbActionEnRetard') %>
                         </th>
-                        <th style="background-color:#FD9910;">
-                            <%= typeOccurence.get('prctgFSCloturees') %>
+                        @*<th style="background-color:#FD9910;">
+                            <%= typeOccurence.get('prctgNCCloturees') %>
                         </th>
                         <th style="background-color:#FCD194;">
-                            <%= typeOccurence.get('prctgFSPlanActionValide') %>
+                            <%= typeOccurence.get('prctgNCPlanActionValide') %>
                         </th>
                         <th style="background-color:#FD9910;">
-                            <%= typeOccurence.get('prctgFSPlanActionCloture') %>
-                        </th>
+                            <%= typeOccurence.get('prctgNCPlanActionCloture') %>
+                        </th>*@
                         <th style="background-color:#FCD194;">
-                            <%= typeOccurence.get('prctgActionCloturees') %>
+                            <%= typeOccurence.get('prctgActionRealisees') %>
                         </th>
                         <th style="background-color:#FD9910;">
-                            <%= typeOccurence.get('prctgActionClotureesATemps') %>
+                            <%= typeOccurence.get('prctgActionRealiseesATemps') %>
                         </th>
                         <th style="background-color:#FCD194;">
                             <%= typeOccurence.get('prctgActionDepassees1Mois') %>
@@ -309,32 +312,35 @@
     };
 
     ParamModel = Backbone.Model.extend({});
-    FicheSecuriteModel = Backbone.Model.extend({});
-    FicheSecuriteCollection = Backbone.Collection.extend({ model: FicheSecuriteModel });
+    NonConformiteModel = Backbone.Model.extend({});
+    NonConformiteCollection = Backbone.Collection.extend({ model: NonConformiteModel });
 
     ResponseModel = Backbone.Model.extend({
-        url: '/api/HSEStatistique/',
+        url: '/api/QSEStatistique/',
         id: 0
     });
 
     responseModel = new ResponseModel();
 
-    responseModel.fetch({ async: false, wait: true/*, url: 'api/action/GetHSEStatistique' */ });
+    responseModel.fetch({ async: false, wait: true/*, url: 'api/action/GetQSEStatistique' */ });
 
     responseModel.set({ "paramModel": new ParamModel(responseModel.get('ParamModel')) });
 
     responseModel.get('paramModel').set({ 'dateDebutJavascript': dateFormatJS(responseModel.get('ParamModel').DateDebut) });
     responseModel.get('paramModel').set({ 'dateFinJavascript': dateFormatJS(responseModel.get('ParamModel').DateFin) });
 
-    responseModel.set({ 'ficheSecuriteCollection': new FicheSecuriteCollection(responseModel.get('AllFicheSecurite')) });
+    responseModel.set({ 'nonConformiteCollection': new NonConformiteCollection(responseModel.get('AllNonConformite')) });
     responseModel.set({ 'siteCollection': new SiteCollection(responseModel.get('AllSite')) });
-    responseModel.set({ 'zoneCollection': new ZoneCollection(responseModel.get('AllZone')) });
-    responseModel.set({ 'typeCollection': new FicheSecuriteTypeCollection(responseModel.get('AllFicheSecuriteType')) });
-    responseModel.set({ 'serviceCollection': new ServiceCollection(responseModel.get('AllService')) });
+    responseModel.set({ 'nonConformiteOrigineCollection': new NonConformiteOrigineCollection(responseModel.get('AllOrigine')) });
+    responseModel.set({ 'nonConformiteGraviteCollection': new NonConformiteGraviteCollection(responseModel.get('AllGravite')) });
+    responseModel.set({ 'nonConformiteDomaineCollection': new NonConformiteDomaineCollection(responseModel.get('AllDomaine')) });
+    //responseModel.set({ 'zoneCollection': new ZoneCollection(responseModel.get('AllZone')) });
+    //responseModel.set({ 'typeCollection': new NonConformiteTypeCollection(responseModel.get('AllNonConformiteType')) });
+    //responseModel.set({ 'serviceCollection': new ServiceCollection(responseModel.get('AllService')) });
     responseModel.set({ 'siteId': 0 });
 
-    responseModel.get('ficheSecuriteCollection').forEach(function (FS) {
-        FS.TimeStamp *= 1000;
+    responseModel.get('nonConformiteCollection').forEach(function (NC) {
+        NC.TimeStamp *= 1000;
     });
 
     TypeOccurenceModel = Backbone.Model.extend({});
@@ -344,10 +350,10 @@
 
     responseModel.set({ 'type': 'RESPONSABLE' });
     responseModel.set({ 'typeOccurenceCollection': new TypeOccurenceCollection });
-    responseModel.set({ 'typeOccurenceCollectionForResponsable': new TypeOccurenceCollection });
-    responseModel.set({ 'typeOccurenceCollectionForZone': new TypeOccurenceCollection });
-    responseModel.set({ 'typeOccurenceCollectionForType': new TypeOccurenceCollection });
-    responseModel.set({ 'typeOccurenceCollectionForService': new TypeOccurenceCollection });
+    //responseModel.set({ 'typeOccurenceCollectionForResponsable': new TypeOccurenceCollection });
+    //responseModel.set({ 'typeOccurenceCollectionForOrigine': new TypeOccurenceCollection });
+    //responseModel.set({ 'typeOccurenceCollectionForDomaine': new TypeOccurenceCollection });
+    //responseModel.set({ 'typeOccurenceCollectionForService': new TypeOccurenceCollection });
 
     calculTableauGeneral(responseModel);
 
@@ -413,9 +419,9 @@
 
         },
         recherche: function () {
-            this.model.get('ficheSecuriteCollection').fetch({
+            this.model.get('nonConformiteCollection').fetch({
                 async: false, wait: true,
-                url: '/api/action/HSEStatistique/statistiqueFiltered/',
+                url: '/api/action/QSEStatistique/statistiqueFiltered/',
                 type: "post",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -467,19 +473,16 @@
     function calculTableauGeneral(responseModel) {
 
 
-        var totalNbFSEmises = 0;
-        var totalNbFSPAValide = 0;
-        var totalNbFSPACloture = 0;
-        var totalNbFScloturees = 0;
+        var totalNbNCEmises = 0;
+        //var totalNbNCPAValide = 0;
+        //var totalNbNCPACloture = 0;
+        //var totalNbNCcloturees = 0;
         var totalNbAction = 0;
-        var totalNbActionCloturees = 0;
+        var totalNbActionRealisees = 0;
         var totalNbActionATemps = 0;
         var totalNbActionDepassees1Mois = 0;
         var totalNbActionDepassees3Mois = 0;
         var totalNbActionEnRetard = 0;
-
-
-        
 
 
         responseModel.get('typeOccurenceCollection').reset();
@@ -490,60 +493,57 @@
 
         switch (responseModel.get('type')) {
             //case 'RESPONSABLE':
-            //var typeOccurenceFS = responseModel.get('typeOccurenceCollectionForResponsable').findWhere({ 'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom });
+            //var typeOccurenceNC = responseModel.get('typeOccurenceCollectionForResponsable').findWhere({ 'nom': NC.get('Responsable').Nom + ' ' + NC.get('Responsable').Prenom });
             //break;
-            case 'ZONE':
-                responseModel.get('zoneCollection').forEach(function (zone) {
+            case 'ORIGINE':
+                responseModel.get('nonConformiteOrigineCollection').forEach(function (origine) {
 
-                    if (zone.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
                         responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
-                            'nom': zone.get('Site').Trigramme + ' / ' + zone.get('ZoneType').Nom,
-                            'id': zone.get('ZoneID'),
-                            'nbFSEmises': 0,
-                            'nbFSPAValidees': 0,
-                            'nbFSPACloturees': 0,
-                            'nbFSCloturees': 0,
+                            'nom': origine.get('Nom'),
+                            'id': origine.get('Id'),
+                            'nbNCEmises': 0,
+                            //'nbNCPAValidees': 0,
+                            //'nbNCPACloturees': 0,
+                            //'nbNCCloturees': 0,
                             'nbAction': 0,
-                            'nbActionCloturees': 0,
-                            'nbActionClotureesATemps': 0,
+                            'nbActionRealisees': 0,
+                            'nbActionRealiseesATemps': 0,
                             'nbActionDepassees1Mois': 0,
                             'nbActionDepassees3Mois': 0,
                             'nbActionEnRetard': 0,
-                            'prctgFSCloturees' : 0,
-                            'prctgFSPlanActionValide': 0,
-                            'prctgFSPlanActionCloture': 0,
-                            'prctgActionCloturees': 0,
-                            'prctgActionClotureesATemps': 0,
+                            //'prctgNCCloturees': 0,
+                            //'prctgNCPlanActionValide': 0,
+                            //'prctgNCPlanActionCloture': 0,
+                            'prctgActionRealisees': 0,
+                            'prctgActionRealiseesATemps': 0,
                             'prctgActionDepassees1Mois': 0,
                             'prctgActionDepassees3Mois': 0,
                             'prctgActionEnRetard': 0
                         }));
 
-                    }
-
                 });
                 break;
-            case 'TYPE':
-                responseModel.get('typeCollection').forEach(function (type) {
+            case 'DOMAINE':
+                responseModel.get('nonConformiteDomaineCollection').forEach(function (domaine) {
 
                     responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
-                        'nom': type.get('Nom'),
-                        'id': type.get('FicheSecuriteTypeID'),
-                        'nbFSEmises': 0,
-                        'nbFSPAValidees': 0,
-                        'nbFSPACloturees': 0,
-                        'nbFSCloturees': 0,
+                        'nom': domaine.get('Nom'),
+                        'id': domaine.get('Id'),
+                        'nbNCEmises': 0,
+                        //'nbNCPAValidees': 0,
+                        //'nbNCPACloturees': 0,
+                        //'nbNCCloturees': 0,
                         'nbAction': 0,
-                        'nbActionCloturees': 0,
-                        'nbActionClotureesATemps': 0,
+                        'nbActionRealisees': 0,
+                        'nbActionRealiseesATemps': 0,
                         'nbActionDepassees1Mois': 0,
                         'nbActionDepassees3Mois': 0,
                         'nbActionEnRetard': 0,
-                        'prctgFSCloturees': 0,
-                        'prctgFSPlanActionValide': 0,
-                        'prctgFSPlanActionCloture': 0,
-                        'prctgActionCloturees': 0,
-                        'prctgActionClotureesATemps': 0,
+                        //'prctgNCCloturees': 0,
+                        //'prctgNCPlanActionValide': 0,
+                        //'prctgNCPlanActionCloture': 0,
+                        'prctgActionRealisees': 0,
+                        'prctgActionRealiseesATemps': 0,
                         'prctgActionDepassees1Mois': 0,
                         'prctgActionDepassees3Mois': 0,
                         'prctgActionEnRetard': 0
@@ -551,110 +551,75 @@
 
                 });
                 break;
-            case 'SERVICE':
-                responseModel.get('serviceCollection').forEach(function (service) {
-                    if (service.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
-                        responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
-                            'nom': service.get('Site').Trigramme + ' / ' + service.get('ServiceType').Nom,
-                            'id': service.get('ServiceID'),
-                            'nbFSEmises': 0,
-                            'nbFSPAValidees': 0,
-                            'nbFSPACloturees': 0,
-                            'nbFSCloturees': 0,
-                            'nbAction': 0,
-                            'nbActionCloturees': 0,
-                            'nbActionClotureesATemps': 0,
-                            'nbActionDepassees1Mois': 0,
-                            'nbActionDepassees3Mois': 0,
-                            'nbActionEnRetard': 0,
-                            'prctgFSCloturees': 0,
-                            'prctgFSPlanActionValide': 0,
-                            'prctgFSPlanActionCloture': 0,
-                            'prctgActionCloturees': 0,
-                            'prctgActionClotureesATemps': 0,
-                            'prctgActionDepassees1Mois': 0,
-                            'prctgActionDepassees3Mois': 0,
-                            'prctgActionEnRetard': 0
-                        }));
-
-                    }
-
-                });
-
-                break;
             default:
 
                 break;
         }
-        responseModel.get('ficheSecuriteCollection').forEach(function (FS) {
+        responseModel.get('nonConformiteCollection').forEach(function (NC) {
 
-            if (FS.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
+            if (NC.get('SiteId') === responseModel.get('siteId') || responseModel.get('siteId') === 0) {
 
                 switch (responseModel.get('type')) {
-                    case 'RESPONSABLE':
-                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom });
+                    //case 'RESPONSABLE':
+                    //    var typeOccurenceNC = responseModel.get('typeOccurenceCollection').findWhere({ 'nom': NC.get('Responsable').Nom + ' ' + NC.get('Responsable').Prenom });
 
-                        if (typeOccurenceFS === undefined) {
+                    //    if (typeOccurenceNC === undefined) {
 
-                            typeOccurenceFS = new TypeOccurenceModel({
-                                'nom': FS.get('Responsable').Nom + ' ' + FS.get('Responsable').Prenom,
-                                'nbFSEmises': 0,
-                                'nbFSPAValidees': 0,
-                                'nbFSPACloturees': 0,
-                                'nbFSCloturees': 0,
-                                'nbAction': 0,
-                                'nbActionCloturees': 0,
-                                'nbActionClotureesATemps': 0,
-                                'nbActionDepassees1Mois': 0,
-                                'nbActionDepassees3Mois': 0,
-                                'nbActionEnRetard': 0,
-                                'prctgFSCloturees': 0,
-                                'prctgFSPlanActionValide': 0,
-                                'prctgFSPlanActionCloture': 0,
-                                'prctgActionCloturees': 0,
-                                'prctgActionClotureesATemps': 0,
-                                'prctgActionDepassees1Mois': 0,
-                                'prctgActionDepassees3Mois': 0,
-                                'prctgActionEnRetard': 0
-                            });
+                    //        typeOccurenceNC = new TypeOccurenceModel({
+                    //            'nom': NC.get('Responsable').Nom + ' ' + NC.get('Responsable').Prenom,
+                    //            'nbNCEmises': 0,
+                    //            //'nbNCPAValidees': 0,
+                    //            //'nbNCPACloturees': 0,
+                    //            //'nbNCCloturees': 0,
+                    //            'nbAction': 0,
+                    //            'nbActionCloturees': 0,
+                    //            'nbActionClotureesATemps': 0,
+                    //            'nbActionDepassees1Mois': 0,
+                    //            'nbActionDepassees3Mois': 0,
+                    //            'nbActionEnRetard': 0,
+                    //            //'prctgNCCloturees': 0,
+                    //            //'prctgNCPlanActionValide': 0,
+                    //            //'prctgNCPlanActionCloture': 0,
+                    //            'prctgActionCloturees': 0,
+                    //            'prctgActionClotureesATemps': 0,
+                    //            'prctgActionDepassees1Mois': 0,
+                    //            'prctgActionDepassees3Mois': 0,
+                    //            'prctgActionEnRetard': 0
+                    //        });
 
-                            responseModel.get('typeOccurenceCollection').add(typeOccurenceFS)
+                    //        responseModel.get('typeOccurenceCollection').add(typeOccurenceNC)
 
-                        }
+                    //    }
 
+                    //    break;
+                    case 'ORIGINE':
+                        var typeOccurenceNC = responseModel.get('typeOccurenceCollection').findWhere({ 'id': NC.get('NonConformiteOrigineId') });
+                        typeOccurenceNC.set({ 'nbNCEmises': typeOccurenceNC.get('nbNCEmises') + 1 });
                         break;
-                    case 'ZONE':
-                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'id': FS.get('ZoneId') });
-                        break;
-                    case 'SERVICE':
-                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'id': FS.get('ServiceId') });
-                        break;
-                    case 'TYPE':
-                        var typeOccurenceFS = responseModel.get('typeOccurenceCollection').findWhere({ 'id': FS.get('FicheSecurtiteTypeID') });
+                    case 'DOMAINE':
+                        var typeOccurenceNC = responseModel.get('typeOccurenceCollection').findWhere({ 'id': NC.get('NonConformiteDomaineId') });
+                        typeOccurenceNC.set({ 'nbNCEmises': typeOccurenceNC.get('nbNCEmises') + 1 });
                         break;
                     default:
-
+                       
                         break;
                 }
 
-                typeOccurenceFS.set({ 'nbFSEmises': typeOccurenceFS.get('nbFSEmises') + 1 });
-                totalNbFSEmises++;
-                if (FS.get('WorkFlowASEValidee') === true) {
-                    typeOccurenceFS.set({ 'nbFSPAValidees': typeOccurenceFS.get('nbFSPAValidees') + 1 });
-                    totalNbFSPAValide++;
-                }
-                if (FS.get('WorkFlowASEValidee') === true && FS.get('WorkFlowCloturee') === true) {
-                    typeOccurenceFS.set({ 'nbFSPACloturees': typeOccurenceFS.get('nbFSPACloturees') + 1 });
-                    totalNbFSPACloture++;
-                }
-                if (FS.get('WorkFlowFicheSecuriteCloturee') === true) {
-                    typeOccurenceFS.set({ 'nbFSCloturees': typeOccurenceFS.get('nbFSCloturees') + 1 });
-                    totalNbFScloturees++;
-                }
-
-                FS.get('CauseQSEs').forEach(function (Cause) {
-                    Cause.ActionQSEs.forEach(function (Action) {
-
+                
+                totalNbNCEmises++;
+                //if (NC.get('WorkFlowASEValidee') === true) {
+                //    typeOccurenceNC.set({ 'nbNCPAValidees': typeOccurenceNC.get('nbNCPAValidees') + 1 });
+                //    totalNbNCPAValide++;
+                //}
+                //if (NC.get('WorkFlowASEValidee') === true && NC.get('WorkFlowCloturee') === true) {
+                //    typeOccurenceNC.set({ 'nbNCPACloturees': typeOccurenceNC.get('nbNCPACloturees') + 1 });
+                //    totalNbNCPACloture++;
+                //}
+                //if (NC.get('WorkFlowNonConformiteCloturee') === true) {
+                //    typeOccurenceNC.set({ 'nbNCCloturees': typeOccurenceNC.get('nbNCCloturees') + 1 });
+                //    totalNbNCcloturees++;
+                //}
+                    NC.get('ActionQSEs').forEach(function (Action) {
 
                         Action.DateButoireInitialeJavascript = new Date(Action.DateButoireInitiale.substring(0, 4), Action.DateButoireInitiale.substring(5, 7)-1, Action.DateButoireInitiale.substring(8, 10));
                         if (Action.DateButoireNouvelle != null) {
@@ -664,11 +629,11 @@
                             Action.DateButoireNouvelleJavascript = null;
 
                         }
-                        if (Action.ClotureDate != null) {
-                            Action.ClotureDateJavascript = new Date(Action.ClotureDate.substring(0, 4), Action.ClotureDate.substring(5, 7) - 1, Action.ClotureDate.substring(8, 10));
+                        if (Action.RealiseDate != null) {
+                            Action.RealiseDateJavascript = new Date(Action.RealiseDate.substring(0, 4), Action.RealiseDate.substring(5, 7) - 1, Action.RealiseDate.substring(8, 10));
                         }
                         else {
-                            Action.ClotureDateJavascript = null;
+                            Action.RealiseDateJavascript = null;
                         }
 
                         switch (responseModel.get('type')) {
@@ -679,21 +644,21 @@
 
                                     typeOccurenceAction = new TypeOccurenceModel({
                                         'nom': Action.Responsable.Nom + ' ' + Action.Responsable.Prenom,
-                                        'nbFSEmises': 0,
-                                        'nbFSPAValidees': 0,
-                                        'nbFSPACloturees': 0,
-                                        'nbFSCloturees': 0,
+                                        'nbNCEmises': 0,
+                                        //'nbNCPAValidees': 0,
+                                        //'nbNCPACloturees': 0,
+                                        //'nbNCCloturees': 0,
                                         'nbAction': 0,
-                                        'nbActionCloturees': 0,
-                                        'nbActionClotureesATemps': 0,
+                                        'nbActionRealisees': 0,
+                                        'nbActionRealiseesATemps': 0,
                                         'nbActionDepassees1Mois': 0,
                                         'nbActionDepassees3Mois': 0,
                                         'nbActionEnRetard': 0,
-                                        'prctgFSCloturees': 0,
-                                        'prctgFSPlanActionValide': 0,
-                                        'prctgFSPlanActionCloture': 0,
-                                        'prctgActionCloturees': 0,
-                                        'prctgActionClotureesATemps': 0,
+                                        //'prctgNCCloturees': 0,
+                                        //'prctgNCPlanActionValide': 0,
+                                        //'prctgNCPlanActionCloture': 0,
+                                        'prctgActionRealisees': 0,
+                                        'prctgActionRealiseesATemps': 0,
                                         'prctgActionDepassees1Mois': 0,
                                         'prctgActionDepassees3Mois': 0,
                                         'prctgActionEnRetard': 0
@@ -703,100 +668,111 @@
 
                                 }
                                 break;
-                            case 'ZONE':
-                                var typeOccurenceAction = typeOccurenceFS;
+                            case 'ORIGINE':
+                                var typeOccurenceAction = typeOccurenceNC;
                                 break;
-                            case 'SERVICE':
-                                var typeOccurenceAction = typeOccurenceFS;
-                                break;
-                            case 'TYPE':
-                                var typeOccurenceAction = typeOccurenceFS;
+                            case 'DOMAINE':
+                                var typeOccurenceAction = typeOccurenceNC;
                                 break;
                             default:
 
                                 break;
                         }
 
-
+                        if (Action.Responsable.Nom === 'Chantre') {
+                            console.log('NC : ' + NC.get('Code') + ' -- ' +  Action.DateButoireInitiale + ' -- ' + Action.ClotureDate);
+                            console.log(NC);
+                        }
+                        
 
                         typeOccurenceAction.set({ 'nbAction': typeOccurenceAction.get('nbAction') + 1 });
                         totalNbAction++;
 
-                        if (Action.ClotureDateJavascript != null) {
-                            typeOccurenceAction.set({ 'nbActionCloturees': typeOccurenceAction.get('nbActionCloturees') + 1 });
-                            totalNbActionCloturees++;
+                        if (Action.RealiseDateJavascript != null) {
+                            typeOccurenceAction.set({ 'nbActionRealisees': typeOccurenceAction.get('nbActionRealisees') + 1 });
+                            totalNbActionRealisees++;
                         }
 
-                        if (Action.ClotureDateJavascript != null && (Action.ClotureDateJavascript <= Action.DateButoireInitialeJavascript)) {
-                            typeOccurenceAction.set({ 'nbActionClotureesATemps': typeOccurenceAction.get('nbActionClotureesATemps') + 1 });
+                        if (Action.RealiseDateJavascript != null && (Action.RealiseDateJavascript <= Action.DateButoireInitialeJavascript)) {
+                            typeOccurenceAction.set({ 'nbActionRealiseesATemps': typeOccurenceAction.get('nbActionRealiseesATemps') + 1 });
                             totalNbActionATemps++;
                         }
 
-                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 1)
-                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                        var dateButoireInitiale = new Date(Action.DateButoireInitialeJavascript.getTime());
+
+                        var dateButoireInitialePlus1Mois = new Date(dateButoireInitiale.getTime());
+                        dateButoireInitialePlus1Mois.setMonth(dateButoireInitialePlus1Mois.getMonth() + 1);
+
+                        var dateButoireInitialePlus3Mois = new Date(dateButoireInitiale.getTime());
+                        dateButoireInitialePlus3Mois.setMonth(dateButoireInitialePlus3Mois.getMonth() + 3);
+
+                        var dateDuJour = new Date();
+                        //Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 1)
+
+                        
+                        if (Action.RealiseDateJavascript === null && dateDuJour > dateButoireInitialePlus1Mois && dateDuJour <= dateButoireInitialePlus3Mois) {
                             typeOccurenceAction.set({ 'nbActionDepassees1Mois': typeOccurenceAction.get('nbActionDepassees1Mois') + 1 });
                             totalNbActionDepassees1Mois++;
                         }
 
-                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 2)
-                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                        //Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 2)
+                        if (Action.RealiseDateJavascript === null && dateDuJour > dateButoireInitialePlus3Mois) {
                             typeOccurenceAction.set({ 'nbActionDepassees3Mois': typeOccurenceAction.get('nbActionDepassees3Mois') + 1 });
                             totalNbActionDepassees3Mois++;
                         }
 
-                        Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() - 3)
+                        //Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() - 3)
 
-                        if (Action.ClotureDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                        if (Action.RealiseDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
                             typeOccurenceAction.set({ 'nbActionEnRetard': typeOccurenceAction.get('nbActionEnRetard') + 1 });
                             totalNbActionEnRetard++;
                         }
 
                     });
-                });
             }
         });
 
 
         responseModel.get('typeOccurenceCollection').forEach(function (typeOccurence) {
 
-            var prctgFSPlanActionValide = (Math.round(typeOccurence.get('nbFSPAValidees') / typeOccurence.get('nbFSEmises') * 100));
-            if (isNaN(prctgFSPlanActionValide)) {
-                prctgFSPlanActionValide = '--';
+            //var prctgNCPlanActionValide = (Math.round(typeOccurence.get('nbNCPAValidees') / typeOccurence.get('nbNCEmises') * 100));
+            //if (isNaN(prctgNCPlanActionValide)) {
+            //    prctgNCPlanActionValide = '--';
+            //}
+            //var prctgNCPlanActionCloture = (Math.round(typeOccurence.get('nbNCPACloturees') / typeOccurence.get('nbNCEmises') * 100));
+            //if (isNaN(prctgNCPlanActionCloture)) {
+            //    prctgNCPlanActionCloture = '--';
+            //}
+            //var prctgNCCloturees = (Math.round(typeOccurence.get('nbNCCloturees') / typeOccurence.get('nbNCEmises') * 100));
+            //if (isNaN(prctgNCCloturees)) {
+            //    prctgNCCloturees = '--';
+            //}
+            var prctgActionRealisees = (Math.round(typeOccurence.get('nbActionRealisees') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionRealisees)) {
+                prctgActionRealisees = '--';
             }
-            var prctgFSPlanActionCloture = (Math.round(typeOccurence.get('nbFSPACloturees') / typeOccurence.get('nbFSEmises') * 100));
-            if (isNaN(prctgFSPlanActionCloture)) {
-                prctgFSPlanActionCloture = '--';
+            var prctgActionRealiseesATemps = (Math.round(typeOccurence.get('nbActionRealiseesATemps') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionRealiseesATemps)) {
+                prctgActionRealiseesATemps = '--';
             }
-            var prctgFSCloturees = (Math.round(typeOccurence.get('nbFSCloturees') / typeOccurence.get('nbFSEmises') * 100));
-            if (isNaN(prctgFSCloturees)) {
-                prctgFSCloturees = '--';
-            }
-            var prctgActionCloturees = (Math.round(typeOccurence.get('nbActionCloturees') / typeOccurence.get('nbAction') * 100));
-            if (isNaN(prctgActionCloturees)) {
-                prctgActionCloturees = '--';
-            }
-            var prctgActionClotureesATemps = (Math.round(typeOccurence.get('nbActionClotureesATemps') / typeOccurence.get('nbAction') * 100));
-            if (isNaN(prctgActionClotureesATemps)) {
-                prctgActionClotureesATemps = '--';
-            }
-            var prctgActionDepassees1Mois = (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            var prctgActionDepassees1Mois = (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionRealisees')) * 100));
             if (isNaN(prctgActionDepassees1Mois)) {
                 prctgActionDepassees1Mois = '--';
             }
-            var prctgActionDepassees3Mois = (Math.round(typeOccurence.get('nbActionDepassees3Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            var prctgActionDepassees3Mois = (Math.round(typeOccurence.get('nbActionDepassees3Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionRealisees')) * 100));
             if (isNaN(prctgActionDepassees3Mois)) {
                 prctgActionDepassees3Mois = '--';
             }
-            var prctgActionEnRetard = (Math.round(typeOccurence.get('nbActionEnRetard') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100));
+            var prctgActionEnRetard = (Math.round(typeOccurence.get('nbActionEnRetard') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionRealisees')) * 100));
             if (isNaN(prctgActionEnRetard)) {
                 prctgActionEnRetard = '--';
             }
 
-            typeOccurence.set({ 'prctgFSPlanActionValide': prctgFSPlanActionValide });
-            typeOccurence.set({ 'prctgFSPlanActionCloture': prctgFSPlanActionCloture });
-            typeOccurence.set({ 'prctgFSCloturees': prctgFSCloturees });
-            typeOccurence.set({ 'prctgActionCloturees': prctgActionCloturees });
-            typeOccurence.set({ 'prctgActionClotureesATemps': prctgActionClotureesATemps });
+            //typeOccurence.set({ 'prctgNCPlanActionValide': prctgNCPlanActionValide });
+            //typeOccurence.set({ 'prctgNCPlanActionCloture': prctgNCPlanActionCloture });
+            //typeOccurence.set({ 'prctgNCCloturees': prctgNCCloturees });
+            typeOccurence.set({ 'prctgActionRealisees': prctgActionRealisees });
+            typeOccurence.set({ 'prctgActionRealiseesATemps': prctgActionRealiseesATemps });
             typeOccurence.set({ 'prctgActionDepassees1Mois': prctgActionDepassees1Mois });
             typeOccurence.set({ 'prctgActionDepassees3Mois': prctgActionDepassees3Mois });
             typeOccurence.set({ 'prctgActionEnRetard': prctgActionEnRetard });
@@ -806,27 +782,27 @@
 
         responseModel.get('typeOccurenceCollection').add(new TypeOccurenceModel({
             'nom': 'TOTAL',
-            'nbFSEmises': totalNbFSEmises,
-            'nbFSPAValidees': totalNbFSPAValide,
-            'nbFSPACloturees': totalNbFSPACloture,
-            'nbFSCloturees': totalNbFScloturees,
+            'nbNCEmises': totalNbNCEmises,
+            //'nbNCPAValidees': totalNbNCPAValide,
+            //'nbNCPACloturees': totalNbNCPACloture,
+            //'nbNCCloturees': totalNbNCcloturees,
             'nbAction': totalNbAction,
-            'nbActionCloturees': totalNbActionCloturees,
-            'nbActionClotureesATemps': totalNbActionATemps,
+            'nbActionRealisees': totalNbActionRealisees,
+            'nbActionRealiseesATemps': totalNbActionATemps,
             'nbActionDepassees1Mois': totalNbActionDepassees1Mois,
             'nbActionDepassees3Mois': totalNbActionDepassees3Mois,
             'nbActionEnRetard': totalNbActionEnRetard,
-            'prctgFSCloturees': (Math.round(totalNbFScloturees / totalNbFSEmises * 100)) || '--',
-            'prctgFSPlanActionValide': (Math.round(totalNbFSPAValide / totalNbFSEmises * 100)) || '--',
-            'prctgFSPlanActionCloture': (Math.round(totalNbFSPACloture / totalNbFSEmises * 100)) || '--',
-            'prctgActionCloturees': (Math.round(totalNbActionCloturees / totalNbAction * 100) ) || '--',
-            'prctgActionClotureesATemps': (Math.round(totalNbActionATemps / totalNbAction * 100)) || '--',
-            'prctgActionDepassees1Mois': (Math.round(totalNbActionDepassees1Mois / (totalNbAction - totalNbActionCloturees) * 100)) || '--',
-            'prctgActionDepassees3Mois': (Math.round(totalNbActionDepassees3Mois / (totalNbAction - totalNbActionCloturees) * 100)) || '--',
-            'prctgActionEnRetard': (Math.round(totalNbActionEnRetard / (totalNbAction - totalNbActionCloturees) * 100)) || '--'
+            //'prctgNCCloturees': (Math.round(totalNbNCcloturees / totalNbNCEmises * 100)) || '--',
+            //'prctgNCPlanActionValide': (Math.round(totalNbNCPAValide / totalNbNCEmises * 100)) || '--',
+            //'prctgNCPlanActionCloture': (Math.round(totalNbNCPACloture / totalNbNCEmises * 100)) || '--',
+            'prctgActionRealisees': (Math.round(totalNbActionRealisees / totalNbAction * 100)) || '--',
+            'prctgActionRealiseesATemps': (Math.round(totalNbActionATemps / totalNbAction * 100)) || '--',
+            'prctgActionDepassees1Mois': (Math.round(totalNbActionDepassees1Mois / (totalNbAction - totalNbActionRealisees) * 100)) || '--',
+            'prctgActionDepassees3Mois': (Math.round(totalNbActionDepassees3Mois / (totalNbAction - totalNbActionRealisees) * 100)) || '--',
+            'prctgActionEnRetard': (Math.round(totalNbActionEnRetard / (totalNbAction - totalNbActionRealisees) * 100)) || '--'
 
 
-    //typeOccurence.set({ 'prctgFSPlanActionValide': (Math.round(typeOccurence.get('nbFSPAValidees') / typeOccurence.get('nbFSEmises') * 100)) || '--' });
+            //typeOccurence.set({ 'prctgNCPlanActionValide': (Math.round(typeOccurence.get('nbNCPAValidees') / typeOccurence.get('nbNCEmises') * 100)) || '--' });
     //typeOccurence.set({ 'prctgActionCloturees': (Math.round(typeOccurence.get('nbActionCloturees') / typeOccurence.get('nbAction') * 100)) || '--' });
     //typeOccurence.set({ 'prctgActionClotureesATemps': (Math.round(typeOccurence.get('nbActionClotureesATemps') / typeOccurence.get('nbAction') * 100)) || '--' });
     //typeOccurence.set({ 'prctgActionDepassees1Mois': (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionCloturees')) * 100)) || '--' });

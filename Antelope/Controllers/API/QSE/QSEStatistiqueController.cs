@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace Antelope.Controllers.API.QSE
 {
@@ -22,12 +23,12 @@ namespace Antelope.Controllers.API.QSE
         {
 
             DateTime DateDebut = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime DateFin = DateTime.Now.Date;
+            DateTime DateFin = DateTime.Now.AddDays(+1);
 
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut
                                      && n.Date <= DateFin
-                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId};
+                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId, ActionQSEs = n.ActionQSEs, Code = n.Code};
 
             var AllNonConformite = queryNonConformite.ToList();
 
@@ -67,7 +68,7 @@ namespace Antelope.Controllers.API.QSE
             DateTime ParameterDateFin = statistiquePyramideParamModel.DateFin;
 
             DateTime DateDebut = ParameterDateDebut;
-            DateTime DateFin = ParameterDateFin;
+            DateTime DateFin = ParameterDateFin.AddDays(+1);
 
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut

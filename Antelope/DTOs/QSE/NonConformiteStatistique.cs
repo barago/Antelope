@@ -19,11 +19,12 @@ namespace Antelope.DTOs.QSE
         public Int32? NonConformiteGraviteId { get; set; }
         public Personne Responsable { get; set; }
         public Int32 FicheSecurtiteTypeID { get; set; }
-        public Boolean WorkFlowASEValidee { get; set; }
-        public Boolean WorkFlowFicheSecuriteCloturee { get; set; }
-        public Boolean WorkFlowCloturee { get; set; }
+        public String Code { get; set; }
+        //public Boolean WorkFlowASEValidee { get; set; }
+        //public Boolean WorkFlowFicheSecuriteCloturee { get; set; }
+        //public Boolean WorkFlowCloturee { get; set; }
 
 
-        public virtual ICollection<CauseQSE> CauseQSEs { get; set; }
+        public virtual ICollection<ActionQSE> ActionQSEs { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Antelope.Controllers.API.HSE
         {
 
             DateTime DateDebut = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime DateFin = DateTime.Now.Date;
+            DateTime DateFin = DateTime.Now.AddDays(+1);
 
             var queryFicheSecurite = from f in db.FicheSecurites
                                      where f.DateEvenement >= DateDebut
@@ -65,7 +65,7 @@ namespace Antelope.Controllers.API.HSE
             DateTime ParameterDateFin = statistiquePyramideParamModel.DateFin;
 
             DateTime DateDebut = ParameterDateDebut;
-            DateTime DateFin = ParameterDateFin;
+            DateTime DateFin = ParameterDateFin.AddDays(+1);
 
             var queryFicheSecurite = from f in db.FicheSecurites
                                      where f.DateEvenement >= DateDebut

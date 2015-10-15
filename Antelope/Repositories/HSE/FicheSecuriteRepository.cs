@@ -205,7 +205,7 @@ namespace Antelope.Repositories.HSE
             {
                 try
                 {
-                    ParameterDateEvenementFin = DateTime.Parse(DataTableParameters["dateEvenementFin"]);
+                    ParameterDateEvenementFin = DateTime.Parse(DataTableParameters["dateEvenementFin"]).AddDays(1);
                 }
                 catch (Exception e)
                 {
@@ -611,7 +611,7 @@ namespace Antelope.Repositories.HSE
             {
                 try
                 {
-                    ParameterDateEvenementFin = DateTime.Parse(DataTableParameters["dateEvenementFin"]);
+                    ParameterDateEvenementFin = DateTime.Parse(DataTableParameters["dateEvenementFin"]).AddDays(1);
                 }
                 catch (Exception e)
                 {
