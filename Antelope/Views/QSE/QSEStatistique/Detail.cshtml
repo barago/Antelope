@@ -91,7 +91,7 @@
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#D4E898;">
+                                <span style="background-color:#E567A0; color:white;">
                                     Nb NC Concernées
                                 </span>
                             </div>
@@ -119,43 +119,64 @@
                         </th>*@
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#8BAC27;">
+                                <span style="background-color:#BF62A6; color:white;">
                                     Nb Actions
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRealise">
                             <div>
-                                <span style="background-color:#D4E898;">
-                                    Nb Actions réalisées
+                                <span style="background-color:#459BA8; color:white;">
+                                    Nb Actions réalisées >>>
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRealiseToggle">
                             <div>
-                                <span style="background-color:#8BAC27;">
+                                <span style="background-color:#E0EEB4; color:grey;">
                                     Nb Actions réalisées à temps
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRealiseToggle">
                             <div>
-                                <span style="background-color:#D4E898;">
-                                    Nb Actions retard 1 mois
+                                <span style="background-color:#FCFCA2; color:grey;">
+                                    Nb Actions réalisées en retard
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#8BAC27;">
-                                    Nb Actions retard 3 mois
+                                <span style="background-color:#79C267; color:white;">
+                                    Nb Actions en cours
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRetard">
                             <div>
-                                <span style="background-color:#D4E898;">
-                                    Nb Actions en retard
+                                <span style="background-color:#F94545; color:white;">
+                                    TOTAL Actions en retard >>>
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRetardToggle">
+                            <div>
+                                <span style="background-color:#FCFCA2; color:grey;">
+                                    Nb Actions retard < 1 mois
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRetardToggle">
+                            <div>
+                                <span style="background-color:#FCDAAA; color:grey;">
+                                    Nb Actions retard de 1 à 3 mois
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRetardToggle">
+                            <div>
+                                <span style="background-color:#FDBBBB; color:grey;">
+                                    Nb Actions retard > 3 mois
                                 </span>
                             </div>
                         </th>
@@ -180,38 +201,59 @@
                                 </span>
                             </div>
                         </th>*@
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRealise">
                             <div>
-                                <span style="background-color:#FCD194;">
-                                    % Actions réalisées/Actions émises
+                                <span style="background-color:#459BA8; color:white;">
+                                    % Actions réalisées/émises >>>
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRealiseToggle">
+                            <div>
+                                <span style="background-color:#E0EEB4; color:grey;">
+                                    % Actions réalisées à temps/émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRealiseToggle">
+                            <div>
+                                <span style="background-color:#FCFCA2; color:grey;">
+                                    % Actions réalisées en retard
                                 </span>
                             </div>
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#FD9910;">
-                                    % Actions réalisées à temps/Actions émises
+                                <span style="background-color:#79C267; color:white;">
+                                    % Actions en cours
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRetard">
                             <div>
-                                <span style="background-color:#FCD194;">
-                                    % Actions retard 1M/Actions restantes
+                                <span style="background-color:#F94545; color:white;">
+                                    % TOTAL Actions retard/restantes >>>
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRetardToggle">
                             <div>
-                                <span style="background-color:#FD9910;">
-                                    % Actions retard 3M/Actions restantes
+                                <span style="background-color:#FCFCA2; color:grey;">
+                                    % Actions retard < 1M/restantes
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45">
+                        <th class="rotate45 ActionRetardToggle">
                             <div>
-                                <span style="background-color:#FCD194;">
-                                    % Actions retard/Actions restantes
+                                <span style="background-color:#FCDAAA; color:grey;">
+                                    % Actions retard de 1 à 3M/restantes
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRetardToggle">
+                            <div>
+                                <span style="background-color:#FDBBBB; color:grey;">
+                                    % Actions retard > 3M/restantes
                                 </span>
                             </div>
                         </th>
@@ -228,7 +270,7 @@
                         <th>
                             <%= typeOccurence.get('nom') %>
                         </th>
-                        <th style="background-color:#D4E898;">
+                        <th style="background-color:#E567A0; color:white;">
                             <%= typeOccurence.get('nbNCEmises') %>
                         </th>
                         @*<th style="background-color:#D4E898;">
@@ -240,23 +282,32 @@
                         <th style="background-color:#D4E898;">
                             <%= typeOccurence.get('nbNCCloturees') %>
                         </th>*@
-                        <th style="background-color:#8BAC27;">
+                        <th style="background-color:#BF62A6; color:white;">
                             <%= typeOccurence.get('nbAction') %>
                         </th>
-                        <th style="background-color:#D4E898;">
+                        <th style="background-color:#459BA8; color:white;" class="ActionRealise">
                             <%= typeOccurence.get('nbActionRealisees') %>
                         </th>
-                        <th style="background-color:#8BAC27;">
+                        <th style="background-color:#D4E898; color:grey;" class="ActionRealiseToggle">
                             <%= typeOccurence.get('nbActionRealiseesATemps') %>
                         </th>
-                        <th style="background-color:#D4E898;">
+                        <th style="background-color:#FCFCA2; color:grey;" class="ActionRealiseToggle">
+                            <%= typeOccurence.get('nbActionRealiseesEnRetard') %>
+                        </th>
+                        <th style="background-color:#79C267; color:white;">
+                            <%= typeOccurence.get('nbActionEnCours') %>
+                        </th>
+                        <th style="background-color:#F94545; color:white;" class="ActionRetard">
+                            <%= typeOccurence.get('nbActionEnRetard') %>
+                        </th>
+                        <th style="background-color:#FCFCA2; color:grey;" class="ActionRetardToggle">
+                            <%= typeOccurence.get('nbActionDepassees') %>
+                        </th>
+                        <th style="background-color:#FCDAAA; color:grey;" class="ActionRetardToggle">
                             <%= typeOccurence.get('nbActionDepassees1Mois') %>
                         </th>
-                        <th style="background-color:#8BAC27;">
+                        <th style="background-color:#FDBBBB; color:grey;" class="ActionRetardToggle">
                             <%= typeOccurence.get('nbActionDepassees3Mois') %>
-                        </th>
-                        <th style="background-color:#D4E898;">
-                            <%= typeOccurence.get('nbActionEnRetard') %>
                         </th>
                         @*<th style="background-color:#FD9910;">
                             <%= typeOccurence.get('prctgNCCloturees') %>
@@ -267,20 +318,29 @@
                         <th style="background-color:#FD9910;">
                             <%= typeOccurence.get('prctgNCPlanActionCloture') %>
                         </th>*@
-                        <th style="background-color:#FCD194;">
+                        <th style="background-color:#459BA8; color:white;" class="ActionRealise">
                             <%= typeOccurence.get('prctgActionRealisees') %>
                         </th>
-                        <th style="background-color:#FD9910;">
+                        <th style="background-color:#E0EEB4; color:grey;" class="ActionRealiseToggle">
                             <%= typeOccurence.get('prctgActionRealiseesATemps') %>
                         </th>
-                        <th style="background-color:#FCD194;">
+                        <th style="background-color:#FCFCA2; color:grey;" class="ActionRealiseToggle">
+                            <%= typeOccurence.get('prctgActionRealiseesEnRetard') %>
+                        </th>
+                        <th style="background-color:#79C267; color:white;">
+                            <%= typeOccurence.get('prctgActionEnCours') %>
+                        </th>
+                        <th style="background-color:#F94545; color:white;" class="ActionRetard">
+                            <%= typeOccurence.get('prctgActionEnRetard') %>
+                        </th>
+                        <th style="background-color:#FCFCA2; color:grey;" class="ActionRetardToggle">
+                            <%= typeOccurence.get('prctgActionDepassees') %>
+                        </th>
+                        <th style="background-color:#FCDAAA; color:grey;" class="ActionRetardToggle">
                             <%= typeOccurence.get('prctgActionDepassees1Mois') %>
                         </th>
-                        <th style="background-color:#FD9910;">
+                        <th style="background-color:#FDBBBB; color:grey;" class="ActionRetardToggle">
                             <%= typeOccurence.get('prctgActionDepassees3Mois') %>
-                        </th>
-                        <th style="background-color:#FCD194;">
-                            <%= typeOccurence.get('prctgActionEnRetard') %>
                         </th>
 
                     </tr>
@@ -382,7 +442,18 @@
             $('#DateFin').on("dp.change", $.proxy(this.changeDateFin, this));
             $('#DateFin').on("dp.hide", $.proxy(this.changeDateFin, this));
 
-            $('#table').scrollTableBody({ rowsToDisplay:9 });
+            $('#table').scrollTableBody({ rowsToDisplay: 9 });
+
+            $(".ActionRealise").click(function () {
+                $(".ActionRealiseToggle").toggle();
+            });
+
+            $(".ActionRetard").click(function () {
+                $(".ActionRetardToggle").toggle();
+            });
+
+            $(".ActionRealiseToggle").toggle();
+            $(".ActionRetardToggle").toggle();
 
             return this;
         },
@@ -480,6 +551,9 @@
         var totalNbAction = 0;
         var totalNbActionRealisees = 0;
         var totalNbActionATemps = 0;
+        var totalNbActionEnRetard = 0;
+        var totalNbActionEnCours = 0;
+        var totalNbActionDepassees = 0;
         var totalNbActionDepassees1Mois = 0;
         var totalNbActionDepassees3Mois = 0;
         var totalNbActionEnRetard = 0;
@@ -508,6 +582,9 @@
                             'nbAction': 0,
                             'nbActionRealisees': 0,
                             'nbActionRealiseesATemps': 0,
+                            'nbActionRealiseesEnRetard': 0,
+                            'nbActionEnCours': 0,
+                            'nbActionDepassees': 0,
                             'nbActionDepassees1Mois': 0,
                             'nbActionDepassees3Mois': 0,
                             'nbActionEnRetard': 0,
@@ -516,6 +593,8 @@
                             //'prctgNCPlanActionCloture': 0,
                             'prctgActionRealisees': 0,
                             'prctgActionRealiseesATemps': 0,
+                            'prctgActionRealiseesEnRetard': 0,
+                            'prctgActionDepassees': 0,
                             'prctgActionDepassees1Mois': 0,
                             'prctgActionDepassees3Mois': 0,
                             'prctgActionEnRetard': 0
@@ -536,6 +615,9 @@
                         'nbAction': 0,
                         'nbActionRealisees': 0,
                         'nbActionRealiseesATemps': 0,
+                        'nbActionRealiseesEnRetard': 0,
+                        'nbActionEnCours': 0,
+                        'nbActionDepassees': 0,
                         'nbActionDepassees1Mois': 0,
                         'nbActionDepassees3Mois': 0,
                         'nbActionEnRetard': 0,
@@ -544,6 +626,8 @@
                         //'prctgNCPlanActionCloture': 0,
                         'prctgActionRealisees': 0,
                         'prctgActionRealiseesATemps': 0,
+                        'prctgActionRealiseesEnRetard': 0,
+                        'prctgActionDepassees': 0,
                         'prctgActionDepassees1Mois': 0,
                         'prctgActionDepassees3Mois': 0,
                         'prctgActionEnRetard': 0
@@ -651,6 +735,9 @@
                                         'nbAction': 0,
                                         'nbActionRealisees': 0,
                                         'nbActionRealiseesATemps': 0,
+                                        'nbActionRealiseesEnRetard': 0,
+                                        'nbActionEnCours': 0,
+                                        'nbActionDepassees': 0,
                                         'nbActionDepassees1Mois': 0,
                                         'nbActionDepassees3Mois': 0,
                                         'nbActionEnRetard': 0,
@@ -659,6 +746,8 @@
                                         //'prctgNCPlanActionCloture': 0,
                                         'prctgActionRealisees': 0,
                                         'prctgActionRealiseesATemps': 0,
+                                        'prctgActionRealiseesEnRetard': 0,
+                                        'prctgActionDepassees': 0,
                                         'prctgActionDepassees1Mois': 0,
                                         'prctgActionDepassees3Mois': 0,
                                         'prctgActionEnRetard': 0
@@ -678,11 +767,6 @@
 
                                 break;
                         }
-
-                        if (Action.Responsable.Nom === 'Chantre') {
-                            console.log('NC : ' + NC.get('Code') + ' -- ' +  Action.DateButoireInitiale + ' -- ' + Action.ClotureDate);
-                            console.log(NC);
-                        }
                         
 
                         typeOccurenceAction.set({ 'nbAction': typeOccurenceAction.get('nbAction') + 1 });
@@ -698,6 +782,18 @@
                             totalNbActionATemps++;
                         }
 
+                        if (Action.RealiseDateJavascript != null && (Action.RealiseDateJavascript > Action.DateButoireInitialeJavascript)) {
+                            typeOccurenceAction.set({ 'nbActionRealiseesEnRetard': typeOccurenceAction.get('nbActionRealiseesEnRetard') + 1 });
+                            totalNbActionEnRetard++;
+                        }
+
+                        var dateDuJour = new Date();
+
+                        if (Action.RealiseDateJavascript === null && (dateDuJour <= Action.DateButoireInitialeJavascript)) {
+                            typeOccurenceAction.set({ 'nbActionEnCours': typeOccurenceAction.get('nbActionEnCours') + 1 });
+                            totalNbActionRealisees++;
+                        }
+
                         var dateButoireInitiale = new Date(Action.DateButoireInitialeJavascript.getTime());
 
                         var dateButoireInitialePlus1Mois = new Date(dateButoireInitiale.getTime());
@@ -706,9 +802,12 @@
                         var dateButoireInitialePlus3Mois = new Date(dateButoireInitiale.getTime());
                         dateButoireInitialePlus3Mois.setMonth(dateButoireInitialePlus3Mois.getMonth() + 3);
 
-                        var dateDuJour = new Date();
                         //Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() + 1)
 
+                        if (Action.RealiseDateJavascript === null && dateDuJour > dateButoireInitiale && dateDuJour <= dateButoireInitialePlus1Mois) {
+                            typeOccurenceAction.set({ 'nbActionDepassees': typeOccurenceAction.get('nbActionDepassees') + 1 });
+                            totalNbActionDepassees++;
+                        }
                         
                         if (Action.RealiseDateJavascript === null && dateDuJour > dateButoireInitialePlus1Mois && dateDuJour <= dateButoireInitialePlus3Mois) {
                             typeOccurenceAction.set({ 'nbActionDepassees1Mois': typeOccurenceAction.get('nbActionDepassees1Mois') + 1 });
@@ -755,6 +854,18 @@
             if (isNaN(prctgActionRealiseesATemps)) {
                 prctgActionRealiseesATemps = '--';
             }
+            var prctgActionRealiseesEnRetard = (Math.round(typeOccurence.get('nbActionRealiseesATemps') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionRealiseesEnRetard)) {
+                prctgActionRealiseesEnRetard = '--';
+            }
+            var prctgActionEnCours = (Math.round(typeOccurence.get('nbActionEnCours') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionEnCours)) {
+                prctgActionEnCours = '--';
+            }
+            var prctgActionDepassees = (Math.round(typeOccurence.get('nbActionDepassees') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionRealisees')) * 100));
+            if (isNaN(prctgActionDepassees)) {
+                prctgActionDepassees = '--';
+            }
             var prctgActionDepassees1Mois = (Math.round(typeOccurence.get('nbActionDepassees1Mois') / (typeOccurence.get('nbAction') - typeOccurence.get('nbActionRealisees')) * 100));
             if (isNaN(prctgActionDepassees1Mois)) {
                 prctgActionDepassees1Mois = '--';
@@ -773,6 +884,9 @@
             //typeOccurence.set({ 'prctgNCCloturees': prctgNCCloturees });
             typeOccurence.set({ 'prctgActionRealisees': prctgActionRealisees });
             typeOccurence.set({ 'prctgActionRealiseesATemps': prctgActionRealiseesATemps });
+            typeOccurence.set({ 'prctgActionRealiseesEnRetard': prctgActionRealiseesEnRetard });
+            typeOccurence.set({ 'prctgActionEnCours': prctgActionEnCours });
+            typeOccurence.set({ 'prctgActionDepassees': prctgActionDepassees });
             typeOccurence.set({ 'prctgActionDepassees1Mois': prctgActionDepassees1Mois });
             typeOccurence.set({ 'prctgActionDepassees3Mois': prctgActionDepassees3Mois });
             typeOccurence.set({ 'prctgActionEnRetard': prctgActionEnRetard });
@@ -789,6 +903,9 @@
             'nbAction': totalNbAction,
             'nbActionRealisees': totalNbActionRealisees,
             'nbActionRealiseesATemps': totalNbActionATemps,
+            'nbActionRealiseesEnRetard': totalNbActionEnRetard,
+            'nbActionEnCours': totalNbActionEnCours,
+            'nbActionDepassees': totalNbActionDepassees,
             'nbActionDepassees1Mois': totalNbActionDepassees1Mois,
             'nbActionDepassees3Mois': totalNbActionDepassees3Mois,
             'nbActionEnRetard': totalNbActionEnRetard,
@@ -797,6 +914,9 @@
             //'prctgNCPlanActionCloture': (Math.round(totalNbNCPACloture / totalNbNCEmises * 100)) || '--',
             'prctgActionRealisees': (Math.round(totalNbActionRealisees / totalNbAction * 100)) || '--',
             'prctgActionRealiseesATemps': (Math.round(totalNbActionATemps / totalNbAction * 100)) || '--',
+            'prctgActionRealiseesEnRetard': (Math.round(totalNbActionEnRetard / totalNbAction * 100)) || '--',
+            'prctgActionEnCours': (Math.round(totalNbActionEnCours / totalNbAction * 100)) || '--',
+            'prctgActionDepassees': (Math.round(totalNbActionDepassees / (totalNbAction - totalNbActionRealisees) * 100)) || '--',
             'prctgActionDepassees1Mois': (Math.round(totalNbActionDepassees1Mois / (totalNbAction - totalNbActionRealisees) * 100)) || '--',
             'prctgActionDepassees3Mois': (Math.round(totalNbActionDepassees3Mois / (totalNbAction - totalNbActionRealisees) * 100)) || '--',
             'prctgActionEnRetard': (Math.round(totalNbActionEnRetard / (totalNbAction - totalNbActionRealisees) * 100)) || '--'
