@@ -115,7 +115,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .StatistiquesPyramideTable th{
-    padding: 15px;
+    padding: 10px;
 }
 
 .ui-tooltip { 
@@ -131,14 +131,14 @@ input[type="checkbox"].input-validation-error {
 
 th.rotate45 {
   /* Something you can count on */
-  height: 210px;
+  height: 150px;
   white-space: nowrap;
 }
 
 th.rotate45 > div {
   transform: 
     /* Magic Numbers */
-    translate(0px, 98px)
+    translate(0px, 66px)
     /* 45 is really 360 - 45 */
     rotate(310deg);
   width: 10px;

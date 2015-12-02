@@ -181,6 +181,35 @@
                         <div class="col-md-4">
                         </div>
                     </div>
+
+                     
+                    <div class="row">
+                        <div class="col-md-12">
+                            Filtres sur les Non-Conformités :
+                            <label for="IsNCEnCours" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;NC en cours&nbsp;</span></label>
+                            <input type="checkbox" id="IsNCEnCours"<% if(rechercheNonConformiteParamModel.get('IsNCEnCours')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsNCCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;NC clôturées&nbsp;</span></label>
+                            <input type="checkbox" id="IsNCCloture"<% if(rechercheNonConformiteParamModel.get('IsNCEnCours')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            Filtres sur les Actions :
+                            <label for="IsActionEnCours" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;Actions en cours&nbsp;</span></label>
+                            <input type="checkbox" id="IsActionEnCours"<% if(rechercheNonConformiteParamModel.get('IsActionEnCours')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsActionRealise" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FFC000;height:10px;">&nbsp;Actions réalisées&nbsp;</span></label>
+                            <input type="checkbox" id="IsActionRealise"<% if(rechercheNonConformiteParamModel.get('IsActionRealise')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsActionRetard" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#FF0000;height:10px;">&nbsp;Actions en retard&nbsp;</span></label>
+                            <input type="checkbox" id="IsActionRetard"<% if(rechercheNonConformiteParamModel.get('IsActionRetard')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label for="IsActionCloture" style="font-weight:normal"><span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:#00FF00;height:10px;">&nbsp;Actions clôturées&nbsp;</span></label>
+                            <input type="checkbox" id="IsActionCloture"<% if(rechercheNonConformiteParamModel.get('IsActionCloture')===true) { %> checked <% } %> >&nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -279,7 +308,7 @@
         viewModel.fetch({
             async: false
         });
-
+        
         viewModel.set({ 'rechercheNonConformiteParamModel': new RechercheNonConformiteParamModel(viewModel.get('RechercheNonConformiteParamModel')) });
 
         viewModel.set({ 'siteCollection': new SiteCollection(viewModel.get('AllSite')) });
@@ -332,6 +361,12 @@
                 "keyup #DateButoirDebutInput": "changeDateButoirDebut",
                 "keyup #DateButoirFinInput": "changeDateButoirFin",
                 "keyup #ResponsableNom": "changeResponsableNom",
+                "click #IsNCEnCours": "changeIsNCEnCours",
+                "click #IsNCCloture": "changeIsNCCloture",
+                "click #IsActionEnCours": "changeIsActionEnCours",
+                "click #IsActionRealise": "changeIsActionRealise",
+                "click #IsActionRetard": "changeIsActionRetard",
+                "click #IsActionCloture": "changeIsActionCloture",
 
             },
             triggerRechercheSurEntree: function (e) {
@@ -386,6 +421,24 @@
                 // De date FR à DateTime
                 var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
                 return dateFormated;
+            },
+            changeIsNCEnCours: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsNCEnCours': $('#IsNCEnCours').is(":checked") });
+            },
+            changeIsNCCloture: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsNCCloture': $('#IsNCCloture').is(":checked") });
+            },
+            changeIsActionEnCours: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsActionEnCours': $('#IsActionEnCours').is(":checked") });
+            },
+            changeIsActionRealise: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsActionRealise': $('#IsActionRealise').is(":checked") });
+            },
+            changeIsActionRetard: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsActionRetard': $('#IsActionRetard').is(":checked") });
+            },
+            changeIsActionCloture: function(){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'IsActionCloture': $('#IsActionCloture').is(":checked") });
             }
         })
 
@@ -460,6 +513,10 @@
                             "responsableNom": this.model.get('rechercheNonConformiteParamModel').get('ResponsableNom'),
                             "dateButoirDebut": this.model.get('rechercheNonConformiteParamModel').get('DateButoirDebut'),
                             "dateButoirFin": this.model.get('rechercheNonConformiteParamModel').get('DateButoirFin'),
+                            "isActionEnCours": this.model.get('rechercheNonConformiteParamModel').get('IsActionEnCours'),
+                            "isActionRealise": this.model.get('rechercheNonConformiteParamModel').get('IsActionRealise'),
+                            "isActionRetard": this.model.get('rechercheNonConformiteParamModel').get('IsActionRetard'),
+                            "isActionCloture": this.model.get('rechercheNonConformiteParamModel').get('IsActionCloture')
                         }
 
                     },
@@ -486,7 +543,7 @@
                             $nRow.css({ "background-color": colorLight });
                             $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         }
-                        if (new Date(Date.parse(aData.RealiseDate)) > new Date(Date.parse(aData.DateButoireInitiale))) {
+                        if ((new Date(Date.parse(aData.RealiseDate)) > new Date(Date.parse(aData.DateButoireInitiale))) || (new Date() > new Date(Date.parse(aData.DateButoireInitiale)))) {
                             colorHeavy = "#FF0000";
                             colorLight = "#FFE7FF";
                             $nRow.css({ "background-color": colorLight });
@@ -524,7 +581,7 @@
                         {
                             "mData": "NonConformiteCode",
                             "sTitle": "Code Non-Conformite",
-                            "orderable": false,
+                            "orderable": true,
                             "width": "7%",
                             "mRender": function (date, type, full) {
                                 return full.NonConformite.Code;
@@ -539,7 +596,7 @@
                         {
                             "mData": "ResponsableNom",
                             "sTitle": "Responsable",
-                            "orderable": false,
+                            "orderable": true,
                             "width": "8%",
                             "mRender": function (date, type, full) {
                                 return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
@@ -555,7 +612,7 @@
                                 var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
                                 return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
                             },
-                            "orderable": false,
+                            "orderable": true,
                             "width": "6%"
                         },
                         {
@@ -774,10 +831,76 @@
                             "responsableNom": this.model.get('rechercheNonConformiteParamModel').get('ResponsableNom'),
                             "dateButoirDebut": this.model.get('rechercheNonConformiteParamModel').get('DateButoirDebut'),
                             "dateButoirFin": this.model.get('rechercheNonConformiteParamModel').get('DateButoirFin'),
+                            "isNCEnCours": this.model.get('rechercheNonConformiteParamModel').get('IsNCEnCours'),
+                            "isNCCloture": this.model.get('rechercheNonConformiteParamModel').get('IsNCCloture')
                         }
 
                     },
                     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tous"]],
+                    "fnRowCallback": function (nRow, aData) {
+                        var $nRow = $(nRow); // cache the row wrapped up in jQuery
+
+                        $('td:eq(0)', nRow).css({ "border-style": "solid", "border-width": "1px", "border-color": "#B4B4B4" });
+                        var color = "white";
+                        var colorHeavy = "white";
+                        var colorLight = "white";
+
+                        var isCloture = true;
+                        var nbAction = 0;
+                        
+             
+                        for (action in aData.ActionQSEs) {
+                            nbAction++;
+                                console.log(aData.ActionQSEs[action].VerifieDate);
+                                if (typeof aData.ActionQSEs[action].VerifieDate === 'undefined' || aData.ActionQSEs[action].VerifieDate === null) {
+                                    isCloture = false;
+                                }
+                        }
+
+
+
+                        if (isCloture == true && nbAction > 0) {
+                            colorHeavy = "#00FF00";
+                            colorLight = "#AFFDAF";
+                            $nRow.css({ "background-color": colorLight });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        }
+
+                        //if (aData.NonConformite.WorkFlowAttenteASEValidation == true) {
+                        //    colorHeavy = "#BFBFBF";
+                        //    colorLight = "#E0E0E0";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+                        //if (aData.FicheSecurite.WorkFlowASERejetee == true) {
+                        //    colorHeavy = "#FF0000";
+                        //    colorLight = "#FFE7FF";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+                        //if (aData.FicheSecurite.WorkFlowASEValidee == true) {
+                        //    colorHeavy = "#FFC000";
+                        //    colorLight = "#FCE6A2";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+                        //if (aData.FicheSecurite.WorkFlowCloturee == true && aData.FicheSecurite.WorkFlowASEValidee == true) {
+                        //    colorHeavy = "#00B0F0";
+                        //    colorLight = "#AFE8FD";
+                        //    $nRow.css({ "background-color": colorLight });
+                        //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
+                        //}
+
+                        $(nRow).hover(function () {
+                            //$nRow.css({ "background-color": "#EAEAEA" });
+                            $nRow.css({ "background-color": "#808181", "color": "white" });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy, "color": "black" });
+                        }, function () {
+                            $nRow.css({ "background-color": colorLight, "color": "black" });
+                            $('td:eq(0)', nRow).css({ "background-color": colorHeavy, "color": "black" });
+                        });
+                        return nRow
+                    },
                     "columns": [
                         {
                             "mData": "Id",
@@ -788,7 +911,7 @@
                         {
                             "mData": "Code",
                             "sTitle": "Code",
-                            "orderable": false,
+                            "orderable": true,
                             "width": "10%"
                         },
                         {
@@ -799,13 +922,13 @@
                                 //return new Date(date).toLocaleString();
                                 return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
                             },
-                            "orderable": false,
+                            "orderable": true,
                             "width": "10%"
                         },
                         {
                             "mData": "NonConformiteOrigine.Nom",
                             "sTitle": "Origine",
-                            "orderable": false,
+                            "orderable": true,
                             "width": "15%"
                         },
                         {

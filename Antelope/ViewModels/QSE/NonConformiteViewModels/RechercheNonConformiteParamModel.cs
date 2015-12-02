@@ -15,6 +15,12 @@ namespace Antelope.ViewModels.QSE.NonConformiteViewModels
         public Int32? NonConformiteDomaineId { get; set; }
         public String ResponsableNom { get; set; }
         public String VerificateurNom { get; set; }
+        public Boolean IsNCEnCours { get; set; }
+        public Boolean IsNCCloture { get; set; }
+        public Boolean IsActionEnCours { get; set; }
+        public Boolean IsActionRealise { get; set; }
+        public Boolean IsActionRetard { get; set; }
+        public Boolean IsActionCloture { get; set; }
 
        // public RechercheNonConformiteParamModel rechercheNonConformiteParamModel{ get; set;}
 

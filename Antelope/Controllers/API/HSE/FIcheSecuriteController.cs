@@ -64,12 +64,12 @@ namespace Antelope.Controllers.API.HSE
 
             if (ParameterRechercheType == "FICHESECURITE")
             {
-                DataTableViewModelForFicheSecurite = _ficheSecuriteRepository.GetFromParams2(DataTableParameters);
+                DataTableViewModelForFicheSecurite = _ficheSecuriteRepository.GetAllFicheSecuriteFromParams(DataTableParameters);
                 return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModelForFicheSecurite);
             }
             if (ParameterRechercheType == "ACTION")
             {
-                DataTableViewModelForAction = _ficheSecuriteRepository.GetFromParams3(DataTableParameters);
+                DataTableViewModelForAction = _ficheSecuriteRepository.GetAllActionFromParams(DataTableParameters);
                 return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModelForAction);
             }
             else

@@ -140,7 +140,15 @@ namespace Antelope.Services.HSE
 
             MailAddress from = new MailAddress("Sezar@refresco.fr");
             string subject = "Validation Plan d'action";
-            string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être validé</H4> </br>";
+            string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être validé</H4> </br></br>";
+            body += "</br> Voici les actions à réaliser : </br></br>";
+
+            foreach(CauseQSE Cause in ficheSecurite.CauseQSEs){
+                foreach (ActionQSE Action in Cause.ActionQSEs)
+                {
+                    body += "Responsable : " + Action.Responsable.Prenom + " " + Action.Responsable.Nom + "</br>Action : " + Action.Description + "</br>Date butoir : " + Action.DateButoireInitiale;
+                }
+            }
 
             if (to != "" && to != null)
             {

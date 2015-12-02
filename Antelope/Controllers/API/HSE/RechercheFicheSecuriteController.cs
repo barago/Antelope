@@ -12,6 +12,7 @@ using System.DirectoryServices;
 using Antelope.Infrastructure.EntityFramework;
 using System.Web;
 using Antelope.Repositories.Socle;
+using Antelope.Services.HSE.Enums;
 
 
 
@@ -94,8 +95,9 @@ namespace Antelope.Controllers.API.HSE
                 IsPlanActionAttente = true,
                 IsPlanActionRejete = true,
                 IsPlanActionCloture = true,
-                IsFicheSecuriteCloture = true
-
+                IsFicheSecuriteCloture = true,
+                CriticiteNiveau = CriticiteNiveauEnum.NULL,
+                Criticite = 0
             };
 
             FicheSecuritePaginatedList FicheSecuritePaginatedList = _ficheSecuriteRepository.GetFromParams(RechercheFicheSecuriteParamModel);
@@ -168,7 +170,9 @@ namespace Antelope.Controllers.API.HSE
                 DateButoirFin = null,
                 DateClotureDebut = null,
                 DateClotureFin = null,
-                ResponsableNomAction = ""
+                ResponsableNomAction = "",
+                CriticiteNiveau = CriticiteNiveauEnum.NULL,
+                Criticite = 0
             };
 
             RechercheFicheSecuriteViewModel RechercheNonConformiteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, AllService, AllZone, AllLieu, AllPosteDeTravail);

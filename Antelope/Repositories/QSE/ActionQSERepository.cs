@@ -41,11 +41,36 @@ namespace Antelope.Repositories.QSE
             Int32 ParameterOrigineId = Int32.Parse(DataTableParameters["nonConformiteOrigineId"]);
             Int32 ParameterGraviteId = Int32.Parse(DataTableParameters["nonConformiteGraviteId"]);
             Int32 ParameterDomaineId = Int32.Parse(DataTableParameters["nonConformiteDomaineId"]);
+            Boolean ParameterIsActionEnCours = Convert.ToBoolean(DataTableParameters["isActionEnCours"]);
+            Boolean ParameterIsActionRealise = Convert.ToBoolean(DataTableParameters["isActionRealise"]);
+            Boolean ParameterIsActionRetard = Convert.ToBoolean(DataTableParameters["isActionRetard"]);
+            Boolean ParameterIsActionCloture = Convert.ToBoolean(DataTableParameters["isActionCloture"]);
+            Boolean ParameterIsColonne1Ordonnee = false;
+            String ParameterColonne1Sens = null;
+            Boolean ParameterIsColonne3Ordonnee = false;
+            String ParameterColonne3Sens = null;
+            Boolean ParameterIsColonne4Ordonnee = false;
+            String ParameterColonne4Sens = null;
 
             String ParameterResponsableNom = DataTableParameters["responsableNom"];
             DateTime? ParameterDateButoirDebut = null;
             DateTime? ParameterDateButoirFin = null;
 
+            if (DataTableParameters["order[0].column"] == "1")
+            {
+                ParameterIsColonne1Ordonnee = true;
+                ParameterColonne1Sens = DataTableParameters["order[0].dir"];
+            }
+            if (DataTableParameters["order[0].column"] == "3")
+            {
+                ParameterIsColonne3Ordonnee = true;
+                ParameterColonne3Sens = DataTableParameters["order[0].dir"];
+            }
+            if (DataTableParameters["order[0].column"] == "4")
+            {
+                ParameterIsColonne4Ordonnee = true;
+                ParameterColonne4Sens = DataTableParameters["order[0].dir"];
+            }
             if (DataTableParameters["dateButoirDebut"] != "")
             {
                 try
@@ -88,6 +113,49 @@ namespace Antelope.Repositories.QSE
 
             queryActionQSE = queryActionQSE.Where(q => q.NonConformiteId != null);
 
+            String WorkFlowWhereClause = "";
+            Boolean FirstWorkFlowPredicate = false;
+
+            if (ParameterIsActionEnCours == false || ParameterIsActionRealise == false || ParameterIsActionRetard == false || ParameterIsActionCloture == false)
+            {
+                if (ParameterIsActionEnCours == true)
+                {
+                    FirstWorkFlowPredicate = true;
+                    WorkFlowWhereClause += "(RealiseDate == null && DateTime.Today <= DateButoireInitiale)";
+                }
+                if (ParameterIsActionRealise == true)
+                {
+                    if (FirstWorkFlowPredicate == true)
+                    {
+                        WorkFlowWhereClause += "|| ";
+                    }
+                    WorkFlowWhereClause += "(RealiseDate != null && VerifieDate == null && RealiseDate < DateButoireInitiale &&  DateTime.Today < DateButoireInitiale)";
+                    FirstWorkFlowPredicate = true;
+                }
+                if (ParameterIsActionRetard == true)
+                {
+                    if (FirstWorkFlowPredicate == true)
+                    {
+                        WorkFlowWhereClause += "|| ";
+                    }
+                    WorkFlowWhereClause += "((RealiseDate > DateButoireInitiale || DateTime.Today > DateButoireInitiale) && VerifieDate == null)";
+                    FirstWorkFlowPredicate = true;
+                }
+                if (ParameterIsActionCloture == true)
+                {
+                    if (FirstWorkFlowPredicate == true)
+                    {
+                        WorkFlowWhereClause += "|| ";
+                    }
+                    WorkFlowWhereClause += "(RealiseDate != null && VerifieDate != null)";
+                    FirstWorkFlowPredicate = true;
+                }
+                if (WorkFlowWhereClause != "")
+                {
+                    queryActionQSE = queryActionQSE.Where(WorkFlowWhereClause);
+                }
+            }
+
             if (ParameterSiteId != null && ParameterSiteId != 0)
             {
                 queryActionQSE = queryActionQSE.Where(q => q.NonConformite.SiteId == ParameterSiteId);
@@ -126,6 +194,43 @@ namespace Antelope.Repositories.QSE
 
             int RecordsFiltered = queryActionQSE.Count();
             int RecordsTotal = _db.ActionQSEs.Count();
+
+            if (ParameterIsColonne1Ordonnee == true)
+            {
+                switch (ParameterColonne1Sens)
+                {
+                    case "asc":
+                        queryActionQSE = queryActionQSE.OrderBy(q => q.NonConformite.CompteurAnnuelSite);
+                        break;
+                    case "desc":
+                        queryActionQSE = queryActionQSE.OrderByDescending(q => q.NonConformite.CompteurAnnuelSite);
+                        break;
+                }
+            }
+            if (ParameterIsColonne3Ordonnee == true)
+            {
+                switch (ParameterColonne3Sens)
+                {
+                    case "asc":
+                        queryActionQSE = queryActionQSE.OrderBy(q => q.Responsable.Nom);
+                        break;
+                    case "desc":
+                        queryActionQSE = queryActionQSE.OrderByDescending(q => q.Responsable.Nom);
+                        break;
+                }
+            }
+            if (ParameterIsColonne4Ordonnee == true)
+            {
+                switch (ParameterColonne4Sens)
+                {
+                    case "asc":
+                        queryActionQSE = queryActionQSE.OrderBy(q => q.DateButoireInitiale);
+                        break;
+                    case "desc":
+                        queryActionQSE = queryActionQSE.OrderByDescending(q => q.DateButoireInitiale);
+                        break;
+                }
+            }
 
             if (ParameterLength != -1)
             {

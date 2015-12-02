@@ -78,7 +78,7 @@
 
         @*<div class="col-md-12">*@
 
-            <table id="table" class="StatistiquesPyramideTable"  width:100%;">
+            <table id="table" class="StatistiquesPyramideTable">
                 <thead style="border-bottom: 3px solid black;font-size:x-small;">
                     <tr>
 
@@ -124,9 +124,16 @@
                                 </span>
                             </div>
                         </th>
-                        <th class="rotate45 ActionRealise">
+                        <th class="rotate45 ActionVerifie">
                             <div>
                                 <span style="background-color:#459BA8; color:white;">
+                                    Nb Actions vérifiées
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRealise">
+                            <div>
+                                <span style="background-color:#79C267; color:white;">
                                     Nb Actions réalisées >>>
                                 </span>
                             </div>
@@ -147,7 +154,7 @@
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#79C267; color:white;">
+                                <span style="background-color:white; color:black;">
                                     Nb Actions en cours
                                 </span>
                             </div>
@@ -201,9 +208,16 @@
                                 </span>
                             </div>
                         </th>*@
-                        <th class="rotate45 ActionRealise">
+                        <th class="rotate45 ActionVerifie">
                             <div>
                                 <span style="background-color:#459BA8; color:white;">
+                                    % Actions vérifiées/émises
+                                </span>
+                            </div>
+                        </th>
+                        <th class="rotate45 ActionRealise">
+                            <div>
+                                <span style="background-color:#79C267; color:white;">
                                     % Actions réalisées/émises >>>
                                 </span>
                             </div>
@@ -224,7 +238,7 @@
                         </th>
                         <th class="rotate45">
                             <div>
-                                <span style="background-color:#79C267; color:white;">
+                                <span style="background-color:white; color:black;">
                                     % Actions en cours
                                 </span>
                             </div>
@@ -285,7 +299,10 @@
                         <th style="background-color:#BF62A6; color:white;">
                             <%= typeOccurence.get('nbAction') %>
                         </th>
-                        <th style="background-color:#459BA8; color:white;" class="ActionRealise">
+                        <th style="background-color:#459BA8; color:white;" class="ActionVerifie">
+                            <%= typeOccurence.get('nbActionVerifiees') %>
+                        </th>
+                        <th style="background-color:#79C267; color:white;" class="ActionRealise">
                             <%= typeOccurence.get('nbActionRealisees') %>
                         </th>
                         <th style="background-color:#D4E898; color:grey;" class="ActionRealiseToggle">
@@ -294,7 +311,7 @@
                         <th style="background-color:#FCFCA2; color:grey;" class="ActionRealiseToggle">
                             <%= typeOccurence.get('nbActionRealiseesEnRetard') %>
                         </th>
-                        <th style="background-color:#79C267; color:white;">
+                        <th style="background-color:white; color:black;">
                             <%= typeOccurence.get('nbActionEnCours') %>
                         </th>
                         <th style="background-color:#F94545; color:white;" class="ActionRetard">
@@ -319,6 +336,9 @@
                             <%= typeOccurence.get('prctgNCPlanActionCloture') %>
                         </th>*@
                         <th style="background-color:#459BA8; color:white;" class="ActionRealise">
+                            <%= typeOccurence.get('prctgActionVerifiees') %>
+                        </th>
+                        <th style="background-color:#79C267; color:white;" class="ActionRealise">
                             <%= typeOccurence.get('prctgActionRealisees') %>
                         </th>
                         <th style="background-color:#E0EEB4; color:grey;" class="ActionRealiseToggle">
@@ -327,7 +347,7 @@
                         <th style="background-color:#FCFCA2; color:grey;" class="ActionRealiseToggle">
                             <%= typeOccurence.get('prctgActionRealiseesEnRetard') %>
                         </th>
-                        <th style="background-color:#79C267; color:white;">
+                        <th style="background-color:white; color:black;">
                             <%= typeOccurence.get('prctgActionEnCours') %>
                         </th>
                         <th style="background-color:#F94545; color:white;" class="ActionRetard">
@@ -549,6 +569,7 @@
         //var totalNbNCPACloture = 0;
         //var totalNbNCcloturees = 0;
         var totalNbAction = 0;
+        var totalNbActionVerifiees = 0;
         var totalNbActionRealisees = 0;
         var totalNbActionATemps = 0;
         var totalNbActionEnRetard = 0;
@@ -580,6 +601,7 @@
                             //'nbNCPACloturees': 0,
                             //'nbNCCloturees': 0,
                             'nbAction': 0,
+                            'nbActionVerifiees': 0,
                             'nbActionRealisees': 0,
                             'nbActionRealiseesATemps': 0,
                             'nbActionRealiseesEnRetard': 0,
@@ -591,8 +613,10 @@
                             //'prctgNCCloturees': 0,
                             //'prctgNCPlanActionValide': 0,
                             //'prctgNCPlanActionCloture': 0,
+                            'prctgActionVerifiees': 0,
                             'prctgActionRealisees': 0,
                             'prctgActionRealiseesATemps': 0,
+                            'prctgActionEnCours': 0,
                             'prctgActionRealiseesEnRetard': 0,
                             'prctgActionDepassees': 0,
                             'prctgActionDepassees1Mois': 0,
@@ -613,6 +637,7 @@
                         //'nbNCPACloturees': 0,
                         //'nbNCCloturees': 0,
                         'nbAction': 0,
+                        'nbActionVerifiees': 0,
                         'nbActionRealisees': 0,
                         'nbActionRealiseesATemps': 0,
                         'nbActionRealiseesEnRetard': 0,
@@ -624,6 +649,7 @@
                         //'prctgNCCloturees': 0,
                         //'prctgNCPlanActionValide': 0,
                         //'prctgNCPlanActionCloture': 0,
+                        'prctgActionVerifiees': 0,
                         'prctgActionRealisees': 0,
                         'prctgActionRealiseesATemps': 0,
                         'prctgActionRealiseesEnRetard': 0,
@@ -703,6 +729,7 @@
                 //    typeOccurenceNC.set({ 'nbNCCloturees': typeOccurenceNC.get('nbNCCloturees') + 1 });
                 //    totalNbNCcloturees++;
                 //}
+ 
                     NC.get('ActionQSEs').forEach(function (Action) {
 
                         Action.DateButoireInitialeJavascript = new Date(Action.DateButoireInitiale.substring(0, 4), Action.DateButoireInitiale.substring(5, 7)-1, Action.DateButoireInitiale.substring(8, 10));
@@ -719,6 +746,12 @@
                         else {
                             Action.RealiseDateJavascript = null;
                         }
+                        if (Action.VerifieDate != null) {
+                            Action.VerifieDateJavascript = new Date(Action.VerifieDate.substring(0, 4), Action.VerifieDate.substring(5, 7) - 1, Action.VerifieDate.substring(8, 10));
+                        }
+                        else {
+                            Action.VerifieDateJavascript = null;
+                        }
 
                         switch (responseModel.get('type')) {
                             case 'RESPONSABLE':
@@ -733,6 +766,7 @@
                                         //'nbNCPACloturees': 0,
                                         //'nbNCCloturees': 0,
                                         'nbAction': 0,
+                                        'nbActionVerifiees': 0,
                                         'nbActionRealisees': 0,
                                         'nbActionRealiseesATemps': 0,
                                         'nbActionRealiseesEnRetard': 0,
@@ -772,6 +806,11 @@
                         typeOccurenceAction.set({ 'nbAction': typeOccurenceAction.get('nbAction') + 1 });
                         totalNbAction++;
 
+                        if (Action.VerifieDateJavascript != null) {
+                            typeOccurenceAction.set({ 'nbActionVerifiees': typeOccurenceAction.get('nbActionVerifiees') + 1 });
+                            totalNbActionVerifiees++;
+                        }
+
                         if (Action.RealiseDateJavascript != null) {
                             typeOccurenceAction.set({ 'nbActionRealisees': typeOccurenceAction.get('nbActionRealisees') + 1 });
                             totalNbActionRealisees++;
@@ -791,7 +830,7 @@
 
                         if (Action.RealiseDateJavascript === null && (dateDuJour <= Action.DateButoireInitialeJavascript)) {
                             typeOccurenceAction.set({ 'nbActionEnCours': typeOccurenceAction.get('nbActionEnCours') + 1 });
-                            totalNbActionRealisees++;
+                            totalNbActionEnCours++;
                         }
 
                         var dateButoireInitiale = new Date(Action.DateButoireInitialeJavascript.getTime());
@@ -822,7 +861,7 @@
 
                         //Action.DateButoireInitialeJavascript.setMonth(Action.DateButoireInitialeJavascript.getMonth() - 3)
 
-                        if (Action.RealiseDateJavascript === null && new Date() > Action.DateButoireInitialeJavascript) {
+                        if (Action.RealiseDateJavascript === null && dateDuJour > dateButoireInitiale) {
                             typeOccurenceAction.set({ 'nbActionEnRetard': typeOccurenceAction.get('nbActionEnRetard') + 1 });
                             totalNbActionEnRetard++;
                         }
@@ -846,6 +885,10 @@
             //if (isNaN(prctgNCCloturees)) {
             //    prctgNCCloturees = '--';
             //}
+            var prctgActionVerifiees = (Math.round(typeOccurence.get('nbActionVerifiees') / typeOccurence.get('nbAction') * 100));
+            if (isNaN(prctgActionVerifiees)) {
+                prctgActionVerifiees = '--';
+            }
             var prctgActionRealisees = (Math.round(typeOccurence.get('nbActionRealisees') / typeOccurence.get('nbAction') * 100));
             if (isNaN(prctgActionRealisees)) {
                 prctgActionRealisees = '--';
@@ -854,7 +897,7 @@
             if (isNaN(prctgActionRealiseesATemps)) {
                 prctgActionRealiseesATemps = '--';
             }
-            var prctgActionRealiseesEnRetard = (Math.round(typeOccurence.get('nbActionRealiseesATemps') / typeOccurence.get('nbAction') * 100));
+            var prctgActionRealiseesEnRetard = (Math.round(typeOccurence.get('nbActionRealiseesEnRetard') / typeOccurence.get('nbAction') * 100));
             if (isNaN(prctgActionRealiseesEnRetard)) {
                 prctgActionRealiseesEnRetard = '--';
             }
@@ -882,6 +925,7 @@
             //typeOccurence.set({ 'prctgNCPlanActionValide': prctgNCPlanActionValide });
             //typeOccurence.set({ 'prctgNCPlanActionCloture': prctgNCPlanActionCloture });
             //typeOccurence.set({ 'prctgNCCloturees': prctgNCCloturees });
+            typeOccurence.set({ 'prctgActionVerifiees': prctgActionVerifiees });
             typeOccurence.set({ 'prctgActionRealisees': prctgActionRealisees });
             typeOccurence.set({ 'prctgActionRealiseesATemps': prctgActionRealiseesATemps });
             typeOccurence.set({ 'prctgActionRealiseesEnRetard': prctgActionRealiseesEnRetard });
@@ -901,6 +945,7 @@
             //'nbNCPACloturees': totalNbNCPACloture,
             //'nbNCCloturees': totalNbNCcloturees,
             'nbAction': totalNbAction,
+            'nbActionVerifiees': totalNbActionVerifiees,
             'nbActionRealisees': totalNbActionRealisees,
             'nbActionRealiseesATemps': totalNbActionATemps,
             'nbActionRealiseesEnRetard': totalNbActionEnRetard,
@@ -912,6 +957,7 @@
             //'prctgNCCloturees': (Math.round(totalNbNCcloturees / totalNbNCEmises * 100)) || '--',
             //'prctgNCPlanActionValide': (Math.round(totalNbNCPAValide / totalNbNCEmises * 100)) || '--',
             //'prctgNCPlanActionCloture': (Math.round(totalNbNCPACloture / totalNbNCEmises * 100)) || '--',
+            'prctgActionVerifiees': (Math.round(totalNbActionVerifiees / totalNbAction * 100)) || '--',
             'prctgActionRealisees': (Math.round(totalNbActionRealisees / totalNbAction * 100)) || '--',
             'prctgActionRealiseesATemps': (Math.round(totalNbActionATemps / totalNbAction * 100)) || '--',
             'prctgActionRealiseesEnRetard': (Math.round(totalNbActionEnRetard / totalNbAction * 100)) || '--',

@@ -167,9 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\pdfs\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
+    <Folder Include="Views\DialogueSecurite\" />
     <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\MatriceApplicative\" />
@@ -185,12 +185,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\API\HSE\DialogueSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\HSEParametrageController.cs" />
     <Compile Include="Controllers\API\HSE\HSEStatistiqueController.cs" />
     <Compile Include="Controllers\API\HSE\LieuController.cs" />
     <Compile Include="Controllers\API\HSE\ActiveDirectoryUtilisateurController.cs" />
     <Compile Include="Controllers\API\HSE\PosteDeTravailController.cs" />
     <Compile Include="Controllers\API\HSE\RechercheActionController.cs" />
+    <Compile Include="Controllers\API\HSE\RechercheDialogueSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\RechercheFicheSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\ServiceController.cs" />
     <Compile Include="Controllers\API\HSE\ZoneController.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
+    <Compile Include="Controllers\HSE\DialogueSecuriteController.cs" />
     <Compile Include="Controllers\HSE\FicheSecuriteController.cs" />
     <Compile Include="Controllers\HSE\HSEHomeController.cs" />
     <Compile Include="Controllers\HSE\HSEParametrageController.cs" />
@@ -276,6 +279,7 @@
     <Compile Include="Models\Test\Comment.cs" />
     <Compile Include="Models\Test\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\HSE\DialogueSecuriteRepository.cs" />
     <Compile Include="Repositories\HSE\FicheSecuriteRepository.cs" />
     <Compile Include="Repositories\QSE\ActionQSERepository.cs" />
     <Compile Include="Repositories\QSE\NonConformiteRepository.cs" />
@@ -286,12 +290,16 @@
     <Compile Include="Repositories\Test\ReviewRepository.cs" />
     <Compile Include="Services\Commons\GroupService.cs" />
     <Compile Include="Services\HSE\EmailService.cs" />
+    <Compile Include="Services\HSE\Enums\CriticiteNiveauEnum.cs" />
     <Compile Include="Services\HSE\Enums\HSERoleEnum.cs" />
     <Compile Include="Services\HSE\FicheSecuriteServices.cs" />
     <Compile Include="Services\Socle\ActiveDirectoryService.cs" />
     <Compile Include="Services\Socle\DataBases\DataBaseAcceptanceHydratationService.cs" />
     <Compile Include="Services\Socle\DataBases\DataBaseTestHydratationService.cs" />
     <Compile Include="Services\Socle\PersonneAnnuaireService.cs" />
+    <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\DialogueSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\RechercheDialogueSecuriteParamModel.cs" />
+    <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\RechercheDialogueSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />
@@ -376,6 +384,7 @@
     <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\images\sort_desc.png" />
     <Content Include="Content\images\sort_desc_disabled.png" />
+    <Content Include="Content\images\user_manual_icon_300x300.png" />
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -417,6 +426,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\Formulaire\DialogueSecuriteView.js" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\Formulaire\ViewModel.js" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\DialogueSecuriteModel.js" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\Recherche\RechercheDialogueSecuriteParamModel.js" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\Recherche\ViewModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\CorpsHumainZoneModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\DangerModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\FicheSecuriteActionView.js" />
@@ -470,6 +484,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\images\Sorting icons.psd" />
+    <Content Include="Content\pdfs\Manual.pdf" />
     <None Include="Properties\PublishProfiles\antelope - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\antelope - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\antelope.pubxml" />
@@ -902,11 +917,9 @@
     <Content Include="Views\Home\Index_backup.cshtml" />
     <Content Include="Views\HSE\HSEHome\Index.cshtml" />
     <Content Include="Views\HSE\Shared\_Layout.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\CreateBackup.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Delete.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Details.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Edit.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\Index.cshtml" />
     <Content Include="Views\ActionSecurite\Create.cshtml" />
     <Content Include="Views\ActionSecurite\Delete.cshtml" />
     <Content Include="Views\ActionSecurite\Details.cshtml" />
@@ -930,8 +943,7 @@
     <Content Include="Views\IndicateurSI\IndicateurSISupport\PanierPrint.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\TestMap.cshtml" />
     <Content Include="Views\HSE\FicheSecurite\Create.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\CreateBis.cshtml" />
-    <Content Include="Views\HSE\FicheSecurite\Index2.cshtml" />
+    <Content Include="Views\HSE\FicheSecurite\Index.cshtml" />
     <Content Include="Views\Z_Backbone_Model\ModelBackbone.cshtml" />
     <Content Include="Views\HSE\Parametrage\Changelog.cshtml" />
     <Content Include="Views\HSE\Parametrage\Index.cshtml" />
@@ -951,6 +963,8 @@
     <Content Include="Views\IndicateurSI\MatriceApplicative\MatriceApplicative.cshtml" />
     <Content Include="Views\QSE\QSEStatistique\Detail.cshtml" />
     <Content Include="Views\QSE\QSEStatistique\Index.cshtml" />
+    <Content Include="Views\HSE\DialogueSecurite\Create.cshtml" />
+    <Content Include="Views\HSE\DialogueSecurite\Index.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

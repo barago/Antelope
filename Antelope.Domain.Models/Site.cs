@@ -35,5 +35,7 @@ namespace Antelope.Domain.Models
         public virtual ICollection<Service> Services { get; set; }
         [JsonIgnore]
         public virtual ICollection<Zone> Zones { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites { get; set; }
     }
 }

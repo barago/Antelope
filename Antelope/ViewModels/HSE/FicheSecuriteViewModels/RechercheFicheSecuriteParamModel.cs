@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antelope.Services.HSE.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,5 +42,7 @@ namespace Antelope.ViewModels.HSE.FicheSecuriteViewModels
         public DateTime? DateClotureDebut { get; set; }
         public DateTime? DateClotureFin { get; set; }
         public String ResponsableNomAction { get; set; }
+        public Int32? Criticite { get; set; }
+        public CriticiteNiveauEnum CriticiteNiveau {get; set;} 
     }
 }

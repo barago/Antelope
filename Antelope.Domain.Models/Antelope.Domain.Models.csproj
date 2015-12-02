@@ -75,6 +75,7 @@
     <Compile Include="Danger.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DialogueSecurite.cs" />
     <Compile Include="Entities.cs">
       <DependentUpon>Entities.tt</DependentUpon>
       <AutoGen>True</AutoGen>

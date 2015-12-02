@@ -9,6 +9,7 @@ using Antelope.ViewModels.Socle.DataTables;
 using Binbin.Linq;
 using System.Linq.Dynamic;
 using Antelope.DTOs.HSE;
+using Antelope.Services.HSE.Enums;
 
 namespace Antelope.Repositories.HSE
 {
@@ -149,7 +150,7 @@ namespace Antelope.Repositories.HSE
         }
 
 
-        public DataTableViewModel<FicheSecurite> GetFromParams2(Dictionary<string, string> DataTableParameters)
+        public DataTableViewModel<FicheSecurite> GetAllFicheSecuriteFromParams(Dictionary<string, string> DataTableParameters)
         {
 
             Int32 ParameterStart = Int32.Parse(DataTableParameters["start"]);
@@ -186,10 +187,15 @@ namespace Antelope.Repositories.HSE
             DateTime? ParameterDateClotureDebut = null;
             DateTime? ParameterDateClotureFin = null;
             String ParameterResponsableNomAction = DataTableParameters["responsableNomAction"];
-
             String ParameterRechercheType = DataTableParameters["rechercheType"];
+            Int32 ParameterCriticite = Int32.Parse(DataTableParameters["criticite"]);
+            CriticiteNiveauEnum ParameterCriticiteNiveau = CriticiteNiveauEnum.NULL; // DataTableParameters["criticiteNiveau"];
 
 
+            if (DataTableParameters["CriticiteNiveau"] != "NULL")
+            {
+                CriticiteNiveauEnum.TryParse(DataTableParameters["CriticiteNiveau"], out ParameterCriticiteNiveau); //CriticiteNiveauEnum.DataTableParameters["CriticiteNiveau"]  // Enum.TryParse("Active", out myStatus);
+            }
             if (DataTableParameters["dateEvenementDebut"] != "")
             {
                 try
@@ -411,6 +417,24 @@ namespace Antelope.Repositories.HSE
             {
                 queryFicheSecurite = queryFicheSecurite.Where(q => q.PlageHoraireId == ParameterPlageHoraireId);
             }
+            if (ParameterCriticite != null && ParameterCriticite != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationFrequence * q.CotationGravite == ParameterCriticite);
+            }
+            if (ParameterCriticiteNiveau != null && ParameterCriticiteNiveau != CriticiteNiveauEnum.NULL)
+            {
+                switch (ParameterCriticiteNiveau){
+                    case CriticiteNiveauEnum.BAS :
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationFrequence * q.CotationGravite < 9);
+                        break;
+                    case CriticiteNiveauEnum.MOYEN:
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationFrequence * q.CotationGravite >= 9 && q.CotationFrequence * q.CotationGravite <= 12);
+                        break;
+                    case CriticiteNiveauEnum.HAUT:
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.CotationFrequence * q.CotationGravite > 12 );
+                        break;
+                }
+            }
             if (ParameterDateEvenementDebut != null)
             {
                 queryFicheSecurite = queryFicheSecurite.Where(q => q.DateEvenement >= ParameterDateEvenementDebut);
@@ -524,7 +548,7 @@ namespace Antelope.Repositories.HSE
 
         }
 
-        public DataTableViewModel<FicheSecuriteActionRecherche> GetFromParams3(Dictionary<string, string> DataTableParameters)
+        public DataTableViewModel<FicheSecuriteActionRecherche> GetAllActionFromParams(Dictionary<string, string> DataTableParameters)
         {
 
             Int32 ParameterStart = Int32.Parse(DataTableParameters["start"]);
@@ -570,7 +594,14 @@ namespace Antelope.Repositories.HSE
             DateTime? ParameterDateClotureFin = null;
             String ParameterResponsableNomAction = DataTableParameters["responsableNomAction"];
             String ParameterRechercheType = DataTableParameters["rechercheType"];
+            Int32 ParameterCriticite = Int32.Parse(DataTableParameters["criticite"]);
+            CriticiteNiveauEnum ParameterCriticiteNiveau = CriticiteNiveauEnum.NULL; // DataTableParameters["criticiteNiveau"];
 
+
+            if (DataTableParameters["CriticiteNiveau"] != "NULL")
+            {
+                CriticiteNiveauEnum.TryParse(DataTableParameters["CriticiteNiveau"], out ParameterCriticiteNiveau); //CriticiteNiveauEnum.DataTableParameters["CriticiteNiveau"]  // Enum.TryParse("Active", out myStatus);
+            }
             if (DataTableParameters["order[0].column"] == "1")
             {
                 ParameterIsColonne1Ordonnee = true;
@@ -810,6 +841,25 @@ namespace Antelope.Repositories.HSE
             if (ParameterDateEvenementFin != null)
             {
                 queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecurite.DateEvenement <= ParameterDateEvenementFin);
+            }
+            if (ParameterCriticite != null && ParameterCriticite != 0)
+            {
+                queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecurite.CotationFrequence * q.FicheSecurite.CotationGravite == ParameterCriticite);
+            }
+            if (ParameterCriticiteNiveau != null && ParameterCriticiteNiveau != CriticiteNiveauEnum.NULL)
+            {
+                switch (ParameterCriticiteNiveau)
+                {
+                    case CriticiteNiveauEnum.BAS:
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecurite.CotationFrequence * q.FicheSecurite.CotationGravite < 9);
+                        break;
+                    case CriticiteNiveauEnum.MOYEN:
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecurite.CotationFrequence * q.FicheSecurite.CotationGravite >= 9 && q.FicheSecurite.CotationFrequence * q.FicheSecurite.CotationGravite <= 12);
+                        break;
+                    case CriticiteNiveauEnum.HAUT:
+                        queryFicheSecurite = queryFicheSecurite.Where(q => q.FicheSecurite.CotationFrequence * q.FicheSecurite.CotationGravite > 12);
+                        break;
+                }
             }
             if (ParameterDateButoirDebut != null)
             {

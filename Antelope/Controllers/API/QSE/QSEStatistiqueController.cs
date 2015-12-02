@@ -22,7 +22,7 @@ namespace Antelope.Controllers.API.QSE
         public HttpResponseMessage GetQSEStatistique()
         {
 
-            DateTime DateDebut = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime DateDebut = new DateTime(DateTime.Now.Year, 1, 1).AddYears(-1);
             DateTime DateFin = DateTime.Now.AddDays(+1);
 
             var queryNonConformite = from n in db.NonConformites
@@ -73,7 +73,7 @@ namespace Antelope.Controllers.API.QSE
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut
                                      && n.Date <= DateFin
-                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme};
+                                     select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId, ActionQSEs = n.ActionQSEs, Code = n.Code };
 
             var AllNonConformite = queryNonConformite.ToList();
 

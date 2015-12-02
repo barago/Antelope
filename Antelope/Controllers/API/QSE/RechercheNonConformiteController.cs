@@ -34,7 +34,13 @@ namespace Antelope.Controllers.API.QSE
                 SiteId = (SiteUser == null)? 0 : SiteUser.SiteID,
                 NonConformiteDomaineId = 0,
                 NonConformiteGraviteId = 0,
-                NonConformiteOrigineId = 0
+                NonConformiteOrigineId = 0,
+                IsNCEnCours = true,
+                IsNCCloture = true,
+                IsActionEnCours = true,
+                IsActionRealise = true,
+                IsActionRetard = true,
+                IsActionCloture = true
             };
 
             RechercheNonConformiteViewModel RechercheNonConformiteViewModel = new RechercheNonConformiteViewModel(RechercheNonConformiteParamModel);
@@ -45,8 +51,6 @@ namespace Antelope.Controllers.API.QSE
 
         public HttpResponseMessage ExtractionFromParameters(Object obj)
         {
-
-            var a = 1;
 
             Dictionary<string, int> DataTableParameters = new Dictionary<string, int>();
             DataTableParameters["start"] = 0;
