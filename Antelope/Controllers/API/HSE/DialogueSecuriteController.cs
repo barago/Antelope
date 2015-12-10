@@ -46,6 +46,8 @@ namespace Antelope.Controllers.API.HSE
             _dialogueSecuriteRepository = new DialogueSecuriteRepository();
 
             DialogueSecurite DialogueSecurite;
+            List<Zone> AllZone;
+            List<Lieu> AllLieu;
 
             if (id == -1)
             {
@@ -55,6 +57,13 @@ namespace Antelope.Controllers.API.HSE
                 {
                     SiteId = (SiteUser == null) ? 0 : SiteUser.SiteID
                 };
+
+                var queryZone = from a in db.Zones
+                                where a.SiteId == SiteUser.SiteID
+                                select a;
+                AllZone = queryZone.ToList();
+
+                AllLieu = new List<Lieu>();
 
 
             }
@@ -66,9 +75,20 @@ namespace Antelope.Controllers.API.HSE
                 {
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
+
+                var queryZone = from a in db.Zones
+                                where a.SiteId == DialogueSecurite.SiteId
+                                select a;
+                AllZone = queryZone.ToList();
+
+                var queryLieu = from a in db.Lieux
+                                where a.ZoneId == DialogueSecurite.ZoneId
+                                orderby a.Rang
+                                select a;
+                AllLieu = queryLieu.ToList();
             }
 
-            var DialogueSecuriteViewModel = new DialogueSecuriteViewModel(DialogueSecurite);
+            var DialogueSecuriteViewModel = new DialogueSecuriteViewModel(DialogueSecurite, AllZone, AllLieu);
             return Request.CreateResponse(HttpStatusCode.OK, DialogueSecuriteViewModel);
         }
 

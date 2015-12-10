@@ -29,6 +29,8 @@ namespace Antelope.Domain.Models
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites { get; set; }
         [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites { get; set; }
+        [JsonIgnore]
         public virtual Zone Zone { get; set; }
     }
 }

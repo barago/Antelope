@@ -6,6 +6,9 @@
         if (attrs.SiteId == 0) {
             return "Il manque un champ obligatoire, merci de choisir un Site";
         };
+        if (attrs.ServiceTypeId == 0 || attrs.ServiceTypeId == null) {
+            return "Il manque un champ obligatoire, merci de choisir une Appartenance à un service.";
+        };
         if (attrs.NonConformiteOrigineId == 0 || attrs.NonConformiteOrigineId == null) {
             return "Il manque un champ obligatoire, merci de choisir une Origine";
         };

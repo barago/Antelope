@@ -136,6 +136,24 @@
 
                             <div class="row">
                                 <div class="col-sm-4">
+                                    <label for="ServiceType" class="label-xs">Appartenance&nbsp;:</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select id="ServiceType" class="form-control input-xs">
+                                        <option value="0" <% if (rechercheNonConformiteParamModel.get('ServiceTypeId') == 0){ %> selected <% } %> ></option>
+                                        <% serviceTypeCollection.each( function(serviceType){ %>
+                                        <option value="<%= serviceType.get('ServiceTypeId') %>"
+                                            <% if (rechercheNonConformiteParamModel.get('ServiceTypeId') == serviceType.get('ServiceTypeId')){ %> selected <% } %> >
+                                            <%= serviceType.get('Nom') %>
+                                        </option>
+                                        <% }); %>
+                                        @*%> selected <%*@
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
                                     @*style="padding-right:0px;"*@
                                     <label for="ResponsableNom" class="label-xs">Nom&nbsp;Resp.&nbsp;Action&nbsp;:</label>
                                 </div>
@@ -315,6 +333,7 @@
         viewModel.set({ 'nonConformiteDomaineCollection': new SiteCollection(viewModel.get('AllNonConformiteDomaine')) });
         viewModel.set({ 'nonConformiteOrigineCollection': new SiteCollection(viewModel.get('AllNonConformiteOrigine')) });
         viewModel.set({ 'nonConformiteGraviteCollection': new SiteCollection(viewModel.get('AllNonConformiteGravite')) });
+        viewModel.set({'serviceTypeCollection': new SiteCollection(viewModel.get('AllServiceType')) });
 
 
         viewModel.get('rechercheNonConformiteParamModel').set({ 'DateButoirDebutJavascript': dateFormatJS(viewModel.get('rechercheNonConformiteParamModel').get('DateButoirDebut')) });
@@ -353,6 +372,7 @@
             },
             events: {
                 "change #Site": "changeSite",
+                "change #ServiceType":"changeServiceType",
                 "change #Origine": "changeOrigine",
                 "change #Domaine": "changeDomaine",
                 "change #Gravite": "changeGravite",
@@ -407,6 +427,9 @@
             },
             changeSite: function () {
                 this.model.get('rechercheNonConformiteParamModel').set({ 'SiteId': parseInt($('#Site').val()) });
+            },
+            changeServiceType : function (){
+                this.model.get('rechercheNonConformiteParamModel').set({ 'ServiceTypeId': parseInt($('#ServiceType').val()) });
             },
             changeOrigine: function () {
                 this.model.get('rechercheNonConformiteParamModel').set({ 'NonConformiteOrigineId': parseInt($('#Origine').val()) });
@@ -507,6 +530,7 @@
                         "url": "/api/ActionQSE",
                         "data": {
                             "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
+                            "serviceTypeId": this.model.get('rechercheNonConformiteParamModel').get('ServiceTypeId'),
                             "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
                             "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
                             "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId'),
@@ -525,7 +549,7 @@
 
 
                         var $nRow = $(nRow); // cache the row wrapped up in jQuery
-
+                        //BLANC EN COURS
                         $('td:eq(0)', nRow).css({ "border-style": "solid", "border-width": "1px", "border-color": "#B4B4B4" });
                         var color = "white";
                         var colorHeavy = "white";
@@ -536,19 +560,22 @@
                         //    $nRow.css({ "background-color": colorLight });
                         //    $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         //}
-
+                        //ORANGE REALISE
                         if (aData.RealiseDate !== null && aData.VerifieDate === null) {
                             colorHeavy = "#FFC000";
                             colorLight = "#FCE6A2";
                             $nRow.css({ "background-color": colorLight });
                             $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         }
-                        if ((new Date(Date.parse(aData.RealiseDate)) > new Date(Date.parse(aData.DateButoireInitiale))) || (new Date() > new Date(Date.parse(aData.DateButoireInitiale)))) {
+                        //ROUGE EN RETARD
+                        //if ((new Date(Date.parse(aData.RealiseDate)) > new Date(Date.parse(aData.DateButoireInitiale))) || (new Date() > new Date(Date.parse(aData.DateButoireInitiale)))) {
+                        if (aData.RealiseDate === null && aData.VerifieDate === null && new Date() > new Date(Date.parse(aData.DateButoireInitiale))) {
                             colorHeavy = "#FF0000";
                             colorLight = "#FFE7FF";
                             $nRow.css({ "background-color": colorLight });
                             $('td:eq(0)', nRow).css({ "background-color": colorHeavy });
                         }
+                        //VERT VERIFIE
                         if (aData.RealiseDate !== null && aData.VerifieDate !== null) {
                             colorHeavy = "#00FF00";
                             colorLight = "#AFFDAF";
@@ -825,6 +852,7 @@
                         "url": "/api/NonConformite",
                         "data": {
                             "siteId": this.model.get('rechercheNonConformiteParamModel').get('SiteId'),
+                            "serviceTypeId": this.model.get('rechercheNonConformiteParamModel').get('ServiceTypeId'),
                             "nonConformiteOrigineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteOrigineId'),
                             "nonConformiteDomaineId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteDomaineId'),
                             "nonConformiteGraviteId": this.model.get('rechercheNonConformiteParamModel').get('NonConformiteGraviteId'),

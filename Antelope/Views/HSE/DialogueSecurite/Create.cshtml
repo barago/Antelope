@@ -23,6 +23,10 @@
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/RechercheActiveDirectoryModel.js"></script>
 <script type="text/javascript" src="~/Scripts/Application/HSE/DialogueSecurite/DialogueSecuriteModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/Socle/SiteModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/ZoneModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/Socle/LieuModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/Socle/PersonneModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Application/Socle/ServiceTypeModel.js"></script>
 @*<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/ResponsableModel.js"></script>
     <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/VerificateurModel.js"></script>
     <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/ActionModel.js"></script>*@
@@ -48,7 +52,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            @*style="padding-right:0px;"*@
+
                             <label for="NomRecherche" class="label-xs">Nom&nbsp;recherché&nbsp;:&nbsp;</label>
                         </div>
                         <div class="col-sm-6">
@@ -57,7 +61,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            @*style="padding-right:0px;"*@
+
                             <label for="PrenomRecherche" class="label-xs">Prénom&nbsp;recherché&nbsp;:&nbsp;</label>
                         </div>
                         <div class="col-sm-6">
@@ -114,10 +118,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </script>
 <div id="RechercheActiveDirectoryDiv">
 </div>
@@ -125,6 +129,7 @@
 
 @*--------------------------------------------------DIALOGUE SECURITE----------------------------------------------------*@
 <script type="text/template" id="DialogueSecuriteTemplate">
+
     <div class="panel-group" id="accordion">
 
         <div id="DialogueSecuritePanel" class="panel panel-primary" style="border-color: #EB8C07;">
@@ -151,642 +156,380 @@
 
                 </div>
             </div>
+
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
 
                     <div class="row">
 
-                        <div class="col-md-3">
-
+                        <div class="col-md-5">
                             <div class="row">
 
-                                <label for="Site" class="label-xs">Site&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                <select id="Site" class="form-control input-xs">
-                                    <option value="null" <% if (dialogueSecuriteModel.get('SiteId') == 'null'){ %> selected <% } %> ></option>
-                                    <% siteCollection.each( function(site){ %>
-                                    <option value="<%= site.get('SiteID') %>"
+                                <div class="panel panel-default" style="margin-bottom:4px;">
+                                    <div class="panel-body">
+
+
+                                        <div class="col-md-6">
+                                            <div class="row">
+
+                                                <label for="Site" class="label-xs">Site&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <select id="Site" class="form-control input-xs">
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('SiteId') == 'null'){ %> selected <% } %> ></option>
+                                                    <% siteCollection.each( function(site){ %>
+                                                    <option value="<%= site.get('SiteID') %>"
                                                 <% if (dialogueSecuriteModel.get('SiteId') == site.get('SiteID')){ %> selected <% } %>
                                                 >
                                                 <%= site.get('Trigramme') %>
                                             </option>
-                                    <% }); %>
-                                </select>
+                                                    <% }); %>
+                                                </select>
 
 
-                            </div>
-                            <div class="row">
+                                                <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:&nbsp;<span style="color:red">*</span></label>
 
-                                <label for="Atelier" class="label-xs">Atelier&nbsp;:</label>
-                                <input type="text" class="form-control input-xs" id="Atelier" value="<%= dialogueSecuriteModel.get('Atelier') %>">
+                                                <select class="form-control input-xs" id="Zone">
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
+                                                    <% zoneCollection.each( function(zone){ %>
+                                                    <option value="<%= zone.get('ZoneID') %>"
+                                                <% if (dialogueSecuriteModel.get('ZoneId') == zone.get('ZoneID')){ %> selected <% } %>
+                                                >
+                                                <%= zone.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
 
-                            </div>
+                                                </select>
 
-                            <div class="row">
+                                                <label for="Lieu" class="col-sm-5 label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Lieu&nbsp;:&nbsp;<span style="color:red">*</span></label>
 
-                                <label for="DateDialogueSecurite" class="label-xs">Date&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                <div class="input-group date">
-                                    <div class='input-group date' id="DateDialogueSecurite">
-                                        <input type='text' name="Date" class="form-control input-xs" id="DateDialogueSecuriteInput" value="<%= (dialogueSecuriteModel.get('DateJavascript') == '01/01/0001') ? '' : dialogueSecuriteModel.get('DateJavascript') %>" />
-                                        <span class="input-group-addon input-xs">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
+                                                <select class="form-control input-xs" id="Lieu">
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('LieuId') == 'null'){ %> selected <% } %> ></option>
+                                                    <% lieuCollection.each( function(lieu){ %>
+                                                    <option value="<%= lieu.get('LieuID') %>"
+                                                <% if (dialogueSecuriteModel.get('LieuId') == lieu.get('LieuID')){ %> selected <% } %>
+                                                >
+                                                <%= lieu.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
 
-                                </div>
-                            
+                                                </select>
 
 
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%=  %>">
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%=  %>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Nom') %>">
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%= ficheSecuriteModel.get('PersonneConcernee').get('Prenom') %>">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%= %>">  @*ficheSecuriteModel.get('PersonneConcernee').get('Nom')*@ 
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%=  %>"> @*ficheSecuriteModel.get('PersonneConcernee').get('Prenom')*@
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%=  %>">
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%=  %>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-5">
-                                    @*style="padding-right:0px;"*@
-                                    <label for="PersonnesConcerneeNom" class="label-xs">Nom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="input-group input-group-xs">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneeNom" value="<%=  %>">
-                                        @*<span class="input-group-addon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span></span>*@
-                                        <span class="input-group-btn">
-                                            <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal" @*data-target="#ActiveDirectoryUtilisateurModal"*@>
-                                                <span class="glyphicon glyphicon-user">
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-5">
-                                        <label for="PersonnesConcerneePrenom" class="label-xs">Prénom&nbsp;pers.&nbsp;concern.&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control input-xs" id="PersonnesConcerneePrenom" value="<%=  %>">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            </div>
-                        <div class="col-md-8">
-
-                            <div class="row">
-                                    <div class="form-group">
-                                        <label for="Contexte" class="label-xs">Situation&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                        <textarea id="Contexte" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Contexte') %></textarea>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                    <div class="form-group">
-                                        <label for="Observation" class="label-xs">Observations&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                        <textarea id="Observation" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Observation') %></textarea>
-                                    </div>
-                            </div>
-                            <div class="row">
-                                    <div class="form-group">
-                                        <label for="Reflexion" class="label-xs">Réflexion&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                        <textarea id="Reflexion" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Reflexion') %></textarea>
-                                    </div>
-                                </div>
-                            <div class="row">
-                                    <div class="form-group">
-                                        <label for="Action" class="label-xs">Action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                        <textarea id="Action" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Action') %></textarea>
-                                    </div>
-                            </div>
-
-                            </div>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-<div id="DialogueSecuriteDiv">
-</div>
-
-
-@*--------------------------------------------------ACTIONS----------------------------------------------------*@
-@*<script type="text/template" id="ActionTemplate">
-
-        <% if (nonConformiteModel.has('Id')) { %>
-
-        <div class="panel-group" id="accordion">
-
-            <div id="NonConformitePanel" class="panel panel-primary" style="border-color: #EB8C07;">
-
-                <div class="panel-heading" style="background-color: #EB8C07; color: white">
-
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#collapseTwo" data-target="#collapseTwo">
-                                    ACTIONS
-                                </a>
-                            </h4>
-                        </div>
-
-                        <div class="col-md-8">
-
-                            <button id="BtnAddAction" type="submit" class="btn pull-right btn-xs" style="color: green">
-                                <span class="glyphicon glyphicon-plus"></span> Nouvelle Action
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-
-
-
-                        <div class="accordion-group">
-                            <div class="row">
-
-                                <div class="col-md-12">
-
-                                    <div class="accordian-body collapse AjoutActionCollapse" id="FormAjoutAction">
-
-
-                                        <div class="panel-group">
-
-                                            <div id="NonConformitePanel" class="panel panel-default" style="">
-
-                                                <div class="panel-heading" style="background-color: #808181; color: white">
-                                                    NOUVELLE ACTION
-                                                    <button id="BtnAddActionEnregistrer" type="submit" class="btn pull-right btn-xs" style="color: green">
-                                                        <span class="glyphicon glyphicon-floppy-disk"></span> Enregistrer
-                                                    </button>
-                                                    &nbsp;&nbsp;
-                                                    <button id="BtnAddActionDiffuser" type="submit" class="btn pull-right btn-xs" style="color: green;margin-right:5px;">
-                                                        <span class="glyphicon glyphicon-envelope"></span> Diffuser
-                                                    </button>
-
-                                                </div>
-                                                @*----------------------------NOUVELLE ACTION ACCORDION---------------------------------
-                                                <div class="panel-body">
-
-
-                                                    <div class="row">
-                                                        <div class="col-md-6" style="border-right:solid #808181;">
-                                                            <div class="row">
-                                                                <div class=" col-md-6">
-                                                                    <div class="col-md-12">
-                                                                        <label for="AddActionTitre" class="label-xs">Titre&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                                        <input type='text' name="AddActionTitre" class="form-control input-xs" id="AddActionTitre" />
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for="AddActionDateButoireInitiale" class="label-xs">Date&nbsp;butoir&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                                        <div class='input-group date' id="AddActionDateButoireInitiale">
-                                                                            <input type='text' name="ActionDate" class="form-control input-xs" id="AddActionDateButoireInitialeInput" />
-                                                                            <div class="input-group-addon input-xs">
-                                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-6">
-
-                                                                    <div class="col-md-12">
-                                                                        <label for="AddActionResponsableNom" class="label-xs">Nom responsable action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                                        <div class="input-group input-group-xs">
-                                                                            <input type="text" class="form-control input-xs" id="AddActionResponsableNom">
-                                                                            <span class="input-group-btn">
-                                                                                <button id="ActiveDirectoryAddActionResponsableRecherche" class="btn btn-default" type="button" data-toggle="modal" data-sourceutilisateurfield="AddActionResponsable">
-                                                                                    <span class="glyphicon glyphicon-user">
-                                                                                </button>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <div class="form-group">
-                                                                            <label for="<%= 'AddActionResponsablePrenom' %>" class="label-xs">Prénom responsable action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                                            <input type="text" class="form-control input-xs AddActionResponsablePrenom" id="AddActionResponsablePrenom">
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label for="AddActionDescription" class="label-xs"> Description de l'Action&nbsp;<span style="color:red">*</span></label>
-                                                                        <textarea id="AddActionDescription" class="form-control" rows="4" style="max-width: 100%; "></textarea>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label for="AddActionVerificateurNom" class="label-xs">Nom vérificateur action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                                    <div class="input-group input-group-xs">
-                                                                        <input type="text" class="form-control input-xs" id="AddActionVerificateurNom">
-                                                                        <span class="input-group-btn">
-                                                                            <button id="ActiveDirectoryAddActionVerificateurRecherche" class="btn btn-default" type="button" data-toggle="modal" data-sourceutilisateurfield="AddActionVerificateur">
-                                                                                <span class="glyphicon glyphicon-user">
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="AddActionVerificateurPrenom" class="label-xs">Prénom&nbsp;vérificateur&nbsp;action:&nbsp;<span style="color:red">*</span></label>
-                                                                        <input type="text" class="form-control input-xs AddActionVerificateurPrenom" id="AddActionVerificateurPrenom">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label for="AddActionCritere" class="label-xs"> Critère de vérification&nbsp;<span style="color:red">*</span></label>
-                                                                        <textarea id="AddActionCritere" class="form-control" rows="4" style="max-width: 100%; "></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        @*-------------------------------------------------------ACTIONS DE LA NON-CONFORMITE-------------------------------------------------------------
-                        <div class="row">
-
-                            <% nonConformiteModel.get('actionCollection').each(function(action){ %>
-
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row" style="border-width:1px;padding:5px;margin:5px;border-style:solid;border-color:#DDDDDD;background-color:#3E4A59;">
-                                        <div class="col-md-10" style="color:white;">
-                                            <%= action.get('Titre') %>
-                                        </div>
-                                        <div class="col-md-2" style="padding:0px;">
-                                            <button id="<%= 'BtnEditActionDelete'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs pull-right BtnEditActionDelete"><span class="glyphicon glyphicon-remove"></span></button>
-                                            <button id="<%= 'BtnEditActionSave'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs pull-right BtnEditActionSave" style="margin-right:5px;"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-                                            <button id="<%= 'BtnEditActionOpenForm'+action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" type="button" class="btn btn-xs accordion-toggle BtnEditActionOpenForm pull-right" data-toggle="collapse" data-target="<%= '#FormEditAction'+action.get('ActionQSEId') %>" data-parent="#ActionCollapse" style="margin-right:5px;"><span class="glyphicon glyphicon-pencil"></span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="accordian-body collapse EditActionCollapse" id="<%= 'FormEditAction'+action.get('ActionQSEId') %>">
-                                <div class="col-md-12">
-
-                                    <div class="row">
-
-                                        <div class="col-md-6" style="border-right:solid #808181;">
-
-
-                                            <div class="panel panel-default" style="margin-bottom:5px;">
-                                                <div class="panel-heading" style="color:#3E4A59; background-color:#F4D4AD; text-align:center;">REALISATION</div>
 
                                             </div>
 
-                                            <div class="row">
-                                                <div class=" col-md-6">
-                                                    <label for="<%= 'EditActionTitre' + action.get('ActionQSEId') %>" class="label-xs">Titre&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                    <input type='text' name="<%= 'EditActionTitre' + action.get('ActionQSEId') %>" class="form-control input-xs EditActionTitre" id="<%= 'EditActionTitre' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" value="<%= action.get('Titre')%>" />
-                                                </div>
-                                            </div>
 
 
-                                            <div class="row">
-                                                <div class=" col-md-6">
-
-                                                    <label for="<%= 'EditActionDateButoireInitiale' + action.get('ActionQSEId') %>" class="label-xs">Date&nbsp;butoir&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                    <div class='input-group date EditActionDateButoireInitiale' id="<%= 'EditActionDateButoireInitiale' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <input type='text' name="ActionDate" class="form-control input-xs EditActionDateButoireInitiale" id="<%= 'InputEditActionDateButoireInitiale' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" value="<%= action.get('DateButoireInitialeJavascript')%>" />
-                                                        <div class="input-group-addon input-xs">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <label for="<%= 'EditActionDateButoireNouvelle' + action.get('ActionQSEId') %>" class="label-xs">Nouvelle&nbsp;date&nbsp;butoir&nbsp;:&nbsp;</label>
-                                                    <div class='input-group date EditActionDateButoireNouvelle' id="<%= 'EditActionDateButoireNouvelle' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <input type='text' name="ActionDate" class="form-control input-xs InputEditActionDateButoireNouvelle" id="<%= 'InputEditActionDateButoireNouvelle' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" value="<%= action.get('DateButoireNouvelleJavascript')%>" />
-                                                        <div class="input-group-addon input-xs">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-6">
-
-
-                                                    <label for="<%= 'EditActionResponsableNom' + action.get('ActionQSEId') %>" class="label-xs">Nom responsable action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                    <div class="input-group input-group-xs">
-                                                        <input type="text" class="form-control input-xs EditActionResponsableNom" id="<%= 'EditActionResponsableNom' + action.get('ActionQSEId') %>" value="<%= action.get('Responsable').get('Nom')%>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <span class="input-group-btn">
-
-                                                            <button id="<% 'BtnEditActionResponsableRecherche' + action.get('ActionQSEId') %>" class="btn btn-default ActiveDirectoryEditActionResponsableRecherche" type="button" data-toggle="modal" data-sourceutilisateurfield="EditActionResponsable" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                                <span class="glyphicon glyphicon-user">
-                                                            </button>
-                                                        </span>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <label for="<%= 'EditActionResponsablePrenom'+ action.get('ActionQSEId') %>" class="label-xs">Prénom responsable action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                        <input type="text" class="form-control input-xs EditActionResponsablePrenom" id="<%= 'EditActionResponsablePrenom' + action.get('ActionQSEId') %>" value="<%= action.get('Responsable').get('Prenom')%>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="<%= 'EditActionDescription'+ action.get('ActionQSEId') %>" class="label-xs"> Description de l'Action :&nbsp;<span style="color:red">*</span></label>
-                                                        <textarea id="<%= 'EditActionDescription'+ action.get('ActionQSEId') %>" class="form-control EditActionDescription" rows="4" style="max-width: 100%;" data-actionid="<%=action.get('ActionQSEId') %>"><%= action.get('Description')%></textarea>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="<%= 'EditActionAvancement'+ action.get('ActionQSEId') %>" class="label-xs"> Avancement de l'Action</label>
-                                                        <textarea id="<%= 'EditActionAvancement'+ action.get('ActionQSEId') %>" class="form-control EditActionAvancement" rows="4" style="max-width: 100%;" data-actionid="<%=action.get('ActionQSEId') %>"><%= action.get('Avancement')%></textarea>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="<%= 'InputEditActionRealiseDate'+ action.get('ActionQSEId') %>" class="label-xs">Date&nbsp;de&nbsp;réalisation&nbsp;:</label>
-                                                    <div class='input-group date EditActionRealiseDate' id="<%= 'EditActionRealiseDate'+ action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <input type='text' name="ActionDate" class="form-control input-xs InputEditActionRealiseDate" id="<%= 'InputEditActionRealiseDate'+ action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" value="<%= action.get('RealiseDateJavascript')%>" />
-                                                        <div class="input-group-addon input-xs">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         </div>
 
                                         <div class="col-md-6">
 
-                                            <div class="panel panel-default" style="margin-bottom:5px;">
-                                                <div class="panel-heading" style="color:#3E4A59; background-color:#F4D4AD; text-align:center;">VERIFICATION</div>
-
-                                            </div>
-                                            <div class="row" style="height:44px;">
-
-                                            </div>
-
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                </div>
-                                                <div class="col-md-6">
 
-                                                    <label for="<%= 'EditActionVerificateurNom' + action.get('ActionQSEId') %>" class="label-xs">Nom vérificateur action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                    <div class="input-group input-group-xs">
-                                                        <input type="text" class="form-control input-xs EditActionVerificateurNom" id="<%= 'EditActionVerificateurNom' + action.get('ActionQSEId') %>" value="<%= action.get('Verificateur').get('Nom')%>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <span class="input-group-btn">
-
-                                                            <button id="<% 'BtnEditActionVerificateurRecherche' + action.get('ActionQSEId') %>" class="btn btn-default ActiveDirectoryEditActionVerificateurRecherche" type="button" data-toggle="modal" data-sourceutilisateurfield="EditActionVerificateur" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                                <span class="glyphicon glyphicon-user">
-                                                            </button>
+                                                <label for="DateDialogueSecurite" class="label-xs">Date&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group date">
+                                                    <div class='input-group date' id="DateDialogueSecurite">
+                                                        <input type='text' name="Date" class="form-control input-xs" id="DateDialogueSecuriteInput" value="<%= (dialogueSecuriteModel.get('DateJavascript') == '01/01/0001') ? '' : dialogueSecuriteModel.get('DateJavascript') %>" />
+                                                        <span class="input-group-addon input-xs">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
                                                     </div>
-
-                                                    <div class="form-group">
-                                                        <label for="<%= 'EditActionVerificateurPrenom'+ action.get('ActionQSEId') %>" class="label-xs">Prénom vérificateur action&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                                        <input type="text" class="form-control input-xs EditActionVerificateurPrenom" id="<%= 'EditActionVerificateurPrenom' + action.get('ActionQSEId') %>" value="<%= action.get('Verificateur').get('Prenom')%>">
-                                                    </div>
                                                 </div>
 
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label for="<%= 'EditActionCritere'+ action.get('ActionQSEId') %>" class="label-xs">Critère vérification efficacité :&nbsp;<span style="color:red">*</span></label>
-                                                            <textarea id="<%= 'EditActionCritere'+ action.get('ActionQSEId') %>" class="form-control EditActionCritere" rows="4" style="max-width: 100%;" data-actionid="<%=action.get('ActionQSEId') %>"><%= action.get('CritereEfficaciteVerification')%></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="form-group">
-                                                            <label for="<%= 'EditActionCommentaire'+ action.get('ActionQSEId') %>" class="label-xs">Commentaires</label>
-                                                            <textarea id="<%= 'EditActionCommentaire'+ action.get('ActionQSEId') %>" class="form-control EditActionCommentaire" rows="4" style="max-width: 100%;" data-actionid="<%=action.get('ActionQSEId') %>"><%= action.get('CommentaireEfficaciteVerification')%></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <label for="EditActionDateVerification" class="label-xs">Date&nbsp;de&nbsp;vérification&nbsp;:</label>
-                                                    <div class='input-group date EditActionDateVerification' id="<%= 'EditActionDateVerification' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>">
-                                                        <input type='text' name="ActionDate" class="form-control input-xs" id="<%= 'EditActionDateVerificationInput' + action.get('ActionQSEId') %>" data-actionid="<%=action.get('ActionQSEId') %>" value="<%= action.get('VerifieDateJavascript')%>" />
-                                                        <div class="input-group-addon input-xs">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                             </div>
                                         </div>
-
-                                    </div>
-
-
                                 </div>
+
                             </div>
 
+                            <div class="row">
 
-                            <% }) %>
+
+                                <div class="col-md-6" style="padding:0px;padding-right:2px">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">DIALOGUEURS</div>
+                                        <div class="panel-body">
+
+                                            <div class="row">
+
+                                                <label for="Dialogueur1Nom" class="label-xs">Nom&nbsp;dialogueur&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Dialogueur1Nom" value="<%= dialogueSecuriteModel.get('Dialogueur1').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Dialogueur1Prenom" class="label-xs">Prénom&nbsp;dialogueur&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Dialogueur1Prenom" value="<%= dialogueSecuriteModel.get('Dialogueur1').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeDialogueur1" class="label-xs">Service&nbsp;du&nbsp;dialogueur&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeDialogueur1" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur1Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeDialogueur1Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur1Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
+                                            <hr style="background-color: #fff; border-top: 2px dashed #8c8b8b;" />
+                                            <div class="row">
+
+                                                <label for="Dialogueur2Nom" class="label-xs">Nom&nbsp;dialogueur&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Dialogueur2Nom" value="<%= dialogueSecuriteModel.get('Dialogueur2').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Dialogueur2Prenom" class="label-xs">Prénom&nbsp;dialogueur&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Dialogueur2Prenom" value="<%= dialogueSecuriteModel.get('Dialogueur2').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeDialogueur2" class="label-xs">Service&nbsp;du&nbsp;dialogueur&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeDialogueur2" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur2Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeDialogueur2Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur2Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
+
+                                            <hr style="background-color: #fff; border-top: 2px dashed #8c8b8b;" />
+                                            <div class="row">
+
+                                                <label for="Dialogueur3Nom" class="label-xs">Nom&nbsp;dialogueur&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Dialogueur3Nom" value="<%= dialogueSecuriteModel.get('Dialogueur3').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Dialogueur3Prenom" class="label-xs">Prénom&nbsp;dialogueur&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Dialogueur3Prenom" value="<%= dialogueSecuriteModel.get('Dialogueur3').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeDialogueur3" class="label-xs">Service&nbsp;du&nbsp;dialogueur&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeDialogueur3" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur3Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeDialogueur3Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeDialogueur3Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" style="padding:0px;;padding-left:2px">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">DIALOGUÉS</div>
+                                        <div class="panel-body">
+
+                                            <div class="row">
+
+                                                <label for="Entretenu1Nom" class="label-xs">Nom&nbsp;dialogué&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Entretenu1Nom" value="<%= dialogueSecuriteModel.get('Entretenu1').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Entretenu1Prenom" class="label-xs">Prénom&nbsp;dialogué&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Entretenu1Prenom" value="<%= dialogueSecuriteModel.get('Entretenu1').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeEntretenu1" class="label-xs">Service&nbsp;du&nbsp;dialogué&nbsp;1&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeEntretenu1" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu1Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeEntretenu1Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu1Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
+                                            <hr style="background-color: #fff; border-top: 2px dashed #8c8b8b;" />
+                                            <div class="row">
+
+                                                <label for="Entretenu2Nom" class="label-xs">Nom&nbsp;dialogué&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Entretenu2Nom" value="<%= dialogueSecuriteModel.get('Entretenu2').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Entretenu2Prenom" class="label-xs">Prénom&nbsp;dialogué&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Entretenu2Prenom" value="<%= dialogueSecuriteModel.get('Entretenu2').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeEntretenu2" class="label-xs">Service&nbsp;du&nbsp;dialogué&nbsp;2&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeEntretenu2" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu2Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeEntretenu2Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu2Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
+
+                                            <hr style="background-color: #fff; border-top: 2px dashed #8c8b8b;" />
+                                            <div class="row">
+
+                                                <label for="Entretenu3Nom" class="label-xs">Nom&nbsp;dialogué&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <div class="input-group input-group-xs">
+                                                    <input type="text" class="form-control input-xs" id="Entretenu3Nom" value="<%= dialogueSecuriteModel.get('Entretenu3').get('Nom')  %>">
+                                                    <span class="input-group-btn">
+                                                        <button id="ActiveDirectoryPersonneConcerneeRecherche" class=" btn btn-default" type="button" data-toggle="modal"
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <label for="Entretenu3Prenom" class="label-xs">Prénom&nbsp;dialogué&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <input type="text" class="form-control input-xs" id="Entretenu3Prenom" value="<%= dialogueSecuriteModel.get('Entretenu3').get('Prenom') %>">
+                                            </div>
+                                            <div class="row">
+                                                <label for="ServiceTypeEntretenu3" class="label-xs">Service&nbsp;du&nbsp;dialogué&nbsp;3&nbsp;:&nbsp;<span style="color:red">*</span></label>
+
+                                                <select id="ServiceTypeEntretenu3" class="form-control input-xs">
+
+                                                    <option value="null" <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu3Id') == 'null' || dialogueSecuriteModel.get('ServiceTypeEntretenu3Id') === 0){ %> selected <% } %> ></option>
+                                                    <% serviceTypeCollection.each( function(serviceType){ %>
+                                                    <option value="<%= serviceType.get('ServiceTypeID') %>"
+                                                <% if (dialogueSecuriteModel.get('ServiceTypeEntretenu3Id') == serviceType.get('ServiceTypeID')){ %> selected <% } %>
+                                                >
+                                                <%= serviceType.get('Nom') %>
+                                            </option>
+                                                    <% }); %>
+
+                                                </select>
+                                            </div>
 
 
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
 
 
 
                         </div>
 
+                        <div class="col-md-7">
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Contexte" class="label-xs">Situation&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <textarea id="Contexte" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Contexte') %></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Observation" class="label-xs">Observations&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <textarea id="Observation" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Observation') %></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Reflexion" class="label-xs">Réflexion&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <textarea id="Reflexion" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Reflexion') %></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="Action" class="label-xs">Action&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <textarea id="Action" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Action') %></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
+
                 </div>
             </div>
         </div>
 
-        <% } %>
 
-    </script>
-    <div id="ActionDiv">
 
-    </div>*@
+    </div>
+    </div>
+
+</script>
+<div id="DialogueSecuriteDiv">
+</div>
+
 
 <script type="text/javascript">
 
     $(document).ready(function () {
 
         var DialogueSecuriteId = "@ViewBag.Id";
-
         function dateFormatJS(date) {
             var dateFormated = '';
             if (date != null) {
@@ -796,20 +539,28 @@
         };
 
         var viewModel = new ViewModel({ id: DialogueSecuriteId }); //{id:NonConformiteId}
-
         viewModel.fetch({ async: false });
 
         var dialogueSecuriteModel = new DialogueSecuriteModel(viewModel.get('DialogueSecurite'));
         if (dialogueSecuriteModel.get('Id') === -1 || dialogueSecuriteModel.get('Id') === 0) {
             dialogueSecuriteModel.unset('Id');
         };
-
-        dialogueSecuriteModel.set({ 'DateJavascript': dateFormatJS(dialogueSecuriteModel.get('Date')) })
-
+        dialogueSecuriteModel.set({ 'DateJavascript': dateFormatJS(dialogueSecuriteModel.get('Date')) });
         viewModel.set({ 'dialogueSecuriteModel': dialogueSecuriteModel });
-
         viewModel.set({ 'siteCollection': new SiteCollection(viewModel.get('AllSite')) });
-
+        viewModel.set({ 'zoneCollection': new ZoneCollection(viewModel.get('AllZone')) });
+        viewModel.get('zoneCollection').each(function (zone, index) {
+            zone.set({ 'Nom': zone.get('ZoneType').Nom });
+        });
+        viewModel.set({ 'lieuCollection': new LieuCollection(viewModel.get('AllLieu')) });
+        dialogueSecuriteModel.set({ 'Dialogueur1': new PersonneModel(dialogueSecuriteModel.get('Dialogueur1')) })
+        dialogueSecuriteModel.set({ 'Dialogueur2': new PersonneModel(dialogueSecuriteModel.get('Dialogueur2')) })
+        dialogueSecuriteModel.set({ 'Dialogueur3': new PersonneModel(dialogueSecuriteModel.get('Dialogueur3')) })
+        dialogueSecuriteModel.set({ 'Entretenu1': new PersonneModel(dialogueSecuriteModel.get('Entretenu1')) })
+        dialogueSecuriteModel.set({ 'Entretenu2': new PersonneModel(dialogueSecuriteModel.get('Entretenu2')) })
+        dialogueSecuriteModel.set({ 'Entretenu3': new PersonneModel(dialogueSecuriteModel.get('Entretenu3')) })
+        viewModel.set({ 'serviceTypeCollection': new ServiceTypeCollection(viewModel.get('AllServiceType')) });
+        console.log(dialogueSecuriteModel);
         //viewModel.set({ 'actionModel': new ActionModel() });
         //viewModel.get('actionModel').set({ 'Responsable': new ResponsableModel() });
         //viewModel.get('actionModel').set({ 'Verificateur': new VerificateurModel() });
@@ -830,25 +581,22 @@
 
         //viewModel.get('dialogueSecuriteModel').set({ 'actionCollection': actionCollection })
 
+
+
         Backbone.applicationEvents = _.extend({}, Backbone.Events);
-
         var alerteModel = new AlerteModel();
-
         var dialogueSecuriteView = new window.DialogueSecuriteView({
             el: $("#DialogueSecuriteDiv"),
             model: viewModel
         });
-
         //var actionView = new ActionView({
         //    el: $("#ActionDiv"),
         //    model: viewModel
         //});
-
         var alerteView = new AlerteView({
             el: $("#alerteDiv"),
             model: alerteModel
         });
-
     })
 
 </script>

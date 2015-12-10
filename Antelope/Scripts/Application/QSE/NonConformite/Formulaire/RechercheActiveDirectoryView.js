@@ -3,7 +3,7 @@
     // !!! Penser à importer RechercheActiveDirectoryModel.js dans le HTML du programme principal, sinon ne marchera pas !!!
     var rechercheActiveDirectoryModel = new RechercheActiveDirectoryModel();
     rechercheActiveDirectoryModel.set({ 'rechercheActiveDirectoryCollection': new RechercheActiveDirectoryCollection() })
-
+    
     window.RechercheActiveDirectoryView = Backbone.View.extend({
 
         model: rechercheActiveDirectoryModel,
@@ -69,5 +69,4 @@
         }
 
     });
-    
 });

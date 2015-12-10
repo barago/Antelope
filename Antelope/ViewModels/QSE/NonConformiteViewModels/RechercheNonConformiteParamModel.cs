@@ -21,6 +21,7 @@ namespace Antelope.ViewModels.QSE.NonConformiteViewModels
         public Boolean IsActionRealise { get; set; }
         public Boolean IsActionRetard { get; set; }
         public Boolean IsActionCloture { get; set; }
+        public Int32 ServiceTypeId { get; set; }
 
        // public RechercheNonConformiteParamModel rechercheNonConformiteParamModel{ get; set;}
 

@@ -58,7 +58,8 @@ namespace Antelope.Controllers.API.QSE
 
                 nonConformite = new NonConformite()
                 {
-                    SiteId = (SiteUser == null) ? 0 : SiteUser.SiteID
+                    SiteId = (SiteUser == null) ? 0 : SiteUser.SiteID,
+                    ServiceTypeId = db.ServiceTypes.Where(w => w.Nom.Equals("Qualité R/D")).Single().ServiceTypeId
                 };
 
 

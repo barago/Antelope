@@ -170,10 +170,8 @@
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
     <Folder Include="Views\DialogueSecurite\" />
-    <Folder Include="Views\IndicateurSIIndex\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\MatriceApplicative\" />
-    <Folder Include="Views\NonConformite\" />
     <Folder Include="Views\Phantom\" />
     <Folder Include="Views\QSEParametrage\" />
     <Folder Include="Views\QSEStatistique\" />
@@ -204,6 +202,7 @@
     <Compile Include="Controllers\API\QSE\QSEStatistiqueController.cs" />
     <Compile Include="Controllers\API\QSE\RechercheNonConformiteController.cs" />
     <Compile Include="Controllers\API\Services\AnnuaireController.cs" />
+    <Compile Include="Controllers\API\Socle\ServiceTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HSE\ActionSecuriteController.cs" />
     <Compile Include="Controllers\API\HSE\FicheSecuriteController.cs" />
@@ -466,6 +465,7 @@
     <Content Include="Scripts\Application\QSE\NonConformite\Recherche\ViewModel.js" />
     <Content Include="Scripts\Application\Socle\LieuModel.js" />
     <Content Include="Scripts\Application\Socle\LieuTypeModel.js" />
+    <Content Include="Scripts\Application\Socle\PersonneModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailModel.js" />
     <Content Include="Scripts\Application\Socle\PosteDeTravailTypeModel.js" />
     <Content Include="Scripts\Application\Socle\ServiceModel.js" />

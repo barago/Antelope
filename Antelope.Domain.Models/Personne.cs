@@ -21,6 +21,12 @@ namespace Antelope.Domain.Models
             this.ActionQSEs1 = new HashSet<ActionQSE>();
             this.FicheSecurites1 = new HashSet<FicheSecurite>();
             this.FicheSecurites2 = new HashSet<FicheSecurite>();
+            this.DialogueSecurites = new HashSet<DialogueSecurite>();
+            this.DialogueSecurites1 = new HashSet<DialogueSecurite>();
+            this.DialogueSecurites2 = new HashSet<DialogueSecurite>();
+            this.DialogueSecurites3 = new HashSet<DialogueSecurite>();
+            this.DialogueSecurites4 = new HashSet<DialogueSecurite>();
+            this.DialogueSecurites5 = new HashSet<DialogueSecurite>();
         }
     
         public int PersonneId { get; set; }
@@ -36,5 +42,17 @@ namespace Antelope.Domain.Models
         public virtual ICollection<FicheSecurite> FicheSecurites1 { get; set; }
         [JsonIgnore]
         public virtual ICollection<FicheSecurite> FicheSecurites2 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites1 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites2 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites3 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites4 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites5 { get; set; }
     }
 }

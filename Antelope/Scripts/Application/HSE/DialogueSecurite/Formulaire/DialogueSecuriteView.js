@@ -1,11 +1,10 @@
 ﻿$(function () {
-
+   
     window.DialogueSecuriteView = Backbone.View.extend({
 
         template: _.template($('#DialogueSecuriteTemplate').html()),
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-
             $('#DateDialogueSecurite').datetimepicker({
                 pickTime: false,
                 language: 'fr'
@@ -14,7 +13,6 @@
             $('#DateDialogueSecurite').on("dp.change", $.proxy(this.changeDate, this));
             // TODO : Mettre des dp.hide sur tous les DateTimePickers ! >> Si on ne selectionne rien, il choisit date et heure du jour.
             $('#DateDialogueSecurite').on("dp.hide", $.proxy(this.changeDate, this));
-
             // TODO : BUG Boostrap, si on n'initialise pas toggle:false, les collapse vont show lorsqu'on fait un hide ...
             // $('.AjoutActionCollapse').collapse({ 'toggle': false });
 
@@ -87,5 +85,5 @@
         }
 
     });
-
+   
 });

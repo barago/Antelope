@@ -28,6 +28,7 @@ namespace Antelope.Controllers.API.QSE
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut
                                      && n.Date <= DateFin
+                                     && n.ServiceType.Nom.Equals("Qualité R/D")
                                      select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId, ActionQSEs = n.ActionQSEs, Code = n.Code};
 
             var AllNonConformite = queryNonConformite.ToList();
@@ -40,7 +41,7 @@ namespace Antelope.Controllers.API.QSE
             List<Site> AllSite = db.Sites.ToList();
 
             List<NonConformiteDomaine> AllDomaine = db.NonConformiteDomaines.ToList();
-            List<NonConformiteOrigine> AllOrigine = db.NonConformiteOrigines.ToList();
+            List<NonConformiteOrigine> AllOrigine = db.NonConformiteOrigines.Where(w => w.ServiceType.Nom.Equals("Qualité R/D")).ToList();
             List<NonConformiteGravite> AllGravite = db.NonConformiteGravites.ToList();
 
             Dictionary<string, Object> Response = new Dictionary<string, Object>();
@@ -73,6 +74,7 @@ namespace Antelope.Controllers.API.QSE
             var queryNonConformite = from n in db.NonConformites
                                      where n.Date >= DateDebut
                                      && n.Date <= DateFin
+                                     && n.ServiceType.Nom.Equals("Qualité R/D")
                                      select new NonConformiteStatistique { Id = n.Id, DateEvnmt = n.Date, SiteId = n.SiteId, Site = n.Site.Trigramme, NonConformiteOrigineId = n.NonConformiteOrigineId, NonConformiteDomaineId = n.NonConformiteDomaineId, NonConformiteGraviteId = n.NonConformiteGraviteId, ActionQSEs = n.ActionQSEs, Code = n.Code };
 
             var AllNonConformite = queryNonConformite.ToList();

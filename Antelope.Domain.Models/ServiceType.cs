@@ -26,5 +26,9 @@ namespace Antelope.Domain.Models
 
         [JsonIgnore]
         public virtual ICollection<Service> Services { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<NonConformite> NonConformites { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<NonConformiteOrigine> NonConformiteOrigines { get; set; }
     }
 }

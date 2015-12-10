@@ -40,7 +40,9 @@ namespace Antelope.Controllers.API.QSE
                 IsActionEnCours = true,
                 IsActionRealise = true,
                 IsActionRetard = true,
-                IsActionCloture = true
+                IsActionCloture = true,
+                //Par défaut les Non-Conformité sont rattachées au Service Qualité.
+                ServiceTypeId = db.ServiceTypes.Where(w => w.Nom.Equals("Qualité R/D")).Single().ServiceTypeId
             };
 
             RechercheNonConformiteViewModel RechercheNonConformiteViewModel = new RechercheNonConformiteViewModel(RechercheNonConformiteParamModel);

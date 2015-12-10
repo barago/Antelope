@@ -133,6 +133,7 @@
     <Compile Include="Site.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Thematique.cs" />
     <Compile Include="Zone.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

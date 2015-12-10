@@ -40,6 +40,7 @@ namespace Antelope.Repositories.QSE
             Int32 ParameterStart = Int32.Parse(DataTableParameters["start"]);
             Int32 ParameterLength = Int32.Parse(DataTableParameters["length"]);
             Int32 ParameterSiteId = Int32.Parse(DataTableParameters["siteId"]);
+            Int32 ParameterServiceTypeId = Int32.Parse(DataTableParameters["serviceTypeId"]);
             Int32 ParameterOrigineId = Int32.Parse(DataTableParameters["nonConformiteOrigineId"]);
             Int32 ParameterGraviteId = Int32.Parse(DataTableParameters["nonConformiteGraviteId"]);
             Int32 ParameterDomaineId = Int32.Parse(DataTableParameters["nonConformiteDomaineId"]);
@@ -157,6 +158,10 @@ namespace Antelope.Repositories.QSE
             if (ParameterSiteId != null && ParameterSiteId != 0)
             {
                 queryNonConformite = queryNonConformite.Where(q => q.SiteId == ParameterSiteId);
+            }
+            if (ParameterServiceTypeId != null && ParameterServiceTypeId != 0)
+            {
+                queryNonConformite = queryNonConformite.Where(q => q.ServiceTypeId == ParameterServiceTypeId);
             }
             if (ParameterOrigineId != null && ParameterOrigineId != 0)
             {

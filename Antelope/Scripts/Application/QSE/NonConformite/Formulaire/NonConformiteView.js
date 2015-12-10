@@ -24,6 +24,7 @@
         },
         events: {
             "change #Site": "changeSite",
+            "change #ServiceType":"changeServiceType",
             "change #NonConformiteOrigine": "changeNonConformiteOrigine",
             "change #NonConformiteDomaine": "changeNonConformiteDomaine",
             "change #NonConformiteGravite": "changeNonConformiteGravite",
@@ -43,6 +44,12 @@
         },
         changeSite: function () {
             this.model.get('nonConformiteModel').set({ 'SiteId': $('#Site').val() });
+        },
+        changeServiceType: function () {
+            this.model.get('nonConformiteModel').set({ 'ServiceTypeId': $('#ServiceType').val() });
+            this.model.get('nonConformiteOrigineCollection').url = '/api/action/servicetype/getNonConformiteOriginesByServiceTypeId/' + this.model.get('nonConformiteModel').get('ServiceTypeId');
+            this.model.get('nonConformiteOrigineCollection').fetch({ async: false });
+            this.render();
         },
         changeNonConformiteOrigine: function () {
             this.model.get('nonConformiteModel').set({ 'NonConformiteOrigineId': $('#NonConformiteOrigine').val() });

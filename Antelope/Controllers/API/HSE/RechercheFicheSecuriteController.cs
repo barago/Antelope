@@ -175,9 +175,9 @@ namespace Antelope.Controllers.API.HSE
                 Criticite = 0
             };
 
-            RechercheFicheSecuriteViewModel RechercheNonConformiteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, AllService, AllZone, AllLieu, AllPosteDeTravail);
+            RechercheFicheSecuriteViewModel RechercheFicheSecuriteViewModel = new RechercheFicheSecuriteViewModel(RechercheFicheSecuriteParamModel, AllService, AllZone, AllLieu, AllPosteDeTravail);
 
-            return Request.CreateResponse(HttpStatusCode.OK, RechercheNonConformiteViewModel);
+            return Request.CreateResponse(HttpStatusCode.OK, RechercheFicheSecuriteViewModel);
 
         }
 
