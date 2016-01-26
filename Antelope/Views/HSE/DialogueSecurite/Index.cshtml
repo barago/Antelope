@@ -152,6 +152,7 @@
                                 <th>Date</th>
                                 <th>Atelier</th>
                                 <th>Contexte</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -388,6 +389,18 @@
                             "mData": "Contexte",
                             "sTitle": "Contexte",
                             "orderable": false
+                        },
+                        {
+                            "mData": "DialogueSecuriteId",
+                            "sTitle": "Action",
+                            "orderable": false,
+                            "width": "5%",
+                            "mRender": function (date, type, full) {
+
+                                var links =  '<a id="deleteDialogueSecurite" data-id="' + full.Id + '" class="glyphicon glyphicon-remove"></a></div>';
+                                
+                                return links;
+                            }
                         }
                     ],
                     "oLanguage": {

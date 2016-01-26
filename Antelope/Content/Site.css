@@ -186,3 +186,4 @@ th.rotate45 > div > span {
 	margin: -1.5em 0 100%;
 }
 
+div.floatright { display:inline; float:right; padding-left:5px; }

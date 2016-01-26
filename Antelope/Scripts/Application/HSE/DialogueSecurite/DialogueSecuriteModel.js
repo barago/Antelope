@@ -25,10 +25,39 @@
         if (attrs.Action == null) {
             return "Il manque un champ obligatoire, merci de saisir une Action";
         };
-        if (attrs.Atelier == null) {
-            return "Il manque un champ obligatoire, merci de saisir un Atelier";
+        if(attrs.Dialogueur1 == null){
+            return "Il manque un champ obligatoire, merci de saisir un Dialogueur";
         };
-
+        if (attrs.Entretenu1 == null) {
+            return "Il manque un champ obligatoire, merci de saisir un Dialogué";
+        };
+        if (attrs.ServiceTypeDialogueur1Id == 0) {
+            return "Il manque un champ obligatoire, merci de saisir un service de dialogueur";
+        };
+        if (attrs.ServiceTypeEntretenu1Id == 0) {
+            return "Il manque un champ obligatoire, merci de saisir un service de dialogué";
+        };
+        if (attrs.Dialogueur2.Nom != null) {
+            if (attrs.ServiceTypeDialogueur2Id == 0) {
+                return "Il manque un champ obligatoire, merci de saisir un service pour le dialogueur 2";
+            };
+        }
+        if (attrs.Dialogueur3.Nom != null) {
+            if (attrs.ServiceTypeDialogueur3Id == 0) {
+                return "Il manque un champ obligatoire, merci de saisir un service pour le dialogueur 3";
+            };
+        }
+        if (attrs.Entretenu2.Nom != null) {
+            if (attrs.ServiceTypeEntretenu2Id == 0) {
+                console.log(attrs);
+                return "Il manque un champ obligatoire, merci de saisir un service pour le dialogué 2";
+            };
+        }
+        if (attrs.Entretenu3.Nom != null) {
+            if (attrs.ServiceTypeEntretenu3Id == 0) {
+                return "Il manque un champ obligatoire, merci de saisir un service pour le dialogué 3";
+            };
+        }
     }
 });
 

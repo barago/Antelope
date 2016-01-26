@@ -3,8 +3,11 @@
     Layout = "~/Views/QSE/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" type="text/css" href="~/Scripts/DataTables-1.10.10/datatables.min.css" />
-<script type="text/javascript" src="~/Scripts/DataTables-1.10.10/datatables.min.js"></script>
+
+<link href="~/Scripts/DataTables-1.10.7/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/DataTables-1.10.7/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<link href="~/Scripts/DataTables-1.10.7/extensions/TableTools/css/dataTables.tableTools.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="/Scripts/underscore.js"></script>
 <script type="text/javascript" src="/Scripts/backbone.js"></script>
@@ -494,11 +497,29 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
-                    //dom: 'T<"clear">lfrtip',
-                    dom: 'lf<"floatright"B>rtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ],
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": [1, 2, 3, 4, 5, 6],
+                                "sPdfMessage": "Liste des Actions"
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": [1, 2, 3, 4, 5, 6]
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1, 2, 3, 4, 5, 6]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1, 2, 3, 4, 5, 6]
+                            }
+                        ]
+                    },
                     "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
@@ -640,41 +661,35 @@
                                 return full.NonConformite.Description;
                             }
                         },
-                        {
-                            "mData": "Avancement",
-                            "sTitle": "Avancement",
-                            "orderable": false,
-                            "visible": false,
-                            "width": "25%"
-                        },
-                        {
-                            "mData": "VerificateurNom",
-                            "sTitle": "Verificateur",
-                            "orderable": false,
-                            "visible":false,
-                            "mRender": function (date, type, full) {
-                                return full.Verificateur.Nom + ' ' + full.Verificateur.Prenom;
-                            }
-                        },
-                        {
-                            "mData": "CritereEfficaciteVerification",
-                            "sTitle": "Critère Vérification",
-                            "orderable": false,
-                            "visible": false,
-                            //"mRender": function (date, type, full) {
-                            //    return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
-                            //},
-                        },
-                        {
-                            "mData": "CommentaireEfficaciteVerification",
-                            "sTitle": "Commentaire Vérification",
-                            "orderable": false,
-                            "visible": false,
-                            //"mRender": function (date, type, full) {
-                            //    return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
-                            //},
-                        },
-
+                        //},
+                        //{
+                        //    "mData": "Code",
+                        //    "sTitle": "Code",
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "Date",
+                        //    "sTitle": "Date",
+                        //    "sType": "date",
+                        //    "mRender": function (date, type, full) {
+                        //        //return new Date(date).toLocaleString();
+                        //        return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                        //    },
+                        //    "orderable": false,
+                        //    "width": "10%"
+                        //},
+                        //{
+                        //    "mData": "NonConformiteOrigine.Nom",
+                        //    "sTitle": "Origine",
+                        //    "orderable": false,
+                        //    "width": "15%"
+                        //},
+                        //{
+                        //    "mData": "Description",
+                        //    "sTitle": "Description",
+                        //    "orderable":false
+                        //}
                     ],
                     "oLanguage": {
                         "sUrl": "Scripts/datatables_lang_fr.js"
@@ -804,11 +819,29 @@
                 $("#Table").DataTable().destroy();
 
                 table = $("#Table").DataTable({
-                    //dom: 'T<"clear">lfrtip',
-                    dom: 'lf<"floatright"B>rtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ],
+                    dom: 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "Scripts/DataTables-1.10.7/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                        "aButtons": [
+                            {
+                                "sExtends": "pdf",
+                                "mColumns": "all",
+                                "sPdfMessage": "Liste des Non-Conformités"
+                            },
+                            {
+                                "sExtends": "csv",
+                                "mColumns": "all"
+                            },
+                            {
+                                "sExtends": "print",
+                                "mColumns": [1, 2, 3, 4]
+                            },
+                            {
+                                "sExtends": "copy",
+                                "mColumns": [1, 2, 3, 4]
+                            }
+                        ]
+                    },
                     "scrollY": "400px",
                     "autoWidth": false,
                     "serverSide": true,
@@ -910,11 +943,6 @@
                             "width": "10%"
                         },
                         {
-                            "mData": "Site.Nom",
-                            "sTitle": "Site",
-                            "visible": false,
-                        },
-                        {
                             "mData": "Date",
                             "sTitle": "Date",
                             "sType": "date",
@@ -926,35 +954,15 @@
                             "width": "10%"
                         },
                         {
-                            "mData": "NonConformiteDomaine.Nom",
-                            "sTitle": "Domaine",
-                            "visible": false,
-                        },
-                        {
                             "mData": "NonConformiteOrigine.Nom",
                             "sTitle": "Origine",
                             "orderable": true,
                             "width": "15%"
                         },
                         {
-                            "mData": "NonConformiteGravite.Nom",
-                            "sTitle": "Gravité",
-                            "visible": false,
-                        },
-                        {
                             "mData": "Description",
                             "sTitle": "Description",
                             "orderable": false
-                        },
-                        {
-                            "mData": "Attendu",
-                            "sTitle": "Attendu",
-                            "visible": false,
-                        },
-                        {
-                            "mData": "Cause",
-                            "sTitle": "Cause",
-                            "visible": false,
                         },
                         {
                             "mData": "NonConformiteID",

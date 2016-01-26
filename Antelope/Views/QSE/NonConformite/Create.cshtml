@@ -695,6 +695,7 @@
         actionCollection.each(function (action, index) {
             var responsable = action.get('Responsable');
             var verificateur = action.get('Verificateur');
+            console.log(verificateur);
             action.set({ 'Responsable': new ResponsableModel(responsable) });
             action.set({ 'Verificateur': new VerificateurModel(verificateur) });
             action.set({ 'DateButoireInitialeJavascript': dateFormatJS(action.get('DateButoireInitiale')) });

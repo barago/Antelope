@@ -15,6 +15,7 @@ using Antelope.ViewModels.HSE.DialogueSecuriteViewModels;
 using Antelope.Infrastructure.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using Antelope.Services.Socle;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -24,6 +25,13 @@ namespace Antelope.Controllers.API.HSE
         public DialogueSecuriteRepository _dialogueSecuriteRepository { get; set; }
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
         private AntelopeEntities db = new AntelopeEntities();
+        private PersonneAnnuaireService _personneAnnuaireService { get; set; }
+
+        public DialogueSecuriteController()
+        {
+            _personneAnnuaireService = new PersonneAnnuaireService(db);
+        }
+
 
         public HttpResponseMessage Get()
         {
@@ -107,7 +115,7 @@ namespace Antelope.Controllers.API.HSE
 
 
             var currentdialogueSecurite = db.DialogueSecurites.Find(dialogueSecurite.Id);
-            db.Entry(dialogueSecurite).CurrentValues.SetValues(dialogueSecurite);
+            db.Entry(currentdialogueSecurite).CurrentValues.SetValues(dialogueSecurite);
 
             db.Entry(currentdialogueSecurite).State = EntityState.Modified;
 
@@ -156,6 +164,25 @@ namespace Antelope.Controllers.API.HSE
             Site site = db.Sites.First(s => s.SiteID == dialogueSecurite.SiteId);
             dialogueSecurite.Code += site.Trigramme + "-" + dialogueSecurite.Date.Year + "-" + dialogueSecurite.CompteurAnnuelSite;
 
+            dialogueSecurite.Dialogueur1 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Dialogueur1.Nom, dialogueSecurite.Dialogueur1.Prenom, dialogueSecurite.Dialogueur1Id, db
+            );
+            dialogueSecurite.Dialogueur2 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Dialogueur2.Nom, dialogueSecurite.Dialogueur2.Prenom, dialogueSecurite.Dialogueur2Id, db
+            );
+            dialogueSecurite.Dialogueur3 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Dialogueur3.Nom, dialogueSecurite.Dialogueur3.Prenom, dialogueSecurite.Dialogueur3Id, db
+            );
+            dialogueSecurite.Entretenu1 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Entretenu1.Nom, dialogueSecurite.Entretenu1.Prenom, dialogueSecurite.Entretenu1Id, db
+            );
+            dialogueSecurite.Entretenu2 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Entretenu2.Nom, dialogueSecurite.Entretenu2.Prenom, dialogueSecurite.Entretenu2Id, db
+            );
+            dialogueSecurite.Entretenu3 = _personneAnnuaireService.GetPersonneFromAllAnnuaireOrCreate(
+                dialogueSecurite.Entretenu3.Nom, dialogueSecurite.Entretenu3.Prenom, dialogueSecurite.Entretenu3Id, db
+            );
+
             db.DialogueSecurites.Add(dialogueSecurite);
 
             try
@@ -166,7 +193,6 @@ namespace Antelope.Controllers.API.HSE
             }
             catch (Exception e)
             {
-
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
             }
 

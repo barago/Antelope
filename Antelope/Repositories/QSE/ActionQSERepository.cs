@@ -106,10 +106,14 @@ namespace Antelope.Repositories.QSE
                                                         DateButoireNouvelle = a.DateButoireNouvelle,
                                                         NonConformiteId = a.NonConformiteId,
                                                         Responsable = a.Responsable,
+                                                        Verificateur = a.Verificateur,
                                                         NonConformite = a.NonConformite,
                                                         RealiseDate = a.RealiseDate,
                                                         VerifieDate = a.VerifieDate,
-                                                        ClotureDate = a.ClotureDate
+                                                        ClotureDate = a.ClotureDate,
+                                                        Avancement = a.Avancement,
+                                                        CritereEfficaciteVerification = a.CritereEfficaciteVerification,
+                                                        CommentaireEfficaciteVerification = a.CommentaireEfficaciteVerification
                                                    };
 
             queryActionQSE = queryActionQSE.Where(q => q.NonConformiteId != null);

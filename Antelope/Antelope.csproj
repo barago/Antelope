@@ -169,7 +169,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\DegreSatisfaction\" />
     <Folder Include="Views\DelaiMoyenTicket\" />
-    <Folder Include="Views\DialogueSecurite\" />
     <Folder Include="Views\Intervention\" />
     <Folder Include="Views\MatriceApplicative\" />
     <Folder Include="Views\Phantom\" />
@@ -430,6 +429,7 @@
     <Content Include="Scripts\Application\HSE\DialogueSecurite\DialogueSecuriteModel.js" />
     <Content Include="Scripts\Application\HSE\DialogueSecurite\Recherche\RechercheDialogueSecuriteParamModel.js" />
     <Content Include="Scripts\Application\HSE\DialogueSecurite\Recherche\ViewModel.js" />
+    <Content Include="Scripts\Application\HSE\DialogueSecurite\ThematiqueModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\CorpsHumainZoneModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\DangerModel.js" />
     <Content Include="Scripts\Application\HSE\FicheSecurite\FicheSecuriteActionView.js" />
@@ -500,6 +500,15 @@
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Acceptance.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Production.pubxml" />
     <None Include="Properties\PublishProfiles\Publish_Server_Antelope_Test.pubxml" />
+    <Content Include="Scripts\DataTables-1.10.10\datatables.css" />
+    <Content Include="Scripts\DataTables-1.10.10\datatables.js" />
+    <Content Include="Scripts\DataTables-1.10.10\datatables.min.css" />
+    <Content Include="Scripts\DataTables-1.10.10\datatables.min.js" />
+    <Content Include="Scripts\DataTables-1.10.10\DataTables-1.10.10\images\sort_asc.png" />
+    <Content Include="Scripts\DataTables-1.10.10\DataTables-1.10.10\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\DataTables-1.10.10\DataTables-1.10.10\images\sort_both.png" />
+    <Content Include="Scripts\DataTables-1.10.10\DataTables-1.10.10\images\sort_desc.png" />
+    <Content Include="Scripts\DataTables-1.10.10\DataTables-1.10.10\images\sort_desc_disabled.png" />
     <Content Include="Scripts\DataTables-1.10.7\Contributing.md" />
     <Content Include="Scripts\DataTables-1.10.7\examples\resources\examples.php" />
     <Content Include="Scripts\DataTables-1.10.7\examples\resources\syntax\Syntax Highlighter license" />
@@ -965,6 +974,7 @@
     <Content Include="Views\QSE\QSEStatistique\Index.cshtml" />
     <Content Include="Views\HSE\DialogueSecurite\Create.cshtml" />
     <Content Include="Views\HSE\DialogueSecurite\Index.cshtml" />
+    <Content Include="Views\QSE\NonConformite\IndexBackupBeforeTableToolsChanges.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
