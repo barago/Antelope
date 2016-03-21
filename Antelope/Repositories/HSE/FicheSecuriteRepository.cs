@@ -337,7 +337,7 @@ namespace Antelope.Repositories.HSE
                 {
                     WorkFlowWhereClause += "|| ";
                 }
-                WorkFlowWhereClause += "(WorkFlowASEValidee == true && WorkFlowAttenteASEValidation == false && WorkFlowASERejetee == false && WorkFlowCloturee == true && WorkFlowFicheSecuriteCloturee == true)";
+                WorkFlowWhereClause += "(WorkFlowFicheSecuriteCloturee == true)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsNouvelleFiche == true)
@@ -753,7 +753,7 @@ namespace Antelope.Repositories.HSE
                 {
                     WorkFlowWhereClause += "|| ";
                 }
-                WorkFlowWhereClause += "(FicheSecurite.WorkFlowASEValidee == true && FicheSecurite.WorkFlowAttenteASEValidation == false && FicheSecurite.WorkFlowASERejetee == false && FicheSecurite.WorkFlowCloturee == true && FicheSecurite.WorkFlowFicheSecuriteCloturee == true)";
+                WorkFlowWhereClause += "(FicheSecurite.WorkFlowFicheSecuriteCloturee == true)";
                 FirstWorkFlowPredicate = true;
             }
             if (ParameterIsNouvelleFiche == true)

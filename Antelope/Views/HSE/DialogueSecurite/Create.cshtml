@@ -160,7 +160,7 @@
             </div>
 
             <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
+                <div class="panel-body" style="background-color:#FBDAAB">
 
                     <div class="row">
 
@@ -168,11 +168,11 @@
                             <div class="row" style="padding-left:15px; padding-right:15px;">
 
                                 <div class="panel panel-default" style="margin-bottom:15px;">
-                                    <div class="panel-body" style="padding:0px">
+                                    <div class="panel-body" style="padding:0px; ">
 
                                         <div style="padding:5px;">
                                         <div class="col-md-6">
-                                            <div class="row" style="padding-right:10px;">
+                                            <div class="row" style="padding-right:10px;margin-bottom:15px;">
 
                                                 <label for="Site" class="label-xs">Site&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                                 <select id="Site" class="form-control input-xs">
@@ -187,7 +187,7 @@
                                                 </select>
 
 
-                                                <label for="Zone" class="col-sm-5 label-xs">Zone&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <label for="Zone" class="label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Zone&nbsp;:&nbsp;<span style="color:red">*</span></label>
 
                                                 <select class="form-control input-xs" id="Zone">
                                                     <option value="null" <% if (dialogueSecuriteModel.get('ZoneId') == 'null'){ %> selected <% } %> ></option>
@@ -201,7 +201,7 @@
 
                                                 </select>
 
-                                                <label for="Lieu" class="col-sm-5 label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Lieu&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                                <label for="Lieu" class="label-xs"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Lieu&nbsp;:&nbsp;<span style="color:red">*</span></label>
 
                                                 <select class="form-control input-xs" id="Lieu">
                                                     <option value="null" <% if (dialogueSecuriteModel.get('LieuId') == 'null'){ %> selected <% } %> ></option>
@@ -263,7 +263,7 @@
 
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">DIALOGUEURS</div>
+                                        <div class="panel-heading text-center"><strong>DIALOGUEURS</strong></div>
                                         <div class="panel-body">
                                             <div style="padding-left:5px; padding-right:5px;">
                                             <div class="row">
@@ -375,7 +375,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">DIALOGUÉS</div>
+                                        <div class="panel-heading text-center "><strong>DIALOGUÉS</strong></div>
                                         <div class="panel-body">
                                             <div style="padding-left:5px; padding-right:5px;">
                                                 <div class="row">
@@ -498,25 +498,25 @@
 
                             <div class="row" style="margin-left:5px;margin-right:10px;">
                                 <div class="form-group">
-                                    <label for="Contexte" class="label-xs">Situation&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <label for="Contexte" class="label-xs">SITUER&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <textarea id="Contexte" class="form-control input-small" rows="3" style="max-width:100%;"><%= dialogueSecuriteModel.get('Contexte') %></textarea>
                                 </div>
                             </div>
                             <div class="row" style="margin-left:5px;margin-right:10px;">
                                 <div class="form-group">
-                                    <label for="Observation" class="label-xs">Observations&nbsp;:&nbsp;<span style="color:red">*</span></label>
-                                    <textarea id="Observation" class="form-control input-small" rows="3" style="max-width:100%;"><%= dialogueSecuriteModel.get('Observation') %></textarea>
+                                    <label for="Observation" class="label-xs">OBSERVER&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <textarea id="Observation" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Observation') %></textarea>
                                 </div>
                             </div>
                             <div class="row" style="margin-left:5px;margin-right:10px;">
                                 <div class="form-group">
-                                    <label for="Reflexion" class="label-xs">Réflexion&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <label for="Reflexion" class="label-xs">R&Eacute;FL&Eacute;CHIR&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <textarea id="Reflexion" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Reflexion') %></textarea>
                                 </div>
                             </div>
                             <div class="row" style="margin-left:5px;margin-right:10px;">
                                 <div class="form-group">
-                                    <label for="Action" class="label-xs">Action&nbsp;:&nbsp;<span style="color:red">*</span></label>
+                                    <label for="Action" class="label-xs">AGIR&nbsp;:&nbsp;<span style="color:red">*</span></label>
                                     <textarea id="Action" class="form-control input-small" rows="6" style="max-width:100%;"><%= dialogueSecuriteModel.get('Action') %></textarea>
                                 </div>
                             </div>

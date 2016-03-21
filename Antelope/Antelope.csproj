@@ -231,6 +231,7 @@
     <Compile Include="Controllers\Services\ServicesHomeController.cs" />
     <Compile Include="Controllers\Test\ReviewsController.cs" />
     <Compile Include="DTOs\HSE\FicheSecuriteActionRecherche.cs" />
+    <Compile Include="DTOs\HSE\DialogueSecuriteStatistique.cs" />
     <Compile Include="DTOs\HSE\FicheSecuriteStatistique.cs" />
     <Compile Include="DTOs\QSE\ActionQSEDTO.cs" />
     <Compile Include="DTOs\QSE\NonConformiteActionRecherche.cs" />
@@ -975,6 +976,7 @@
     <Content Include="Views\HSE\DialogueSecurite\Create.cshtml" />
     <Content Include="Views\HSE\DialogueSecurite\Index.cshtml" />
     <Content Include="Views\QSE\NonConformite\IndexBackupBeforeTableToolsChanges.cshtml" />
+    <Content Include="Views\HSE\HSEStatistique\DialogueSecurite.cshtml" />
     <None Include="Web.Acceptance.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

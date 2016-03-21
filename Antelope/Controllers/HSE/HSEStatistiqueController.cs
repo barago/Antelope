@@ -26,7 +26,10 @@ namespace Antelope.Controllers.HSE
         {
             return View("~/Views/HSE/HSEStatistique/Detail.cshtml");
         }
-
+        public ActionResult DialogueSecurite()
+        {
+            return View("~/Views/HSE/HSEStatistique/DialogueSecurite.cshtml");
+        }
 
     }
 }

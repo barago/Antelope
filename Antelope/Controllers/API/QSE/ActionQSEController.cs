@@ -160,6 +160,12 @@ namespace Antelope.Controllers.API.QSE
             db.ActionQSEs.Add(actionQSE);
             db.SaveChanges();
 
+            if (actionQSE.CauseQSEId != 0 && actionQSE.CauseQSEId != null)
+            {
+                _ficheSecuriteServices = new FicheSecuriteServices();
+                _ficheSecuriteServices.FicheSecuriteOpenOrClose(actionQSE);
+            }
+
             return Request.CreateResponse<ActionQSE>(HttpStatusCode.OK, actionQSE, Configuration.Formatters.JsonFormatter);
         }
 
@@ -175,6 +181,12 @@ namespace Antelope.Controllers.API.QSE
 
             db.ActionQSEs.Remove(actionqse);
             db.SaveChanges();
+
+            if (actionqse.CauseQSEId != 0 && actionqse.CauseQSEId != null)
+            {
+                _ficheSecuriteServices = new FicheSecuriteServices();
+                _ficheSecuriteServices.FicheSecuriteOpenOrClose(actionqse);
+            }
 
             return Ok(actionqse);
         }

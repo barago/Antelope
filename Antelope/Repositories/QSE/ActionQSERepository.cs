@@ -126,7 +126,8 @@ namespace Antelope.Repositories.QSE
                 if (ParameterIsActionEnCours == true)
                 {
                     FirstWorkFlowPredicate = true;
-                    WorkFlowWhereClause += "(RealiseDate == null && DateTime.Today <= DateButoireInitiale)";
+                    // (realiseDate && DateTime && DatebutoirNouvelle != NULL) || (realiseDate && DateTime && DatebutoirNouvelle == NULL)
+                    WorkFlowWhereClause += "((RealiseDate == null && DateTime.Today <= DateButoireInitiale && DateButoireNouvelle == null) || (RealiseDate == null && DateTime.Today <= DateButoireInitiale && DateTime.Today <= DateButoireNouvelle ))";
                 }
                 if (ParameterIsActionRealise == true)
                 {
@@ -143,7 +144,7 @@ namespace Antelope.Repositories.QSE
                     {
                         WorkFlowWhereClause += "|| ";
                     }
-                    WorkFlowWhereClause += "(RealiseDate == null && DateTime.Today > DateButoireInitiale && VerifieDate == null)";
+                    WorkFlowWhereClause += "(RealiseDate == null && DateTime.Today > DateButoireNouvelle && VerifieDate == null)";
                     FirstWorkFlowPredicate = true;
                 }
                 if (ParameterIsActionCloture == true)

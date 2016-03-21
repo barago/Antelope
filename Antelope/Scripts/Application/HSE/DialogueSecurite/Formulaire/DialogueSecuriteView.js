@@ -4,22 +4,17 @@
 
         template: _.template($('#DialogueSecuriteTemplate').html()),
         render: function () {
-            console.log("01");
             this.$el.html(this.template(this.model.toJSON()));
-            console.log("02");
             $('#DateDialogueSecurite').datetimepicker({
                 pickTime: false,
                 language: 'fr'
             });
-            console.log("03");
             //On écoute les changements sur le DatePicker pour les passer à la fonction Backbone
             $('#DateDialogueSecurite').on("dp.change", $.proxy(this.changeDate, this));
-            console.log("04");
             // TODO : Mettre des dp.hide sur tous les DateTimePickers ! >> Si on ne selectionne rien, il choisit date et heure du jour.
             $('#DateDialogueSecurite').on("dp.hide", $.proxy(this.changeDate, this));
             // TODO : BUG Boostrap, si on n'initialise pas toggle:false, les collapse vont show lorsqu'on fait un hide ...
             // $('.AjoutActionCollapse').collapse({ 'toggle': false });
-            console.log("05");
         },
         fillUtilisateur: function (params) {
 
@@ -164,6 +159,17 @@
         changeThematique: function () {
 
             this.model.get('dialogueSecuriteModel').set({ 'ThematiqueId': $('#Thematique').val() });
+
+            if ($("#Thematique option:selected").text().trim() === 'Audit conduite chariot') {
+
+                this.model.get('dialogueSecuriteModel').set({ 'ObservationBackup': this.model.get('dialogueSecuriteModel').get('Observation')});
+                this.model.get('dialogueSecuriteModel').set({ 'Observation': '-Conduite avec fourche basse  \n-Klaxon aux intersections \n-Port de la ceinture de sécurité \n-Fiche de vérif. chariot remplie \n-Feux allumés \n-Ralentissement aux endroits' });
+
+            }
+            else{
+                this.model.get('dialogueSecuriteModel').set({ 'Observation': this.model.get('dialogueSecuriteModel').get('ObservationBackup') });
+            }
+            this.render();
         },
         changeDate: function () {
             this.model.get('dialogueSecuriteModel').set({ 'Date': this.dateFormatMVC($('#DateDialogueSecuriteInput').val()) + 'T' + '00:00:00.0' });
@@ -223,11 +229,8 @@
             Backbone.applicationEvents.trigger('alerteMessageHide');
         },
         changeServiceTypeDialogueur1: function () {
-            console.log('Passage CHANGE GIALOGUEUR');
-            console.log($('#ServiceTypeDialogueur1').val());
             this.model.get('dialogueSecuriteModel').set({ 'ServiceTypeDialogueur1Id': $('#ServiceTypeDialogueur1').val() });
             Backbone.applicationEvents.trigger('alerteMessageHide');
-            console.log(this.model.get('dialogueSecuriteModel'));
         },
         changeServiceTypeDialogueur2: function () {
             this.model.get('dialogueSecuriteModel').set({ 'ServiceTypeDialogueur2Id': $('#ServiceTypeDialogueur2').val() });
@@ -289,15 +292,11 @@
         enregistrer: function () {
             this.model.get('dialogueSecuriteModel').on("invalid", function (model, error) {
                 Backbone.applicationEvents.trigger('alerteInvalid', error);
-                console.log("INVALID");
             });
-            console.log("PASSAGE SAVE");
-            console.log(this.model.get('dialogueSecuriteModel'));
             this.model.get('dialogueSecuriteModel').save(null,
                 {
                     async: false, wait: true,
                     success: _.bind(function (model, response) {
-                        console.log(1);
                         //this.model.set({ 'actionModel': new ActionModel() });
                         //this.model.get('actionModel').set({ 'Responsable': new ResponsableModel() });
                         //this.model.get('actionModel').set({ 'Verificateur': new VerificateurModel() });
@@ -311,11 +310,8 @@
                         this.model.get('dialogueSecuriteModel').set({ 'Entretenu3': new PersonneModel(response.Entretenu3) });
 
                         Backbone.applicationEvents.trigger('DialogueSecuriteEnregistree');
-                        console.log(2);
                         this.render(this.model.get('dialogueSecuriteModel'));
-                        console.log(3);
                         Backbone.applicationEvents.trigger('alerteValid', 'Le Dialogue Sécurité \"' + this.model.get('dialogueSecuriteModel').get('Code') + '\" est enregistrée.');
-                        console.log(4);
                     }, this),
                     error: _.bind(function (model, response) {
                         Backbone.applicationEvents.trigger('alerteInvalid', 'Une erreur est survenue sur l\'ajout du Dialogue Sécurité');

@@ -3,9 +3,6 @@
     validate: function (attrs, options) {
         console.log('PASSAGE VALIDATE');
         console.log(attrs);
-        if (attrs.Titre == null || attrs.Titre == "") {
-            return "Il manque un champ obligatoire, merci de saisir une Titre de l'action";
-        };
         if (attrs.DateButoireInitiale == '0001-01-01T00:00:00' || attrs.DateButoireInitiale == null) {
             return "Il manque un champ obligatoire, merci de choisir une date initiale de l'action";
         };
