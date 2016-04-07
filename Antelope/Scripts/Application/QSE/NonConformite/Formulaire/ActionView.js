@@ -117,6 +117,9 @@
             "keyup .EditActionResponsableNom": "changeEditActionResponsableNom",
             "keyup .EditActionResponsablePrenom": "changeEditActionResponsablePrenom",
             "keyup .EditActionDateButoireInitiale": "changeEditActionDateButoireInitiale",
+            "keyup .EditActionDateButoireInitiale": "changeEditActionDateButoireInitiale",
+            "keyup .InputEditActionRealiseDate": "changeEditActionRealiseDate",
+            "keyup .EditActionDateVerificationInput": "changeEditActionVerificationDate",
 
         },
         hideShow: function (ev) {
@@ -262,12 +265,15 @@
         },
         changeEditActionRealiseDate: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDate': this.dateFormatMVC($('#InputEditActionRealiseDate' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDate': ($('#InputEditActionRealiseDate'  + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#InputEditActionRealiseDate' + actionToEditId).val()) + 'T' + '00:00:00.0' });
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDateJavascript': $('#InputEditActionRealiseDate' + actionToEditId).val() });
+            
         },
         changeEditActionVerificationDate: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDate': this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            console.log('tyiryuj');
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDate': ($('#EditActionDateVerificationInput' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDateJavascript': $('#EditActionDateVerificationInput' + actionToEditId).val() });
         },
         changeEditActionCritere: function (ev) {

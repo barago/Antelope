@@ -3,6 +3,9 @@
     validate: function (attrs, options) {
         console.log('PASSAGE VALIDATE');
         console.log(attrs);
+        if (attrs.VerifieDate != null && attrs.RealiseDate == null) {
+            return "Une date de vérification existe, impossible de supprimer la date de réalisation.";
+        }
         if (attrs.DateButoireInitiale == '0001-01-01T00:00:00' || attrs.DateButoireInitiale == null) {
             return "Il manque un champ obligatoire, merci de choisir une date initiale de l'action";
         };

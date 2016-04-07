@@ -600,13 +600,13 @@
         FicheSecuriteCollection = Backbone.Collection.extend({ model: FicheSecuriteModel });
 
         ResponseModel = Backbone.Model.extend({
-            url: '/api/action/HSEStatistique/GetDialogueSecuriteStatistique/',
+            url: '/api/DialogueSecuriteStatistique/',
             id: 0
         });
 
         responseModel = new ResponseModel();
 
-        responseModel.fetch({ async: false, wait: true/*, url: 'api/action/GetHSEStatistique' */ });
+        responseModel.fetch({ async: false, wait: true});
 
         responseModel.set({ "paramModel": new ParamModel(responseModel.get('ParamModel')) });
 

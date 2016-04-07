@@ -183,6 +183,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\API\HSE\DialogueSecuriteController.cs" />
+    <Compile Include="Controllers\API\HSE\DialogueSecuriteStatistiqueController.cs" />
     <Compile Include="Controllers\API\HSE\HSEParametrageController.cs" />
     <Compile Include="Controllers\API\HSE\HSEStatistiqueController.cs" />
     <Compile Include="Controllers\API\HSE\LieuController.cs" />

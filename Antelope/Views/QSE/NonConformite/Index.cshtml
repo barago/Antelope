@@ -16,12 +16,99 @@
 <script type="text/javascript" src="/Scripts/Application/QSE/ActionModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/ViewModel.js"></script>
 <script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Recherche/RechercheNonConformiteParamModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/RechercheActiveDirectoryModel.js"></script>
+<script type="text/javascript" src="/Scripts/Application/QSE/NonConformite/Formulaire/RechercheActiveDirectoryView.js"></script>
 
 <script type="text/javascript" src="/Scripts/moment-with-langs.js"></script>
 <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/Scripts/bootstrap-datetimepicker.min.js"></script>
 
+<script type="text/template" id="RechercheActiveDirectory">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Recherche d'un utilisateur dans l'annuaire</h4>
+            </div>
+            <div class="modal-body">
+                <p>Veuillez saisir un nom et/ou un prénom&hellip;&nbsp;Puis selectionner l'utilisateur voulu</p>
 
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @*style="padding-right:0px;"*@
+                            <label for="NomRecherche" class="label-xs">Nom&nbsp;recherché&nbsp;:&nbsp;</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-xs" id="NomRecherche" value="<%= typeof Nom === 'undefined' ? "" : Nom %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            @*style="padding-right:0px;"*@
+                            <label for="PrenomRecherche" class="label-xs">Prénom&nbsp;recherché&nbsp;:&nbsp;</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control input-xs" id="PrenomRecherche" value="<%= typeof Prenom === 'undefined' ? "" : Prenom %>">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button id="RechercheADUtilisateur" type="submit" class="btn pull-right btn-xs">
+                            <span class="glyphicon glyphicon-user"></span> Recherche
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <table class="table">
+                        <thead>
+                        <td>
+                            Nom
+                        </td>
+                        <td>
+                            Prénom
+                        </td>
+                        <td>
+                            Choisir
+                        </td>
+                        </thead>
+                        <tbody>
+
+                            <% rechercheActiveDirectoryCollection.each( function(utilisateurActiveDirectory){ %>
+
+                            <% if(utilisateurActiveDirectory.get('IsAnnuaireApplication') == true && utilisateurActiveDirectory.get('IsAnnuaireAD') == false) {%>
+                            <tr style="background-color:#F7E5C5;">
+                                <% } %>
+                                <% if(utilisateurActiveDirectory.get('IsAnnuaireAD') == true) {%>
+                            <tr>
+                                <% } %>
+
+                                <td>
+                                    <%= utilisateurActiveDirectory.get('Nom') %>
+                                </td>
+                                <td>
+                                    <%= utilisateurActiveDirectory.get('Prenom') %>
+                                </td>
+                                <td>
+                                    <button type="button" id="<%= utilisateurActiveDirectory.get('Guid') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
+                                        <span class="glyphicon glyphicon-arrow-right"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</script>
+<div id="RechercheActiveDirectoryDiv">
+</div>
 
 <script type="text/template" id="TableFiltre">
 
@@ -149,9 +236,8 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="col-sm-4">
-                                    @*style="padding-right:0px;"*@
                                     <label for="ResponsableNom" class="label-xs">Nom&nbsp;Resp.&nbsp;Action&nbsp;:</label>
                                 </div>
                                 <div class="col-sm-8">
@@ -159,40 +245,65 @@
                                         <input type="text" class="form-control input-xs" id="ResponsableNom" value="<%= rechercheNonConformiteParamModel.get('ResponsableNom') %>">
                                     </div>
                                 </div>
-                            </div>
-
+                            </div>*@
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="DateButoirDebut" class="label-xs">Date&nbsp;butoir&nbsp;Début&nbsp;:</label>
+                                    <label for="ResponsableNom" class="label-xs">Nom resp. act°&nbsp;:&nbsp;</label>
                                 </div>
-                                <div class='col-sm-8'>
-                                    @*<div class="form-group">*@
-                                    <div class='input-group date' id='DateButoirDebut'>
-                                        <input type='text' name="DateButoirDebut" id="DateButoirDebutInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirDebutJavascript') %>" />
-                                        <div class="input-group-addon input-xs">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </div>
-                                    </div>
-                                    @*</div>*@
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <label for="DateButoirFin" class="label-xs">Date&nbsp;butoir&nbsp;Fin&nbsp;:</label>
-                                </div>
-                                <div class='col-sm-8'>
-                                    @*<div class="form-group">*@
-                                    <div class='input-group date' id='DateButoirFin'>
-                                        <input type='text' name="DateButoirFin" id="DateButoirFinInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirFinJavascript') %>" />
-                                        <span class="input-group-addon input-xs">
-                                            <span class="glyphicon glyphicon-calendar"></span>
+                                <div class="col-sm-8">
+                                    <div class="input-group input-group-xs">
+                                        <input type="text" class="form-control input-xs" id="ResponsableNom">
+                                        <span class="input-group-btn">
+                                            <button id="ActiveDirectoryActionResponsableRecherche" class="btn btn-default" type="button" data-toggle="modal" data-sourceutilisateurfield="ActionResponsable">
+                                                <span class="glyphicon glyphicon-user">
+                                            </button>
                                         </span>
                                     </div>
-                                    @*</div>*@
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="<%= 'ResponsablePrenom' %>" class="label-xs">Prénom resp.&nbsp;:&nbsp;</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control input-xs ResponsablePrenom" id="ResponsablePrenom">
+                                </div>
+                            </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="DateButoirDebut" class="label-xs">Date&nbsp;butoir&nbsp;Début&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='DateButoirDebut'>
+                                            <input type='text' name="DateButoirDebut" id="DateButoirDebutInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirDebutJavascript') %>" />
+                                            <div class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="DateButoirFin" class="label-xs">Date&nbsp;butoir&nbsp;Fin&nbsp;:</label>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        @*<div class="form-group">*@
+                                        <div class='input-group date' id='DateButoirFin'>
+                                            <input type='text' name="DateButoirFin" id="DateButoirFinInput" class="form-control input-xs" value="<%= rechercheNonConformiteParamModel.get('DateButoirFinJavascript') %>" />
+                                            <span class="input-group-addon input-xs">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+
+                            </div>
                         <div class="col-md-4">
                         </div>
                     </div>
@@ -363,7 +474,40 @@
 
                 return this;
             },
+            fillUtilisateur: function (params) {
+                console.log(params[0]);
+                switch (params[0].get('sourceUtilisateurField')) {
+                    case "ActionResponsable":
+                        console.log('toto');
+
+                        this.model.get('rechercheNonConformiteParamModel').set({ 'Responsable': params[0] });
+
+                        this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableNom': params[0].get('Nom') });
+                        this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsablePrenom': params[0].get('Prenom') });
+                        this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableId': params[0].get('PersonneId') });
+
+                        $('#ResponsableNom').val(this.model.get('rechercheNonConformiteParamModel').get('Responsable').get('Nom'));
+                        $('#ResponsablePrenom').val(this.model.get('rechercheNonConformiteParamModel').get('Responsable').get('Prenom'));
+
+                        //this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableNom': $('#ResponsableNom').val() });
+                        //this.model.get('rechercheNonConformiteParamModel').set({ 'ResponsableGuid': null });
+
+                        //this.model.get('actionModel').set({ 'Responsable': params[0] });
+                        //this.model.get('actionModel').set({ 'ResponsableId': params[0].get('PersonneId') });
+                    
+                        //$('#AddActionResponsableNom').val(this.model.get('actionModel').get('Responsable').get('Nom'));
+                        //$('#AddActionResponsablePrenom').val(this.model.get('actionModel').get('Responsable').get('Prenom'));
+                          
+                        break;
+
+                }
+            },
             initialize: function () {
+
+                Backbone.applicationEvents.on('selectionUtilisateur', function (params) {
+                    this.fillUtilisateur(params);
+                }, this);
+
                 this.render();
 
             },
@@ -384,6 +528,7 @@
                 "click #IsActionRealise": "changeIsActionRealise",
                 "click #IsActionRetard": "changeIsActionRetard",
                 "click #IsActionCloture": "changeIsActionCloture",
+                "click #ActiveDirectoryActionResponsableRecherche": "showActiveDirectoryUtilisateurRecherche",
 
             },
             triggerRechercheSurEntree: function (e) {
@@ -459,7 +604,17 @@
             },
             changeIsActionCloture: function(){
                 this.model.get('rechercheNonConformiteParamModel').set({ 'IsActionCloture': $('#IsActionCloture').is(":checked") });
-            }
+            },
+            showActiveDirectoryUtilisateurRecherche: function (ev) {
+                //TODO :  Créer un constructeur prenant "sourceUtilisateurField" en param. pour créer ce qui suit
+                var rechercheActiveDirectoryView = new window.RechercheActiveDirectoryView({
+                });
+                rechercheActiveDirectoryView.model.set({ "sourceUtilisateurField": $(ev.currentTarget).attr('data-SourceUtilisateurField') });
+                if ($(ev.currentTarget).attr('data-actionid') != null) {
+                    rechercheActiveDirectoryView.model.set({ "sourceId": $(ev.currentTarget).attr('data-actionid') })
+                };
+                rechercheActiveDirectoryView.show()
+            },
         })
 
 
@@ -497,7 +652,7 @@
                     //dom: 'T<"clear">lfrtip',
                     dom: 'lf<"floatright"B>rtip',
                     buttons: [
-                        'copy', 'excel', 'pdf'
+                        'copy', 'excel'
                     ],
                     "scrollY": "400px",
                     "autoWidth": false,
@@ -578,12 +733,6 @@
                         return nRow
                     },
                     "columns": [
-                        {
-                            "mData": "NonConformiteId",
-                            "sTitle": "Id",
-                            "visible": false,
-                            "orderable": false,
-                        },
                         {
                             "mData": "NonConformiteCode",
                             "sTitle": "Code Non-Conformite",
@@ -673,6 +822,19 @@
                             //"mRender": function (date, type, full) {
                             //    return '<span title="' + full.Description + '">' + full.Description.substring(0, 40) + '...</span>'
                             //},
+                        },
+                        {
+                            "mData": "RealiseDate",
+                            "sTitle": "Date de réalisation",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                if (full.RealiseDate === null || full.RealiseDate === undefined) { return "";}
+                                    return full.RealiseDate.substring(8, 10) + '/' + full.RealiseDate.substring(5, 7) + '/' + full.RealiseDate.substring(0, 4);
+                                
+                            },
+                            "orderable": true,
+                            "width": "6%",
+                            "visible":false
                         },
 
                     ],
@@ -807,7 +969,7 @@
                     //dom: 'T<"clear">lfrtip',
                     dom: 'lf<"floatright"B>rtip',
                     buttons: [
-                        'copy', 'excel', 'pdf'
+                        'copy', 'excel'
                     ],
                     "scrollY": "400px",
                     "autoWidth": false,
