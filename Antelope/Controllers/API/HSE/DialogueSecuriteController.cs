@@ -16,6 +16,7 @@ using Antelope.Infrastructure.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using Antelope.Services.Socle;
+using Antelope.Services.HSE;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -26,10 +27,12 @@ namespace Antelope.Controllers.API.HSE
         public ActiveDirectoryUtilisateurRepository _activeDirectoryUtilisateurRepository { get; set; }
         private AntelopeEntities db = new AntelopeEntities();
         private PersonneAnnuaireService _personneAnnuaireService { get; set; }
+        private EmailService _emailService { get; set; }
 
         public DialogueSecuriteController()
         {
             _personneAnnuaireService = new PersonneAnnuaireService(db);
+            _emailService = new EmailService();
         }
 
 
@@ -138,7 +141,7 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, currentdialogueSecurite);
         }
 
-        [ResponseType(typeof(NonConformite))]
+ 
         public HttpResponseMessage Post(DialogueSecurite dialogueSecurite)
         {
            // DialogueSecurite.DateCreation = DateTime.Now;
@@ -185,16 +188,27 @@ namespace Antelope.Controllers.API.HSE
 
             db.DialogueSecurites.Add(dialogueSecurite);
 
-            try
-            {
+            //try
+            //{
                 db.SaveChanges();
-
-                return Request.CreateResponse(HttpStatusCode.OK, dialogueSecurite);
-            }
-            catch (Exception e)
-            {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
-            }
+                DialogueSecurite dbDialogueSecurite = db.DialogueSecurites
+                    .Where(ds => ds.Id == dialogueSecurite.Id)
+                    .Include(ds => ds.Thematique)
+                    .Include(ds => ds.ServiceType)
+                    .Include(ds => ds.ServiceType1)
+                    .Include(ds => ds.ServiceType2)
+                    .Include(ds => ds.ServiceType3)
+                    .Include(ds => ds.ServiceType4)
+                    .Include(ds => ds.ServiceType5)
+                    .FirstOrDefault();
+                    
+                _emailService.SendEmailDiffusionDialogueSecurite(dbDialogueSecurite);
+                return Request.CreateResponse(HttpStatusCode.OK, dbDialogueSecurite);
+            //}
+            //catch (Exception e)
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.InternalServerError, e);
+            //}
 
         }
 

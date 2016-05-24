@@ -14,11 +14,11 @@ namespace Antelope.DTOs.HSE
         public Int32? ZoneId { get; set; }
         public Int32? SiteId { get; set; }
         public int Dialogueur1Id { get; set; }
-        public int Dialogueur2Id { get; set; }
-        public int Dialogueur3Id { get; set; }
+        public int? Dialogueur2Id { get; set; }
+        public int? Dialogueur3Id { get; set; }
         public int Entretenu1Id { get; set; }
-        public int Entretenu2Id { get; set; }
-        public int Entretenu3Id { get; set; }
+        public int? Entretenu2Id { get; set; }
+        public int? Entretenu3Id { get; set; }
         public Personne Dialogueur1 { get; set; }
         public Personne Dialogueur2 { get; set; }
         public Personne Dialogueur3 { get; set; }

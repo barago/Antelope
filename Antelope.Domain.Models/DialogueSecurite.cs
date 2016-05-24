@@ -23,17 +23,17 @@ namespace Antelope.Domain.Models
         public int LieuId { get; set; }
         public int ThematiqueId { get; set; }
         public int Dialogueur1Id { get; set; }
-        public int Dialogueur2Id { get; set; }
-        public int Dialogueur3Id { get; set; }
+        public int? Dialogueur2Id { get; set; }
+        public int? Dialogueur3Id { get; set; }
         public int Entretenu1Id { get; set; }
-        public int Entretenu2Id { get; set; }
-        public int Entretenu3Id { get; set; }
+        public int? Entretenu2Id { get; set; }
+        public int? Entretenu3Id { get; set; }
         public int ServiceTypeDialogueur1Id { get; set; }
-        public int ServiceTypeDialogueur2Id { get; set; }
-        public int ServiceTypeDialogueur3Id { get; set; }
+        public int? ServiceTypeDialogueur2Id { get; set; }
+        public int? ServiceTypeDialogueur3Id { get; set; }
         public int ServiceTypeEntretenu1Id { get; set; }
-        public int ServiceTypeEntretenu2Id { get; set; }
-        public int ServiceTypeEntretenu3Id { get; set; }
+        public int? ServiceTypeEntretenu2Id { get; set; }
+        public int? ServiceTypeEntretenu3Id { get; set; }
 
         [JsonIgnore]
         public virtual Site Site { get; set; }
@@ -56,16 +56,16 @@ namespace Antelope.Domain.Models
 
         public virtual Personne Entretenu3 { get; set; }
 
-        public virtual ServiceType ServiceTypeDialogueur1 { get; set; }
+        public virtual ServiceType ServiceType { get; set; }
 
-        public virtual ServiceType ServiceTypeDialogueur2 { get; set; }
+        public virtual ServiceType ServiceType1 { get; set; }
 
-        public virtual ServiceType ServiceTypeDialogueur3 { get; set; }
+        public virtual ServiceType ServiceType2 { get; set; }
 
-        public virtual ServiceType ServiceTypeEntretenu1 { get; set; }
+        public virtual ServiceType ServiceType3 { get; set; }
 
-        public virtual ServiceType ServiceTypeEntretenu2 { get; set; }
+        public virtual ServiceType ServiceType4 { get; set; }
 
-        public virtual ServiceType ServiceTypeEntretenu3 { get; set; }
+        public virtual ServiceType ServiceType5 { get; set; }
     }
 }

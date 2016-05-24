@@ -113,6 +113,11 @@
             "change #ServiceTypeEntretenu1": "changeServiceTypeEntretenu1",
             "change #ServiceTypeEntretenu2": "changeServiceTypeEntretenu2",
             "change #ServiceTypeEntretenu3": "changeServiceTypeEntretenu3",
+            "click #ImprimerFicheSecurite": "imprimerFicheSecurite"
+        },
+        imprimerFicheSecurite: function () {
+
+            window.print();
         },
         changeAtelier: function () {
             this.model.get('dialogueSecuriteModel').set({ 'Atelier': $('#Atelier').val() });

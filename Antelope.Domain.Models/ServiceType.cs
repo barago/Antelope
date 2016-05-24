@@ -30,5 +30,17 @@ namespace Antelope.Domain.Models
         public virtual ICollection<NonConformite> NonConformites { get; set; }
         [JsonIgnore]
         public virtual ICollection<NonConformiteOrigine> NonConformiteOrigines { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites1 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites2 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites3 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites4 { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<DialogueSecurite> DialogueSecurites5 { get; set; }
     }
 }

@@ -36,6 +36,12 @@
 	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.PersonnesEntretenu1_PersonneId] FOREIGN KEY ([Entretenu1Id]) REFERENCES [dbo].[Personnes] ([PersonneId]),
 	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.PersonnesEntretenu2_PersonneId] FOREIGN KEY ([Entretenu2Id]) REFERENCES [dbo].[Personnes] ([PersonneId]),
 	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.PersonnesEntretenu3_PersonneId] FOREIGN KEY ([Entretenu3Id]) REFERENCES [dbo].[Personnes] ([PersonneId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesDialogueur1_PersonneId] FOREIGN KEY ([ServiceTypeDialogueur1Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesDialogueur2_PersonneId] FOREIGN KEY ([ServiceTypeDialogueur2Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesDialogueur3_PersonneId] FOREIGN KEY ([ServiceTypeDialogueur3Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesEntretenu1_PersonneId] FOREIGN KEY ([ServiceTypeEntretenu1Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesEntretenu2_PersonneId] FOREIGN KEY ([ServiceTypeEntretenu2Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
+	CONSTRAINT [FK_dbo.DialogueSecurites_dbo.ServiceTypesEntretenu3_PersonneId] FOREIGN KEY ([ServiceTypeEntretenu3Id]) REFERENCES [dbo].[ServiceTypes]([ServiceTypeId]),
 
 
 )

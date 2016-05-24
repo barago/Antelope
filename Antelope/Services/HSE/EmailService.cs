@@ -179,6 +179,75 @@ namespace Antelope.Services.HSE
 
         }
 
+        public void SendEmailDiffusionDialogueSecurite(DialogueSecurite dialogueSecurite)
+        {
+
+            Site site = db.Sites.First(s => s.SiteID == dialogueSecurite.SiteId);
+
+            string to = GetEmailFor("DiffusionFicheSecurite", db.Sites.Find(dialogueSecurite.SiteId).Trigramme);
+
+            UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string urlToDialogueSecurite= url.Action("Edit", "DialogueSecurite", new System.Web.Routing.RouteValueDictionary(new { id = dialogueSecurite.Id }), "http", HttpContext.Current.Request.Url.Host);
+
+            MailAddress from = new MailAddress("Sezar@refresco.fr");
+
+            //Contournement, je n'arrive pas à charger les objets "lieu" dans le "DialogueSecurite", alors que l'ID est bien présent ...
+            Lieu lieu = db.Lieux.Find(dialogueSecurite.LieuId);
+            Zone zone = db.Zones.Find(dialogueSecurite.ZoneId);
+
+            string subject = "Nouveau Dialogue Sécurité " + dialogueSecurite.Code;
+
+            string body = "<div style='font-family: Verdana, sans-serif;'><H2 style='background-color:#FD9910;color:#FFFFFF;text-align:center;border-radius: 25px;'>Le Dialogue Sécurité " + dialogueSecurite.Code + " vient d'être diffusé.</H2></div>" +
+                    "<br/>" +
+                    "<table><tbody>"; 
+
+            body += "<tr><td>Dialogués : </td><td>1 / </td><td>" + dialogueSecurite.Entretenu1.Prenom + "</td><td>" + dialogueSecurite.Entretenu1.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType3.Nom + "</td></tr>";
+
+            if (dialogueSecurite.Entretenu2.Nom != null)
+            {
+                body += "<tr><td></td><td>2 / </td><td>" + dialogueSecurite.Entretenu2.Prenom + "</td><td>" + dialogueSecurite.Entretenu2.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType4.Nom + "</td></tr>";
+            }
+            if (dialogueSecurite.Entretenu3.Nom != null)
+            {
+                body += "<tr><td></td><td>3 / </td><td>" + dialogueSecurite.Entretenu3.Prenom + "</td><td>" + dialogueSecurite.Entretenu3.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType5.Nom + "</td></tr>";
+
+            }
+            body += "<tr></tr>";
+            body += "<tr><td>Dialogueurs :</td><td>1 / </td><td>" + dialogueSecurite.Dialogueur1.Prenom + "</td><td>" + dialogueSecurite.Dialogueur1.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType.Nom + "</td></tr>";       
+
+            if (dialogueSecurite.Dialogueur2.Nom != null)
+            {
+                body += "<tr><td></td><td>2 / </td><td>" + dialogueSecurite.Dialogueur2.Prenom + "</td><td>" + dialogueSecurite.Dialogueur2.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType1.Nom + "</td></tr>";
+            }
+            if (dialogueSecurite.Dialogueur3.Nom != null)
+            {
+                body += "<tr><td></td><td>3 / </td><td>" + dialogueSecurite.Dialogueur3.Prenom + "</td><td>" + dialogueSecurite.Dialogueur3.Nom + "</td><td> du service : </td><td>" + dialogueSecurite.ServiceType2.Nom + "</td></tr>";
+            }
+
+            body += "</tbody></table>";
+            body += "<br/>";
+            body += "<div> Thématique : " + dialogueSecurite.Thematique.Nom + "</div>";
+            body += "<br/>";
+            body += "<table><tbody>" +
+                "<tr><td>SITUER</td><td>" + dialogueSecurite.Contexte + "</td></tr>" +
+                "<tr><td>OBSERVER</td><td>" + dialogueSecurite.Observation + "</td></tr>" +
+                "<tr><td>REFLECHIR</td><td>" + dialogueSecurite.Reflexion + "</td></tr>" +
+                "<tr><td>AGIR</td><td>" + dialogueSecurite.Action + "</td></tr>" +
+                "</table></tbody>";
+
+            body += "<br/>";
+            body += "<div> Zone : " + zone.ZoneType.Nom + "</div>";
+            body += "<div> Lieu : " + lieu.Nom + "</div>";
+            body += "<br/>";
+            body += "<div> Lien vers le dialogue  : " + urlToDialogueSecurite + "</div>";
+
+            if (to != "" && to != null)
+            {
+                SendEmail(from, subject, body, to);
+            }
+
+        }
+
         private string addFicheSecuriteResponsableEmailToString(String to, FicheSecurite ficheSecurite)
         {
             _activeDirectoryUtilisateurRepository = new ActiveDirectoryUtilisateurRepository();
