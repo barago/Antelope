@@ -187,3 +187,7 @@ th.rotate45 > div > span {
 }
 
 div.floatright { display:inline; float:right; padding-left:5px; }
+
+table.DSStatTable th {
+    border: 1px solid black;
+}

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Antelope.ViewModels.HSE.DialogueSecuriteViewModels;
 
 namespace Antelope.Controllers.API.HSE
 {
@@ -24,7 +25,7 @@ namespace Antelope.Controllers.API.HSE
         {
 
             DateTime DateDebut = new DateTime(DateTime.Now.Year, 1, 1);
-            DateTime DateFin = DateTime.Now.AddDays(+1);
+            DateTime DateFin = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
 
             var queryDialogueSecurite = from d in db.DialogueSecurites
                                         where d.Date >= DateDebut
@@ -47,7 +48,14 @@ namespace Antelope.Controllers.API.HSE
                                             Dialogueur3 = d.Dialogueur3,
                                             Entretenu1 = d.Entretenu1,
                                             Entretenu2 = d.Entretenu2,
-                                            Entretenu3 = d.Entretenu3
+                                            Entretenu3 = d.Entretenu3,
+                                            ServiceTypeDialogueur1Id = d.ServiceTypeDialogueur1Id,
+                                            ServiceTypeDialogueur2Id = d.ServiceTypeDialogueur2Id,
+                                            ServiceTypeDialogueur3Id = d.ServiceTypeDialogueur3Id,
+                                            ServiceTypeEntretenu1Id = d.ServiceTypeEntretenu1Id,
+                                            ServiceTypeEntretenu2Id = d.ServiceTypeEntretenu2Id,
+                                            ServiceTypeEntretenu3Id = d.ServiceTypeEntretenu3Id,
+                                            ThematiqueId = d.ThematiqueId
                                         };
 
             var AllDialogueSecurite = queryDialogueSecurite.ToList();
@@ -61,6 +69,7 @@ namespace Antelope.Controllers.API.HSE
             List<Zone> AllZone = db.Zones.ToList();
             List<Service> AllService = db.Services.ToList();
             List<Thematique> AllThematique = db.Thematiques.ToList();
+            List<ServiceType> AllServiceType = db.ServiceTypes.ToList();
 
             Dictionary<string, Object> Response = new Dictionary<string, Object>();
             Dictionary<string, Object> ParamModel = new Dictionary<string, Object>();
@@ -72,6 +81,7 @@ namespace Antelope.Controllers.API.HSE
             ParamModel.Add("DateDebut", DateDebut);
             ParamModel.Add("DateFin", DateFin);
             Response.Add("ParamModel", ParamModel);
+            Response.Add("AllServiceType",AllServiceType);
 
 
             return Request.CreateResponse(HttpStatusCode.OK, Response);
@@ -124,6 +134,69 @@ namespace Antelope.Controllers.API.HSE
             Dictionary<string, Object> Response = new Dictionary<string, Object>();
             Response.Add("AllDialogueSecurite", AllDialogueSecurite);
 
+
+            return Request.CreateResponse(HttpStatusCode.OK, AllDialogueSecurite);
+        }
+
+        [HttpPost]
+        public HttpResponseMessage GetByParameters(StatistiqueDialogueSecuriteParamModel statistiqueDialogueSecuriteParamModel) //, String dateDebut, String dateFin
+        {
+
+            Dictionary<string, string> DataTableParameters = new Dictionary<string, string>();
+            DataTableParameters = Request.GetQueryNameValuePairs().ToDictionary(kv => kv.Key, kv => kv.Value, StringComparer.OrdinalIgnoreCase);
+
+
+            //            Int32 ParameterStart = Int32.Parse(DataTableParameters["start"]);
+            //Int32 ParameterLength = Int32.Parse(DataTableParameters["length"]);
+
+            //Int32? ParameterSiteId = statistiqueDialogueSecuriteParamModel.SiteId;
+            //string ParameterAtelier = DataTableParameters["atelier"];
+            DateTime? ParameterDateDebut = statistiqueDialogueSecuriteParamModel.DateDebut;
+            DateTime? ParameterDateFin = statistiqueDialogueSecuriteParamModel.DateFin;
+
+
+            //if (DataTableParameters["dateDebut"] != "")
+            //{
+            //    try
+            //    {
+            //        ParameterDateDebut = DateTime.Parse(DataTableParameters["dateDebut"]);
+            //    }
+            //    catch (Exception e)
+            //    {
+
+            //    }
+            //}
+            //if (DataTableParameters["dateFin"] != "")
+            //{
+            //    try
+            //    {
+            //        ParameterDateFin = DateTime.Parse(DataTableParameters["dateFin"]);
+            //    }
+            //    catch (Exception e)
+            //    {
+
+            //    }
+            //}
+
+            List<DialogueSecurite> AllDialogueSecurite = new List<DialogueSecurite>();
+
+            //if (ParameterSiteId == 0)
+            //{
+                var queryDS = from a in db.DialogueSecurites
+                              where a.Date >= ParameterDateDebut
+                              && a.Date <= ParameterDateFin
+                              select a;
+                AllDialogueSecurite = queryDS.ToList();
+            //}
+            //else
+            //{
+                //var queryDS = from a in db.DialogueSecurites
+                //              where a.SiteId == ParameterSiteId
+                //              && a.Date >= ParameterDateDebut
+                //              && a.Date <= ParameterDateFin
+                //              select a;
+                //AllDialogueSecurite = queryDS.ToList();
+            //}
 
             return Request.CreateResponse(HttpStatusCode.OK, AllDialogueSecurite);
         }

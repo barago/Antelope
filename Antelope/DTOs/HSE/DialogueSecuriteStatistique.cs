@@ -26,7 +26,13 @@ namespace Antelope.DTOs.HSE
         public Personne Entretenu2 { get; set; }
         public Personne Entretenu3 { get; set; }
         public Int32 TimeStamp { get; set; }
-
+        public int ThematiqueId { get; set; }
+        public int ServiceTypeDialogueur1Id { get; set; }
+        public int? ServiceTypeDialogueur2Id { get; set; }
+        public int? ServiceTypeDialogueur3Id { get; set; }
+        public int ServiceTypeEntretenu1Id { get; set; }
+        public int? ServiceTypeEntretenu2Id { get; set; }
+        public int? ServiceTypeEntretenu3Id { get; set; }
     }
 }
 

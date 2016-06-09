@@ -3,7 +3,6 @@
     // !!! Penser à importer RechercheActiveDirectoryModel.js dans le HTML du programme principal, sinon ne marchera pas !!!
     var rechercheActiveDirectoryModel = new RechercheActiveDirectoryModel();
     rechercheActiveDirectoryModel.set({ 'rechercheActiveDirectoryCollection': new RechercheActiveDirectoryCollection() })
-    console.log(rechercheActiveDirectoryModel);
     window.RechercheActiveDirectoryView = Backbone.View.extend({
 
         model: rechercheActiveDirectoryModel,
@@ -15,7 +14,6 @@
             return this;
         },
         initialize: function () {
-            console.log(rechercheActiveDirectoryModel);
             //this.model.set({ 'Nom': "" });
             //this.model.set({ 'Prenom': "" });
             this.render();
@@ -50,13 +48,15 @@
 
             // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
             this.model.get('rechercheActiveDirectoryCollection').fetch({ async: false });
+
+            console.log(this.model.get('rechercheActiveDirectoryCollection'));
             this.render();
 
         },
         choixUtilisateurActiveDirectory: function (ev) {
-
+            console.log($(ev.currentTarget).attr('id'));
             var utilisateurSelectionne = this.model.get('rechercheActiveDirectoryCollection').find(
-                function (model) { return model.get('Guid') == $(ev.currentTarget).attr('id'); }
+                function (model) { return model.get('PersonneId') == $(ev.currentTarget).attr('id'); }
             );
 
             this.model.set({ "utilisateurSelectionne": utilisateurSelectionne });
@@ -64,8 +64,6 @@
 
             Backbone.applicationEvents.trigger('selectionUtilisateur', [this.model.get('utilisateurSelectionne'), this.model.get('sourceId')]);
 
-
-            
 
             this.$el.modal('hide');
 

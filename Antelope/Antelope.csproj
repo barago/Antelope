@@ -300,6 +300,7 @@
     <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\DialogueSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\RechercheDialogueSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\RechercheDialogueSecuriteViewModel.cs" />
+    <Compile Include="ViewModels\HSE\DialogueSecuriteViewModels\StatistiqueDialogueSecuriteParamModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuritePaginatedList.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\FicheSecuriteViewModel.cs" />
     <Compile Include="ViewModels\HSE\FicheSecuriteViewModels\RechercheFicheSecuriteParamModel.cs" />

@@ -49,7 +49,6 @@ namespace Antelope.Controllers.API.HSE
             return Request.CreateResponse(HttpStatusCode.OK, DataTableViewModel);
         }
 
-
         [ResponseType(typeof(DialogueSecurite))]
         public HttpResponseMessage Get(int id)
         {
