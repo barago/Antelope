@@ -424,7 +424,7 @@ namespace Antelope.Controllers.IndicateurSI
                 mail.To.Add(reader.GetString(0));          
             }
 
-            mail.From = new MailAddress("dlf-s12vm09.indicateurSI@refresco.fr");
+            mail.From = new MailAddress("dlf-s12vm09.indicateurSI@refresco.com");
             mail.Subject = "Rapport interventions en heures non ouvrées - " + DateTime.Now.ToString("dd-MM-yyyy");
             mail.Body = bodyHTML;
             mail.IsBodyHtml = true;

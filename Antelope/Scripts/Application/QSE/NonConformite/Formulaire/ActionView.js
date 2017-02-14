@@ -117,9 +117,12 @@
             "keyup .EditActionResponsableNom": "changeEditActionResponsableNom",
             "keyup .EditActionResponsablePrenom": "changeEditActionResponsablePrenom",
             "keyup .EditActionDateButoireInitiale": "changeEditActionDateButoireInitiale",
-            "keyup .EditActionDateButoireInitiale": "changeEditActionDateButoireInitiale",
+            "keyup .EditActionDateButoireNouvelle": "changeEditActionDateButoireNouvelle",
             "keyup .InputEditActionRealiseDate": "changeEditActionRealiseDate",
             "keyup .EditActionDateVerificationInput": "changeEditActionVerificationDate",
+
+
+         
 
         },
         hideShow: function (ev) {
@@ -131,7 +134,12 @@
         },
         dateFormatMVC: function (date) {
             // De date FR à DateTime
-            var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2);
+            if (date == '') {
+                var dateFormated = '';
+            }
+            else {
+                var dateFormated = date.substring(6, 10) + '-' + date.substring(3, 5) + '-' + date.substring(0, 2) + 'T' + '00:00:00.0';
+            }
             return dateFormated;
         },
         changeAddActionTitre: function () {
@@ -155,7 +163,7 @@
             rechercheActiveDirectoryView.show()
         },
         changeAddActionDateButoireInitiale: function (ev) {
-            this.model.get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoireInitialeInput').val()) + 'T' + '00:00:00.0' });
+            this.model.get('actionModel').set({ 'DateButoireInitiale': this.dateFormatMVC($('#AddActionDateButoireInitialeInput').val())});
             this.model.get('actionModel').set({ 'DateButoireInitialeJavascript': $('#AddActionDateButoireInitialeInput').val() });
         },
         saveAddAction: function(){
@@ -247,12 +255,12 @@
         },
         changeEditActionDateButoireInitiale: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitiale': this.dateFormatMVC($('#InputEditActionDateButoireInitiale' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitiale': this.dateFormatMVC($('#InputEditActionDateButoireInitiale' + actionToEditId).val())});
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireInitialeJavascript': $('#InputEditActionDateButoireInitiale' + actionToEditId).val() });
         },
         changeEditActionDateButoireNouvelle: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelle': this.dateFormatMVC($('#InputEditActionDateButoireNouvelle' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelle': this.dateFormatMVC($('#InputEditActionDateButoireNouvelle' + actionToEditId).val())});
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'DateButoireNouvelleJavascript': $('#InputEditActionDateButoireNouvelle' + actionToEditId).val() });
         },
         changeEditActionDescription: function (ev) {
@@ -266,14 +274,14 @@
         changeEditActionRealiseDate: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
 
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDate': ($('#InputEditActionRealiseDate'  + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#InputEditActionRealiseDate' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDate': ($('#InputEditActionRealiseDate'  + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#InputEditActionRealiseDate' + actionToEditId).val())});
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'RealiseDateJavascript': $('#InputEditActionRealiseDate' + actionToEditId).val() });
             
         },
         changeEditActionVerificationDate: function (ev) {
             var actionToEditId = $(ev.currentTarget).attr('data-actionid');
             console.log('tyiryuj');
-            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDate': ($('#EditActionDateVerificationInput' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val()) + 'T' + '00:00:00.0' });
+            this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDate': ($('#EditActionDateVerificationInput' + actionToEditId).val() == "") ? null : this.dateFormatMVC($('#EditActionDateVerificationInput' + actionToEditId).val())});
             this.model.get('nonConformiteModel').get('actionCollection').findWhere({ ActionQSEId: parseInt(actionToEditId) }).set({ 'VerifieDateJavascript': $('#EditActionDateVerificationInput' + actionToEditId).val() });
         },
         changeEditActionCritere: function (ev) {

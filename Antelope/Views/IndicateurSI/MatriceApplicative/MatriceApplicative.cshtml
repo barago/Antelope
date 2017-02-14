@@ -20,7 +20,19 @@
     <div class="panel panel-default">
         <div class="panel-heading">Matrice Applicative</div>
         <div class="panel-body" >
+            <div class="row">
 
+                <label for="IsSRV" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;SRV&nbsp;</span></label>
+                <input type="checkbox" id="IsSRV" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <label for="IsBDD" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;BDD&nbsp;</span></label>
+                <input type="checkbox" id="IsBDD" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <label for="IsKUS" style="font-weight:normal"> <span style="border-style:solid;border-width:1px;border-color:#B4B4B4;background-color:white;height:10px;">&nbsp;KUS&nbsp;</span></label>
+                <input type="checkbox" id="IsKUS" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+            </div>
 
 
             <table id="table" >
@@ -144,6 +156,10 @@
 
         responseModel.set({ 'applicationCollection': applicationCollection });
 
+        responseModel.set({ 'isSRV': true });
+        responseModel.set({ 'isBDD': true });
+        responseModel.set({ 'isKUS': true });
+
         responseModel.get('applicationCollection').each(function (application) {
 
             application.set({ 'type': application.get('versionName').substr(0, 3) });
@@ -153,56 +169,65 @@
         responseModel.set({ 'allUniqueApplicationName': allUniqueApplicationName });
         responseModel.set({ 'allUniqueComputerId': allUniqueComputerId });
 
-        var allLine = []
 
-        var firstLine = ['App']
 
-        allUniqueComputerId.forEach(function (computer) {
-            applicationCollection.each(function (application) {
 
-                if (application.get('computerId') === computer && (application.get('type') === 'SRV' || application.get('type') === 'BDD')) {
+        //-------------------------------------------
 
-                    firstLine.push(application.get('computerName'));
-                }
-            });
-        });
+        function calculMatrice(responseModel) {
 
-        //console.log(firstLine);
-        console.log('BEFORE BOUCLE');
-        allUniqueApplicationName.forEach(function (software) {
-            var line = [];
-            //console.log('PASSAGE LIGNE software = ' + software);
-            line.push(software);
+            var allLine = []
+
+            var firstLine = ['App']
+
             allUniqueComputerId.forEach(function (computer) {
-                //console.log('PASSAGE COLONNE computer = ' + computer);
                 applicationCollection.each(function (application) {
 
-                    //console.log('PASSAGE COLLECTION computerId = ' + application.get('computerId') + ' softwareId = ' + application.get('softwareId') + ' type = ' + application.get('type'));
+                    if (application.get('computerId') === computer && ((application.get('type') === 'SRV' && responseModel.get('isSRV') === true) || application.get('type') === 'BDD') || application.get('type') === 'KUS') {
 
-                    if (application.get('computerId') === computer && application.get('softwareName') === software && (application.get('type') === 'SRV' || application.get('type') === 'BDD')) {
-                        //console.log('****************************************************************');
-                        line.push(application.get('type'));
-                       
-                      
-                    }
-                    else if (application.get('computerId') === computer && application.get('softwareName') != software && (application.get('type') === 'SRV' || application.get('type') === 'BDD')) {
-                        //console.log('----------------------------------------------------------------');
-                        line.push('--');
-
+                        firstLine.push(application.get('computerName'));
                     }
                 });
             });
-            allLine.push(line);
-        });
 
-        //console.log(allLine);
-        tableModel = new TableModel({ 'firstLine': firstLine , 'allLine':allLine});
+            //console.log(firstLine);
+            console.log('BEFORE BOUCLE');
+            allUniqueApplicationName.forEach(function (software) {
+                var line = [];
+                console.log('PASSAGE LIGNE software = ' + software);
+                line.push(software);
+                allUniqueComputerId.forEach(function (computer) {
+                    console.log('PASSAGE COLONNE computer = ' + computer);
+                    applicationCollection.each(function (application) {
 
-        responseModel.set({ 'tableModel': tableModel});
+                        console.log('PASSAGE COLLECTION computerId = ' + application.get('computerId') + ' softwareId = ' + application.get('softwareId') + ' type = ' + application.get('type'));
 
-        //console.log(table);
+                        if (application.get('computerId') === computer && application.get('softwareName') === software && ((application.get('type') === 'SRV' /*&& responseModel.get('isSRV') === true*/) || application.get('type') === 'BDD' || application.get('type') === 'KUS')) {
+                            console.log('****************************************************************');
+                            line.push(application.get('type'));
 
 
+                        }
+                        else if (application.get('computerId') === computer && application.get('softwareName') != software && ((application.get('type') === 'SRV'  /*&& responseModel.get('isSRV') === true*/) || application.get('type') === 'BDD' || application.get('type') === 'KUS')) {
+                            console.log('----------------------------------------------------------------');
+                            line.push('--');
+
+                        }
+                    });
+                });
+                allLine.push(line);
+            });
+
+            console.log(allLine);
+            tableModel = new TableModel({ 'firstLine': firstLine, 'allLine': allLine });
+
+            responseModel.set({ 'tableModel': tableModel });
+
+            console.log('fin calcul matrice');
+        };
+        //----------------------------------------------
+
+        calculMatrice(responseModel);
 
 
         //console.log(responseModel);
@@ -223,10 +248,26 @@
             },
             events: {
 
-
+                "click #IsSRV": "changeIsSRV",
+                "click #IsBDD": "changeIsBDD",
+                "click #IsKUS": "changeIsKUS",
 
             },
-           
+            changeIsSRV: function () {
+                console.log('Change ISSRV');
+                console.log($('#IsSRV').is(":checked"));
+                this.model.set({ 'IsSRV': $('#IsSRV').is(":checked") });
+                console.log(this.model.get('IsSRV'));
+
+                calculMatrice(this.model);
+                //this.render();
+            },
+            changeIsBDD: function () {
+                this.model.set({ 'IsBDD': $('#IsBDD').is(":checked") });
+            },
+            changeIsKUS: function () {
+                this.model.set({ 'IsKUS': $('#IsKUS').is(":checked") });
+            }
 
 
 

@@ -90,7 +90,7 @@
                                     <%= utilisateurActiveDirectory.get('Prenom') %>
                                 </td>
                                 <td>
-                                    <button type="button" id="<%= utilisateurActiveDirectory.get('Guid') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
+                                    <button type="button" id="<%= utilisateurActiveDirectory.get('PersonneId') %>" class="BoutonChoixUtilisateurActiveDirectory btn btn-default">
                                         <span class="glyphicon glyphicon-arrow-right"></span>
                                     </button>
                                 </td>
@@ -366,7 +366,8 @@
                                 <th>CodeNC</th>
                                 <th>Titre</th>
                                 <th>Responsable</th>
-                                <th>Date Butoir</th>
+                                <th>Date Butoir Initiale</th>
+                                <th>Date Butoir Nouvelle</th>
                                 <th>Description</th>
                                 <th>Description Non Conformite</th>
                                 @*<th>Code</th>
@@ -529,8 +530,25 @@
                 "click #IsActionRetard": "changeIsActionRetard",
                 "click #IsActionCloture": "changeIsActionCloture",
                 "click #ActiveDirectoryActionResponsableRecherche": "showActiveDirectoryUtilisateurRecherche",
+                //"click .BoutonChoixUtilisateurActiveDirectory": "choixUtilisateurActiveDirectory",
 
             },
+            //choixUtilisateurActiveDirectory: function (ev) {
+            //    console.log($(ev.currentTarget).attr('id'));
+            //    var utilisateurSelectionne = this.model.get('rechercheActiveDirectoryCollection').find(
+            //        function (model) { return model.get('PersonneId') == $(ev.currentTarget).attr('id'); }
+            //    );
+            //    console.log('Utilisateur Selectionné : ');
+            //    console.log(utilisateurSelectionne);
+            //    this.model.set({ "utilisateurSelectionne": utilisateurSelectionne });
+            //    this.model.get('utilisateurSelectionne').set({ "sourceUtilisateurField": this.model.get('sourceUtilisateurField') });
+
+            //    Backbone.applicationEvents.trigger('selectionUtilisateur', [this.model.get('utilisateurSelectionne'), this.model.get('sourceId')]);
+
+
+            //    this.$el.modal('hide');
+
+            //},
             triggerRechercheSurEntree: function (e) {
                 if (e.which === 13) {
                     if (viewModel.get('paramModel').get('typeRecherche') === 'NONCONFORMITE') {
@@ -749,26 +767,13 @@
                             "width": "10%"
                         },
                         {
-                            "mData": "ResponsableNom",
-                            "sTitle": "Responsable",
-                            "orderable": true,
-                            "width": "8%",
+                            "mData": "NonConformiteDescription",
+                            "sTitle": "Description Non-Conformite",
+                            "orderable": false,
+                            "width": "25%",
                             "mRender": function (date, type, full) {
-                                return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
+                                return full.NonConformite.Description;
                             }
-                        },
-                        {
-                            "mData": "Date",
-                            "sTitle": "Date Butoir",
-                            "sType": "date",
-                            "mRender": function (date, type, full) {
-                                //return new Date(date).toLocaleString();
-                                //return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
-                                var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
-                                return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
-                            },
-                            "orderable": true,
-                            "width": "6%"
                         },
                         {
                             "mData": "Description",
@@ -781,15 +786,6 @@
                             "width": "25%"
                         },
                         {
-                            "mData": "NonConformiteDescription",
-                            "sTitle": "Description Non-Conformite",
-                            "orderable": false,
-                            "width": "25%",
-                            "mRender": function (date, type, full) {
-                                return full.NonConformite.Description;
-                            }
-                        },
-                        {
                             "mData": "Avancement",
                             "sTitle": "Avancement",
                             "orderable": false,
@@ -797,13 +793,57 @@
                             "width": "25%"
                         },
                         {
-                            "mData": "VerificateurNom",
-                            "sTitle": "Verificateur",
-                            "orderable": false,
-                            "visible":false,
+                            "mData": "ResponsableNom",
+                            "sTitle": "Responsable",
+                            "orderable": true,
+                            "width": "8%",
                             "mRender": function (date, type, full) {
-                                return full.Verificateur.Nom + ' ' + full.Verificateur.Prenom;
+                                return full.Responsable.Nom + ' ' + full.Responsable.Prenom;
                             }
+                        },
+                        {
+                            "mData": "DateButoireInitiale",
+                            "sTitle": "Date Butoir Initiale",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                            //    //return new Date(date).toLocaleString();
+                            //    //return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                            //    var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
+                            return full.DateButoireInitiale.substring(8, 10) + '/' + full.DateButoireInitiale.substring(5, 7) + '/' + full.DateButoireInitiale.substring(0, 4);
+                            },
+                            "orderable": true,
+                            "width": "6%"
+                        },
+                        {
+                            "mData": "DateButoireNouvelle",
+                            "sTitle": "Date Butoir Nouvelle",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                //return new Date(date).toLocaleString();
+                                //return date.substring(8, 10) + '/' + date.substring(5, 7) + '/' + date.substring(0, 4);
+                                //var date = (full.DateButoireNouvelle == null) ? full.DateButoireInitiale : full.DateButoireNouvelle;
+                                if (full.DateButoireNouvelle != null || full.DateButoireNouvelle == '') {
+                                    return full.DateButoireNouvelle.substring(8, 10) + '/' + full.DateButoireNouvelle.substring(5, 7) + '/' + full.DateButoireNouvelle.substring(0, 4);
+                                }
+                                else {
+                                    return '';
+                                }
+                            },
+                            "orderable": true,
+                            "width": "6%"
+                        },
+                        {
+                            "mData": "RealiseDate",
+                            "sTitle": "Date de réalisation",
+                            "sType": "date",
+                            "mRender": function (date, type, full) {
+                                if (full.RealiseDate === null || full.RealiseDate === undefined) { return ""; }
+                                return full.RealiseDate.substring(8, 10) + '/' + full.RealiseDate.substring(5, 7) + '/' + full.RealiseDate.substring(0, 4);
+
+                            },
+                            "orderable": true,
+                            "width": "6%",
+                            "visible": false
                         },
                         {
                             "mData": "CritereEfficaciteVerification",
@@ -824,17 +864,13 @@
                             //},
                         },
                         {
-                            "mData": "RealiseDate",
-                            "sTitle": "Date de réalisation",
-                            "sType": "date",
+                            "mData": "VerificateurNom",
+                            "sTitle": "Verificateur",
+                            "orderable": false,
+                            "visible":false,
                             "mRender": function (date, type, full) {
-                                if (full.RealiseDate === null || full.RealiseDate === undefined) { return "";}
-                                    return full.RealiseDate.substring(8, 10) + '/' + full.RealiseDate.substring(5, 7) + '/' + full.RealiseDate.substring(0, 4);
-                                
-                            },
-                            "orderable": true,
-                            "width": "6%", 
-                            "visible":false
+                                return full.Verificateur.Nom + ' ' + full.Verificateur.Prenom;
+                            }
                         },
                     ],
                     "oLanguage": {

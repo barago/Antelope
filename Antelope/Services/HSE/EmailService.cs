@@ -91,7 +91,7 @@ namespace Antelope.Services.HSE
                 "<br/>"+
                 "<div> Lien vers la fiche  : " + urlToFicheSecurite + "</div></div>";
 
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
+            MailAddress from = new MailAddress("Sezar@refresco.com");
             string subject = "Nouvelle Fiche Sécurité à " + FicheSecurite.Site.Trigramme;
 
 
@@ -116,7 +116,7 @@ namespace Antelope.Services.HSE
 
             to = addActionResponsableEmailToString(to, ficheSecurite);
 
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
+            MailAddress from = new MailAddress("Sezar@refresco.com");
             string subject = "Diffusion Plan d'action";
             string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être diffusé</H4> </br>";
 
@@ -138,7 +138,7 @@ namespace Antelope.Services.HSE
 
             to = addActionResponsableEmailToString(to, ficheSecurite);
 
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
+            MailAddress from = new MailAddress("Sezar@refresco.com");
             string subject = "Validation Plan d'action";
             string body = "<H4>Le plan d'action de la Fiche Securite " + ficheSecurite.Code + " vient d'être validé</H4> </br></br>";
             body += "</br> Voici les actions à réaliser : </br></br>";
@@ -168,7 +168,7 @@ namespace Antelope.Services.HSE
 
             to = addActionResponsableEmailToString(to, ficheSecurite);
 
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
+            MailAddress from = new MailAddress("Sezar@refresco.com");
             string subject = "Rejet Plan d'action";
             string body = "<H4>Le plan d'action de la Fiche Securite "+ ficheSecurite.Code +" vient d'être rejeté</H4> Voici la cause du rejet : </br>" + ficheSecurite.WorkFlowASERejeteeCause;
 
@@ -189,7 +189,7 @@ namespace Antelope.Services.HSE
             UrlHelper url = new UrlHelper(HttpContext.Current.Request.RequestContext);
             string urlToDialogueSecurite= url.Action("Edit", "DialogueSecurite", new System.Web.Routing.RouteValueDictionary(new { id = dialogueSecurite.Id }), "http", HttpContext.Current.Request.Url.Host);
 
-            MailAddress from = new MailAddress("Sezar@refresco.fr");
+            MailAddress from = new MailAddress("Sezar@refresco.com");
 
             //Contournement, je n'arrive pas à charger les objets "lieu" dans le "DialogueSecurite", alors que l'ID est bien présent ...
             Lieu lieu = db.Lieux.Find(dialogueSecurite.LieuId);

@@ -56,7 +56,7 @@ namespace Antelope.Controllers.API.Indicateurs
                 "AND glpi_computers.is_deleted = '0' " +
                 "AND glpi_computers.is_template = '0' "+
                 //"AND glpi_softwares.name = 'Qubes'" +
-                "ORDER BY glpi_softwares.id";
+                "ORDER BY glpi_softwares.name";
 
                 //"GROUP BY glpi_softwares.id ";
             

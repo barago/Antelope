@@ -48,17 +48,13 @@
 
             // /!\ ASYNC : FALSE >>> Si true, la page se raffraichie sans attendre la mise à jour du model (anciennes données affichées)
             this.model.get('rechercheActiveDirectoryCollection').fetch({ async: false });
-
-            console.log(this.model.get('rechercheActiveDirectoryCollection'));
             this.render();
 
         },
         choixUtilisateurActiveDirectory: function (ev) {
-            console.log($(ev.currentTarget).attr('id'));
             var utilisateurSelectionne = this.model.get('rechercheActiveDirectoryCollection').find(
                 function (model) { return model.get('PersonneId') == $(ev.currentTarget).attr('id'); }
             );
-
             this.model.set({ "utilisateurSelectionne": utilisateurSelectionne });
             this.model.get('utilisateurSelectionne').set({ "sourceUtilisateurField": this.model.get('sourceUtilisateurField') });
 
@@ -70,4 +66,5 @@
         }
 
     });
+
 });
